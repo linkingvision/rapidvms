@@ -1,0 +1,36 @@
+vdcEye onvifmanager
+open source ONVIF IP Camera manager
+
+Please Delete C:\videodb if use vdcEye Manager V2014-0630.msi and before.
+
+vdcEye Manager which support recording and unlimited timeline playback
+https://sourceforge.net/projects/vscloud/
+
+ONVIF profile S support.
+Unlimited timeline playback.
+Anti file system fragment recording system.
+Multi Display screen support.
+Alarm Support
+PTZ Support
+ONVIF ProfileS simulator
+Mobile Support (TODO)
+Profile G Support (TODO)
+
+Windows Build:
+1. Install VS2013
+2. Install QT 5.4.0 in the http://download.qt-project.org/official_releases/qt/5.2/5.2.1/qt-opensource-windows-x86-msvc2010-5.2.1.exe
+3. http://download.qt-project.org/official_releases/vsaddin/qt-vs-addin-1.2.3-opensource.exe 
+4. Open the vepro\prj_win32\VSCloudNode.sln to build
+
+Linux Build:
+ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev
+centos: sudo yum install nasm xorg-x11-server-devel zlib-devel
+
+1. Install qt-opensource-linux-x64-5.4.0.run
+	export  PATH=$PATH:/home/ubu/Qt5.2.1/5.2.1/gcc_64/bin:/home/ubu/Qt5.2.1/Tools/QtCreator/bin/
+	
+xsmart@vdceye.com
+
+For more guide 
+http://blog.csdn.net/video_dc
+http://www.vdceye.com/

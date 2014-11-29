@@ -1,0 +1,4 @@
+1. Install VS2010
+2. Install QT 5.2.1 in the http://download.qt-project.org/official_releases/qt/5.2/5.2.1/qt-opensource-windows-x86-msvc2012-5.2.1.exe
+3. http://download.qt-project.org/official_releases/vsaddin/qt-vs-addin-1.2.3-opensource.exe 
+4. Open the vepro\prj_win32\VSCloudNode.sln to build, and the library for running in the 3rdparty\bin
