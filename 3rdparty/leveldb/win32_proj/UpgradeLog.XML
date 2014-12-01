@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="leveldb">
+</Property><Property Name="Solution File" Value="C:\work\81-src\zm\op\leveldb-portable-master\win32_proj\leveldb.sln">
+</Property><Property Name="Date" Value="Monday, December 03, 2012">
+</Property><Property Name="Time" Value="20:36 PM">
+</Property></Properties><Event ErrorLevel="0" Project="leveldb" Source="leveldb.vcproj" Description="Converting project file 'C:\work\81-src\zm\op\leveldb-portable-master\win32_proj\leveldb.vcproj'.">
+</Event><Event ErrorLevel="1" Project="leveldb" Source="leveldb.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="leveldb" Source="leveldb.vcproj" Description="Done converting to new project file 'C:\work\81-src\zm\op\leveldb-portable-master\win32_proj\leveldb.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="leveldb" Source="leveldb.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="memenv" Source="memenv.vcproj" Description="Converting project file 'C:\work\81-src\zm\op\leveldb-portable-master\win32_proj\memenv.vcproj'.">
+</Event><Event ErrorLevel="1" Project="memenv" Source="memenv.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="memenv" Source="memenv.vcproj" Description="Done converting to new project file 'C:\work\81-src\zm\op\leveldb-portable-master\win32_proj\memenv.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="memenv" Source="memenv.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="leveldb.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="leveldb.sln" Description="Converted">
+</Event></UpgradeLog>

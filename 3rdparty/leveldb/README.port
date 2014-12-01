@@ -1,0 +1,9 @@
+A Fast And Lightweight Key/Value Database Library By Google(Portable for Windows)
+
+Features:
+1. Linux shared library
+2. Windows Library
+
+port/port_win.cc port/port_win.h util/env_win.cc are mainly from http://code.google.com/r/kkowalczyk-leveldb
+
+This repository is now fully available for windows and posix.
