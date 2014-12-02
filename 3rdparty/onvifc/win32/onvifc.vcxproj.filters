@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="include\device_management">
+      <UniqueIdentifier>{5add5cc0-22ae-405a-8d7a-cb23e7b1f0d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\media_management">
+      <UniqueIdentifier>{589b494f-56b2-4da2-801d-aef19cecf44e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ptz_management">
+      <UniqueIdentifier>{29aef0e9-a00e-4f46-bf79-23719abfeac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\device_management">
+      <UniqueIdentifier>{4d1d20fa-7db9-4edb-8b30-a4f541fc7f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\media_management">
+      <UniqueIdentifier>{cc4a90d5-02b0-491f-8bc3-c6ed8b62fd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ptz_management">
+      <UniqueIdentifier>{1a6f6fd9-114a-478d-93a1-d638b109964e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{69c507b6-0ab6-4a96-ac38-48c4d1d8bd40}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{952a5faa-d173-480e-8845-e11ee93233cc}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\include\client.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\devicemanagement.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\devicesearcher.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\mediamanagement.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\message.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\messageparser.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptzmanagement.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\service.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\capabilities.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\networkinterfaces.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\networkprotocols.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\systemdateandtime.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\systemfactorydefault.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\systemreboot.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\device_management\user.h">
+      <Filter>include\device_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\audioencoderconfiguration.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\audioencoderconfigurationoptions.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\audioencoderconfigurations.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\audiosourceconfigurations.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\profile.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\profiles.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\streamuri.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\videoencoderconfiguration.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\videoencoderconfigurationoptions.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\videoencoderconfigurations.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\videosourceconfiguration.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\media_management\videosourceconfigurations.h">
+      <Filter>include\media_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\absolutemove.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\configuration.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\configurations.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\continuousmove.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\gotohomeposition.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\gotopreset.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\node.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\nodes.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\preset.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\presets.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\relativemove.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\removepreset.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\ptz_management\stop.h">
+      <Filter>include\ptz_management</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\qhttp.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\Debug\moc_client.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_client.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_devicemanagement.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_devicemanagement.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_devicesearcher.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_devicesearcher.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mediamanagement.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mediamanagement.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_message.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_message.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_messageparser.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_messageparser.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ptzmanagement.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ptzmanagement.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_service.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_service.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_capabilities.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_capabilities.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_networkinterfaces.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_networkinterfaces.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_networkprotocols.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_networkprotocols.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_systemdateandtime.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_systemdateandtime.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_systemfactorydefault.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_systemfactorydefault.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_systemreboot.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_systemreboot.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_user.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_user.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_audioencoderconfiguration.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_audioencoderconfiguration.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_audioencoderconfigurationoptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_audioencoderconfigurationoptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_audioencoderconfigurations.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_audioencoderconfigurations.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_audiosourceconfigurations.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_audiosourceconfigurations.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_profile.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_profile.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_profiles.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_profiles.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_streamuri.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_streamuri.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videoencoderconfiguration.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videoencoderconfiguration.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videoencoderconfigurationoptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videoencoderconfigurationoptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videoencoderconfigurations.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videoencoderconfigurations.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videosourceconfiguration.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videosourceconfiguration.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videosourceconfigurations.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videosourceconfigurations.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_absolutemove.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_absolutemove.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_configuration.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_configuration.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_configurations.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_configurations.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_continuousmove.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_continuousmove.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_gotohomeposition.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_gotohomeposition.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_gotopreset.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_gotopreset.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_node.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_node.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_nodes.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_nodes.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_preset.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_preset.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_presets.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_presets.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_relativemove.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_relativemove.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_removepreset.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_removepreset.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_stop.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_stop.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\devicemanagement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\devicesearcher.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mediamanagement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\message.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\messageparser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptzmanagement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\qhttp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\qhttpauthenticator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\capabilities.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\networkinterfaces.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\networkprotocols.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\systemdateandtime.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\systemfactorydefault.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\systemreboot.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\device_management\user.cpp">
+      <Filter>src\device_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\audioencoderconfiguration.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\audioencoderconfigurationoptions.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\audioencoderconfigurations.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\audiosourceconfiigurations.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\profile.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\profiles.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\streamuri.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\videoencoderconfiguration.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\videoencoderconfigurationoptions.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\videoencoderconfigurations.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\videosourceconfiguration.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\media_management\videosourceconfigurations.cpp">
+      <Filter>src\media_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\absolutemove.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\configuration.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\configurations.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\continuousmove.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\gotohomeposition.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\gotopreset.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\node.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\nodes.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\preset.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\presets.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\relativemove.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\removepreset.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ptz_management\stop.cpp">
+      <Filter>src\ptz_management</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\QHttp">
+      <Filter>include</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\qhttpauthenticator_p.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\qringbuffer_p.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
