@@ -15,6 +15,7 @@
 	ONVIF ProfileS simulator
 	Emap
 	Data Mining
+	HDFS Video Recording
 
 ### Building ###
 #### Windows ####
