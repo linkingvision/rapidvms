@@ -29,7 +29,7 @@
 	
 	Install qt-opensource-linux-x64-5.4.0.run
 	http://download.qt-project.org/development_releases/qt/5.4/5.4.0-rc/qt-opensource-linux-x64-5.4.0-rc.run
-		export  PATH=$PATH:/home/ubu/Qt5.4.0/5.4/gcc_64/bin:/home/ubu/Qt5.4.0/Tools/QtCreator/bin/
+		export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4/gcc_64/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/
 
 For more guide
 [http://www.vdceye.com/](http://www.vdceye.com/)
