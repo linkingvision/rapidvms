@@ -2,6 +2,8 @@
 #### open source ONVIF IP Camera manager ####
 
 ----------
+![](https://github.com/xsmart/ve-img/raw/master/snapshot/20141203.png)
+
 #### Release Version ####
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 
