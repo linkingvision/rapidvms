@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="NetCore">
+      <UniqueIdentifier>{037f65ff-7307-4faf-826d-34a0aa886ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetCore\Header Files">
+      <UniqueIdentifier>{d65c6014-0d08-46f5-a1b6-df4e6d284899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetCore\Source Files">
+      <UniqueIdentifier>{1c201b71-4a7b-4c84-8ea8-47fc00e830de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{b1504c1b-bb23-402a-8b6f-4e95e1df1782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Header Files">
+      <UniqueIdentifier>{95bba649-4f03-4789-8437-39d340f739ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Source Files">
+      <UniqueIdentifier>{7d5d1e54-8316-4516-b679-721aa5e94054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{ecc16bb0-03fe-454c-b8e3-6329242d1482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver\Source Files">
+      <UniqueIdentifier>{142b00ed-ad45-40e6-b525-fe785ebf7be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sockets">
+      <UniqueIdentifier>{09076b28-1a9c-4a4b-a8d3-1e0319ce54a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sockets\Header Files">
+      <UniqueIdentifier>{4710d782-d7a0-4944-8dd3-31f737b0ad81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sockets\Source Files">
+      <UniqueIdentifier>{2d2f5164-837f-4dfe-afb1-31ea3197671c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages">
+      <UniqueIdentifier>{0322eb71-e1ab-4b52-9a44-039d2baa1054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages\Header Files">
+      <UniqueIdentifier>{7e53a2da-182e-415c-847b-7c9d26aa87b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages\Source Files">
+      <UniqueIdentifier>{74de4d90-3d79-4978-bcad-dbc89a19339f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTP">
+      <UniqueIdentifier>{93157bc3-0f93-4781-891b-cca686733c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTP\Header Files">
+      <UniqueIdentifier>{9c85643c-db21-4a28-a012-cd58c98e0994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTP\Source Files">
+      <UniqueIdentifier>{7a39e67c-97a6-4c6a-86c8-79e65dc0dea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCPServer">
+      <UniqueIdentifier>{4ef668e2-3bea-4903-9944-28af4b144bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCPServer\Header Files">
+      <UniqueIdentifier>{4870644d-f716-4367-abcf-b7f0adffb762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TCPServer\Source Files">
+      <UniqueIdentifier>{19de5849-a929-4d51-ac64-78f478533aa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPServer">
+      <UniqueIdentifier>{03a3e53e-fec9-4a62-a37e-ca091fbb656e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPServer\Header Files">
+      <UniqueIdentifier>{cff0f735-f09e-4744-a9d0-7ef5df15502d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPServer\Source Files">
+      <UniqueIdentifier>{0f4a004a-b601-44f1-8fcd-3f3b8cffe82a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTML">
+      <UniqueIdentifier>{343f8c23-7a19-4e57-852a-a04fc6f3b6e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTML\Header Files">
+      <UniqueIdentifier>{77a7042d-00af-4aa0-9993-6696f9dd9d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTML\Source Files">
+      <UniqueIdentifier>{d351424f-5c2c-48dc-a727-520872a89008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPClient">
+      <UniqueIdentifier>{8af6b5a8-6985-4243-9882-4fe52ec5710f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPClient\Header Files">
+      <UniqueIdentifier>{afb0db5c-cf7f-46b7-b87d-139299a153d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPClient\Source Files">
+      <UniqueIdentifier>{cb9fb41d-3e24-4a38-8767-600dcf01c4b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FTPClient">
+      <UniqueIdentifier>{036cf810-9be2-4e3f-b3c8-6b8961b53fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FTPClient\Header Files">
+      <UniqueIdentifier>{f1eb248f-72fd-4626-a945-fff60a64b481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FTPClient\Source Files">
+      <UniqueIdentifier>{a135934e-b840-4afe-b0e2-e5784c02fdff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reactor">
+      <UniqueIdentifier>{4e63e501-1b85-4aee-93e2-d030c4c24d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reactor\Header Files">
+      <UniqueIdentifier>{7951dde7-b5e9-482c-a8d6-69f459eb6799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reactor\Source Files">
+      <UniqueIdentifier>{eb42b26c-4191-4a1a-8032-0c24dcb16276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail">
+      <UniqueIdentifier>{d3508005-61a1-4436-a735-95624ae915b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail\Header Files">
+      <UniqueIdentifier>{4a312890-3311-4766-8e88-0d3446fb91a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail\Source Files">
+      <UniqueIdentifier>{ada3be0d-12aa-40ba-abb8-93933d58ae72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ICMP">
+      <UniqueIdentifier>{e3aa9bfd-70ee-4202-90a4-011e27772248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ICMP\Header Files">
+      <UniqueIdentifier>{5c78e0c9-250b-4ec7-9029-f9b0d15c316a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ICMP\Source Files">
+      <UniqueIdentifier>{db4260dd-e71f-402c-853a-ed2789f28b73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NTP">
+      <UniqueIdentifier>{cf8286bc-6d94-4bb9-9d66-0ae9f50b8310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NTP\Header Files">
+      <UniqueIdentifier>{e3242d8d-02b7-4a45-aaad-d0e8753ebd0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NTP\Source Files">
+      <UniqueIdentifier>{2082027b-c21d-4ccf-9023-2a570cc7d683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{926cdc38-7782-4c77-be10-7638e7bbef25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Header Files">
+      <UniqueIdentifier>{b2f07879-f2a7-4a2e-bd58-16c7af786f70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Source Files">
+      <UniqueIdentifier>{8c737785-88b3-4435-a120-10da770d8b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WebSocket">
+      <UniqueIdentifier>{7fdb1591-8e0c-4ca3-b463-8676e2ee9932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WebSocket\Header Files">
+      <UniqueIdentifier>{1b16df8a-6d57-4cff-94b7-be697662b735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WebSocket\Source Files">
+      <UniqueIdentifier>{4c0332e5-8e86-4645-b4b5-bab72d091b2f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\DNSTest.h">
+      <Filter>NetCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IPAddressTest.h">
+      <Filter>NetCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NetCoreTestSuite.h">
+      <Filter>NetCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NetworkInterfaceTest.h">
+      <Filter>NetCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SocketAddressTest.h">
+      <Filter>NetCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NetTestSuite.h">
+      <Filter>_Suite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DatagramSocketTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DialogServer.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DialogSocketTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EchoServer.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MulticastEchoServer.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MulticastSocketTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RawSocketTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SocketsTestSuite.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SocketStreamTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SocketTest.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UDPEchoServer.h">
+      <Filter>Sockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MediaTypeTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageHeaderTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessagesTestSuite.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultipartReaderTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultipartWriterTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NameValueCollectionTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QuotedPrintableTest.h">
+      <Filter>Messages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPCookieTest.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPCredentialsTest.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPRequestTest.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPResponseTest.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPTestServer.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPTestSuite.h">
+      <Filter>HTTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TCPServerTest.h">
+      <Filter>TCPServer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TCPServerTestSuite.h">
+      <Filter>TCPServer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPServerTest.h">
+      <Filter>HTTPServer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPServerTestSuite.h">
+      <Filter>HTTPServer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTMLFormTest.h">
+      <Filter>HTML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTMLTestSuite.h">
+      <Filter>HTML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPClientSessionTest.h">
+      <Filter>HTTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPClientTestSuite.h">
+      <Filter>HTTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HTTPStreamFactoryTest.h">
+      <Filter>HTTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FTPClientSessionTest.h">
+      <Filter>FTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FTPClientTestSuite.h">
+      <Filter>FTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FTPStreamFactoryTest.h">
+      <Filter>FTPClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReactorTestSuite.h">
+      <Filter>Reactor\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SocketReactorTest.h">
+      <Filter>Reactor\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MailMessageTest.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MailStreamTest.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MailTestSuite.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\POP3ClientSessionTest.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SMTPClientSessionTest.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICMPClientTest.h">
+      <Filter>ICMP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICMPClientTestSuite.h">
+      <Filter>ICMP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICMPSocketTest.h">
+      <Filter>ICMP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NTPClientTest.h">
+      <Filter>NTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NTPClientTestSuite.h">
+      <Filter>NTP\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SyslogTest.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WebSocketTest.h">
+      <Filter>WebSocket\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WebSocketTestSuite.h">
+      <Filter>WebSocket\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DNSTest.cpp">
+      <Filter>NetCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IPAddressTest.cpp">
+      <Filter>NetCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NetCoreTestSuite.cpp">
+      <Filter>NetCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NetworkInterfaceTest.cpp">
+      <Filter>NetCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SocketAddressTest.cpp">
+      <Filter>NetCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NetTestSuite.cpp">
+      <Filter>_Suite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinDriver.cpp">
+      <Filter>_Driver\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DatagramSocketTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DialogServer.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DialogSocketTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EchoServer.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MulticastEchoServer.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MulticastSocketTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RawSocketTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SocketsTestSuite.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SocketStreamTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SocketTest.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UDPEchoServer.cpp">
+      <Filter>Sockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MediaTypeTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageHeaderTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessagesTestSuite.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultipartReaderTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultipartWriterTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NameValueCollectionTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QuotedPrintableTest.cpp">
+      <Filter>Messages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPCookieTest.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPCredentialsTest.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPRequestTest.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPResponseTest.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPTestServer.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPTestSuite.cpp">
+      <Filter>HTTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TCPServerTest.cpp">
+      <Filter>TCPServer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TCPServerTestSuite.cpp">
+      <Filter>TCPServer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPServerTest.cpp">
+      <Filter>HTTPServer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPServerTestSuite.cpp">
+      <Filter>HTTPServer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTMLFormTest.cpp">
+      <Filter>HTML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTMLTestSuite.cpp">
+      <Filter>HTML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPClientSessionTest.cpp">
+      <Filter>HTTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPClientTestSuite.cpp">
+      <Filter>HTTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPStreamFactoryTest.cpp">
+      <Filter>HTTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FTPClientSessionTest.cpp">
+      <Filter>FTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FTPClientTestSuite.cpp">
+      <Filter>FTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FTPStreamFactoryTest.cpp">
+      <Filter>FTPClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReactorTestSuite.cpp">
+      <Filter>Reactor\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SocketReactorTest.cpp">
+      <Filter>Reactor\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MailMessageTest.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MailStreamTest.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MailTestSuite.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\POP3ClientSessionTest.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SMTPClientSessionTest.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICMPClientTest.cpp">
+      <Filter>ICMP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICMPClientTestSuite.cpp">
+      <Filter>ICMP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICMPSocketTest.cpp">
+      <Filter>ICMP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NTPClientTest.cpp">
+      <Filter>NTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NTPClientTestSuite.cpp">
+      <Filter>NTP\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SyslogTest.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WebSocketTest.cpp">
+      <Filter>WebSocket\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WebSocketTestSuite.cpp">
+      <Filter>WebSocket\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

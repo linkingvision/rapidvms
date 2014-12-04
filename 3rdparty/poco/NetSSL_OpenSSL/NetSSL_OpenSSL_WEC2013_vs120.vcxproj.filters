@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SSLCore">
+      <UniqueIdentifier>{14dc67f3-ac0c-4f72-940f-90a2384baee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSLCore\Header Files">
+      <UniqueIdentifier>{6d61ae9f-daf0-43a1-95c7-81a23602bdd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSLCore\Source Files">
+      <UniqueIdentifier>{cc3a7739-b55b-4224-898f-912c4a128acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPSClient">
+      <UniqueIdentifier>{b3ca7895-a97c-499e-a242-31bc268182aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPSClient\Header Files">
+      <UniqueIdentifier>{a8ad7620-8827-47c8-8860-8f1e297bd158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HTTPSClient\Source Files">
+      <UniqueIdentifier>{195dfb47-7d93-46c1-bc04-530e09aab103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSLSockets">
+      <UniqueIdentifier>{b6118d06-1484-4581-be56-125a18b35f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSLSockets\Header Files">
+      <UniqueIdentifier>{88c8d53e-bde9-4304-afcf-60bec3c18455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSLSockets\Source Files">
+      <UniqueIdentifier>{f23f03cf-0ac3-40a8-9f41-1604c39f3fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail">
+      <UniqueIdentifier>{c39effec-5589-4494-946a-a6120d006861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail\Header Files">
+      <UniqueIdentifier>{7729e773-ea3d-40bc-8ae6-37216fa1bd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mail\Source Files">
+      <UniqueIdentifier>{e573634f-c631-4a11-852f-805ad8c24076}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Poco\Net\AcceptCertificateHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\CertificateHandlerFactory.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\CertificateHandlerFactoryMgr.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\ConsoleCertificateHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\Context.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\InvalidCertificateHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\KeyConsoleHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\KeyFileHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\NetSSL.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\PrivateKeyFactory.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\PrivateKeyFactoryMgr.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\PrivateKeyPassphraseHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\RejectCertificateHandler.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\Session.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SSLException.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SSLManager.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\Utility.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\VerificationErrorArgs.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\X509Certificate.h">
+      <Filter>SSLCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\HTTPSClientSession.h">
+      <Filter>HTTPSClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\HTTPSSessionInstantiator.h">
+      <Filter>HTTPSClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\HTTPSStreamFactory.h">
+      <Filter>HTTPSClient\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureServerSocket.h">
+      <Filter>SSLSockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureServerSocketImpl.h">
+      <Filter>SSLSockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureSocketImpl.h">
+      <Filter>SSLSockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureStreamSocket.h">
+      <Filter>SSLSockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureStreamSocketImpl.h">
+      <Filter>SSLSockets\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Net\SecureSMTPClientSession.h">
+      <Filter>Mail\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AcceptCertificateHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CertificateHandlerFactory.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CertificateHandlerFactoryMgr.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConsoleCertificateHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Context.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InvalidCertificateHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KeyConsoleHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KeyFileHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrivateKeyFactory.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrivateKeyFactoryMgr.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrivateKeyPassphraseHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RejectCertificateHandler.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Session.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SSLException.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SSLManager.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VerificationErrorArgs.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\X509Certificate.cpp">
+      <Filter>SSLCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPSClientSession.cpp">
+      <Filter>HTTPSClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPSSessionInstantiator.cpp">
+      <Filter>HTTPSClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTPSStreamFactory.cpp">
+      <Filter>HTTPSClient\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureServerSocket.cpp">
+      <Filter>SSLSockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureServerSocketImpl.cpp">
+      <Filter>SSLSockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureSocketImpl.cpp">
+      <Filter>SSLSockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureStreamSocket.cpp">
+      <Filter>SSLSockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureStreamSocketImpl.cpp">
+      <Filter>SSLSockets\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecureSMTPClientSession.cpp">
+      <Filter>Mail\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\DLLVersion.rc" />
+  </ItemGroup>
+</Project>

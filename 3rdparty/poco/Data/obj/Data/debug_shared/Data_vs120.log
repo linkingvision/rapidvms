@@ -1,0 +1,88 @@
+﻿Build started 2014-11-03 23:13:39.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\Data\Data_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D Data_EXPORTS /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\Data\debug_shared\\" /Fd"obj\Data\debug_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\AbstractBinder.cpp src\AbstractBinding.cpp src\AbstractExtraction.cpp src\AbstractExtractor.cpp src\AbstractPreparation.cpp src\AbstractPreparator.cpp src\ArchiveStrategy.cpp src\Bulk.cpp src\Connector.cpp src\DataException.cpp src\Date.cpp src\DynamicLOB.cpp src\Limit.cpp src\MetaColumn.cpp src\PooledSessionHolder.cpp src\PooledSessionImpl.cpp src\Position.cpp src\Range.cpp src\RecordSet.cpp src\Row.cpp src\RowFilter.cpp src\RowFormatter.cpp src\RowIterator.cpp src\Session.cpp src\SessionFactory.cpp src\SessionImpl.cpp src\SessionPool.cpp src\SessionPoolContainer.cpp src\SimpleRowFormatter.cpp src\SQLChannel.cpp src\Statement.cpp src\StatementCreator.cpp src\StatementImpl.cpp src\Time.cpp src\Transaction.cpp
+         Transaction.cpp
+         Time.cpp
+         StatementImpl.cpp
+         StatementCreator.cpp
+         Statement.cpp
+         SQLChannel.cpp
+         SimpleRowFormatter.cpp
+     1>c:\work\60-video\ve-qt54\3rdparty\poco\data\src\simplerowformatter.cpp(71): warning C4244: 'argument' : conversion from 'std::streamsize' to 'unsigned int', possible loss of data
+     1>c:\work\60-video\ve-qt54\3rdparty\poco\data\src\simplerowformatter.cpp(88): warning C4244: 'argument' : conversion from 'std::streamsize' to 'unsigned int', possible loss of data
+         SessionPoolContainer.cpp
+         SessionPool.cpp
+         SessionImpl.cpp
+         SessionFactory.cpp
+         Session.cpp
+         RowIterator.cpp
+         RowFormatter.cpp
+         RowFilter.cpp
+         Row.cpp
+         RecordSet.cpp
+         Range.cpp
+         Position.cpp
+         PooledSessionImpl.cpp
+         Generating Code...
+         Compiling...
+         PooledSessionHolder.cpp
+         MetaColumn.cpp
+         Limit.cpp
+         DynamicLOB.cpp
+         Date.cpp
+         DataException.cpp
+         Connector.cpp
+         Bulk.cpp
+         ArchiveStrategy.cpp
+         AbstractPreparator.cpp
+         AbstractPreparation.cpp
+         AbstractExtractor.cpp
+         AbstractExtraction.cpp
+         AbstractBinding.cpp
+         AbstractBinder.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\PocoDatad.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\PocoDatad.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\PocoDatad.lib" /MACHINE:X86 /SAFESEH /DLL obj\Data\debug_shared\AbstractBinder.obj
+         obj\Data\debug_shared\AbstractBinding.obj
+         obj\Data\debug_shared\AbstractExtraction.obj
+         obj\Data\debug_shared\AbstractExtractor.obj
+         obj\Data\debug_shared\AbstractPreparation.obj
+         obj\Data\debug_shared\AbstractPreparator.obj
+         obj\Data\debug_shared\ArchiveStrategy.obj
+         obj\Data\debug_shared\Bulk.obj
+         obj\Data\debug_shared\Connector.obj
+         obj\Data\debug_shared\DataException.obj
+         obj\Data\debug_shared\Date.obj
+         obj\Data\debug_shared\DynamicLOB.obj
+         obj\Data\debug_shared\Limit.obj
+         obj\Data\debug_shared\MetaColumn.obj
+         obj\Data\debug_shared\PooledSessionHolder.obj
+         obj\Data\debug_shared\PooledSessionImpl.obj
+         obj\Data\debug_shared\Position.obj
+         obj\Data\debug_shared\Range.obj
+         obj\Data\debug_shared\RecordSet.obj
+         obj\Data\debug_shared\Row.obj
+         obj\Data\debug_shared\RowFilter.obj
+         obj\Data\debug_shared\RowFormatter.obj
+         obj\Data\debug_shared\RowIterator.obj
+         obj\Data\debug_shared\Session.obj
+         obj\Data\debug_shared\SessionFactory.obj
+         obj\Data\debug_shared\SessionImpl.obj
+         obj\Data\debug_shared\SessionPool.obj
+         obj\Data\debug_shared\SessionPoolContainer.obj
+         obj\Data\debug_shared\SimpleRowFormatter.obj
+         obj\Data\debug_shared\SQLChannel.obj
+         obj\Data\debug_shared\Statement.obj
+         obj\Data\debug_shared\StatementCreator.obj
+         obj\Data\debug_shared\StatementImpl.obj
+         obj\Data\debug_shared\Time.obj
+         obj\Data\debug_shared\Transaction.obj
+     1>AbstractBinder.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library ..\lib\PocoDatad.lib and object ..\lib\PocoDatad.exp
+         Data_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\Data\..\bin\PocoDatad.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\Data\Data_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:55.44

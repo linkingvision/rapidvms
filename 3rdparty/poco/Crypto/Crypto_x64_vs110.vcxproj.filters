@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Cipher">
+      <UniqueIdentifier>{1a0fb259-4a11-48b3-9184-e97f8f3bbd99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cipher\Header Files">
+      <UniqueIdentifier>{770c3dd3-70b6-4a36-80d5-93b0658cdecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cipher\Source Files">
+      <UniqueIdentifier>{0d2f56d8-b644-49bd-80d5-0c150416e549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RSA">
+      <UniqueIdentifier>{95ec0739-6c64-4e1f-9ecd-b1388c635e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RSA\Header Files">
+      <UniqueIdentifier>{7985fc3f-aff1-451e-9450-c966393e3758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RSA\Source Files">
+      <UniqueIdentifier>{f7a7fca8-29e8-411d-bb34-b71f9264446d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Certificate">
+      <UniqueIdentifier>{46d171b5-01d3-4ead-af51-4b97461e761a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Certificate\Header Files">
+      <UniqueIdentifier>{867ef9da-8831-4ec6-81e2-2493fbfeaf41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Certificate\Source Files">
+      <UniqueIdentifier>{a05727c7-b46a-43ff-8f1c-90b4535e1586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CryptoCore">
+      <UniqueIdentifier>{f9cb9dec-b732-4980-a30b-0854251fa3ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CryptoCore\Header Files">
+      <UniqueIdentifier>{ff1a14e0-9125-440e-b17c-c77c4198dd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CryptoCore\Source Files">
+      <UniqueIdentifier>{79ba7862-669a-4e14-8b89-ef5b094fefe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Digest">
+      <UniqueIdentifier>{e0147e5b-099b-4ed5-b170-d49085e71b8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Digest\Header Files">
+      <UniqueIdentifier>{fbb9f674-b310-4309-9f41-09413e8a744f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Digest\Source Files">
+      <UniqueIdentifier>{c808d116-1b68-4ede-afb5-1e8f100d347c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Poco\Crypto\Cipher.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CipherFactory.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CipherImpl.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CipherKey.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CipherKeyImpl.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CryptoStream.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\CryptoTransform.h">
+      <Filter>Cipher\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\RSACipherImpl.h">
+      <Filter>RSA\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\RSADigestEngine.h">
+      <Filter>RSA\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\RSAKey.h">
+      <Filter>RSA\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\RSAKeyImpl.h">
+      <Filter>RSA\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\X509Certificate.h">
+      <Filter>Certificate\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\Crypto.h">
+      <Filter>CryptoCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\OpenSSLInitializer.h">
+      <Filter>CryptoCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Crypto\DigestEngine.h">
+      <Filter>Digest\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Cipher.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CipherFactory.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CipherImpl.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CipherKey.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CipherKeyImpl.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CryptoStream.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CryptoTransform.cpp">
+      <Filter>Cipher\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RSACipherImpl.cpp">
+      <Filter>RSA\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RSADigestEngine.cpp">
+      <Filter>RSA\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RSAKey.cpp">
+      <Filter>RSA\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RSAKeyImpl.cpp">
+      <Filter>RSA\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\X509Certificate.cpp">
+      <Filter>Certificate\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenSSLInitializer.cpp">
+      <Filter>CryptoCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DigestEngine.cpp">
+      <Filter>Digest\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\DLLVersion.rc" />
+  </ItemGroup>
+</Project>

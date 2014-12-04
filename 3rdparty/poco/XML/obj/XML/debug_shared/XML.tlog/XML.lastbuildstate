@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
+debug_shared|Win32|C:\work\60-video\ve-qt54\3rdparty\poco\XML\|

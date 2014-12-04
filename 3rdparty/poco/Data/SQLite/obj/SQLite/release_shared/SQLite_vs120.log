@@ -1,0 +1,32 @@
+﻿Build started 2014-11-03 23:16:33.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\Data\SQLite\SQLite_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\..\Foundation\include /I..\..\Data\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SQLITE_THREADSAFE=1 /D SQLITE_ENABLE_FTS3 /D SQLITE_ENABLE_FTS3_PARENTHESIS /D SQLITE_OMIT_UTF16 /D SQLITE_OMIT_PROGRESS_CALLBACK /D SQLITE_OMIT_COMPLETE /D SQLITE_OMIT_TCL_VARIABLE /D SQLITE_OMIT_DEPRECATED /D SQLite_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\SQLite\release_shared\\" /Fd"obj\SQLite\release_shared\vc120.pdb" /Gd /TP /wd4996 /wd4244 /wd4018 /analyze- /errorReport:prompt src\Binder.cpp src\Connector.cpp src\Extractor.cpp src\Notifier.cpp src\SessionImpl.cpp src\SQLiteException.cpp src\SQLiteStatementImpl.cpp src\Utility.cpp
+         Binder.cpp
+         Connector.cpp
+         Extractor.cpp
+         Notifier.cpp
+         SessionImpl.cpp
+         SQLiteException.cpp
+         SQLiteStatementImpl.cpp
+         Utility.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\..\Foundation\include /I..\..\Data\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SQLITE_THREADSAFE=1 /D SQLITE_ENABLE_FTS3 /D SQLITE_ENABLE_FTS3_PARENTHESIS /D SQLITE_OMIT_UTF16 /D SQLITE_OMIT_PROGRESS_CALLBACK /D SQLITE_OMIT_COMPLETE /D SQLITE_OMIT_TCL_VARIABLE /D SQLITE_OMIT_DEPRECATED /D SQLite_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\SQLite\release_shared\\" /Fd"obj\SQLite\release_shared\vc120.pdb" /Gd /TC /wd4996 /wd4244 /wd4018 /analyze- /errorReport:prompt src\sqlite3.c
+         sqlite3.c
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\PocoDataSQLite.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\..\bin\PocoDataSQLite.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib\PocoDataSQLite.lib" /MACHINE:X86 /SAFESEH /DLL obj\SQLite\release_shared\Binder.obj
+         obj\SQLite\release_shared\Connector.obj
+         obj\SQLite\release_shared\Extractor.obj
+         obj\SQLite\release_shared\Notifier.obj
+         obj\SQLite\release_shared\SessionImpl.obj
+         obj\SQLite\release_shared\sqlite3.obj
+         obj\SQLite\release_shared\SQLiteException.obj
+         obj\SQLite\release_shared\SQLiteStatementImpl.obj
+         obj\SQLite\release_shared\Utility.obj
+            Creating library ..\..\lib\PocoDataSQLite.lib and object ..\..\lib\PocoDataSQLite.exp
+         SQLite_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\Data\SQLite\..\..\bin\PocoDataSQLite.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\Data\SQLite\SQLite_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.30

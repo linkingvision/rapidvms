@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MySQL">
+      <UniqueIdentifier>{bab79a8a-2520-4e23-b15f-e4a44bdd2601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MySQL\Header Files">
+      <UniqueIdentifier>{b39bf588-d8e8-4279-8f77-d46b5cacf441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MySQL\Source Files">
+      <UniqueIdentifier>{b753cc7e-9a79-49da-ac90-e02f5eb16123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{0864b2c7-aa00-42da-a9a6-7f42cff75e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Header Files">
+      <UniqueIdentifier>{947c02e6-6086-46b7-ae21-eb80b76fc50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Source Files">
+      <UniqueIdentifier>{98c37e53-060f-47f3-a82f-3890f93c1284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{87f134d6-24c4-4ec9-9a1c-ecee646afa3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver\Source Files">
+      <UniqueIdentifier>{63e7aab4-7261-48d0-9426-d0aa039ea617}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\MySQLTest.h">
+      <Filter>MySQL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLExecutor.h">
+      <Filter>MySQL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MySQLTestSuite.h">
+      <Filter>_Suite\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MySQLTest.cpp">
+      <Filter>MySQL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLExecutor.cpp">
+      <Filter>MySQL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MySQLTestSuite.cpp">
+      <Filter>_Suite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinDriver.cpp">
+      <Filter>_Driver\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

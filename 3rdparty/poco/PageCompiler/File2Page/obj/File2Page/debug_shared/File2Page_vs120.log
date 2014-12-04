@@ -1,0 +1,14 @@
+﻿Build started 2014-11-03 23:18:11.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\File2Page\File2Page_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\..\Foundation\include /I..\..\XML\include /I..\..\Util\include /I..\..\Net\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D WINVER=0x0500 /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\File2Page\debug_shared\\" /Fd"obj\File2Page\debug_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\File2Page.cpp
+         File2Page.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"bin\f2cpspd.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\lib ws2_32.lib iphlpapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"bin\f2cpspd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin\f2cpspd.lib" /MACHINE:X86 /SAFESEH obj\File2Page\debug_shared\File2Page.obj
+     1>File2Page.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+         File2Page_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\File2Page\bin\f2cpspd.exe
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\File2Page\File2Page_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.74

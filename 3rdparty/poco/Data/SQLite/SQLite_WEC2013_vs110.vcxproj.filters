@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SQLite">
+      <UniqueIdentifier>{c737c51e-ce2b-404e-8c94-f85788a47fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SQLite\Header Files">
+      <UniqueIdentifier>{53af85f7-b9b5-4efc-a9af-85baa6f8131d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SQLite\Source Files">
+      <UniqueIdentifier>{daf2ffea-c36a-4688-9545-71af369cbd25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{cd626260-ee56-4991-b3d5-eff95b6fa883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\Header Files">
+      <UniqueIdentifier>{852d1da5-9f2c-4f75-8001-10fc650fe805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\Source Files">
+      <UniqueIdentifier>{39465cc5-354e-4d39-9389-30d9945954e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Poco\Data\SQLite\Binder.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\Connector.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\Extractor.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\Notifier.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\SessionImpl.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\SQLite.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\SQLiteException.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\SQLiteStatementImpl.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLite\Utility.h">
+      <Filter>SQLite\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sqlite3.h">
+      <Filter>3rdparty\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Binder.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Connector.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Extractor.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Notifier.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionImpl.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLiteException.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLiteStatementImpl.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility.cpp">
+      <Filter>SQLite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sqlite3.c">
+      <Filter>3rdparty\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

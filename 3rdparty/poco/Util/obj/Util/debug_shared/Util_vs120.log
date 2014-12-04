@@ -1,0 +1,76 @@
+﻿Build started 2014-11-03 23:06:23.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\Util\Util_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /I..\XML\include /I..\JSON\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D Util_EXPORTS /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\Util\debug_shared\\" /Fd"obj\Util\debug_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\AbstractConfiguration.cpp src\Application.cpp src\ConfigurationMapper.cpp src\ConfigurationView.cpp src\FilesystemConfiguration.cpp src\HelpFormatter.cpp src\IniFileConfiguration.cpp src\IntValidator.cpp src\JSONConfiguration.cpp src\LayeredConfiguration.cpp src\LoggingConfigurator.cpp src\LoggingSubsystem.cpp src\MapConfiguration.cpp src\Option.cpp src\OptionCallback.cpp src\OptionException.cpp src\OptionProcessor.cpp src\OptionSet.cpp src\PropertyFileConfiguration.cpp src\RegExpValidator.cpp src\ServerApplication.cpp src\Subsystem.cpp src\SystemConfiguration.cpp src\Timer.cpp src\TimerTask.cpp src\Validator.cpp src\WinRegistryConfiguration.cpp src\WinRegistryKey.cpp src\WinService.cpp src\XMLConfiguration.cpp
+         XMLConfiguration.cpp
+         WinService.cpp
+         WinRegistryKey.cpp
+         WinRegistryConfiguration.cpp
+         Validator.cpp
+         TimerTask.cpp
+         Timer.cpp
+         SystemConfiguration.cpp
+         Subsystem.cpp
+         ServerApplication.cpp
+         RegExpValidator.cpp
+         PropertyFileConfiguration.cpp
+         OptionSet.cpp
+         OptionProcessor.cpp
+         OptionException.cpp
+         OptionCallback.cpp
+         Option.cpp
+         MapConfiguration.cpp
+         LoggingSubsystem.cpp
+         LoggingConfigurator.cpp
+         Generating Code...
+         Compiling...
+         LayeredConfiguration.cpp
+         JSONConfiguration.cpp
+         IntValidator.cpp
+         IniFileConfiguration.cpp
+         HelpFormatter.cpp
+         FilesystemConfiguration.cpp
+         ConfigurationView.cpp
+         ConfigurationMapper.cpp
+         Application.cpp
+         AbstractConfiguration.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\PocoUtild.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\PocoUtild.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\PocoUtild.lib" /MACHINE:X86 /SAFESEH /DLL obj\Util\debug_shared\AbstractConfiguration.obj
+         obj\Util\debug_shared\Application.obj
+         obj\Util\debug_shared\ConfigurationMapper.obj
+         obj\Util\debug_shared\ConfigurationView.obj
+         obj\Util\debug_shared\FilesystemConfiguration.obj
+         obj\Util\debug_shared\HelpFormatter.obj
+         obj\Util\debug_shared\IniFileConfiguration.obj
+         obj\Util\debug_shared\IntValidator.obj
+         obj\Util\debug_shared\JSONConfiguration.obj
+         obj\Util\debug_shared\LayeredConfiguration.obj
+         obj\Util\debug_shared\LoggingConfigurator.obj
+         obj\Util\debug_shared\LoggingSubsystem.obj
+         obj\Util\debug_shared\MapConfiguration.obj
+         obj\Util\debug_shared\Option.obj
+         obj\Util\debug_shared\OptionCallback.obj
+         obj\Util\debug_shared\OptionException.obj
+         obj\Util\debug_shared\OptionProcessor.obj
+         obj\Util\debug_shared\OptionSet.obj
+         obj\Util\debug_shared\PropertyFileConfiguration.obj
+         obj\Util\debug_shared\RegExpValidator.obj
+         obj\Util\debug_shared\ServerApplication.obj
+         obj\Util\debug_shared\Subsystem.obj
+         obj\Util\debug_shared\SystemConfiguration.obj
+         obj\Util\debug_shared\Timer.obj
+         obj\Util\debug_shared\TimerTask.obj
+         obj\Util\debug_shared\Validator.obj
+         obj\Util\debug_shared\WinRegistryConfiguration.obj
+         obj\Util\debug_shared\WinRegistryKey.obj
+         obj\Util\debug_shared\WinService.obj
+         obj\Util\debug_shared\XMLConfiguration.obj
+     1>AbstractConfiguration.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library ..\lib\PocoUtild.lib and object ..\lib\PocoUtild.exp
+         Util_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\Util\..\bin\PocoUtild.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\Util\Util_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:32.04

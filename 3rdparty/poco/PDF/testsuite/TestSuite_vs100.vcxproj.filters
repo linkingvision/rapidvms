@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PDFCore">
+      <UniqueIdentifier>{9caaccaf-0a73-4bb4-b3ef-ce013566d8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PDFCore\Header Files">
+      <UniqueIdentifier>{9460427a-cd38-4084-a431-aed2c01f1518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PDFCore\Source Files">
+      <UniqueIdentifier>{d9b084a4-55bc-481a-bc89-0fa434b2fc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{d8e09887-5ada-4b5d-b52e-b9ccb763d6a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Header Files">
+      <UniqueIdentifier>{48df03f2-47e5-48cc-be97-c3c4915d4319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Source Files">
+      <UniqueIdentifier>{0ba7d178-f134-45ed-96b2-f7a816c4f0ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{6f0ff5bf-90e4-4f39-a926-72f6daa18805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver\Source Files">
+      <UniqueIdentifier>{2436a637-018e-4863-961a-17a92bee252a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\PDFTest.h">
+      <Filter>PDFCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PDFTestSuite.h">
+      <Filter>_Suite\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\PDFTest.cpp">
+      <Filter>PDFCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PDFTestSuite.cpp">
+      <Filter>_Suite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinDriver.cpp">
+      <Filter>_Driver\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,75 @@
+﻿Build started 2014-11-03 23:07:29.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\Util\Util_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /I..\XML\include /I..\JSON\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D Util_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\Util\release_shared\\" /Fd"obj\Util\release_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\AbstractConfiguration.cpp src\Application.cpp src\ConfigurationMapper.cpp src\ConfigurationView.cpp src\FilesystemConfiguration.cpp src\HelpFormatter.cpp src\IniFileConfiguration.cpp src\IntValidator.cpp src\JSONConfiguration.cpp src\LayeredConfiguration.cpp src\LoggingConfigurator.cpp src\LoggingSubsystem.cpp src\MapConfiguration.cpp src\Option.cpp src\OptionCallback.cpp src\OptionException.cpp src\OptionProcessor.cpp src\OptionSet.cpp src\PropertyFileConfiguration.cpp src\RegExpValidator.cpp src\ServerApplication.cpp src\Subsystem.cpp src\SystemConfiguration.cpp src\Timer.cpp src\TimerTask.cpp src\Validator.cpp src\WinRegistryConfiguration.cpp src\WinRegistryKey.cpp src\WinService.cpp src\XMLConfiguration.cpp
+         AbstractConfiguration.cpp
+         Application.cpp
+         ConfigurationMapper.cpp
+         ConfigurationView.cpp
+         FilesystemConfiguration.cpp
+         HelpFormatter.cpp
+         IniFileConfiguration.cpp
+         IntValidator.cpp
+         JSONConfiguration.cpp
+         LayeredConfiguration.cpp
+         LoggingConfigurator.cpp
+         LoggingSubsystem.cpp
+         MapConfiguration.cpp
+         Option.cpp
+         OptionCallback.cpp
+         OptionException.cpp
+         OptionProcessor.cpp
+         OptionSet.cpp
+         PropertyFileConfiguration.cpp
+         RegExpValidator.cpp
+         Generating Code...
+         Compiling...
+         ServerApplication.cpp
+         Subsystem.cpp
+         SystemConfiguration.cpp
+         Timer.cpp
+         TimerTask.cpp
+         Validator.cpp
+         WinRegistryConfiguration.cpp
+         WinRegistryKey.cpp
+         WinService.cpp
+         XMLConfiguration.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\PocoUtil.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\PocoUtil.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\PocoUtil.lib" /MACHINE:X86 /SAFESEH /DLL obj\Util\release_shared\AbstractConfiguration.obj
+         obj\Util\release_shared\Application.obj
+         obj\Util\release_shared\ConfigurationMapper.obj
+         obj\Util\release_shared\ConfigurationView.obj
+         obj\Util\release_shared\FilesystemConfiguration.obj
+         obj\Util\release_shared\HelpFormatter.obj
+         obj\Util\release_shared\IniFileConfiguration.obj
+         obj\Util\release_shared\IntValidator.obj
+         obj\Util\release_shared\JSONConfiguration.obj
+         obj\Util\release_shared\LayeredConfiguration.obj
+         obj\Util\release_shared\LoggingConfigurator.obj
+         obj\Util\release_shared\LoggingSubsystem.obj
+         obj\Util\release_shared\MapConfiguration.obj
+         obj\Util\release_shared\Option.obj
+         obj\Util\release_shared\OptionCallback.obj
+         obj\Util\release_shared\OptionException.obj
+         obj\Util\release_shared\OptionProcessor.obj
+         obj\Util\release_shared\OptionSet.obj
+         obj\Util\release_shared\PropertyFileConfiguration.obj
+         obj\Util\release_shared\RegExpValidator.obj
+         obj\Util\release_shared\ServerApplication.obj
+         obj\Util\release_shared\Subsystem.obj
+         obj\Util\release_shared\SystemConfiguration.obj
+         obj\Util\release_shared\Timer.obj
+         obj\Util\release_shared\TimerTask.obj
+         obj\Util\release_shared\Validator.obj
+         obj\Util\release_shared\WinRegistryConfiguration.obj
+         obj\Util\release_shared\WinRegistryKey.obj
+         obj\Util\release_shared\WinService.obj
+         obj\Util\release_shared\XMLConfiguration.obj
+            Creating library ..\lib\PocoUtil.lib and object ..\lib\PocoUtil.exp
+         Util_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\Util\..\bin\PocoUtil.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\Util\Util_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:29.25

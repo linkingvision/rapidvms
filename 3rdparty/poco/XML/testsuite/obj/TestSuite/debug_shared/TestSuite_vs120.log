@@ -1,0 +1,9 @@
+﻿Build started 2014-11-03 23:03:56.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\XML\testsuite\TestSuite_vs120.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         TestSuite_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\XML\testsuite\bin\TestSuited.exe
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\XML\testsuite\TestSuite_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.30

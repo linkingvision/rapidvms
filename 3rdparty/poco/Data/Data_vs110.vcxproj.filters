@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DataCore">
+      <UniqueIdentifier>{3c674a8a-7f23-45e4-b7ef-727c1f1cfe78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataCore\Header Files">
+      <UniqueIdentifier>{0969fede-53c0-4a06-a238-74ee67e77d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataCore\Source Files">
+      <UniqueIdentifier>{9cb43d66-bc91-4771-9c97-5a7fb2594ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SessionPooling">
+      <UniqueIdentifier>{7f9b39fb-ac4e-46a0-bc96-8814b86507b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SessionPooling\Header Files">
+      <UniqueIdentifier>{5e7f20af-c1f1-4096-927d-4869974f3591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SessionPooling\Source Files">
+      <UniqueIdentifier>{9e4db8ce-d06d-4bf0-938e-e27878d1aaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{9aee0a7a-d51a-4ea9-81b7-70f8ffa117ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Header Files">
+      <UniqueIdentifier>{0293f19d-21e6-4c70-bea9-9a9b14b79e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Source Files">
+      <UniqueIdentifier>{09372267-d0be-4abe-8091-18ffde0abf90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Poco\Data\AbstractBinder.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractBinding.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractExtraction.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractExtractor.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractPreparation.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractPreparator.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AbstractSessionImpl.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\AutoTransaction.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Binding.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Bulk.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\BulkBinding.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\BulkExtraction.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Column.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Connector.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Constants.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Data.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\DataException.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Date.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\DynamicDateTime.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\DynamicLOB.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Extraction.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Limit.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\LOB.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\LOBStream.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\MetaColumn.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Position.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\data\Preparation.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Range.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\RecordSet.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Row.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\RowFilter.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\RowFormatter.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\RowIterator.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Session.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SessionFactory.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SessionImpl.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SimpleRowFormatter.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Statement.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\StatementCreator.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\StatementImpl.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Time.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\Transaction.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\TypeHandler.h">
+      <Filter>DataCore\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\PooledSessionHolder.h">
+      <Filter>SessionPooling\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\PooledSessionImpl.h">
+      <Filter>SessionPooling\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SessionPool.h">
+      <Filter>SessionPooling\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SessionPoolContainer.h">
+      <Filter>SessionPooling\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\ArchiveStrategy.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Poco\Data\SQLChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AbstractBinder.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractBinding.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractExtraction.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractExtractor.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractPreparation.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractPreparator.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bulk.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Connector.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataException.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Date.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicLOB.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Limit.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MetaColumn.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Position.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Range.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RecordSet.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Row.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RowFilter.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RowFormatter.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RowIterator.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Session.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionFactory.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionImpl.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleRowFormatter.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Statement.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatementCreator.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatementImpl.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transaction.cpp">
+      <Filter>DataCore\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PooledSessionHolder.cpp">
+      <Filter>SessionPooling\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PooledSessionImpl.cpp">
+      <Filter>SessionPooling\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionPool.cpp">
+      <Filter>SessionPooling\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionPoolContainer.cpp">
+      <Filter>SessionPooling\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArchiveStrategy.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

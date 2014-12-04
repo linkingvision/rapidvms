@@ -1,0 +1,11 @@
+2010/7/11 0:00:05
+
+
+CREATE TABLE test (id INTEGER PRIMARY KEY, value TEXT, numa INTEGER, 
+numb INTEGER, start DATE, end DATE, device INTEGER)
+
+INSERT INTO test VALUES (NULL, "test", 1, 2, "2010/7/11 0:00:05", "2010/7/11 0:00:05", 1)
+
+
+SELECT * FROM test
+

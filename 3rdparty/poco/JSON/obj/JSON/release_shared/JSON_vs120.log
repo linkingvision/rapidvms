@@ -1,0 +1,35 @@
+﻿Build started 2014-11-03 23:05:59.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\JSON\JSON_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D JSON_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\JSON\release_shared\\" /Fd"obj\JSON\release_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Array.cpp src\Handler.cpp src\JSONException.cpp src\Object.cpp src\ParseHandler.cpp src\Parser.cpp src\PrintHandler.cpp src\Query.cpp src\Stringifier.cpp src\Template.cpp src\TemplateCache.cpp
+         Array.cpp
+         Handler.cpp
+         JSONException.cpp
+         Object.cpp
+         ParseHandler.cpp
+         Parser.cpp
+         PrintHandler.cpp
+         Query.cpp
+         Stringifier.cpp
+         Template.cpp
+         TemplateCache.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\PocoJSON.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\PocoJSON.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\PocoJSON.lib" /MACHINE:X86 /SAFESEH /DLL obj\JSON\release_shared\Array.obj
+         obj\JSON\release_shared\Handler.obj
+         obj\JSON\release_shared\JSONException.obj
+         obj\JSON\release_shared\Object.obj
+         obj\JSON\release_shared\ParseHandler.obj
+         obj\JSON\release_shared\Parser.obj
+         obj\JSON\release_shared\PrintHandler.obj
+         obj\JSON\release_shared\Query.obj
+         obj\JSON\release_shared\Stringifier.obj
+         obj\JSON\release_shared\Template.obj
+         obj\JSON\release_shared\TemplateCache.obj
+            Creating library ..\lib\PocoJSON.lib and object ..\lib\PocoJSON.exp
+         JSON_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\JSON\..\bin\PocoJSON.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\JSON\JSON_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.73

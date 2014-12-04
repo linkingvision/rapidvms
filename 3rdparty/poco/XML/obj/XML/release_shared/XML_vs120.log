@@ -1,0 +1,164 @@
+﻿Build started 2014-11-03 23:03:59.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\XML\XML_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D XML_STATIC /D XML_NS /D XML_DTD /D HAVE_EXPAT_CONFIG_H /D XML_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\XML\release_shared\\" /Fd"obj\XML\release_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\AbstractContainerNode.cpp src\AbstractNode.cpp src\Attr.cpp src\Attributes.cpp src\AttributesImpl.cpp src\AttrMap.cpp src\CDATASection.cpp src\CharacterData.cpp src\ChildNodesList.cpp src\Comment.cpp src\ContentHandler.cpp src\DeclHandler.cpp src\DefaultHandler.cpp src\Document.cpp src\DocumentEvent.cpp src\DocumentFragment.cpp src\DocumentType.cpp src\DOMBuilder.cpp src\DOMException.cpp src\DOMImplementation.cpp src\DOMObject.cpp src\DOMParser.cpp src\DOMSerializer.cpp src\DOMWriter.cpp src\DTDHandler.cpp src\DTDMap.cpp src\Element.cpp src\ElementsByTagNameList.cpp src\Entity.cpp src\EntityReference.cpp src\EntityResolver.cpp src\EntityResolverImpl.cpp src\ErrorHandler.cpp src\Event.cpp src\EventDispatcher.cpp src\EventException.cpp src\EventListener.cpp src\EventTarget.cpp src\InputSource.cpp src\LexicalHandler.cpp src\Locator.cpp src\LocatorImpl.cpp src\MutationEvent.cpp src\Name.cpp src\NamedNodeMap.cpp src\NamePool.cpp src\NamespaceStrategy.cpp src\NamespaceSupport.cpp src\Node.cpp src\NodeAppender.cpp src\NodeFilter.cpp src\NodeIterator.cpp src\NodeList.cpp src\Notation.cpp src\ParserEngine.cpp src\ProcessingInstruction.cpp src\SAXException.cpp src\SAXParser.cpp src\Text.cpp src\TreeWalker.cpp src\WhitespaceFilter.cpp src\XMLException.cpp src\XMLFilter.cpp src\XMLFilterImpl.cpp src\xmlparse.cpp src\XMLReader.cpp src\XMLString.cpp src\XMLWriter.cpp
+         AbstractContainerNode.cpp
+         AbstractNode.cpp
+         Attr.cpp
+         Attributes.cpp
+         AttributesImpl.cpp
+         AttrMap.cpp
+         CDATASection.cpp
+         CharacterData.cpp
+         ChildNodesList.cpp
+         Comment.cpp
+         ContentHandler.cpp
+         DeclHandler.cpp
+         DefaultHandler.cpp
+         Document.cpp
+         DocumentEvent.cpp
+         DocumentFragment.cpp
+         DocumentType.cpp
+         DOMBuilder.cpp
+         DOMException.cpp
+         DOMImplementation.cpp
+         Generating Code...
+         Compiling...
+         DOMObject.cpp
+         DOMParser.cpp
+         DOMSerializer.cpp
+         DOMWriter.cpp
+         DTDHandler.cpp
+         DTDMap.cpp
+         Element.cpp
+         ElementsByTagNameList.cpp
+         Entity.cpp
+         EntityReference.cpp
+         EntityResolver.cpp
+         EntityResolverImpl.cpp
+         ErrorHandler.cpp
+         Event.cpp
+         EventDispatcher.cpp
+         EventException.cpp
+         EventListener.cpp
+         EventTarget.cpp
+         InputSource.cpp
+         LexicalHandler.cpp
+         Generating Code...
+         Compiling...
+         Locator.cpp
+         LocatorImpl.cpp
+         MutationEvent.cpp
+         Name.cpp
+         NamedNodeMap.cpp
+         NamePool.cpp
+         NamespaceStrategy.cpp
+         NamespaceSupport.cpp
+         Node.cpp
+         NodeAppender.cpp
+         NodeFilter.cpp
+         NodeIterator.cpp
+         NodeList.cpp
+         Notation.cpp
+         ParserEngine.cpp
+         ProcessingInstruction.cpp
+         SAXException.cpp
+         SAXParser.cpp
+         Text.cpp
+         TreeWalker.cpp
+         Generating Code...
+         Compiling...
+         WhitespaceFilter.cpp
+         XMLException.cpp
+         XMLFilter.cpp
+         XMLFilterImpl.cpp
+         xmlparse.cpp
+         XMLReader.cpp
+         XMLString.cpp
+         XMLWriter.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D XML_STATIC /D XML_NS /D XML_DTD /D HAVE_EXPAT_CONFIG_H /D XML_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\XML\release_shared\\" /Fd"obj\XML\release_shared\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt src\xmlrole.c src\xmltok.c
+         xmlrole.c
+         xmltok.c
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"obj\XML\release_shared\DLLVersion.res" ..\DLLVersion.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\PocoXML.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\PocoXML.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\PocoXML.lib" /MACHINE:X86 /SAFESEH /DLL obj\XML\release_shared\DLLVersion.res
+         obj\XML\release_shared\AbstractContainerNode.obj
+         obj\XML\release_shared\AbstractNode.obj
+         obj\XML\release_shared\Attr.obj
+         obj\XML\release_shared\Attributes.obj
+         obj\XML\release_shared\AttributesImpl.obj
+         obj\XML\release_shared\AttrMap.obj
+         obj\XML\release_shared\CDATASection.obj
+         obj\XML\release_shared\CharacterData.obj
+         obj\XML\release_shared\ChildNodesList.obj
+         obj\XML\release_shared\Comment.obj
+         obj\XML\release_shared\ContentHandler.obj
+         obj\XML\release_shared\DeclHandler.obj
+         obj\XML\release_shared\DefaultHandler.obj
+         obj\XML\release_shared\Document.obj
+         obj\XML\release_shared\DocumentEvent.obj
+         obj\XML\release_shared\DocumentFragment.obj
+         obj\XML\release_shared\DocumentType.obj
+         obj\XML\release_shared\DOMBuilder.obj
+         obj\XML\release_shared\DOMException.obj
+         obj\XML\release_shared\DOMImplementation.obj
+         obj\XML\release_shared\DOMObject.obj
+         obj\XML\release_shared\DOMParser.obj
+         obj\XML\release_shared\DOMSerializer.obj
+         obj\XML\release_shared\DOMWriter.obj
+         obj\XML\release_shared\DTDHandler.obj
+         obj\XML\release_shared\DTDMap.obj
+         obj\XML\release_shared\Element.obj
+         obj\XML\release_shared\ElementsByTagNameList.obj
+         obj\XML\release_shared\Entity.obj
+         obj\XML\release_shared\EntityReference.obj
+         obj\XML\release_shared\EntityResolver.obj
+         obj\XML\release_shared\EntityResolverImpl.obj
+         obj\XML\release_shared\ErrorHandler.obj
+         obj\XML\release_shared\Event.obj
+         obj\XML\release_shared\EventDispatcher.obj
+         obj\XML\release_shared\EventException.obj
+         obj\XML\release_shared\EventListener.obj
+         obj\XML\release_shared\EventTarget.obj
+         obj\XML\release_shared\InputSource.obj
+         obj\XML\release_shared\LexicalHandler.obj
+         obj\XML\release_shared\Locator.obj
+         obj\XML\release_shared\LocatorImpl.obj
+         obj\XML\release_shared\MutationEvent.obj
+         obj\XML\release_shared\Name.obj
+         obj\XML\release_shared\NamedNodeMap.obj
+         obj\XML\release_shared\NamePool.obj
+         obj\XML\release_shared\NamespaceStrategy.obj
+         obj\XML\release_shared\NamespaceSupport.obj
+         obj\XML\release_shared\Node.obj
+         obj\XML\release_shared\NodeAppender.obj
+         obj\XML\release_shared\NodeFilter.obj
+         obj\XML\release_shared\NodeIterator.obj
+         obj\XML\release_shared\NodeList.obj
+         obj\XML\release_shared\Notation.obj
+         obj\XML\release_shared\ParserEngine.obj
+         obj\XML\release_shared\ProcessingInstruction.obj
+         obj\XML\release_shared\SAXException.obj
+         obj\XML\release_shared\SAXParser.obj
+         obj\XML\release_shared\Text.obj
+         obj\XML\release_shared\TreeWalker.obj
+         obj\XML\release_shared\WhitespaceFilter.obj
+         obj\XML\release_shared\XMLException.obj
+         obj\XML\release_shared\XMLFilter.obj
+         obj\XML\release_shared\XMLFilterImpl.obj
+         obj\XML\release_shared\xmlparse.obj
+         obj\XML\release_shared\XMLReader.obj
+         obj\XML\release_shared\xmlrole.obj
+         obj\XML\release_shared\XMLString.obj
+         obj\XML\release_shared\xmltok.obj
+         obj\XML\release_shared\XMLWriter.obj
+            Creating library ..\lib\PocoXML.lib and object ..\lib\PocoXML.exp
+         XML_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\XML\..\bin\PocoXML.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\XML\XML_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:52.39

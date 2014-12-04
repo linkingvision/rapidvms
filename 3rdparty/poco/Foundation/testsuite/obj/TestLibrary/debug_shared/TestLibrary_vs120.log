@@ -1,0 +1,18 @@
+﻿Build started 2014-11-03 22:56:16.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\Foundation\testsuite\TestLibrary_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\TestLibrary\debug_shared\\" /Fd"obj\TestLibrary\debug_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /FS src\TestLibrary.cpp src\TestPlugin.cpp
+         TestPlugin.cpp
+         TestLibrary.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"bin\TestLibraryd.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\lib PocoFoundationd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"bin\TestLibraryd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH /DLL obj\TestLibrary\debug_shared\TestLibrary.obj
+         obj\TestLibrary\debug_shared\TestPlugin.obj
+     1>TestLibrary.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library bin\TestLibraryd.lib and object bin\TestLibraryd.exp
+         TestLibrary_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\Foundation\testsuite\bin\TestLibraryd.dll
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\Foundation\testsuite\TestLibrary_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.97

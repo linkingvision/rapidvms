@@ -1,0 +1,25 @@
+﻿Build started 2014-11-03 23:17:55.
+     1>Project "C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\PageCompiler_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\CL.exe /c /I.\include /I..\Foundation\include /I..\XML\include /I..\Util\include /I..\Net\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D WINVER=0x0500 /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj\PageCompiler\debug_shared\\" /Fd"obj\PageCompiler\debug_shared\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\ApacheCodeWriter.cpp src\CodeWriter.cpp src\OSPCodeWriter.cpp src\Page.cpp src\PageCompiler.cpp src\PageReader.cpp
+         PageReader.cpp
+         PageCompiler.cpp
+         Page.cpp
+         OSPCodeWriter.cpp
+         CodeWriter.cpp
+         ApacheCodeWriter.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\link.exe /ERRORREPORT:PROMPT /OUT:"bin\cpspcd.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\lib ws2_32.lib iphlpapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"bin\cpspcd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin\cpspcd.lib" /MACHINE:X86 /SAFESEH obj\PageCompiler\debug_shared\ApacheCodeWriter.obj
+         obj\PageCompiler\debug_shared\CodeWriter.obj
+         obj\PageCompiler\debug_shared\OSPCodeWriter.obj
+         obj\PageCompiler\debug_shared\Page.obj
+         obj\PageCompiler\debug_shared\PageCompiler.obj
+         obj\PageCompiler\debug_shared\PageReader.obj
+     1>ApacheCodeWriter.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+         PageCompiler_vs120.vcxproj -> C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\bin\cpspcd.exe
+     1>Done Building Project "C:\work\60-video\ve-qt54\3rdparty\poco\PageCompiler\PageCompiler_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.81

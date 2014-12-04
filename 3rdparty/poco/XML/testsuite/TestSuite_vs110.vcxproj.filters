@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="XML">
+      <UniqueIdentifier>{a29b35ba-9faa-44cb-834a-9ea3cdff3871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\Header Files">
+      <UniqueIdentifier>{3fbabfd7-8480-4270-a4ad-55f2ba0ed137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\Source Files">
+      <UniqueIdentifier>{e03f56c2-c273-4cb4-9559-62e7732d4536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAX">
+      <UniqueIdentifier>{4c0e40f5-26e3-40bb-b3aa-6c8091b90dcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAX\Header Files">
+      <UniqueIdentifier>{54248760-19dc-482d-95da-9b6e7bd625b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAX\Source Files">
+      <UniqueIdentifier>{735529a8-4e97-4cc5-a74d-5b0fe80e9301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DOM">
+      <UniqueIdentifier>{bc5d8fb9-2ec0-4fa0-bd3b-640b6d3861ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DOM\Header Files">
+      <UniqueIdentifier>{bb58df1a-304e-4107-b2f9-367887e0007f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DOM\Source Files">
+      <UniqueIdentifier>{8b62b3a5-588e-40ee-b2f6-c42713cd2dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{adbc05e9-132f-4063-9a0e-c6fa039dda2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Header Files">
+      <UniqueIdentifier>{67406c29-baac-4a23-83d8-9f42a496ead4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Source Files">
+      <UniqueIdentifier>{1f0a2d7b-0023-420e-bb75-09473ea4df51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{d2cb403e-d49b-4bfa-a568-75481d19c467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver\Source Files">
+      <UniqueIdentifier>{4c01ba56-dc50-484e-b58c-6265b6b76c2e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\NamePoolTest.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NameTest.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XMLWriterTest.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AttributesImplTest.h">
+      <Filter>SAX\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NamespaceSupportTest.h">
+      <Filter>SAX\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SAXParserTest.h">
+      <Filter>SAX\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SAXTestSuite.h">
+      <Filter>SAX\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChildNodesTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DocumentTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DocumentTypeTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DOMTestSuite.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElementTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NodeAppenderTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NodeIteratorTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NodeTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParserWriterTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TreeWalkerTest.h">
+      <Filter>DOM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XMLTestSuite.h">
+      <Filter>_Suite\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\NamePoolTest.cpp">
+      <Filter>XML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NameTest.cpp">
+      <Filter>XML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLWriterTest.cpp">
+      <Filter>XML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AttributesImplTest.cpp">
+      <Filter>SAX\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NamespaceSupportTest.cpp">
+      <Filter>SAX\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SAXParserTest.cpp">
+      <Filter>SAX\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SAXTestSuite.cpp">
+      <Filter>SAX\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChildNodesTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DocumentTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DocumentTypeTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DOMTestSuite.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElementTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeAppenderTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeIteratorTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParserWriterTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TreeWalkerTest.cpp">
+      <Filter>DOM\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLTestSuite.cpp">
+      <Filter>_Suite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinDriver.cpp">
+      <Filter>_Driver\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

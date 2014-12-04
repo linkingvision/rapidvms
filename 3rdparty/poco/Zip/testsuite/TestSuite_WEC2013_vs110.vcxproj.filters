@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Zip">
+      <UniqueIdentifier>{24116d70-ccac-4316-a9c9-eed39d2b2c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zip\Header Files">
+      <UniqueIdentifier>{3e70de58-e63b-4e85-9b00-aa3636ccc919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zip\Source Files">
+      <UniqueIdentifier>{2abc93e9-8d49-4dec-8225-a1734828e099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{1da1d1f3-d896-4535-aab6-8ca630baba1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Header Files">
+      <UniqueIdentifier>{2f3d941a-dfb1-4328-9bdb-47d94db2ef3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Suite\Source Files">
+      <UniqueIdentifier>{eb3ccd55-5eb3-4968-bf28-8f2b8ac78a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{77372f33-ba9b-427a-a19a-a2caecb6599f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver\Source Files">
+      <UniqueIdentifier>{430a94d7-b7ec-4fa6-b1b2-c611b97ac85a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CompressTest.h">
+      <Filter>Zip\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PartialStreamTest.h">
+      <Filter>Zip\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ZipTest.h">
+      <Filter>Zip\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ZipTestSuite.h">
+      <Filter>_Suite\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CompressTest.cpp">
+      <Filter>Zip\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PartialStreamTest.cpp">
+      <Filter>Zip\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ZipTest.cpp">
+      <Filter>Zip\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ZipTestSuite.cpp">
+      <Filter>_Suite\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinCEDriver.cpp">
+      <Filter>_Driver\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
