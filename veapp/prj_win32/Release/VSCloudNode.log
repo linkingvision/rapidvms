@@ -1,0 +1,271 @@
+﻿Build started 2014-12-04 21:16:22.
+     1>Project "C:\work\60-video\ve-qt54\veapp\prj_win32\VSCloudNode.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Rcc'ing ..\main\vscmainwindows.qrc...
+         Uic'ing ..\main\vscview.ui...
+         Moc'ing vscdevicelist.h...
+         Moc'ing vscdockwidget.h...
+         Moc'ing vscmainwindows.h...
+         Moc'ing vscview.h...
+         Moc'ing vscdevicetree.h...
+         Moc'ing vsccameraadd.h...
+         Moc'ing vscdevicetrash.h...
+         Moc'ing vscsearch.h...
+         Moc'ing vscplaycontrol.h...
+         Moc'ing vscplayback.h...
+         Moc'ing vsctoolbar.h...
+         Moc'ing factory.hpp...
+         Moc'ing vscsetting.h...
+         Moc'ing vschdddevice.h...
+         Moc'ing vschddone.h...
+         Moc'ing vschddedit.h...
+         Moc'ing vsclicense.h...
+         Moc'ing vscversion.h...
+         Moc'ing vscrecorderconf.h...
+         Moc'ing vschddoneedit.h...
+         Moc'ing vscipcgroupconf.h...
+         Moc'ing vscipcgroupmap.h...
+         Moc'ing vscviewconf.h...
+         Moc'ing vscvipcadd.h...
+         Moc'ing vscrecorderadd.h...
+         Moc'ing vscsiteadd.h...
+         Moc'ing vscvms.h...
+         Moc'ing vscrecorderone.h...
+         Moc'ing vscrecorderpanel.h...
+         Moc'ing vscrecorder.h...
+         Moc'ing vsczbtreeitem.h...
+         Moc'ing vscuser.h...
+         Moc'ing vscuserstatus.h...
+         Uic'ing ..\main\vscmainwindows.ui...
+         Uic'ing ..\main\vscdevicelist.ui...
+         Uic'ing ..\main\vsccameraadd.ui...
+         Uic'ing ..\main\vscsearch.ui...
+         Uic'ing ..\main\vscplaycontrol.ui...
+         Uic'ing ..\main\vscplayback.ui...
+         Uic'ing ..\main\vsctoolbar.ui...
+         Uic'ing ..\setting\vscsetting.ui...
+         Uic'ing ..\disk\vschdddevice.ui...
+         Uic'ing ..\disk\vschddone.ui...
+         Uic'ing ..\disk\vschddedit.ui...
+         Rcc'ing ..\darkstyle\style.qrc...
+         Uic'ing ..\disk\vschddoneedit.ui...
+         Uic'ing ..\setting\vsclicense.ui...
+         Uic'ing ..\setting\vscversion.ui...
+         Uic'ing ..\vms\vscrecorderadd.ui...
+         Uic'ing ..\vms\vscsiteadd.ui...
+         Uic'ing ..\vms\vscrecorderone.ui...
+         Uic'ing ..\setting\vscrecorderconf.ui...
+         Uic'ing ..\main\vscvipcadd.ui...
+         Uic'ing ..\main\vscipcgroupconf.ui...
+         Uic'ing ..\main\vscipcgroupmap.ui...
+         Uic'ing ..\setting\vscuser.ui...
+         Uic'ing ..\setting\vscuserstatus.ui...
+         Uic'ing ..\main\vscviewconf.ui...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_factory.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_factory.cpp, GeneratedFiles\Release\moc_factory.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vsccameraadd.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vsccameraadd.cpp, GeneratedFiles\Release\moc_vsccameraadd.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscdevicelist.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscdevicelist.cpp, GeneratedFiles\Release\moc_vscdevicelist.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscdevicetrash.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscdevicetrash.cpp, GeneratedFiles\Release\moc_vscdevicetrash.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscdevicetree.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscdevicetree.cpp, GeneratedFiles\Release\moc_vscdevicetree.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscdockwidget.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscdockwidget.cpp, GeneratedFiles\Release\moc_vscdockwidget.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vschdddevice.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vschdddevice.cpp, GeneratedFiles\Release\moc_vschdddevice.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vschddedit.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vschddedit.cpp, GeneratedFiles\Release\moc_vschddedit.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vschddone.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vschddone.cpp, GeneratedFiles\Release\moc_vschddone.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vschddoneedit.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vschddoneedit.cpp, GeneratedFiles\Release\moc_vschddoneedit.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscipcgroupconf.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscipcgroupconf.cpp, GeneratedFiles\Release\moc_vscipcgroupconf.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscipcgroupmap.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscipcgroupmap.cpp, GeneratedFiles\Release\moc_vscipcgroupmap.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vsclicense.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vsclicense.cpp, GeneratedFiles\Release\moc_vsclicense.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscmainwindows.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscmainwindows.cpp, GeneratedFiles\Release\moc_vscmainwindows.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscplayback.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscplayback.cpp, GeneratedFiles\Release\moc_vscplayback.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscplaycontrol.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscplaycontrol.cpp, GeneratedFiles\Release\moc_vscplaycontrol.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscrecorder.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscrecorder.cpp, GeneratedFiles\Release\moc_vscrecorder.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscrecorderadd.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscrecorderadd.cpp, GeneratedFiles\Release\moc_vscrecorderadd.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscrecorderconf.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscrecorderconf.cpp, GeneratedFiles\Release\moc_vscrecorderconf.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscrecorderone.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscrecorderone.cpp, GeneratedFiles\Release\moc_vscrecorderone.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscrecorderpanel.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscrecorderpanel.cpp, GeneratedFiles\Release\moc_vscrecorderpanel.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscsearch.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscsearch.cpp, GeneratedFiles\Release\moc_vscsearch.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscsetting.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscsetting.cpp, GeneratedFiles\Release\moc_vscsetting.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscsiteadd.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscsiteadd.cpp, GeneratedFiles\Release\moc_vscsiteadd.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vsctoolbar.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vsctoolbar.cpp, GeneratedFiles\Release\moc_vsctoolbar.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscuser.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscuser.cpp, GeneratedFiles\Release\moc_vscuser.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscuserstatus.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscuserstatus.cpp, GeneratedFiles\Release\moc_vscuserstatus.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscversion.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscversion.cpp, GeneratedFiles\Release\moc_vscversion.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscview.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscview.cpp, GeneratedFiles\Release\moc_vscview.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscviewconf.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscviewconf.cpp, GeneratedFiles\Release\moc_vscviewconf.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscvipcadd.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscvipcadd.cpp, GeneratedFiles\Release\moc_vscvipcadd.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vscvms.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vscvms.cpp, GeneratedFiles\Release\moc_vscvms.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_vsczbtreeitem.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_vsczbtreeitem.cpp, GeneratedFiles\Release\moc_vsczbtreeitem.cpp.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.4.0\5.4\msvc2013\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtCore /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtGui /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimedia /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimediaWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtNetwork /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQuick /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSql /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebKit /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\ActiveQt /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtConcurrent /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtHelp /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtOpenGL /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtPrintSupport /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtScript /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSvg /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebkitWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXmlPatterns /I..\main /I..\playback /I..\disk /I..\vwidget /I"..\..\3rdparty\ffmpeg-54\include" /I"..\..\3rdparty\SDL-2.0.0-6940\include" /I..\..\devices\include /I"..\..\3rdparty\gperftools-2.0\src\windows\gperftools" /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\libcli\libcli\src\ /I..\..\3rdparty\libcli\libcli\src\libcli /I..\..\3rdparty\libcli\libcli\src\plib\ /I..\..\3rdparty\poco\Foundation\include\ /I..\..\3rdparty\poco\Net\include\ /I..\..\3rdparty\poco\Util\include /I"..\..\3rdparty\SDL2_ttf-2.0.12\\" /I..\..\3rdparty\onvifc\include\ /I"\include\gstreamer-0.10" /I\include\libxml2 /I"\include\glib-2.0" /I"\lib\glib-2.0\include" /I\include /I..\..\velib\include\vplay /I..\..\velib\include\utility /I..\..\velib\include\vdb /I..\..\3rdparty\poco\Data\include\ /I..\..\3rdparty\poco\Data\SQLite\include\ /I..\recorder /I..\setting /I..\systeminfo\ /I..\systeminfo\windows\ /I..\event\ /I"..\..\3rdparty\openssl-1.0.1g\include" /I..\..\veuilib\include\ /I..\vms\ /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D WITH_OPENSSL /D WITH_DOM /D WITH_PURE_VIRTUAL /D QT_BUILD_SYSTEMINFO_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\disk\vschdddevice.cpp ..\disk\vschddedit.cpp ..\disk\vschddone.cpp ..\disk\vschddoneedit.cpp ..\main\main.cpp ..\main\vsccameraadd.cpp ..\main\vscdeviceipc.cpp ..\main\vscdevicelist.cpp ..\main\vscdevicetrash.cpp ..\main\vscdevicetree.cpp ..\main\vscdockwidget.cpp ..\main\vscipcgroupconf.cpp ..\main\vscipcgroupmap.cpp ..\main\vscmainwindows.cpp ..\main\vscplayback.cpp ..\main\vscplaycontrol.cpp ..\main\vscsearch.cpp ..\main\vsctoobar.cpp ..\main\vscview.cpp ..\main\vscviewconf.cpp ..\main\vscvipc.cpp ..\main\vscvipcadd.cpp ..\setting\vsclicense.cpp ..\setting\vscrecorderconf.cpp ..\setting\vscsetting.cpp ..\setting\vscuser.cpp ..\setting\vscuserstatus.cpp ..\setting\vscversion.cpp ..\vms\vscrecorder.cpp ..\vms\vscrecorderadd.cpp ..\vms\vscrecorderone.cpp ..\vms\vscrecorderpanel.cpp ..\vms\vscsiteadd.cpp ..\vms\vscvms.cpp ..\vms\vsczbtreeitem.cpp GeneratedFiles\Release\moc_factory.cpp GeneratedFiles\Release\moc_vsccameraadd.cpp GeneratedFiles\Release\moc_vscdevicelist.cpp GeneratedFiles\Release\moc_vscdevicetrash.cpp GeneratedFiles\Release\moc_vscdevicetree.cpp GeneratedFiles\Release\moc_vscdockwidget.cpp GeneratedFiles\Release\moc_vschdddevice.cpp GeneratedFiles\Release\moc_vschddedit.cpp GeneratedFiles\Release\moc_vschddone.cpp GeneratedFiles\Release\moc_vschddoneedit.cpp GeneratedFiles\Release\moc_vscipcgroupconf.cpp GeneratedFiles\Release\moc_vscipcgroupmap.cpp GeneratedFiles\Release\moc_vsclicense.cpp GeneratedFiles\Release\moc_vscmainwindows.cpp GeneratedFiles\Release\moc_vscplayback.cpp GeneratedFiles\Release\moc_vscplaycontrol.cpp GeneratedFiles\Release\moc_vscrecorder.cpp GeneratedFiles\Release\moc_vscrecorderadd.cpp GeneratedFiles\Release\moc_vscrecorderconf.cpp GeneratedFiles\Release\moc_vscrecorderone.cpp GeneratedFiles\Release\moc_vscrecorderpanel.cpp GeneratedFiles\Release\moc_vscsearch.cpp GeneratedFiles\Release\moc_vscsetting.cpp GeneratedFiles\Release\moc_vscsiteadd.cpp GeneratedFiles\Release\moc_vsctoolbar.cpp GeneratedFiles\Release\moc_vscuser.cpp GeneratedFiles\Release\moc_vscuserstatus.cpp GeneratedFiles\Release\moc_vscversion.cpp GeneratedFiles\Release\moc_vscview.cpp GeneratedFiles\Release\moc_vscviewconf.cpp GeneratedFiles\Release\moc_vscvipcadd.cpp GeneratedFiles\Release\moc_vscvms.cpp GeneratedFiles\Release\moc_vsczbtreeitem.cpp
+         vschdddevice.cpp
+         vschddedit.cpp
+         vschddone.cpp
+         vschddoneedit.cpp
+         main.cpp
+         vsccameraadd.cpp
+         vscdeviceipc.cpp
+         vscdevicelist.cpp
+         vscdevicetrash.cpp
+         vscdevicetree.cpp
+         vscdockwidget.cpp
+         vscipcgroupconf.cpp
+         vscipcgroupmap.cpp
+         vscmainwindows.cpp
+         vscplayback.cpp
+         vscplaycontrol.cpp
+         vscsearch.cpp
+         vsctoobar.cpp
+         vscview.cpp
+         vscviewconf.cpp
+         Generating Code...
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(853): warning C4715: 'Device::DataHandler' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(684): warning C4715: 'Device::UpdatePTZConf' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(853): warning C4715: 'Device::DataHandler' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(853): warning C4715: 'Device::DataHandler' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(684): warning C4715: 'Device::UpdatePTZConf' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(853): warning C4715: 'Device::DataHandler' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(684): warning C4715: 'Device::UpdatePTZConf' : not all control paths return a value
+         Compiling...
+         vscvipc.cpp
+         vscvipcadd.cpp
+         vsclicense.cpp
+         vscrecorderconf.cpp
+         vscsetting.cpp
+         vscuser.cpp
+         vscuserstatus.cpp
+         vscversion.cpp
+         vscrecorder.cpp
+         vscrecorderadd.cpp
+         vscrecorderone.cpp
+         vscrecorderpanel.cpp
+         vscsiteadd.cpp
+         vscvms.cpp
+         vsczbtreeitem.cpp
+         moc_factory.cpp
+         moc_vsccameraadd.cpp
+         moc_vscdevicelist.cpp
+         moc_vscdevicetrash.cpp
+         moc_vscdevicetree.cpp
+         Generating Code...
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(853): warning C4715: 'Device::DataHandler' : not all control paths return a value
+     1>c:\work\60-video\ve-qt54\devices\include\device.hpp(684): warning C4715: 'Device::UpdatePTZConf' : not all control paths return a value
+         Compiling...
+         moc_vscdockwidget.cpp
+         moc_vschdddevice.cpp
+         moc_vschddedit.cpp
+         moc_vschddone.cpp
+         moc_vschddoneedit.cpp
+         moc_vscipcgroupconf.cpp
+         moc_vscipcgroupmap.cpp
+         moc_vsclicense.cpp
+         moc_vscmainwindows.cpp
+         moc_vscplayback.cpp
+         moc_vscplaycontrol.cpp
+         moc_vscrecorder.cpp
+         moc_vscrecorderadd.cpp
+         moc_vscrecorderconf.cpp
+         moc_vscrecorderone.cpp
+         moc_vscrecorderpanel.cpp
+         moc_vscsearch.cpp
+         moc_vscsetting.cpp
+         moc_vscsiteadd.cpp
+         moc_vsctoolbar.cpp
+         Generating Code...
+         Compiling...
+         moc_vscuser.cpp
+         moc_vscuserstatus.cpp
+         moc_vscversion.cpp
+         moc_vscview.cpp
+         moc_vscviewconf.cpp
+         moc_vscvipcadd.cpp
+         moc_vscvms.cpp
+         moc_vsczbtreeitem.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.4.0\5.4\msvc2013\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtCore /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtGui /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimedia /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimediaWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtNetwork /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQuick /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSql /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebKit /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\ActiveQt /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtConcurrent /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtHelp /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtOpenGL /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtPrintSupport /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtScript /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSvg /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebkitWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXmlPatterns /I..\main /I..\playback /I..\disk /I..\vwidget /I"..\..\3rdparty\ffmpeg-54\include" /I"..\..\3rdparty\SDL-2.0.0-6940\include" /I..\..\devices\include /I"..\..\3rdparty\gperftools-2.0\src\windows\gperftools" /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\libcli\libcli\src\ /I..\..\3rdparty\libcli\libcli\src\libcli /I..\..\3rdparty\libcli\libcli\src\plib\ /I..\..\3rdparty\poco\Foundation\include\ /I..\..\3rdparty\poco\Net\include\ /I..\..\3rdparty\poco\Util\include /I"..\..\3rdparty\SDL2_ttf-2.0.12\\" /I..\..\3rdparty\onvifc\include\ /I"\include\gstreamer-0.10" /I\include\libxml2 /I"\include\glib-2.0" /I"\lib\glib-2.0\include" /I\include /I..\..\velib\include\vplay /I..\..\velib\include\utility /I..\..\velib\include\vdb /I..\..\3rdparty\poco\Data\include\ /I..\..\3rdparty\poco\Data\SQLite\include\ /I..\recorder /I..\setting /I..\systeminfo\ /I..\systeminfo\windows\ /I..\event\ /I"..\..\3rdparty\openssl-1.0.1g\include" /I..\..\veuilib\include\ /I..\vms\ /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D WITH_OPENSSL /D WITH_DOM /D WITH_PURE_VIRTUAL /D QT_BUILD_SYSTEMINFO_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\qrc_style.cpp GeneratedFiles\qrc_vscmainwindows.cpp
+         qrc_style.cpp
+         qrc_vscmainwindows.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\VSCloudNode.res" VSCloudNode.rc 
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1186,5): warning MSB8012: TargetPath(C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\VSCloudNode.exe) does not match the Linker's OutputFile property value (C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\vdcEye manager.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1188,5): warning MSB8012: TargetName(VSCloudNode) does not match the Linker's OutputFile property value (vdcEye manager). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\\vdcEye manager.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.4.0\5.4\msvc2013\lib /LIBPATH:"..\..\3rdparty\ffmpeg-54\lib" /LIBPATH:..\..\3rdparty\leveldb\win32_proj\Release /LIBPATH:..\..\3rdparty\poco\lib\ /LIBPATH:..\..\3rdparty\libcli\Release\ /LIBPATH:..\..\3rdparty\onvifc\lib\Release\ /LIBPATH:..\..\velib\lib\win32\Release /LIBPATH:"..\..\3rdparty\openssl-1.0.1g\lib" /LIBPATH:.\Release /LIBPATH:..\..\veuilib\lib\win32\Release qtmain.lib Qt5Core.lib Qt5Gui.lib Qt5Multimedia.lib Qt5MultimediaWidgets.lib Qt5Network.lib Qt5Qml.lib Qt5Quick.lib Qt5Sql.lib Qt5WebKit.lib Qt5AxContainer.lib Qt5AxBase.lib Qt5Concurrent.lib Qt5Help.lib Qt5OpenGL.lib opengl32.lib glu32.lib Qt5PrintSupport.lib Qt5Script.lib Qt5Svg.lib Qt5WebkitWidgets.lib Qt5Widgets.lib Qt5Xml.lib Qt5XmlPatterns.lib wsock32.lib leveldb.lib memenv.lib onvifc.lib ws2_32.lib dsound.lib ole32.lib comsupp.lib velib.lib veuilib.lib libeay32MT.lib ssleay32MT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\VSCloudNode.pdb" /SUBSYSTEM:WINDOWS /STACK:"10485760" /OPT:NOREF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\VSCloudNode.lib" /MACHINE:X86 /SAFESEH Release\VSCloudNode.res
+         Release\vschdddevice.obj
+         Release\vschddedit.obj
+         Release\vschddone.obj
+         Release\vschddoneedit.obj
+         Release\main.obj
+         Release\vsccameraadd.obj
+         Release\vscdeviceipc.obj
+         Release\vscdevicelist.obj
+         Release\vscdevicetrash.obj
+         Release\vscdevicetree.obj
+         Release\vscdockwidget.obj
+         Release\vscipcgroupconf.obj
+         Release\vscipcgroupmap.obj
+         Release\vscmainwindows.obj
+         Release\vscplayback.obj
+         Release\vscplaycontrol.obj
+         Release\vscsearch.obj
+         Release\vsctoobar.obj
+         Release\vscview.obj
+         Release\vscviewconf.obj
+         Release\vscvipc.obj
+         Release\vscvipcadd.obj
+         Release\vsclicense.obj
+         Release\vscrecorderconf.obj
+         Release\vscsetting.obj
+         Release\vscuser.obj
+         Release\vscuserstatus.obj
+         Release\vscversion.obj
+         Release\vscrecorder.obj
+         Release\vscrecorderadd.obj
+         Release\vscrecorderone.obj
+         Release\vscrecorderpanel.obj
+         Release\vscsiteadd.obj
+         Release\vscvms.obj
+         Release\vsczbtreeitem.obj
+         Release\qrc_style.obj
+         Release\qrc_vscmainwindows.obj
+         Release\moc_factory.obj
+         Release\moc_vsccameraadd.obj
+         Release\moc_vscdevicelist.obj
+         Release\moc_vscdevicetrash.obj
+         Release\moc_vscdevicetree.obj
+         Release\moc_vscdockwidget.obj
+         Release\moc_vschdddevice.obj
+         Release\moc_vschddedit.obj
+         Release\moc_vschddone.obj
+         Release\moc_vschddoneedit.obj
+         Release\moc_vscipcgroupconf.obj
+         Release\moc_vscipcgroupmap.obj
+         Release\moc_vsclicense.obj
+         Release\moc_vscmainwindows.obj
+         Release\moc_vscplayback.obj
+         Release\moc_vscplaycontrol.obj
+         Release\moc_vscrecorder.obj
+         Release\moc_vscrecorderadd.obj
+         Release\moc_vscrecorderconf.obj
+         Release\moc_vscrecorderone.obj
+         Release\moc_vscrecorderpanel.obj
+         Release\moc_vscsearch.obj
+         Release\moc_vscsetting.obj
+         Release\moc_vscsiteadd.obj
+         Release\moc_vsctoolbar.obj
+         Release\moc_vscuser.obj
+         Release\moc_vscuserstatus.obj
+         Release\moc_vscversion.obj
+         Release\moc_vscview.obj
+         Release\moc_vscviewconf.obj
+         Release\moc_vscvipcadd.obj
+         Release\moc_vscvms.obj
+         Release\moc_vsczbtreeitem.obj
+         leveldb.lib(options.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+         Generating code
+         Finished generating code
+         VSCloudNode.vcxproj -> C:\work\60-video\ve-qt54\veapp\prj_win32\Win32\Release\VSCloudNode.exe
+     1>Done Building Project "C:\work\60-video\ve-qt54\veapp\prj_win32\VSCloudNode.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:04:41.52

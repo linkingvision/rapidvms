@@ -1,0 +1,59 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>resources/splash.png</file>
+        <file>resources/vscsmall.png</file>
+    </qresource>
+    <qresource prefix="/action">
+        <file>resources/surveillance.png</file>
+        <file>resources/search.png</file>
+        <file>resources/user-trash-2.png</file>
+        <file>resources/videosearch.png</file>
+        <file>resources/computer.png</file>
+        <file>resources/display.png</file>
+        <file>resources/view-fullscreen.png</file>
+        <file>resources/setting.png</file>
+        <file>resources/recordstart.png</file>
+        <file>resources/recordstop.png</file>
+        <file>resources/edit.png</file>
+        <file>resources/new.png</file>
+        <file>resources/float.png</file>
+        <file>resources/tabbed.png</file>
+        <file>resources/stop.png</file>
+        <file>resources/control_panel.png</file>
+        <file>resources/refresh.png</file>
+        <file>resources/alarm.png</file>
+        <file>resources/alarmno.png</file>
+        <file>resources/playview.png</file>
+        <file>resources/map.png</file>
+        <file>resources/user.png</file>
+        <file>resources/mining.png</file>
+        <file>resources/syncpb.png</file>
+        <file>resources/button.png</file>
+        <file>resources/buttonpress.png</file>
+        <file>resources/buttonhover.png</file>
+    </qresource>
+    <qresource prefix="/device">
+        <file>resources/computer.png</file>
+        <file>resources/camera.png</file>
+        <file>resources/camera1.png</file>
+        <file>resources/view.png</file>
+        <file>resources/harddisk.png</file>
+        <file>resources/camera-record.png</file>
+        <file>resources/dome.png</file>
+        <file>resources/dome-record.png</file>
+        <file>resources/virtualipc.png</file>
+        <file>resources/view1.png</file>
+        <file>resources/camgroup.png</file>
+    </qresource>
+    <qresource prefix="/view">
+        <file>resources/1x1.png</file>
+        <file>resources/2x2.png</file>
+        <file>resources/3x3.png</file>
+        <file>resources/4x4.png</file>
+        <file>resources/12+1.png</file>
+        <file>resources/5x5.png</file>
+        <file>resources/6x6.png</file>
+        <file>resources/8x8.png</file>
+        <file>resources/6.png</file>
+    </qresource>
+</RCC>

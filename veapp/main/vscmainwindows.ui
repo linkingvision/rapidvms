@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VSCMainWindowsClass</class>
+ <widget class="QMainWindow" name="VSCMainWindowsClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VdcEye Manager  2015 R1</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="vscmainwindows.qrc">
+    <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {font: 10pt &quot;Arial Unicode MS&quot;; }
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="vscmainwindows.qrc"/>
+ </resources>
+ <connections/>
+</ui>
