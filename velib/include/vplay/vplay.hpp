@@ -36,6 +36,7 @@ public:
 	static BOOL GetLicenseInfo(astring &strHostId, int &ch, int &type);
 public:
 	BOOL Init(BOOL bRealStream, string strUrl, string strUser, string strPass);
+	BOOL Init(string strFile);
 	BOOL AttachWidget(HWND hWnd, int w, int h);
 	BOOL UpdateWidget(HWND hWnd, int w, int h);
 	BOOL DetachWidget(HWND hWnd);
