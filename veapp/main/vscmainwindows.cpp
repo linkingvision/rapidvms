@@ -485,8 +485,8 @@ void VSCMainWindows::SetupMenuBar()
 }
 void VSCMainWindows::about()
 {
-   QMessageBox::about(this, tr("About VdcEye manager"),
-            tr("The <b>VdcEye manager</b>. <br>"
+   QMessageBox::about(this, tr("About vdceye Manager"),
+            tr("The <b>vdceye Manager</b>. <br>"
             "<a href=\"https://github.com/xsmart\">https://github.com/xsmart</a>"
             "  <br><a href=\"http://www.vdceye.com/\">http://www.vdceye.com/</a>"));
 }

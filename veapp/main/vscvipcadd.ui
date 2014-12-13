@@ -37,79 +37,20 @@
       <property name="verticalSpacing">
        <number>0</number>
       </property>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="listIP"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="listCamera"/>
+      </item>
       <item row="0" column="0">
-       <widget class="QRadioButton" name="radioButtonFile">
+       <widget class="QRadioButton" name="radioButtonCamera">
         <property name="text">
-         <string>File</string>
+         <string>Camera</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="labelIP">
-        <property name="text">
-         <string>IP Address</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="labelPort">
-        <property name="text">
-         <string>Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
-       <widget class="QLineEdit" name="lineEditPassword">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelName">
-        <property name="text">
-         <string>Device Name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QLineEdit" name="lineEditUser">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="lineEditName">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="labelUser">
-        <property name="text">
-         <string>User</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="labelPassword">
-        <property name="text">
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
+      <item row="7" column="1">
        <widget class="QLineEdit" name="lineEditPort">
         <property name="maximumSize">
          <size>
@@ -119,26 +60,68 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButtonCamera">
+      <item row="9" column="0">
+       <widget class="QLabel" name="labelPassword">
         <property name="text">
-         <string>Camera</string>
+         <string>Password</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="QComboBox" name="listIP"/>
+      <item row="8" column="0">
+       <widget class="QLabel" name="labelUser">
+        <property name="text">
+         <string>User</string>
+        </property>
+       </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="listCamera"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEditFile">
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineEditName">
         <property name="maximumSize">
          <size>
           <width>300</width>
           <height>16777215</height>
          </size>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="lineEditUser">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelName">
+        <property name="text">
+         <string>Device Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLineEdit" name="lineEditPassword">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="labelPort">
+        <property name="text">
+         <string>Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="labelIP">
+        <property name="text">
+         <string>IP Address</string>
         </property>
        </widget>
       </item>

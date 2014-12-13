@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VdcEye Manager  2015 R1</string>
+   <string>vdceye Manager  2015 R1</string>
   </property>
   <property name="windowIcon">
    <iconset resource="vscmainwindows.qrc">

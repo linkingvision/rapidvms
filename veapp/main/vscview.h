@@ -33,10 +33,12 @@ public slots:
     void ShowPlayControl();
     void ShowLayout1Clicked(int nId);
     void ShowViewClicked(int nId);
+#if 0
     void mouseMoveEvent(QMouseEvent *e)
     	{
     	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
     	}
+#endif
     void SetLayoutMode4x4()
     {
         m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
