@@ -289,7 +289,8 @@ inline std::string Replace(std::string &str, const char *string_to_replace, cons
 
 BOOL DeviceParam::CheckOnline()
 {
-    if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
+    if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE 
+		|| m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
     {
     	return TRUE;
     }
@@ -417,8 +418,7 @@ BOOL DeviceParam::UpdateUrl()
     //TODO RTSP ONVIF call onvif sdk to get a Stream URL
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
     {
-        string filePre = "file:///";
-        m_strUrl = filePre + m_Conf.data.conf.FileLocation;
+        m_strUrl = m_Conf.data.conf.FileLocation;
     }
 
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
@@ -466,10 +466,15 @@ m_ptz(NULL)
     {
         return;
     }
-
-    m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
+    if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
+    {
+	m_vPlay.Init(m_param.m_strUrl);
+    }else
+    {
+	m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
 			m_param.m_Conf.data.conf.Password);
-    VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
+	VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
+    }
 
     StartRecord();
     m_Online = TRUE;
@@ -492,8 +497,15 @@ DeviceStatus Device::CheckDevice()
             {
                 return  DEV_NO_CHANGE;
             }
-            m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
-			m_param.m_Conf.data.conf.Password);
+	    if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
+	    {
+		m_vPlay.Init(m_param.m_strUrl);
+	    }else
+	    {
+		m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
+				m_param.m_Conf.data.conf.Password);
+		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
+	    }
             VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 			
             StartRecord();
@@ -593,6 +605,10 @@ BOOL Device::ShowAlarm(HWND hWnd)
 
  BOOL Device::UpdatePTZConf()
 {
+    if (m_param.m_Conf.data.conf.nSubType != VSC_SUB_DEVICE_ONVIF)
+    {
+    	return TRUE;
+    }
     QString strToken;
     astring IP = m_param.m_Conf.data.conf.IP;
     astring Port = m_param.m_Conf.data.conf.Port;
@@ -863,7 +879,7 @@ BOOL Device::ShowAlarm(HWND hWnd)
 	        return TRUE;
 	    }
 	}
-   	// VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
+   	//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
 	// 	frame.streamType, frame.frameType, frame.secs, frame.msecs);
 	/* Just skip the info stream for recording */
 	if (frame.streamType != VIDEO_STREAM_INFO && m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)

@@ -178,7 +178,7 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
         memset(&pSys, 0, sizeof(VSCConfData));
         SysConfDataDefault(pSys);
         UpdateSysData(pSys);
-        astring strLicense = "no license";
+        astring strLicense = " ";
         SetLicense(strLicense);//set the default license
         /* Call get system again */
         return TRUE;
