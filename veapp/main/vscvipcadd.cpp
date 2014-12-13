@@ -53,7 +53,7 @@ void VSCVIPCAdd::setupDefaultValue()
 {
 #if 1
     ui.radioButtonCamera->setChecked(true);
-    ui.lineEditFile->setDisabled(1);
+    //ui.lineEditFile->setDisabled(1);
     ui.lineEditName->setText(m_Param.m_Conf.data.conf.Name);
     //ui.lineEditIP->setText(m_Param.m_Conf.data.conf.IP);
     ui.lineEditPort->setText(m_Param.m_Conf.data.conf.Port);
