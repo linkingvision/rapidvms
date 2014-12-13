@@ -26,6 +26,7 @@ private slots:
 
     void radioButtonClicked();
     void applyConfig();
+    void fileSelect();
 signals:
     //void CameraTreeUpdated();
 

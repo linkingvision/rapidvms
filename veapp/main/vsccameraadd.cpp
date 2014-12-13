@@ -1,5 +1,6 @@
 #include "vsccameraadd.h"
 #include "vscvwidget.h"
+#include <QFileDialog>
 
 extern Factory *gFactory;
 
@@ -41,10 +42,31 @@ VSCCameraAdd::~VSCCameraAdd()
 
 void VSCCameraAdd::SetupConnections()
 {
-    //connect( this->ui.radioButtonFile, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
-    connect( this->ui.radioButtonRtsp, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
-    connect( this->ui.radioButtonOnvif, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
-    connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
+	connect( this->ui.radioButtonFile, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
+	connect( this->ui.radioButtonRtsp, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
+	connect( this->ui.radioButtonOnvif, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
+	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
+	connect( this->ui.pushButtonFile, SIGNAL( clicked() ), this, SLOT(fileSelect()));
+
+}
+
+void VSCCameraAdd::fileSelect()
+{
+	QFileDialog *fileDialog = new QFileDialog(this); 
+	fileDialog->setWindowTitle(tr("Select File")); 
+	fileDialog->setDirectory("."); 
+	fileDialog->setNameFilter(tr("Video Files(*.MOV *.mp4 *.avi)")); 
+	QIcon icon;
+	icon.addFile(QStringLiteral(":/logo/resources/vscsmall.png"), QSize(), QIcon::Normal, QIcon::Off);
+	fileDialog->setWindowIcon(icon);
+	if(fileDialog->exec() == QDialog::Accepted) { 
+		QString path = fileDialog->selectedFiles()[0]; 
+		ui.fileLoc->setText(path);
+		VDC_DEBUG( "%s  QFileDialog %s\n",__FUNCTION__, path.toStdString().c_str());
+	} else 
+	{ 
+	
+	}
 }
 
 void VSCCameraAdd::PreView()
@@ -64,7 +86,7 @@ void VSCCameraAdd::setupDefaultValue()
     switch(m_Param.m_Conf.data.conf.nSubType)
     {
     case VSC_SUB_DEVICE_FILE:
-        //ui.radioButtonFile->setChecked(true);
+        ui.radioButtonFile->setChecked(true);
         break;
     case VSC_SUB_DEVICE_RTSP:
         ui.radioButtonRtsp->setChecked(true);
@@ -124,6 +146,8 @@ void VSCCameraAdd::applyConfig()
 
     updateParamValue(ui.lineEditRtspLoc, m_Param.m_Conf.data.conf.RtspLocation);
     //updateParamValue(ui.lineFileLoc, m_Param.m_Conf.data.conf.FileLocation);
+    /* Update the File location */
+    strcpy(m_Param.m_Conf.data.conf.FileLocation, ui.fileLoc->text().toStdString().c_str());
     updateParamValue(ui.lineOnvifAddr, m_Param.m_Conf.data.conf.OnvifAddress);
     updateParamValue(ui.lineEditProfileToken, m_Param.m_Conf.data.conf.OnvifProfileToken);
     m_Param.m_Conf.data.conf.nType = VSC_DEVICE_CAM;
@@ -133,6 +157,9 @@ void VSCCameraAdd::applyConfig()
     }else if (ui.radioButtonOnvif->isChecked() == true)
     {
         m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_ONVIF;
+    }else if (ui.radioButtonFile->isChecked() == true)
+    {
+        m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_FILE;
     }
 
     if (ui.checkBoxProfileToken->isChecked() == true)
@@ -223,7 +250,7 @@ void VSCCameraAdd::radioButtonClicked()
     ui.lineOnvifAddr->setDisabled(0);
     ui.lineEditProfileToken->setDisabled(0);
     ui.checkBoxProfileToken->setDisabled(0);
-#if 0
+
     if(this->ui.radioButtonFile->isChecked())
     {
         ui.lineEditIP->setDisabled(1);
@@ -236,7 +263,7 @@ void VSCCameraAdd::radioButtonClicked()
         ui.lineEditProfileToken->setDisabled(1);
         ui.checkBoxProfileToken->setDisabled(1);
     }
-#endif
+
 
     if(this->ui.radioButtonRtsp->isChecked())
     {
