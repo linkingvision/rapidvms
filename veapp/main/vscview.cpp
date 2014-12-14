@@ -35,6 +35,7 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
     m_bPlayControl = FALSE;
     m_pPlayControl->hide();
     VSCViewDataItemDefault(m_ViewItem);
+    ui.pushButton8x8->hide();
     //setMouseTracking(true);
 }
 
