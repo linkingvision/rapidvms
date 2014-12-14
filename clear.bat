@@ -4,3 +4,4 @@ del /s *.~ *.dat *.pdb *.ilk *.pch *.idb *.dep
 del /s *.manifest *.manifest.res *.res *.o
 del /s BuildLog.htm 
 pause
+
