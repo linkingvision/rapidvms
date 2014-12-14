@@ -223,6 +223,9 @@
            <property name="text">
             <string>C:\work\24-video\Outlet\MVI_4397.MOV</string>
            </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
