@@ -1,4 +1,4 @@
-# VdcEye Manager #
+# vdceye Manager #
 #### open source ONVIF IP Camera manager ####
 
 ----------

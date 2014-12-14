@@ -5,7 +5,7 @@ ARCH=`uname -m | sed 's/x86_//;s/i[3-6]86/32/'`
 VER=`lsb_release -sr`
 REL=vdceye-$(OS)-$(VER)-$(ARCH)bit
 
-subdirs=3rdparty velib veuilib vepro
+subdirs=3rdparty velib veuilib veapp
 
 all:
 	chmod +x ./linux/*.sh
