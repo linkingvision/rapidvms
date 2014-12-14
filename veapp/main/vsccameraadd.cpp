@@ -54,7 +54,7 @@ void VSCCameraAdd::fileSelect()
 {
 	QFileDialog *fileDialog = new QFileDialog(this); 
 	fileDialog->setWindowTitle(tr("Select File")); 
-	fileDialog->setDirectory("."); 
+	fileDialog->setDirectory(ui.fileLoc->text()); 
 	fileDialog->setNameFilter(tr("Video Files(*.MOV *.mp4 *.avi)")); 
 	QIcon icon;
 	icon.addFile(QStringLiteral(":/logo/resources/vscsmall.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -107,6 +107,7 @@ void VSCCameraAdd::setupDefaultValue()
     ui.lineEditRtspLoc->setText(m_Param.m_Conf.data.conf.RtspLocation);
 
     //ui.lineFileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
+    ui.fileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
 
     ui.lineOnvifAddr->setText(m_Param.m_Conf.data.conf.OnvifAddress);
 
