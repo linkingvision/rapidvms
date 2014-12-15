@@ -76,6 +76,7 @@ private slots:
     void showDisplay4();
     void videoMouseMove(QMouseEvent *e);
     void UpdateVideoControl();
+    void videoResizeEventTimer();
     void instantPbClick();
     void TimeLineChanged(int nStatus );
     void InstantPbPause();
@@ -160,6 +161,7 @@ private:
 	
 private:
     QTimer *m_Timer;
+    QTimer *m_TimerResize;
     time_t m_lastMoveTime;
     struct timeval m_lastPressed;
     VSCPbThread *m_pbThread;
