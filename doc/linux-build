@@ -3,11 +3,11 @@ centos: sudo yum install nasm xorg-x11-server-devel zlib-devel gcc gcc-c++ gstre
 
 
 64bit
-1. Install qt-opensource-linux-x64-5.2.1.run 
-http://download.qt-project.org/official_releases/qt/5.2/5.2.1/qt-opensource-linux-x64-5.2.1.run   
+1. Install qt-opensource-linux-x64-5.4.0.run 
+http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run   
    ---> add below 2 line into /etc/profile
-	export  PATH=$PATH:/home/ubu/Qt5.2.1/5.2.1/gcc_64/bin:/home/ubu/Qt5.2.1/Tools/QtCreator/bin/
-	export  VE_QTDIR=/home/ubu/Qt5.2.1/5.2.1/gcc_64/
+	export  PATH=$PATH:/home/ubu/Qt5.4.0/5.4.0/gcc_64/bin:/home/ubu/Qt5.4.0/Tools/QtCreator/bin/
+	export  VE_QTDIR=/home/ubu/Qt5.4.0/5.4.0/gcc_64/
 	 
 2. edit the env.sh LD_LIBRARY_PATH for the current dir
    ./root.sh
