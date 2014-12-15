@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="vscmainwindows.qrc">
-    <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
+    <normaloff>:/logo/resources/vsclogod.png</normaloff>:/logo/resources/vsclogod.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
