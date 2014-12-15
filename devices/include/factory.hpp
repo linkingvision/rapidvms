@@ -840,9 +840,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 
     Lock();
     pParam.m_Conf.data.conf.nId = nId;
-    m_DeviceParamMap[nId] = pParam;
-
-    m_Conf.AddDevice(pParam.m_Conf, nId);
+	
     if (pParam.m_Conf.data.conf.nType == VSC_DEVICE_CAM)
     {
     	m_DeviceMap[nId] = new Device(*m_pVdb, pParam);
@@ -850,6 +848,11 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
     {
 	m_DeviceMap[nId] = NULL;
     }
+	
+    m_DeviceParamMap[nId] = pParam;
+
+    m_Conf.AddDevice(pParam.m_Conf, nId);
+
     VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
     UnLock();
     VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
