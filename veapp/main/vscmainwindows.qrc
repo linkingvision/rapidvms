@@ -2,6 +2,8 @@
     <qresource prefix="/logo">
         <file>resources/splash.png</file>
         <file>resources/vscsmall.png</file>
+        <file>resources/vsclogoc.png</file>
+        <file>resources/vsclogod.png</file>
     </qresource>
     <qresource prefix="/action">
         <file>resources/surveillance.png</file>
