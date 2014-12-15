@@ -11,7 +11,7 @@
 #include "factory.hpp"
 
 
-#define VIDEO_WALL_WIDGET_MAX 64
+#define VIDEO_WALL_WIDGET_MAX 36
 
 class VSCVWidget;
 typedef std::map<int, VSCVWidget *> VideoWidgetMap;
@@ -41,10 +41,10 @@ public:
     void SetupVideoLayout8x8();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
-    void mouseMoveEvent(QMouseEvent *e)
-    	{
-    	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
-    	}
+    //void mouseMoveEvent(QMouseEvent *e)
+    //	{
+    //	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
+    //	}
     void DeviceEvent(int deviceId, VscEventType type);
 
 public slots:
