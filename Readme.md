@@ -22,8 +22,8 @@
 ### Building ###
 #### Windows ####
 	1. Install VS2013
-	2. Install QT 5.4.0 in the http://download.qt-project.org/development_releases/qt/5.4/5.4.0-rc/qt-opensource-windows-x86-msvc2013-5.4.0-rc.exe
-	3. http://download.qt-project.org/official_releases/vsaddin/qt-vs-addin-1.2.3-opensource.exe 
+	2. Install QT 5.4.0 in the http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-windows-x86-msvc2013-5.4.0.exe
+	3. http://download.qt-project.org/official_releases/vsaddin/qt-vs-addin-1.2.4-opensource.exe
 	4. Open the veapp\prj_win32\VSCloudNode.sln to build
 
 #### Linux ####
@@ -31,7 +31,7 @@
 	centos: sudo yum install nasm xorg-x11-server-devel zlib-devel
 	
 	Install qt-opensource-linux-x64-5.4.0.run
-	http://download.qt-project.org/development_releases/qt/5.4/5.4.0-rc/qt-opensource-linux-x64-5.4.0-rc.run
+	http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run
 		export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4/gcc_64/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/
 
 For more guide
