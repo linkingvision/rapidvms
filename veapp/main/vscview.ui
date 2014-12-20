@@ -325,8 +325,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(42, 43, 44);
-border:2px groove gray;border-radius:3px;padding:2px 4px;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
