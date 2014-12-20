@@ -42,7 +42,9 @@ public:
 	/* video search function, if startTime or endTime is 0, it mean all */
 	BOOL SearchItems(s32 deviceId, u32 startTime, u32 endTime, u32 recordType, 
 					RecordItemMap & pMap);
+	BOOL SearchHasItems(s32 deviceId, u32 startTime, u32 endTime, u32 recordType);
 	BOOL SearchAItem(s32 deviceId, u32 Time, VdbRecordItem &pItem);
+	BOOL SearchAItemNear(s32 deviceId, u32 Time, VdbRecordItem &pItem);
     	BOOL SearchNextItem(s32 deviceId, s64 LastId, VdbRecordItem &pItem);
 	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
 	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
