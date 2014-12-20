@@ -42,7 +42,7 @@ void VSCDeviceList::SetupConnections()
 {
     connect(ui.pbSurveillance, SIGNAL(clicked()), this, SLOT(SurveillanceClick()));
     connect(ui.pbCamera, SIGNAL(clicked()), this, SLOT(CameraAddClick()));
-    connect(ui.pbPlayback, SIGNAL(clicked()), this, SLOT(PlaybackClick()));
+    connect(ui.pbEmap, SIGNAL(clicked()), this, SLOT(EmapClick()));
     connect(ui.pbSearch, SIGNAL(clicked()), this, SLOT(SearchClick()));
     connect(ui.pbRecorder, SIGNAL(clicked()), this, SLOT(RecorderClick()));
     connect(ui.pbVIPC, SIGNAL(clicked()), this, SLOT(VIPCAddClick()));
@@ -857,6 +857,9 @@ void VSCDeviceList::AddView(VSCViewDataItem &pParam)//Ìí¼Ósite
                 QSize(), QIcon::Normal, QIcon::Off);
             break;
         case LAYOUT_MODE_ONE:
+            icon1.addFile(QStringLiteral(":/view/resources/1x1.png"), 
+                QSize(), QIcon::Normal, QIcon::Off);
+            break;
             break;
         default:
             break;
@@ -977,9 +980,9 @@ void VSCDeviceList::CameraAddClick()
     return;
 }
 
-void VSCDeviceList::PlaybackClick()
+void VSCDeviceList::EmapClick()
 {
-    emit PlaybackClicked();
+    emit EmapClicked();
     return;
 }
 

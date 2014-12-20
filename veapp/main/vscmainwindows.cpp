@@ -45,6 +45,7 @@
 #include "vscipcgroupconf.h"
 #include "vscipcgroupmap.h"
 #include "vscuserstatus.h"
+#include "vemap.hpp"
 
 extern Factory *gFactory;
 
@@ -101,7 +102,7 @@ void VSCMainWindows::SetupConnections()
     connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
     connect(m_pDeviceList, SIGNAL(SurveillanceClicked()), this, SLOT(AddSurveillance()));
     connect(m_pDeviceList, SIGNAL(CameraAddClicked()), this, SLOT(AddCamera()));
-    connect(m_pDeviceList, SIGNAL(PlaybackClicked()), this, SLOT(AddPlayback()));
+    connect(m_pDeviceList, SIGNAL(EmapClicked()), this, SLOT(AddEmap()));
     connect(m_pDeviceList, SIGNAL(SearchClicked()), this, SLOT(Search()));
     connect(m_pDeviceList, SIGNAL(RecorderClicked()), this, SLOT(AddRecorder()));
 
@@ -173,14 +174,12 @@ void VSCMainWindows::AddSurveillance()
 	connect(m_pEventThread, SIGNAL(EventNotify(int, VscEventType)), pView, SLOT(DeviceEvent(int, VscEventType)));
 }
 
-void VSCMainWindows::AddPlayback()
+void VSCMainWindows::AddEmap()
 {
-#if 0
-    VSCSearchPb *pPb = new VSCSearchPb(m_pMainArea);
+    VEMap *pEMap = VEMap::CreateObject(m_pMainArea);
 	
-    m_pMainArea->addTab(pPb, QIcon(tr(":/action/resources/videosearch.png")), tr("Playback"));
-    m_pMainArea->setCurrentWidget(pPb);
-#endif
+    m_pMainArea->addTab(pEMap, QIcon(tr(":/action/resources/map.png")), tr("Emap"));
+    m_pMainArea->setCurrentWidget(pEMap);
 }
 
 void VSCMainWindows::Setting()

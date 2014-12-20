@@ -64,7 +64,7 @@ public:
 public slots:
 	void SurveillanceClick();
 	void CameraAddClick();
-	void PlaybackClick();
+	void EmapClick();
 	void SearchClick();
 	void RecorderClick();
 
@@ -78,7 +78,7 @@ public slots:
 
 signals:
 	void SurveillanceClicked();
-	void PlaybackClicked();
+	void EmapClicked();
 	void SearchClicked();
 	void RecorderClicked();
 

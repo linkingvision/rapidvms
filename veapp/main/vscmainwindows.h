@@ -25,7 +25,7 @@ public:
 public slots:
     void AddSurveillance();
     void AddCamera();
-    void AddPlayback();
+    void AddEmap();
     void AddRecorder();
     
     void Search();
