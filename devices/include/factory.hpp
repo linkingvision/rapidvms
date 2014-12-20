@@ -170,7 +170,10 @@ public:
 	/* Search function */
 	BOOL SearchItems(s32 deviceId, u32 startTime, u32 endTime, u32 recordType, 
 					RecordItemMap &map);
+	BOOL SearchHasItems(s32 deviceId, u32 startTime, u32 endTime, 
+					u32 recordType);
 	BOOL SearchAItem(s32 deviceId, u32 Time, VdbRecordItem &pItem);
+	BOOL SearchAItemNear(s32 deviceId, u32 Time, VdbRecordItem &pItem);
 	BOOL SearchNextItem(s32 deviceId, s64 LastId, VdbRecordItem &pItem);
 	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
 	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
@@ -468,9 +471,19 @@ inline BOOL Factory::SearchItems(s32 deviceId, u32 startTime, u32 endTime, u32 r
     return m_pVdb->SearchItems(deviceId, startTime, endTime, recordType, 
                         map);
 }
+
+inline BOOL Factory::SearchHasItems(s32 deviceId, u32 startTime, u32 endTime, u32 recordType)
+{
+    return m_pVdb->SearchHasItems(deviceId, startTime, endTime, recordType);
+}
 inline BOOL Factory::SearchAItem(s32 deviceId, u32 Time, VdbRecordItem &pItem)
 {
     return m_pVdb->SearchAItem(deviceId, Time, pItem);
+}
+
+inline BOOL Factory::SearchAItemNear(s32 deviceId, u32 Time, VdbRecordItem &pItem)
+{
+    return m_pVdb->SearchAItemNear(deviceId, Time, pItem);
 }
 inline BOOL Factory::SearchNextItem(s32 deviceId, s64 LastId, VdbRecordItem &pItem)
 {
