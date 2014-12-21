@@ -46,6 +46,7 @@
 #include "vscipcgroupmap.h"
 #include "vscuserstatus.h"
 #include "vemap.hpp"
+#include "vdmining.hpp"
 
 extern Factory *gFactory;
 
@@ -99,43 +100,44 @@ VSCMainWindows::~VSCMainWindows()
 
 void VSCMainWindows::SetupConnections()
 {
-    connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
-    connect(m_pDeviceList, SIGNAL(SurveillanceClicked()), this, SLOT(AddSurveillance()));
-    connect(m_pDeviceList, SIGNAL(CameraAddClicked()), this, SLOT(AddCamera()));
-    connect(m_pDeviceList, SIGNAL(EmapClicked()), this, SLOT(AddEmap()));
-    connect(m_pDeviceList, SIGNAL(SearchClicked()), this, SLOT(Search()));
-    connect(m_pDeviceList, SIGNAL(RecorderClicked()), this, SLOT(AddRecorder()));
-
-    
-    connect(m_pDeviceList, SIGNAL(CameraEditClicked(int)), this, SLOT(EditCamera(int)));
-    connect(m_pDeviceList, SIGNAL(CameraDeleteClicked(int)), this, SLOT(DeleteCamera(int)));
-
-    /* VIPC */
-    connect(m_pDeviceList, SIGNAL(VIPCAddClicked()), this, SLOT(AddVIPC()));
-    connect(m_pDeviceList, SIGNAL(VIPCEditClicked(int)), this, SLOT(EditVIPC(int)));
-    connect(m_pDeviceList, SIGNAL(VIPCDeleteClicked(int)), this, SLOT(DeleteVIPC(int)));
-
-   /* Camera Group */
-    connect(m_pDeviceList, SIGNAL(VGroupAddClicked()), this, SLOT(AddVGroup()));
-    connect(m_pDeviceList, SIGNAL(VGroupEditClicked(int)), this, SLOT(EditVGroup(int)));
-    connect(m_pDeviceList, SIGNAL(VGroupDeleteClicked(int)), this, SLOT(DeleteVGroup(int)));
-    connect(m_pDeviceList, SIGNAL(VGroupMapClicked()), this, SLOT(MapVGroup()));
+	connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
+	connect(m_pDeviceList, SIGNAL(SurveillanceClicked()), this, SLOT(AddSurveillance()));
+	connect(m_pDeviceList, SIGNAL(CameraAddClicked()), this, SLOT(AddCamera()));
+	connect(m_pDeviceList, SIGNAL(EmapClicked()), this, SLOT(AddEmap()));
+	connect(m_pDeviceList, SIGNAL(DminingClicked()), this, SLOT(AddDmining()));
+	connect(m_pDeviceList, SIGNAL(SearchClicked()), this, SLOT(Search()));
+	connect(m_pDeviceList, SIGNAL(RecorderClicked()), this, SLOT(AddRecorder()));
 
 
-    /* Disk edit */
-    connect(m_pDeviceList, SIGNAL(DiskEditClicked()), this, SLOT(EditDisk()));
+	connect(m_pDeviceList, SIGNAL(CameraEditClicked(int)), this, SLOT(EditCamera(int)));
+	connect(m_pDeviceList, SIGNAL(CameraDeleteClicked(int)), this, SLOT(DeleteCamera(int)));
 
-    /* View */
-    connect(m_pDeviceList, SIGNAL(ViewDeleteClicked(int)), this, SLOT(DeleteView(int)));
-	
+	/* VIPC */
+	connect(m_pDeviceList, SIGNAL(VIPCAddClicked()), this, SLOT(AddVIPC()));
+	connect(m_pDeviceList, SIGNAL(VIPCEditClicked(int)), this, SLOT(EditVIPC(int)));
+	connect(m_pDeviceList, SIGNAL(VIPCDeleteClicked(int)), this, SLOT(DeleteVIPC(int)));
 
-    //connect(this, SIGNAL(CameraDeleted()), m_pDeviceList, SLOT(CameraTreeUpdated()));
-    connect(m_pToolBar->ui.pbFullScreen, SIGNAL(clicked()), this, SLOT(SetFullScreen()));
-    connect(m_pToolBar->ui.pbAbout, SIGNAL(clicked()), this, SLOT(about()));
-    connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(AddEvent()));
-    connect(m_pToolBar->ui.pbSetting, SIGNAL(clicked()), this, SLOT(Setting()));
-    connect(m_pToolBar->ui.pbUser, SIGNAL(clicked()), this, SLOT(UserStatus()));
-    connect(m_pEventThread, SIGNAL(EventNotifyNoParam()), m_pToolBar, SLOT(NewAlarm()));
+	/* Camera Group */
+	connect(m_pDeviceList, SIGNAL(VGroupAddClicked()), this, SLOT(AddVGroup()));
+	connect(m_pDeviceList, SIGNAL(VGroupEditClicked(int)), this, SLOT(EditVGroup(int)));
+	connect(m_pDeviceList, SIGNAL(VGroupDeleteClicked(int)), this, SLOT(DeleteVGroup(int)));
+	connect(m_pDeviceList, SIGNAL(VGroupMapClicked()), this, SLOT(MapVGroup()));
+
+
+	/* Disk edit */
+	connect(m_pDeviceList, SIGNAL(DiskEditClicked()), this, SLOT(EditDisk()));
+
+	/* View */
+	connect(m_pDeviceList, SIGNAL(ViewDeleteClicked(int)), this, SLOT(DeleteView(int)));
+
+
+	//connect(this, SIGNAL(CameraDeleted()), m_pDeviceList, SLOT(CameraTreeUpdated()));
+	connect(m_pToolBar->ui.pbFullScreen, SIGNAL(clicked()), this, SLOT(SetFullScreen()));
+	connect(m_pToolBar->ui.pbAbout, SIGNAL(clicked()), this, SLOT(about()));
+	connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(AddEvent()));
+	connect(m_pToolBar->ui.pbSetting, SIGNAL(clicked()), this, SLOT(Setting()));
+	connect(m_pToolBar->ui.pbUser, SIGNAL(clicked()), this, SLOT(UserStatus()));
+	connect(m_pEventThread, SIGNAL(EventNotifyNoParam()), m_pToolBar, SLOT(NewAlarm()));
 
 }
 
@@ -181,6 +183,15 @@ void VSCMainWindows::AddEmap()
     m_pMainArea->addTab(pEMap, QIcon(tr(":/action/resources/map.png")), tr("Emap"));
     m_pMainArea->setCurrentWidget(pEMap);
 }
+
+void VSCMainWindows::AddDmining()
+{
+    VDMining *pDMining = VDMining::CreateObject(m_pMainArea);
+	
+    m_pMainArea->addTab(pDMining, QIcon(tr(":/action/resources/mining.png")), tr("Mining"));
+    m_pMainArea->setCurrentWidget(pDMining);
+}
+
 
 void VSCMainWindows::Setting()
 {
