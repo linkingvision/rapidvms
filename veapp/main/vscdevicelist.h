@@ -65,6 +65,7 @@ public slots:
 	void SurveillanceClick();
 	void CameraAddClick();
 	void EmapClick();
+	void DminingClick();
 	void SearchClick();
 	void RecorderClick();
 
@@ -79,6 +80,7 @@ public slots:
 signals:
 	void SurveillanceClicked();
 	void EmapClicked();
+	void DminingClicked();
 	void SearchClicked();
 	void RecorderClicked();
 
