@@ -250,7 +250,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pbPlayback">
+        <widget class="QPushButton" name="pbDmining">
          <property name="minimumSize">
           <size>
            <width>65</width>
