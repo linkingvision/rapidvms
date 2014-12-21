@@ -578,10 +578,7 @@ inline BOOL Factory::RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr p
 
 inline BOOL Factory::GetDeviceOnline(s32 nIndex, BOOL &bStatus)
 {
-    if (TryLock() == false)
-    {
-        return FALSE;
-    }
+    Lock();
 
     if (m_DeviceMap[nIndex] != NULL)
     {
