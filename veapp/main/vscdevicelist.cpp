@@ -43,6 +43,7 @@ void VSCDeviceList::SetupConnections()
     connect(ui.pbSurveillance, SIGNAL(clicked()), this, SLOT(SurveillanceClick()));
     connect(ui.pbCamera, SIGNAL(clicked()), this, SLOT(CameraAddClick()));
     connect(ui.pbEmap, SIGNAL(clicked()), this, SLOT(EmapClick()));
+    connect(ui.pbDmining, SIGNAL(clicked()), this, SLOT(DminingClick()));
     connect(ui.pbSearch, SIGNAL(clicked()), this, SLOT(SearchClick()));
     connect(ui.pbRecorder, SIGNAL(clicked()), this, SLOT(RecorderClick()));
     connect(ui.pbVIPC, SIGNAL(clicked()), this, SLOT(VIPCAddClick()));
@@ -102,6 +103,9 @@ bool VSCDeviceList::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
 	    {
 		NotifyDelCamera(change.id);
 		NotifyAddCamera(change.id);
+		BOOL bStatus = FALSE;
+		gFactory->GetDeviceOnline(change.id, bStatus);
+		NotifyCameraOnlineOffline(change.id, bStatus);
 	        break;
 	    }
 	    case FACTORY_DEVICE_OFFLINE:
@@ -983,6 +987,12 @@ void VSCDeviceList::CameraAddClick()
 void VSCDeviceList::EmapClick()
 {
     emit EmapClicked();
+    return;
+}
+
+void VSCDeviceList::DminingClick()
+{
+    emit DminingClicked();
     return;
 }
 
