@@ -15,47 +15,48 @@ class VSCMainWindows : public QMainWindow
     Q_OBJECT
 
 public:
-    void SetupToolBar();
-    void SetupMenuBar();
-    void CreateActions();
-    void CreateDockWindows();
-    void SetupConnections();
+	void SetupToolBar();
+	void SetupMenuBar();
+	void CreateActions();
+	void CreateDockWindows();
+	void SetupConnections();
 
 
 public slots:
-    void AddSurveillance();
-    void AddCamera();
-    void AddEmap();
-    void AddRecorder();
-    
-    void Search();
-    void Setting();
-    void EditCamera(int nId);
-    void DeleteCamera(int nId);
-    void MainCloseTab(int index);
-    void about();
-    void UserStatus();
-    void SetFullScreen();
-    void AddEvent();
-    void EditDisk();
+	void AddSurveillance();
+	void AddCamera();
+	void AddEmap();
+	void AddDmining();
+	void AddRecorder();
 
-    /* Site */
-    void AddSite();
+	void Search();
+	void Setting();
+	void EditCamera(int nId);
+	void DeleteCamera(int nId);
+	void MainCloseTab(int index);
+	void about();
+	void UserStatus();
+	void SetFullScreen();
+	void AddEvent();
+	void EditDisk();
+
+	/* Site */
+	void AddSite();
 
 
-    /* VIPC */
-    void AddVIPC();
-    void EditVIPC(int nId);
-    void DeleteVIPC(int nId);
+	/* VIPC */
+	void AddVIPC();
+	void EditVIPC(int nId);
+	void DeleteVIPC(int nId);
 
-    /* View */
-    void DeleteView(int nId);
+	/* View */
+	void DeleteView(int nId);
 
-    /* VIPC */
-    void AddVGroup();
-    void EditVGroup(int nId);
-    void DeleteVGroup(int nId);
-    void MapVGroup();
+	/* VIPC */
+	void AddVGroup();
+	void EditVGroup(int nId);
+	void DeleteVGroup(int nId);
+	void MapVGroup();
 
 signals:
     void CameraDeleted();
