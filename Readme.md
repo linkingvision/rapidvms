@@ -21,10 +21,10 @@
 
 ## Install ##
 #### Windows ####
-Download vdceye Manager V201X-xxxx.msi  from 
+Download *vdceye Manager V201X-xxxx.msi*  from 
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/) 
 #### Linux ####
-Download vdceye-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz  from 
+Download *vdceye-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from 
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 ##### 64bit #####
 	1.Install qt-opensource-linux-x64-5.4.0.run 
@@ -41,8 +41,8 @@ Download vdceye-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz  from
 	1.Install qt-opensource-linux-x64-5.4.0.run 
 	http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run   
 	   ---> add below 2 line into /etc/profile
-	export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4.0/gcc_64/bin:/home/xx/Qt5.4.0/Tools/QtCreator/bin/
-	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4.0/gcc_64/	 
+	export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4/gcc/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/
+	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4/gcc/	 
 	2.edit the env.sh LD_LIBRARY_PATH for the current dir
 	   ./root.sh
 	   source ./env.sh
