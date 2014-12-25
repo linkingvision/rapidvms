@@ -19,7 +19,36 @@
 	Data Mining
 	HDFS Video Recording
 
-### Building ###
+## Install ##
+#### Windows ####
+Download vdceye Manager V201X-xxxx.msi  from 
+[https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/) 
+#### Linux ####
+Download vdceye-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz  from 
+[https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
+##### 64bit #####
+	1.Install qt-opensource-linux-x64-5.4.0.run 
+	http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run   
+	   ---> add below 2 line into /etc/profile
+	export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4.0/gcc_64/bin:/home/xx/Qt5.4.0/Tools/QtCreator/bin/
+	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4.0/gcc_64/	 
+	2.edit the env.sh LD_LIBRARY_PATH for the current dir
+	   ./root.sh
+	   source ./env.sh
+	   ./start.sh
+		
+##### 32bit #####
+	1.Install qt-opensource-linux-x64-5.4.0.run 
+	http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run   
+	   ---> add below 2 line into /etc/profile
+	export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4.0/gcc_64/bin:/home/xx/Qt5.4.0/Tools/QtCreator/bin/
+	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4.0/gcc_64/	 
+	2.edit the env.sh LD_LIBRARY_PATH for the current dir
+	   ./root.sh
+	   source ./env.sh
+	   ./start.sh
+	
+## Building ##
 #### Windows ####
 	1. Install VS2013
 	2. Install QT 5.4.0 in the http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-windows-x86-msvc2013-5.4.0.exe
