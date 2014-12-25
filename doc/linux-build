@@ -24,7 +24,7 @@ sudo mv /usr/bin/pod2man  /usr/bin/pod2man-org
 yum install redhat-lsb-core
 
 
-Install Ubuntu 4.8
+Install Ubuntu gcc 4.8
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
 sudo apt-get update 
 
