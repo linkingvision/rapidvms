@@ -1,6 +1,7 @@
 #ifndef ONVIF_SYSTEMDATEANDTIME_H
 #define ONVIF_SYSTEMDATEANDTIME_H
 
+#include <QObject>
 #include <QDateTime>
 #include <QDomElement>
 namespace ONVIF {

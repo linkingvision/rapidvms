@@ -1,4 +1,4 @@
-export VE_PATH=/home/ubu/work/ve/trunk
+export VE_PATH=/home/ubu/work/ve/
 
 
 
