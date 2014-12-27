@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
        splash->showMessage("Create Video Database ...");
        gFactory->Init();
 #ifndef WIN32
-	gFactory->AddHDD(strPath, size);
+	//gFactory->AddHDD(strPath, size);
 #endif
    }
 
