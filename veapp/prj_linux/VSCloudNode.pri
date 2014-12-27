@@ -7,8 +7,7 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ../main/vscviewtree.h \
-    ../main/vscvipc.h \
+HEADERS += ../main/vscvipc.h \
     ../prj_win32/resource.h \
     ../main/vscdevicelist.h \
     ../main/vscdockwidget.h \
@@ -20,19 +19,12 @@ HEADERS += ../main/vscviewtree.h \
     ../main/vscdevicetrash.h \
     ../main/vscsearch.h \
     ../main/vscplaycontrol.h \
-    ../vwidget/videowidget.h \
     ../main/vscplayback.h \
     ../main/vsctoolbar.h \
+    ../main/vscipcgroupconf.h \
+    ../main/vscipcgroupmap.h \
+    ../main/vscviewconf.h \
     ../main/vscvipcadd.h \
-    ../vwidget/vscvwidget.h \
-    ../vwidget/vscvideowall.h \
-    ../vwidget/stacked.h \
-    ../vwidget/vscvideocontrol.h \
-    ../vwidget/vscvideoinfo.h \
-    ../vwidget/vscviewconf.h \
-    ../playback/vscsimpletl.h \
-    ../playback/vscpbthread.h \
-    ../playback/vscsearchpb.h \
     ../../devices/include/cefactory.hpp \
     ../../devices/include/conf.hpp \
     ../../devices/include/confdb.hpp \
@@ -53,17 +45,12 @@ HEADERS += ../main/vscviewtree.h \
     ../setting/vsclicense.h \
     ../setting/vscversion.h \
     ../setting/vscrecorderconf.h \
-    ../systeminfo/qsysteminfoglobal.h \
-    ../systeminfo/qsysteminfoglobal_p.h \
-    ../systeminfo/qnetworkinfo.h \
-    ../systeminfo/qstorageinfo.h \
-    ../systeminfo/linux/qnetworkinfo_linux_p.h \
-    ../systeminfo/linux/qstorageinfo_linux_p.h \
-    ../systeminfo/linux/qudevwrapper_p.h\
-    ../systeminfo/linux/qofonowrapper_p.h\
+    ../setting/vscuser.h \
+    ../setting/vscuserstatus.h \
     ../disk/vschdddevice.h \
     ../disk/vschddone.h \
     ../disk/vschddedit.h \
+    ../disk/vschddoneedit.h \
     ../vms/vscrecorderadd.h \
     ../vms/vscsiteadd.h \
     ../vms/vscvms.h \
@@ -71,28 +58,16 @@ HEADERS += ../main/vscviewtree.h \
     ../vms/vscrecorderpanel.h \
     ../vms/vscrecorder.h \
     ../vms/vsczbtreeitem.h
-SOURCES += ../vwidget/stacked.cpp \
-    ../vwidget/vscvideocontrol.cpp \
-    ../vwidget/vscvideoinfo.cpp \
-    ../vwidget/vscvideowall.cpp \
-    ../vwidget/vscviewconf.cpp \
-    ../vwidget/vscvwidget.cpp \
-    ../playback/vscpbthread.cpp \
-    ../playback/vscsearchpb.cpp \
-    ../playback/vscsimpletl.cpp \
-    ../setting/vsclicense.cpp \
+SOURCES += ../setting/vsclicense.cpp \
     ../setting/vscrecorderconf.cpp \
     ../setting/vscsetting.cpp \
+    ../setting/vscuser.cpp \
+    ../setting/vscuserstatus.cpp \
     ../setting/vscversion.cpp \
-    ../systeminfo/qnetworkinfo.cpp \
-    ../systeminfo/qstorageinfo.cpp \
-    ../systeminfo/linux/qnetworkinfo_linux.cpp \
-    ../systeminfo/linux/qstorageinfo_linux.cpp \
-    ../systeminfo/linux/qudevwrapper.cpp\
-    ../systeminfo/linux/qofonowrapper.cpp\
     ../disk/vschdddevice.cpp \
     ../disk/vschddedit.cpp \
     ../disk/vschddone.cpp \
+    ../disk/vschddoneedit.cpp \
     ../vms/vscrecorder.cpp \
     ../vms/vscrecorderadd.cpp \
     ../vms/vscrecorderone.cpp \
@@ -107,38 +82,39 @@ SOURCES += ../vwidget/stacked.cpp \
     ../main/vscdevicetrash.cpp \
     ../main/vscdevicetree.cpp \
     ../main/vscdockwidget.cpp \
+    ../main/vscipcgroupconf.cpp \
+    ../main/vscipcgroupmap.cpp \
     ../main/vscmainwindows.cpp \
     ../main/vscplayback.cpp \
     ../main/vscplaycontrol.cpp \
     ../main/vscsearch.cpp \
     ../main/vsctoobar.cpp \
     ../main/vscview.cpp \
-    ../main/vscviewtree.cpp \
+    ../main/vscviewconf.cpp \
     ../main/vscvipc.cpp \
-    ../main/vscvipcadd.cpp \
-    ../vwidget/videowidget.cpp
+    ../main/vscvipcadd.cpp
 FORMS += ../main/vscview.ui \
     ../main/vscmainwindows.ui \
     ../main/vscdevicelist.ui \
     ../main/vsccameraadd.ui \
     ../main/vscsearch.ui \
     ../main/vscplaycontrol.ui \
-    ../vwidget/vscvwidget.ui \
     ../main/vscplayback.ui \
     ../main/vsctoolbar.ui \
-    ../playback/vscsimpletl.ui \
-    ../vwidget/vscvideocontrol.ui \
-    ../vwidget/vscvideoinfo.ui \
     ../main/vscvipcadd.ui \
-    ../vwidget/vscviewconf.ui \
-    ../playback/vscsearchpb.ui \
+    ../main/vscipcgroupconf.ui \
+    ../main/vscipcgroupmap.ui \
+    ../main/vscviewconf.ui \
     ../setting/vscsetting.ui \
     ../setting/vsclicense.ui \
     ../setting/vscversion.ui \
     ../setting/vscrecorderconf.ui \
+    ../setting/vscuser.ui \
+    ../setting/vscuserstatus.ui \
     ../disk/vschdddevice.ui \
     ../disk/vschddone.ui \
     ../disk/vschddedit.ui \
+    ../disk/vschddoneedit.ui \
     ../vms/vscrecorderadd.ui \
     ../vms/vscsiteadd.ui \
     ../vms/vscrecorderone.ui
