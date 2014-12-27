@@ -102,7 +102,8 @@ void VSCHddOneEdit::diskSelected(int value)
 		}
 		VDC_DEBUG( "%s Del Hdd strHdd %s %s\n",__FUNCTION__, 
 				m_hdd.device().toStdString().c_str(), m_hdd.rootPath().toStdString().c_str());
-		gFactory->DelHdd(m_hdd.device().toStdString());
+		astring strHddDev = m_hdd.device().toStdString();
+		gFactory->DelHdd(strHddDev);
 		m_added = false;
 		return;
 	}
@@ -112,8 +113,9 @@ void VSCHddOneEdit::diskSelected(int value)
 		VDC_DEBUG( "%s Del Hdd strHdd %s %s limit %lld\n",__FUNCTION__, 
 				m_hdd.device().toStdString().c_str(), 
 				m_hdd.rootPath().toStdString().c_str(), limitSize);
-		gFactory->AddHdd(m_hdd.device().toStdString(), 
-						m_hdd.rootPath().toStdString(), limitSize);
+		astring strHddDev = m_hdd.device().toStdString();
+		astring strHddRoot =  m_hdd.rootPath().toStdString();
+		gFactory->AddHdd(strHddDev, strHddRoot, limitSize);
 		m_added = true;
 	}
 
@@ -139,7 +141,8 @@ void VSCHddOneEdit::setFreeValue(int value)
 					m_hdd.device().toStdString().c_str(), 
 					m_hdd.rootPath().toStdString().c_str(), limitSize);
 			ui.tableWidget->setItem(0, 3, new QTableWidgetItem(GetDiskSizeString(limitSize).c_str()));
-			gFactory->HddUpdateSize(m_hdd.device().toStdString(), limitSize);
+			astring strHddDev = m_hdd.device().toStdString();
+			gFactory->HddUpdateSize(strHddDev, limitSize);
 			//call api
 		}else
 		{
