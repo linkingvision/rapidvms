@@ -26,6 +26,8 @@
 #include <QTabWidget>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QDesktopWidget>
+#include <QApplication>
 
 #include "vscdevicelist.h"
 #include "vscview.h"
@@ -75,7 +77,9 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 	
 	VSCLoading *loading = new VSCLoading(NULL);
 	loading->show();
-	//loading->setGeometry(width()/2, height()/2, 64, 64);
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
 	QCoreApplication::processEvents();
 	
     m_pView = new VSCView(m_pMainArea, *m_pMainArea, "Main View");
@@ -165,7 +169,7 @@ void VSCMainWindows::AddSurveillance()
 	}
 	sprintf(Name, "%s %d", "View", currentNum+1);
 	VSCLoading *loading = new VSCLoading(NULL);
-	//loading->setGeometry(width()/2, height()/2, 64, 64);
+	loading->setGeometry(width()/2, height()/2, 64, 64);
 	QCoreApplication::processEvents();
 	VSCView *pView = new VSCView(m_pMainArea,  *m_pMainArea, Name);
 	pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
