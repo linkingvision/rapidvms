@@ -11,6 +11,8 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
     m_bControlEnable(TRUE), m_strName(strName)
 {
     ui.setupUi(this);
+    m_pParent = parent;
+
 
     QVBoxLayout* layout = new QVBoxLayout();
     m_pVideo = new VSCVideoWall(this->ui.widget);
@@ -251,10 +253,12 @@ void VSCView::TabbedClicked()
         default:
             break;
     }
+    setParent(m_pParent);
     m_pTabbed.addTab(this,icon1, tr(m_strName.c_str()));
     m_pTabbed.setCurrentWidget(this);
+    showMaximized();
     //showFullScreen();
-    //setParent(m_pParent);
+    
     //resize(m_pParent->width(), m_pParent->height());
 
     m_bFloated = FALSE;
