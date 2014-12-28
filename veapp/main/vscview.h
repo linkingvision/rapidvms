@@ -19,7 +19,9 @@ public:
     ~VSCView();
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *);
     void createContentMenu();
+    bool event(QEvent *e);
 public:
     void SetupConnections();
 	
@@ -33,6 +35,7 @@ public slots:
     void ShowPlayControl();
     void ShowLayout1Clicked(int nId);
     void ShowViewClicked(int nId);
+    void UpdateVideoControl();
 #if 0
     void mouseMoveEvent(QMouseEvent *e)
     	{
@@ -106,6 +109,8 @@ private:
 	BOOL m_bControlEnable;
    string m_strName;
    VSCViewDataItem m_ViewItem;
+   s32 m_lastHoverTime;
+   QTimer *m_Timer;
     
 };
 
