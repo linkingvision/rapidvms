@@ -26,8 +26,8 @@
    <string>Form</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/logo/resources/vscsmall.jpg</normaloff>:/logo/resources/vscsmall.jpg</iconset>
+   <iconset resource="../main/vscmainwindows.qrc">
+    <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
