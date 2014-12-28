@@ -5,6 +5,8 @@
 #include "ui_vscipcgroupconf.h"
 #include "utility.hpp"
 #include <QTimer>
+#include <QPoint>
+#include <QMouseEvent>
 
 typedef enum
 {
@@ -20,6 +22,9 @@ class VSCIPCGroupConf : public QDialog
 public:
     VSCIPCGroupConf(QWidget *parent = 0);
     ~VSCIPCGroupConf(){}
+	void mousePressEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event);
 public:
 	VSCIPCGroupConfType GetType()
 	{
@@ -46,7 +51,9 @@ public:
 	
 private:
     VSCIPCGroupConfType m_Type;
-
+private:
+	QPoint m_DragPosition;
+	bool m_Drag;
     
 };
 
