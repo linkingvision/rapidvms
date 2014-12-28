@@ -10,6 +10,9 @@ VSCUserStatus::VSCUserStatus(QWidget *parent)
 
    //connect(ui.pbSave, SIGNAL(clicked()), this, SLOT(SaveClicked()));
    //connect(ui.pbCancel, SIGNAL(clicked()), this, SLOT(CancelClicked()));
+#ifndef WIN32
+	setWindowFlags(Qt::FramelessWindowHint|Qt::NoDropShadowWindowHint| Qt::ToolTip);
+#endif	
 
 }
 
