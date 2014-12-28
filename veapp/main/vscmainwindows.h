@@ -20,6 +20,7 @@ public:
 	void CreateActions();
 	void CreateDockWindows();
 	void SetupConnections();
+	void ViewHideFocus();
 
 
 public slots:

@@ -102,6 +102,11 @@ VSCMainWindows::~VSCMainWindows()
 
 }
 
+void VSCMainWindows::ViewHideFocus()
+{
+	m_pView->ViewHideFocus();
+}
+
 void VSCMainWindows::SetupConnections()
 {
 	connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
@@ -151,6 +156,7 @@ void VSCMainWindows::AddEvent()
 	
     m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarmno.png")), tr("Alarm"));
     m_pMainArea->setCurrentWidget(pEvent);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::AddSurveillance()
@@ -176,6 +182,7 @@ void VSCMainWindows::AddSurveillance()
     	m_pMainArea->addTab(pView, QIcon(tr(":/view/resources/3x3.png")), tr("View %1").arg(currentNum+1));
 
 	m_pMainArea->setCurrentWidget(pView);
+	ViewHideFocus();
 	delete loading;
 	connect(m_pEventThread, SIGNAL(EventNotify(int, VscEventType)), pView, SLOT(DeviceEvent(int, VscEventType)));
 }
@@ -186,6 +193,7 @@ void VSCMainWindows::AddEmap()
 	
     m_pMainArea->addTab(pEMap, QIcon(tr(":/action/resources/map.png")), tr("Emap"));
     m_pMainArea->setCurrentWidget(pEMap);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::AddDmining()
@@ -194,6 +202,7 @@ void VSCMainWindows::AddDmining()
 	
     m_pMainArea->addTab(pDMining, QIcon(tr(":/action/resources/mining.png")), tr("Mining"));
     m_pMainArea->setCurrentWidget(pDMining);
+	ViewHideFocus();
 }
 
 
@@ -203,6 +212,7 @@ void VSCMainWindows::Setting()
 
     m_pMainArea->addTab(pSetting, QIcon(tr(":/action/resources/setting.png")), tr("Setting"));  
     m_pMainArea->setCurrentWidget(pSetting);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::AddCamera()
@@ -212,6 +222,7 @@ void VSCMainWindows::AddCamera()
 
     m_pMainArea->addTab(pCameraadd, QIcon(tr(":/device/resources/camera.png")), tr("Camera"));  
     m_pMainArea->setCurrentWidget(pCameraadd);
+	ViewHideFocus();
     //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 }
 
@@ -222,6 +233,7 @@ void VSCMainWindows::AddRecorder()
 
     m_pMainArea->addTab(pRecorderadd, QIcon(tr(":/action/resources/computer.png")), tr("Recorder"));  
     m_pMainArea->setCurrentWidget(pRecorderadd);
+	ViewHideFocus();
     //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 }
 
@@ -234,6 +246,7 @@ void VSCMainWindows::AddSite()
 
     m_pMainArea->addTab(pSiteadd, QIcon(tr(":/action/resources/site.png")), tr("Site"));  
     m_pMainArea->setCurrentWidget(pSiteadd);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::Search()
@@ -257,6 +270,7 @@ void VSCMainWindows::Search()
 
     m_pMainArea->addTab(pSearch, QIcon(tr(":/action/resources/search.png")), tr("Search"));
     m_pMainArea->setCurrentWidget(pSearch);
+	ViewHideFocus();
 	
     //connect(pSearch, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 }
@@ -269,6 +283,7 @@ void VSCMainWindows::EditDisk()
 
     m_pMainArea->addTab(pDiskEdit, QIcon(tr(":/device/resources/harddisk.png")), tr("Disk"));
     m_pMainArea->setCurrentWidget(pDiskEdit);
+	ViewHideFocus();
     //connect(pDiskEdit, SIGNAL(DiskTreeUpdated()), m_pDeviceList, SLOT(DiskTreeUpdated()));
 }
 
@@ -281,6 +296,7 @@ void VSCMainWindows::EditCamera(int nId)
 
     m_pMainArea->addTab(pCameraadd, QIcon(tr(":/device/resources/camera.png")), tr("Camera"));
     m_pMainArea->setCurrentWidget(pCameraadd);
+	ViewHideFocus();
     //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 }
 void VSCMainWindows::DeleteCamera(int nId)
@@ -319,6 +335,7 @@ void VSCMainWindows::AddVIPC()
 
     m_pMainArea->addTab(pVIPCadd, QIcon(tr(":/device/resources/virtualipc.png")), tr("Virutal IPC"));  
     m_pMainArea->setCurrentWidget(pVIPCadd);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::EditVIPC(int nId)
@@ -330,6 +347,7 @@ void VSCMainWindows::EditVIPC(int nId)
 
     m_pMainArea->addTab(pVIPCadd, QIcon(tr(":/device/resources/virtualipc.png")), tr("Virutal IPC"));  
     m_pMainArea->setCurrentWidget(pVIPCadd);
+	ViewHideFocus();
 }
 void VSCMainWindows::DeleteVIPC(int nId)
 {
@@ -365,10 +383,16 @@ void VSCMainWindows::AddVGroup()
 	VSCVGroupDataItem groupItem;
 	group.SetName("Group");
 	group.show();
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	group.setGeometry(rect.width()/2 -group.width()/2 , 
+					rect.height()/2 - group.height()/2, 
+					group.width(), group.height());
 	group.exec();
 
 	VSCIPCGroupConfType type = group.GetType();
-	if (type == VSC_IPCGROUP_CONF_LAST)
+	if (type == VSC_IPCGROUP_CONF_LAST 
+		|| type == VSC_IPCGROUP_CONF_CANCEL)
 	{
 		return;
 	}
@@ -385,10 +409,16 @@ void VSCMainWindows::EditVGroup(int nId)
 	gFactory->GetVGroupById(groupItem, nId);
 	group.SetName(groupItem.Name);
        group.show();
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	group.setGeometry(rect.width()/2 -group.width()/2 , 
+					rect.height()/2 - group.height()/2, 
+					group.width(), group.height());
        group.exec();
 
 	VSCIPCGroupConfType type = group.GetType();
-	if (type == VSC_IPCGROUP_CONF_LAST)
+	if (type == VSC_IPCGROUP_CONF_LAST 
+		|| type == VSC_IPCGROUP_CONF_CANCEL)
 	{
 		return;
 	}
@@ -433,6 +463,7 @@ void VSCMainWindows::MapVGroup()
 
     m_pMainArea->addTab(pGroup, QIcon(tr(":/device/resources/camgroup.png")), tr("Camera Group"));
     m_pMainArea->setCurrentWidget(pGroup);
+	ViewHideFocus();
 }
 
 void VSCMainWindows::DeleteView(int nId)
@@ -510,6 +541,11 @@ void VSCMainWindows::UserStatus()
 	VSCUserStatus userStatus;
 
 	userStatus.show();
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	userStatus.setGeometry(rect.width()/2 -userStatus.width()/2 , 
+					rect.height()/2 - userStatus.height()/2, 
+					userStatus.width(), userStatus.height());
 	userStatus.exec();
 }
 
@@ -526,7 +562,8 @@ void VSCMainWindows::CreateDockWindows()
 {
     QDockWidget *pDockDevicelist = new QDockWidget(tr("Devices"), this);
 
-    pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    //pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
 
     m_pDeviceList = new VSCDeviceList(pDockDevicelist);
     pDockDevicelist->setWidget(m_pDeviceList);
