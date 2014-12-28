@@ -5,6 +5,8 @@
 #include "ui_vscviewconf.h"
 #include "utility.hpp"
 #include <QTimer>
+#include <QPoint>
+#include <QMouseEvent>
 
 typedef enum
 {
@@ -20,6 +22,9 @@ class VSCViewConf : public QDialog
 public:
     VSCViewConf(QWidget *parent = 0);
     ~VSCViewConf(){}
+	void mousePressEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event);
 public:
 	VSCViewConfType GetType()
 	{
@@ -46,6 +51,9 @@ public:
 	
 private:
     VSCViewConfType m_Type;
+private:
+	QPoint m_DragPosition;
+	bool m_Drag;
 
     
 };
