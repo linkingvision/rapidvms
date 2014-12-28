@@ -85,6 +85,7 @@ private slots:
     void SetRenderD3D();
     void videoResizeEvent();
     void PTZEnable();
+    void AutoFocus();
 
 signals:
     void ShowDisplayClicked(int nId);
