@@ -546,7 +546,11 @@ void VSCMainWindows::MainCloseTab(int index)
     m_pMainArea->removeTab(index);
     if (wdgt)
     {
+	VSCLoading *loading = new VSCLoading(NULL);
+	loading->setGeometry(width()/2, height()/2, 64, 64);
+	QCoreApplication::processEvents();
         delete wdgt;
         wdgt = NULL;
+	delete loading;
     }
 }
