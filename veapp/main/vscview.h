@@ -24,6 +24,7 @@ public:
     bool event(QEvent *e);
 public:
     void SetupConnections();
+	void ViewHideFocus();
 	
 public slots:
     void floatingClicked();
