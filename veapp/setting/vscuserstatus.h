@@ -5,6 +5,8 @@
 #include "ui_vscuserstatus.h"
 #include "utility.hpp"
 #include <QTimer>
+#include <QPoint>
+#include <QMouseEvent>
 
 class VSCUserStatus : public QDialog
 {
@@ -13,6 +15,9 @@ class VSCUserStatus : public QDialog
 public:
     VSCUserStatus(QWidget *parent = 0);
     ~VSCUserStatus(){}
+	void mousePressEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event);
 public:
 
 public slots: 
@@ -21,6 +26,9 @@ public slots:
 
 public:
 	Ui::VSCUserStatus ui;
+private:
+	QPoint m_DragPosition;
+	bool m_Drag;
 	
 };
 
