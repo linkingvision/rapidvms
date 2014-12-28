@@ -29,7 +29,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#define ve_sleep(x) Sleep(x)
 #else
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,7 +55,6 @@
 #include <netinet/in.h>
 
 #define closesocket(x) close(x)
-#define ve_sleep(x) usleep(x * 1000)
 #endif
 using namespace tthread;
 using namespace std;
@@ -101,6 +99,7 @@ VE_LIBRARY_API int image_write_raw (unsigned char *pImg, int size, const char* f
 VE_LIBRARY_API const std::string Time2String(time_t nTime);
 
 VE_LIBRARY_API bool TryCheckDevice(std::string ip, std::string port);
+VE_LIBRARY_API void ve_sleep(int ms);
 #ifdef WIN32
 VE_LIBRARY_API int gettimeofday(struct timeval* tp, int* /*tz*/);
 #endif
