@@ -2,6 +2,8 @@
 #include "debug.hpp"
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QMouseEvent>
+#include <QHoverEvent>
 #include "vscviewconf.h"
 
 extern Factory *gFactory;
@@ -12,8 +14,9 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
 {
     ui.setupUi(this);
     m_pParent = parent;
+    m_lastHoverTime = time(NULL);
 
-
+    this->setAttribute(Qt::WA_Hover,true);
     QVBoxLayout* layout = new QVBoxLayout();
     m_pVideo = new VSCVideoWall(this->ui.widget);
     m_pVideo->hide();
@@ -25,6 +28,7 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
     this->ui.widget->setLayout(layout);
 
     m_pVideo->show();
+   
 
     m_pFloating = new QAction(QIcon(tr("images/open.ico")), tr("Floating"), this);
     //m_pUnFloating = new QAction(QIcon(tr("images/open.ico")), tr("UnFloating"), this);
@@ -38,8 +42,23 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
     m_pPlayControl->hide();
     VSCViewDataItemDefault(m_ViewItem);
     ui.pushButton8x8->hide();
-    //setMouseTracking(true);
+    setMouseTracking(true);
+
+    m_Timer = new QTimer(this);
+    connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl())); 
+    m_Timer->start(1000); 
 }
+
+void VSCView::UpdateVideoControl()
+{
+   time_t current = time(NULL);
+
+    if (current - m_lastHoverTime > 3)
+    {
+        //m_pVideo->OffAllFocus();
+    }
+}
+
 
 void VSCView::SetupConnections()
 {
@@ -89,6 +108,53 @@ VSCView::~VSCView()
     m_pPlayControl->hide();
     delete m_pPlayControl;
 }
+
+void VSCView::mouseMoveEvent(QMouseEvent *event)
+{
+	QPoint posView = mapToGlobal(QPoint(0,0));
+	QPoint posEvent = event->globalPos();
+        VDC_DEBUG( "%s View (%d, %d)  Event (%d, %d)\n", 
+			__FUNCTION__, posView.x(), posView.y(), 
+			posEvent.x(), posEvent.y());
+        //m_pVideo->OffAllFocus();
+}
+
+bool VSCView::event(QEvent *e)
+{
+#if 1
+
+	QHoverEvent *event = static_cast<QHoverEvent*> (e);
+	if (event == NULL)
+	{
+		return true;
+	}
+
+   if(e->type() == QEvent::HoverMove)
+    {
+	QPoint posView = mapToGlobal(QPoint(0,0));
+	QPoint posEvent = event->pos();
+        //VDC_DEBUG( "%s View (%d, %d)  Event (%d, %d)\n", 
+	//		__FUNCTION__, posView.x(), posView.y(), 
+	//		posEvent.x(), posEvent.y());
+        //m_pVideo->OffAllFocus();
+        m_lastHoverTime = time(NULL);
+    }
+#endif
+#if 1
+    if(e->type() == QEvent::HoverLeave)
+    {
+	QPoint posView = mapToGlobal(QPoint(0,0));
+	QPoint posEvent = event->pos();
+        VDC_DEBUG( "%s Leave View (%d, %d)  Event (%d, %d)\n", 
+			__FUNCTION__, posView.x(), posView.y(), 
+			posEvent.x(), posEvent.y());
+        m_pVideo->OffAllFocus();
+    }
+#endif
+
+    return QWidget::event(e);
+}
+
 
 void VSCView::ShowPlayControl()
 {
