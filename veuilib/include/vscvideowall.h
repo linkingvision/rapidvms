@@ -41,11 +41,14 @@ public:
     void SetupVideoLayout8x8();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
-    //void mouseMoveEvent(QMouseEvent *e)
-    //	{
-    //	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
-    //	}
+#if 0
+    void mouseMoveEvent(QMouseEvent *e)
+    	{
+    	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
+    	}
+#endif
     void DeviceEvent(int deviceId, VscEventType type);
+    void OffAllFocus();
 
 public slots:
     void floatingAction();
