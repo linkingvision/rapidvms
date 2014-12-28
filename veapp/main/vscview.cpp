@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QMouseEvent>
 #include <QHoverEvent>
+#include <QDesktopWidget>
+#include <QApplication>
 #include "vscviewconf.h"
 
 extern Factory *gFactory;
@@ -119,6 +121,13 @@ void VSCView::mouseMoveEvent(QMouseEvent *event)
         //m_pVideo->OffAllFocus();
 }
 
+void VSCView::ViewHideFocus()
+{
+//#ifndef WIN32
+        m_pVideo->OffAllFocus();
+//#endif
+}
+
 bool VSCView::event(QEvent *e)
 {
 #if 1
@@ -148,7 +157,9 @@ bool VSCView::event(QEvent *e)
         VDC_DEBUG( "%s Leave View (%d, %d)  Event (%d, %d)\n", 
 			__FUNCTION__, posView.x(), posView.y(), 
 			posEvent.x(), posEvent.y());
-        m_pVideo->OffAllFocus();
+#ifdef WIN32
+        //m_pVideo->OffAllFocus();
+#endif
     }
 #endif
 
@@ -345,6 +356,11 @@ void VSCView::ViewClicked()
        VSCViewConf view;
 	view.SetName(m_ViewItem.Name);
        view.show();
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	view.setGeometry(rect.width()/2 -view.width()/2 , 
+					rect.height()/2 - view.height()/2, 
+					view.width(), view.height());
        view.exec();
 
 	VSCViewConfType type = view.GetType();
