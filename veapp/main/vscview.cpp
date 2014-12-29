@@ -131,13 +131,24 @@ void VSCView::ViewHideFocus()
 bool VSCView::event(QEvent *e)
 {
 #if 1
+	VDC_DEBUG("%s Event Type %d\n", __FUNCTION__, e->type());
 
+
+	if(e->type() == QEvent::HideToParent 
+		|| e->type() == QEvent::WindowDeactivate)
+	{
+		m_pVideo->OffAllFocus();
+	}
+	if(e->type() == QEvent::WindowActivate)
+	{
+		m_pVideo->ResizeAllVideo();
+	}
+	
 	QHoverEvent *event = static_cast<QHoverEvent*> (e);
 	if (event == NULL)
 	{
 		return true;
 	}
-
    if(e->type() == QEvent::HoverMove)
     {
 	QPoint posView = mapToGlobal(QPoint(0,0));
