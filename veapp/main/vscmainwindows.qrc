@@ -33,6 +33,9 @@
         <file>resources/button.png</file>
         <file>resources/buttonpress.png</file>
         <file>resources/buttonhover.png</file>
+        <file>resources/hdfsstartrecord.png</file>
+        <file>resources/hdfsstoprecord.png</file>
+        <file>resources/hadoop.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>

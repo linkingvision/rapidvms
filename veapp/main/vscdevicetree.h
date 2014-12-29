@@ -76,6 +76,13 @@ private:
 	QAction *pActEditCamera;
 	QAction *pActRecord;
 	QAction *pActStopRecord;
+	QAction *pActHdfsRecord;
+	QAction *pActStopHdfsRecord;
+
+	QAction *pActRecordAll;
+	QAction *pActStopRecordAll;
+	QAction *pActHdfsRecordAll;
+	QAction *pActStopHdfsRecordAll;
 
 	/* Group */
 	QAction *pActDeleteCamGroup;
