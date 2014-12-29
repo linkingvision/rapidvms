@@ -11,6 +11,9 @@
 #include "vscrecorderconf.h"
 #include "vscdevicelist.h"
 #include "vscuser.h"
+#include "vschdfsrecord.h"
+#include "vscrtsprtp.h"
+
 
 #define VSC_SETTING_INDEX_SYSTEM 0
 #define VSC_SETTING_INDEX_MEDIA 1
@@ -45,13 +48,15 @@ public:
 public:
     Ui::VSCSetting ui;
 private:
-    QWidget *m_pParent;
-    VSCLicense *m_License;
-    VSCVersion *m_Version;
+	QWidget *m_pParent;
+	VSCLicense *m_License;
+	VSCVersion *m_Version;
 	VSCUser *m_User;
-    VSCRecorderConf *m_RecorderConf;
-    QVBoxLayout* m_Layout;
-    VSCDeviceList &m_DeviceList;
+	VSCRecorderConf *m_RecorderConf;
+	VSCHdfsRecord *m_HdfsRecord;
+	VSCRtspRtp *m_RtspRtp;
+	QVBoxLayout* m_Layout;
+	VSCDeviceList &m_DeviceList;
 };
 
 #endif // VSC_SETTING_H
