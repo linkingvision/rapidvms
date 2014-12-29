@@ -219,6 +219,7 @@ typedef struct __VSCDeviceData__ {
 	/* Recording */
 	u32 Recording;/* 1 stand for recording, 0 stand for do record */
 	u32 GroupId;
+	u32 HdfsRecording;/* 1 stand for recording, 0 stand for do record */
 }VSCDeviceData__;
 
 typedef struct __VSCVmsDataItem__ {
