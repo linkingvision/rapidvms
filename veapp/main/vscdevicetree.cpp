@@ -26,10 +26,24 @@ void VSCDeviceTree::createActions()
     pActEditCamera->setIcon(QIcon(":/action/resources/edit.png"));
     pActDeleteCamera = new QAction(tr("&Delete"), this);
     pActDeleteCamera->setIcon(QIcon(":/action/resources/user-trash-2.png"));
-    pActRecord= new QAction(tr("&Start Recording"), this);
+    pActRecord= new QAction(tr("&Start Record"), this);
     pActRecord->setIcon(QIcon(":/action/resources/recordstart.png"));
-    pActStopRecord = new QAction(tr("&Stop Recording"), this);
+    pActStopRecord = new QAction(tr("&Stop Record"), this);
     pActStopRecord->setIcon(QIcon(":/action/resources/recordstop.png"));
+    pActHdfsRecord= new QAction(tr("&Start HDFS Record"), this);
+    pActHdfsRecord->setIcon(QIcon(":/action/resources/hdfsstartrecord.png"));
+    pActStopHdfsRecord = new QAction(tr("&Stop HDFS Record"), this);
+    pActStopHdfsRecord->setIcon(QIcon(":/action/resources/hdfsstoprecord.png"));
+
+
+    pActRecordAll= new QAction(tr("&Start All Record"), this);
+    pActRecordAll->setIcon(QIcon(":/action/resources/recordstart.png"));
+    pActStopRecordAll = new QAction(tr("&Stop All Record"), this);
+    pActStopRecordAll->setIcon(QIcon(":/action/resources/recordstop.png"));
+    pActHdfsRecordAll= new QAction(tr("&Start All HDFS Record"), this);
+    pActHdfsRecordAll->setIcon(QIcon(":/action/resources/hdfsstartrecord.png"));
+    pActStopHdfsRecordAll = new QAction(tr("&Stop All HDFS Record"), this);
+    pActStopHdfsRecordAll->setIcon(QIcon(":/action/resources/hdfsstoprecord.png"));
 
 
     /* Cam group */
@@ -118,6 +132,12 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
     pPopMenu->removeAction(pActDeleteCamera);
     pPopMenu->removeAction(pActRecord);
     pPopMenu->removeAction(pActStopRecord);
+    pPopMenu->removeAction(pActHdfsRecord);
+    pPopMenu->removeAction(pActStopHdfsRecord);
+    pPopMenu->removeAction(pActRecordAll);
+    pPopMenu->removeAction(pActStopRecordAll);
+    pPopMenu->removeAction(pActHdfsRecordAll);
+    pPopMenu->removeAction(pActStopHdfsRecordAll);
 	
     /* Camera Group */
     pPopMenu->removeAction(pActAddCamGroup);
@@ -148,10 +168,14 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
         VSCDeviceIPC *pIpc = dynamic_cast<VSCDeviceIPC * >(item);
         if (pIpc)//指向IP camera里面的项
         {
-            pPopMenu->addAction(pActEditCamera);
-            pPopMenu->addAction(pActDeleteCamera);
-            pPopMenu->addAction(pActRecord);
-            pPopMenu->addAction(pActStopRecord);
+		pPopMenu->addAction(pActEditCamera);
+		pPopMenu->addAction(pActDeleteCamera);
+		pPopMenu->addSeparator();
+		pPopMenu->addAction(pActRecord);
+		pPopMenu->addAction(pActStopRecord);
+		pPopMenu->addSeparator();
+		pPopMenu->addAction(pActHdfsRecord);
+		pPopMenu->addAction(pActStopHdfsRecord);
         }
         /* Camera group */
         VSCDeviceIPCGroup *pIpcGroup = dynamic_cast<VSCDeviceIPCGroup * >(item);
@@ -189,6 +213,12 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
 		pPopMenu->addSeparator();
 		pPopMenu->addAction(pActAddCamGroup);
 		pPopMenu->addAction(pActCamGroupMap);
+		pPopMenu->addSeparator();
+		pPopMenu->addAction(pActRecordAll);
+		pPopMenu->addAction(pActStopRecordAll);
+		pPopMenu->addSeparator();
+		pPopMenu->addAction(pActHdfsRecordAll);
+		pPopMenu->addAction(pActStopHdfsRecordAll);
         }
         if (item == topLevelItem(VSC_DEVICE_INDEX_DSIK))
         {
