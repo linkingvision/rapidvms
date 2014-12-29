@@ -135,7 +135,10 @@ public:
     inline BOOL Stop();
     inline BOOL StartRecord();
     inline BOOL StopRecord();
+    inline BOOL StartHdfsRecord();
+    inline BOOL StopHdfsRecord();
     inline BOOL SetRecord(BOOL bRecording);
+    inline BOOL SetHdfsRecord(BOOL bRecording);
     inline DeviceStatus CheckDevice();
 	
 public:
@@ -824,6 +827,20 @@ BOOL Device::ShowAlarm(HWND hWnd)
     return TRUE;
 }
 
+ BOOL Device::SetHdfsRecord(BOOL bRecording)
+{
+    if (bRecording == TRUE)
+    {
+        m_param.m_Conf.data.conf.HdfsRecording = 1;
+    }else
+    {
+        m_param.m_Conf.data.conf.HdfsRecording = 0;
+    }
+
+    return TRUE;
+}
+
+
  BOOL Device::StartRecord()
 {
     if (m_param.m_Conf.data.conf.Recording == 0)
@@ -854,6 +871,40 @@ BOOL Device::ShowAlarm(HWND hWnd)
         m_pRecord = NULL;
     }
 
+    return TRUE;
+}
+
+  BOOL Device::StartHdfsRecord()
+{
+    if (m_param.m_Conf.data.conf.HdfsRecording == 0)
+    {
+        return FALSE;
+    }
+    VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
+    //m_vPlay.StartGetData(this, (VPlayDataHandler)Device::DataHandler);
+
+    return TRUE;
+}
+ BOOL Device::StopHdfsRecord()
+{
+    if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+    {
+        return FALSE;
+    }
+#if 0
+    VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
+    m_vPlay.StopGetData();
+    if (m_pRecord)
+    {
+        u32 endTime = m_pRecord->GetEndTime();
+        if (endTime != 0)
+        {
+        	 m_pVdb.FinishRecord(m_pRecord);
+        }
+        delete m_pRecord;
+        m_pRecord = NULL;
+    }
+#endif
     return TRUE;
 }
 
