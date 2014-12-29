@@ -25,6 +25,8 @@ typedef enum
     FACTORY_DEVICE_OFFLINE,
     FACTORY_DEVICE_RECORDING_ON,
     FACTORY_DEVICE_RECORDING_OFF,
+    FACTORY_DEVICE_HDFS_RECORDING_ON,
+    FACTORY_DEVICE_HDFS_RECORDING_OFF,
     /* The Camera group has been change */
     FACTORY_DEVICE_GROUP_CHANGE,
     FACTORY_VMS_ADD,
@@ -145,6 +147,8 @@ public:
 	BOOL StopDevice(s32 nIndex);
 	BOOL StartRecord(s32 nIndex);
 	BOOL StopRecord(s32 nIndex);
+	BOOL StartHdfsRecord(s32 nIndex);
+	BOOL StopHdfsRecord(s32 nIndex);
 public:
 	BOOL GetRecordStatus(s32 nIndex, BOOL &bStatus);
 
@@ -812,6 +816,66 @@ inline BOOL Factory::StopRecord(s32 nIndex)
     UnLock();
     change.id = nIndex;
     change.type = FACTORY_DEVICE_RECORDING_OFF;
+    CallDeviceChange(change);
+    return TRUE;
+}
+
+
+inline BOOL Factory::StartHdfsRecord(s32 nIndex)
+{
+    DeviceParam pParam;
+    FactoryDeviceChangeData change;
+    if (nIndex <=0 || nIndex >= FACTORY_DEVICE_ID_MAX)
+    {
+        return FALSE;
+    }
+    GetDeviceParamById(pParam, nIndex);
+    if (pParam.m_Conf.data.conf.HdfsRecording == 1)
+    {
+        return TRUE;
+    }
+
+    Lock();
+    pParam.m_Conf.data.conf.HdfsRecording = 1;
+    m_Conf.UpdateDeviceData(nIndex, pParam.m_Conf);
+    m_DeviceParamMap[nIndex] = pParam;
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->SetHdfsRecord(TRUE);
+        m_DeviceMap[nIndex]->StartHdfsRecord();
+    }
+    UnLock();
+    change.id = nIndex;
+    change.type = FACTORY_DEVICE_HDFS_RECORDING_ON;
+    CallDeviceChange(change);
+    return TRUE;
+}
+inline BOOL Factory::StopHdfsRecord(s32 nIndex)
+{
+    DeviceParam pParam;
+    FactoryDeviceChangeData change;
+    if (nIndex <=0 || nIndex >= FACTORY_DEVICE_ID_MAX)
+    {
+        return FALSE;
+    }
+    GetDeviceParamById(pParam, nIndex);
+    if (pParam.m_Conf.data.conf.HdfsRecording == 0)
+    {
+        return TRUE;
+    }
+
+    Lock();
+    pParam.m_Conf.data.conf.HdfsRecording = 0;
+    m_DeviceParamMap[nIndex] = pParam;
+    m_Conf.UpdateDeviceData(nIndex, pParam.m_Conf);
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->SetHdfsRecord(FALSE);
+        m_DeviceMap[nIndex]->StopHdfsRecord();
+    }
+    UnLock();
+    change.id = nIndex;
+    change.type = FACTORY_DEVICE_HDFS_RECORDING_OFF;
     CallDeviceChange(change);
     return TRUE;
 }
