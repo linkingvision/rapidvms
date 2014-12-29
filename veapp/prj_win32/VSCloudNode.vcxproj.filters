@@ -243,6 +243,18 @@
     <CustomBuild Include="..\main\vscviewconf.h">
       <Filter>Include</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\setting\vschdfsrecord.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vschdfsrecord.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscrtsprtp.h">
+      <Filter>Setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscrtsprtp.ui">
+      <Filter>Setting</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -554,6 +566,24 @@
     <ClCompile Include="..\main\vscviewconf.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="..\setting\vschdfsrecord.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschdfsrecord.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschdfsrecord.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscrtsprtp.cpp">
+      <Filter>Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrtsprtp.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrtsprtp.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -680,6 +710,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscviewconf.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschdfsrecord.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscrtsprtp.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
