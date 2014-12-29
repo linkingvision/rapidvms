@@ -86,6 +86,16 @@
          </property>
         </item>
        </item>
+       <item>
+        <property name="text">
+         <string>Storage</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Hadoop HDFS</string>
+         </property>
+        </item>
+       </item>
       </widget>
      </item>
      <item>
