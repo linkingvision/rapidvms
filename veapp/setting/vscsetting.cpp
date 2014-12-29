@@ -17,6 +17,8 @@ VSCSetting::VSCSetting(QWidget *parent, VSCDeviceList &pDeviceList)
 	m_User = new VSCUser();
 	m_Layout = new QVBoxLayout();
 	m_RecorderConf = new VSCRecorderConf(pMap);
+	m_HdfsRecord = new VSCHdfsRecord();
+	m_RtspRtp = new VSCRtspRtp();
 	
 	m_Layout->setMargin(0);
 
@@ -76,6 +78,11 @@ void VSCSetting::removeAll()
 	m_User->hide();
 	m_Layout->removeWidget(m_RecorderConf);
 	m_RecorderConf->hide();
+
+	m_Layout->removeWidget(m_HdfsRecord);
+	m_HdfsRecord->hide();
+	m_Layout->removeWidget(m_RtspRtp);
+	m_RtspRtp->hide();
 }
 
 void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
@@ -108,6 +115,12 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 	}else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_MEDIA) == parent)
 	{
 		VDC_DEBUG( "%s  Media Setting\n",__FUNCTION__);
+		if (col == 0)
+		{
+			removeAll();
+			m_Layout->addWidget(m_RtspRtp);
+			m_RtspRtp->show();
+		}
 	}
 	else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_STORAGE) == parent)
 	{
@@ -115,8 +128,8 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 		if (col == 0)
 		{
 			removeAll();
-			m_Layout->addWidget(m_RecorderConf);
-			m_RecorderConf->show();
+			m_Layout->addWidget(m_HdfsRecord);
+			m_HdfsRecord->show();
 		}
 	}
 
