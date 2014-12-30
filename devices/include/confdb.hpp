@@ -53,12 +53,18 @@ public:
 	s32 GetVGroupData(VSCVGroupData &pVGroupData);
 	s32 UpdateVGroupData(VSCVGroupData &pVGroupData);
 
+	/* Hdfs Record */
+	s32 GetHdfsRecordData(VSCHdfsRecordData &pData);
+	s32 UpdateHdfsRecordData(VSCHdfsRecordData &pData);
+
+
 public:
 	BOOL GetSystemConf(VSCConfData &pSys);
 	BOOL GetVmsConf(VSCVmsData &pVms);
 	BOOL GetViewConf(VSCViewData &pView);
 	
 	BOOL GetVGroupConf(VSCVGroupData &pGroup);
+	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 	
 
 public:
@@ -309,6 +315,44 @@ inline BOOL ConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
 
 }
 
+inline BOOL ConfDB::GetHdfsRecordConf(VSCHdfsRecordData &pData)
+{
+    VSCConfHdfsRecordKey sKey;
+
+    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+    it->Seek(key);
+    leveldb::Slice sysValue;
+
+    if (it->Valid())
+    {
+        sysValue = it->value();
+    }
+
+    if (sysValue.size() != sizeof(VSCHdfsRecordData))
+    {
+        VDC_DEBUG( "Hdfs Record Config is not init\n");
+        delete it;
+		memset(&pData, 0, sizeof(VSCHdfsRecordData));
+		VSCHdfsRecordDataItemDefault(pData.data.conf);
+		UpdateHdfsRecordData(pData);
+        /* Call get system again */
+        return TRUE;
+    }
+
+	memcpy(&pData, sysValue.data(), sizeof(VSCHdfsRecordData));
+
+    // Check for any errors found during the scan
+    assert(it->status().ok());
+    delete it;
+
+    return TRUE;
+
+}
+
 inline s32 ConfDB::UpdateSysData(VSCConfData &pSysData)
 {
     VSCConfSystemKey sSysKey;
@@ -485,6 +529,30 @@ inline s32 ConfDB::UpdateVGroupData(VSCVGroupData &pVGroupData)
 
     return TRUE;
 }
+
+/* HDFS record  */
+inline s32 ConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
+{
+	GetHdfsRecordConf(pData);
+	
+	return TRUE;
+}
+
+/* HDFS record  */
+inline s32 ConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
+{
+    VSCConfVGroupKey sKey;
+
+    leveldb::WriteOptions writeOptions;
+
+    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+    leveldb::Slice sysValue((char *)&pData, sizeof(VSCHdfsRecordData));
+
+    m_pDb->Put(writeOptions, sysKey, sysValue);
+
+    return TRUE;
+}
+    
     
     
 
