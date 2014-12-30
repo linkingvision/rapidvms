@@ -46,6 +46,7 @@
 #define VSC_CONF_VMS_KEY "ConfVSCVms"
 #define VSC_CONF_VIEW_KEY "ConfVSCView"
 #define VSC_CONF_VGROUP_KEY "ConfVSCVGroup"
+#define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
 #define VSC_CONF_PARAM_MAX 1024
 #define VSC_CONF_PARAM_S_MAX 128
 /* Max camera in one view */
@@ -178,6 +179,15 @@ typedef struct __VSCConfGroupKey {
     }
 }VSCConfVGroupKey;
 
+/* HDFS Reocrd key */
+typedef struct __VSCConfHdfsRecordKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfHdfsRecordKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_HDFS_RECORD_KEY);
+    }
+}VSCConfHdfsRecordKey;
 
 typedef struct __VSCConfData__ {
     u32 DeviceMap[CONF_MAP_MAX];
@@ -221,6 +231,15 @@ typedef struct __VSCDeviceData__ {
 	u32 GroupId;
 	u32 HdfsRecording;/* 1 stand for recording, 0 stand for do record */
 }VSCDeviceData__;
+
+
+typedef struct __VSCConfHdfsRecordData__ {
+	s8 NameNode[VSC_CONF_PARAM_MAX];
+	s8 Port[VSC_CONF_PARAM_MAX];
+	s8 User[VSC_CONF_PARAM_MAX];
+	s8 Password[VSC_CONF_PARAM_MAX];
+	int FileInterval;/* In Seconds */
+}VSCConfHdfsRecordData__;
 
 typedef struct __VSCVmsDataItem__ {
 	u32 nId;
@@ -326,6 +345,13 @@ typedef struct __VSCVIPCData {
     } data;
 }VSCVIPCData;
 
+typedef struct __VSCHdfsRecordData {
+    union {
+        VSCConfHdfsRecordData__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCHdfsRecordData;
+
 inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
 {
     sprintf(item.Name, "Recorder");
@@ -362,6 +388,15 @@ inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
     strcpy(item.User, "admin");
     strcpy(item.Password, "admin");
     item.nStreamId = 1;
+}
+
+inline void VSCHdfsRecordDataItemDefault(VSCConfHdfsRecordData__ &item)
+{
+    strcpy(item.NameNode, "default");
+    strcpy(item.Port, "80");
+    strcpy(item.User, "admin");
+    strcpy(item.Password, "admin");
+    item.FileInterval = 180;/* 3 mins */
 }
 
 #pragma pack(pop)
