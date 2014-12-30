@@ -35,6 +35,7 @@ void VSCHdfsRecord::applyConfig()
 
     VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
     gFactory->SetHdfsRecordConf(m_Param);
+    gFactory->GetHdfsRecordConf(m_Param);
 
 
 }
