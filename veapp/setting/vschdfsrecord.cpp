@@ -13,6 +13,7 @@ VSCHdfsRecord::VSCHdfsRecord(QWidget *parent)
 	gFactory->GetHdfsRecordConf(m_Param);
 	/* Setup the default value */
 	setupDefaultValue();
+	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
 
 void VSCHdfsRecord::setupDefaultValue()
