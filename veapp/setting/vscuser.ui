@@ -89,6 +89,108 @@
      </property>
     </spacer>
    </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonApply">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/buttonpress.png);}
+</string>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonCancel">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/buttonpress.png);}
+</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <resources>
