@@ -5,6 +5,8 @@
 #include "ui_vschdfsrecord.h"
 #include "utility.hpp"
 #include <QTimer>
+#include <QLineEdit>
+#include "factory.hpp"
 
 
 class VSCHdfsRecord : public QWidget
@@ -14,15 +16,23 @@ class VSCHdfsRecord : public QWidget
 public:
     VSCHdfsRecord(QWidget *parent = 0);
     ~VSCHdfsRecord(){}
-
+public:
+	void updateParamValue(QLineEdit *ld, s8 * pParam)
+	{
+	    if (pParam && ld)
+	    {
+	        strcpy(pParam, ld->text().toStdString().c_str());
+	    }
+	}
+	void setupDefaultValue();
 public slots:   
-  void applyConfig();
+	void applyConfig();
 	
 public:
-    Ui::VSCHdfsRecord ui;
+	Ui::VSCHdfsRecord ui;
 	
 private:
-
+	VSCHdfsRecordData m_Param;
     
 };
 
