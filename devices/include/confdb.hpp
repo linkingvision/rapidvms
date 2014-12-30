@@ -541,7 +541,7 @@ inline s32 ConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
 /* HDFS record  */
 inline s32 ConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
 {
-    VSCConfVGroupKey sKey;
+    VSCConfHdfsRecordKey sKey;
 
     leveldb::WriteOptions writeOptions;
 
