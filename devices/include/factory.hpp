@@ -95,6 +95,9 @@ public:
 							int &ch, int &type);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
+public:
+	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
+	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);
 
 public:
 	/* UI can use this for display device tree */
@@ -429,6 +432,22 @@ inline BOOL Factory::SetLicense(astring &strLicense)
 	VPlay::SetLicense(strLicense);
 	return m_Conf.SetLicense(strLicense);
 }
+
+inline BOOL Factory::GetHdfsRecordConf(VSCHdfsRecordData &pData)
+{
+	Lock();
+	BOOL ret = m_Conf.GetHdfsRecordData(pData);
+	UnLock();
+	return ret;
+}
+inline BOOL Factory::SetHdfsRecordConf(VSCHdfsRecordData &pData)
+{
+	Lock();
+	BOOL ret = m_Conf.UpdateHdfsRecordData(pData);
+	UnLock();
+	return ret;
+}
+
 inline BOOL Factory::InitLicense()
 {
 	astring strLicense;
