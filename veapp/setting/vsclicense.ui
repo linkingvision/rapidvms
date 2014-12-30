@@ -14,7 +14,7 @@
    <string>Master Hard Disk Selecting</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../main/vscmainwindows.qrc">
+   <iconset>
     <normaloff>:/logo/resources/vscsmall.jpg</normaloff>:/logo/resources/vscsmall.jpg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -95,6 +95,17 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/buttonpress.png);}
+</string>
+       </property>
        <property name="text">
         <string>Apply</string>
        </property>
@@ -119,6 +130,17 @@
          <width>60</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/buttonpress.png);}
+</string>
        </property>
        <property name="text">
         <string>Cancel</string>
