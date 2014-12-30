@@ -10,8 +10,16 @@ VSCHdfsRecord::VSCHdfsRecord(QWidget *parent)
     : QWidget(parent)
 {
 	ui.setupUi(this);
-	//ui.user->setText("admin");
-	//ui.passwd->setText("admin");
+	gFactory->GetHdfsRecordConf(m_Param);
+	/* Setup the default value */
+	setupDefaultValue();
+}
+
+void VSCHdfsRecord::setupDefaultValue()
+{
+    ui.lineEditNameNode->setText(m_Param.data.conf.NameNode);
+    ui.lineEditPort->setText(m_Param.data.conf.Port);
+    ui.lineEditUser->setText(m_Param.data.conf.User);
 }
 
 
@@ -19,8 +27,14 @@ VSCHdfsRecord::VSCHdfsRecord(QWidget *parent)
 
 void VSCHdfsRecord::applyConfig()
 {
+    /* Update m_Param from UI  */
+    updateParamValue(ui.lineEditNameNode, m_Param.data.conf.NameNode);
+    updateParamValue(ui.lineEditPort, m_Param.data.conf.Port);
+    updateParamValue(ui.lineEditUser, m_Param.data.conf.User);
 
-	return;
+    VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
+    gFactory->SetHdfsRecordConf(m_Param);
+
 
 }
 
