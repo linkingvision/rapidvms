@@ -15,26 +15,38 @@ using namespace avkit;
 using namespace UtilityLib;
 
 class HdfsRecSession;
+class VHdfsDBData;
+class HdfsRecWrapper;
 class VE_LIBRARY_API VHdfsDB
 {
 public:
 	typedef std::map<s32, HdfsRecSession*> _MapSession;
 public:
 
-	VHdfsDB(astring & strPath);
+	VHdfsDB(astring &pNameNode, astring &pPort, 
+		astring &pUser);
 	~VHdfsDB();
 public:
 	void Lock();
 	void UnLock();
-
+public:
+	BOOL Config(astring &pNameNode, astring &pPort, 
+		astring &pUser);
 public:
 	/* Start and Stop Record */
-	BOOL StartRecord(s32 deviceId);
-	BOOL FinishRecord(s32 deviceId);
+	HdfsRecSession * StartRecord(s32 deviceId, astring strName);
+	BOOL FinishRecord(HdfsRecSession *pSess);
 	MFStatus PushAFrame(s32 deviceId, VideoFrame *pFrame);
+public:
+	HdfsRecWrapper & GetHdfsRecWrapper();
+	BOOL ReleaseHdfsRecWrapper();
 
 private:
     	fast_mutex m_Lock;
 	_MapSession m_MapSess;
+    	VHdfsDBData * m_data;
+	astring m_pNameNode;
+	astring m_pPort; 
+	astring m_pUser;
 };
 #endif /* __V_HDFS_DB_HPP__ */
