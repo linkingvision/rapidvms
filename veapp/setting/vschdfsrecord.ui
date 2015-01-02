@@ -94,14 +94,14 @@
      <item row="3" column="0">
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>File Inerval(s)</string>
+        <string>File Inerval(min)</string>
        </property>
       </widget>
      </item>
      <item row="3" column="2">
       <widget class="QLineEdit" name="lineEditFileInterval">
        <property name="text">
-        <string>180</string>
+        <string>3</string>
        </property>
        <property name="readOnly">
         <bool>false</bool>
