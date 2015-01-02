@@ -81,13 +81,13 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 	QRect rect = desktop->screenGeometry(0);
 	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
 	QCoreApplication::processEvents();
-	
-    m_pView = new VSCView(m_pMainArea, *m_pMainArea, "Main View");
-    m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
-    m_pMainArea->addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
-    connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
+#if 1	
+	m_pView = new VSCView(m_pMainArea, *m_pMainArea, "Main View");
+	m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+	m_pMainArea->addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
+	connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 			m_pView, SLOT(DeviceEvent(int, int)));
-
+#endif
 
     setCentralWidget(m_pMainArea);
 
@@ -95,6 +95,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 
 	delete loading;
     SetupConnections();
+	setWindowTitle(QApplication::translate("VSCMainWindowsClass", VE_INFO, 0));
 }
 
 VSCMainWindows::~VSCMainWindows()

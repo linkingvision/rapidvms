@@ -36,6 +36,7 @@
         <file>resources/hdfsstartrecord.png</file>
         <file>resources/hdfsstoprecord.png</file>
         <file>resources/hadoop.png</file>
+        <file>resources/dome-recordhdfs.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
