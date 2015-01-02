@@ -32,6 +32,8 @@ public slots:
     void CameraDeleteClick();
     void CameraRecordClick();
     void CameraStopRecordClick();
+    void CameraHdfsRecordClick();
+    void CameraStopHdfsRecordClick();
 	
     void VIPCAddClick();
     void VIPCEditClick();
@@ -47,6 +49,10 @@ public slots:
 	void VGroupEditClick();
 	void VGroupDeleteClick();
 	void VGroupMapClick();
+	void StartRecordAllClick();
+	void StopRecordAllClick();
+	void StartHdfsRecordAllClick();
+	void StopHdfsRecordAllClick();
 
 signals:
 	void CameraAddClicked();
@@ -67,6 +73,10 @@ signals:
 	void VGroupMapClicked();
 
 	void VSCZbIpcDeleteClicked(int nId);//hjy
+	void StartRecordAllClicked();
+	void StopRecordAllClicked();
+	void StartHdfsRecordAllClicked();
+	void StopHdfsRecordAllClicked();
 	//void VSCZbIpcRecordClicked(int nId);
 	//void VSCZbIpcStopRecordClicked(int nId);
 
