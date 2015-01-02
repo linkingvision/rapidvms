@@ -68,7 +68,7 @@ public:
     void PtzActionStop();
     void VideoSetGeometry();
 
-private slots:
+public slots:
     void stopAction();
     void showDisplay1();
     void showDisplay2();
@@ -171,8 +171,7 @@ public:
     Ui::VSCVWidget *p_ui;
     Ui::VSCVWidget &ui;
 /* Playback  */
-private:
-    VPlay m_vPlay;;   
+private: 
     BOOL m_autoUpdate;
 private:
     BOOL m_DragStart;
