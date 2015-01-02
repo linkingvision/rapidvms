@@ -36,19 +36,38 @@ void VSCDeviceIPC::UpdateOnline(BOOL bonline)
 
 void VSCDeviceIPC::UpdateRecord(BOOL bRecording)
 {
-            if (bRecording == TRUE)
-            {
-                QIcon icon1;
-                //icon1.addFile(QStringLiteral(":/device/resources/camera-record.png"), QSize(), QIcon::Normal, QIcon::Off);
-                icon1.addFile(QStringLiteral(":/device/resources/dome-record.png"), QSize(), QIcon::Normal, QIcon::Off);
-
-                setIcon(0, icon1);
-            }else
-            {
-                QIcon icon1;
+	QIcon icon1;
+	DeviceParam pParam;
+	gFactory->GetDeviceParamById(pParam, GetDeviceId());
+	if (pParam.m_Conf.data.conf.HdfsRecording == 1 
+		&& pParam.m_Conf.data.conf.Recording == 1)
+	{
+                icon1.addFile(QStringLiteral(":/action/resources/dome-recordhdfs.png"), QSize(), QIcon::Normal, QIcon::Off);
+                setIcon(0, icon1);	
+		 return ;
+	}
+	if (pParam.m_Conf.data.conf.HdfsRecording == 0 
+		&& pParam.m_Conf.data.conf.Recording == 0)
+	{
                 icon1.addFile(QStringLiteral(":/device/resources/dome.png"), QSize(), QIcon::Normal, QIcon::Off);
                 setIcon(0, icon1);		
-            }
+		 return ;
+	}
+	if (pParam.m_Conf.data.conf.HdfsRecording == 1 
+		&& pParam.m_Conf.data.conf.Recording == 0)
+	{
+                icon1.addFile(QStringLiteral(":/action/resources/hdfsstartrecord.png"), QSize(), QIcon::Normal, QIcon::Off);
+                setIcon(0, icon1);		
+		 return ;
+	}
+	if (pParam.m_Conf.data.conf.HdfsRecording == 0 
+		&& pParam.m_Conf.data.conf.Recording == 1)
+	{
+                icon1.addFile(QStringLiteral(":/device/resources/dome-record.png"), QSize(), QIcon::Normal, QIcon::Off);
+
+                setIcon(0, icon1);	
+		 return ;
+	}
 }
 
 VSCDeviceIPC::~VSCDeviceIPC()
