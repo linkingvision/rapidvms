@@ -96,6 +96,15 @@ void VSCDeviceTree::SetupConnections()
 	connect(pActRecord, SIGNAL(triggered()), this, SLOT(CameraRecordClick()));
 	connect(pActStopRecord, SIGNAL(triggered()), this, SLOT(CameraStopRecordClick()));
 
+	connect(pActHdfsRecord, SIGNAL(triggered()), this, SLOT(CameraHdfsRecordClick()));
+	connect(pActStopHdfsRecord, SIGNAL(triggered()), this, SLOT(CameraStopHdfsRecordClick()));
+
+	connect(pActRecordAll, SIGNAL(triggered()), this, SLOT(StartRecordAllClick()));
+	connect(pActStopRecordAll, SIGNAL(triggered()), this, SLOT(StopRecordAllClick()));
+	connect(pActHdfsRecordAll, SIGNAL(triggered()), this, SLOT(StartHdfsRecordAllClick()));
+	connect(pActStopHdfsRecordAll, SIGNAL(triggered()), this, SLOT(StopHdfsRecordAllClick()));
+
+
 	connect(pActDiskEdit, SIGNAL(triggered()), this, SIGNAL(DiskEditClicked()));
 
 	connect(pActAddVIPC, SIGNAL(triggered()), this, SLOT(VIPCAddClick()));
@@ -402,6 +411,48 @@ void VSCDeviceTree::CameraStopRecordClick()
     return;
 }
 
+void VSCDeviceTree::CameraHdfsRecordClick()
+{
+    QTreeWidgetItem *item = NULL;
+    item = currentItem();
+
+    VDC_DEBUG( "%s Hdfs Record\n",__FUNCTION__);
+    if(item != NULL)
+    {
+        VSCDeviceIPC *pIpc = dynamic_cast<VSCDeviceIPC * >(item);
+        if (pIpc)
+        {
+            VDC_DEBUG( "%s Hdfs Record\n",__FUNCTION__);
+            u32 nId = pIpc->GetDeviceId();
+            gFactory->StartHdfsRecord(nId);
+        }
+    }
+
+    return;
+}
+
+
+void VSCDeviceTree::CameraStopHdfsRecordClick()
+{
+    QTreeWidgetItem *item = NULL;
+    item = currentItem();
+
+    VDC_DEBUG( "%s Stop Hdfs Record\n",__FUNCTION__);
+    if(item != NULL)
+    {
+        VSCDeviceIPC *pIpc = dynamic_cast<VSCDeviceIPC * >(item);
+        if (pIpc)
+        {
+            VDC_DEBUG( "%s Stop Hdfs Record\n",__FUNCTION__);
+            u32 nId = pIpc->GetDeviceId();
+            gFactory->StopHdfsRecord(nId);
+        }
+    }
+
+    return;
+}
+
+
 void VSCDeviceTree::VIPCAddClick()
 {
     VDC_DEBUG( "%s \n",__FUNCTION__);
@@ -587,5 +638,31 @@ void VSCDeviceTree::VGroupMapClick()
     VDC_DEBUG( "%s \n",__FUNCTION__);
     emit VGroupMapClicked();
     return;
+}
+
+void VSCDeviceTree::StartRecordAllClick()
+{
+	VDC_DEBUG( "%s \n",__FUNCTION__);
+	emit StartRecordAllClicked();
+	return;
+}
+void VSCDeviceTree::StartHdfsRecordAllClick()
+{
+	VDC_DEBUG( "%s \n",__FUNCTION__);
+	emit StartHdfsRecordAllClicked();
+	return;
+}
+
+void VSCDeviceTree::StopRecordAllClick()
+{
+	VDC_DEBUG( "%s \n",__FUNCTION__);
+	emit StopRecordAllClicked();
+	return;
+}
+void VSCDeviceTree::StopHdfsRecordAllClick()
+{
+	VDC_DEBUG( "%s \n",__FUNCTION__);
+	emit StopHdfsRecordAllClicked();
+	return;
 }
 
