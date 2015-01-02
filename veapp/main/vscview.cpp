@@ -130,12 +130,11 @@ void VSCView::ViewHideFocus()
 
 bool VSCView::event(QEvent *e)
 {
-#if 1
-	VDC_DEBUG("%s Event Type %d\n", __FUNCTION__, e->type());
+	//VDC_DEBUG("%s Event Type %d\n", __FUNCTION__, e->type());
 
 
-	if(e->type() == QEvent::HideToParent 
-		|| e->type() == QEvent::WindowDeactivate)
+	if(e->type() == QEvent::HideToParent )
+		//|| e->type() == QEvent::WindowDeactivate)
 	{
 		m_pVideo->OffAllFocus();
 	}
@@ -159,20 +158,18 @@ bool VSCView::event(QEvent *e)
         //m_pVideo->OffAllFocus();
         m_lastHoverTime = time(NULL);
     }
-#endif
-#if 1
+
     if(e->type() == QEvent::HoverLeave)
     {
 	QPoint posView = mapToGlobal(QPoint(0,0));
 	QPoint posEvent = event->pos();
+#if 0
         VDC_DEBUG( "%s Leave View (%d, %d)  Event (%d, %d)\n", 
 			__FUNCTION__, posView.x(), posView.y(), 
 			posEvent.x(), posEvent.y());
-#ifdef WIN32
-        //m_pVideo->OffAllFocus();
 #endif
     }
-#endif
+
 
     return QWidget::event(e);
 }
