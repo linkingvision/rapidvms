@@ -52,6 +52,13 @@ void VSCDeviceList::SetupConnections()
     connect(ui.treeWidget, SIGNAL(CameraEditClicked(int)), this, SIGNAL(CameraEditClicked(int)));
     connect(ui.treeWidget, SIGNAL(CameraDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
 
+
+    connect(ui.treeWidget, SIGNAL(StartRecordAllClicked()), this, SLOT(StartRecordAll()));
+    connect(ui.treeWidget, SIGNAL(StopRecordAllClicked()), this, SLOT(StopRecordAll()));
+    connect(ui.treeWidget, SIGNAL(StartHdfsRecordAllClicked()), this, SLOT(StartHdfsRecordAll()));
+    connect(ui.treeWidget, SIGNAL(StopHdfsRecordAllClicked()), this, SLOT(StopHdfsRecordAll()));
+
+
     /* VIPC */
     connect(ui.treeWidget, SIGNAL(VIPCAddClicked()), this, SIGNAL(VIPCAddClicked()));
     connect(ui.treeWidget, SIGNAL(VIPCEditClicked(int)), this, SIGNAL(VIPCEditClicked(int)));
@@ -454,6 +461,31 @@ void VSCDeviceList::NotifyDelVIPC(int nId)
 			qtreewidgetitem->removeChild(pChild);
 		}
 	}
+	return;
+}
+
+void VSCDeviceList::StartRecordAll()
+{
+	gFactory->StartRecordAll();
+
+	return;
+}
+void VSCDeviceList::StopRecordAll()
+{
+	gFactory->StopRecordAll();
+
+	return;
+}
+void VSCDeviceList::StartHdfsRecordAll()
+{
+	gFactory->StartHdfsRecordAll();
+
+	return;
+}
+void VSCDeviceList::StopHdfsRecordAll()
+{
+	gFactory->StopHdfsRecordAll();
+
 	return;
 }
 
