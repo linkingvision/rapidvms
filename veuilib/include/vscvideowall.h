@@ -49,6 +49,7 @@ public:
 #endif
     void DeviceEvent(int deviceId, VscEventType type);
     void OffAllFocus();
+	void ResizeAllVideo();
 
 public slots:
     void floatingAction();
