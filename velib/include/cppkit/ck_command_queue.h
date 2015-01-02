@@ -30,9 +30,11 @@
 #ifndef cppkit_command_queue_h
 #define cppkit_command_queue_h
 
+//#include <condition_variable>
 #include <mutex>
-#include <condition_variable>
 #include <list>
+
+using namespace std;
 
 namespace cppkit
 {
@@ -71,20 +73,28 @@ public:
         _started = false;
         _queue.clear();
 
-        _cond.notify_one();
+        //_cond.notify_one();
     }
 
     void post( const CMD& cmd )
     {
         guard g( _lock );
         _queue.push_front( cmd );
-        _cond.notify_one();
+        //_cond.notify_one();
+    }
+	
+    int size()
+    {
+        guard g( _lock );
+        return _queue.size();
     }
 
     void wait()
     {
+#if 0
         guard g( _lock );
         _cond.wait( g, [this] () { return !this->_queue.empty() || !this->_started; } );
+#endif
     }
 
     CMD pop()
@@ -97,7 +107,7 @@ public:
 
 private:
     std::mutex _lock;
-    std::condition_variable _cond;
+    //std::condition_variable _cond;
     std::list<CMD> _queue;
     bool _started = false;
 };
