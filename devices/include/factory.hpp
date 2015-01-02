@@ -25,8 +25,6 @@ typedef enum
     FACTORY_DEVICE_OFFLINE,
     FACTORY_DEVICE_RECORDING_ON,
     FACTORY_DEVICE_RECORDING_OFF,
-    FACTORY_DEVICE_HDFS_RECORDING_ON,
-    FACTORY_DEVICE_HDFS_RECORDING_OFF,
     /* The Camera group has been change */
     FACTORY_DEVICE_GROUP_CHANGE,
     FACTORY_VMS_ADD,
@@ -152,6 +150,10 @@ public:
 	BOOL StopRecord(s32 nIndex);
 	BOOL StartHdfsRecord(s32 nIndex);
 	BOOL StopHdfsRecord(s32 nIndex);
+	BOOL StartRecordAll();
+	BOOL StopRecordAll();
+	BOOL StartHdfsRecordAll();
+	BOOL StopHdfsRecordAll();
 public:
 	BOOL GetRecordStatus(s32 nIndex, BOOL &bStatus);
 
@@ -865,7 +867,7 @@ inline BOOL Factory::StartHdfsRecord(s32 nIndex)
     }
     UnLock();
     change.id = nIndex;
-    change.type = FACTORY_DEVICE_HDFS_RECORDING_ON;
+    change.type = FACTORY_DEVICE_RECORDING_ON;
     CallDeviceChange(change);
     return TRUE;
 }
@@ -894,9 +896,62 @@ inline BOOL Factory::StopHdfsRecord(s32 nIndex)
     }
     UnLock();
     change.id = nIndex;
-    change.type = FACTORY_DEVICE_HDFS_RECORDING_OFF;
+    change.type = FACTORY_DEVICE_RECORDING_OFF;
     CallDeviceChange(change);
     return TRUE;
+}
+
+inline BOOL Factory::StartRecordAll()
+{
+	Lock();
+	DeviceParamMap DeviceMap = m_DeviceParamMap;
+	UnLock();
+	DeviceParamMap::iterator it = DeviceMap.begin(); 
+	for(; it!=DeviceMap.end(); ++it)
+	{
+	    StartRecord((*it).second.m_Conf.data.conf.nId);
+	}
+
+	return TRUE;
+}
+inline BOOL Factory::StopRecordAll()
+{
+	Lock();
+	DeviceParamMap DeviceMap = m_DeviceParamMap;
+	UnLock();
+	DeviceParamMap::iterator it = DeviceMap.begin(); 
+	for(; it!=DeviceMap.end(); ++it)
+	{
+	    StopRecord((*it).second.m_Conf.data.conf.nId);
+	}
+
+	return TRUE;
+}
+inline BOOL Factory::StartHdfsRecordAll()
+{
+	Lock();
+	DeviceParamMap DeviceMap = m_DeviceParamMap;
+	UnLock();
+	DeviceParamMap::iterator it = DeviceMap.begin(); 
+	for(; it!=DeviceMap.end(); ++it)
+	{
+	    StartHdfsRecord((*it).second.m_Conf.data.conf.nId);
+	}
+
+	return TRUE;
+}
+inline BOOL Factory::StopHdfsRecordAll()
+{
+	Lock();
+	DeviceParamMap DeviceMap = m_DeviceParamMap;
+	UnLock();
+	DeviceParamMap::iterator it = m_DeviceParamMap.begin(); 
+	for(; it!=m_DeviceParamMap.end(); ++it)
+	{
+	    StopHdfsRecord((*it).second.m_Conf.data.conf.nId);
+	}	
+
+	return TRUE;
 }
 
 inline BOOL Factory::UpdateDeviceGroup(s32 nIndex, s32 nGroup)
