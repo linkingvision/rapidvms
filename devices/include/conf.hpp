@@ -5,8 +5,8 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "V2015-0101"
-#define VE_INFO "vdceye Manager 2015 R1"
+#define VE_VERSION "r1.0.1-20150103"
+#define VE_INFO "vdceye Manager r1.0.1 2015"
 
 #ifdef WIN32
 #define VE_NVR_CLIENT 
@@ -392,11 +392,11 @@ inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
 
 inline void VSCHdfsRecordDataItemDefault(VSCConfHdfsRecordData__ &item)
 {
-    strcpy(item.NameNode, "default");
-    strcpy(item.Port, "80");
+    strcpy(item.NameNode, "localhost");//default for hdd
+    strcpy(item.Port, "9010");//0 for hdd
     strcpy(item.User, "admin");
     strcpy(item.Password, "admin");
-    item.FileInterval = 180;/* 3 mins */
+    item.FileInterval = 3;/* 3 mins */
 }
 
 #pragma pack(pop)
