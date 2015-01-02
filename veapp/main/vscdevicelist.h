@@ -76,6 +76,10 @@ public slots:
 	void VmsTreeUpdated();
 	void ViewTreeUpdated();
 	void VGroupTreeUpdated();
+	void StartRecordAll();
+	void StopRecordAll();
+	void StartHdfsRecordAll();
+	void StopHdfsRecordAll();
 
 signals:
 	void SurveillanceClicked();
