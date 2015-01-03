@@ -4,14 +4,6 @@
 #include "debug.hpp"
 #include "videotype.hpp"
 
-#include "cppkit/ck_memory.h"
-#include "cppkit/ck_command_queue.h"
-#include "avkit/av_muxer.h"
-
-using namespace std;
-using namespace cppkit;
-using namespace avkit;
-
 using namespace UtilityLib;
 
 class HdfsRecSession;
@@ -36,7 +28,6 @@ public:
 	/* Start and Stop Record */
 	HdfsRecSession * StartRecord(s32 deviceId, astring strName);
 	BOOL FinishRecord(HdfsRecSession *pSess);
-	MFStatus PushAFrame(s32 deviceId, VideoFrame *pFrame);
 public:
 	HdfsRecWrapper & GetHdfsRecWrapper();
 	BOOL ReleaseHdfsRecWrapper();
