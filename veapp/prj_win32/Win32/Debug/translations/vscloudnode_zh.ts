@@ -448,12 +448,12 @@
     </message>
     <message>
         <location filename="../main/vscmainwindows.cpp" line="337"/>
-        <source>About VdcEye manager</source>
-        <translation>关于VdcEye manager</translation>
+        <source>About vdceye manager</source>
+        <translation>关于vdceye manager</translation>
     </message>
     <message>
         <location filename="../main/vscmainwindows.cpp" line="338"/>
-        <source>The &lt;b&gt;VdcEye manager&lt;/b&gt;. &lt;br&gt;Also has the open source VdcEye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;</source>
+        <source>The &lt;b&gt;vdceye manager&lt;/b&gt;. &lt;br&gt;Also has the open source vdceye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;</source>
         <translation></translation>
     </message>
     <message>
@@ -466,8 +466,8 @@
     <name>VSCMainWindowsClass</name>
     <message>
         <location filename="../main/vscmainwindows.ui" line="14"/>
-        <source>VdcEye Manager  2014</source>
-        <translation>VdcEye Manager  2014</translation>
+        <source>vdceye Manager  2014</source>
+        <translation>vdceye Manager  2014</translation>
     </message>
 </context>
 <context>
