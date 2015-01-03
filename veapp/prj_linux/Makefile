@@ -54,6 +54,8 @@ SOURCES       = ../setting/vsclicense.cpp \
 		../setting/vscuser.cpp \
 		../setting/vscuserstatus.cpp \
 		../setting/vscversion.cpp \
+		../setting/vschdfsrecord.cpp \
+		../setting/vscrtsprtp.cpp \
 		../disk/vschdddevice.cpp \
 		../disk/vschddedit.cpp \
 		../disk/vschddone.cpp \
@@ -106,6 +108,8 @@ SOURCES       = ../setting/vsclicense.cpp \
 		GeneratedFiles/debug/moc_vscrecorderconf.cpp \
 		GeneratedFiles/debug/moc_vscuser.cpp \
 		GeneratedFiles/debug/moc_vscuserstatus.cpp \
+		GeneratedFiles/debug/moc_vschdfsrecord.cpp \
+		GeneratedFiles/debug/moc_vscrtsprtp.cpp \
 		GeneratedFiles/debug/moc_vschdddevice.cpp \
 		GeneratedFiles/debug/moc_vschddone.cpp \
 		GeneratedFiles/debug/moc_vschddedit.cpp \
@@ -123,6 +127,8 @@ OBJECTS       = debug/vsclicense.o \
 		debug/vscuser.o \
 		debug/vscuserstatus.o \
 		debug/vscversion.o \
+		debug/vschdfsrecord.o \
+		debug/vscrtsprtp.o \
 		debug/vschdddevice.o \
 		debug/vschddedit.o \
 		debug/vschddone.o \
@@ -176,6 +182,8 @@ OBJECTS       = debug/vsclicense.o \
 		debug/moc_vscrecorderconf.o \
 		debug/moc_vscuser.o \
 		debug/moc_vscuserstatus.o \
+		debug/moc_vschdfsrecord.o \
+		debug/moc_vscrtsprtp.o \
 		debug/moc_vschdddevice.o \
 		debug/moc_vschddone.o \
 		debug/moc_vschddedit.o \
@@ -350,6 +358,8 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../setting/vscrecorderconf.h \
 		../setting/vscuser.h \
 		../setting/vscuserstatus.h \
+		../setting/vschdfsrecord.h \
+		../setting/vscrtsprtp.h \
 		../disk/vschdddevice.h \
 		../disk/vschddone.h \
 		../disk/vschddedit.h \
@@ -366,6 +376,8 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../setting/vscuser.cpp \
 		../setting/vscuserstatus.cpp \
 		../setting/vscversion.cpp \
+		../setting/vschdfsrecord.cpp \
+		../setting/vscrtsprtp.cpp \
 		../disk/vschdddevice.cpp \
 		../disk/vschddedit.cpp \
 		../disk/vschddone.cpp \
@@ -422,7 +434,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h $(OBJECTS)  
+$(TARGET): GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdfsrecord.h GeneratedFiles/ui_vscrtsprtp.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: VSCloudNode.pro ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++/qmake.conf ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
@@ -711,6 +723,7 @@ qmake_all: FORCE
 
 
 all: Makefile $(TARGET)
+
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
@@ -718,9 +731,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../main/vscmainwindows.qrc ../darkstyle/style.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../main/vscvipc.h ../prj_win32/resource.h ../main/vscdevicelist.h ../main/vscdockwidget.h ../main/vscmainwindows.h ../main/vscview.h ../main/vscdeviceipc.h ../main/vscdevicetree.h ../main/vsccameraadd.h ../main/vscdevicetrash.h ../main/vscsearch.h ../main/vscplaycontrol.h ../main/vscplayback.h ../main/vsctoolbar.h ../main/vscipcgroupconf.h ../main/vscipcgroupmap.h ../main/vscviewconf.h ../main/vscvipcadd.h ../../devices/include/cefactory.hpp ../../devices/include/conf.hpp ../../devices/include/confdb.hpp ../../devices/include/config.hpp ../../devices/include/database.hpp ../../devices/include/datasink.hpp ../../devices/include/datasrc.hpp ../../devices/include/device.hpp ../../devices/include/ffmpeg_api.hpp ../../devices/include/ffmpeg_codecs.hpp ../../devices/include/ffmpeg_impl.hpp ../../devices/include/ffmpeg_scale.hpp ../../devices/include/hdddevice.hpp ../../devices/include/mpipeline.hpp ../../devices/include/sysdb.hpp ../../devices/include/factory.hpp ../setting/vscsetting.h ../setting/vsclicense.h ../setting/vscversion.h ../setting/vscrecorderconf.h ../setting/vscuser.h ../setting/vscuserstatus.h ../disk/vschdddevice.h ../disk/vschddone.h ../disk/vschddedit.h ../disk/vschddoneedit.h ../vms/vscrecorderadd.h ../vms/vscsiteadd.h ../vms/vscvms.h ../vms/vscrecorderone.h ../vms/vscrecorderpanel.h ../vms/vscrecorder.h ../vms/vsczbtreeitem.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../setting/vsclicense.cpp ../setting/vscrecorderconf.cpp ../setting/vscsetting.cpp ../setting/vscuser.cpp ../setting/vscuserstatus.cpp ../setting/vscversion.cpp ../disk/vschdddevice.cpp ../disk/vschddedit.cpp ../disk/vschddone.cpp ../disk/vschddoneedit.cpp ../vms/vscrecorder.cpp ../vms/vscrecorderadd.cpp ../vms/vscrecorderone.cpp ../vms/vscrecorderpanel.cpp ../vms/vscsiteadd.cpp ../vms/vscvms.cpp ../vms/vsczbtreeitem.cpp ../main/main.cpp ../main/vsccameraadd.cpp ../main/vscdeviceipc.cpp ../main/vscdevicelist.cpp ../main/vscdevicetrash.cpp ../main/vscdevicetree.cpp ../main/vscdockwidget.cpp ../main/vscipcgroupconf.cpp ../main/vscipcgroupmap.cpp ../main/vscmainwindows.cpp ../main/vscplayback.cpp ../main/vscplaycontrol.cpp ../main/vscsearch.cpp ../main/vsctoobar.cpp ../main/vscview.cpp ../main/vscviewconf.cpp ../main/vscvipc.cpp ../main/vscvipcadd.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../main/vscview.ui ../main/vscmainwindows.ui ../main/vscdevicelist.ui ../main/vsccameraadd.ui ../main/vscsearch.ui ../main/vscplaycontrol.ui ../main/vscplayback.ui ../main/vsctoolbar.ui ../main/vscvipcadd.ui ../main/vscipcgroupconf.ui ../main/vscipcgroupmap.ui ../main/vscviewconf.ui ../setting/vscsetting.ui ../setting/vsclicense.ui ../setting/vscversion.ui ../setting/vscrecorderconf.ui ../setting/vscuser.ui ../setting/vscuserstatus.ui ../disk/vschdddevice.ui ../disk/vschddone.ui ../disk/vschddedit.ui ../disk/vschddoneedit.ui ../vms/vscrecorderadd.ui ../vms/vscsiteadd.ui ../vms/vscrecorderone.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../main/vscvipc.h ../prj_win32/resource.h ../main/vscdevicelist.h ../main/vscdockwidget.h ../main/vscmainwindows.h ../main/vscview.h ../main/vscdeviceipc.h ../main/vscdevicetree.h ../main/vsccameraadd.h ../main/vscdevicetrash.h ../main/vscsearch.h ../main/vscplaycontrol.h ../main/vscplayback.h ../main/vsctoolbar.h ../main/vscipcgroupconf.h ../main/vscipcgroupmap.h ../main/vscviewconf.h ../main/vscvipcadd.h ../../devices/include/cefactory.hpp ../../devices/include/conf.hpp ../../devices/include/confdb.hpp ../../devices/include/config.hpp ../../devices/include/database.hpp ../../devices/include/datasink.hpp ../../devices/include/datasrc.hpp ../../devices/include/device.hpp ../../devices/include/ffmpeg_api.hpp ../../devices/include/ffmpeg_codecs.hpp ../../devices/include/ffmpeg_impl.hpp ../../devices/include/ffmpeg_scale.hpp ../../devices/include/hdddevice.hpp ../../devices/include/mpipeline.hpp ../../devices/include/sysdb.hpp ../../devices/include/factory.hpp ../setting/vscsetting.h ../setting/vsclicense.h ../setting/vscversion.h ../setting/vscrecorderconf.h ../setting/vscuser.h ../setting/vscuserstatus.h ../setting/vschdfsrecord.h ../setting/vscrtsprtp.h ../disk/vschdddevice.h ../disk/vschddone.h ../disk/vschddedit.h ../disk/vschddoneedit.h ../vms/vscrecorderadd.h ../vms/vscsiteadd.h ../vms/vscvms.h ../vms/vscrecorderone.h ../vms/vscrecorderpanel.h ../vms/vscrecorder.h ../vms/vsczbtreeitem.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../setting/vsclicense.cpp ../setting/vscrecorderconf.cpp ../setting/vscsetting.cpp ../setting/vscuser.cpp ../setting/vscuserstatus.cpp ../setting/vscversion.cpp ../setting/vschdfsrecord.cpp ../setting/vscrtsprtp.cpp ../disk/vschdddevice.cpp ../disk/vschddedit.cpp ../disk/vschddone.cpp ../disk/vschddoneedit.cpp ../vms/vscrecorder.cpp ../vms/vscrecorderadd.cpp ../vms/vscrecorderone.cpp ../vms/vscrecorderpanel.cpp ../vms/vscsiteadd.cpp ../vms/vscvms.cpp ../vms/vsczbtreeitem.cpp ../main/main.cpp ../main/vsccameraadd.cpp ../main/vscdeviceipc.cpp ../main/vscdevicelist.cpp ../main/vscdevicetrash.cpp ../main/vscdevicetree.cpp ../main/vscdockwidget.cpp ../main/vscipcgroupconf.cpp ../main/vscipcgroupmap.cpp ../main/vscmainwindows.cpp ../main/vscplayback.cpp ../main/vscplaycontrol.cpp ../main/vscsearch.cpp ../main/vsctoobar.cpp ../main/vscview.cpp ../main/vscviewconf.cpp ../main/vscvipc.cpp ../main/vscvipcadd.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../main/vscview.ui ../main/vscmainwindows.ui ../main/vscdevicelist.ui ../main/vsccameraadd.ui ../main/vscsearch.ui ../main/vscplaycontrol.ui ../main/vscplayback.ui ../main/vsctoolbar.ui ../main/vscvipcadd.ui ../main/vscipcgroupconf.ui ../main/vscipcgroupmap.ui ../main/vscviewconf.ui ../setting/vscsetting.ui ../setting/vsclicense.ui ../setting/vscversion.ui ../setting/vscrecorderconf.ui ../setting/vscuser.ui ../setting/vscuserstatus.ui ../setting/vschdfsrecord.ui ../setting/vscrtsprtp.ui ../disk/vschdddevice.ui ../disk/vschddone.ui ../disk/vschddedit.ui ../disk/vschddoneedit.ui ../vms/vscrecorderadd.ui ../vms/vscsiteadd.ui ../vms/vscrecorderone.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../main/translations/vscloudnode_zh.ts $(DISTDIR)/
 
 
@@ -765,6 +778,7 @@ GeneratedFiles/qrc_vscmainwindows.cpp: ../main/vscmainwindows.qrc \
 		../main/resources/computer.png \
 		../main/resources/refresh.png \
 		../main/resources/setting.png \
+		../main/resources/hadoop.png \
 		../main/resources/alarmno.png \
 		../main/resources/control_panel.png \
 		../main/resources/map.png \
@@ -774,8 +788,10 @@ GeneratedFiles/qrc_vscmainwindows.cpp: ../main/vscmainwindows.qrc \
 		../main/resources/recordstart.png \
 		../main/resources/videosearch.png \
 		../main/resources/mining.png \
+		../main/resources/dome-recordhdfs.png \
 		../main/resources/tabbed.png \
 		../main/resources/user.png \
+		../main/resources/hdfsstartrecord.png \
 		../main/resources/surveillance.png \
 		../main/resources/float.png \
 		../main/resources/button.png \
@@ -787,6 +803,7 @@ GeneratedFiles/qrc_vscmainwindows.cpp: ../main/vscmainwindows.qrc \
 		../main/resources/new.png \
 		../main/resources/user-trash-2.png \
 		../main/resources/display.png \
+		../main/resources/hdfsstoprecord.png \
 		../main/resources/stop.png \
 		../main/resources/12+1.png \
 		../main/resources/8x8.png \
@@ -827,9 +844,9 @@ GeneratedFiles/qrc_style.cpp: ../darkstyle/style.qrc \
 		../darkstyle/style.qss
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/rcc -name style ../darkstyle/style.qrc -o GeneratedFiles/qrc_style.cpp
 
-compiler_moc_header_make_all: GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp
+compiler_moc_header_make_all: GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp
+	-$(DEL_FILE) GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp
 GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
@@ -933,64 +950,6 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../main/vscdevicetrash.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../velib/include/utility/utility.hpp \
@@ -1069,6 +1028,7 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -1190,6 +1150,8 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -1201,15 +1163,31 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../main/vscdevicetree.h \
-		../vms/vscvms.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../vms/vscrecorder.h \
-		../main/vscvipc.h \
-		../../veuilib/include/vscviewtree.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
 		../main/vscdevicelist.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicelist.h -o GeneratedFiles/debug/moc_vscdevicelist.cpp
 
@@ -1425,37 +1403,6 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		GeneratedFiles/ui_vscmainwindows.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../veuilib/include/vevent.hpp \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
@@ -1463,6 +1410,7 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../velib/include/utility/videotype.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -1536,6 +1484,7 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -1656,6 +1605,8 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -1672,29 +1623,23 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdockwidget.h \
 		../main/vscview.h \
 		GeneratedFiles/ui_vscview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../main/vscmainwindows.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscmainwindows.h -o GeneratedFiles/debug/moc_vscmainwindows.cpp
 
@@ -1801,48 +1746,6 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -1915,6 +1818,7 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -2036,14 +1940,23 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -2062,10 +1975,9 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../main/vscview.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscview.h -o GeneratedFiles/debug/moc_vscview.cpp
 
@@ -2398,6 +2310,8 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -2525,61 +2439,6 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsccameraadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -2658,6 +2517,7 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -2779,6 +2639,8 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -2796,6 +2658,9 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../main/vsccameraadd.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsccameraadd.h -o GeneratedFiles/debug/moc_vsccameraadd.cpp
 
@@ -3136,6 +3001,8 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -3253,55 +3120,6 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsearch.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QProgressBar \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qprogressbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -3380,6 +3198,7 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -3501,6 +3320,8 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -3624,51 +3445,6 @@ GeneratedFiles/debug/moc_vscplaycontrol.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -3779,50 +3555,6 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplayback.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -3895,6 +3627,7 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -4016,14 +3749,23 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -4042,10 +3784,9 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../main/vscplayback.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscplayback.h -o GeneratedFiles/debug/moc_vscplayback.cpp
 
@@ -4152,52 +3893,6 @@ GeneratedFiles/debug/moc_vsctoolbar.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsctoolbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -4208,6 +3903,9 @@ GeneratedFiles/debug/moc_vsctoolbar.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../veuilib/include/vsccalculate.hpp \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
 		../main/vsctoolbar.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsctoolbar.h -o GeneratedFiles/debug/moc_vsctoolbar.cpp
 
@@ -4315,56 +4013,6 @@ GeneratedFiles/debug/moc_vscipcgroupconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscipcgroupconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -4372,6 +4020,8 @@ GeneratedFiles/debug/moc_vscipcgroupconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../main/vscipcgroupconf.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscipcgroupconf.h -o GeneratedFiles/debug/moc_vscipcgroupconf.cpp
 
@@ -4495,44 +4145,6 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/utility.hpp \
 		GeneratedFiles/ui_vscipcgroupmap.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -4607,6 +4219,7 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -4728,6 +4341,8 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -4846,56 +4461,6 @@ GeneratedFiles/debug/moc_vscviewconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscviewconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -4903,6 +4468,8 @@ GeneratedFiles/debug/moc_vscviewconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../main/vscviewconf.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscviewconf.h -o GeneratedFiles/debug/moc_vscviewconf.cpp
 
@@ -5009,59 +4576,6 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscvipcadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -5140,6 +4654,7 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -5261,6 +4776,8 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -5278,6 +4795,9 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../main/vscvipcadd.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscvipcadd.h -o GeneratedFiles/debug/moc_vscvipcadd.cpp
 
@@ -5551,6 +5071,8 @@ GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -5670,48 +5192,6 @@ GeneratedFiles/debug/moc_vscsetting.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsetting.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -5790,6 +5270,7 @@ GeneratedFiles/debug/moc_vscsetting.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -5911,6 +5392,8 @@ GeneratedFiles/debug/moc_vscsetting.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -5928,50 +5411,52 @@ GeneratedFiles/debug/moc_vscsetting.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../setting/vsclicense.h \
 		GeneratedFiles/ui_vsclicense.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTextEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextdocument.h \
 		../setting/vscversion.h \
 		GeneratedFiles/ui_vscversion.h \
 		../setting/vscrecorderconf.h \
 		GeneratedFiles/ui_vscrecorderconf.h \
 		../vms/vscrecorderone.h \
 		GeneratedFiles/ui_vscrecorderone.h \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../vms/vscrecorder.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
 		../main/vscdevicelist.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../main/vscdevicetrash.h \
-		../main/vscdevicetree.h \
-		../vms/vscvms.h \
-		../main/vscvipc.h \
-		../../veuilib/include/vscviewtree.h \
 		../setting/vscuser.h \
 		GeneratedFiles/ui_vscuser.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
+		../setting/vschdfsrecord.h \
+		GeneratedFiles/ui_vschdfsrecord.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../setting/vscrtsprtp.h \
+		GeneratedFiles/ui_vscrtsprtp.h \
 		../setting/vscsetting.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../setting/vscsetting.h -o GeneratedFiles/debug/moc_vscsetting.cpp
 
@@ -6078,60 +5563,6 @@ GeneratedFiles/debug/moc_vsclicense.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsclicense.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTextEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextdocument.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -6245,53 +5676,6 @@ GeneratedFiles/debug/moc_vscversion.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscversion.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -6405,27 +5789,19 @@ GeneratedFiles/debug/moc_vscrecorderconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../vms/vscrecorderone.h \
+		GeneratedFiles/ui_vscrecorderone.h \
+		../vms/vscrecorder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
@@ -6436,46 +5812,14 @@ GeneratedFiles/debug/moc_vscrecorderconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../vms/vscrecorderone.h \
-		GeneratedFiles/ui_vscrecorderone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -6550,6 +5894,7 @@ GeneratedFiles/debug/moc_vscrecorderconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -6671,6 +6016,8 @@ GeneratedFiles/debug/moc_vscrecorderconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -6682,8 +6029,6 @@ GeneratedFiles/debug/moc_vscrecorderconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../vms/vscrecorder.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../setting/vscrecorderconf.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../setting/vscrecorderconf.h -o GeneratedFiles/debug/moc_vscrecorderconf.cpp
 
@@ -6790,56 +6135,6 @@ GeneratedFiles/debug/moc_vscuser.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscuser.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -6954,56 +6249,6 @@ GeneratedFiles/debug/moc_vscuserstatus.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscuserstatus.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -7011,8 +6256,452 @@ GeneratedFiles/debug/moc_vscuserstatus.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../setting/vscuserstatus.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../setting/vscuserstatus.h -o GeneratedFiles/debug/moc_vscuserstatus.cpp
+
+GeneratedFiles/debug/moc_vschdfsrecord.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		GeneratedFiles/ui_vschdfsrecord.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
+		../../3rdparty/leveldb-linux/include/leveldb/db.h \
+		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
+		../../3rdparty/leveldb-linux/include/leveldb/slice.h \
+		../../3rdparty/leveldb-linux/include/leveldb/status.h \
+		../../3rdparty/leveldb-linux/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../velib/include/utility/debug.hpp \
+		../../devices/include/device.hpp \
+		../../devices/include/datasink.hpp \
+		../../velib/include/utility/vpoco.hpp \
+		../../3rdparty/poco/Foundation/include/Poco/Notification.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/NotificationQueue.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Random.h \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../velib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/sysdb.hpp \
+		../../devices/include/hdddevice.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
+		../setting/vschdfsrecord.h
+	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../setting/vschdfsrecord.h -o GeneratedFiles/debug/moc_vschdfsrecord.cpp
+
+GeneratedFiles/debug/moc_vscrtsprtp.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		GeneratedFiles/ui_vscrtsprtp.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../setting/vscrtsprtp.h
+	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../setting/vscrtsprtp.h -o GeneratedFiles/debug/moc_vscrtsprtp.cpp
 
 GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -7118,48 +6807,6 @@ GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschdddevice.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -7183,12 +6830,6 @@ GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../disk/vschddone.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../disk/vschdddevice.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschdddevice.h -o GeneratedFiles/debug/moc_vschdddevice.cpp
 
@@ -7296,54 +6937,6 @@ GeneratedFiles/debug/moc_vschddone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -7471,46 +7064,6 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QScrollArea \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -7536,16 +7089,6 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddoneedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/device.hpp \
@@ -7613,6 +7156,7 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -7734,6 +7278,8 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -7845,54 +7391,6 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddoneedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -7981,6 +7479,7 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -8102,6 +7601,8 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -8212,57 +7713,6 @@ GeneratedFiles/debug/moc_vscrecorderadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -8341,6 +7791,7 @@ GeneratedFiles/debug/moc_vscrecorderadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -8462,6 +7913,8 @@ GeneratedFiles/debug/moc_vscrecorderadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -8479,6 +7932,9 @@ GeneratedFiles/debug/moc_vscrecorderadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../vms/vscrecorderadd.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../vms/vscrecorderadd.h -o GeneratedFiles/debug/moc_vscrecorderadd.cpp
 
@@ -8585,55 +8041,6 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsiteadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -8712,6 +8119,7 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -8833,6 +8241,8 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -8850,6 +8260,9 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../vms/vscsiteadd.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../vms/vscsiteadd.h -o GeneratedFiles/debug/moc_vscsiteadd.cpp
 
@@ -9179,6 +8592,8 @@ GeneratedFiles/debug/moc_vscvms.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWi
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -9297,27 +8712,17 @@ GeneratedFiles/debug/moc_vscrecorderone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../vms/vscrecorder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
@@ -9328,43 +8733,16 @@ GeneratedFiles/debug/moc_vscrecorderone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
 		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
 		../../3rdparty/leveldb-linux/include/leveldb/slice.h \
@@ -9437,6 +8815,7 @@ GeneratedFiles/debug/moc_vscrecorderone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -9558,6 +8937,8 @@ GeneratedFiles/debug/moc_vscrecorderone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -9569,11 +8950,6 @@ GeneratedFiles/debug/moc_vscrecorderone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../vms/vscrecorder.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../vms/vscrecorderone.h
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/ubu/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles -I/home/ubu/work/ve/veapp/prj_linux -I/home/ubu/work/ve/veapp/prj_linux/GeneratedFiles/Debug -I/home/ubu/work/ve/veapp/main -I/home/ubu/work/ve/veapp/playback -I/home/ubu/work/ve/veapp/vwidget -I/home/ubu/work/ve/devices/include -I/home/ubu/work/ve/3rdparty/leveldb-linux/include -I/home/ubu/work/ve/utility -I/home/ubu/work/ve/3rdparty/poco/Foundation/include -I/home/ubu/work/ve/3rdparty/poco/Net/include -I/home/ubu/work/ve/3rdparty/poco/Util/include -I/home/ubu/work/ve/3rdparty/onvifc/include -I/home/ubu/work/ve/velib/include/vplay -I/home/ubu/work/ve/velib/include/utility -I/home/ubu/work/ve/velib/include/vdb -I/home/ubu/work/ve/veuilib/include -I/home/ubu/work/ve/3rdparty/poco/Data/include -I/home/ubu/work/ve/3rdparty/poco/Data/SQLite/include -I/home/ubu/work/ve/veapp/recorder -I/home/ubu/work/ve/veapp/setting -I/home/ubu/work/ve/veapp/event -I/home/ubu/work/ve/veapp/systeminfo -I/home/ubu/work/ve/veapp/disk -I/home/ubu/work/ve/veapp/vms -I/home/ubu/work/ve/3rdparty/openssl-linux/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/ubu/Qt5.4.0/5.4/gcc_64/include/QtCore ../vms/vscrecorderone.h -o GeneratedFiles/debug/moc_vscrecorderone.cpp
 
@@ -9914,6 +9290,8 @@ GeneratedFiles/debug/moc_vscrecorderpanel.cpp: ../../../../Qt5.4.0/5.4/gcc_64/in
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -10259,6 +9637,8 @@ GeneratedFiles/debug/moc_vscrecorder.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -10601,6 +9981,8 @@ GeneratedFiles/debug/moc_vsczbtreeitem.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -10617,9 +9999,9 @@ GeneratedFiles/debug/moc_vsczbtreeitem.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h
+compiler_uic_make_all: GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdfsrecord.h GeneratedFiles/ui_vscrtsprtp.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h
 compiler_uic_clean:
-	-$(DEL_FILE) GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h
+	-$(DEL_FILE) GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdfsrecord.h GeneratedFiles/ui_vscrtsprtp.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h
 GeneratedFiles/ui_vscview.h: ../main/vscview.ui
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/uic ../main/vscview.ui -o GeneratedFiles/ui_vscview.h
 
@@ -10958,6 +10340,8 @@ GeneratedFiles/ui_vscdevicelist.h: ../main/vscdevicelist.ui \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -11316,6 +10700,8 @@ GeneratedFiles/ui_vscdevicelist.h: ../main/vscdevicelist.ui \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -11373,6 +10759,12 @@ GeneratedFiles/ui_vscuser.h: ../setting/vscuser.ui
 
 GeneratedFiles/ui_vscuserstatus.h: ../setting/vscuserstatus.ui
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/uic ../setting/vscuserstatus.ui -o GeneratedFiles/ui_vscuserstatus.h
+
+GeneratedFiles/ui_vschdfsrecord.h: ../setting/vschdfsrecord.ui
+	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/uic ../setting/vschdfsrecord.ui -o GeneratedFiles/ui_vschdfsrecord.h
+
+GeneratedFiles/ui_vscrtsprtp.h: ../setting/vscrtsprtp.ui
+	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/uic ../setting/vscrtsprtp.ui -o GeneratedFiles/ui_vscrtsprtp.h
 
 GeneratedFiles/ui_vschdddevice.h: ../disk/vschdddevice.ui
 	/home/ubu/Qt5.4.0/5.4/gcc_64/bin/uic ../disk/vschdddevice.ui -o GeneratedFiles/ui_vschdddevice.h
@@ -11731,6 +11123,8 @@ GeneratedFiles/ui_vscrecorderone.h: ../vms/vscrecorderone.ui \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -11863,60 +11257,6 @@ debug/vsclicense.o: ../setting/vsclicense.cpp ../setting/vsclicense.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsclicense.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTextEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextdocument.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -11942,9 +11282,6 @@ debug/vsclicense.o: ../setting/vsclicense.cpp ../setting/vsclicense.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/device.hpp \
@@ -12012,6 +11349,7 @@ debug/vsclicense.o: ../setting/vsclicense.cpp ../setting/vsclicense.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -12133,6 +11471,8 @@ debug/vsclicense.o: ../setting/vsclicense.cpp ../setting/vsclicense.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -12243,27 +11583,19 @@ debug/vscrecorderconf.o: ../setting/vscrecorderconf.cpp ../setting/vscrecorderco
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../vms/vscrecorderone.h \
+		GeneratedFiles/ui_vscrecorderone.h \
+		../vms/vscrecorder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
@@ -12274,46 +11606,14 @@ debug/vscrecorderconf.o: ../setting/vscrecorderconf.cpp ../setting/vscrecorderco
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../vms/vscrecorderone.h \
-		GeneratedFiles/ui_vscrecorderone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -12388,6 +11688,7 @@ debug/vscrecorderconf.o: ../setting/vscrecorderconf.cpp ../setting/vscrecorderco
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -12509,6 +11810,8 @@ debug/vscrecorderconf.o: ../setting/vscrecorderconf.cpp ../setting/vscrecorderco
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -12520,17 +11823,10 @@ debug/vscrecorderconf.o: ../setting/vscrecorderconf.cpp ../setting/vscrecorderco
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../vms/vscrecorder.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../disk/vschddone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
-		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem
+		GeneratedFiles/ui_vschddone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscrecorderconf.o ../setting/vscrecorderconf.cpp
 
 debug/vscsetting.o: ../setting/vscsetting.cpp ../setting/vscsetting.h \
@@ -12637,48 +11933,6 @@ debug/vscsetting.o: ../setting/vscsetting.cpp ../setting/vscsetting.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsetting.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -12757,6 +12011,7 @@ debug/vscsetting.o: ../setting/vscsetting.cpp ../setting/vscsetting.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -12878,6 +12133,8 @@ debug/vscsetting.o: ../setting/vscsetting.cpp ../setting/vscsetting.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -12895,50 +12152,52 @@ debug/vscsetting.o: ../setting/vscsetting.cpp ../setting/vscsetting.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../setting/vsclicense.h \
 		GeneratedFiles/ui_vsclicense.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTextEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextdocument.h \
 		../setting/vscversion.h \
 		GeneratedFiles/ui_vscversion.h \
 		../setting/vscrecorderconf.h \
 		GeneratedFiles/ui_vscrecorderconf.h \
 		../vms/vscrecorderone.h \
 		GeneratedFiles/ui_vscrecorderone.h \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../vms/vscrecorder.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
 		../main/vscdevicelist.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../main/vscdevicetrash.h \
-		../main/vscdevicetree.h \
-		../vms/vscvms.h \
-		../main/vscvipc.h \
-		../../veuilib/include/vscviewtree.h \
 		../setting/vscuser.h \
 		GeneratedFiles/ui_vscuser.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h
+		../setting/vschdfsrecord.h \
+		GeneratedFiles/ui_vschdfsrecord.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../setting/vscrtsprtp.h \
+		GeneratedFiles/ui_vscrtsprtp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscsetting.o ../setting/vscsetting.cpp
 
 debug/vscuser.o: ../setting/vscuser.cpp ../setting/vscuser.h \
@@ -13045,56 +12304,6 @@ debug/vscuser.o: ../setting/vscuser.cpp ../setting/vscuser.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscuser.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -13120,10 +12329,6 @@ debug/vscuser.o: ../setting/vscuser.cpp ../setting/vscuser.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/device.hpp \
@@ -13191,6 +12396,7 @@ debug/vscuser.o: ../setting/vscuser.cpp ../setting/vscuser.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -13312,6 +12518,8 @@ debug/vscuser.o: ../setting/vscuser.cpp ../setting/vscuser.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -13423,56 +12631,6 @@ debug/vscuserstatus.o: ../setting/vscuserstatus.cpp ../setting/vscuserstatus.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscuserstatus.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -13480,6 +12638,8 @@ debug/vscuserstatus.o: ../setting/vscuserstatus.cpp ../setting/vscuserstatus.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../../velib/include/utility/debug.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscuserstatus.o ../setting/vscuserstatus.cpp
 
@@ -13587,53 +12747,6 @@ debug/vscversion.o: ../setting/vscversion.cpp ../setting/vscversion.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscversion.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -13659,13 +12772,6 @@ debug/vscversion.o: ../setting/vscversion.cpp ../setting/vscversion.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/device.hpp \
@@ -13733,6 +12839,7 @@ debug/vscversion.o: ../setting/vscversion.cpp ../setting/vscversion.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -13854,11 +12961,672 @@ debug/vscversion.o: ../setting/vscversion.cpp ../setting/vscversion.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscversion.o ../setting/vscversion.cpp
+
+debug/vschdfsrecord.o: ../setting/vschdfsrecord.cpp ../setting/vschdfsrecord.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		GeneratedFiles/ui_vschdfsrecord.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
+		../../3rdparty/leveldb-linux/include/leveldb/db.h \
+		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
+		../../3rdparty/leveldb-linux/include/leveldb/slice.h \
+		../../3rdparty/leveldb-linux/include/leveldb/status.h \
+		../../3rdparty/leveldb-linux/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../velib/include/utility/debug.hpp \
+		../../devices/include/device.hpp \
+		../../devices/include/datasink.hpp \
+		../../velib/include/utility/vpoco.hpp \
+		../../3rdparty/poco/Foundation/include/Poco/Notification.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/NotificationQueue.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Random.h \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../velib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/sysdb.hpp \
+		../../devices/include/hdddevice.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
+		../disk/vschddone.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		GeneratedFiles/ui_vschddone.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vschdfsrecord.o ../setting/vschdfsrecord.cpp
+
+debug/vscrtsprtp.o: ../setting/vscrtsprtp.cpp ../setting/vscrtsprtp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		GeneratedFiles/ui_vscrtsprtp.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../devices/include/hdddevice.hpp \
+		../../3rdparty/leveldb-linux/include/leveldb/db.h \
+		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
+		../../3rdparty/leveldb-linux/include/leveldb/slice.h \
+		../../3rdparty/leveldb-linux/include/leveldb/status.h \
+		../../3rdparty/leveldb-linux/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../velib/include/utility/debug.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../disk/vschddone.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		GeneratedFiles/ui_vschddone.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
+		../../devices/include/device.hpp \
+		../../devices/include/datasink.hpp \
+		../../velib/include/utility/vpoco.hpp \
+		../../3rdparty/poco/Foundation/include/Poco/Notification.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/NotificationQueue.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Random.h \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../velib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/sysdb.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscrtsprtp.o ../setting/vscrtsprtp.cpp
 
 debug/vschdddevice.o: ../disk/vschdddevice.cpp ../disk/vschdddevice.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
@@ -13965,48 +13733,6 @@ debug/vschdddevice.o: ../disk/vschdddevice.cpp ../disk/vschdddevice.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschdddevice.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -14029,13 +13755,7 @@ debug/vschdddevice.o: ../disk/vschdddevice.cpp ../disk/vschdddevice.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../disk/vschddone.h \
-		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget
+		GeneratedFiles/ui_vschddone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vschdddevice.o ../disk/vschdddevice.cpp
 
 debug/vschddedit.o: ../disk/vschddedit.cpp ../disk/vschddedit.h \
@@ -14142,46 +13862,6 @@ debug/vschddedit.o: ../disk/vschddedit.cpp ../disk/vschddedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QScrollArea \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -14207,16 +13887,6 @@ debug/vschddedit.o: ../disk/vschddedit.cpp ../disk/vschddedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddoneedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/device.hpp \
@@ -14284,6 +13954,7 @@ debug/vschddedit.o: ../disk/vschddedit.cpp ../disk/vschddedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -14405,6 +14076,8 @@ debug/vschddedit.o: ../disk/vschddedit.cpp ../disk/vschddedit.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -14516,54 +14189,6 @@ debug/vschddone.o: ../disk/vschddone.cpp ../disk/vschddone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -14692,54 +14317,6 @@ debug/vschddoneedit.o: ../disk/vschddoneedit.cpp ../disk/vschddoneedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddoneedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -14828,6 +14405,7 @@ debug/vschddoneedit.o: ../disk/vschddoneedit.cpp ../disk/vschddoneedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -14949,11 +14527,32 @@ debug/vschddoneedit.o: ../disk/vschddoneedit.cpp ../disk/vschddoneedit.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vschddoneedit.o ../disk/vschddoneedit.cpp
@@ -15285,6 +14884,8 @@ debug/vscrecorder.o: ../vms/vscrecorder.cpp ../vms/vscrecorder.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -15405,57 +15006,6 @@ debug/vscrecorderadd.o: ../vms/vscrecorderadd.cpp ../vms/vscrecorderadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -15534,6 +15084,7 @@ debug/vscrecorderadd.o: ../vms/vscrecorderadd.cpp ../vms/vscrecorderadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -15655,6 +15206,8 @@ debug/vscrecorderadd.o: ../vms/vscrecorderadd.cpp ../vms/vscrecorderadd.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -15671,7 +15224,10 @@ debug/vscrecorderadd.o: ../vms/vscrecorderadd.cpp ../vms/vscrecorderadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscrecorderadd.o ../vms/vscrecorderadd.cpp
 
 debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
@@ -15778,27 +15334,17 @@ debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscrecorderone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../velib/include/utility/utility.hpp \
+		../../velib/include/utility/tinythread.h \
+		../../velib/include/utility/type.hpp \
+		../../velib/include/utility/fast_mutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../vms/vscrecorder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
@@ -15809,43 +15355,16 @@ debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../vms/vscrecorderpanel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
 		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
 		../../3rdparty/leveldb-linux/include/leveldb/slice.h \
@@ -15918,6 +15437,7 @@ debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -16039,6 +15559,8 @@ debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -16050,20 +15572,10 @@ debug/vscrecorderone.o: ../vms/vscrecorderone.cpp ../vms/vscrecorderone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../vms/vscrecorder.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../disk/vschddone.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
-		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem
+		GeneratedFiles/ui_vschddone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscrecorderone.o ../vms/vscrecorderone.cpp
 
 debug/vscrecorderpanel.o: ../vms/vscrecorderpanel.cpp ../vms/vscrecorderpanel.h \
@@ -16404,6 +15916,8 @@ debug/vscrecorderpanel.o: ../vms/vscrecorderpanel.cpp ../vms/vscrecorderpanel.h 
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -16534,55 +16048,6 @@ debug/vscsiteadd.o: ../vms/vscsiteadd.cpp ../vms/vscsiteadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsiteadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -16661,6 +16126,7 @@ debug/vscsiteadd.o: ../vms/vscsiteadd.cpp ../vms/vscsiteadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -16782,6 +16248,8 @@ debug/vscsiteadd.o: ../vms/vscsiteadd.cpp ../vms/vscsiteadd.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -16798,7 +16266,10 @@ debug/vscsiteadd.o: ../vms/vscsiteadd.cpp ../vms/vscsiteadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscsiteadd.o ../vms/vscsiteadd.cpp
 
 debug/vscvms.o: ../vms/vscvms.cpp ../vms/vscvms.h \
@@ -17128,6 +16599,8 @@ debug/vscvms.o: ../vms/vscvms.cpp ../vms/vscvms.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -17495,6 +16968,8 @@ debug/vsczbtreeitem.o: ../vms/vsczbtreeitem.cpp ../vms/vsczbtreeitem.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -17618,37 +17093,6 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		GeneratedFiles/ui_vscmainwindows.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../veuilib/include/vevent.hpp \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
@@ -17656,6 +17100,7 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../velib/include/utility/videotype.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -17729,6 +17174,7 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -17849,6 +17295,8 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -17865,29 +17313,30 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdockwidget.h \
 		../main/vscview.h \
 		GeneratedFiles/ui_vscview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QStyleFactory \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstylefactory.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QPixmap \
@@ -17901,11 +17350,6 @@ debug/main.o: ../main/main.cpp ../main/vscmainwindows.h \
 		GeneratedFiles/ui_vschdddevice.h \
 		../disk/vschddone.h \
 		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
 		../../veuilib/include/vservicemgr.hpp \
 		../../veuilib/include/vonvifdismgr.hpp \
 		../../veuilib/include/vvipcmgr.hpp \
@@ -18017,61 +17461,6 @@ debug/vsccameraadd.o: ../main/vsccameraadd.cpp ../main/vsccameraadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsccameraadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -18150,6 +17539,7 @@ debug/vsccameraadd.o: ../main/vsccameraadd.cpp ../main/vsccameraadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -18271,6 +17661,8 @@ debug/vsccameraadd.o: ../main/vsccameraadd.cpp ../main/vsccameraadd.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -18288,6 +17680,9 @@ debug/vsccameraadd.o: ../main/vsccameraadd.cpp ../main/vsccameraadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QFileDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h
@@ -18620,6 +18015,8 @@ debug/vscdeviceipc.o: ../main/vscdeviceipc.cpp ../main/vscdeviceipc.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -18738,64 +18135,6 @@ debug/vscdevicelist.o: ../main/vscdevicelist.cpp ../main/vscdevicelist.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../main/vscdevicetrash.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../velib/include/utility/utility.hpp \
@@ -18874,6 +18213,7 @@ debug/vscdevicelist.o: ../main/vscdevicelist.cpp ../main/vscdevicelist.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -18995,6 +18335,8 @@ debug/vscdevicelist.o: ../main/vscdevicelist.cpp ../main/vscdevicelist.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -19006,16 +18348,36 @@ debug/vscdevicelist.o: ../main/vscdevicelist.cpp ../main/vscdevicelist.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../main/vscdevicetree.h \
-		../vms/vscvms.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../vms/vscrecorder.h \
-		../main/vscvipc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
+		../main/vscdeviceipc.h \
+		../vms/vscvms.h \
 		../../veuilib/include/vscviewtree.h \
-		../main/vscdeviceipc.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscdevicelist.o ../main/vscdevicelist.cpp
 
 debug/vscdevicetrash.o: ../main/vscdevicetrash.cpp ../main/vscdevicetrash.h \
@@ -19356,6 +18718,8 @@ debug/vscdevicetrash.o: ../main/vscdevicetrash.cpp ../main/vscdevicetrash.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -19711,6 +19075,8 @@ debug/vscdevicetree.o: ../main/vscdevicetree.cpp ../main/vscdevicetree.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -19741,32 +19107,6 @@ debug/vscdevicetree.o: ../main/vscdevicetree.cpp ../main/vscdevicetree.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
 		../main/vscdevicelist.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
-		../main/vscdevicetrash.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
 		../vms/vsczbtreeitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscdevicetree.o ../main/vscdevicetree.cpp
 
@@ -19981,56 +19321,6 @@ debug/vscipcgroupconf.o: ../main/vscipcgroupconf.cpp ../main/vscipcgroupconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscipcgroupconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -20038,6 +19328,8 @@ debug/vscipcgroupconf.o: ../main/vscipcgroupconf.cpp ../main/vscipcgroupconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../../devices/include/hdddevice.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
 		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
@@ -20053,11 +19345,7 @@ debug/vscipcgroupconf.o: ../main/vscipcgroupconf.cpp ../main/vscipcgroupconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../disk/vschddone.h \
-		GeneratedFiles/ui_vschddone.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget
+		GeneratedFiles/ui_vschddone.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscipcgroupconf.o ../main/vscipcgroupconf.cpp
 
 debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
@@ -20181,44 +19469,6 @@ debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/utility.hpp \
 		GeneratedFiles/ui_vscipcgroupmap.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -20293,6 +19543,7 @@ debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -20414,6 +19665,8 @@ debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -20426,9 +19679,31 @@ debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTime \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QStyleOption \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QPainter \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainter.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
@@ -20440,6 +19715,9 @@ debug/vscipcgroupmap.o: ../main/vscipcgroupmap.cpp ../main/vscipcgroupmap.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
@@ -20553,37 +19831,6 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		GeneratedFiles/ui_vscmainwindows.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../veuilib/include/vevent.hpp \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
@@ -20591,6 +19838,7 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../velib/include/utility/videotype.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -20664,6 +19912,7 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -20784,6 +20033,8 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -20800,29 +20051,24 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdockwidget.h \
 		../main/vscview.h \
 		GeneratedFiles/ui_vscview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLayout \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenuBar \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenubar.h \
@@ -20830,6 +20076,8 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTextEdit \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextdocument.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
@@ -20844,6 +20092,13 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSignalMapper \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QPainter \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainter.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
@@ -20851,49 +20106,45 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QToolBar \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtoolbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QListWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlistwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlistview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
 		../main/vscdevicelist.h \
 		GeneratedFiles/ui_vscdevicelist.h \
-		../main/vscdevicetrash.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
+		../vms/vscrecorder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
-		../main/vscdevicetree.h \
-		../vms/vscvms.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
-		../vms/vscrecorder.h \
-		../main/vscvipc.h \
-		../../veuilib/include/vscviewtree.h \
 		../main/vscplayback.h \
 		GeneratedFiles/ui_vscplayback.h \
 		../main/vsccameraadd.h \
 		GeneratedFiles/ui_vsccameraadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCheckBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../main/vscvipcadd.h \
 		GeneratedFiles/ui_vscvipcadd.h \
 		../main/vscsearch.h \
 		GeneratedFiles/ui_vscsearch.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QProgressBar \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qprogressbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QEvent \
 		../../3rdparty/onvifc/include/devicesearcher.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/QUdpSocket \
@@ -20917,17 +20168,17 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		GeneratedFiles/ui_vscrecorderconf.h \
 		../vms/vscrecorderone.h \
 		GeneratedFiles/ui_vscrecorderone.h \
-		../vms/vscrecorderpanel.h \
 		../setting/vscuser.h \
 		GeneratedFiles/ui_vscuser.h \
+		../setting/vschdfsrecord.h \
+		GeneratedFiles/ui_vschdfsrecord.h \
+		../setting/vscrtsprtp.h \
+		GeneratedFiles/ui_vscrtsprtp.h \
 		../disk/vschddedit.h \
 		GeneratedFiles/ui_vschddedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QScrollArea \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qscrollarea.h \
 		../disk/vschddoneedit.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		GeneratedFiles/ui_vschddoneedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
 		../../veuilib/include/vscloading.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMovie \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmovie.h \
@@ -20940,7 +20191,14 @@ debug/vscmainwindows.o: ../main/vscmainwindows.cpp ../main/vscmainwindows.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfactoryinterface.h \
 		../main/vscipcgroupconf.h \
 		GeneratedFiles/ui_vscipcgroupconf.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
 		../main/vscipcgroupmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QScrollArea \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		GeneratedFiles/ui_vscipcgroupmap.h \
 		../setting/vscuserstatus.h \
 		GeneratedFiles/ui_vscuserstatus.h \
@@ -21052,50 +20310,6 @@ debug/vscplayback.o: ../main/vscplayback.cpp ../main/vscplayback.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplayback.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -21168,6 +20382,7 @@ debug/vscplayback.o: ../main/vscplayback.cpp ../main/vscplayback.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -21289,14 +20504,23 @@ debug/vscplayback.o: ../main/vscplayback.cpp ../main/vscplayback.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -21315,11 +20539,17 @@ debug/vscplayback.o: ../main/vscplayback.cpp ../main/vscplayback.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscplayback.o ../main/vscplayback.cpp
 
 debug/vscplaycontrol.o: ../main/vscplaycontrol.cpp ../main/vscplaycontrol.h \
@@ -21426,57 +20656,19 @@ debug/vscplaycontrol.o: ../main/vscplaycontrol.cpp ../main/vscplaycontrol.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
 		../../velib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscplaycontrol.o ../main/vscplaycontrol.cpp
 
 debug/vscsearch.o: ../main/vscsearch.cpp ../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
@@ -21585,55 +20777,6 @@ debug/vscsearch.o: ../main/vscsearch.cpp ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsearch.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QProgressBar \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qprogressbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -21712,6 +20855,7 @@ debug/vscsearch.o: ../main/vscsearch.cpp ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -21833,6 +20977,8 @@ debug/vscsearch.o: ../main/vscsearch.cpp ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -21854,10 +21000,38 @@ debug/vscsearch.o: ../main/vscsearch.cpp ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmessagebox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscsearch.o ../main/vscsearch.cpp
 
 debug/vsctoobar.o: ../main/vsctoobar.cpp ../main/vsctoolbar.h \
@@ -21964,52 +21138,6 @@ debug/vsctoobar.o: ../main/vsctoobar.cpp ../main/vsctoolbar.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsctoolbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -22020,7 +21148,17 @@ debug/vsctoobar.o: ../main/vsctoobar.cpp ../main/vsctoolbar.h \
 		../../veuilib/include/vsccalculate.hpp \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTime \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDate
@@ -22130,48 +21268,6 @@ debug/vscview.o: ../main/vscview.cpp ../main/vscview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -22244,6 +21340,7 @@ debug/vscview.o: ../main/vscview.cpp ../main/vscview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -22365,14 +21462,23 @@ debug/vscview.o: ../main/vscview.cpp ../main/vscview.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
@@ -22391,23 +21497,24 @@ debug/vscview.o: ../main/vscview.cpp ../main/vscview.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QHoverEvent \
 		../main/vscviewconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vscviewconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscview.o ../main/vscview.cpp
 
 debug/vscviewconf.o: ../main/vscviewconf.cpp ../main/vscviewconf.h \
@@ -22515,56 +21622,6 @@ debug/vscviewconf.o: ../main/vscviewconf.cpp ../main/vscviewconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscviewconf.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -22572,6 +21629,8 @@ debug/vscviewconf.o: ../main/vscviewconf.cpp ../main/vscviewconf.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../../devices/include/hdddevice.hpp \
 		../../3rdparty/leveldb-linux/include/leveldb/db.h \
 		../../3rdparty/leveldb-linux/include/leveldb/iterator.h \
@@ -22915,6 +21974,8 @@ debug/vscvipc.o: ../main/vscvipc.cpp ../main/vscvipc.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -23033,59 +22094,6 @@ debug/vscvipcadd.o: ../main/vscvipcadd.cpp ../main/vscvipcadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscvipcadd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../velib/include/utility/utility.hpp \
 		../../velib/include/utility/tinythread.h \
 		../../velib/include/utility/type.hpp \
@@ -23164,6 +22172,7 @@ debug/vscvipcadd.o: ../main/vscvipcadd.cpp ../main/vscvipcadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -23285,6 +22294,8 @@ debug/vscvipcadd.o: ../main/vscvipcadd.cpp ../main/vscvipcadd.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
 		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
 		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
 		../../velib/include/vplay/vplay.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/hdddevice.hpp \
@@ -23302,6 +22313,9 @@ debug/vscvipcadd.o: ../main/vscvipcadd.cpp ../main/vscvipcadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../3rdparty/onvifc/include/devicesearcher.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/QUdpSocket \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/qudpsocket.h \
@@ -23309,7 +22323,14 @@ debug/vscvipcadd.o: ../main/vscvipcadd.cpp ../main/vscvipcadd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/qhostaddress.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmessagebox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/vscvipcadd.o ../main/vscvipcadd.cpp
 
 debug/qrc_vscmainwindows.o: GeneratedFiles/qrc_vscmainwindows.cpp 
@@ -23383,6 +22404,12 @@ debug/moc_vscuser.o: GeneratedFiles/debug/moc_vscuser.cpp
 
 debug/moc_vscuserstatus.o: GeneratedFiles/debug/moc_vscuserstatus.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_vscuserstatus.o GeneratedFiles/debug/moc_vscuserstatus.cpp
+
+debug/moc_vschdfsrecord.o: GeneratedFiles/debug/moc_vschdfsrecord.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_vschdfsrecord.o GeneratedFiles/debug/moc_vschdfsrecord.cpp
+
+debug/moc_vscrtsprtp.o: GeneratedFiles/debug/moc_vscrtsprtp.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_vscrtsprtp.o GeneratedFiles/debug/moc_vscrtsprtp.cpp
 
 debug/moc_vschdddevice.o: GeneratedFiles/debug/moc_vschdddevice.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_vschdddevice.o GeneratedFiles/debug/moc_vschdddevice.cpp

@@ -47,6 +47,8 @@ HEADERS += ../main/vscvipc.h \
     ../setting/vscrecorderconf.h \
     ../setting/vscuser.h \
     ../setting/vscuserstatus.h \
+    ../setting/vschdfsrecord.h \
+    ../setting/vscrtsprtp.h \
     ../disk/vschdddevice.h \
     ../disk/vschddone.h \
     ../disk/vschddedit.h \
@@ -64,6 +66,8 @@ SOURCES += ../setting/vsclicense.cpp \
     ../setting/vscuser.cpp \
     ../setting/vscuserstatus.cpp \
     ../setting/vscversion.cpp \
+    ../setting/vschdfsrecord.cpp \
+    ../setting/vscrtsprtp.cpp \
     ../disk/vschdddevice.cpp \
     ../disk/vschddedit.cpp \
     ../disk/vschddone.cpp \
@@ -111,6 +115,8 @@ FORMS += ../main/vscview.ui \
     ../setting/vscrecorderconf.ui \
     ../setting/vscuser.ui \
     ../setting/vscuserstatus.ui \
+    ../setting/vschdfsrecord.ui \
+    ../setting/vscrtsprtp.ui \
     ../disk/vschdddevice.ui \
     ../disk/vschddone.ui \
     ../disk/vschddedit.ui \
