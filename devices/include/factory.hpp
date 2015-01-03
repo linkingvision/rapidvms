@@ -11,6 +11,7 @@
 #include "confdb.hpp"
 #include "device.hpp"
 #include "vdb.hpp"
+#include "vhdfsdb.hpp"
 #include "vplay.hpp"
 #include "sysdb.hpp"
 #include "hdddevice.hpp"
@@ -164,6 +165,7 @@ public:
 	BOOL GetDataQueue(s32 nIndex, NotificationQueue * pQueue);
 	BOOL RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDataCallback(s32 nIndex, void * pParam);
+	BOOL GetInfoFrame(s32 nIndex, InfoFrame &pFrame);
 	BOOL GetDeviceOnline(s32 nIndex, BOOL &bStatus);
 	BOOL GetUrl(s32 nIndex, std::string &url);
 	BOOL SetSystemPath(astring &strPath);
@@ -222,6 +224,7 @@ private:
 
 private:
 	VDB *m_pVdb;
+	VHdfsDB *m_pVHdfsdb;
 	FactoryHddTask *m_HddTask;
 
 private:
@@ -318,85 +321,74 @@ inline BOOL Factory::SetSystemPath(astring &strPath)
 inline BOOL Factory::Init()
 {
 
-    s32 i = 0;
+	s32 i = 0;
 
-    for (i = 0; i < FACTORY_DEVICE_ID_MAX; i ++)
-    {
-        m_strDeviceMap[i] = 'n';
-    }
-    for (i = 0; i < FACTORY_DEVICE_ID_MAX; i ++)
-    {
-        m_strVIPCMap[i] = 'n';
-    }
+	for (i = 0; i < FACTORY_DEVICE_ID_MAX; i ++)
+	{
+	    m_strDeviceMap[i] = 'n';
+	}
+	for (i = 0; i < FACTORY_DEVICE_ID_MAX; i ++)
+	{
+	    m_strVIPCMap[i] = 'n';
+	}
 
 
 
-    astring strPath;
-    if (m_SysPath.GetSystemPath(strPath) == FALSE)
-    {
-        return FALSE;
-        //strPath = "C:\\video";//TODO get the path from user
-    }
-    printf("Sys path %s\n", strPath.c_str());
+	astring strPath;
+	if (m_SysPath.GetSystemPath(strPath) == FALSE)
+	{
+	    return FALSE;
+	}
+	printf("Sys path %s\n", strPath.c_str());
 #ifdef WIN32
-    astring strPathConf = strPath + "videodb\\config";
+	astring strPathConf = strPath + "videodb\\config";
 #else
-    astring strPathConf = strPath + "videodb/config";
+	astring strPathConf = strPath + "videodb/config";
 #endif
-    m_Conf.Open(strPathConf);
+	m_Conf.Open(strPathConf);
 
-    astring strPathDb = strPath + "videodb";
-    m_pVdb = new VDB(strPathDb);
-    VSCConfData sysData;
-    m_Conf.GetSysData(sysData);
-    for (s32 i = 1; i < CONF_MAP_MAX; i ++)
-    {
-        if (sysData.data.conf.DeviceMap[i] != CONF_MAP_INVALID_MIN 
+	astring strPathDb = strPath + "videodb";
+	m_pVdb = new VDB(strPathDb);
+
+	VSCHdfsRecordData HdfsConf;
+	m_Conf.GetHdfsRecordConf(HdfsConf);
+	astring strNameNode = HdfsConf.data.conf.NameNode;
+	astring strPort = HdfsConf.data.conf.Port;
+	astring strUser = HdfsConf.data.conf.User;
+	m_pVHdfsdb = new VHdfsDB(strNameNode, strPort, strUser);
+
+	VSCConfData sysData;
+	m_Conf.GetSysData(sysData);
+	for (s32 i = 1; i < CONF_MAP_MAX; i ++)
+	{
+	    if (sysData.data.conf.DeviceMap[i] != CONF_MAP_INVALID_MIN 
 			&& sysData.data.conf.DeviceMap[i] != 0)
-        {
-            VDC_DEBUG( "%s Init Device %d\n",__FUNCTION__, i);
-            VSCDeviceData Data;
-            m_Conf.GetDeviceData(i, Data);
-            DeviceParam mParam(Data);
-            LockDeviceID(Data.data.conf.nId);
-            InitAddDevice(mParam, Data.data.conf.nId);
-            VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
-        }
-    }
+	    {
+	        VDC_DEBUG( "%s Init Device %d\n",__FUNCTION__, i);
+	        VSCDeviceData Data;
+	        m_Conf.GetDeviceData(i, Data);
+	        DeviceParam mParam(Data);
+	        LockDeviceID(Data.data.conf.nId);
+	        InitAddDevice(mParam, Data.data.conf.nId);
+	        VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
+	    }
+	}
 
-    for (s32 i = 1; i < CONF_MAP_MAX; i ++)
-    {
-        if (sysData.data.conf.VIPCMap[i] != CONF_MAP_INVALID_MIN 
+	for (s32 i = 1; i < CONF_MAP_MAX; i ++)
+	{
+	    if (sysData.data.conf.VIPCMap[i] != CONF_MAP_INVALID_MIN 
 			&& sysData.data.conf.VIPCMap[i] != 0)
-        {
-            VDC_DEBUG( "%s Init VIPC %d\n",__FUNCTION__, i);
-            VSCVIPCData Data;
-            m_Conf.GetVIPCData(i, Data);
+	    {
+	        VDC_DEBUG( "%s Init VIPC %d\n",__FUNCTION__, i);
+	        VSCVIPCData Data;
+	        m_Conf.GetVIPCData(i, Data);
 	        VIPCDeviceParam mParam(Data);
-            LockVIPCID(Data.data.conf.nId);
-            m_VIPCDeviceParamMap[i] = mParam;
-            VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
-        }
-    }
-#if 0
-	/* Init the Virtual Camera  */
-	VIPCDeviceParam vipc;
-	//add two fake one
-	strcpy(vipc.m_Conf.data.conf.IP, "192.168.1.4");
-	strcpy(vipc.m_Conf.data.conf.Name, "VIPC 1");
-	strcpy(vipc.m_Conf.data.conf.Port, "8000");
-	m_VIPCDeviceParamMap[1] = vipc;
+	        LockVIPCID(Data.data.conf.nId);
+	        m_VIPCDeviceParamMap[i] = mParam;
+	        VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
+	    }
+	}
 
-	strcpy(vipc.m_Conf.data.conf.IP, "192.168.22.15");
-	strcpy(vipc.m_Conf.data.conf.Name, "VIPC 2");
-	strcpy(vipc.m_Conf.data.conf.Port, "8000");
-	m_VIPCDeviceParamMap[2] = vipc;
-
-	strcpy(vipc.m_Conf.data.conf.IP, "192.168.22.15");
-	strcpy(vipc.m_Conf.data.conf.Name, "VIPC 3");
-	strcpy(vipc.m_Conf.data.conf.Port, "8001");
-	m_VIPCDeviceParamMap[3] = vipc;
-#endif
 	InitLicense();
 	//m_pThread = new thread(Factory::Run, (void *)this);
 	//start();
@@ -541,7 +533,7 @@ inline s32 Factory::InitAddDevice(DeviceParam & pParam, u32 nIndex)
 {
     if (pParam.m_Conf.data.conf.nType == VSC_DEVICE_CAM)
     {
-    	m_DeviceMap[nIndex] = new Device(*m_pVdb, pParam);
+    	m_DeviceMap[nIndex] = new Device(*m_pVdb, *m_pVHdfsdb, pParam);
     }else
     {
     	m_DeviceMap[nIndex] = NULL;
@@ -594,6 +586,19 @@ inline BOOL Factory::RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr p
     if (m_DeviceMap[nIndex] != NULL)
     {
         m_DeviceMap[nIndex]->RegDataCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::GetInfoFrame(s32 nIndex, InfoFrame &pFrame)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->GetInfoFrame(pFrame);
     }
 
     UnLock();
@@ -991,7 +996,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 	
     if (pParam.m_Conf.data.conf.nType == VSC_DEVICE_CAM)
     {
-    	m_DeviceMap[nId] = new Device(*m_pVdb, pParam);
+    	m_DeviceMap[nId] = new Device(*m_pVdb, *m_pVHdfsdb, pParam);
     }else
     {
 	m_DeviceMap[nId] = NULL;
