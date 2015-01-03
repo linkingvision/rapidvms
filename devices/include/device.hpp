@@ -25,6 +25,8 @@
 #include "device_management/capabilities.h"
 #include "mediamanagement.h"
 #include "vdb.hpp"
+#include "vhdfsdb.hpp"
+#include "hdfsrecsession.hpp"
 #include "vplay.hpp"
 #include "debug.hpp"
 
@@ -127,12 +129,14 @@ public:
 class Device
 {
 public:
-    inline Device(VDB &pVdb, const DeviceParam &pParam);
+    inline Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam);
     inline ~Device();
 	
 public:
     inline BOOL Start();
     inline BOOL Stop();
+    inline BOOL StartData();
+    inline BOOL StopData();
     inline BOOL StartRecord();
     inline BOOL StopRecord();
     inline BOOL StartHdfsRecord();
@@ -156,6 +160,17 @@ public:
     inline BOOL GetDataQueue(NotificationQueue * pQueue);
     inline BOOL RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
     inline BOOL UnRegDataCallback(void * pParam);
+    inline BOOL GetInfoFrame(InfoFrame &pFrame)
+    {
+    	if (m_bGotInfoData == TRUE)
+    	{
+    		memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
+		return TRUE;
+    	}else
+    	{
+    		return FALSE;
+    	}
+    }
     inline BOOL Cleanup();
     inline BOOL GetDeviceOnline()
     {
@@ -181,7 +196,7 @@ public:
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
 	
-	BOOL EnablePtz(HWND hWnd, bool enable);
+	inline BOOL EnablePtz(HWND hWnd, bool enable);
 	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
 	inline BOOL ClearPtzDirection(HWND hWnd);
 	inline BOOL ShowAlarm(HWND hWnd);
@@ -189,30 +204,36 @@ public:
 	inline BOOL UpdatePTZConf();
 
 private:
-    CmdQueueList m_RawDataList;
-    CmdQueueList m_DataList;
-    BOOL m_bStarted;
-    DeviceDataCallbackMap m_DataMap;
-    VPlay m_vPlay;
+	CmdQueueList m_RawDataList;
+	CmdQueueList m_DataList;
+	BOOL m_bStarted;
+	DeviceDataCallbackMap m_DataMap;
+	VPlay m_vPlay;
 
 private:
-    s32 m_nDeviceType;
-    s32 m_nDeviceSubType;
-    DeviceParam m_param;
-    tthread::thread *m_pThread;
-    CvCapture_FFMPEG* m_Cap;
-    fast_mutex m_Lock;
+	s32 m_nDeviceType;
+	s32 m_nDeviceSubType;
+	DeviceParam m_param;
+	tthread::thread *m_pThread;
+	CvCapture_FFMPEG* m_Cap;
+	fast_mutex m_Lock;
 private:
-    VDB &m_pVdb;
-    RecordSession *m_pRecord;
-    BOOL m_Online;
-    BOOL m_OnlineUrl;
+	VDB &m_pVdb;
+	VHdfsDB &m_pVHdfsdb;
+	RecordSession *m_pRecord;
+	HdfsRecSession *m_pHdfsRecord;
+	BOOL m_Online;
+	BOOL m_OnlineUrl;
 
 private:
-    ContinuousMove m_continuousMove;
-    ONVIF::Stop m_stop;
-    PtzManagement *m_ptz;
-    BOOL m_ptzInited;
+	ContinuousMove m_continuousMove;
+	ONVIF::Stop m_stop;
+	PtzManagement *m_ptz;
+	BOOL m_ptzInited;
+
+	InfoFrame m_infoData;
+	BOOL m_bGotInfoData;
+	s32 m_nDataRef;
 };
 
 typedef DeviceParam* LPDeviceParam;
@@ -454,10 +475,13 @@ DeviceParam::~DeviceParam()
 {
 }
 
-Device::Device(VDB &pVdb, const DeviceParam &pParam)
+Device::Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam)
 :m_bStarted(FALSE), m_param(pParam),
-m_pVdb(pVdb), m_pRecord(NULL), m_Online(FALSE), m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
-m_ptz(NULL)
+m_pVdb(pVdb), m_pVHdfsdb(pVHdfsdb), m_pRecord(NULL), 
+m_pHdfsRecord(NULL), 
+m_Online(FALSE), 
+m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
+m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0)
 {
     
     if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
@@ -779,18 +803,20 @@ BOOL Device::ShowAlarm(HWND hWnd)
 
  BOOL Device::RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam)
 {
-    Lock();
-    m_DataMap[pParam] = pCallback;
-    UnLock();
-    return TRUE;
+	Lock();
+	m_DataMap[pParam] = pCallback;
+	UnLock();
+	StartData();
+	return TRUE;
 }
 
  BOOL Device::UnRegDataCallback(void * pParam)
 {
-    Lock();
-    m_DataMap.erase(pParam);
-    UnLock();
-    return TRUE;
+	Lock();
+	m_DataMap.erase(pParam);
+	UnLock();
+	StopData();
+	return TRUE;
 }
 
  NotificationQueue * Device::GetDataQueue()
@@ -813,6 +839,32 @@ BOOL Device::ShowAlarm(HWND hWnd)
 
     return TRUE;
 }
+
+BOOL Device::StartData()
+{
+	Lock();
+	if (m_nDataRef == 0)
+	{
+		m_vPlay.StartGetData(this, (VPlayDataHandler)Device::DataHandler);
+	}
+	m_nDataRef ++;
+	UnLock();
+	return TRUE;
+}
+ BOOL Device::StopData()
+{
+	Lock();
+	m_nDataRef --;
+	if (m_nDataRef <= 0)
+	{
+		m_nDataRef = 0;
+		m_vPlay.StopGetData();
+	}
+
+	UnLock();
+	return TRUE;
+}
+
 
  BOOL Device::SetRecord(BOOL bRecording)
 {
@@ -843,33 +895,35 @@ BOOL Device::ShowAlarm(HWND hWnd)
 
  BOOL Device::StartRecord()
 {
-    if (m_param.m_Conf.data.conf.Recording == 0)
-    {
-        return FALSE;
-    }
-    VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-    m_vPlay.StartGetData(this, (VPlayDataHandler)Device::DataHandler);
+	if (m_param.m_Conf.data.conf.Recording == 0)
+	{
+	    return FALSE;
+	}
+	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
+	StartData();
 
     return TRUE;
 }
  BOOL Device::StopRecord()
 {
-    if (m_param.m_Conf.data.conf.Recording == 1)
-    {
-        return FALSE;
-    }
-    VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
-    m_vPlay.StopGetData();
-    if (m_pRecord)
-    {
-        u32 endTime = m_pRecord->GetEndTime();
-        if (endTime != 0)
-        {
-        	 m_pVdb.FinishRecord(m_pRecord);
-        }
-        delete m_pRecord;
-        m_pRecord = NULL;
-    }
+	if (m_param.m_Conf.data.conf.Recording == 1)
+	{
+	    return FALSE;
+	}
+	VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
+	StopData();
+	Lock();
+	if (m_pRecord)
+	{
+	    u32 endTime = m_pRecord->GetEndTime();
+	    if (endTime != 0)
+	    {
+	    	 m_pVdb.FinishRecord(m_pRecord);
+	    }
+	    delete m_pRecord;
+	    m_pRecord = NULL;
+	}
+	UnLock();
 
     return TRUE;
 }
@@ -881,31 +935,28 @@ BOOL Device::ShowAlarm(HWND hWnd)
         return FALSE;
     }
     VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-    //m_vPlay.StartGetData(this, (VPlayDataHandler)Device::DataHandler);
+    StartData();
 
     return TRUE;
 }
  BOOL Device::StopHdfsRecord()
 {
-    if (m_param.m_Conf.data.conf.HdfsRecording == 1)
-    {
-        return FALSE;
-    }
-#if 0
-    VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
-    m_vPlay.StopGetData();
-    if (m_pRecord)
-    {
-        u32 endTime = m_pRecord->GetEndTime();
-        if (endTime != 0)
-        {
-        	 m_pVdb.FinishRecord(m_pRecord);
-        }
-        delete m_pRecord;
-        m_pRecord = NULL;
-    }
-#endif
-    return TRUE;
+	if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+	{
+	    return FALSE;
+	}
+
+	VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
+	StopData();
+	Lock();
+	if (m_pHdfsRecord)
+	{
+		m_pVHdfsdb.FinishRecord(m_pHdfsRecord);
+		delete m_pHdfsRecord;
+		m_pHdfsRecord = NULL;
+	}
+	UnLock();
+    	return TRUE;
 }
 
   BOOL Device::DataHandler(void* pData, VideoFrame& frame)
@@ -919,37 +970,17 @@ BOOL Device::ShowAlarm(HWND hWnd)
     }
 }
 
-  BOOL Device::DataHandler1(VideoFrame& frame)
+BOOL Device::DataHandler1(VideoFrame& frame)
 {
-
-	if (m_pRecord == NULL)
-	{
-	    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
-	    if (m_pRecord == NULL)
-	    {
-	        return TRUE;
-	    }
-	}
-   	//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
-	// 	frame.streamType, frame.frameType, frame.secs, frame.msecs);
-	/* Just skip the info stream for recording */
-	if (frame.streamType != VIDEO_STREAM_INFO && m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)
-	{
-		u32 endTime = m_pRecord->GetEndTime();
-		if (endTime != 0)
-		{
-			m_pVdb.FinishRecord(m_pRecord);
-		}
-	    	delete m_pRecord;
-	    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
-		if (m_pRecord == NULL)
-		{
-			return TRUE;
-		}
-	    m_pRecord->PushAFrame(&frame);	 
-	}
 	Lock();
-
+	/* Frist cache the info frame */
+	if (frame.streamType == VIDEO_STREAM_INFO)
+	{
+		memcpy(&m_infoData, frame.dataBuf, sizeof(InfoFrame));
+		m_bGotInfoData = TRUE;
+	}
+	
+	/* 1. Send to network client */
 	DeviceDataCallbackMap::iterator it = m_DataMap.begin();
 
 	for(; it!=m_DataMap.end(); ++it)
@@ -961,9 +992,51 @@ BOOL Device::ShowAlarm(HWND hWnd)
 	        pFunc(frame, pParam);
 	    }
 	}
-	UnLock();
 
-    return TRUE;
+	/* 2. Send to Record */
+	if (m_param.m_Conf.data.conf.Recording == 1)
+	{
+		if (m_pRecord == NULL)
+		{
+		    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
+		}
+		
+		//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
+		// 	frame.streamType, frame.frameType, frame.secs, frame.msecs);
+		
+		/* Just skip the info stream for recording */
+		if (m_pRecord != NULL 
+		&& frame.streamType != VIDEO_STREAM_INFO && m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)
+		{
+			u32 endTime = m_pRecord->GetEndTime();
+			if (endTime != 0)
+			{
+				m_pVdb.FinishRecord(m_pRecord);
+			}
+		    	delete m_pRecord;
+		    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
+			if (m_pRecord != NULL)
+			{
+			       m_pRecord->PushAFrame(&frame);	 
+			}
+		}
+	}
+	
+	/* 2. Send to Hdfs Record */
+	if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+	{
+		if (m_pHdfsRecord == NULL)
+		{
+			m_pHdfsRecord = m_pVHdfsdb.StartRecord(
+				m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
+		}
+		if (m_pHdfsRecord != NULL)
+		{
+			m_pHdfsRecord->PushAFrame(&frame);
+		}
+	}
+	UnLock();
+	return TRUE;
 }
 
  BOOL Device::Cleanup()
