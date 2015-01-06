@@ -1,0 +1,24 @@
+﻿Build started 2015-01-04 20:26:32.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\PageCompiler\PageCompiler_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\Foundation\include /I..\XML\include /I..\Util\include /I..\Net\include /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D WINVER=0x0500 /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\PageCompiler\debug_shared\\" /Fd"obj64\PageCompiler\debug_shared\vc120.pdb" /Gd /TP /errorReport:prompt src\ApacheCodeWriter.cpp src\CodeWriter.cpp src\OSPCodeWriter.cpp src\Page.cpp src\PageCompiler.cpp src\PageReader.cpp
+         PageReader.cpp
+         PageCompiler.cpp
+         Page.cpp
+         OSPCodeWriter.cpp
+         CodeWriter.cpp
+         ApacheCodeWriter.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"bin64\cpspcd.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\lib64 ws2_32.lib iphlpapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"bin64\cpspcd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin64\cpspcd.lib" /MACHINE:X64 obj64\PageCompiler\debug_shared\ApacheCodeWriter.obj
+         obj64\PageCompiler\debug_shared\CodeWriter.obj
+         obj64\PageCompiler\debug_shared\OSPCodeWriter.obj
+         obj64\PageCompiler\debug_shared\Page.obj
+         obj64\PageCompiler\debug_shared\PageCompiler.obj
+         obj64\PageCompiler\debug_shared\PageReader.obj
+         PageCompiler_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\PageCompiler\bin64\cpspcd.exe
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\PageCompiler\PageCompiler_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.02
