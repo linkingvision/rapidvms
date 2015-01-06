@@ -198,7 +198,7 @@ void ONVIF::VideoEncoderConfiguration::qt_static_metacall(QObject *_o, QMetaObje
 
 const QMetaObject ONVIF::VideoEncoderConfiguration::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__VideoEncoderConfiguration.data,
-      qt_meta_data_ONVIF__VideoEncoderConfiguration,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__VideoEncoderConfiguration,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -209,7 +209,7 @@ const QMetaObject *ONVIF::VideoEncoderConfiguration::metaObject() const
 
 void *ONVIF::VideoEncoderConfiguration::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__VideoEncoderConfiguration.stringdata))
         return static_cast<void*>(const_cast< VideoEncoderConfiguration*>(this));
     return QObject::qt_metacast(_clname);

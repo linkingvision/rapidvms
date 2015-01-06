@@ -99,7 +99,7 @@ void ONVIF::StreamUri::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
 
 const QMetaObject ONVIF::StreamUri::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__StreamUri.data,
-      qt_meta_data_ONVIF__StreamUri,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__StreamUri,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -110,7 +110,7 @@ const QMetaObject *ONVIF::StreamUri::metaObject() const
 
 void *ONVIF::StreamUri::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__StreamUri.stringdata))
         return static_cast<void*>(const_cast< StreamUri*>(this));
     return QObject::qt_metacast(_clname);

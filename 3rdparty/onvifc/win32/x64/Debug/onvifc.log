@@ -1,0 +1,131 @@
+﻿Build started 2015-01-04 22:37:47.
+     1>Project "C:\work\60-video\ve\3rdparty\onvifc\win32\onvifc.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_absolutemove.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_absolutemove.cpp, GeneratedFiles\Release\moc_absolutemove.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_audioencoderconfiguration.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_audioencoderconfiguration.cpp, GeneratedFiles\Release\moc_audioencoderconfiguration.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_audioencoderconfigurationoptions.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_audioencoderconfigurationoptions.cpp, GeneratedFiles\Release\moc_audioencoderconfigurationoptions.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_audioencoderconfigurations.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_audioencoderconfigurations.cpp, GeneratedFiles\Release\moc_audioencoderconfigurations.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_audiosourceconfigurations.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_audiosourceconfigurations.cpp, GeneratedFiles\Release\moc_audiosourceconfigurations.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_capabilities.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_capabilities.cpp, GeneratedFiles\Release\moc_capabilities.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_client.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_client.cpp, GeneratedFiles\Release\moc_client.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_configuration.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_configuration.cpp, GeneratedFiles\Release\moc_configuration.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_configurations.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_configurations.cpp, GeneratedFiles\Release\moc_configurations.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_continuousmove.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_continuousmove.cpp, GeneratedFiles\Release\moc_continuousmove.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_devicemanagement.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_devicemanagement.cpp, GeneratedFiles\Release\moc_devicemanagement.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_devicesearcher.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_devicesearcher.cpp, GeneratedFiles\Release\moc_devicesearcher.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_gotohomeposition.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_gotohomeposition.cpp, GeneratedFiles\Release\moc_gotohomeposition.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_gotopreset.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_gotopreset.cpp, GeneratedFiles\Release\moc_gotopreset.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_mediamanagement.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_mediamanagement.cpp, GeneratedFiles\Release\moc_mediamanagement.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_message.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_message.cpp, GeneratedFiles\Release\moc_message.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_messageparser.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_messageparser.cpp, GeneratedFiles\Release\moc_messageparser.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_networkinterfaces.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_networkinterfaces.cpp, GeneratedFiles\Release\moc_networkinterfaces.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_networkprotocols.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_networkprotocols.cpp, GeneratedFiles\Release\moc_networkprotocols.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_node.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_node.cpp, GeneratedFiles\Release\moc_node.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_nodes.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_nodes.cpp, GeneratedFiles\Release\moc_nodes.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_preset.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_preset.cpp, GeneratedFiles\Release\moc_preset.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_presets.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_presets.cpp, GeneratedFiles\Release\moc_presets.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_profile.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_profile.cpp, GeneratedFiles\Release\moc_profile.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_profiles.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_profiles.cpp, GeneratedFiles\Release\moc_profiles.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_ptzmanagement.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_ptzmanagement.cpp, GeneratedFiles\Release\moc_ptzmanagement.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_relativemove.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_relativemove.cpp, GeneratedFiles\Release\moc_relativemove.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_removepreset.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_removepreset.cpp, GeneratedFiles\Release\moc_removepreset.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_service.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_service.cpp, GeneratedFiles\Release\moc_service.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_stop.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_stop.cpp, GeneratedFiles\Release\moc_stop.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_streamuri.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_streamuri.cpp, GeneratedFiles\Release\moc_streamuri.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_systemdateandtime.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_systemdateandtime.cpp, GeneratedFiles\Release\moc_systemdateandtime.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_systemfactorydefault.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_systemfactorydefault.cpp, GeneratedFiles\Release\moc_systemfactorydefault.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_systemreboot.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_systemreboot.cpp, GeneratedFiles\Release\moc_systemreboot.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_user.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_user.cpp, GeneratedFiles\Release\moc_user.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_videoencoderconfiguration.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_videoencoderconfiguration.cpp, GeneratedFiles\Release\moc_videoencoderconfiguration.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_videoencoderconfigurationoptions.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_videoencoderconfigurationoptions.cpp, GeneratedFiles\Release\moc_videoencoderconfigurationoptions.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_videoencoderconfigurations.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_videoencoderconfigurations.cpp, GeneratedFiles\Release\moc_videoencoderconfigurations.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_videosourceconfiguration.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_videosourceconfiguration.cpp, GeneratedFiles\Release\moc_videosourceconfiguration.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_videosourceconfigurations.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_videosourceconfigurations.cpp, GeneratedFiles\Release\moc_videosourceconfigurations.cpp.
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"C:\work\60-video\ve\3rdparty\onvifc\win32\\..\lib64\Debug\\onvifc.lib" /LIBPATH:C:\Qt\Qt5.4.0_x64\5.4\msvc2013_64\lib /NOLOGO /MACHINE:X64 x64\Debug\client.obj
+         x64\Debug\devicemanagement.obj
+         x64\Debug\devicesearcher.obj
+         x64\Debug\capabilities.obj
+         x64\Debug\networkinterfaces.obj
+         x64\Debug\networkprotocols.obj
+         x64\Debug\systemdateandtime.obj
+         x64\Debug\systemfactorydefault.obj
+         x64\Debug\systemreboot.obj
+         x64\Debug\user.obj
+         x64\Debug\mediamanagement.obj
+         x64\Debug\audioencoderconfiguration.obj
+         x64\Debug\audioencoderconfigurationoptions.obj
+         x64\Debug\audioencoderconfigurations.obj
+         x64\Debug\audiosourceconfiigurations.obj
+         x64\Debug\profile.obj
+         x64\Debug\profiles.obj
+         x64\Debug\streamuri.obj
+         x64\Debug\videoencoderconfiguration.obj
+         x64\Debug\videoencoderconfigurationoptions.obj
+         x64\Debug\videoencoderconfigurations.obj
+         x64\Debug\videosourceconfiguration.obj
+         x64\Debug\videosourceconfigurations.obj
+         x64\Debug\message.obj
+         x64\Debug\messageparser.obj
+         x64\Debug\ptzmanagement.obj
+         x64\Debug\absolutemove.obj
+         x64\Debug\configuration.obj
+         x64\Debug\configurations.obj
+         x64\Debug\continuousmove.obj
+         x64\Debug\gotohomeposition.obj
+         x64\Debug\gotopreset.obj
+         x64\Debug\node.obj
+         x64\Debug\nodes.obj
+         x64\Debug\preset.obj
+         x64\Debug\presets.obj
+         x64\Debug\relativemove.obj
+         x64\Debug\removepreset.obj
+         x64\Debug\stop.obj
+         x64\Debug\qhttp.obj
+         x64\Debug\qhttpauthenticator.obj
+         x64\Debug\service.obj
+         x64\Debug\moc_absolutemove.obj
+         x64\Debug\moc_audioencoderconfiguration.obj
+         x64\Debug\moc_audioencoderconfigurationoptions.obj
+         x64\Debug\moc_audioencoderconfigurations.obj
+         x64\Debug\moc_audiosourceconfigurations.obj
+         x64\Debug\moc_capabilities.obj
+         x64\Debug\moc_client.obj
+         x64\Debug\moc_configuration.obj
+         x64\Debug\moc_configurations.obj
+         x64\Debug\moc_continuousmove.obj
+         x64\Debug\moc_devicemanagement.obj
+         x64\Debug\moc_devicesearcher.obj
+         x64\Debug\moc_gotohomeposition.obj
+         x64\Debug\moc_gotopreset.obj
+         x64\Debug\moc_mediamanagement.obj
+         x64\Debug\moc_message.obj
+         x64\Debug\moc_messageparser.obj
+         x64\Debug\moc_networkinterfaces.obj
+         x64\Debug\moc_networkprotocols.obj
+         x64\Debug\moc_node.obj
+         x64\Debug\moc_nodes.obj
+         x64\Debug\moc_preset.obj
+         x64\Debug\moc_presets.obj
+         x64\Debug\moc_profile.obj
+         x64\Debug\moc_profiles.obj
+         x64\Debug\moc_ptzmanagement.obj
+         x64\Debug\moc_relativemove.obj
+         x64\Debug\moc_removepreset.obj
+         x64\Debug\moc_service.obj
+         x64\Debug\moc_stop.obj
+         x64\Debug\moc_streamuri.obj
+         x64\Debug\moc_systemdateandtime.obj
+         x64\Debug\moc_systemfactorydefault.obj
+         x64\Debug\moc_systemreboot.obj
+         x64\Debug\moc_user.obj
+         x64\Debug\moc_videoencoderconfiguration.obj
+         x64\Debug\moc_videoencoderconfigurationoptions.obj
+         x64\Debug\moc_videoencoderconfigurations.obj
+         x64\Debug\moc_videosourceconfiguration.obj
+         x64\Debug\moc_videosourceconfigurations.obj
+         onvifc.vcxproj -> C:\work\60-video\ve\3rdparty\onvifc\win32\\..\lib64\Debug\onvifc.lib
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\onvifc\win32\onvifc.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.91
