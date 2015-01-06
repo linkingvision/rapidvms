@@ -1,0 +1,20 @@
+﻿Build started 2015-01-04 20:26:57.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\ApacheConnector\ApacheConnector_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\Foundation\include /I..\Net\include /I..\Util\include /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D ApacheHandlers_EXPORTS /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\ApacheConnector\debug_shared\\" /Fd"obj64\ApacheConnector\debug_shared\vc120.pdb" /Gd /TP /errorReport:prompt src\ApacheApplication.cpp src\ApacheChannel.cpp src\ApacheConnector.cpp src\ApacheRequestHandlerFactory.cpp src\ApacheServerRequest.cpp src\ApacheServerResponse.cpp src\ApacheStream.cpp
+         ApacheStream.cpp
+     1>src\ApacheStream.cpp(50): warning C4244: 'argument' : conversion from 'std::streamsize' to 'int', possible loss of data
+     1>src\ApacheStream.cpp(51): warning C4244: 'return' : conversion from 'std::streamsize' to 'int', possible loss of data
+         ApacheServerResponse.cpp
+         ApacheServerRequest.cpp
+         ApacheRequestHandlerFactory.cpp
+         ApacheConnector.cpp
+     1>src\ApacheConnector.cpp(20): fatal error C1083: Cannot open include file: 'httpd.h': No such file or directory
+         ApacheChannel.cpp
+         ApacheApplication.cpp
+         Generating Code...
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\ApacheConnector\ApacheConnector_x64_vs120.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:07.83
