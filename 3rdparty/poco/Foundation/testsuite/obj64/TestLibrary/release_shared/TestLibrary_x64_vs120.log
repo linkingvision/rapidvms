@@ -1,0 +1,17 @@
+﻿Build started 2015-01-04 20:09:28.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\Foundation\testsuite\TestLibrary_x64_vs120.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I..\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\TestLibrary\release_shared\\" /Fd"obj64\TestLibrary\release_shared\vc120.pdb" /Gd /TP /errorReport:prompt /FS src\TestLibrary.cpp src\TestPlugin.cpp
+         TestLibrary.cpp
+         TestPlugin.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"bin64\TestLibrary.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\lib64 PocoFoundation.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 /DLL obj64\TestLibrary\release_shared\TestLibrary.obj
+         obj64\TestLibrary\release_shared\TestPlugin.obj
+            Creating library bin64\TestLibrary.lib and object bin64\TestLibrary.exp
+         TestLibrary_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\Foundation\testsuite\bin64\TestLibrary.dll
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\Foundation\testsuite\TestLibrary_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.19

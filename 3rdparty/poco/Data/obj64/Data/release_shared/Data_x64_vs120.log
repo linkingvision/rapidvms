@@ -1,0 +1,85 @@
+﻿Build started 2015-01-04 20:23:15.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\Data\Data_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\Foundation\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D Data_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\Data\release_shared\\" /Fd"obj64\Data\release_shared\vc120.pdb" /Gd /TP /errorReport:prompt /bigobj src\AbstractBinder.cpp src\AbstractBinding.cpp src\AbstractExtraction.cpp src\AbstractExtractor.cpp src\AbstractPreparation.cpp src\AbstractPreparator.cpp src\ArchiveStrategy.cpp src\Bulk.cpp src\Connector.cpp src\DataException.cpp src\Date.cpp src\DynamicLOB.cpp src\Limit.cpp src\MetaColumn.cpp src\PooledSessionHolder.cpp src\PooledSessionImpl.cpp src\Position.cpp src\Range.cpp src\RecordSet.cpp src\Row.cpp src\RowFilter.cpp src\RowFormatter.cpp src\RowIterator.cpp src\Session.cpp src\SessionFactory.cpp src\SessionImpl.cpp src\SessionPool.cpp src\SessionPoolContainer.cpp src\SimpleRowFormatter.cpp src\SQLChannel.cpp src\Statement.cpp src\StatementCreator.cpp src\StatementImpl.cpp src\Time.cpp src\Transaction.cpp
+         AbstractBinder.cpp
+         AbstractBinding.cpp
+         AbstractExtraction.cpp
+         AbstractExtractor.cpp
+         AbstractPreparation.cpp
+         AbstractPreparator.cpp
+         ArchiveStrategy.cpp
+         Bulk.cpp
+         Connector.cpp
+         DataException.cpp
+         Date.cpp
+         DynamicLOB.cpp
+         Limit.cpp
+         MetaColumn.cpp
+         PooledSessionHolder.cpp
+         PooledSessionImpl.cpp
+         Position.cpp
+         Range.cpp
+         RecordSet.cpp
+         Row.cpp
+         Generating Code...
+         Compiling...
+         RowFilter.cpp
+         RowFormatter.cpp
+         RowIterator.cpp
+         Session.cpp
+         SessionFactory.cpp
+         SessionImpl.cpp
+         SessionPool.cpp
+         SessionPoolContainer.cpp
+         SimpleRowFormatter.cpp
+         SQLChannel.cpp
+         Statement.cpp
+         StatementCreator.cpp
+         StatementImpl.cpp
+         Time.cpp
+         Transaction.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin64\PocoData64.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib64 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin64\PocoData64.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib64\PocoData.lib" /MACHINE:X64 /DLL obj64\Data\release_shared\AbstractBinder.obj
+         obj64\Data\release_shared\AbstractBinding.obj
+         obj64\Data\release_shared\AbstractExtraction.obj
+         obj64\Data\release_shared\AbstractExtractor.obj
+         obj64\Data\release_shared\AbstractPreparation.obj
+         obj64\Data\release_shared\AbstractPreparator.obj
+         obj64\Data\release_shared\ArchiveStrategy.obj
+         obj64\Data\release_shared\Bulk.obj
+         obj64\Data\release_shared\Connector.obj
+         obj64\Data\release_shared\DataException.obj
+         obj64\Data\release_shared\Date.obj
+         obj64\Data\release_shared\DynamicLOB.obj
+         obj64\Data\release_shared\Limit.obj
+         obj64\Data\release_shared\MetaColumn.obj
+         obj64\Data\release_shared\PooledSessionHolder.obj
+         obj64\Data\release_shared\PooledSessionImpl.obj
+         obj64\Data\release_shared\Position.obj
+         obj64\Data\release_shared\Range.obj
+         obj64\Data\release_shared\RecordSet.obj
+         obj64\Data\release_shared\Row.obj
+         obj64\Data\release_shared\RowFilter.obj
+         obj64\Data\release_shared\RowFormatter.obj
+         obj64\Data\release_shared\RowIterator.obj
+         obj64\Data\release_shared\Session.obj
+         obj64\Data\release_shared\SessionFactory.obj
+         obj64\Data\release_shared\SessionImpl.obj
+         obj64\Data\release_shared\SessionPool.obj
+         obj64\Data\release_shared\SessionPoolContainer.obj
+         obj64\Data\release_shared\SimpleRowFormatter.obj
+         obj64\Data\release_shared\SQLChannel.obj
+         obj64\Data\release_shared\Statement.obj
+         obj64\Data\release_shared\StatementCreator.obj
+         obj64\Data\release_shared\StatementImpl.obj
+         obj64\Data\release_shared\Time.obj
+         obj64\Data\release_shared\Transaction.obj
+            Creating library ..\lib64\PocoData.lib and object ..\lib64\PocoData.exp
+         Data_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\Data\..\bin64\PocoData64.dll
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\Data\Data_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:53.10
