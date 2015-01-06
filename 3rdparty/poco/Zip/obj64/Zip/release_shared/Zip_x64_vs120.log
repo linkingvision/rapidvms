@@ -1,0 +1,62 @@
+﻿Build started 2015-01-04 20:26:05.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\Zip\Zip_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\Foundation\include /nologo /W3 /WX- /Od /Ob1 /Oi /Ot /Oy /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D Zip_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\Zip\release_shared\\" /Fd"obj64\Zip\release_shared\vc120.pdb" /Gd /TP /wd4244 /wd4267 /errorReport:prompt src\Add.cpp src\AutoDetectStream.cpp src\Compress.cpp src\Decompress.cpp src\Delete.cpp src\Keep.cpp src\ParseCallback.cpp src\PartialStream.cpp src\Rename.cpp src\Replace.cpp src\SkipCallback.cpp src\ZipArchive.cpp src\ZipArchiveInfo.cpp src\ZipCommon.cpp src\ZipDataInfo.cpp src\ZipException.cpp src\ZipFileInfo.cpp src\ZipLocalFileHeader.cpp src\ZipManipulator.cpp src\ZipOperation.cpp src\ZipStream.cpp src\ZipUtil.cpp
+         Add.cpp
+         AutoDetectStream.cpp
+         Compress.cpp
+         Decompress.cpp
+         Delete.cpp
+         Keep.cpp
+         ParseCallback.cpp
+         PartialStream.cpp
+         Rename.cpp
+         Replace.cpp
+         SkipCallback.cpp
+         ZipArchive.cpp
+         ZipArchiveInfo.cpp
+         ZipCommon.cpp
+         ZipDataInfo.cpp
+         ZipException.cpp
+         ZipFileInfo.cpp
+         ZipLocalFileHeader.cpp
+         ZipManipulator.cpp
+         ZipOperation.cpp
+         Generating Code...
+         Compiling...
+         ZipStream.cpp
+         ZipUtil.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"obj64\Zip\release_shared\DLLVersion.res" ..\DLLVersion.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin64\PocoZip64.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib64 ws2_32.lib iphlpapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin64\PocoZip64.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib64\PocoZip.lib" /MACHINE:X64 /DLL obj64\Zip\release_shared\DLLVersion.res
+         obj64\Zip\release_shared\Add.obj
+         obj64\Zip\release_shared\AutoDetectStream.obj
+         obj64\Zip\release_shared\Compress.obj
+         obj64\Zip\release_shared\Decompress.obj
+         obj64\Zip\release_shared\Delete.obj
+         obj64\Zip\release_shared\Keep.obj
+         obj64\Zip\release_shared\ParseCallback.obj
+         obj64\Zip\release_shared\PartialStream.obj
+         obj64\Zip\release_shared\Rename.obj
+         obj64\Zip\release_shared\Replace.obj
+         obj64\Zip\release_shared\SkipCallback.obj
+         obj64\Zip\release_shared\ZipArchive.obj
+         obj64\Zip\release_shared\ZipArchiveInfo.obj
+         obj64\Zip\release_shared\ZipCommon.obj
+         obj64\Zip\release_shared\ZipDataInfo.obj
+         obj64\Zip\release_shared\ZipException.obj
+         obj64\Zip\release_shared\ZipFileInfo.obj
+         obj64\Zip\release_shared\ZipLocalFileHeader.obj
+         obj64\Zip\release_shared\ZipManipulator.obj
+         obj64\Zip\release_shared\ZipOperation.obj
+         obj64\Zip\release_shared\ZipStream.obj
+         obj64\Zip\release_shared\ZipUtil.obj
+            Creating library ..\lib64\PocoZip.lib and object ..\lib64\PocoZip.exp
+         Zip_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\Zip\..\bin64\PocoZip64.dll
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\Zip\Zip_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:17.62
