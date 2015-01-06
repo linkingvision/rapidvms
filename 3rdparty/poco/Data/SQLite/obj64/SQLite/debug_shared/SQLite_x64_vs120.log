@@ -1,0 +1,36 @@
+﻿Build started 2015-01-04 20:24:30.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\Data\SQLite\SQLite_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\..\Foundation\include /I..\..\Data\include /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D SQLITE_THREADSAFE=1 /D SQLITE_ENABLE_FTS3 /D SQLITE_ENABLE_FTS3_PARENTHESIS /D SQLITE_OMIT_UTF16 /D SQLITE_OMIT_PROGRESS_CALLBACK /D SQLITE_OMIT_COMPLETE /D SQLITE_OMIT_TCL_VARIABLE /D SQLITE_OMIT_DEPRECATED /D SQLite_EXPORTS /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\SQLite\debug_shared\\" /Fd"obj64\SQLite\debug_shared\vc120.pdb" /Gd /TP /wd4996 /wd4244 /wd4018 /errorReport:prompt src\Binder.cpp src\Connector.cpp src\Extractor.cpp src\Notifier.cpp src\SessionImpl.cpp src\SQLiteException.cpp src\SQLiteStatementImpl.cpp src\Utility.cpp
+         Utility.cpp
+         SQLiteStatementImpl.cpp
+         SQLiteException.cpp
+         SessionImpl.cpp
+     1>src\SessionImpl.cpp(178): warning C4267: 'argument' : conversion from 'size_t' to 'long', possible loss of data
+     1>src\SessionImpl.cpp(216): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         Notifier.cpp
+         Extractor.cpp
+     1>src\Extractor.cpp(233): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+         Connector.cpp
+         Binder.cpp
+     1>src\Binder.cpp(118): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /I.\include /I..\..\Foundation\include /I..\..\Data\include /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D SQLITE_THREADSAFE=1 /D SQLITE_ENABLE_FTS3 /D SQLITE_ENABLE_FTS3_PARENTHESIS /D SQLITE_OMIT_UTF16 /D SQLITE_OMIT_PROGRESS_CALLBACK /D SQLITE_OMIT_COMPLETE /D SQLITE_OMIT_TCL_VARIABLE /D SQLITE_OMIT_DEPRECATED /D SQLite_EXPORTS /D _WINDLL /D _MBCS /GF /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\SQLite\debug_shared\\" /Fd"obj64\SQLite\debug_shared\vc120.pdb" /Gd /TC /wd4996 /wd4244 /wd4018 /errorReport:prompt src\sqlite3.c
+         sqlite3.c
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin64\PocoDataSQLite64d.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\lib64 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\bin64\PocoDataSQLite64d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\lib64\PocoDataSQLited.lib" /MACHINE:X64 /DLL obj64\SQLite\debug_shared\Binder.obj
+         obj64\SQLite\debug_shared\Connector.obj
+         obj64\SQLite\debug_shared\Extractor.obj
+         obj64\SQLite\debug_shared\Notifier.obj
+         obj64\SQLite\debug_shared\SessionImpl.obj
+         obj64\SQLite\debug_shared\sqlite3.obj
+         obj64\SQLite\debug_shared\SQLiteException.obj
+         obj64\SQLite\debug_shared\SQLiteStatementImpl.obj
+         obj64\SQLite\debug_shared\Utility.obj
+            Creating library ..\..\lib64\PocoDataSQLited.lib and object ..\..\lib64\PocoDataSQLited.exp
+         SQLite_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\Data\SQLite\..\..\bin64\PocoDataSQLite64d.dll
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\Data\SQLite\SQLite_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:19.53
