@@ -125,7 +125,7 @@ void ONVIF::ContinuousMove::qt_static_metacall(QObject *_o, QMetaObject::Call _c
 
 const QMetaObject ONVIF::ContinuousMove::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__ContinuousMove.data,
-      qt_meta_data_ONVIF__ContinuousMove,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__ContinuousMove,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -136,7 +136,7 @@ const QMetaObject *ONVIF::ContinuousMove::metaObject() const
 
 void *ONVIF::ContinuousMove::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__ContinuousMove.stringdata))
         return static_cast<void*>(const_cast< ContinuousMove*>(this));
     return QObject::qt_metacast(_clname);

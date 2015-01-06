@@ -62,7 +62,7 @@ void ONVIF::MediaManagement::qt_static_metacall(QObject *_o, QMetaObject::Call _
 
 const QMetaObject ONVIF::MediaManagement::staticMetaObject = {
     { &Service::staticMetaObject, qt_meta_stringdata_ONVIF__MediaManagement.data,
-      qt_meta_data_ONVIF__MediaManagement,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__MediaManagement,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -73,7 +73,7 @@ const QMetaObject *ONVIF::MediaManagement::metaObject() const
 
 void *ONVIF::MediaManagement::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__MediaManagement.stringdata))
         return static_cast<void*>(const_cast< MediaManagement*>(this));
     return Service::qt_metacast(_clname);

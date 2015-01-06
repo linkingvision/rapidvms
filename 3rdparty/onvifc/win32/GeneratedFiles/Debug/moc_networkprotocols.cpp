@@ -62,7 +62,7 @@ void ONVIF::NetworkProtocols::qt_static_metacall(QObject *_o, QMetaObject::Call 
 
 const QMetaObject ONVIF::NetworkProtocols::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__NetworkProtocols.data,
-      qt_meta_data_ONVIF__NetworkProtocols,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__NetworkProtocols,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -73,7 +73,7 @@ const QMetaObject *ONVIF::NetworkProtocols::metaObject() const
 
 void *ONVIF::NetworkProtocols::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__NetworkProtocols.stringdata))
         return static_cast<void*>(const_cast< NetworkProtocols*>(this));
     return QObject::qt_metacast(_clname);

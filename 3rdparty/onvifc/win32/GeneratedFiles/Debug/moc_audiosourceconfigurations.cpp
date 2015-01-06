@@ -62,7 +62,7 @@ void ONVIF::AudioSourceConfigurations::qt_static_metacall(QObject *_o, QMetaObje
 
 const QMetaObject ONVIF::AudioSourceConfigurations::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__AudioSourceConfigurations.data,
-      qt_meta_data_ONVIF__AudioSourceConfigurations,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__AudioSourceConfigurations,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -73,7 +73,7 @@ const QMetaObject *ONVIF::AudioSourceConfigurations::metaObject() const
 
 void *ONVIF::AudioSourceConfigurations::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__AudioSourceConfigurations.stringdata))
         return static_cast<void*>(const_cast< AudioSourceConfigurations*>(this));
     return QObject::qt_metacast(_clname);

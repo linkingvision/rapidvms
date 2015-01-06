@@ -62,7 +62,7 @@ void ONVIF::AudioEncoderConfigurations::qt_static_metacall(QObject *_o, QMetaObj
 
 const QMetaObject ONVIF::AudioEncoderConfigurations::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__AudioEncoderConfigurations.data,
-      qt_meta_data_ONVIF__AudioEncoderConfigurations,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__AudioEncoderConfigurations,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -73,7 +73,7 @@ const QMetaObject *ONVIF::AudioEncoderConfigurations::metaObject() const
 
 void *ONVIF::AudioEncoderConfigurations::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__AudioEncoderConfigurations.stringdata))
         return static_cast<void*>(const_cast< AudioEncoderConfigurations*>(this));
     return QObject::qt_metacast(_clname);

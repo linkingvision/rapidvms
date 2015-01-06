@@ -154,7 +154,7 @@ void ONVIF::AbsoluteMove::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 
 const QMetaObject ONVIF::AbsoluteMove::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__AbsoluteMove.data,
-      qt_meta_data_ONVIF__AbsoluteMove,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__AbsoluteMove,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -165,7 +165,7 @@ const QMetaObject *ONVIF::AbsoluteMove::metaObject() const
 
 void *ONVIF::AbsoluteMove::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__AbsoluteMove.stringdata))
         return static_cast<void*>(const_cast< AbsoluteMove*>(this));
     return QObject::qt_metacast(_clname);

@@ -335,7 +335,7 @@ void ONVIF::Node::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 
 const QMetaObject ONVIF::Node::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__Node.data,
-      qt_meta_data_ONVIF__Node,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__Node,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -346,7 +346,7 @@ const QMetaObject *ONVIF::Node::metaObject() const
 
 void *ONVIF::Node::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__Node.stringdata))
         return static_cast<void*>(const_cast< Node*>(this));
     return QObject::qt_metacast(_clname);

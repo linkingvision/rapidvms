@@ -94,7 +94,7 @@ void ONVIF::DeviceSearcher::qt_static_metacall(QObject *_o, QMetaObject::Call _c
 
 const QMetaObject ONVIF::DeviceSearcher::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__DeviceSearcher.data,
-      qt_meta_data_ONVIF__DeviceSearcher,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__DeviceSearcher,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -105,7 +105,7 @@ const QMetaObject *ONVIF::DeviceSearcher::metaObject() const
 
 void *ONVIF::DeviceSearcher::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__DeviceSearcher.stringdata))
         return static_cast<void*>(const_cast< DeviceSearcher*>(this));
     return QObject::qt_metacast(_clname);
@@ -131,7 +131,7 @@ int ONVIF::DeviceSearcher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void ONVIF::DeviceSearcher::receiveData(const QHash<QString,QString> & _t1)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

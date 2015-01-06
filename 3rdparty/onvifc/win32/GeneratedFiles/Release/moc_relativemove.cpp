@@ -155,7 +155,7 @@ void ONVIF::RelativeMove::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 
 const QMetaObject ONVIF::RelativeMove::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__RelativeMove.data,
-      qt_meta_data_ONVIF__RelativeMove,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__RelativeMove,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -166,7 +166,7 @@ const QMetaObject *ONVIF::RelativeMove::metaObject() const
 
 void *ONVIF::RelativeMove::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__RelativeMove.stringdata))
         return static_cast<void*>(const_cast< RelativeMove*>(this));
     return QObject::qt_metacast(_clname);

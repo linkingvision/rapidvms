@@ -97,7 +97,7 @@ void ONVIF::SystemFactoryDefault::qt_static_metacall(QObject *_o, QMetaObject::C
 
 const QMetaObject ONVIF::SystemFactoryDefault::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__SystemFactoryDefault.data,
-      qt_meta_data_ONVIF__SystemFactoryDefault,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__SystemFactoryDefault,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -108,7 +108,7 @@ const QMetaObject *ONVIF::SystemFactoryDefault::metaObject() const
 
 void *ONVIF::SystemFactoryDefault::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__SystemFactoryDefault.stringdata))
         return static_cast<void*>(const_cast< SystemFactoryDefault*>(this));
     return QObject::qt_metacast(_clname);

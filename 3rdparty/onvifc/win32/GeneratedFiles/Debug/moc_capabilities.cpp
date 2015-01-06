@@ -337,7 +337,7 @@ void ONVIF::Capabilities::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 
 const QMetaObject ONVIF::Capabilities::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_ONVIF__Capabilities.data,
-      qt_meta_data_ONVIF__Capabilities,  qt_static_metacall, 0, 0}
+      qt_meta_data_ONVIF__Capabilities,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
@@ -348,7 +348,7 @@ const QMetaObject *ONVIF::Capabilities::metaObject() const
 
 void *ONVIF::Capabilities::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
+    if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ONVIF__Capabilities.stringdata))
         return static_cast<void*>(const_cast< Capabilities*>(this));
     return QObject::qt_metacast(_clname);
