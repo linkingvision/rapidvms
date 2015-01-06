@@ -1,0 +1,29 @@
+﻿Build started 2015-01-04 20:00:15.
+     1>Project "C:\work\60-video\ve\3rdparty\poco\CppUnit\CppUnit_x64_vs120.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\CL.exe /c /Iinclude /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D CppUnit_EXPORTS /D _CRT_SECURE_NO_DEPRECATE /D _WINDLL /D _MBCS /GF /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"obj64\debug_shared\\" /Fd"obj64\debug_shared\vc80.pdb" /Gd /TP /errorReport:prompt src\CppUnitException.cpp src\TestCase.cpp src\TestDecorator.cpp src\TestFailure.cpp src\TestResult.cpp src\TestRunner.cpp src\TestSuite.cpp src\TextTestResult.cpp
+         CppUnitException.cpp
+         TestCase.cpp
+         TestDecorator.cpp
+         TestFailure.cpp
+         TestResult.cpp
+         TestRunner.cpp
+         TestSuite.cpp
+         TextTestResult.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\BIN\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin64\CppUnit64d.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin64\CppUnit64d.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib64\CppUnitd.lib" /MACHINE:X64 /DLL obj64\debug_shared\CppUnitException.obj
+         obj64\debug_shared\TestCase.obj
+         obj64\debug_shared\TestDecorator.obj
+         obj64\debug_shared\TestFailure.obj
+         obj64\debug_shared\TestResult.obj
+         obj64\debug_shared\TestRunner.obj
+         obj64\debug_shared\TestSuite.obj
+         obj64\debug_shared\TextTestResult.obj
+            Creating library ..\lib64\CppUnitd.lib and object ..\lib64\CppUnitd.exp
+         CppUnit_x64_vs120.vcxproj -> C:\work\60-video\ve\3rdparty\poco\CppUnit\..\bin64\CppUnit64d.dll
+     1>Done Building Project "C:\work\60-video\ve\3rdparty\poco\CppUnit\CppUnit_x64_vs120.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:28.07
