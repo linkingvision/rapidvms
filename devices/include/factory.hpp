@@ -301,7 +301,11 @@ inline void OnvifLog(char * str)
 inline Factory::Factory()
 {
 #ifdef WIN32
+#ifndef _WIN64
     astring strSysPath = "C:\\videodb\\system";
+#else
+    astring strSysPath = "C:\\videodb64\\system";
+#endif
 #else
     astring strSysPath = "ve/videodb/system/";
 #endif
