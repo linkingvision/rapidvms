@@ -31,6 +31,10 @@ public:
 public:
 	HdfsRecWrapper & GetHdfsRecWrapper();
 	BOOL ReleaseHdfsRecWrapper();
+	s32 GetInerval()
+	{
+		return m_inerval;
+	}
 
 private:
     	fast_mutex m_Lock;
@@ -39,5 +43,6 @@ private:
 	astring m_pNameNode;
 	astring m_pPort; 
 	astring m_pUser;
+	s32 m_inerval;/*time in sec */
 };
 #endif /* __V_HDFS_DB_HPP__ */
