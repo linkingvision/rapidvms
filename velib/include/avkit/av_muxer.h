@@ -42,7 +42,8 @@ public:
 
     CK_API void flush();
 
-    CK_API void finalize_buffer( std::shared_ptr<cppkit::ck_memory> buffer );
+    //CK_API void finalize_buffer( std::shared_ptr<cppkit::ck_memory> buffer );
+    CK_API void finalize_buffer( cppkit::ck_memory* buffer );
     CK_API void finalize_file();
 
     CK_API void apply_codec_options( const struct codec_options& options );
