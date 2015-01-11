@@ -77,7 +77,6 @@ public:
     DeviceParam & operator=(const DeviceParam &pParam)
     {
         memset(&m_Conf, 0, sizeof(m_Conf));
-
         memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
         m_strUrl = pParam.m_strUrl;
         return *this;
@@ -483,7 +482,6 @@ m_Online(FALSE),
 m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0)
 {
-    
     if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
       sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
     m_param = pParam;
@@ -536,6 +534,7 @@ DeviceStatus Device::CheckDevice()
             VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 			
             StartRecord();
+	     StartHdfsRecord();
             m_OnlineUrl = TRUE;
             UpdatePTZConf();
         }
