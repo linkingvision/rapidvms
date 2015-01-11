@@ -393,10 +393,10 @@ inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
 inline void VSCHdfsRecordDataItemDefault(VSCConfHdfsRecordData__ &item)
 {
     strcpy(item.NameNode, "localhost");//default for hdd
-    strcpy(item.Port, "9010");//0 for hdd
+    strcpy(item.Port, "8020");//0 for hdd
     strcpy(item.User, "admin");
     strcpy(item.Password, "admin");
-    item.FileInterval = 3;/* 3 mins */
+    item.FileInterval = 30;/* 30s */
 }
 
 #pragma pack(pop)
