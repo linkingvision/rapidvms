@@ -79,6 +79,15 @@ For more guide
 
 ### Note: ###
 	Please Delete C:\videodb if use vdceye Manager V2014-0630.msi and before.
+    
+	For Axis Camera, Plase disable the replay attack protection
+	System Options
+	Advanced
+		Plain Config
+		Webservice(Select Group)
+			Disable the Enable replay attack protection
+	
+	For Sony camera, Please make the vdcye time same with the camera
 		
 
 
