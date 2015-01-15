@@ -15,4 +15,4 @@ export CLASSPATH=$CLASSPATH
 
 mkdir -p ./ve/videodb/
 
-./bin/vdcEyeManager
+./bin/vdceyeManager
