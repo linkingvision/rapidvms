@@ -1,6 +1,6 @@
 
-export HADOOP_HOME=/home/hadoop-2.6.0
-export JAVA_HOME=/home/hadoop-2.6.0/Java/jdk1.8.0_25
+export HADOOP_HOME=/home/user/work/hdp/hadoop-2.6.0/
+export JAVA_HOME=/home/user/work/hdp/jdk1.8.0_25/
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/amd64/server/
 
