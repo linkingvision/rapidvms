@@ -13,7 +13,7 @@ all:
 
 clean:
 	for d in $(subdirs); do (cd $$d; $(MAKE) clean ); done
-	rm -rf ./linux/bin ./linux/lib/ ./linux/share ./linux/ssl ./linux/include 
+	rm -rf ./linux/*.so ./linux/bin ./linux/lib/ ./linux/share ./linux/ssl ./linux/include 
 
 install:
 	for d in $(subdirs); do (cd $$d; $(MAKE) install ); done
@@ -37,7 +37,7 @@ rel:
 	rm -rf ./$(REL)/lib/pkgconfig
 	rm -rf ./$(REL)/lib/*.dbg
 	rm -rf ./$(REL)/lib/libSDL*
-	strip ./$(REL)/bin/vdcEyeManager
+	strip ./$(REL)/bin/vdceyeManager
 	strip ./$(REL)/lib/*.so
 	strip ./$(REL)/lib/*.so.*
 	
