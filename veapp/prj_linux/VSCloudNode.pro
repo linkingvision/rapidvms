@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 TEMPLATE = app
-TARGET = vdcEyeManager
+TARGET = vdceyeManager
 DESTDIR = ./
 QT += core sql network xml script xmlpatterns dbus widgets gui qml printsupport  concurrent 
 CONFIG += help debug console
