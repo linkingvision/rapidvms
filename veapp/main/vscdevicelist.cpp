@@ -34,6 +34,12 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 
 	ui.pbRecorder->hide();
 	ui.lbRecorder->hide();
+	
+	ui.pbDmining->hide();
+	ui.lbMining->hide();
+	
+	ui.pbEmap->hide();
+	ui.lbEmap->hide();
 
 
 }
