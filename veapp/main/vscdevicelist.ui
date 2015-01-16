@@ -282,7 +282,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="lbMining">
          <property name="styleSheet">
           <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
          </property>
@@ -330,7 +330,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lbEmap">
          <property name="font">
           <font>
            <family>Arial Unicode MS</family>
