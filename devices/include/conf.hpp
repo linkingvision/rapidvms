@@ -47,6 +47,8 @@
 #define VSC_CONF_VIEW_KEY "ConfVSCView"
 #define VSC_CONF_VGROUP_KEY "ConfVSCVGroup"
 #define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
+#define VSC_CONF_EMAP_FILE_KEY "ConfVSCEmapFile"
+#define VSC_CONF_EMAP_CONF_KEY "ConfVSCEmapConf"
 #define VSC_CONF_PARAM_MAX 1024
 #define VSC_CONF_PARAM_S_MAX 128
 /* Max camera in one view */
