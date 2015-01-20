@@ -232,6 +232,9 @@ typedef struct __VSCDeviceData__ {
 	u32 Recording;/* 1 stand for recording, 0 stand for do record */
 	u32 GroupId;
 	u32 HdfsRecording;/* 1 stand for recording, 0 stand for do record */
+	/* Second stream, only for VA */
+	u32 UseProfileToken2;/* 1 stand for use, 0 stand for do not use */
+	s8 OnvifProfileToken2[VSC_CONF_PARAM_MAX];
 }VSCDeviceData__;
 
 
