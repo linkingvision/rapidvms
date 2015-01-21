@@ -236,6 +236,7 @@ typedef struct __VSCDeviceData__ {
 	/* Second stream, only for VA */
 	u32 UseProfileToken2;/* 1 stand for use, 0 stand for do not use */
 	s8 OnvifProfileToken2[VSC_CONF_PARAM_MAX];
+	u32 ConnectType;/* 0 UDP, 1 Multicast , 2 TCP, 3 HTTP */
 }VSCDeviceData__;
 
 
