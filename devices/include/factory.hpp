@@ -159,10 +159,6 @@ public:
 	BOOL GetRecordStatus(s32 nIndex, BOOL &bStatus);
 
 public:
-	NotificationQueue * GetRawDataQueue(s32 nIndex);
-	BOOL ReleaseRawDataQueue(s32 nIndex, NotificationQueue * pQueue);
-	NotificationQueue * GetDataQueue(s32 nIndex);
-	BOOL GetDataQueue(s32 nIndex, NotificationQueue * pQueue);
 	BOOL RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDataCallback(s32 nIndex, void * pParam);
 	BOOL GetInfoFrame(s32 nIndex, InfoFrame &pFrame);
@@ -210,9 +206,6 @@ public:
 private:
 	DeviceMap m_DeviceMap;
 	DeviceParamMap m_DeviceParamMap;
-	/* Second stream */
-	DeviceMap m_DeviceMap2;
-	DeviceParamMap m_DeviceParamMap2;
 
 	/* Virtual IP camera param */
 	VIPCDeviceParamMap m_VIPCDeviceParamMap;
@@ -555,42 +548,6 @@ inline s32 Factory::InitAddDevice(DeviceParam & pParam, u32 nIndex)
     return TRUE;
 }
 
-inline NotificationQueue * Factory::GetRawDataQueue(s32 nIndex)
-{
-    NotificationQueue * pQueue = NULL;
-    Lock();
-    if (m_DeviceMap[nIndex] != NULL)
-    {
-        pQueue = m_DeviceMap[nIndex]->GetRawDataQueue();
-    }
-
-    UnLock();
-
-    return pQueue;
-}
-
-inline BOOL Factory::ReleaseRawDataQueue(s32 nIndex, NotificationQueue * pQueue)
-{
-    Lock();
-    if (m_DeviceMap[nIndex] != NULL)
-    {
-        m_DeviceMap[nIndex]->ReleaseRawDataQueue(pQueue);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-inline NotificationQueue * Factory::GetDataQueue(s32 nIndex)
-{
-    return NULL;
-}
-
-inline BOOL Factory::GetDataQueue(s32 nIndex, NotificationQueue * pQueue)
-{
-    return TRUE;
-}
-
 inline BOOL Factory::RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
@@ -604,6 +561,20 @@ inline BOOL Factory::RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr p
 
     return TRUE;
 }
+
+inline BOOL Factory::UnRegDataCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegDataCallback(pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
 
 inline BOOL Factory::GetInfoFrame(s32 nIndex, InfoFrame &pFrame)
 {
@@ -645,20 +616,6 @@ inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
 
     return ret;
 }
-
-inline BOOL Factory::UnRegDataCallback(s32 nIndex, void * pParam)
-{
-    Lock();
-    if (m_DeviceMap[nIndex] != NULL)
-    {
-        m_DeviceMap[nIndex]->UnRegDataCallback(pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
 
 inline BOOL Factory::StartDevice(s32 nIndex)
 {
