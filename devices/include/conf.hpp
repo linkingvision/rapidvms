@@ -198,6 +198,7 @@ typedef struct __VSCConfData__ {
     u32 DeviceNum;
     u32 VIPCMap[CONF_MAP_MAX];
     u32 VIPCNum;
+    u32 ConfVer;/* Current version is 0 */
 }VSCConfData__;
 
 typedef struct __VSCConfData {
@@ -234,9 +235,10 @@ typedef struct __VSCDeviceData__ {
 	u32 GroupId;
 	u32 HdfsRecording;/* 1 stand for recording, 0 stand for do record */
 	/* Second stream, only for VA */
-	u32 UseProfileToken2;/* 1 stand for use, 0 stand for do not use */
 	s8 OnvifProfileToken2[VSC_CONF_PARAM_MAX];
-	u32 ConnectType;/* 0 UDP, 1 Multicast , 2 TCP, 3 HTTP */
+	u32 ConnectType;/* 0 UDP, 1 TCP, 2 Multicast, 3 HTTP */
+	u32 Mining;/* 1 stand for mining, 0 stand for no mining */
+	
 }VSCDeviceData__;
 
 
