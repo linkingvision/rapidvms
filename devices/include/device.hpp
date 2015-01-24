@@ -14,7 +14,7 @@
 #include <Windows.h>
 #include <Winbase.h>
 #endif 
-//#include "ffmpeg_impl.hpp"
+
 #include "utility.hpp"
 #include "conf.hpp"
 #include "datasink.hpp"
@@ -56,10 +56,6 @@ typedef enum
     DEV_LAST
 } DeviceStatus;
 
-
-class CvCapture_FFMPEG;
-typedef std::list<NotificationQueue*> CmdQueueList;
-//typedef UtilityListIterator<NotificationQueue> CmdQueueIterator;
 #ifdef WIN32
 typedef void (__cdecl * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 #else
@@ -70,131 +66,138 @@ typedef std::map<void *, DeviceDataCallbackFunctionPtr> DeviceDataCallbackMap;
 class DeviceParam
 {
 public:
-    inline DeviceParam();
-    inline DeviceParam(const DeviceParam &pParam);
-    inline DeviceParam(VSCDeviceData &pData);
-    inline ~DeviceParam();
-    DeviceParam & operator=(const DeviceParam &pParam)
-    {
-        memset(&m_Conf, 0, sizeof(m_Conf));
-        memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-        m_strUrl = pParam.m_strUrl;
-        return *this;
-    }
+	inline DeviceParam();
+	inline DeviceParam(const DeviceParam &pParam);
+	inline DeviceParam(VSCDeviceData &pData);
+	inline ~DeviceParam();
+	DeviceParam & operator=(const DeviceParam &pParam)
+	{
+		memset(&m_Conf, 0, sizeof(m_Conf));
+		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+		m_strUrl = pParam.m_strUrl;
+		m_strUrlSubStream = pParam.m_strUrlSubStream;
+		m_bHasSubStream = pParam.m_bHasSubStream;
+		return *this;
+	}
 
 public:
-    inline BOOL UpdateUrl();
-    inline BOOL UpdateUrlOnvif();
-    inline BOOL CheckOnline();
+	inline BOOL UpdateUrl();
+	inline BOOL UpdateUrlOnvif();
+	inline BOOL CheckOnline();
 
 public:
-    VSCDeviceData m_Conf;
-    BOOL m_bOnvifUrlGetted;
-    astring m_strUrl;
+	VSCDeviceData m_Conf;
+	BOOL m_bOnvifUrlGetted;
+	astring m_strUrl;
+	astring m_strUrlSubStream;
+	BOOL m_bHasSubStream;
 };
 
 
 class VIPCDeviceParam
 {
 public:
-    inline VIPCDeviceParam()
-    {
-        memset(&m_Conf, 0, sizeof(m_Conf));
-        VSCVIPCDataItemDefault(m_Conf.data.conf);
-    }
-    inline VIPCDeviceParam(const VIPCDeviceParam &pParam)
-    {
-        memset(&m_Conf, 0, sizeof(m_Conf));
-        memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-    }
-    inline VIPCDeviceParam(VSCVIPCData &pData)
-    {
-        memset(&m_Conf, 0, sizeof(m_Conf));
-        memcpy(&m_Conf, &(pData), sizeof(m_Conf));
-    }
-    inline ~VIPCDeviceParam(){}
-    VIPCDeviceParam & operator=(const VIPCDeviceParam &pParam)
-    {
-        memset(&m_Conf, 0, sizeof(m_Conf));
+	inline VIPCDeviceParam()
+	{
+		memset(&m_Conf, 0, sizeof(m_Conf));
+		VSCVIPCDataItemDefault(m_Conf.data.conf);
+	}
+	inline VIPCDeviceParam(const VIPCDeviceParam &pParam)
+	{
+		memset(&m_Conf, 0, sizeof(m_Conf));
+		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+	}
+	inline VIPCDeviceParam(VSCVIPCData &pData)
+	{
+		memset(&m_Conf, 0, sizeof(m_Conf));
+		memcpy(&m_Conf, &(pData), sizeof(m_Conf));
+	}
+	inline ~VIPCDeviceParam(){}
+	VIPCDeviceParam & operator=(const VIPCDeviceParam &pParam)
+	{
+		memset(&m_Conf, 0, sizeof(m_Conf));
 
-        memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-        return *this;
-    }
+		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+		return *this;
+	}
 
 public:
-    VSCVIPCData m_Conf;
+	VSCVIPCData m_Conf;
 };
 
 class Device
 {
 public:
-    inline Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam);
-    inline ~Device();
-	
-public:
-    inline BOOL Start();
-    inline BOOL Stop();
-    inline BOOL StartData();
-    inline BOOL StopData();
-    inline BOOL StartRecord();
-    inline BOOL StopRecord();
-    inline BOOL StartHdfsRecord();
-    inline BOOL StopHdfsRecord();
-    inline BOOL SetRecord(BOOL bRecording);
-    inline BOOL SetHdfsRecord(BOOL bRecording);
-    inline DeviceStatus CheckDevice();
-	
-public:
-    inline static BOOL DataHandler(void* pData, VideoFrame& frame);
-    inline BOOL DataHandler1(VideoFrame& frame);
+	inline Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam);
+	inline ~Device();
 
 public:
-    inline void Lock(){m_Lock.lock();}
-    inline void UnLock(){m_Lock.unlock();}
+	inline BOOL Start();
+	inline BOOL Stop();
+	inline BOOL StartData();
+	inline BOOL StopData();
+	inline BOOL StartSubData();
+	inline BOOL StopSubData();
+	inline BOOL StartRecord();
+	inline BOOL StopRecord();
+	inline BOOL StartHdfsRecord();
+	inline BOOL StopHdfsRecord();
+	inline BOOL SetRecord(BOOL bRecording);
+	inline BOOL SetHdfsRecord(BOOL bRecording);
+	inline DeviceStatus CheckDevice();
 
 public:
-    inline NotificationQueue * GetRawDataQueue();
-    inline BOOL ReleaseRawDataQueue(NotificationQueue * pQueue);
-    inline NotificationQueue * GetDataQueue();
-    inline BOOL GetDataQueue(NotificationQueue * pQueue);
-    inline BOOL RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
-    inline BOOL UnRegDataCallback(void * pParam);
-    inline BOOL GetInfoFrame(InfoFrame &pFrame)
-    {
-    	if (m_bGotInfoData == TRUE)
-    	{
-    		memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
+	inline static BOOL DataHandler(void* pData, VideoFrame& frame);
+	inline BOOL DataHandler1(VideoFrame& frame);
+	inline static BOOL SubDataHandler(void* pData, VideoFrame& frame);
+	inline BOOL SubDataHandler1(VideoFrame& frame);
+
+public:
+	inline void Lock(){m_Lock.lock();}
+	inline void UnLock(){m_Lock.unlock();}
+	inline void SubLock(){m_SubLock.lock();}
+	inline void SubUnLock(){m_SubLock.unlock();}
+
+public:
+	inline BOOL RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegDataCallback(void * pParam);
+	inline BOOL GetInfoFrame(InfoFrame &pFrame)
+	{
+		if (m_bGotInfoData == TRUE)
+		{
+			memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
 		return TRUE;
-    	}else
-    	{
-    		return FALSE;
-    	}
-    }
-    inline BOOL Cleanup();
-    inline BOOL GetDeviceOnline()
-    {
-        BOOL online = true;
-        return m_Online;
-    }
-	
-    inline BOOL GetUrl(std::string &url)
-    {
-        url = m_param.m_strUrl;
-        return TRUE;
-    }
-    inline BOOL GetDeviceRtspUrl(astring & strUrl)
-    {
-    	if (m_OnlineUrl == FALSE)
-    	{
-    		return FALSE;
-    	}
-	strUrl = m_param.m_strUrl;
-	return TRUE;
-    }
+		}else
+		{
+			return FALSE;
+		}
+	}
+	inline BOOL Cleanup();
+	inline BOOL GetDeviceOnline()
+	{
+	    BOOL online = true;
+	    return m_Online;
+	}
+
+	inline BOOL GetUrl(std::string &url)
+	{
+	    url = m_param.m_strUrl;
+	    return TRUE;
+	}
+	inline BOOL GetDeviceRtspUrl(astring & strUrl)
+	{
+		if (m_OnlineUrl == FALSE)
+		{
+			return FALSE;
+		}
+		
+		strUrl = m_param.m_strUrl;
+		return TRUE;
+	}
 	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
-	
+
 	inline BOOL EnablePtz(HWND hWnd, bool enable);
 	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
 	inline BOOL ClearPtzDirection(HWND hWnd);
@@ -203,19 +206,20 @@ public:
 	inline BOOL UpdatePTZConf();
 
 private:
-	CmdQueueList m_RawDataList;
-	CmdQueueList m_DataList;
 	BOOL m_bStarted;
 	DeviceDataCallbackMap m_DataMap;
 	VPlay m_vPlay;
+	VPlay m_vPlaySubStream;
+	BOOL m_bSubStarted;
+	DeviceDataCallbackMap m_SubDataMap;
 
 private:
 	s32 m_nDeviceType;
 	s32 m_nDeviceSubType;
 	DeviceParam m_param;
 	tthread::thread *m_pThread;
-	CvCapture_FFMPEG* m_Cap;
 	fast_mutex m_Lock;
+	fast_mutex m_SubLock;
 private:
 	VDB &m_pVdb;
 	VHdfsDB &m_pVHdfsdb;
@@ -233,6 +237,12 @@ private:
 	InfoFrame m_infoData;
 	BOOL m_bGotInfoData;
 	s32 m_nDataRef;
+
+private:
+	InfoFrame m_infoSubData;
+	BOOL m_bGotInfoSubData;
+	s32 m_nSubDataRef;
+	
 };
 
 typedef DeviceParam* LPDeviceParam;
@@ -259,31 +269,33 @@ inline string GetProgramDir()
 
 DeviceParam::DeviceParam()
 {
-    static int CameraNum = 0;
-    memset(&m_Conf, 0, sizeof(m_Conf));
-    m_Conf.data.conf.nId = 0;
-    m_Conf.data.conf.nType = VSC_DEVICE_CAM;
-    m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_ONVIF;
+	static int CameraNum = 0;
+	memset(&m_Conf, 0, sizeof(m_Conf));
+	m_Conf.data.conf.nId = 0;
+	m_Conf.data.conf.nType = VSC_DEVICE_CAM;
+	m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_ONVIF;
 
-    sprintf(m_Conf.data.conf.Name, "Camera");
-    //strcpy(m_Conf.data.conf.Name, "CAMERA ");
+	sprintf(m_Conf.data.conf.Name, "Camera");
+	//strcpy(m_Conf.data.conf.Name, "CAMERA ");
 
-    strcpy(m_Conf.data.conf.IP, "192.168.0.1");
-    strcpy(m_Conf.data.conf.Port, "80");
-    strcpy(m_Conf.data.conf.User, "admin");
-    strcpy(m_Conf.data.conf.Password, "admin");
+	strcpy(m_Conf.data.conf.IP, "192.168.0.1");
+	strcpy(m_Conf.data.conf.Port, "80");
+	strcpy(m_Conf.data.conf.User, "admin");
+	strcpy(m_Conf.data.conf.Password, "admin");
 
-    strcpy(m_Conf.data.conf.RtspLocation, "/");
-    string filePath = GetProgramDir() +  "/camera.mov";
-    strcpy(m_Conf.data.conf.FileLocation, filePath.c_str());
-    strcpy(m_Conf.data.conf.OnvifAddress, "/onvif/device_service");
-    strcpy(m_Conf.data.conf.CameraIndex, "1");
+	strcpy(m_Conf.data.conf.RtspLocation, "/");
+	string filePath = GetProgramDir() +  "/camera.mov";
+	strcpy(m_Conf.data.conf.FileLocation, filePath.c_str());
+	strcpy(m_Conf.data.conf.OnvifAddress, "/onvif/device_service");
+	strcpy(m_Conf.data.conf.CameraIndex, "1");
 
-    m_Conf.data.conf.UseProfileToken = 0;
-    //m_Conf.data.conf.Recording = 1;//Default start recording
-    m_Conf.data.conf.Recording = 0;//Default start recording//xsmart
-    strcpy(m_Conf.data.conf.OnvifProfileToken, "quality_h264");
-    m_bOnvifUrlGetted = FALSE;
+	m_Conf.data.conf.UseProfileToken = 0;
+	//m_Conf.data.conf.Recording = 1;//Default start recording
+	m_Conf.data.conf.Recording = 0;//Default start recording//xsmart
+	strcpy(m_Conf.data.conf.OnvifProfileToken, "quality_h264");
+	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
+	m_bOnvifUrlGetted = FALSE;
+	m_bHasSubStream = FALSE;
 
 }
 
@@ -354,54 +366,55 @@ BOOL DeviceParam::CheckOnline()
 
 BOOL DeviceParam::UpdateUrlOnvif()
 {
-    astring IP = m_Conf.data.conf.IP;
-    astring Port = m_Conf.data.conf.Port;
-    astring User = m_Conf.data.conf.User;
-    astring Password = m_Conf.data.conf.Password;
-    astring OnvifAddress = m_Conf.data.conf.OnvifAddress;
+	astring IP = m_Conf.data.conf.IP;
+	astring Port = m_Conf.data.conf.Port;
+	astring User = m_Conf.data.conf.User;
+	astring Password = m_Conf.data.conf.Password;
+	astring OnvifAddress = m_Conf.data.conf.OnvifAddress;
 
-    astring OnvifDeviceService = "http://" + IP + ":" + Port + OnvifAddress;
+	astring OnvifDeviceService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
+	astring urlSubStream = "rtsp://" + IP + ":" + "554" + "/";
 
-    DeviceManagement *pDm = new DeviceManagement(OnvifDeviceService.c_str(), 
-                            User.c_str(), Password.c_str());
-    
-    if (pDm  == NULL)
-    {
-        VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
-        return FALSE;
-    }
+	DeviceManagement *pDm = new DeviceManagement(OnvifDeviceService.c_str(), 
+	                        User.c_str(), Password.c_str());
 
-    Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
-    if (pMediaCap == NULL)
-    {
-        VDC_DEBUG( "%s getCapabilitiesMedia error \n",__FUNCTION__);
-        delete pDm;
-        return FALSE;
-    }
+	if (pDm  == NULL)
+	{
+	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
+	    return FALSE;
+	}
 
-    MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
-                                User.c_str(), Password.c_str());
-    if (pMedia == NULL)
-    {
-        VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        return FALSE;
-    }
+	Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
+	if (pMediaCap == NULL)
+	{
+	    VDC_DEBUG( "%s getCapabilitiesMedia error \n",__FUNCTION__);
+	    delete pDm;
+	    return FALSE;
+	}
 
-    Profiles *pProfileS = pMedia->getProfiles();
-    if (pProfileS == NULL)
-    {
-        VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        delete pMedia;
-        return FALSE;
-    }
-    if (pProfileS->m_toKenPro.size() > 0)
-    {
-        VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
+	MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
+	                            User.c_str(), Password.c_str());
+	if (pMedia == NULL)
+	{
+	    VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    return FALSE;
+	}
+
+	Profiles *pProfileS = pMedia->getProfiles();
+	if (pProfileS == NULL)
+	{
+	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    return FALSE;
+	}
+	if (pProfileS->m_toKenPro.size() > 0)
+	{
+	    VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		QString strToken;
 		if (m_Conf.data.conf.UseProfileToken == 1)
 		{
@@ -414,26 +427,44 @@ BOOL DeviceParam::UpdateUrlOnvif()
 		StreamUri *pUri = pMedia->getStreamUri(strToken);
 		if (pUri)
 		{
-			url = pUri->uri().toStdString();
+			m_strUrl = pUri->uri().toStdString();
 			delete pUri;
 		}
-        
-    }
-	std::string strUrl = url;
-	
+	}
+	if (pProfileS->m_toKenPro.size() > 1)
+	{
+		VDC_DEBUG( "%s m_toKenPro SubStream size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
+		QString strToken;
+		if (m_Conf.data.conf.UseProfileToken == 1)
+		{
+			strToken = m_Conf.data.conf.OnvifProfileToken2;
+		}else
+		{
+			strToken = pProfileS->m_toKenPro[1];
+			strcpy(m_Conf.data.conf.OnvifProfileToken2, pProfileS->m_toKenPro[1].toStdString().c_str());
+		}
+		StreamUri *pUri = pMedia->getStreamUri(strToken);
+		if (pUri)
+		{
+			m_strUrlSubStream = pUri->uri().toStdString();
+			m_bHasSubStream = TRUE;
+			delete pUri;
+		}
+	}
+
 	/* rtsp://admin:12345@192.168.1.1:554/Streaming/Channels/1\
 	?transportmode=unicast&profile=Profile_1 */
-	astring urlWithUser = "rtsp://" + User + ":" + Password + "@";
+	//astring urlWithUser = "rtsp://" + User + ":" + Password + "@";
 	//Replace(strUrl, "rtsp://", urlWithUser.c_str());
 
-	m_strUrl = strUrl;
-     m_bOnvifUrlGetted = TRUE;
+	m_bOnvifUrlGetted = TRUE;
 
-    delete pDm;
-    delete pMediaCap;
-    delete pMedia;
-    delete pProfileS;
-    return TRUE;
+	delete pDm;
+	delete pMediaCap;
+	delete pMedia;
+	delete pProfileS;
+	
+	return TRUE;
 }
 
 BOOL DeviceParam::UpdateUrl()
@@ -442,6 +473,7 @@ BOOL DeviceParam::UpdateUrl()
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
     {
         m_strUrl = m_Conf.data.conf.FileLocation;
+	 m_bHasSubStream = FALSE;
     }
 
     if (m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_RTSP)
@@ -451,6 +483,7 @@ BOOL DeviceParam::UpdateUrl()
                 m_Conf.data.conf.IP,
                 m_Conf.data.conf.Port, m_Conf.data.conf.RtspLocation);
         m_strUrl = url;
+	 m_bHasSubStream = FALSE;
 
     }
 
@@ -482,33 +515,18 @@ m_Online(FALSE),
 m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0)
 {
-    if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
-      sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
-    m_param = pParam;
-    return ;
-    /* Always return, just let factory thread to update  */
-    if (m_param.UpdateUrl() == FALSE)
-    {
-        return;
-    }
-    if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
-    {
-	m_vPlay.Init(m_param.m_strUrl);
-    }else
-    {
-	m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
-			m_param.m_Conf.data.conf.Password);
-	VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
-    }
-
-    StartRecord();
-    m_Online = TRUE;
-    m_OnlineUrl = TRUE;
-    UpdatePTZConf();
+	if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
+	{
+	  	sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
+	}
+	
+	m_param = pParam;
+	return ;
 }
 
 Device::~Device()
 {
+
 }
 
 DeviceStatus Device::CheckDevice()
@@ -518,25 +536,30 @@ DeviceStatus Device::CheckDevice()
         /* Camera from offline to online */
         if (m_OnlineUrl == FALSE)
         {
-            if (m_param.UpdateUrl() == FALSE)
-            {
-                return  DEV_NO_CHANGE;
-            }
-	    if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
-	    {
-		m_vPlay.Init(m_param.m_strUrl);
-	    }else
-	    {
-		m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
+		if (m_param.UpdateUrl() == FALSE)
+		{
+		    return  DEV_NO_CHANGE;
+		}
+		if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
+		{
+			m_vPlay.Init(m_param.m_strUrl);
+		}else
+		{
+			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
 				m_param.m_Conf.data.conf.Password);
+			VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
+			if (m_param.m_bHasSubStream == TRUE)
+			{
+				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.data.conf.User,
+					m_param.m_Conf.data.conf.Password);			
+			}
+		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
-	    }
-            VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
-			
-            StartRecord();
-	     StartHdfsRecord();
-            m_OnlineUrl = TRUE;
-            UpdatePTZConf();
+
+		StartRecord();
+		StartHdfsRecord();
+		m_OnlineUrl = TRUE;
+		UpdatePTZConf();
         }
         if (m_Online == FALSE)
         {
@@ -554,36 +577,6 @@ DeviceStatus Device::CheckDevice()
 
     return DEV_NO_CHANGE;
     
-}
-    
-NotificationQueue * Device::GetRawDataQueue()
-{
-    NotificationQueue *pQueue = NULL;
-
-    Lock();
-    pQueue = new NotificationQueue;
-
-    m_RawDataList.push_back(pQueue);
-    UnLock();
-
-    return pQueue;
-
-}
-BOOL Device::ReleaseRawDataQueue(NotificationQueue * pQueue)
-{
-    if (pQueue == NULL)
-    {
-        return FALSE;
-    }
-
-    Lock();
-	
-    m_RawDataList.remove(pQueue);
-
-    delete pQueue;
-
-    UnLock();
-    return TRUE;
 }
 
 BOOL Device::AttachPlayer(HWND hWnd, int w, int h)
@@ -818,15 +811,6 @@ BOOL Device::ShowAlarm(HWND hWnd)
 	return TRUE;
 }
 
- NotificationQueue * Device::GetDataQueue()
-{
-    return NULL;
-}
- BOOL Device::GetDataQueue(NotificationQueue * pQueue)
-{
-    return TRUE;
-}
-
  BOOL Device::Start()
 {
 
@@ -864,6 +848,30 @@ BOOL Device::StartData()
 	return TRUE;
 }
 
+ BOOL Device::StartSubData()
+{
+	Lock();
+	if (m_nSubDataRef == 0)
+	{
+		m_vPlaySubStream.StartGetData(this, (VPlayDataHandler)Device::SubDataHandler);
+	}
+	m_nSubDataRef ++;
+	UnLock();
+	return TRUE;
+}
+ BOOL Device::StopSubData()
+{
+	Lock();
+	m_nSubDataRef --;
+	if (m_nSubDataRef <= 0)
+	{
+		m_nSubDataRef = 0;
+		m_vPlaySubStream.StopGetData();
+	}
+
+	UnLock();
+	return TRUE;
+}
 
  BOOL Device::SetRecord(BOOL bRecording)
 {
@@ -958,7 +966,7 @@ BOOL Device::StartData()
     	return TRUE;
 }
 
-  BOOL Device::DataHandler(void* pData, VideoFrame& frame)
+BOOL Device::DataHandler(void* pData, VideoFrame& frame)
 {
     int dummy = errno;
     LPDevice pThread = (LPDevice)pData;
@@ -1035,6 +1043,44 @@ BOOL Device::DataHandler1(VideoFrame& frame)
 		}
 	}
 	UnLock();
+	return TRUE;
+}
+
+BOOL Device::SubDataHandler(void* pData, VideoFrame& frame)
+{
+    int dummy = errno;
+    LPDevice pThread = (LPDevice)pData;
+
+    if (pThread)
+    {
+        return pThread->SubDataHandler1(frame);
+    }
+}
+
+BOOL Device::SubDataHandler1(VideoFrame& frame)
+{
+	SubLock();
+	/* Frist cache the info frame */
+	if (frame.streamType == VIDEO_STREAM_INFO)
+	{
+		memcpy(&m_infoSubData, frame.dataBuf, sizeof(InfoFrame));
+		m_bGotInfoSubData = TRUE;
+	}
+	
+	/* 1. Send to client */
+	DeviceDataCallbackMap::iterator it = m_SubDataMap.begin();
+
+	for(; it!=m_SubDataMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceDataCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(frame, pParam);
+	    }
+	}
+
+	SubUnLock();
 	return TRUE;
 }
 
