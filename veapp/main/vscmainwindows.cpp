@@ -562,6 +562,7 @@ void VSCMainWindows::SetFullScreen()
 void VSCMainWindows::CreateDockWindows()
 {
     QDockWidget *pDockDevicelist = new QDockWidget(tr("Devices"), this);
+    pDockDevicelist->setFeatures(QDockWidget::DockWidgetMovable);
 
     //pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
