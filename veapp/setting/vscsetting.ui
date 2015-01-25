@@ -88,11 +88,11 @@
        </item>
        <item>
         <property name="text">
-         <string>Storage</string>
+         <string>Hadoop</string>
         </property>
         <item>
          <property name="text">
-          <string>Hadoop HDFS</string>
+          <string>HDFS</string>
          </property>
         </item>
        </item>
