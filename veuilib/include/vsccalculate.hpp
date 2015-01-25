@@ -4,6 +4,7 @@
 #include "debug.hpp"
 #include <QObject>
 #include <QLabel>
+#include <QTimer>
 
 using namespace UtilityLib;
 
@@ -14,6 +15,7 @@ public:
 	VSCCalculate(QLabel* label);
 	~VSCCalculate()
 	{
+		m_Timer->stop();
 		delete m_Timer;
 	}
 public slots:
