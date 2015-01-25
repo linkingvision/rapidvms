@@ -157,9 +157,20 @@ public:
 	BOOL GetRecordStatus(s32 nIndex, BOOL &bStatus);
 
 public:
+	/* Data */
 	BOOL RegDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDataCallback(s32 nIndex, void * pParam);
 	BOOL GetInfoFrame(s32 nIndex, InfoFrame &pFrame);
+	BOOL RegSubDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegSubDataCallback(s32 nIndex, void * pParam);
+	BOOL GetSubInfoFrame(s32 nIndex, InfoFrame &pFrame);
+
+	/* Raw data */
+	BOOL RegRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegRawCallback(s32 nIndex, void * pParam);
+	BOOL RegSubRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegSubRawCallback(s32 nIndex, void * pParam);
+
 	BOOL GetDeviceOnline(s32 nIndex, BOOL &bStatus);
 	BOOL GetUrl(s32 nIndex, std::string &url);
 	BOOL SetSystemPath(astring &strPath);
@@ -580,6 +591,101 @@ inline BOOL Factory::GetInfoFrame(s32 nIndex, InfoFrame &pFrame)
     if (m_DeviceMap[nIndex] != NULL)
     {
         m_DeviceMap[nIndex]->GetInfoFrame(pFrame);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::RegSubDataCallback(s32 nIndex, DeviceDataCallbackFunctionPtr pCallback,
+        void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->RegSubDataCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::UnRegSubDataCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegDataCallback(pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+
+inline BOOL Factory::GetSubInfoFrame(s32 nIndex, InfoFrame &pFrame)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->GetSubInfoFrame(pFrame);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::RegRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback,
+        void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->RegRawCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::UnRegRawCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegRawCallback(pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::RegSubRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback,
+        void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->RegSubRawCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::UnRegSubRawCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegSubRawCallback(pParam);
     }
 
     UnLock();
