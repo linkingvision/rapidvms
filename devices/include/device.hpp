@@ -520,7 +520,9 @@ m_pVdb(pVdb), m_pVHdfsdb(pVHdfsdb), m_pRecord(NULL),
 m_pHdfsRecord(NULL), 
 m_Online(FALSE), 
 m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
-m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0)
+m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
+m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0)
+
 {
 	if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
 	{
@@ -862,7 +864,9 @@ BOOL Device::GetSubInfoFrame(InfoFrame &pFrame)
 BOOL Device::RegRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam)
 {
 	Lock();
+	SubLock();
 	m_RawMap[pParam] = pCallback;
+	SubUnLock();
 	UnLock();
 	StartRaw();
 	return TRUE;
@@ -871,7 +875,9 @@ BOOL Device::RegRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pPara
 BOOL Device::UnRegRawCallback(void * pParam)
 {
 	Lock();
+	SubLock();
 	m_RawMap.erase(pParam);
+	SubUnLock();
 	UnLock();
 	StopRaw();
 	return TRUE;
@@ -880,7 +886,9 @@ BOOL Device::UnRegRawCallback(void * pParam)
 BOOL Device::RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam)
 {
 	Lock();
+	SubLock();
 	m_SubRawMap[pParam] = pCallback;
+	SubUnLock();
 	UnLock();
 	StartSubRaw();
 	return TRUE;
@@ -889,7 +897,9 @@ BOOL Device::RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pP
 BOOL Device::UnRegSubRawCallback(void * pParam)
 {
 	Lock();
+	SubLock();
 	m_SubRawMap.erase(pParam);
+	SubUnLock();
 	UnLock();
 	StopSubRaw();
 	return TRUE;
@@ -949,25 +959,28 @@ BOOL Device::StartData()
 BOOL Device::StartRaw()
 {
 	Lock();
+	SubLock();
 	if (m_nRawRef == 0)
 	{
 		m_vPlay.StartGetRawFrame(this, 
 					(VPlayRawFrameHandler)Device::RawHandler);
 	}
 	m_nRawRef ++;
+	SubUnLock();
 	UnLock();
 	return TRUE;
 }
  BOOL Device::StopRaw()
 {
 	Lock();
+	SubLock();
 	m_nRawRef --;
 	if (m_nRawRef <= 0)
 	{
 		m_nRawRef = 0;
 		m_vPlay.StopGetRawFrame();
 	}
-
+	SubUnLock();
 	UnLock();
 	return TRUE;
 }
@@ -975,25 +988,28 @@ BOOL Device::StartRaw()
  BOOL Device::StartSubRaw()
 {
 	Lock();
+	SubLock();
 	if (m_nSubRawRef == 0)
 	{
 		m_vPlaySubStream.StartGetRawFrame(this, 
 			(VPlayRawFrameHandler)Device::SubRawHandler);
 	}
 	m_nSubRawRef ++;
+	SubUnLock();
 	UnLock();
 	return TRUE;
 }
  BOOL Device::StopSubRaw()
 {
 	Lock();
+	SubLock();
 	m_nSubRawRef --;
 	if (m_nSubRawRef <= 0)
 	{
 		m_nSubRawRef = 0;
 		m_vPlaySubStream.StopGetRawFrame();
 	}
-
+	SubUnLock();
 	UnLock();
 	return TRUE;
 }
@@ -1034,6 +1050,7 @@ BOOL Device::StartRaw()
 	}
 	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
 	StartData();
+	//StartRaw();
 
     return TRUE;
 }
@@ -1229,11 +1246,11 @@ BOOL Device::RawHandler(void* pData, RawFrame& frame)
 BOOL Device::RawHandler1(RawFrame& frame)
 {
 	SubLock();
-	
+	VDC_DEBUG("RawHandler1 (%d, %d)\n", frame.width, frame.height);	
 	/* 1. Send to client */
 	DeviceRawCallbackMap::iterator it = m_RawMap.begin();
 
-	for(; it!=m_SubRawMap.end(); ++it)
+	for(; it!=m_RawMap.end(); ++it)
 	{
 	    void *pParam = (*it).first;
 	    DeviceRawCallbackFunctionPtr pFunc = (*it).second;
