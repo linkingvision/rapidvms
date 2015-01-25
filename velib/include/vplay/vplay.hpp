@@ -9,6 +9,8 @@ using namespace UtilityLib;
 typedef BOOL (*VPlayDataHandler)(void* pData, VideoFrame& packet);
 typedef BOOL (*VPlayPBTimeCallback)(void* pData, int time);
 
+typedef BOOL (*VPlayRawFrameHandler)(void* pData, RawFrame& frame);
+
 typedef enum __VPlayCmd
 {
 	VPLAY_CMD_PLAY = 1,
@@ -48,6 +50,8 @@ public:
 
 	BOOL StartGetData(void * pData, VPlayDataHandler callback);
 	BOOL StopGetData();
+	BOOL StartGetRawFrame(void * pData, VPlayRawFrameHandler callback);
+	BOOL StopGetRawFrame();
 	BOOL PutRawData(VideoFrame& packet);
 	BOOL ShowAlarm(HWND hWnd);
 	
