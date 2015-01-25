@@ -38,8 +38,8 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 	ui.pbDmining->hide();
 	ui.lbMining->hide();
 	
-	ui.pbEmap->hide();
-	ui.lbEmap->hide();
+	//ui.pbEmap->hide();
+	//ui.lbEmap->hide();
 
 
 }
