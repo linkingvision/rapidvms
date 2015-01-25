@@ -3,7 +3,7 @@
 //
 // Desc: Device factory - Manage IP Camera.
 //
-// Copyright (c) 2014-2018 INTINT. All rights reserved.
+// Copyright (c) 2014-2018 vdceye.com All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __VSC_DEVICE_H_
@@ -38,30 +38,34 @@ using namespace ONVIF;
 
 typedef enum
 {
-    F_PTZ_UP = 1,
-    F_PTZ_DOWN,
-    F_PTZ_LEFT,
-    F_PTZ_RIGHT,
-    F_PTZ_ZOOM_IN,
-    F_PTZ_ZOOM_OUT,
-    F_PTZ_STOP,
-    F_PTZ_LAST
+	F_PTZ_UP = 1,
+	F_PTZ_DOWN,
+	F_PTZ_LEFT,
+	F_PTZ_RIGHT,
+	F_PTZ_ZOOM_IN,
+	F_PTZ_ZOOM_OUT,
+	F_PTZ_STOP,
+	F_PTZ_LAST
 } FPtzAction;
 
 typedef enum
 {
-    DEV_OFF2ON = 1,
-    DEV_ON2OFF,
-    DEV_NO_CHANGE,
-    DEV_LAST
+	DEV_OFF2ON = 1,
+	DEV_ON2OFF,
+	DEV_NO_CHANGE,
+	DEV_LAST
 } DeviceStatus;
 
 #ifdef WIN32
 typedef void (__cdecl * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
+typedef void (__cdecl * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
 #else
 typedef void ( * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
+typedef void ( * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
+
 #endif
 typedef std::map<void *, DeviceDataCallbackFunctionPtr> DeviceDataCallbackMap;
+typedef std::map<void *, DeviceRawCallbackFunctionPtr> DeviceRawCallbackMap;
 
 class DeviceParam
 {
@@ -131,26 +135,39 @@ public:
 	inline Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam);
 	inline ~Device();
 
-public:
-	inline BOOL Start();
-	inline BOOL Stop();
+public:	
 	inline BOOL StartData();
 	inline BOOL StopData();
+	
 	inline BOOL StartSubData();
 	inline BOOL StopSubData();
+
+	inline BOOL StartRaw();
+	inline BOOL StopRaw();
+	
+	inline BOOL StartSubRaw();
+	inline BOOL StopSubRaw();
+	
 	inline BOOL StartRecord();
 	inline BOOL StopRecord();
 	inline BOOL StartHdfsRecord();
 	inline BOOL StopHdfsRecord();
+	
 	inline BOOL SetRecord(BOOL bRecording);
 	inline BOOL SetHdfsRecord(BOOL bRecording);
 	inline DeviceStatus CheckDevice();
 
 public:
+	/* Data  */
 	inline static BOOL DataHandler(void* pData, VideoFrame& frame);
 	inline BOOL DataHandler1(VideoFrame& frame);
 	inline static BOOL SubDataHandler(void* pData, VideoFrame& frame);
 	inline BOOL SubDataHandler1(VideoFrame& frame);
+	/* Raw Data */
+	inline static BOOL RawHandler(void* pData, RawFrame& frame);
+	inline BOOL RawHandler1(RawFrame& frame);
+	inline static BOOL SubRawHandler(void* pData, RawFrame& frame);
+	inline BOOL SubRawHandler1(RawFrame& frame);
 
 public:
 	inline void Lock(){m_Lock.lock();}
@@ -159,41 +176,26 @@ public:
 	inline void SubUnLock(){m_SubLock.unlock();}
 
 public:
+	/* Data  callback*/
 	inline BOOL RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegDataCallback(void * pParam);
-	inline BOOL GetInfoFrame(InfoFrame &pFrame)
-	{
-		if (m_bGotInfoData == TRUE)
-		{
-			memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
-		return TRUE;
-		}else
-		{
-			return FALSE;
-		}
-	}
-	inline BOOL Cleanup();
-	inline BOOL GetDeviceOnline()
-	{
-	    BOOL online = true;
-	    return m_Online;
-	}
+	inline BOOL RegSubDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegSubDataCallback(void * pParam);
 
-	inline BOOL GetUrl(std::string &url)
-	{
-	    url = m_param.m_strUrl;
-	    return TRUE;
-	}
-	inline BOOL GetDeviceRtspUrl(astring & strUrl)
-	{
-		if (m_OnlineUrl == FALSE)
-		{
-			return FALSE;
-		}
-		
-		strUrl = m_param.m_strUrl;
-		return TRUE;
-	}
+	/*Raw Data  callback*/
+	inline BOOL RegRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegRawCallback(void * pParam);
+	inline BOOL RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegSubRawCallback(void * pParam);
+	
+	inline BOOL GetInfoFrame(InfoFrame &pFrame);
+	inline BOOL GetSubInfoFrame(InfoFrame &pFrame);
+	inline BOOL Cleanup();
+	
+	inline BOOL GetDeviceOnline();
+	inline BOOL GetUrl(std::string &url);
+	inline BOOL GetDeviceRtspUrl(astring & strUrl);
+	
 	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
@@ -206,12 +208,15 @@ public:
 	inline BOOL UpdatePTZConf();
 
 private:
-	BOOL m_bStarted;
-	DeviceDataCallbackMap m_DataMap;
 	VPlay m_vPlay;
 	VPlay m_vPlaySubStream;
+	BOOL m_bStarted;
 	BOOL m_bSubStarted;
+	DeviceDataCallbackMap m_DataMap;
 	DeviceDataCallbackMap m_SubDataMap;
+
+	DeviceRawCallbackMap m_RawMap;
+	DeviceRawCallbackMap m_SubRawMap;
 
 private:
 	s32 m_nDeviceType;
@@ -242,7 +247,9 @@ private:
 	InfoFrame m_infoSubData;
 	BOOL m_bGotInfoSubData;
 	s32 m_nSubDataRef;
-	
+
+	s32 m_nRawRef;
+	s32 m_nSubRawRef;
 };
 
 typedef DeviceParam* LPDeviceParam;
@@ -793,6 +800,29 @@ BOOL Device::ShowAlarm(HWND hWnd)
 	}
 }
 
+BOOL Device::GetInfoFrame(InfoFrame &pFrame)
+{
+	if (m_bGotInfoData == TRUE)
+	{
+		memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
+		return TRUE;
+	}else
+	{
+		return FALSE;
+	}
+}
+BOOL Device::GetSubInfoFrame(InfoFrame &pFrame)
+{
+	if (m_bGotInfoSubData == TRUE)
+	{
+		memcpy(&pFrame, &m_infoSubData, sizeof(InfoFrame));
+		return TRUE;
+	}else
+	{
+		return FALSE;
+	}
+}
+
  BOOL Device::RegDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam)
 {
 	Lock();
@@ -811,17 +841,60 @@ BOOL Device::ShowAlarm(HWND hWnd)
 	return TRUE;
 }
 
- BOOL Device::Start()
+ BOOL Device::RegSubDataCallback(DeviceDataCallbackFunctionPtr pCallback, void * pParam)
 {
-
-    return TRUE;
+	Lock();
+	m_SubDataMap[pParam] = pCallback;
+	UnLock();
+	StartSubData();
+	return TRUE;
 }
- BOOL Device::Stop()
+
+ BOOL Device::UnRegSubDataCallback(void * pParam)
 {
-
-
-    return TRUE;
+	Lock();
+	m_SubDataMap.erase(pParam);
+	UnLock();
+	StopSubData();
+	return TRUE;
 }
+
+BOOL Device::RegRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam)
+{
+	Lock();
+	m_RawMap[pParam] = pCallback;
+	UnLock();
+	StartRaw();
+	return TRUE;
+}
+
+BOOL Device::UnRegRawCallback(void * pParam)
+{
+	Lock();
+	m_RawMap.erase(pParam);
+	UnLock();
+	StopRaw();
+	return TRUE;
+}
+
+BOOL Device::RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam)
+{
+	Lock();
+	m_SubRawMap[pParam] = pCallback;
+	UnLock();
+	StartSubRaw();
+	return TRUE;
+}
+
+BOOL Device::UnRegSubRawCallback(void * pParam)
+{
+	Lock();
+	m_SubRawMap.erase(pParam);
+	UnLock();
+	StopSubRaw();
+	return TRUE;
+}
+
 
 BOOL Device::StartData()
 {
@@ -872,6 +945,59 @@ BOOL Device::StartData()
 	UnLock();
 	return TRUE;
 }
+
+BOOL Device::StartRaw()
+{
+	Lock();
+	if (m_nRawRef == 0)
+	{
+		m_vPlay.StartGetRawFrame(this, 
+					(VPlayRawFrameHandler)Device::RawHandler);
+	}
+	m_nRawRef ++;
+	UnLock();
+	return TRUE;
+}
+ BOOL Device::StopRaw()
+{
+	Lock();
+	m_nRawRef --;
+	if (m_nRawRef <= 0)
+	{
+		m_nRawRef = 0;
+		m_vPlay.StopGetRawFrame();
+	}
+
+	UnLock();
+	return TRUE;
+}
+
+ BOOL Device::StartSubRaw()
+{
+	Lock();
+	if (m_nSubRawRef == 0)
+	{
+		m_vPlaySubStream.StartGetRawFrame(this, 
+			(VPlayRawFrameHandler)Device::SubRawHandler);
+	}
+	m_nSubRawRef ++;
+	UnLock();
+	return TRUE;
+}
+ BOOL Device::StopSubRaw()
+{
+	Lock();
+	m_nSubRawRef --;
+	if (m_nSubRawRef <= 0)
+	{
+		m_nSubRawRef = 0;
+		m_vPlaySubStream.StopGetRawFrame();
+	}
+
+	UnLock();
+	return TRUE;
+}
+
 
  BOOL Device::SetRecord(BOOL bRecording)
 {
@@ -1084,6 +1210,70 @@ BOOL Device::SubDataHandler1(VideoFrame& frame)
 	return TRUE;
 }
 
+BOOL Device::RawHandler(void* pData, RawFrame& frame)
+{
+    int dummy = errno;
+    LPDevice pThread = (LPDevice)pData;
+
+    if (pThread)
+    {
+        return pThread->RawHandler1(frame);
+    }
+}
+
+BOOL Device::RawHandler1(RawFrame& frame)
+{
+	SubLock();
+	
+	/* 1. Send to client */
+	DeviceRawCallbackMap::iterator it = m_RawMap.begin();
+
+	for(; it!=m_SubRawMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceRawCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(frame, pParam);
+	    }
+	}
+
+	SubUnLock();
+	return TRUE;
+}
+
+BOOL Device::SubRawHandler(void* pData, RawFrame& frame)
+{
+    int dummy = errno;
+    LPDevice pThread = (LPDevice)pData;
+
+    if (pThread)
+    {
+        return pThread->SubRawHandler1(frame);
+    }
+}
+
+BOOL Device::SubRawHandler1(RawFrame& frame)
+{
+	SubLock();
+	
+	/* 1. Send to client */
+	DeviceRawCallbackMap::iterator it = m_SubRawMap.begin();
+
+	for(; it!=m_SubRawMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceRawCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(frame, pParam);
+	    }
+	}
+
+	SubUnLock();
+	return TRUE;
+}
+
  BOOL Device::Cleanup()
 {
 #if 0
@@ -1102,9 +1292,30 @@ BOOL Device::SubDataHandler1(VideoFrame& frame)
     }
     VDC_DEBUG( "%s Callback end\n",__FUNCTION__);
 #endif
-    Stop();
 
     return TRUE;
+}
+
+BOOL Device::GetDeviceOnline()
+{
+    BOOL online = true;
+    return m_Online;
+}
+
+BOOL Device::GetUrl(std::string &url)
+{
+    url = m_param.m_strUrl;
+    return TRUE;
+}
+BOOL Device::GetDeviceRtspUrl(astring & strUrl)
+{
+	if (m_OnlineUrl == FALSE)
+	{
+		return FALSE;
+	}
+	
+	strUrl = m_param.m_strUrl;
+	return TRUE;
 }
 
 
