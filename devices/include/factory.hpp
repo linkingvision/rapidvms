@@ -145,8 +145,6 @@ public:
 	BOOL GetVGroupById(VSCVGroupDataItem &pParam, int nId);
 
 public:
-	BOOL StartDevice(s32 nIndex);
-	BOOL StopDevice(s32 nIndex);
 	BOOL StartRecord(s32 nIndex);
 	BOOL StopRecord(s32 nIndex);
 	BOOL StartHdfsRecord(s32 nIndex);
@@ -617,18 +615,6 @@ inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
     return ret;
 }
 
-inline BOOL Factory::StartDevice(s32 nIndex)
-{
-    Lock();
-    if (m_DeviceMap[nIndex] != NULL)
-    {
-        m_DeviceMap[nIndex]->Start();
-    }
-    UnLock();
-
-	return TRUE;
-}
-
 inline BOOL Factory::AttachPlayer(s32 nIndex, HWND hWnd, int w, int h)
 {
     //Lock();//For VIPC testing
@@ -725,14 +711,6 @@ inline BOOL Factory::PtzAction(s32 nIndex, FPtzAction action, float speed)
 	return TRUE;
 }
 
-inline BOOL Factory::StopDevice(s32 nIndex)
-{
-    Lock();
-
-    UnLock();
-
-	return TRUE;
-}
 
 inline BOOL Factory::GetRecordStatus(s32 nIndex,BOOL &nStatus)
 {
