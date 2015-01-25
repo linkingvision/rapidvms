@@ -1168,6 +1168,11 @@ BOOL Device::DataHandler1(VideoFrame& frame)
 			m_pHdfsRecord->PushAFrame(&frame);
 		}
 	}
+	/* Call the Sub DataHandler if there has no sub stream */
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		SubDataHandler1(frame);
+	}
 	UnLock();
 	return TRUE;
 }
@@ -1236,6 +1241,11 @@ BOOL Device::RawHandler1(RawFrame& frame)
 	    {
 	        pFunc(frame, pParam);
 	    }
+	}
+	/* Call the Sub DataHandler if there has no sub stream */
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		SubRawHandler1(frame);
 	}
 
 	SubUnLock();
