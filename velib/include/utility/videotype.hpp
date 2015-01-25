@@ -2,6 +2,40 @@
 #define _V_VIDEO_TYPE_H_
 #include "type.hpp"
 
+#define MAKE_VE_RAW(a,b,c,d) (a | (b << 8) | (c << 16) | (d << 24))
+
+#define VE_PIX_FMT_YUV420P MAKE_VE_RAW('I','4','2','0') /* 16  YVU420 planar */
+#define VE_PIX_FMT_IYUV    MAKE_VE_RAW('I','Y','U','V') /* 16  IYUV   planar */
+#define VE_PIX_FMT_YVU410  MAKE_VE_RAW('Y','V','U','9') /*  9  YVU 4:1:0     */
+#define VE_PIX_FMT_YVU420  MAKE_VE_RAW('Y','V','1','2') /* 12  YVU 4:2:0     */
+#define VE_PIX_FMT_YUY2    MAKE_VE_RAW('Y','U','Y','2') /* 16  YUYV 4:2:2 */
+#define VE_PIX_FMT_UYVY    MAKE_VE_RAW('U','Y','V','Y') /* 16  UYVY 4:2:2 */
+#define VE_PIX_FMT_YVYU    MAKE_VE_RAW('Y','V','Y','U') /* 16  UYVY 4:2:2 */
+
+#define VE_PIX_FMT_RGB332  MAKE_VE_RAW('R','G','B','1') /*  8  RGB-3-3-2     */
+#define VE_PIX_FMT_RGB555  MAKE_VE_RAW('R','G','B','O') /* 16  RGB-5-5-5     */
+#define VE_PIX_FMT_RGB565  MAKE_VE_RAW('R','G','B','P') /* 16  RGB-5-6-5     */
+#define VE_PIX_FMT_RGB555X MAKE_VE_RAW('R','G','B','Q') /* 16  RGB-5-5-5 BE  */
+#define VE_PIX_FMT_RGB565X MAKE_VE_RAW('R','G','B','R') /* 16  RGB-5-6-5 BE  */
+#define VE_PIX_FMT_BGR15   MAKE_VE_RAW('B','G','R',15)  /* 15  BGR-5-5-5     */
+#define VE_PIX_FMT_RGB15   MAKE_VE_RAW('R','G','B',15)  /* 15  RGB-5-5-5     */
+#define VE_PIX_FMT_BGR16   MAKE_VE_RAW('B','G','R',16)  /* 32  BGR-5-6-5     */
+#define VE_PIX_FMT_RGB16   MAKE_VE_RAW('R','G','B',16)  /* 32  RGB-5-6-5     */
+#define VE_PIX_FMT_BGR24   MAKE_VE_RAW('B','G','R',24)  /* 24  BGR-8-8-8     */
+#define VE_PIX_FMT_RGB24   MAKE_VE_RAW('R','G','B',24)  /* 24  RGB-8-8-8     */
+#define VE_PIX_FMT_BGR32   MAKE_VE_RAW('B','G','R',32)  /* 32  BGR-8-8-8-8   */
+#define VE_PIX_FMT_RGB32   MAKE_VE_RAW('R','G','B',32)  /* 32  RGB-8-8-8-8   */
+#define VE_PIX_FMT_BGR     (('B'<<24)|('G'<<16)|('R'<<8))
+#define VE_PIX_FMT_BGR8    (VE_PIX_FMT_BGR|8)
+
+typedef struct __RawFrame {
+#define VE_NUM_POINTERS 8
+	char *data[VE_NUM_POINTERS];
+	int linesize[VE_NUM_POINTERS];
+	int width, height;
+	int format;
+} RawFrame;
+
 typedef enum __VideoStreamType
 {
 	VIDEO_STREAM_VIDEO = 1,
