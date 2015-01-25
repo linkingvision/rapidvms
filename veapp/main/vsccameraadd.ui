@@ -17,13 +17,13 @@
    <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>15</number>
+   </property>
    <property name="leftMargin">
     <number>9</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
-   </property>
-   <property name="rightMargin">
     <number>9</number>
    </property>
    <item>
@@ -39,85 +39,24 @@
        <property name="verticalSpacing">
         <number>0</number>
        </property>
-       <item row="9" column="1">
-        <widget class="QLineEdit" name="lineEditUser">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <widget class="QLineEdit" name="lineEditPassword">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="labelRtspLoc">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="radioButtonRtsp">
          <property name="text">
-          <string>RTSP Location</string>
+          <string>RTSP</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="labelUser">
+       <item row="7" column="0">
+        <widget class="QLabel" name="labelIP">
          <property name="text">
-          <string>User</string>
+          <string>IP Address</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="radioButtonOnvif">
+       <item row="16" column="0">
+        <widget class="QLabel" name="labelOnvifProfileToken">
          <property name="text">
-          <string>ONVIF ProfileS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEditIP">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="labelOnvifAddr">
-         <property name="text">
-          <string>ONVIF Address</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="labelPassword">
-         <property name="text">
-          <string>Password</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEditName">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="0">
-        <widget class="QCheckBox" name="checkBoxProfileToken">
-         <property name="text">
-          <string>Token </string>
+          <string>MainStream</string>
          </property>
         </widget>
        </item>
@@ -131,39 +70,15 @@
          </property>
         </widget>
        </item>
-       <item row="16" column="0">
-        <widget class="QLabel" name="labelOnvifProfileToken">
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelName">
          <property name="text">
-          <string>Profile Token</string>
+          <string>Device Name</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="labelIP">
-         <property name="text">
-          <string>IP Address</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QRadioButton" name="radioButtonRtsp">
-         <property name="text">
-          <string>RTSP</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="1">
-        <widget class="QLineEdit" name="lineEditRtspLoc">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEditPort">
+       <item row="13" column="1">
+        <widget class="QLineEdit" name="lineOnvifAddr">
          <property name="maximumSize">
           <size>
            <width>300</width>
@@ -179,8 +94,8 @@
          </property>
         </widget>
        </item>
-       <item row="13" column="1">
-        <widget class="QLineEdit" name="lineOnvifAddr">
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lineEditPort">
          <property name="maximumSize">
           <size>
            <width>300</width>
@@ -189,10 +104,95 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelName">
+       <item row="11" column="1">
+        <widget class="QLineEdit" name="lineEditRtspLoc">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0">
+        <widget class="QCheckBox" name="checkBoxProfileToken">
          <property name="text">
-          <string>Device Name</string>
+          <string>Profile </string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="lineEditName">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="labelPassword">
+         <property name="text">
+          <string>Password</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QLabel" name="labelOnvifAddr">
+         <property name="text">
+          <string>ONVIF Address</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="lineEditIP">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="radioButtonOnvif">
+         <property name="text">
+          <string>ONVIF ProfileS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="labelUser">
+         <property name="text">
+          <string>User</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="labelRtspLoc">
+         <property name="text">
+          <string>RTSP Location</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QLineEdit" name="lineEditPassword">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLineEdit" name="lineEditUser">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -259,6 +259,56 @@
          </item>
         </layout>
        </item>
+       <item row="17" column="0">
+        <widget class="QLabel" name="labelOnvifProfileToken_2">
+         <property name="text">
+          <string>SubStream</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="1">
+        <widget class="QLineEdit" name="lineEditProfileToken_2">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>UDP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TCP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Multicast</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="18" column="0">
+        <widget class="QLabel" name="labelOnvifProfileToken_3">
+         <property name="text">
+          <string>Connection Type</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QCheckBox" name="checkBoxProfileToken_2">
+         <property name="text">
+          <string>Data Mining</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -284,6 +334,12 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="horizontalSpacing">
+      <number>20</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>10</number>
+     </property>
      <item row="0" column="0">
       <spacer name="horizontalSpacer">
        <property name="orientation">
