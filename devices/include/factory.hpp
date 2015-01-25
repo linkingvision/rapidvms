@@ -3,7 +3,7 @@
 //
 // Desc: Device factory - Manage IP Camera.
 //
-// Copyright (c) 2014-2018 INTINT. All rights reserved.
+// Copyright (c) 2014-2018 vdceye.com. All rights reserved.
 //------------------------------------------------------------------------------
 
 #ifndef __VSC_FACTORY_H_
