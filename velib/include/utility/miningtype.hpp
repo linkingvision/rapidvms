@@ -17,10 +17,10 @@ typedef struct __VeBox
 #define VE_MOT_BOX_MAX 4096
 typedef struct __VeMotionBox
 {
-	VeBox mot[VE_MOT_BOX_MAX];
 	u32 size;
 	u32 w;
 	u32 h;
+	VeBox mot[VE_MOT_BOX_MAX];
 }VeMotionBox;
 
 #ifdef WIN32
