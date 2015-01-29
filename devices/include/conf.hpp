@@ -6,7 +6,7 @@
 #include "utility.hpp"
 
 #define VE_VERSION "r1.0.3-20150122"
-#define VE_INFO "vdceye Manager r1.0.3 2015"
+#define VE_INFO "OpenCVR r1.0.3 2015"
 
 #ifdef WIN32
 #define VE_NVR_CLIENT 
