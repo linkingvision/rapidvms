@@ -37,7 +37,7 @@ rel:
 	rm -rf ./$(REL)/lib/pkgconfig
 	rm -rf ./$(REL)/lib/*.dbg
 	rm -rf ./$(REL)/lib/libSDL*
-	strip ./$(REL)/bin/vdceyeManager
+	strip ./$(REL)/bin/OpenCVR
 	strip ./$(REL)/lib/*.so
 	strip ./$(REL)/lib/*.so.*
 	

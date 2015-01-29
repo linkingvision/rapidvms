@@ -1,4 +1,4 @@
-# vdceye Manager #
+# OpenCVR #
 #### open source ONVIF IP Camera manager ####
 
 ----------
@@ -21,7 +21,7 @@
 
 ## Install ##
 #### Windows ####
-Download *vdceye Manager V201X-xxxx.msi*  from 
+Download *OpenCVR V201X-xxxx.msi*  from 
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/) 
 
     Add Path "C:\Program Files\Java\jdk1.8.0_25\jre\bin\server" for HDFS
@@ -30,7 +30,7 @@ Download *vdceye Manager V201X-xxxx.msi*  from
 ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev
 centos: sudo yum install nasm xorg-x11-server-devel zlib-devel
 
-Download *vdceye-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from
+Download *OpenCVR-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 
 ##### 64bit #####
@@ -78,7 +78,7 @@ For more guide
 [xsmart@vdceye.com](xsmart@vdceye.com)
 
 ### Note: ###
-	Please Delete C:\videodb if use vdceye Manager V2014-0630.msi and before.
+	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
     
 	For Axis Camera, Plase disable the replay attack protection
 	System Options
