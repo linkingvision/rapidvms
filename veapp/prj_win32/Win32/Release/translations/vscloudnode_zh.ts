@@ -382,13 +382,13 @@
     </message>
     <message>
         <location filename="../vscmainwindows.cpp" line="257"/>
-        <source>About vdceye manager</source>
+        <source>About OpenCVR</source>
         <translation>关于vdceye Manager</translation>
     </message>
     <message>
         <location filename="../vscmainwindows.cpp" line="258"/>
-        <source>The &lt;b&gt;vdceye manager&lt;/b&gt;. &lt;br&gt;Also has the open source vdceye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;VERSION: V2014-0509</source>
-        <translation>&lt;b&gt;vdceye manager&lt;/b&gt;. &lt;br&gt;相同的开源项目：VdeEye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;版本号 V2014-0509</translation>
+        <source>The &lt;b&gt;OpenCVR&lt;/b&gt;. &lt;br&gt;Also has the open source vdceye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;VERSION: V2014-0509</source>
+        <translation>&lt;b&gt;OpenCVR&lt;/b&gt;. &lt;br&gt;相同的开源项目：VdeEye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;版本号 V2014-0509</translation>
     </message>
     <message>
         <location filename="../vscmainwindows.cpp" line="275"/>
@@ -400,7 +400,7 @@
     <name>VSCMainWindowsClass</name>
     <message>
         <location filename="../vscmainwindows.ui" line="14"/>
-        <source>vdceye Manager  2014</source>
+        <source>OpenCVR  2014</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

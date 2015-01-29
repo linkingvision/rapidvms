@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 TEMPLATE = app
-TARGET = vdceyeManager
+TARGET = OpenCVR
 DESTDIR = ./
 QT += core sql network xml script xmlpatterns dbus widgets gui qml printsupport  concurrent 
 CONFIG += help debug console

@@ -448,12 +448,12 @@
     </message>
     <message>
         <location filename="../main/vscmainwindows.cpp" line="337"/>
-        <source>About vdceye manager</source>
+        <source>About OpenCVR</source>
         <translation>关于vdceye manager</translation>
     </message>
     <message>
         <location filename="../main/vscmainwindows.cpp" line="338"/>
-        <source>The &lt;b&gt;vdceye manager&lt;/b&gt;. &lt;br&gt;Also has the open source vdceye Viewer&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;</source>
+        <source>The &lt;b&gt;OpenCVR&lt;/b&gt;. &lt;br&gt;Also has the OpenCVR&lt;br&gt;&lt;a href=&quot;https://github.com/xsmart&quot;&gt;https://github.com/xsmart&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://www.vdceye.com/&quot;&gt;http://www.vdceye.com/&lt;/a&gt;</source>
         <translation></translation>
     </message>
     <message>
@@ -466,8 +466,8 @@
     <name>VSCMainWindowsClass</name>
     <message>
         <location filename="../main/vscmainwindows.ui" line="14"/>
-        <source>vdceye Manager  2014</source>
-        <translation>vdceye Manager  2014</translation>
+        <source>OpenCVR  2014</source>
+        <translation>OpenCVR  2014</translation>
     </message>
 </context>
 <context>
