@@ -73,9 +73,9 @@ Download *OpenCVR-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from
 		export  PATH=$PATH:/home/xxx/Qt5.4.0/5.4/gcc_64/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/
 
 For more guide
-[http://www.vdceye.com/](http://www.vdceye.com/)
+[http://veyesys.com/](http://veyesys.com/)
 
-[xsmart@vdceye.com](xsmart@vdceye.com)
+[xsmart@veyesys.com](xsmart@veyesys.com)
 
 ### Note: ###
 	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
