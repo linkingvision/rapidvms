@@ -13,13 +13,27 @@ typedef struct __VeBox
 	u32 h;	
 }VeBox;
 
-/* (1024/16) * (1024/16) =  4096 */
+typedef struct __VeObj
+{
+	s64 id;
+	VeBox box;
+}VeObj;
+
+/* Max object in each frame*/
+#define VE_OBJ_GROUP_MAX 64 
+typedef struct __VeObjGroup
+{
+	VeObj obj[VE_OBJ_GROUP_MAX];
+}VeObjGroup;
+
+/* (1024/16) * (1024/16) =  4096, every 16 x 16 has a Box */
 #define VE_MOT_BOX_MAX 4096
 typedef struct __VeMotionBox
 {
-	u32 size;
-	u32 w;
-	u32 h;
+	u32 size;/* Total num of BOX */
+	u32 w; /* Real width */
+	u32 h; /* Real heigh */
+	u32 survival;/* survival frames */ 
 	VeBox mot[VE_MOT_BOX_MAX];
 }VeMotionBox;
 
