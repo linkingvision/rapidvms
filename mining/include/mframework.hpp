@@ -42,7 +42,10 @@ public:
 public:
 	inline static BOOL RetHandler(s32 id, MiningRet& ret, void * pParam);
 	inline BOOL RetHandler1(s32 id, MiningRet& ret);
-		
+public:
+	static BOOL DeviceChangeCallbackFunc(void* pData, FactoryDeviceChangeData change);
+	BOOL DeviceChangeCallbackFunc1(FactoryDeviceChangeData change);
+
 private:
 	MModuleMap m_MModules;
 	MModuleRetQueue m_RetQueue;
@@ -86,6 +89,33 @@ void MFramework::run()
 		}
 	}
 	return;
+}
+
+bool MFramework::DeviceChangeCallbackFunc(void* pData, 
+								FactoryDeviceChangeData change)
+{
+	if (pData)
+	{
+		MFramework * pthread = (MFramework *)pData;
+		pthread->DeviceChangeCallbackFunc1(change);
+	}
+	return true;
+}
+bool MFramework::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
+{
+	VDC_DEBUG( "Event Device Change Callback %d type %d Begin\n", change.id, change.type);
+	
+	if (change.type == FACTORY_DEVICE_OFFLINE)
+	{
+
+	}
+	if (change.type == FACTORY_DEVICE_ONLINE)
+	{
+		
+	}
+	VDC_DEBUG( "Event Device Change Callback %d type %d End \n", change.id, change.type);
+
+	return TRUE;
 }
 
 #endif /* __M_FRAME_WORK_HPP__ */
