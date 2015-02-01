@@ -125,6 +125,14 @@ public:
 		}
 		return FALSE;
 	}
+	virtual astring GetVersion()
+	{
+		if (m_module)
+		{
+			return m_module->GetVersion();
+		}
+		return FALSE;
+	}
 		
 private:
 	MiningInterface * m_module;
