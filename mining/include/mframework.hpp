@@ -12,6 +12,7 @@
 #include "videotype.hpp"
 #include "miningtype.hpp"
 #include "mmodule.hpp"
+#include "factory.hpp"
 #include <QThread>
 #include <qdebug.h>
 #include "cppkit/ck_string.h"
@@ -34,7 +35,7 @@ class MFramework:public QThread
 {
     Q_OBJECT
 public:
-	inline MFramework(astring strPath);
+	inline MFramework(Factory &pFactory);
 	inline ~MFramework();
 public:
 	inline void run();
