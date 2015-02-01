@@ -37,6 +37,7 @@ class MFramework:public QThread
 public:
 	inline MFramework(Factory &pFactory);
 	inline ~MFramework();
+	inline BOOL Init();
 public:
 	inline void run();
 public:
@@ -51,6 +52,13 @@ private:
 	MModuleRetQueue m_RetQueue;
 	BOOL m_bExit;
 };
+
+inline BOOL MFramework:Init()
+{
+	/* Get all the modules list and init  */
+
+	/* Get all the device and add channel to all the modules */
+}
 
 
 BOOL MFramework::RetHandler(s32 id, MiningRet& ret, void * pParam)
