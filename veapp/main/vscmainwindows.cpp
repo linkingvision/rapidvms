@@ -534,7 +534,7 @@ void VSCMainWindows::about()
    QMessageBox::about(this, tr("About OpenCVR"),
             tr("The <b>OpenCVR</b>. <br>"
             "<a href=\"https://github.com/xsmart/opencvr\">https://github.com/xsmart/opencvr</a>"
-            "  <br><a href=\"http://www.vdceye.com/\">http://www.vdceye.com/</a>"));
+            "  <br><a href=\"http://veyesys.com/\">http://veyesys.com/</a>"));
 }
 
 void VSCMainWindows::UserStatus()
