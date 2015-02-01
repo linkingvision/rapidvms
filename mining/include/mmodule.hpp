@@ -64,6 +64,7 @@ public:
 	virtual BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam);
 	virtual BOOL UnRegDataCallback(void * pParam);
 	virtual u32 GetFlags();
+	virtual astring GetVersion();
 };
 
 /* Create MiningInterface from the module  */
