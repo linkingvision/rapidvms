@@ -76,7 +76,8 @@ For more guide
 [http://veyesys.com/](http://veyesys.com/)
 
 [xsmart@veyesys.com](xsmart@veyesys.com)
-
+Skype: xsmart@veyesys.com
+QQ   : 2104915834
 ### Note: ###
 	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
     
