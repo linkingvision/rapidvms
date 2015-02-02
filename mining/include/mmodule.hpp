@@ -11,6 +11,7 @@
 #include "debug.hpp"
 #include "videotype.hpp"
 #include "miningtype.hpp"
+#include "minterface.hpp"
 #include "cppkit/ck_string.h"
 #include "cppkit/ck_memory.h"
 #include "cppkit/ck_command_queue.h"
