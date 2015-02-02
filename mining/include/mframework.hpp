@@ -20,6 +20,13 @@
 #include "cppkit/ck_command_queue.h"
 #include "cppkit/ck_dynamic_library.h"
 #include "cppkit/ck_byte_ptr.h"
+#include "Poco/DirectoryIterator.h"
+#include "Poco/File.h"
+#include "Poco/Path.h"
+
+using Poco::DirectoryIterator;
+using Poco::File;
+using Poco::Path;
 
 using namespace std;
 using namespace cppkit;
@@ -56,7 +63,35 @@ private:
 inline BOOL MFramework:Init()
 {
 	/* Get all the modules list and init  */
+	std::string dir;
+	if (argc > 1)
+	dir = argv[1];
+	else
+	dir = Path::current();
 
+	try
+	{
+	DirectoryIterator it(dir);
+	DirectoryIterator end;
+	while (it != end)
+	{
+		Path p(it->path());
+		std::cout << (it->isDirectory() ? 'd' : '-')
+				  << (it->canRead() ? 'r' : '-')
+				  << (it->canWrite() ? 'w' : '-')
+				  << ' '
+				  << DateTimeFormatter::format(it->getLastModified(), DateTimeFormat::SORTABLE_FORMAT)
+				  << ' '
+				  << p.getFileName()
+				  << std::endl;
+		++it;
+	}
+	}
+	catch (Poco::Exception& exc)
+	{
+	std::cerr << exc.displayText() << std::endl;
+	return 1;
+	}
 	/* Get all the device and add channel to all the modules */
 }
 
