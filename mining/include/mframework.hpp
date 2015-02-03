@@ -51,8 +51,11 @@ public:
 	inline static BOOL RetHandler(s32 id, MiningRet& ret, void * pParam);
 	inline BOOL RetHandler1(s32 id, MiningRet& ret);
 public:
-	static BOOL DeviceChangeCallbackFunc(void* pData, FactoryDeviceChangeData change);
-	BOOL DeviceChangeCallbackFunc1(FactoryDeviceChangeData change);
+	inline static BOOL DeviceChangeCallbackFunc(void* pData, FactoryDeviceChangeData change);
+	inline BOOL DeviceChangeCallbackFunc1(FactoryDeviceChangeData change);
+public:
+	inline astring GetPluginPath();
+
 
 private:
 	MModuleMap m_MModules;
@@ -60,37 +63,86 @@ private:
 	BOOL m_bExit;
 };
 
-inline BOOL MFramework:Init()
+
+astring MFramework::GetPluginPath()
+{
+#ifdef WIN32
+    char exeFullPath[MAX_PATH]; // Full path
+
+    string strPath = "";
+
+    GetModuleFileNameA(NULL,exeFullPath, MAX_PATH);
+    strPath=(string)exeFullPath;    // Get full path of the file
+
+    int pos = strPath.find_last_of('\\', strPath.length());
+
+    return strPath.substr(0, pos);  // Return the directory without the file name
+#else
+    return "./";
+#endif
+}
+
+inline BOOL MFramework::Init()
 {
 	/* Get all the modules list and init  */
 	std::string dir;
-	if (argc > 1)
-	dir = argv[1];
-	else
-	dir = Path::current();
+
+	//dir = Path::current();
+	std::string pluginPath = GetPluginPath() + "/mplugins/";
+	
+	dir = pluginPath;
 
 	try
 	{
-	DirectoryIterator it(dir);
-	DirectoryIterator end;
-	while (it != end)
-	{
-		Path p(it->path());
-		std::cout << (it->isDirectory() ? 'd' : '-')
-				  << (it->canRead() ? 'r' : '-')
-				  << (it->canWrite() ? 'w' : '-')
-				  << ' '
-				  << DateTimeFormatter::format(it->getLastModified(), DateTimeFormat::SORTABLE_FORMAT)
-				  << ' '
-				  << p.getFileName()
-				  << std::endl;
-		++it;
-	}
+		DirectoryIterator it(dir);
+		DirectoryIterator end;
+		while (it != end)
+		{
+			/* loop for each dir */
+			if (it->isDirectory() == true)
+			{
+				try 
+				{
+					DirectoryIterator it2(it->path());
+					DirectoryIterator end2;
+					while (it2 != end2)
+					{
+						if (it2.name().find("mplugin") == 0)
+						{
+							//Find a plugin
+							// Call mmodule to add
+						}
+						++it2;
+					}
+				}	
+				catch (Poco::Exception& exc)
+				{
+					continue;
+				}
+			}
+
+
+#if 0
+			Path p(it->path());
+			if ()
+			std::cout << (it->isDirectory() ? 'd' : '-')
+					  << (it->canRead() ? 'r' : '-')
+					  << (it->canWrite() ? 'w' : '-')
+					  << ' '
+					  << DateTimeFormatter::format(it->getLastModified(), DateTimeFormat::SORTABLE_FORMAT)
+					  << ' '
+					  << p.getFileName()
+					  << std::endl;
+#endif
+			++it;
+		}
 	}
 	catch (Poco::Exception& exc)
 	{
-	std::cerr << exc.displayText() << std::endl;
-	return 1;
+		std::cerr << exc.displayText() << std::endl;
+	 	VDC_DEBUG( "Plugin init error \n");
+
+		return ;
 	}
 	/* Get all the device and add channel to all the modules */
 }
