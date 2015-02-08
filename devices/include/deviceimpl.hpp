@@ -293,6 +293,18 @@ Device::~Device()
 	/* stop all the data  */
 	Lock();
 
+	DeviceDelCallbackMap::iterator it = m_DelMap.begin();
+
+	for(; it!=m_DelMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceDelCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(pParam);
+	    }
+	}
+
 	m_vPlay.StopGetData();
 	m_vPlay.StopGetRawFrame();
 	m_vPlaySubStream.StopGetData();
@@ -660,6 +672,21 @@ BOOL Device::UnRegRawCallback(void * pParam)
 	SubUnLock();
 	UnLock();
 	StopRaw();
+	return TRUE;
+}
+
+BOOL Device::RegDelCallback(DeviceDelCallbackFunctionPtr pCallback, void * pParam)
+{
+	Lock();
+	m_DelMap[pParam] = pCallback;
+	UnLock();
+	return TRUE;
+}
+BOOL Device::UnRegDelCallback(void * pParam)
+{
+	Lock();
+	m_DelMap.erase(pParam);
+	UnLock();
 	return TRUE;
 }
 
