@@ -5,8 +5,8 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "r1.1.0-20150201"
-#define VE_INFO "OpenCVR r1.1.0 2015"
+#define VE_VERSION "r1.1.2-20150201"
+#define VE_INFO "OpenCVR r1.1.2 2015"
 
 #ifdef WIN32
 #define VE_NVR_CLIENT 
