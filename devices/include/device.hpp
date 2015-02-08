@@ -17,7 +17,6 @@
 
 #include "utility.hpp"
 #include "conf.hpp"
-#include "datasink.hpp"
 #include "devicemanagement.h"
 #include "ptzmanagement.h"
 #include "media_management/profiles.h"
@@ -59,13 +58,17 @@ typedef enum
 #ifdef WIN32
 typedef void (__cdecl * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 typedef void (__cdecl * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
+typedef void (__cdecl * DeviceDelCallbackFunctionPtr)(void * pParam);
+
 #else
 typedef void ( * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 typedef void ( * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
+typedef void ( * DeviceDelCallbackFunctionPtr)(void * pParam);
 
 #endif
 typedef std::map<void *, DeviceDataCallbackFunctionPtr> DeviceDataCallbackMap;
 typedef std::map<void *, DeviceRawCallbackFunctionPtr> DeviceRawCallbackMap;
+typedef std::map<void *, DeviceDelCallbackFunctionPtr> DeviceDelCallbackMap;
 
 class DeviceParam
 {
@@ -187,6 +190,10 @@ public:
 	inline BOOL UnRegRawCallback(void * pParam);
 	inline BOOL RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegSubRawCallback(void * pParam);
+
+
+	inline BOOL RegDelCallback(DeviceDelCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegDelCallback(void * pParam);
 	
 	inline BOOL GetInfoFrame(InfoFrame &pFrame);
 	inline BOOL GetSubInfoFrame(InfoFrame &pFrame);
@@ -217,6 +224,8 @@ private:
 
 	DeviceRawCallbackMap m_RawMap;
 	DeviceRawCallbackMap m_SubRawMap;
+
+	DeviceDelCallbackMap m_DelMap;
 
 private:
 	s32 m_nDeviceType;
