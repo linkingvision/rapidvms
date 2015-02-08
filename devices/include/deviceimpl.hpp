@@ -290,7 +290,32 @@ m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0)
 
 Device::~Device()
 {
+	/* stop all the data  */
+	Lock();
 
+	m_vPlay.StopGetData();
+	m_vPlay.StopGetRawFrame();
+	m_vPlaySubStream.StopGetData();
+	m_vPlaySubStream.StopGetRawFrame();
+	
+	if (m_pHdfsRecord)
+	{
+		m_pVHdfsdb.FinishRecord(m_pHdfsRecord);
+		delete m_pHdfsRecord;
+		m_pHdfsRecord = NULL;
+	}
+	
+	if (m_pRecord)
+	{
+	    u32 endTime = m_pRecord->GetEndTime();
+	    if (endTime != 0)
+	    {
+	    	 m_pVdb.FinishRecord(m_pRecord);
+	    }
+	    delete m_pRecord;
+	    m_pRecord = NULL;
+	}
+	UnLock();
 }
 
 DeviceStatus Device::CheckDevice()
