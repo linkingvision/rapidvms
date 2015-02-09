@@ -517,12 +517,14 @@ inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
     return ret;
 }
 
-inline BOOL Factory::AttachPlayer(s32 nIndex, HWND hWnd, int w, int h)
+inline BOOL Factory::AttachPlayer(s32 nIndex, HWND hWnd, int w, int h, 
+	DeviceDelCallbackFunctionPtr pCallback, void * pParam)
 {
     //Lock();//For VIPC testing
     if (m_DeviceMap[nIndex] != NULL)
     {
         m_DeviceMap[nIndex]->AttachPlayer(hWnd, w, h);
+	 m_DeviceMap[nIndex]->RegDelCallback(pCallback, pParam);
     }
     //UnLock();
 
@@ -541,12 +543,13 @@ inline BOOL Factory::UpdateWidget(s32 nIndex, HWND hWnd, int w, int h)
 	return TRUE;
 }
 
-inline BOOL Factory::DetachPlayer(s32 nIndex, HWND hWnd)
+inline BOOL Factory::DetachPlayer(s32 nIndex, HWND hWnd, void * pParam)
 {
     Lock();
     if (m_DeviceMap[nIndex] != NULL)
     {
         m_DeviceMap[nIndex]->DetachPlayer(hWnd);
+	 m_DeviceMap[nIndex]->UnRegDelCallback(pParam);
     }
     UnLock();
 
