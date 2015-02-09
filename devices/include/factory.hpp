@@ -171,6 +171,9 @@ public:
 	BOOL RegSubRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegSubRawCallback(s32 nIndex, void * pParam);
 
+	BOOL RegDelCallback(s32 nIndex, DeviceDelCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegDelCallback(s32 nIndex, void * pParam);
+
 	BOOL GetDeviceOnline(s32 nIndex, BOOL &bStatus);
 	BOOL GetUrl(s32 nIndex, std::string &url);
 	BOOL SetSystemPath(astring &strPath);
