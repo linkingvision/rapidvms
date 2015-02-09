@@ -215,8 +215,10 @@ public:
 	inline BOOL UpdatePTZConf();
 
 private:
-	VPlay m_vPlay;
-	VPlay m_vPlaySubStream;
+	VPlay *m_pvPlay;
+	VPlay *m_pvPlaySubStream;
+	VPlay &m_vPlay;
+	VPlay &m_vPlaySubStream;
 	BOOL m_bStarted;
 	BOOL m_bSubStarted;
 	DeviceDataCallbackMap m_DataMap;

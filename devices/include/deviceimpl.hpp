@@ -276,7 +276,9 @@ m_pHdfsRecord(NULL),
 m_Online(FALSE), 
 m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
-m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0)
+m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0),
+m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay), 
+m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream)
 
 {
 	if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
@@ -292,6 +294,7 @@ Device::~Device()
 {
 	/* stop all the data  */
 	Lock();
+	SubLock();
 
 	DeviceDelCallbackMap::iterator it = m_DelMap.begin();
 
@@ -327,7 +330,11 @@ Device::~Device()
 	    delete m_pRecord;
 	    m_pRecord = NULL;
 	}
+	SubUnLock();
 	UnLock();
+
+	delete m_pvPlay;
+	delete m_pvPlaySubStream;
 }
 
 DeviceStatus Device::CheckDevice()
