@@ -464,6 +464,31 @@ inline BOOL Factory::UnRegSubRawCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
+inline BOOL Factory::RegDelCallback(s32 nIndex, DeviceDelCallbackFunctionPtr pCallback, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->RegDelCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+inline BOOL Factory::UnRegDelCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegDelCallback(pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
 inline BOOL Factory::GetDeviceOnline(s32 nIndex, BOOL &bStatus)
 {
     Lock();
