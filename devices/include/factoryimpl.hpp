@@ -227,6 +227,26 @@ inline BOOL Factory::SetHdfsRecordConf(VSCHdfsRecordData &pData)
 	return ret;
 }
 
+inline BOOL Factory::GetLang(VSCLangType &pLang)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	pLang = (VSCLangType)sys.data.conf.Language;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetLang(VSCLangType &pLang)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	sys.data.conf.Language = (u32)pLang;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
 inline BOOL Factory::InitLicense()
 {
 	astring strLicense;
