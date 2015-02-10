@@ -35,9 +35,6 @@
     <Filter Include="Device\include">
       <UniqueIdentifier>{46f2814e-8ffe-4906-8ccc-8211f8c17ace}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Device\src">
-      <UniqueIdentifier>{5a5d6da8-112b-40f6-9a76-350a1c217099}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Setting">
       <UniqueIdentifier>{dab7c1be-2376-4d74-8a74-4c04517acf0e}</UniqueIdentifier>
     </Filter>
@@ -128,9 +125,6 @@
     </CustomBuild>
     <CustomBuild Include="..\setting\vscsetting.h">
       <Filter>Setting</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\devices\include\factory.hpp">
-      <Filter>Device\include</Filter>
     </CustomBuild>
     <CustomBuild Include="..\disk\vschdddevice.h">
       <Filter>Disk</Filter>
@@ -255,6 +249,9 @@
     <CustomBuild Include="..\setting\vscrtsprtp.ui">
       <Filter>Setting</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\devices\include\factory.hpp">
+      <Filter>Device\include</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -372,12 +369,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_vscsetting.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\disk\vschdddevice.cpp">
@@ -584,6 +575,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscrtsprtp.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -612,51 +609,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsctoolbar.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\cefactory.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\conf.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\confdb.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\config.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\database.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\datasink.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\datasrc.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\device.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\ffmpeg_api.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\ffmpeg_codecs.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\ffmpeg_impl.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\ffmpeg_scale.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\hdddevice.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\mpipeline.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\devices\include\sysdb.hpp">
-      <Filter>Device\include</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscsetting.h">
       <Filter>Generated Files</Filter>
@@ -718,15 +670,36 @@
     <ClInclude Include="GeneratedFiles\ui_vscrtsprtp.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\devices\include\cmnserver.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\conf.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\confdb.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\device.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\deviceimpl.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\factoryimpl.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\hdddevice.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\sysdb.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VSCloudNode.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icon1.ico" />
-    <None Include="..\main\translations\vscloudnode_zh.ts">
-      <Filter>Translation Files</Filter>
-    </None>
     <None Include="..\darkstyle\rc\up_arrow_disabled.png">
       <Filter>Resource</Filter>
     </None>
@@ -801,6 +774,9 @@
     </None>
     <None Include="..\darkstyle\style.qss">
       <Filter>Resource</Filter>
+    </None>
+    <None Include="..\main\translations\opencvr_zh.ts">
+      <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
 </Project>
