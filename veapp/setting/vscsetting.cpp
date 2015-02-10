@@ -15,6 +15,7 @@ VSCSetting::VSCSetting(QWidget *parent, VSCDeviceList &pDeviceList)
 	m_License = new VSCLicense();
 	m_Version = new VSCVersion();
 	m_User = new VSCUser();
+	m_Language = new VSCLanguage();
 	m_Layout = new QVBoxLayout();
 	m_RecorderConf = new VSCRecorderConf(pMap);
 	m_HdfsRecord = new VSCHdfsRecord();
@@ -76,6 +77,10 @@ void VSCSetting::removeAll()
 	m_Version->hide();
 	m_Layout->removeWidget(m_User);
 	m_User->hide();
+
+	m_Layout->removeWidget(m_Language);
+	m_Language->hide();
+	
 	m_Layout->removeWidget(m_RecorderConf);
 	m_RecorderConf->hide();
 
@@ -111,6 +116,11 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 			removeAll();
 			m_Layout->addWidget(m_User);
 			m_User->show();
+		}else if (col == 3)
+		{
+			removeAll();
+			m_Layout->addWidget(m_Language);
+			m_Language->show();
 		}
 	}else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_MEDIA) == parent)
 	{
