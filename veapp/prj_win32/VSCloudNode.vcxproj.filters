@@ -35,9 +35,6 @@
     <Filter Include="Device\include">
       <UniqueIdentifier>{46f2814e-8ffe-4906-8ccc-8211f8c17ace}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Setting">
-      <UniqueIdentifier>{dab7c1be-2376-4d74-8a74-4c04517acf0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Translation Files">
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
@@ -54,6 +51,9 @@
     </Filter>
     <Filter Include="main">
       <UniqueIdentifier>{fd16c105-62a2-4dae-842d-eb204e0c2c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="setting">
+      <UniqueIdentifier>{dab7c1be-2376-4d74-8a74-4c04517acf0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,10 +121,10 @@
       <Filter>Include</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscsetting.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscsetting.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\disk\vschdddevice.h">
       <Filter>Disk</Filter>
@@ -145,16 +145,16 @@
       <Filter>Disk</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vsclicense.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vsclicense.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscversion.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscversion.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\vms\vscrecorderadd.h">
       <Filter>vms</Filter>
@@ -178,10 +178,10 @@
       <Filter>vms</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscrecorderconf.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscrecorderconf.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\vms\vscrecorderpanel.h">
       <Filter>vms</Filter>
@@ -220,16 +220,16 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscuser.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscuser.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscuserstatus.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscuserstatus.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\main\vscviewconf.ui">
       <Filter>Form Files</Filter>
@@ -238,19 +238,25 @@
       <Filter>Include</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vschdfsrecord.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vschdfsrecord.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscrtsprtp.h">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\setting\vscrtsprtp.ui">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\devices\include\factory.hpp">
       <Filter>Device\include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vsclanguage.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vsclanguage.ui">
+      <Filter>setting</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -363,7 +369,7 @@
       <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscsetting.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscsetting.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -399,7 +405,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vsclicense.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vsclicense.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -408,7 +414,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscversion.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscversion.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -453,7 +459,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscrecorderconf.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderconf.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -531,7 +537,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscuser.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscuser.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -540,7 +546,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscuserstatus.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscuserstatus.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -558,7 +564,7 @@
       <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vschdfsrecord.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vschdfsrecord.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -567,7 +573,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\setting\vscrtsprtp.cpp">
-      <Filter>Setting</Filter>
+      <Filter>setting</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscrtsprtp.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -579,6 +585,15 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vsclanguage.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclanguage.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclanguage.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -693,6 +708,9 @@
     </ClInclude>
     <ClInclude Include="..\..\devices\include\sysdb.hpp">
       <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclanguage.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
