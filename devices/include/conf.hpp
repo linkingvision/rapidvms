@@ -113,6 +113,14 @@ typedef enum
     LAYOUT_MODE_LAST
 } VideoWallLayoutMode;
 
+/* Language */
+typedef enum
+{
+    VSC_LANG_EN = 0,
+    VSC_LANG_ZH,
+    VSC_LANG_LAST
+} VSCLangType;
+
 #pragma pack(push,  1 )
 typedef struct __VSCConfSystemKey {
     s8 Key[CONF_KEY_STR_MAX];
