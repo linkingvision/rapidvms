@@ -11,6 +11,7 @@
 #include "vscrecorderconf.h"
 #include "vscdevicelist.h"
 #include "vscuser.h"
+#include "vsclanguage.h"
 #include "vschdfsrecord.h"
 #include "vscrtsprtp.h"
 
@@ -52,6 +53,7 @@ private:
 	VSCLicense *m_License;
 	VSCVersion *m_Version;
 	VSCUser *m_User;
+	VSCLanguage *m_Language;
 	VSCRecorderConf *m_RecorderConf;
 	VSCHdfsRecord *m_HdfsRecord;
 	VSCRtspRtp *m_RtspRtp;
