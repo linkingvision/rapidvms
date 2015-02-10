@@ -33,13 +33,22 @@ int main(int argc, char *argv[])
 	//if (QLocale::system().name() == "zh_CN")
 	{
 		QTranslator *translator = new QTranslator(&a);
-		bool ok = translator->load("vscloudnode_zh.qm",
+		bool ok = translator->load("opencvr_zh.qm",
 			QCoreApplication::applicationDirPath() + "/translations");
 		
 		if (ok)
 		{
 			qDebug("Translation Files loaded.");
 			a.installTranslator(translator);
+		}
+		QTranslator *translatorVe = new QTranslator(&a);
+		ok = translatorVe->load("veuilib_zh.qm",
+			QCoreApplication::applicationDirPath() + "/translations");
+		
+		if (ok)
+		{
+			qDebug("Translation Files loaded.");
+			a.installTranslator(translatorVe);
 		}
 	}
 #endif
