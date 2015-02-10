@@ -75,6 +75,11 @@
           <string>User</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Language</string>
+         </property>
+        </item>
        </item>
        <item>
         <property name="text">
