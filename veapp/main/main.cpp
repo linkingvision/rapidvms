@@ -26,32 +26,6 @@ int main(int argc, char *argv[])
     int dummy = errno;
     QApplication a(argc, argv);
     Debug::init(0);
-    //mediaPipeline::init(argc, argv);
-
-	// Set the Application Language
-#if 0
-	//if (QLocale::system().name() == "zh_CN")
-	{
-		QTranslator *translator = new QTranslator(&a);
-		bool ok = translator->load("opencvr_zh.qm",
-			QCoreApplication::applicationDirPath() + "/translations");
-		
-		if (ok)
-		{
-			qDebug("Translation Files loaded.");
-			a.installTranslator(translator);
-		}
-		QTranslator *translatorVe = new QTranslator(&a);
-		ok = translatorVe->load("veuilib_zh.qm",
-			QCoreApplication::applicationDirPath() + "/translations");
-		
-		if (ok)
-		{
-			qDebug("Translation Files loaded.");
-			a.installTranslator(translatorVe);
-		}
-	}
-#endif
 
     QPixmap pixmap(":/logo/resources/splash.png");
     QSplashScreen *splash = new QSplashScreen(pixmap);
@@ -106,6 +80,29 @@ int main(int argc, char *argv[])
 	//gFactory->AddHDD(strPath, size);
 #endif
    }
+	VSCLangType m_lang;
+	gFactory->GetLang(m_lang);
+	if (m_lang == VSC_LANG_ZH)
+	{
+		QTranslator *translator = new QTranslator(&a);
+		bool ok = translator->load("opencvr_zh.qm",
+			QCoreApplication::applicationDirPath() + "/translations");
+		
+		if (ok)
+		{
+			qDebug("Translation Files loaded.");
+			a.installTranslator(translator);
+		}
+		QTranslator *translatorVe = new QTranslator(&a);
+		ok = translatorVe->load("veuilib_zh.qm",
+			QCoreApplication::applicationDirPath() + "/translations");
+		
+		if (ok)
+		{
+			qDebug("Translation Files loaded.");
+			a.installTranslator(translatorVe);
+		}
+	}//else if add more language to here
 
    VEvent::Init(*gFactory);
    VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
