@@ -97,6 +97,8 @@ public:
 public:
 	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);
+	BOOL GetLang(VSCLangType &pLang);
+	BOOL SetLang(VSCLangType &pLang);
 
 public:
 	/* UI can use this for display device tree */
