@@ -386,7 +386,7 @@
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Virutal IPC</string>
+          <string>VIPC</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
