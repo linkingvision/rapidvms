@@ -15,6 +15,7 @@
 #include <QSplashScreen>
 #include <QtWidgets/QMainWindow>
 #include <QTranslator>
+#include <QTextCodec>
 #include "vschdddevice.h"
 #include "vevent.hpp"
 #include "vservicemgr.hpp"
@@ -23,18 +24,30 @@ Factory *gFactory = NULL;
 
 int main(int argc, char *argv[])
 {
-    int dummy = errno;
-    QApplication a(argc, argv);
-    Debug::init(0);
+	int dummy = errno;
+	//QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+	QApplication a(argc, argv);
+	Debug::init(0);
+
+	//QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8")); 
+	//QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8")); 
+#if 0
+	QFont font;
+	font.setPointSize(10); 
+	font.setFamily(("WenQuanYi Zen Hei"));
+	font.setBold(false);
+
+	a.setFont(font);
+#endif
 
     QPixmap pixmap(":/logo/resources/splash.png");
     QSplashScreen *splash = new QSplashScreen(pixmap);
-    QFont splashFont;
+    //QFont splashFont;
     //splashFont.setFamily("Arial");
-    splashFont.setBold(true);
+    //splashFont.setBold(true);
 
     splash->setStyleSheet(QStringLiteral("color : red;"));
-    splash->setFont(splashFont);
+    //splash->setFont(splashFont);
     
     splash->show();
 
