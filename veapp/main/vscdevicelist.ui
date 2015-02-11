@@ -98,7 +98,7 @@
        <item>
         <widget class="QLabel" name="lbRecorder">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Recorder</string>
@@ -143,7 +143,7 @@
        <item>
         <widget class="QLabel" name="label_3">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Camera</string>
@@ -194,7 +194,7 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>View</string>
@@ -239,7 +239,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Search</string>
@@ -284,7 +284,7 @@
        <item>
         <widget class="QLabel" name="lbMining">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Mining</string>
@@ -334,14 +334,11 @@
          <property name="font">
           <font>
            <family>Arial Unicode MS</family>
-           <pointsize>8</pointsize>
+           <pointsize>9</pointsize>
            <weight>50</weight>
            <italic>false</italic>
            <bold>false</bold>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
          </property>
          <property name="text">
           <string>eMap</string>
@@ -386,7 +383,7 @@
        <item>
         <widget class="QLabel" name="label_8">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Virutal IPC</string>
@@ -431,7 +428,7 @@
        <item>
         <widget class="QLabel" name="label_7">
          <property name="styleSheet">
-          <string notr="true">font: 8pt &quot;Arial Unicode MS&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Trush</string>
