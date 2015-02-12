@@ -27,7 +27,7 @@
     <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">font: 10pt &quot;Î¢ÈíÑÅºÚ&quot;;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget"/>
  </widget>
