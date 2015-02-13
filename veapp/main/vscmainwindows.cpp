@@ -60,7 +60,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 
     ui.setupUi(this);
 #ifdef WIN32
-   setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+   //setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
 #endif
 
 
@@ -87,7 +87,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
 	QCoreApplication::processEvents();
 #if 1	
-	m_pView = new VSCView(m_pMainArea, *m_pMainArea, "Main View");
+	m_pView = new VSCView(m_pMainArea, *m_pMainArea, tr("Main View"));
 	m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
 	m_pMainArea->addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
 	connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
@@ -183,7 +183,7 @@ void VSCMainWindows::AddSurveillance()
 	VSCLoading *loading = new VSCLoading(NULL);
 	loading->setGeometry(width()/2, height()/2, 64, 64);
 	QCoreApplication::processEvents();
-	VSCView *pView = new VSCView(m_pMainArea,  *m_pMainArea, Name);
+	VSCView *pView = new VSCView(m_pMainArea,  *m_pMainArea, tr("View %1").arg(currentNum+1));
 	pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
     	m_pMainArea->addTab(pView, QIcon(tr(":/view/resources/3x3.png")), tr("View %1").arg(currentNum+1));
 
@@ -537,7 +537,7 @@ void VSCMainWindows::SetupMenuBar()
 void VSCMainWindows::about()
 {
    QMessageBox::about(this, tr("About OpenCVR"),
-            tr("The <b>OpenCVR</b>. <br>"
+            tr("<b>OpenCVR</b>. <br>"
             "<a href=\"https://github.com/xsmart/opencvr\">https://github.com/xsmart/opencvr</a>"
             "  <br><a href=\"http://veyesys.com/\">http://veyesys.com/</a>"));
 }
