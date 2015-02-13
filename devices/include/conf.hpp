@@ -116,7 +116,8 @@ typedef enum
 /* Language */
 typedef enum
 {
-    VSC_LANG_EN = 0,
+    VSC_LANG_AUTO = 0,
+    VSC_LANG_EN,
     VSC_LANG_ZH,
     VSC_LANG_LAST
 } VSCLangType;
