@@ -22,6 +22,29 @@
 
 Factory *gFactory = NULL;
 
+void LoadLangZH(QApplication &a)
+{
+	QTranslator *translator = new QTranslator(&a);
+	bool ok = translator->load("opencvr_zh.qm",
+		QCoreApplication::applicationDirPath() + "/translations");
+
+	if (ok)
+	{
+		qDebug("Translation Files loaded.");
+		a.installTranslator(translator);
+	}
+	QTranslator *translatorVe = new QTranslator(&a);
+	ok = translatorVe->load("veuilib_zh.qm",
+		QCoreApplication::applicationDirPath() + "/translations");
+
+	if (ok)
+	{
+		qDebug("Translation Files loaded.");
+		a.installTranslator(translatorVe);
+	}
+	return ;
+}
+
 int main(int argc, char *argv[])
 {
 	int dummy = errno;
@@ -29,9 +52,14 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 	Debug::init(0);
 
-	//QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8")); 
-	//QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8")); 
-#if 0
+#ifdef WIN32
+	QFont font;
+	font.setPointSize(10); 
+	font.setFamily(("Î¢ÈíÑÅºÚ"));
+	font.setBold(false);
+
+	a.setFont(font);
+#else
 	QFont font;
 	font.setPointSize(10); 
 	font.setFamily(("WenQuanYi Zen Hei"));
@@ -40,16 +68,17 @@ int main(int argc, char *argv[])
 	a.setFont(font);
 #endif
 
-    QPixmap pixmap(":/logo/resources/splash.png");
-    QSplashScreen *splash = new QSplashScreen(pixmap);
+
+	QPixmap pixmap(":/logo/resources/splash.png");
+	QSplashScreen *splash = new QSplashScreen(pixmap);
     //QFont splashFont;
     //splashFont.setFamily("Arial");
     //splashFont.setBold(true);
 
-    splash->setStyleSheet(QStringLiteral("color : red;"));
+    	splash->setStyleSheet(QStringLiteral("color : red;"));
     //splash->setFont(splashFont);
     
-    splash->show();
+    	splash->show();
 
     //QApplication::setStyle(QStyleFactory::create("Fusion"));
 	//QApplication::setStyle(QStyleFactory::create("Plastique"));
@@ -70,7 +99,6 @@ int main(int argc, char *argv[])
 
 
     gFactory = new Factory;
-    splash->showMessage("Starting ...");
 
    if (gFactory->Init() == FALSE)
    {
@@ -87,7 +115,7 @@ int main(int argc, char *argv[])
 	s32 size = 2;
 #endif
        gFactory->SetSystemPath(strPath);
-       splash->showMessage("Create Video Database ...");
+       //splash->showMessage(QObject::tr("Create Video Database ..."));
        gFactory->Init();
 #ifndef WIN32
 	//gFactory->AddHDD(strPath, size);
@@ -95,28 +123,18 @@ int main(int argc, char *argv[])
    }
 	VSCLangType m_lang;
 	gFactory->GetLang(m_lang);
-	if (m_lang == VSC_LANG_ZH)
+	if (m_lang == VSC_LANG_AUTO)
 	{
-		QTranslator *translator = new QTranslator(&a);
-		bool ok = translator->load("opencvr_zh.qm",
-			QCoreApplication::applicationDirPath() + "/translations");
-		
-		if (ok)
+		if (QLocale::system().name() == "zh_CN")
 		{
-			qDebug("Translation Files loaded.");
-			a.installTranslator(translator);
+			LoadLangZH(a);
 		}
-		QTranslator *translatorVe = new QTranslator(&a);
-		ok = translatorVe->load("veuilib_zh.qm",
-			QCoreApplication::applicationDirPath() + "/translations");
-		
-		if (ok)
-		{
-			qDebug("Translation Files loaded.");
-			a.installTranslator(translatorVe);
-		}
+	}
+	else if (m_lang == VSC_LANG_ZH)
+	{
+		LoadLangZH(a);
 	}//else if add more language to here
-
+   splash->showMessage(QObject::tr("Starting ..."));
    VEvent::Init(*gFactory);
    VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
 
