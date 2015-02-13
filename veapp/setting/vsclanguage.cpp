@@ -19,6 +19,9 @@ void VSCLanguage::SetupValue()
 {
     switch(m_lang)
     {
+	case VSC_LANG_AUTO:
+        ui.radioButtonAuto->setChecked(true);
+        break;
 	case VSC_LANG_EN:
         ui.radioButtonEN->setChecked(true);
         break;
@@ -34,10 +37,15 @@ void VSCLanguage::SetupValue()
 
 void VSCLanguage::applyConfig()
 {
-	if (ui.radioButtonEN->isChecked() == true)
+	if (ui.radioButtonAuto->isChecked() == true)
+	{
+		m_lang = VSC_LANG_AUTO;
+	}
+	else if (ui.radioButtonEN->isChecked() == true)
 	{
 		m_lang = VSC_LANG_EN;
-	}else if (ui.radioButtonZH->isChecked() == true)
+	}
+	else if (ui.radioButtonZH->isChecked() == true)
 	{
 		m_lang = VSC_LANG_ZH;
 	}
