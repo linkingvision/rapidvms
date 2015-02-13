@@ -2,6 +2,7 @@
 #define VSCVIEW_H
 
 #include <QWidget>
+#include <QString>
 #include "ui_vscview.h"
 #include "utility.hpp"
 #include "debug.hpp"
@@ -15,7 +16,7 @@ class VSCView : public QWidget
     Q_OBJECT
 
 public:
-    VSCView(QWidget *parent, QTabWidget &pTabbed, string strName);
+    VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName);
     ~VSCView();
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
@@ -108,7 +109,7 @@ private:
 
  	/* Control Panel  */
 	BOOL m_bControlEnable;
-   string m_strName;
+   QString m_strName;
    VSCViewDataItem m_ViewItem;
    s32 m_lastHoverTime;
    QTimer *m_Timer;
