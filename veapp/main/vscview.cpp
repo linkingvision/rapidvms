@@ -10,7 +10,7 @@
 
 extern Factory *gFactory;
 
-VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, string strName)
+VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
     : QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
     m_bControlEnable(TRUE), m_strName(strName)
 {
@@ -339,7 +339,7 @@ void VSCView::TabbedClicked()
             break;
     }
     setParent(m_pParent);
-    m_pTabbed.addTab(this,icon1, tr(m_strName.c_str()));
+    m_pTabbed.addTab(this,icon1, m_strName);
     m_pTabbed.setCurrentWidget(this);
     showMaximized();
     //showFullScreen();
