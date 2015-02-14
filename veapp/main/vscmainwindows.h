@@ -58,6 +58,8 @@ public slots:
 	void EditVGroup(int nId);
 	void DeleteVGroup(int nId);
 	void MapVGroup();
+	/* Show Login */
+	void ShowLogin();
 
 signals:
     void CameraDeleted();
