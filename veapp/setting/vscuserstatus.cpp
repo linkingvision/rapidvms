@@ -3,12 +3,12 @@
 
 
 VSCUserStatus::VSCUserStatus(QWidget *parent)
-    : QDialog(parent)
+    : QDialog(parent), m_quit(FALSE)
 {
    ui.setupUi(this);
    //setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
 
-   //connect(ui.pbSave, SIGNAL(clicked()), this, SLOT(SaveClicked()));
+   connect(ui.pbLogout, SIGNAL(clicked()), this, SLOT(QuitClicked()));
    //connect(ui.pbCancel, SIGNAL(clicked()), this, SLOT(CancelClicked()));
 #ifdef WIN32
 	setWindowFlags(Qt::FramelessWindowHint|Qt::NoDropShadowWindowHint| Qt::Tool);
@@ -18,13 +18,12 @@ VSCUserStatus::VSCUserStatus(QWidget *parent)
 
 }
 
-void VSCUserStatus::SaveClicked()
+void VSCUserStatus::QuitClicked()
 {
-	//m_Type = VSC_IPCGROUP_CONF_SAVE;
+	m_quit = TRUE;
 }
 void VSCUserStatus::CancelClicked()
 {
-	//m_Type = VSC_IPCGROUP_CONF_CANCEL;
 }
 
 
