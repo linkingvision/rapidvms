@@ -19,9 +19,13 @@ public:
 	void mouseMoveEvent(QMouseEvent *event);
 	void mouseReleaseEvent(QMouseEvent *event);
 public:
+	BOOL IsQuit()
+	{
+		return m_quit;
+	}
 
 public slots: 
-	void SaveClicked();
+	void QuitClicked();
 	void CancelClicked();
 
 public:
@@ -29,6 +33,9 @@ public:
 private:
 	QPoint m_DragPosition;
 	bool m_Drag;
+
+private:
+	BOOL m_quit;
 	
 };
 
