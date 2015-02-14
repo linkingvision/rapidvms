@@ -139,14 +139,12 @@ int main(int argc, char *argv[])
    VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
 
     VSCMainWindows w;
-    //w.setWindowIcon(QIcon(":/logo/resources/vscsmall.jpg"));
-    //w.show();
-    //Sleep(1000);
-    //w.setWindowFlags(Qt::FramelessWindowHint );
-    //w.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::CustomizeWindowHint );
-    w.showMaximized();
+
+    //w.showMaximized();
+    w.hide();
     //w.showFullScreen();
     splash->finish(&w);
+    w.ShowLogin();
 
 	//stacked s;
 	//s.show();

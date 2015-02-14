@@ -49,6 +49,7 @@
 #include "vscuserstatus.h"
 #include "vemap.hpp"
 #include "vdmining.hpp"
+#include "vsclogin.h"
 
 extern Factory *gFactory;
 
@@ -60,7 +61,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 
     ui.setupUi(this);
 #ifdef WIN32
-   //setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+   setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
 #endif
 
 
@@ -553,6 +554,29 @@ void VSCMainWindows::UserStatus()
 					rect.height()/2 - userStatus.height()/2, 
 					userStatus.width(), userStatus.height());
 	userStatus.exec();
+
+	if (userStatus.IsQuit() == TRUE)
+	{
+		ShowLogin();
+	}
+}
+
+void VSCMainWindows::ShowLogin()
+{
+	VSCLogin login;
+
+	hide();
+
+	login.show();
+#if 0
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	userStatus.setGeometry(rect.width()/2 -userStatus.width()/2 , 
+					rect.height()/2 - userStatus.height()/2, 
+					userStatus.width(), userStatus.height());
+#endif
+	login.exec();
+	showMaximized();
 }
 
 void VSCMainWindows::SetFullScreen()
