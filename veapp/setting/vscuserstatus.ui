@@ -82,7 +82,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pbSave">
+      <widget class="QPushButton" name="pbLogout">
        <property name="minimumSize">
         <size>
          <width>60</width>
@@ -151,7 +151,7 @@ QPushButton:pressed {
  </resources>
  <connections>
   <connection>
-   <sender>pbSave</sender>
+   <sender>pbLogout</sender>
    <signal>clicked()</signal>
    <receiver>VSCUserStatus</receiver>
    <slot>accept()</slot>
