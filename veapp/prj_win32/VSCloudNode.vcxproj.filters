@@ -258,6 +258,12 @@
     <CustomBuild Include="..\setting\vsclanguage.ui">
       <Filter>setting</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\setting\vsclogin.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vsclogin.ui">
+      <Filter>setting</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -596,6 +602,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vsclanguage.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\setting\vsclogin.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclogin.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclogin.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -710,6 +725,9 @@
       <Filter>Device\include</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsclanguage.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclogin.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
