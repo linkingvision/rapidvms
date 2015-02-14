@@ -38,6 +38,9 @@
 #define CONF_VIEW_NUM_MAX 128
 /* IP camera Group max num */
 #define CONF_VGROUP_NUM_MAX 128
+/* Max num of user */
+#define CONF_USER_NUM_MAX 16
+
 
 #define VSC_CONF_KEY "ConfVSCSystem"
 #define VSC_CONF_LIC_KEY "ConfVSCLicense"
@@ -49,6 +52,7 @@
 #define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
 #define VSC_CONF_EMAP_FILE_KEY "ConfVSCEmapFile"
 #define VSC_CONF_EMAP_CONF_KEY "ConfVSCEmapConf"
+#define VSC_CONF_USER_KEY "ConfVSCUserConf"
 #define VSC_CONF_PARAM_MAX 1024
 #define VSC_CONF_PARAM_S_MAX 128
 /* Max camera in one view */
@@ -201,6 +205,16 @@ typedef struct __VSCConfHdfsRecordKey {
     }
 }VSCConfHdfsRecordKey;
 
+/* User key */
+typedef struct __VSCConfUserKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfUserKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_USER_KEY);
+    }
+}VSCConfUserKey;
+
 typedef struct __VSCConfData__ {
     u32 DeviceMap[CONF_MAP_MAX];
     u32 Language;
@@ -313,6 +327,16 @@ typedef struct __VSCVIPCDataItem__ {
 	s8 OnvifAddress[VSC_CONF_PARAM_S_MAX];
 }VSCVIPCDataItem__;
 
+/* IP Camera Group */
+typedef struct __VSCUserDataItem__ {
+	u32 nId;
+	s8 User[VSC_CONF_PARAM_S_MAX];
+	s8 Passwd[VSC_CONF_PARAM_S_MAX];
+	u32 Used;/* 1 stand for used, 0 stand for not used */
+	u32 permission;
+	u32 padding;
+}VSCUserDataItem;
+
 
 typedef struct __VSCVmsData__ {
 	VSCVmsDataItem vms[CONF_VMS_NUM_MAX];
@@ -325,6 +349,12 @@ typedef struct __VSCViewData__ {
 typedef struct __VSCVGroupData__ {
 	VSCVGroupDataItem group[CONF_VGROUP_NUM_MAX];
 }VSCVGroupData__;
+
+typedef struct __VSCUserData__ {
+	s8 Passwd[VSC_CONF_PARAM_S_MAX];//admin passwd
+	VSCUserDataItem user[CONF_USER_NUM_MAX];
+	u32 AutoLogin;/* 1 stand for Auto login, 0 stand for not Auto login */
+}VSCUserData__;
 
 
 typedef struct __VSCDeviceData {
@@ -369,6 +399,14 @@ typedef struct __VSCHdfsRecordData {
         u8 whole[1024 * 128];
     } data;
 }VSCHdfsRecordData;
+
+/* User Data */
+typedef struct __VSCUserData {
+    union {
+        VSCUserData__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCUserData;
 
 inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
 {
@@ -416,6 +454,14 @@ inline void VSCHdfsRecordDataItemDefault(VSCConfHdfsRecordData__ &item)
     strcpy(item.Password, "admin");
     item.FileInterval = 30;/* 30s */
 }
+
+inline void VSCUserDataItemDefault(VSCUserData__ &item)
+{
+	memset(&item, 0, sizeof(VSCUserData__));
+	strcpy(item.Passwd, "admin");/* Default passwd for User */
+	item.AutoLogin = 0;
+}
+
 
 #pragma pack(pop)
 
