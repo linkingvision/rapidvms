@@ -21,6 +21,7 @@ public:
 	void CreateDockWindows();
 	void SetupConnections();
 	void ViewHideFocus();
+       void closeEvent(QCloseEvent *event); 
 
 
 public slots:
@@ -60,15 +61,11 @@ public slots:
 	void MapVGroup();
 	/* Show Login */
 	void ShowLogin();
+	void ExitOpenCVR();
 
 signals:
     void CameraDeleted();
-protected:
-       void closeEvent(QCloseEvent* e)
-       {
-           QMainWindow::closeEvent(e);
-           QApplication::quit();
-       }
+
 public:
     VSCMainWindows(QWidget *parent = 0);
     ~VSCMainWindows();
