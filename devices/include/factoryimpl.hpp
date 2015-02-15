@@ -252,6 +252,21 @@ inline BOOL Factory::AuthUser(astring &strUser, astring &strPasswd)
 	return ret;
 }
 
+inline BOOL Factory::GetUserData(VSCUserData &pData)
+{
+	Lock();
+	m_Conf.GetUserData(pData);	
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetUserData(VSCUserData &pData)
+{
+	Lock();
+	m_Conf.UpdateUserData(pData);	
+	UnLock();
+	return TRUE;
+}
+
 inline BOOL Factory::GetHdfsRecordConf(VSCHdfsRecordData &pData)
 {
 	Lock();
