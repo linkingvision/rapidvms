@@ -5,23 +5,25 @@
 #include "ui_vscuser.h"
 #include "utility.hpp"
 #include <QTimer>
+#include "factory.hpp"
 
 
 class VSCUser : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    VSCUser(QWidget *parent = 0);
-    ~VSCUser(){}
+	VSCUser(QWidget *parent = 0);
+	~VSCUser(){}
 
 public slots:   
-  void applyConfig();
+	void applyConfig();
 	
 public:
-    Ui::VSCUser ui;
+	Ui::VSCUser ui;
 	
 private:
+	VSCUserData m_Param;
 
     
 };
