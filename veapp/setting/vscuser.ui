@@ -23,30 +23,33 @@
      <property name="horizontalSpacing">
       <number>40</number>
      </property>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="passwd">
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="newPasswd">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
          <height>16777215</height>
         </size>
        </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
        <property name="readOnly">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="4" column="2">
+      <widget class="QCheckBox" name="checkBox">
        <property name="text">
-        <string>Password</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>User</string>
+        <string>Auto login</string>
        </property>
       </widget>
      </item>
@@ -60,17 +63,63 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Auto login</string>
+        <string>User</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QCheckBox" name="checkBox">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string/>
+        <string>Current Password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="curPasswd">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>New Password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Repeat Password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="repeatPasswd">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
