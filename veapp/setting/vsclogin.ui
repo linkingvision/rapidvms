@@ -163,8 +163,17 @@
        </property>
        <item>
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">font: 12pt &quot;Arial&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Username</string>
@@ -172,7 +181,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditName">
+        <widget class="QLineEdit" name="username">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -188,6 +197,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>11</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -203,8 +213,14 @@
        </item>
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">font: 12pt &quot;Arial&quot;;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Password</string>
@@ -212,12 +228,18 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditName_2">
+        <widget class="QLineEdit" name="passwd">
          <property name="minimumSize">
           <size>
            <width>0</width>
            <height>25</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
@@ -267,7 +289,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pbSave">
+          <widget class="QPushButton" name="pbLogin">
            <property name="minimumSize">
             <size>
              <width>60</width>
@@ -296,7 +318,7 @@ QPushButton:pressed {
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pbCancel">
+          <widget class="QPushButton" name="pbExit">
            <property name="minimumSize">
             <size>
              <width>60</width>
@@ -340,7 +362,7 @@ QPushButton:pressed {
  </resources>
  <connections>
   <connection>
-   <sender>pbSave</sender>
+   <sender>pbLogin</sender>
    <signal>clicked()</signal>
    <receiver>VSCLogin</receiver>
    <slot>accept()</slot>
@@ -356,7 +378,7 @@ QPushButton:pressed {
    </hints>
   </connection>
   <connection>
-   <sender>pbCancel</sender>
+   <sender>pbExit</sender>
    <signal>clicked()</signal>
    <receiver>VSCLogin</receiver>
    <slot>reject()</slot>

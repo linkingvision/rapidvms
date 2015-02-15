@@ -11,7 +11,7 @@ VSCUser::VSCUser(QWidget *parent)
 {
 	ui.setupUi(this);
 	ui.user->setText("admin");
-	ui.passwd->setText("admin");
+	//ui.passwd->setText("admin");
 }
 
 
