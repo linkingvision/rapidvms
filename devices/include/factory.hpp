@@ -98,6 +98,8 @@ public:
 public:
 	BOOL GetAutoLogin();
 	BOOL AuthUser(astring &strUser, astring &strPasswd);
+	BOOL GetUserData(VSCUserData &pData);
+	BOOL SetUserData(VSCUserData &pData);
 public:
 	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);
