@@ -3,24 +3,33 @@
 
 
 VSCLogin::VSCLogin(QWidget *parent)
-    : QDialog(parent)
+    : QDialog(parent), m_isLogin(FALSE)
 {
    ui.setupUi(this);
    //setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+   setWindowFlags(windowFlags() &~ Qt::WindowCloseButtonHint); 
 
-   //connect(ui.pbSave, SIGNAL(clicked()), this, SLOT(SaveClicked()));
-   //connect(ui.pbCancel, SIGNAL(clicked()), this, SLOT(CancelClicked()));
+   connect(ui.pbLogin, SIGNAL(clicked()), this, SLOT(LoginClicked()));
+   connect(ui.pbExit, SIGNAL(clicked()), this, SLOT(ExitClicked()));
 
 
 }
 
-void VSCLogin::SaveClicked()
+void VSCLogin::LoginClicked()
 {
-	//m_Type = VSC_IPCGROUP_CONF_SAVE;
+	m_isLogin = TRUE;
 }
-void VSCLogin::CancelClicked()
+void VSCLogin::ExitClicked()
 {
 	//m_Type = VSC_IPCGROUP_CONF_CANCEL;
+}
+
+BOOL VSCLogin::GetUserPasswd(astring &strUser, astring &strPasswd)
+{
+ 	strUser = ui.username->text().toStdString();
+	strPasswd = ui.passwd->text().toStdString();
+
+	return TRUE;
 }
 
 
