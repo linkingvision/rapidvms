@@ -94,6 +94,10 @@ public:
 							int &ch, int &type);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
+
+public:
+	BOOL GetAutoLogin();
+	BOOL AuthUser(astring &strUser, astring &strPasswd);
 public:
 	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);

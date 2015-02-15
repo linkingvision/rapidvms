@@ -212,6 +212,46 @@ inline BOOL Factory::SetLicense(astring &strLicense)
 	return m_Conf.SetLicense(strLicense);
 }
 
+/* Get if auto login the opencvr */
+inline BOOL Factory::GetAutoLogin()
+{
+	VSCUserData pData;
+
+	Lock();
+	BOOL ret = FALSE;
+	m_Conf.GetUserData(pData);
+	if (pData.data.conf.AutoLogin == 1)
+	{
+		ret = TRUE;
+	}
+	
+	UnLock();
+	return ret;
+}
+inline BOOL Factory::AuthUser(astring &strUser, astring &strPasswd)
+{
+	VSCUserData pData;
+	BOOL ret = FALSE;
+	
+	Lock();
+	m_Conf.GetUserData(pData);
+	if (strUser == "admin")
+	{
+		astring realPasswd = pData.data.conf.Passwd;
+		if (realPasswd == strPasswd)
+		{
+			ret = TRUE;
+		}
+	}else
+	{
+		//TODO add support other users
+	}
+	
+	
+	UnLock();
+	return ret;
+}
+
 inline BOOL Factory::GetHdfsRecordConf(VSCHdfsRecordData &pData)
 {
 	Lock();
