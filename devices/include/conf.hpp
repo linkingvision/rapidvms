@@ -331,10 +331,13 @@ typedef struct __VSCVIPCDataItem__ {
 typedef struct __VSCUserDataItem__ {
 	u32 nId;
 	s8 User[VSC_CONF_PARAM_S_MAX];
-	s8 Passwd[VSC_CONF_PARAM_S_MAX];
+	s8 Passwd[VSC_CONF_PARAM_S_MAX];//TODO encryption
 	u32 Used;/* 1 stand for used, 0 stand for not used */
 	u32 permission;
-	u32 padding;
+	u32 padding1;
+	u32 padding2;
+	u32 padding3;
+	u32 padding4;
 }VSCUserDataItem;
 
 
