@@ -114,6 +114,12 @@ void VSCMainWindows::ViewHideFocus()
 	m_pView->ViewHideFocus();
 }
 
+void VSCMainWindows::closeEvent(QCloseEvent *event)
+{
+	ExitOpenCVR();
+	event->ignore(); 
+}
+
 void VSCMainWindows::SetupConnections()
 {
 	connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
@@ -326,6 +332,34 @@ void VSCMainWindows::DeleteCamera(int nId)
     case QMessageBox::Ok:
        gFactory->DelDevice(nId);
        emit CameraDeleted();
+       break;
+    default:
+       // should never be reached
+       break;
+    }
+
+    return;
+}
+
+void VSCMainWindows::ExitOpenCVR()
+{
+    QMessageBox msgBox(this);
+    //Set text
+    msgBox.setText(tr("OpenCVR Exit ..."));
+        //Set predefined icon, icon is show on left side of text.
+    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
+
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        //Set focus of ok button
+    msgBox.setDefaultButton(QMessageBox::Ok);
+
+        //execute message box. method exec() return the button value of cliecke button
+    int ret = msgBox.exec();
+
+    switch (ret) {
+    case QMessageBox::Ok:
+	QApplication::quit();
+	exit(0);
        break;
     default:
        // should never be reached
@@ -566,17 +600,46 @@ void VSCMainWindows::ShowLogin()
 	VSCLogin login;
 
 	hide();
-
+again:
+	login.SetDefault();
 	login.show();
 #if 0
-       QDesktopWidget *desktop = QApplication::desktop();
+    QDesktopWidget *desktop = QApplication::desktop();
 	QRect rect = desktop->screenGeometry(0);
 	userStatus.setGeometry(rect.width()/2 -userStatus.width()/2 , 
 					rect.height()/2 - userStatus.height()/2, 
 					userStatus.width(), userStatus.height());
 #endif
 	login.exec();
-	showMaximized();
+	if (login.GetIsLogin() == TRUE)
+	{	
+		astring strUser;
+		astring strPasswd;
+		login.GetUserPasswd(strUser, strPasswd);
+		if (gFactory->AuthUser(strUser, strPasswd) == TRUE)
+		{
+			showMaximized();
+			return;
+		}
+		QMessageBox msgBox(this);
+		//Set text
+		msgBox.setText(tr("Username or Password not correct ..."));
+		    //Set predefined icon, icon is show on left side of text.
+		msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
+
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		    //Set focus of ok button
+		msgBox.setDefaultButton(QMessageBox::Ok);
+
+		    //execute message box. method exec() return the button value of cliecke button
+		int ret = msgBox.exec();
+	}else
+	{
+		ExitOpenCVR();
+	}
+
+	goto again;
+	
 }
 
 void VSCMainWindows::SetFullScreen()
