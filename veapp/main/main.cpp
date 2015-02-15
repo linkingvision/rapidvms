@@ -134,23 +134,29 @@ int main(int argc, char *argv[])
 	{
 		LoadLangZH(a);
 	}//else if add more language to here
-   splash->showMessage(QObject::tr("Starting ..."));
-   VEvent::Init(*gFactory);
-   VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
+	
+	splash->showMessage(QObject::tr("Starting ..."));
+	VEvent::Init(*gFactory);
+	VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
 
-    VSCMainWindows w;
+	VSCMainWindows w;
 
-    //w.showMaximized();
-    w.hide();
-    //w.showFullScreen();
-    splash->finish(&w);
-    w.ShowLogin();
+	//w.showMaximized();
+	w.hide();
+	//w.showFullScreen();
+	splash->finish(&w);
 
-	//stacked s;
-	//s.show();
+	/* Auto  */
+	if (gFactory->GetAutoLogin() == FALSE)
+	{
+		w.ShowLogin();
+	}else
+	{
+		w.showMaximized();
+	}
 
-    delete splash;
-    /* Every thread is ready, start the factory thread */
-    gFactory->start();
-    return a.exec();
+	delete splash;
+	/* Every thread is ready, start the factory thread */
+	gFactory->start();
+	return a.exec();
 }
