@@ -267,6 +267,36 @@ inline BOOL Factory::SetUserData(VSCUserData &pData)
 	return TRUE;
 }
 
+inline BOOL Factory::GetEmapData(VSCEmapData &pData)
+{
+	Lock();
+	m_Conf.GetEmapData(pData);	
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetEmapData(VSCEmapData &pData)
+{
+	Lock();
+	m_Conf.UpdateEmapData(pData);	
+	UnLock();
+	return TRUE;
+}
+
+inline BOOL Factory::GetEmapFile(astring &strFile)
+{
+	Lock();
+	m_Conf.GetEmapFile(strFile);	
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetEmapFile(astring &strFile)
+{
+	Lock();
+	m_Conf.SetEmapFile(strFile);	
+	UnLock();
+	return TRUE;
+}
+
 inline BOOL Factory::GetHdfsRecordConf(VSCHdfsRecordData &pData)
 {
 	Lock();

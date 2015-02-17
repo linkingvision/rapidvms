@@ -100,6 +100,14 @@ public:
 	BOOL AuthUser(astring &strUser, astring &strPasswd);
 	BOOL GetUserData(VSCUserData &pData);
 	BOOL SetUserData(VSCUserData &pData);
+
+/* Emap function */
+public:
+	BOOL GetEmapData(VSCEmapData &pData);
+	BOOL SetEmapData(VSCEmapData &pData);
+	BOOL GetEmapFile(astring &strFile);
+	BOOL SetEmapFile(astring &strFile);
+
 public:
 	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);
