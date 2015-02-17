@@ -51,7 +51,7 @@
 #define VSC_CONF_VGROUP_KEY "ConfVSCVGroup"
 #define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
 #define VSC_CONF_EMAP_FILE_KEY "ConfVSCEmapFile"
-#define VSC_CONF_EMAP_CONF_KEY "ConfVSCEmapConf"
+#define VSC_CONF_EMAP_KEY "ConfVSCEmap"
 #define VSC_CONF_USER_KEY "ConfVSCUserConf"
 #define VSC_CONF_PARAM_MAX 1024
 #define VSC_CONF_PARAM_S_MAX 128
@@ -125,6 +125,11 @@ typedef enum
     VSC_LANG_ZH,
     VSC_LANG_LAST
 } VSCLangType;
+
+//------------------------------------------------------------------------------
+// Conf keys, for leveldb
+//
+//------------------------------------------------------------------------------
 
 #pragma pack(push,  1 )
 typedef struct __VSCConfSystemKey {
@@ -205,6 +210,27 @@ typedef struct __VSCConfHdfsRecordKey {
     }
 }VSCConfHdfsRecordKey;
 
+
+/* Emap file, stroage the JPEG emap file */
+typedef struct __VSCConfEmapFileKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfEmapFileKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_EMAP_FILE_KEY);
+    }
+}VSCConfEmapFileKey;
+
+/* Emap configuration, storage the emap conf, such as the camera location*/
+typedef struct __VSCConfEmapKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfEmapKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_EMAP_KEY);
+    }
+}VSCConfEmapKey;
+
 /* User key */
 typedef struct __VSCConfUserKey {
     s8 Key[CONF_KEY_STR_MAX];
@@ -215,6 +241,12 @@ typedef struct __VSCConfUserKey {
     }
 }VSCConfUserKey;
 
+
+//------------------------------------------------------------------------------
+// Conf Data 
+//
+//------------------------------------------------------------------------------
+
 typedef struct __VSCConfData__ {
     u32 DeviceMap[CONF_MAP_MAX];
     u32 Language;
@@ -223,13 +255,6 @@ typedef struct __VSCConfData__ {
     u32 VIPCNum;
     u32 ConfVer;/* Current version is 0 */
 }VSCConfData__;
-
-typedef struct __VSCConfData {
-    union {
-        VSCConfData__ conf;
-        u8 whole[1024 * 128];
-    } data;
-}VSCConfData;
 
 typedef struct __VSCDeviceData__ {
 	u32 nId;
@@ -327,7 +352,7 @@ typedef struct __VSCVIPCDataItem__ {
 	s8 OnvifAddress[VSC_CONF_PARAM_S_MAX];
 }VSCVIPCDataItem__;
 
-/* IP Camera Group */
+/*  User data item */
 typedef struct __VSCUserDataItem__ {
 	u32 nId;
 	s8 User[VSC_CONF_PARAM_S_MAX];
@@ -339,6 +364,18 @@ typedef struct __VSCUserDataItem__ {
 	u32 padding3;
 	u32 padding4;
 }VSCUserDataItem;
+
+/* Emap data item */
+typedef struct __VSCEmapDataItem__ {
+	u32 nId;/* Device id of the item */
+	u32 x;/* x in the image */
+	u32 y;/* y in the image */
+	u32 Used;/* 1 stand for used, 0 stand for not used */
+	u32 padding1;
+	u32 padding2;
+	u32 padding3;
+	u32 padding4;
+}VSCEmapDataItem;
 
 
 typedef struct __VSCVmsData__ {
@@ -358,6 +395,25 @@ typedef struct __VSCUserData__ {
 	VSCUserDataItem user[CONF_USER_NUM_MAX];
 	u32 AutoLogin;/* 1 stand for Auto login, 0 stand for not Auto login */
 }VSCUserData__;
+
+
+/* The device in the emap */
+typedef struct __VSCEmapData__ {
+	VSCEmapDataItem emap[CONF_MAP_MAX];
+}VSCEmapData__;
+
+
+//------------------------------------------------------------------------------
+// Conf Data wrapper with large space
+//
+//------------------------------------------------------------------------------
+
+typedef struct __VSCConfData {
+    union {
+        VSCConfData__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCConfData;
 
 
 typedef struct __VSCDeviceData {
@@ -410,6 +466,19 @@ typedef struct __VSCUserData {
         u8 whole[1024 * 128];
     } data;
 }VSCUserData;
+
+/* Emap Data */
+typedef struct __VSCEmapData {
+    union {
+        VSCEmapData__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCEmapData;
+
+//------------------------------------------------------------------------------
+// Conf Data Default function
+//
+//------------------------------------------------------------------------------
 
 inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
 {
@@ -465,6 +534,10 @@ inline void VSCUserDataItemDefault(VSCUserData__ &item)
 	item.AutoLogin = 0;
 }
 
+inline void VSCEmapDataDefault(VSCEmapData__ &data)
+{
+	memset(&data, 0, sizeof(VSCEmapData__));
+}
 
 #pragma pack(pop)
 
