@@ -306,6 +306,46 @@ inline BOOL ConfDB::GetUserConf(VSCUserData &pData)
 
 }
 
+
+inline BOOL ConfDB::GetEmapConf(VSCEmapData &pData)
+{
+    VSCConfEmapKey sKey;
+
+    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+    it->Seek(key);
+    leveldb::Slice sysValue;
+
+    if (it->Valid())
+    {
+        sysValue = it->value();
+    }
+
+    if (sysValue.size() != sizeof(VSCEmapData))
+    {
+        VDC_DEBUG( "User Config is not init\n");
+        delete it;
+	memset(&pData, 0, sizeof(VSCEmapData));
+	VSCEmapDataDefault(pData.data.conf);
+	UpdateEmapData(pData);
+        /* Call get system again */
+        return TRUE;
+    }
+
+	memcpy(&pData, sysValue.data(), sizeof(VSCEmapData));
+
+    // Check for any errors found during the scan
+    assert(it->status().ok());
+    delete it;
+
+    return TRUE;
+
+}
+
+
 inline s32 ConfDB::UpdateSysData(VSCConfData &pSysData)
 {
     VSCConfSystemKey sSysKey;
@@ -527,10 +567,68 @@ inline s32 ConfDB::UpdateUserData(VSCUserData &pData)
 
     return TRUE;
 }
+
+
+/* Emap */
+inline s32 ConfDB::GetEmapData(VSCEmapData &pData)
+{
+	GetEmapConf(pData);
+	
+	return TRUE;
+}
+inline s32 ConfDB::UpdateEmapData(VSCEmapData &pData)
+{
+    VSCConfEmapKey sKey;
+
+    leveldb::WriteOptions writeOptions;
+
+    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+    leveldb::Slice sysValue((char *)&pData, sizeof(VSCEmapData));
+
+    m_pDb->Put(writeOptions, sysKey, sysValue);
+
+    return TRUE;
+}
+
+/* Emap file Get & Set */
+inline   BOOL ConfDB::GetEmapFile(astring &strFile)
+{
+	VSCConfEmapFileKey sMapKey;
+	
+
+	leveldb::Slice key((char *)&sMapKey, sizeof(sMapKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue;
+
+	if (it->Valid())
+	{
+		sysValue = it->value();
+		strFile = sysValue.ToString();
+	}
+	
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return TRUE;
+
+}
+
+inline   BOOL ConfDB::SetEmapFile(astring &strFile)
+{
+	VSCConfEmapFileKey sMapKey;
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice Key((char *)&sMapKey, sizeof(sMapKey));
+	leveldb::Slice Value(strFile);
+	m_pDb->Put(writeOptions, Key, Value);
+	return true;
     
-    
-    
-    
+}
 
 inline   BOOL ConfDB::GetLicense(astring &strLicense)
 {
