@@ -61,6 +61,12 @@ public:
 	s32 GetUserData(VSCUserData &pData);
 	s32 UpdateUserData(VSCUserData &pData);
 
+	/* Emap */
+	s32 GetEmapData(VSCEmapData &pData);
+	s32 UpdateEmapData(VSCEmapData &pData);
+	BOOL GetEmapFile(astring &strFile);
+	BOOL SetEmapFile(astring &strFile);
+
 
 public:
 	BOOL GetSystemConf(VSCConfData &pSys);
@@ -71,6 +77,8 @@ public:
 	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
 
 	BOOL GetUserConf(VSCUserData &pData);
+
+	BOOL GetEmapConf(VSCEmapData &pData);
 	
 
 public:
