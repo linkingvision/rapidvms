@@ -18,6 +18,7 @@
 #include <QTextCodec>
 #include "vschdddevice.h"
 #include "vevent.hpp"
+#include "vemap.hpp"
 #include "vservicemgr.hpp"
 
 Factory *gFactory = NULL;
@@ -137,6 +138,7 @@ int main(int argc, char *argv[])
 	
 	splash->showMessage(QObject::tr("Starting ..."));
 	VEvent::Init(*gFactory);
+	VEMap::Init(*gFactory);
 	VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
 
 	VSCMainWindows w;
