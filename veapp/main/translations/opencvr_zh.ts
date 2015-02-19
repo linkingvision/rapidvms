@@ -352,7 +352,7 @@
     <message>
         <location filename="../vscdevicetree.cpp" line="57"/>
         <source>&amp;Group</source>
-        <translation type="unfinished">组</translation>
+        <translation type="unfinished">组划分</translation>
     </message>
     <message>
         <location filename="../vscdevicetree.cpp" line="79"/>
