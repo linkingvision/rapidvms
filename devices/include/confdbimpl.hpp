@@ -593,6 +593,7 @@ inline s32 ConfDB::UpdateEmapData(VSCEmapData &pData)
 /* Emap file Get & Set */
 inline   BOOL ConfDB::GetEmapFile(astring &strFile)
 {
+	BOOL ret = FALSE;
 	VSCConfEmapFileKey sMapKey;
 	
 
@@ -608,13 +609,14 @@ inline   BOOL ConfDB::GetEmapFile(astring &strFile)
 	{
 		sysValue = it->value();
 		strFile = sysValue.ToString();
+		ret = TRUE;
 	}
 	
 	// Check for any errors found during the scan
 	assert(it->status().ok());
 	delete it;
 
-	return TRUE;
+	return ret;
 
 }
 
