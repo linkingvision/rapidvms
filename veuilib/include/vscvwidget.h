@@ -74,6 +74,7 @@ public slots:
     void showDisplay2();
     void showDisplay3();
     void showDisplay4();
+    void Help();
     void videoMouseMove(QMouseEvent *e);
     void UpdateVideoControl();
     void videoResizeEventTimer();
@@ -101,9 +102,12 @@ signals:
 public:
     BOOL StartPlay(std::string strUrl);
     BOOL StartPlayById(int nId);
-    BOOL StopPlay();
+    BOOL StopPlay(BOOL bForce = FALSE);
     BOOL StartPlayLive(std::string strUrl);
-    BOOL StopPlayLive();
+    BOOL StopPlayLive(BOOL bForce = FALSE);
+
+    static void LiveDelCallback(void * pParam);
+    void LiveDelCallback();
     int GetPlayId()
     {
     	if (m_pStarted == false)
@@ -138,6 +142,7 @@ private:
     BOOL m_pStarted;
     BOOL m_bDeviceDeleted;
     QAction *m_pStop;
+    QAction *m_pHelp;
     QAction *m_pRecord;
     QAction *m_pPTZ;
     QAction *m_pDisplay1;

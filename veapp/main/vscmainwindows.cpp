@@ -61,7 +61,7 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 
     ui.setupUi(this);
 #ifdef WIN32
-   setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+	setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
 #endif
 
 
