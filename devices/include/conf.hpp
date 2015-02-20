@@ -370,6 +370,8 @@ typedef struct __VSCEmapDataItem__ {
 	u32 nId;/* Device id of the item */
 	u32 x;/* x in the image */
 	u32 y;/* y in the image */
+	u32 w;/* w of the image */
+	u32 h;/* h of the image */
 	u32 Used;/* 1 stand for used, 0 stand for not used */
 	u32 padding1;
 	u32 padding2;
