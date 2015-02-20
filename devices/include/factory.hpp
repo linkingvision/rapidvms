@@ -105,6 +105,10 @@ public:
 public:
 	BOOL GetEmapData(VSCEmapData &pData);
 	BOOL SetEmapData(VSCEmapData &pData);
+	BOOL AddEmapCamera(s32 nIndex, u32 x, u32 y, u32 w, u32 h);
+	BOOL DelEmapCamera(s32 nIndex);
+	BOOL GetEmapCamera(s32 nIndex, u32 &x, u32 &y, u32 &w, u32 &h);
+	
 	BOOL GetEmapFile(astring &strFile);
 	BOOL SetEmapFile(astring &strFile);
 
