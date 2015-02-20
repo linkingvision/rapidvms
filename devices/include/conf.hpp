@@ -401,6 +401,7 @@ typedef struct __VSCUserData__ {
 
 /* The device in the emap */
 typedef struct __VSCEmapData__ {
+	u32 init;/* 1 stand for has init, 0 stand for not init */
 	VSCEmapDataItem emap[CONF_MAP_MAX];
 }VSCEmapData__;
 
