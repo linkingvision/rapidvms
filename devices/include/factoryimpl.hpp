@@ -282,29 +282,28 @@ inline BOOL Factory::SetEmapData(VSCEmapData &pData)
 	return TRUE;
 }
 
+/* (x, y) in the image, w h is the image width height */
 inline BOOL Factory::AddEmapCamera(s32 nIndex, u32 x, u32 y, u32 w, u32 h)
 {
 	VSCEmapData pData;
 	Lock();
 	m_Conf.GetEmapData(pData);
-	for (s32 i = 1; i < CONF_MAP_MAX; i ++)
+	if (nIndex < CONF_MAP_MAX && nIndex > 0)
 	{
-	    	if (pData.data.conf.emap[i].Used == 1)
-	    	{
-	    		continue;
-	    	}else
-	    	{
-			pData.data.conf.emap[i].x = x;
-			pData.data.conf.emap[i].y = y;
+		pData.data.conf.emap[nIndex].x = x;
+		pData.data.conf.emap[nIndex].y = y;
 
-			pData.data.conf.emap[i].w = w;
-			pData.data.conf.emap[i].h = h;
-			
-			pData.data.conf.emap[i].Used = 1;
-			pData.data.conf.emap[i].nId = nIndex;
-			break;
-	    	}
-	}	
+		pData.data.conf.emap[nIndex].w = w;
+		pData.data.conf.emap[nIndex].h = h;
+		
+		pData.data.conf.emap[nIndex].Used = 1;
+		pData.data.conf.emap[nIndex].nId = nIndex;
+	}else
+	{
+		UnLock();
+		return FALSE;
+	}
+	
 	m_Conf.UpdateEmapData(pData);	
 	UnLock();
 	return TRUE;
@@ -349,16 +348,27 @@ inline BOOL Factory::GetEmapCamera(s32 nIndex, u32 &x, u32 &y, u32 &w, u32 &h)
 }
 
 inline BOOL Factory::GetEmapFile(astring &strFile)
-{
+{	
+	BOOL ret = FALSE;
+	VSCEmapData pData;
 	Lock();
-	m_Conf.GetEmapFile(strFile);	
+	m_Conf.GetEmapData(pData);
+	if (pData.data.conf.init == 1)
+	{
+		ret = m_Conf.GetEmapFile(strFile);	
+	}
 	UnLock();
-	return TRUE;
+	return ret;
 }
 inline BOOL Factory::SetEmapFile(astring &strFile)
 {
+	VSCEmapData pData;
 	Lock();
-	m_Conf.SetEmapFile(strFile);	
+	m_Conf.SetEmapFile(strFile);
+	m_Conf.GetEmapData(pData);
+	pData.data.conf.init = 1;
+	m_Conf.UpdateEmapData(pData);
+	
 	UnLock();
 	return TRUE;
 }
