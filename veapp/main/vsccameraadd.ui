@@ -375,7 +375,7 @@ background-image: url(:/action/resources/button.png);}
 QPushButton:hover {
 	background-image: url(:/action/resources/buttonpress.png);}
 QPushButton:pressed {
-	background-image: url(:/action/resources/buttonpress.png);}
+	background-image: url(:/action/resources/button.png);}
 </string>
        </property>
        <property name="text">
@@ -411,7 +411,7 @@ background-image: url(:/action/resources/button.png);}
 QPushButton:hover {
 	background-image: url(:/action/resources/buttonpress.png);}
 QPushButton:pressed {
-	background-image: url(:/action/resources/buttonpress.png);}
+	background-image: url(:/action/resources/button.png);}
 </string>
        </property>
        <property name="text">
