@@ -6,6 +6,7 @@
 
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20150212.jpg)
 
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/snapshot/emap.jpg)
 #### Release Version ####
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 
