@@ -56,7 +56,7 @@ extern Factory *gFactory;
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
 
 VSCMainWindows::VSCMainWindows(QWidget *parent)
-    : QMainWindow(parent)
+    : m_pEMap(NULL), QMainWindow(parent)
 {
 
     ui.setupUi(this);
@@ -202,10 +202,18 @@ void VSCMainWindows::AddSurveillance()
 
 void VSCMainWindows::AddEmap()
 {
-    VEMap *pEMap = VEMap::CreateObject(m_pMainArea);
+	if (m_pEMap == NULL)
+	{
+		m_pEMap = VEMap::CreateObject(*m_pMainArea, m_pMainArea);
+		connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
+			m_pEMap, SLOT(DeviceEvent(int, int)));
+		m_pEMap->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+
+	}
 	
-    m_pMainArea->addTab(pEMap, QIcon(tr(":/action/resources/map.png")), tr("Emap"));
-    m_pMainArea->setCurrentWidget(pEMap);
+	m_pMainArea->addTab(m_pEMap, QIcon(tr(":/action/resources/map.png")), tr("eMap"));
+	m_pMainArea->setCurrentWidget(m_pEMap);
+	m_pEMap->show();
 	ViewHideFocus();
 }
 
@@ -673,6 +681,13 @@ void VSCMainWindows::MainCloseTab(int index)
     if (wdgt == m_pView)
     {
         return;
+    }
+
+    if (wdgt == m_pEMap)	
+    {
+    	m_pMainArea->removeTab(index);
+	m_pEMap->hide();
+	return;
     }
     m_pMainArea->removeTab(index);
     if (wdgt)
