@@ -12,6 +12,7 @@
 #include "debug.hpp"
 #include "videotype.hpp"
 #include <QWidget>
+#include <QTabWidget>
 #include "factory.hpp"
 #include <QThread>
 
@@ -24,9 +25,13 @@ class VE_LIBRARY_API VEMap : public QWidget
 public:
 	VEMap(QWidget *parent = 0);
 	~VEMap();
+public slots:
+	void DeviceEvent(int deviceId, int type);
+public:
+	virtual void OnDeviceEvent(int deviceId, int type) = 0;
 public:
 	static BOOL Init(Factory &pFactory);
-	static VEMap * CreateObject(QWidget *parent);
+	static VEMap * CreateObject(QTabWidget &pTabbed, QWidget *parent);
 private:
 	
 };
