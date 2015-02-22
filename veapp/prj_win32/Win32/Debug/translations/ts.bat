@@ -1,1 +1,0 @@
-lrelease vscloudnode_zh.ts -qm vscloudnode_zh.qm
