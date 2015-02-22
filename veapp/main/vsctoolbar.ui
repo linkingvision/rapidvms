@@ -129,12 +129,12 @@
        </item>
        <item>
         <property name="text">
-         <string>View 1</string>
+         <string>Tour 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>View 2</string>
+         <string>Tour 2</string>
         </property>
        </item>
       </widget>
