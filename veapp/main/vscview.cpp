@@ -12,7 +12,7 @@ extern Factory *gFactory;
 
 VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
     : QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
-    m_bControlEnable(TRUE), m_strName(strName)
+    m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE)
 {
     ui.setupUi(this);
     m_pParent = parent;
@@ -30,12 +30,7 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
     this->ui.widget->setLayout(layout);
 
     m_pVideo->show();
-   
 
-    m_pFloating = new QAction(QIcon(tr("images/open.ico")), tr("Floating"), this);
-    //m_pUnFloating = new QAction(QIcon(tr("images/open.ico")), tr("UnFloating"), this);
-    //connect(m_pFloating, SIGNAL(triggered()), this, SLOT(floatingAction()));
-    //connect(m_pUnFloating, SIGNAL(triggered()), this, SLOT(unFloatingAction()));
     SetupConnections();
     createContentMenu();
 
@@ -64,8 +59,6 @@ void VSCView::UpdateVideoControl()
 
 void VSCView::SetupConnections()
 {
-    //connect(m_pFloating, SIGNAL(triggered()), this, SLOT(floatingAction()));
-
     connect(ui.pushButton2x2, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode2x2()));
     connect(ui.pushButton3x3, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode3x3()));
     connect(ui.pushButton4x4, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode4x4()));
@@ -352,9 +345,7 @@ void VSCView::TabbedClicked()
 
 void VSCView::createContentMenu()
 {
-    //this->addAction(m_pFloating);
-    //this->addAction(m_pUnFloating);
-    //this->setContextMenuPolicy(Qt::ActionsContextMenu);
+
 }
 
 void VSCView::ViewClicked()
