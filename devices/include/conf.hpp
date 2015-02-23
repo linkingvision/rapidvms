@@ -5,8 +5,8 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "r1.1.3-20150223"
-#define VE_INFO "OpenCVR r1.1.3 2015"
+#define VE_VERSION "r1.1.5-20150223"
+#define VE_INFO "OpenCVR r1.1.5 2015"
 
 #define CONF_NAME_MAX 128
 /* support Camera num */
@@ -270,7 +270,8 @@ typedef struct __VSCDeviceData__ {
 	s8 OnvifProfileToken2[VSC_CONF_PARAM_MAX];
 	u32 ConnectType;/* 0 UDP, 1 TCP, 2 Multicast, 3 HTTP */
 	u32 Mining;/* 1 stand for mining, 0 stand for no mining */
-	
+
+	u32 HWDecode;/* 1 stand for HWDecoding, 0 soft, this is for Intel media SDK */
 }VSCDeviceData__;
 
 
