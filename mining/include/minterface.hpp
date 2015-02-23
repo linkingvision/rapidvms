@@ -29,6 +29,16 @@ typedef enum __MModuleFlag
 	MM_LAST
 }MModuleFlag;
 
+typedef enum __MMReqStream
+{
+	MM_STREAM_MAIN = 1,
+	MM_STREAM_SUB = 2,
+	MM_STREAM_MAIN_RAW = 1,
+	MM_STREAM_SUB_RAW = 2,
+	MM_STREAM_LAST
+}MMReqStream;
+
+
 typedef struct __MiningRet
 {
 	MiningRetType ret;
@@ -51,9 +61,17 @@ public:
 	virtual ~MiningInterface() {}
 
 public:
+	/* Channel manage */
 	virtual BOOL AddChannel(s32 id) = 0;
 	virtual BOOL DelChannel(s32 id) = 0;
-	virtual BOOL Process(s32 id, RawFrame& frame) = 0;
+
+	/* Process decoded or compressed data */
+	virtual BOOL Process(s32 id, VideoFrame& frame) = 0;
+	virtual BOOL ProcessRaw(s32 id, RawFrame& frame) = 0;
+
+	/* Get the stream type of this module */
+	virtual BOOL GetReqStream(MMReqStream& type) = 0;
+	
 	virtual BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam);
 	virtual BOOL UnRegDataCallback(void * pParam);
 	virtual u32 GetFlags();
