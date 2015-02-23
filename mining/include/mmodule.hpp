@@ -30,67 +30,28 @@ public:
 	inline MiningModule(astring strPath);
 	inline ~MiningModule();
 public:
-	inline BOOL AddChannel(s32 id)
-	{
-		if (m_module)
-		{
-			return m_module->AddChannel(id);
-		}
-		return FALSE;
-	}
-	inline BOOL DelChannel(s32 id)
-	{
-		if (m_module)
-		{
-			return m_module->DelChannel(id);
-		}
-		return FALSE;
-	}
-	inline BOOL Process(s32 id, RawFrame& frame)
-	{
-		if (m_module)
-		{
-			return m_module->Process(id, frame);
-		}
-		return FALSE;
-	}
-	inline BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam)
-	{
-		if (m_module)
-		{
-			return m_module->RegRetCallback(pCallback, pParam);
-		}
-		return FALSE;
-	}
-	inline BOOL UnRegDataCallback(void * pParam)
-	{
-		if (m_module)
-		{
-			return m_module->UnRegDataCallback(pParam);
-		}
-		return FALSE;
-	}
-	inline u32 GetFlags()
-	{
-		if (m_module)
-		{
-			return m_module->GetFlags();
-		}
-		return FALSE;
-	}
-	virtual astring GetVersion()
-	{
-		if (m_module)
-		{
-			return m_module->GetVersion();
-		}
-		return FALSE;
-	}
+	inline BOOL AddChannel(s32 id);
+	inline BOOL DelChannel(s32 id);
+	
+	/* Process decoded or compressed data */
+	virtual BOOL Process(s32 id, VideoFrame& frame);
+	virtual BOOL ProcessRaw(s32 id, RawFrame& frame);
+
+	/* Get the stream type of this module */
+	virtual BOOL GetReqStream(MMReqStream& type);
+	
+	inline BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, 
+						void * pParam);
+	inline BOOL UnRegDataCallback(void * pParam);
+	inline u32 GetFlags();
+	virtual astring GetVersion();
 		
 private:
 	MiningInterface * m_module;
 	ck_dynamic_library m_dynLib;
 };
 
+
+#include "mmoduleimpl.hpp"
 
 #endif /* __M_MODULE_HPP__ */
