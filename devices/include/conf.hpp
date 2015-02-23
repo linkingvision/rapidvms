@@ -5,24 +5,8 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "r1.1.2-20150201"
-#define VE_INFO "OpenCVR r1.1.2 2015"
-
-#ifdef WIN32
-#define VE_NVR_CLIENT 
-#else
-#define VE_NVR
-#endif
-
-/* NVR Client feature */
-#ifdef VE_NVR_CLIENT
-#define VE_RECORDER_MGR_CLIENT_SUPPORT 
-#endif
-
-/* NVR feature */
-#ifdef VE_NVR
-#define VE_RECORDER_MGR_SERVER_SUPPORT
-#endif
+#define VE_VERSION "r1.1.3-20150223"
+#define VE_INFO "OpenCVR r1.1.3 2015"
 
 #define CONF_NAME_MAX 128
 /* support Camera num */
