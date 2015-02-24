@@ -9,11 +9,33 @@
 #define __M_MODULE_IMPL_HPP__
 
 inline MiningModule::MiningModule(astring strPath)
-:m_strPath(strPath), m_module(NULL)
+:m_strPath(strPath), m_module(NULL), m_Init(FALSE)
 {
+	try 
+	{ 
+		VDC_DEBUG( "%s Connect Mining  lib %s !.\n",__FUNCTION__, m_strPath.c_str());	
+		m_dynLib.load(m_strPath); 
+		MiningCreateObjectFunc pFunc = 
+				(MiningCreateObjectFunc)m_dynLib.resolve_symbol("MiningCreateObject");
+		if (pFunc != NULL)
+		{
+			m_Init = TRUE;
+			VDC_DEBUG( "%s Mining lib load successfully.\n",__FUNCTION__);	
+			m_module = pFunc();
+		}
+	} catch( ... ) 
+	{ 
+		m_Init = FALSE;
+		VDC_DEBUG( "%s Mining lib load error \n",__FUNCTION__);	
+	}	
 }
 inline MiningModule::~MiningModule()
 {
+}
+
+inline BOOL MiningModule::Valid()
+{
+	return m_Init;
 }
 
 inline BOOL MiningModule::AddChannel(s32 id)
