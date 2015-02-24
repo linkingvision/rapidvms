@@ -21,9 +21,6 @@
 using namespace std;
 using namespace cppkit;
 
-
-
-
 class MiningModule
 {
 public:
@@ -49,6 +46,7 @@ public:
 private:
 	MiningInterface * m_module;
 	ck_dynamic_library m_dynLib;
+	astring m_strPath;
 };
 
 

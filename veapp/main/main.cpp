@@ -5,8 +5,6 @@
 //
 // Copyright (c) 2014-2018. All rights reserved.
 //------------------------------------------------------------------------------
-
-
 #include "vscmainwindows.h"
 #include <QtWidgets/QApplication>
 #include <QStyleFactory>
@@ -20,8 +18,10 @@
 #include "vevent.hpp"
 #include "vemap.hpp"
 #include "vservicemgr.hpp"
+#include "mframework.hpp"
 
 Factory *gFactory = NULL;
+MFramework *gMFramework = NULL;
 
 void LoadLangZH(QApplication &a)
 {
@@ -49,7 +49,7 @@ void LoadLangZH(QApplication &a)
 int main(int argc, char *argv[])
 {
 	int dummy = errno;
-	//QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+
 	QApplication a(argc, argv);
 	Debug::init(0);
 
@@ -69,59 +69,32 @@ int main(int argc, char *argv[])
 	a.setFont(font);
 #endif
 
-
 	QPixmap pixmap(":/logo/resources/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
-    //QFont splashFont;
-    //splashFont.setFamily("Arial");
-    //splashFont.setBold(true);
 
-    	splash->setStyleSheet(QStringLiteral("color : red;"));
-    //splash->setFont(splashFont);
-    
+    	splash->setStyleSheet(QStringLiteral("color : white;"));    
     	splash->show();
 
-    //QApplication::setStyle(QStyleFactory::create("Fusion"));
-	//QApplication::setStyle(QStyleFactory::create("Plastique"));
-    //QApplication::setStyle("WindowsVista"); 
-#if 0
-	QFile f(":qdarkstyle/style.qss");
-	if (!f.exists())
+    	gFactory = new Factory;
+
+	if (gFactory->Init() == FALSE)
 	{
-		printf("Unable to set stylesheet, file not found\n");
-	}
-	else 
-	{
-		f.open(QFile::ReadOnly | QFile::Text);
-		QTextStream ts(&f);
-		a.setStyleSheet(ts.readAll());
-	}
-#endif
-
-
-    gFactory = new Factory;
-
-   if (gFactory->Init() == FALSE)
-   {
 #ifdef WIN32
-       astring strPath = "C:\\";//TODO get the hdd from hdd
-       VSCHddDevice hdd;
-       hdd.show();
-       hdd.exec();
-       s32 size = hdd.GetDiskSize();
-       hdd.GetDiskPath(strPath);
+		astring strPath = "C:\\";//TODO get the hdd from hdd
+		VSCHddDevice hdd;
+		hdd.show();
+		hdd.exec();
+		s32 size = hdd.GetDiskSize();
+		hdd.GetDiskPath(strPath);
 #else
 
-	astring strPath = "ve/";//TODO get the hdd from hdd
-	s32 size = 2;
+		astring strPath = "ve/";//TODO get the hdd from hdd
+		s32 size = 2;
 #endif
-       gFactory->SetSystemPath(strPath);
-       //splash->showMessage(QObject::tr("Create Video Database ..."));
-       gFactory->Init();
-#ifndef WIN32
-	//gFactory->AddHDD(strPath, size);
-#endif
-   }
+		gFactory->SetSystemPath(strPath);
+		//splash->showMessage(QObject::tr("Create Video Database ..."));
+		gFactory->Init();
+	}
 	VSCLangType m_lang;
 	gFactory->GetLang(m_lang);
 	if (m_lang == VSC_LANG_AUTO)
@@ -140,14 +113,13 @@ int main(int argc, char *argv[])
 	VEvent::Init(*gFactory);
 	VEMap::Init(*gFactory);
 	VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
-
+	
 	VSCMainWindows w;
 
 	//w.showMaximized();
 	w.hide();
 	//w.showFullScreen();
 	splash->finish(&w);
-
 	/* Auto  */
 	if (gFactory->GetAutoLogin() == FALSE)
 	{
@@ -159,6 +131,13 @@ int main(int argc, char *argv[])
 
 	delete splash;
 	/* Every thread is ready, start the factory thread */
+	
 	gFactory->start();
+	/* Init Mining framework */
+	gMFramework = new MFramework(*gFactory);
+	gMFramework->Init();
+
+	gMFramework->start();
+	
 	return a.exec();
 }

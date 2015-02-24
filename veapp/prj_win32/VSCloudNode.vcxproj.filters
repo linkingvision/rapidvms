@@ -55,6 +55,12 @@
     <Filter Include="setting">
       <UniqueIdentifier>{dab7c1be-2376-4d74-8a74-4c04517acf0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mining">
+      <UniqueIdentifier>{d5736922-0d75-4871-905c-d19321565813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mining\include">
+      <UniqueIdentifier>{b327a677-6e9b-4b69-a790-93b044e56a29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
@@ -263,6 +269,9 @@
     </CustomBuild>
     <CustomBuild Include="..\setting\vsclogin.ui">
       <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\mining\include\mframework.hpp">
+      <Filter>mining\include</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -611,6 +620,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vsclogin.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mframework.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mframework.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -729,6 +744,18 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsclogin.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mining\include\mframeworkimpl.hpp">
+      <Filter>mining\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mining\include\minterface.hpp">
+      <Filter>mining\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mining\include\mmodule.hpp">
+      <Filter>mining\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mining\include\mmoduleimpl.hpp">
+      <Filter>mining\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

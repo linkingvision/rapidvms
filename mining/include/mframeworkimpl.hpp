@@ -8,8 +8,15 @@
 #ifndef __M_FRAME_WORK_IMPL_HPP__
 #define __M_FRAME_WORK_IMPL_HPP__
 
+inline MFramework::MFramework(Factory &pFactory)
+:m_pFactory(pFactory)
+{
+}
+inline MFramework::~MFramework()
+{
+}
 
-astring MFramework::GetPluginPath()
+inline astring MFramework::GetPluginPath()
 {
 #ifdef WIN32
     char exeFullPath[MAX_PATH]; // Full path
@@ -46,16 +53,20 @@ inline BOOL MFramework::Init()
 			/* loop for each dir */
 			if (it->isDirectory() == true)
 			{
+				astring strName = it->path();
 				try 
 				{
 					DirectoryIterator it2(it->path());
 					DirectoryIterator end2;
+
 					while (it2 != end2)
 					{
-						if (it2.name().find("mplugin") == 0)
+						astring strName2 = it2->path();
+						if (it2->path().find("mplugin") != std::string::npos)
 						{
 							//Find a plugin
 							// Call mmodule to add
+							astring strPluginName = it2->path();
 						}
 						++it2;
 					}
@@ -87,16 +98,19 @@ inline BOOL MFramework::Init()
 		std::cerr << exc.displayText() << std::endl;
 	 	VDC_DEBUG( "Plugin init error \n");
 
-		return ;
+		return FALSE;
 	}
 	/* Get all the device and add channel to all the modules */
+
+
+	return TRUE;
 }
 
 
-BOOL MFramework::RetHandler(s32 id, MiningRet& ret, void * pParam)
+inline BOOL MFramework::RetHandler(s32 id, MiningRet& ret, void * pParam)
 {
 	int dummy = errno;
-	MFramework *pMFramework = (MFramework)pParam;
+	MFramework *pMFramework = (MFramework*)pParam;
 
 	if (pMFramework)
 	{
@@ -106,18 +120,19 @@ BOOL MFramework::RetHandler(s32 id, MiningRet& ret, void * pParam)
 	return TRUE;
 }
 
-BOOL MFramework::RetHandler1(s32 id, MiningRet& ret)
+inline BOOL MFramework::RetHandler1(s32 id, MiningRet& ret)
 {
 	m_RetQueue.post(ret);
 
 	return TRUE;
 }
 
-void MFramework::run()
+inline void MFramework::run()
 {
 	MiningRet ret;
 	while (m_bExit != TRUE)
 	{
+		VDC_DEBUG("MFramework runing\n");
 		if (m_RetQueue.size() > 0)
 		{
 			ret = m_RetQueue.pop();
@@ -131,7 +146,7 @@ void MFramework::run()
 	return;
 }
 
-bool MFramework::DeviceChangeCallbackFunc(void* pData, 
+inline BOOL MFramework::DeviceChangeCallbackFunc(void* pData, 
 								FactoryDeviceChangeData change)
 {
 	if (pData)
@@ -141,7 +156,7 @@ bool MFramework::DeviceChangeCallbackFunc(void* pData,
 	}
 	return true;
 }
-bool MFramework::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
+inline BOOL MFramework::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
 {
 	VDC_DEBUG( "Event Device Change Callback %d type %d Begin\n", change.id, change.type);
 	

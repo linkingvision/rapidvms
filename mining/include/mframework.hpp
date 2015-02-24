@@ -61,8 +61,9 @@ private:
 	MModuleMap m_MModules;
 	MModuleRetQueue m_RetQueue;
 	BOOL m_bExit;
+	Factory &m_pFactory;
 };
 
-#include "mframework.hpp"
+#include "mframeworkimpl.hpp"
 
 #endif /* __M_FRAME_WORK_HPP__ */
