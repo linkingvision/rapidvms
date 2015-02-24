@@ -42,11 +42,14 @@ public:
 	inline BOOL UnRegDataCallback(void * pParam);
 	inline u32 GetFlags();
 	virtual astring GetVersion();
+public:
+	BOOL Valid();
 		
 private:
 	MiningInterface * m_module;
 	ck_dynamic_library m_dynLib;
 	astring m_strPath;
+	BOOL m_Init;
 };
 
 
