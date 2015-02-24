@@ -67,6 +67,13 @@ inline BOOL MFramework::Init()
 							//Find a plugin
 							// Call mmodule to add
 							astring strPluginName = it2->path();
+							MiningModule * pModule = 
+									new MiningModule(strPluginName);
+							if (pModule && pModule->Valid() == TRUE)
+							{
+								m_MModules[strPluginName] = pModule;
+							}
+							
 						}
 						++it2;
 					}
@@ -77,19 +84,6 @@ inline BOOL MFramework::Init()
 				}
 			}
 
-
-#if 0
-			Path p(it->path());
-			if ()
-			std::cout << (it->isDirectory() ? 'd' : '-')
-					  << (it->canRead() ? 'r' : '-')
-					  << (it->canWrite() ? 'w' : '-')
-					  << ' '
-					  << DateTimeFormatter::format(it->getLastModified(), DateTimeFormat::SORTABLE_FORMAT)
-					  << ' '
-					  << p.getFileName()
-					  << std::endl;
-#endif
 			++it;
 		}
 	}
