@@ -72,14 +72,21 @@ public:
 	/* Get the stream type of this module */
 	virtual BOOL GetReqStream(MMReqStream& type) = 0;
 	
-	virtual BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam);
-	virtual BOOL UnRegDataCallback(void * pParam);
-	virtual u32 GetFlags();
-	virtual astring GetVersion();
+	virtual BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam) = 0;
+	virtual BOOL UnRegDataCallback(void * pParam) = 0;
+	virtual u32 GetFlags() = 0;
+	virtual astring GetVersion() = 0;
 };
 
-/* Create MiningInterface from the module  */
-typedef MiningInterface * (*MiningCreateObject)();
+/* Create MiningInterface from the module MiningCreateObject function  */
+typedef MiningInterface * (*MiningCreateObjectFunc)();
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+VE_LIBRARY_API MiningInterface * MiningCreateObject();
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __M_INTERFACE_HPP__ */
