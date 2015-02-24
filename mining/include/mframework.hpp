@@ -37,7 +37,7 @@ using namespace cppkit;
 
 typedef command_queue<MiningRet> MModuleRetQueue;
 
-typedef std::map<int, MiningModule *> MModuleMap;
+typedef std::map<astring, MiningModule *> MModuleMap;
 class MFramework:public QThread
 {
     Q_OBJECT
