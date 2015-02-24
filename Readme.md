@@ -1,5 +1,5 @@
 # OpenCVR #
-#### open source ONVIF IP Camera manager ####
+#### open source ONVIF Video Recorder ####
 
 ----------
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20141203.png)
