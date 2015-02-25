@@ -12,6 +12,8 @@
 #include "videotype.hpp"
 #include "miningtype.hpp"
 #include "minterface.hpp"
+#include "minterfacemgr.hpp"
+#include "factory.hpp"
 #include "cppkit/ck_string.h"
 #include "cppkit/ck_memory.h"
 #include "cppkit/ck_command_queue.h"
@@ -21,35 +23,26 @@
 using namespace std;
 using namespace cppkit;
 
+
+typedef std::map<u32, MiningInterfaceMgr *> MInterfaceMgrMap;
 class MiningModule
 {
 public:
-	inline MiningModule(astring strPath);
+	inline MiningModule(astring strPath, Factory &pFactory);
 	inline ~MiningModule();
 public:
-	inline BOOL AddChannel(s32 id);
-	inline BOOL DelChannel(s32 id);
-	
-	/* Process decoded or compressed data */
-	virtual BOOL Process(s32 id, VideoFrame& frame);
-	virtual BOOL ProcessRaw(s32 id, RawFrame& frame);
-
-	/* Get the stream type of this module */
-	virtual BOOL GetReqStream(MMReqStream& type);
-	
-	inline BOOL RegRetCallback(MiningCallbackFunctionPtr pCallback, 
-						void * pParam);
-	inline BOOL UnRegDataCallback(void * pParam);
-	inline u32 GetFlags();
-	virtual astring GetVersion();
-public:
-	BOOL Valid();
+	inline BOOL Valid();
+	inline BOOL Init();
+	inline BOOL InitOneDevice(DeviceParam & Param);
 		
 private:
 	MiningInterface * m_module;
 	ck_dynamic_library m_dynLib;
+	MiningCreateDeviceFunc m_CreateDevice;
 	astring m_strPath;
 	BOOL m_Init;
+	Factory &m_pFactory;
+	MInterfaceMgrMap m_mgrMap;
 };
 
 
