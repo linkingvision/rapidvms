@@ -898,6 +898,8 @@
     </CustomBuild>
     <ClInclude Include="..\..\mining\include\mframeworkimpl.hpp" />
     <ClInclude Include="..\..\mining\include\minterface.hpp" />
+    <ClInclude Include="..\..\mining\include\minterfacemgr.hpp" />
+    <ClInclude Include="..\..\mining\include\minterfacemgrimpl.hpp" />
     <ClInclude Include="..\..\mining\include\mmodule.hpp" />
     <ClInclude Include="..\..\mining\include\mmoduleimpl.hpp" />
     <ClInclude Include="..\main\vscvipc.h" />

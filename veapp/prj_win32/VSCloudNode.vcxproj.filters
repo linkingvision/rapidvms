@@ -757,6 +757,12 @@
     <ClInclude Include="..\..\mining\include\mmoduleimpl.hpp">
       <Filter>mining\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\mining\include\minterfacemgr.hpp">
+      <Filter>mining\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mining\include\minterfacemgrimpl.hpp">
+      <Filter>mining\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VSCloudNode.rc" />
