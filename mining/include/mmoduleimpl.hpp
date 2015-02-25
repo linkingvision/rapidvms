@@ -8,20 +8,19 @@
 #ifndef __M_MODULE_IMPL_HPP__
 #define __M_MODULE_IMPL_HPP__
 
-inline MiningModule::MiningModule(astring strPath)
-:m_strPath(strPath), m_module(NULL), m_Init(FALSE)
+inline MiningModule::MiningModule(astring strPath, Factory &pFactory)
+:m_strPath(strPath), m_module(NULL), m_Init(FALSE), m_pFactory(pFactory)
 {
 	try 
 	{ 
 		VDC_DEBUG( "%s Connect Mining  lib %s !.\n",__FUNCTION__, m_strPath.c_str());	
 		m_dynLib.load(m_strPath); 
-		MiningCreateObjectFunc pFunc = 
-				(MiningCreateObjectFunc)m_dynLib.resolve_symbol("MiningCreateObject");
-		if (pFunc != NULL)
+		m_CreateDevice = 
+				(MiningCreateDeviceFunc)m_dynLib.resolve_symbol("MiningCreateDevice");
+		if (m_CreateDevice != NULL)
 		{
 			m_Init = TRUE;
 			VDC_DEBUG( "%s Mining lib load successfully.\n",__FUNCTION__);	
-			m_module = pFunc();
 		}
 	} catch( ... ) 
 	{ 
@@ -38,23 +37,47 @@ inline BOOL MiningModule::Valid()
 	return m_Init;
 }
 
-inline BOOL MiningModule::AddChannel(s32 id)
+inline BOOL MiningModule::InitOneDevice(DeviceParam & Param)
 {
-	if (m_module)
+	u32 id = Param.m_Conf.data.conf.nId;
+	if (Param.m_Conf.data.conf.Mining == 0)
 	{
-		return m_module->AddChannel(id);
+		VDC_DEBUG( "%s Device %d not enable Mining.\n",__FUNCTION__, id);	
+		//TODO return;
 	}
-	return FALSE;
-}
-inline BOOL MiningModule::DelChannel(s32 id)
-{
-	if (m_module)
+	MiningInterface *pInterface = m_CreateDevice(id);	
+	if (pInterface == NULL)
 	{
-		return m_module->DelChannel(id);
+		return FALSE;
 	}
-	return FALSE;
+	MiningInterfaceMgr *pMgr = new MiningInterfaceMgr(id, m_pFactory, pInterface);
+
+	m_mgrMap[id] = pMgr;
+
+
+	return TRUE;
 }
 
+inline BOOL MiningModule::Init()
+{
+	if (Valid() == FALSE)
+	{
+		return FALSE;
+	}
+
+	/* Loop to get all the camera that enable the mining */
+	DeviceParamMap pDeviceMap;
+	m_pFactory.GetDeviceParamMap(pDeviceMap);
+
+        DeviceParamMap::iterator it = pDeviceMap.begin(); 
+        for(; it!=pDeviceMap.end(); ++it)
+        {
+            InitOneDevice((*it).second);
+        }
+
+	return true;
+}
+#if 0
 /* Process decoded or compressed data */
 inline BOOL MiningModule::Process(s32 id, VideoFrame& frame)
 {
@@ -115,5 +138,6 @@ inline astring MiningModule::GetVersion()
 	}
 	return FALSE;
 }
+#endif
 
 #endif /* __M_MODULE_IMPL_HPP__ */
