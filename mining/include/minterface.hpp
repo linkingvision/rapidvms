@@ -49,9 +49,9 @@ typedef struct __MiningRet
 }MiningRet;
 
 #ifdef WIN32
-typedef void (__cdecl * MiningCallbackFunctionPtr)(s32 id, MiningRet& ret, void * pParam);
+typedef void (__cdecl * MiningCallbackFunctionPtr)(MiningRet& ret, void * pParam);
 #else
-typedef void ( * MiningCallbackFunctionPtr)(s32 id, MiningRet& ret, void * pParam);
+typedef void ( * MiningCallbackFunctionPtr)(MiningRet& ret, void * pParam);
 #endif
 
 class MiningInterface
@@ -61,13 +61,9 @@ public:
 	virtual ~MiningInterface() {}
 
 public:
-	/* Channel manage */
-	virtual BOOL AddChannel(s32 id) = 0;
-	virtual BOOL DelChannel(s32 id) = 0;
-
 	/* Process decoded or compressed data */
-	virtual BOOL Process(s32 id, VideoFrame& frame) = 0;
-	virtual BOOL ProcessRaw(s32 id, RawFrame& frame) = 0;
+	virtual BOOL Process(VideoFrame& frame) = 0;
+	virtual BOOL ProcessRaw(RawFrame& frame) = 0;
 
 	/* Get the stream type of this module */
 	virtual BOOL GetReqStream(MMReqStream& type) = 0;
@@ -76,15 +72,17 @@ public:
 	virtual BOOL UnRegDataCallback(void * pParam) = 0;
 	virtual u32 GetFlags() = 0;
 	virtual astring GetVersion() = 0;
+	virtual u32 GetId() = 0;
+	
 };
 
-/* Create MiningInterface from the module MiningCreateObject function  */
-typedef MiningInterface * (*MiningCreateObjectFunc)();
+/* Create MiningInterface from the module MiningCreateDevice function  */
+typedef MiningInterface * (*MiningCreateDeviceFunc)(u32 id);
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-VE_LIBRARY_API MiningInterface * MiningCreateObject();
+VE_LIBRARY_API MiningInterface * MiningCreateDevice(u32 id);
 #ifdef __cplusplus
 }
 #endif
