@@ -8,33 +8,24 @@
 
 #include "moduletmpl.hpp"
 
-ModuleTmpl::ModuleTmpl() 
+ModuleTmpl::ModuleTmpl(u32 id) 
+:m_id(id)
 {
 }
 ModuleTmpl::~ModuleTmpl() 
 {
 }
 
-BOOL ModuleTmpl::AddChannel(s32 id)
-{
-	printf("%s Add a Channel %d \n", __FUNCTION__, id);
-	return TRUE;
-}
-BOOL ModuleTmpl::DelChannel(s32 id)
-{
-	printf("%s Add Delete Channel %d \n", __FUNCTION__, id);
-	return TRUE;
-}
 
 /* Process decoded or compressed data */
-BOOL ModuleTmpl::Process(s32 id, VideoFrame& frame)
+BOOL ModuleTmpl::Process(VideoFrame& frame)
 {
-	printf("%s id %d len %d\n", __FUNCTION__, id, frame.dataLen);
+	printf("%s id %d len %d\n", __FUNCTION__, m_id, frame.dataLen);
 	return TRUE;
 }
-BOOL ModuleTmpl::ProcessRaw(s32 id, RawFrame& frame)
+BOOL ModuleTmpl::ProcessRaw(RawFrame& frame)
 {
-	printf("%s id %d (%d, %d)\n", __FUNCTION__, id, frame.width, frame.height);
+	printf("%s id %d (%d, %d)\n", __FUNCTION__, m_id, frame.width, frame.height);
 	return TRUE;
 }
 
@@ -65,7 +56,7 @@ astring ModuleTmpl::GetVersion()
 	return "0.0.0";
 }
 
-VE_LIBRARY_API MiningInterface * MiningCreateObject()
+VE_LIBRARY_API MiningInterface * MiningCreateDevice(u32 id)
 {
-	return new ModuleTmpl;
+	return new ModuleTmpl(id);
 }
