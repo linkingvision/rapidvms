@@ -13,17 +13,13 @@
 class ModuleTmpl :public MiningInterface
 {
 public:
-	ModuleTmpl();
+	ModuleTmpl(u32 id);
 	virtual ~ModuleTmpl();
 
 public:
-	/* Channel manage */
-	virtual BOOL AddChannel(s32 id);
-	virtual BOOL DelChannel(s32 id);
-
 	/* Process decoded or compressed data */
-	virtual BOOL Process(s32 id, VideoFrame& frame);
-	virtual BOOL ProcessRaw(s32 id, RawFrame& frame);
+	virtual BOOL Process(VideoFrame& frame);
+	virtual BOOL ProcessRaw(RawFrame& frame);
 
 	/* Get the stream type of this module */
 	virtual BOOL GetReqStream(MMReqStream& type);
@@ -32,6 +28,12 @@ public:
 	virtual BOOL UnRegDataCallback(void * pParam);
 	virtual u32 GetFlags();
 	virtual astring GetVersion();
+	virtual u32 GetId() 
+	{
+		return m_id;
+	}
+private:
+	u32 m_id;
 };
 
 
