@@ -64,13 +64,13 @@ inline BOOL MFramework::Init()
 						astring strName2 = it2->path();
 						if (it2->path().find("mplugin") != std::string::npos)
 						{
-							//Find a plugin
-							// Call mmodule to add
+							/* Find a plugin and call mmodule to add */
 							astring strPluginName = it2->path();
 							MiningModule * pModule = 
-									new MiningModule(strPluginName);
+									new MiningModule(strPluginName, m_pFactory);
 							if (pModule && pModule->Valid() == TRUE)
 							{
+								pModule->Init();
 								m_MModules[strPluginName] = pModule;
 							}
 							
@@ -94,8 +94,6 @@ inline BOOL MFramework::Init()
 
 		return FALSE;
 	}
-	/* Get all the device and add channel to all the modules */
-
 
 	return TRUE;
 }
