@@ -647,7 +647,13 @@ BOOL Device::GetSubInfoFrame(InfoFrame &pFrame)
 	Lock();
 	m_SubDataMap[pParam] = pCallback;
 	UnLock();
-	StartSubData();
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		StartData();
+	}else
+	{
+		StartSubData();
+	}
 	return TRUE;
 }
 
@@ -656,7 +662,13 @@ BOOL Device::GetSubInfoFrame(InfoFrame &pFrame)
 	Lock();
 	m_SubDataMap.erase(pParam);
 	UnLock();
-	StopSubData();
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		StopData();
+	}else
+	{
+		StopSubData();
+	}
 	return TRUE;
 }
 
@@ -704,7 +716,13 @@ BOOL Device::RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pP
 	m_SubRawMap[pParam] = pCallback;
 	SubUnLock();
 	UnLock();
-	StartSubRaw();
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		StartRaw();
+	}else
+	{
+		StartSubRaw();
+	}
 	return TRUE;
 }
 
@@ -715,7 +733,13 @@ BOOL Device::UnRegSubRawCallback(void * pParam)
 	m_SubRawMap.erase(pParam);
 	SubUnLock();
 	UnLock();
-	StopSubRaw();
+	if (m_param.m_bHasSubStream == FALSE)
+	{
+		StopRaw();
+	}else
+	{
+		StopSubRaw();
+	}
 	return TRUE;
 }
 
