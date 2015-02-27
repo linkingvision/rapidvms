@@ -30,6 +30,7 @@ inline BOOL MiningInterfaceMgr::Init()
 			(DeviceRawCallbackFunctionPtr)MiningInterfaceMgr::RawHandler, 
 				(void *)this);
 	}
+	//TODO add callback RetCallback from process module
 	return TRUE;
 }
 

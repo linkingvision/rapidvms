@@ -74,6 +74,7 @@ inline BOOL MiningModule::Init()
         {
             InitOneDevice((*it).second);
         }
+	//TODO add callback device delete from factory
 
 	return true;
 }
