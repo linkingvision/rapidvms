@@ -21,6 +21,7 @@
 	Emap
 	Data Mining
 	HDFS Video Recording
+	Intel Media SDK HW accel
 
 ## Install ##
 #### Windows ####
