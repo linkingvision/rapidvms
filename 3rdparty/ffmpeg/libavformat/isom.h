@@ -53,6 +53,12 @@ typedef struct MOVStsc {
     int id;
 } MOVStsc;
 
+typedef struct MOVElst {
+    int64_t duration;
+    int64_t time;
+    float rate;
+} MOVElst;
+
 typedef struct MOVDref {
     uint32_t type;
     char *path;
@@ -73,10 +79,12 @@ typedef struct MOVFragment {
     unsigned track_id;
     uint64_t base_data_offset;
     uint64_t moof_offset;
+    uint64_t implicit_offset;
     unsigned stsd_id;
     unsigned duration;
     unsigned size;
     unsigned flags;
+    int64_t time;
 } MOVFragment;
 
 typedef struct MOVTrackExt {
@@ -91,6 +99,18 @@ typedef struct MOVSbgp {
     unsigned int count;
     unsigned int index;
 } MOVSbgp;
+
+typedef struct MOVFragmentIndexItem {
+    int64_t moof_offset;
+    int64_t time;
+} MOVFragmentIndexItem;
+
+typedef struct MOVFragmentIndex {
+    unsigned track_id;
+    unsigned item_count;
+    unsigned current_item;
+    MOVFragmentIndexItem *items;
+} MOVFragmentIndex;
 
 typedef struct MOVStreamContext {
     AVIOContext *pb;
@@ -107,6 +127,8 @@ typedef struct MOVStreamContext {
     MOVStsc *stsc_data;
     unsigned int stps_count;
     unsigned *stps_data;  ///< partial sync sample for mpeg-2 open gop
+    MOVElst *elst_data;
+    unsigned int elst_count;
     int ctts_index;
     int ctts_sample;
     unsigned int sample_size; ///< may contain value calculated from stsd or value from stsz atom
@@ -117,8 +139,6 @@ typedef struct MOVStreamContext {
     unsigned int keyframe_count;
     int *keyframes;
     int time_scale;
-    int64_t empty_duration; ///< empty duration of the first edit list entry
-    int64_t start_time;   ///< start time of the media
     int64_t time_offset;  ///< time offset of the edit list entries
     int current_sample;
     unsigned int bytes_per_frame;
@@ -145,10 +165,12 @@ typedef struct MOVStreamContext {
 
     int nb_frames_for_fps;
     int64_t duration_for_fps;
+
+    int32_t *display_matrix;
 } MOVStreamContext;
 
 typedef struct MOVContext {
-    AVClass *avclass;
+    const AVClass *class; ///< class for private options
     AVFormatContext *fc;
     int time_scale;
     int64_t duration;     ///< duration of the longest track
@@ -165,8 +187,16 @@ typedef struct MOVContext {
     int use_absolute_path;
     int ignore_editlist;
     int64_t next_root_atom; ///< offset of the next root atom
+    int export_all;
+    int export_xmp;
     int *bitrates;          ///< bitrates read before streams creation
     int bitrates_count;
+    int moov_retry;
+    int use_mfra_for;
+    int has_looked_for_mfra;
+    MOVFragmentIndex** fragment_index_data;
+    unsigned fragment_index_count;
+    int atom_depth;
 } MOVContext;
 
 int ff_mp4_read_descr_len(AVIOContext *pb);
@@ -187,6 +217,7 @@ void ff_mp4_parse_es_descr(AVIOContext *pb, int *es_id);
 #define MOV_TFHD_DEFAULT_SIZE           0x10
 #define MOV_TFHD_DEFAULT_FLAGS          0x20
 #define MOV_TFHD_DURATION_IS_EMPTY  0x010000
+#define MOV_TFHD_DEFAULT_BASE_IS_MOOF 0x020000
 
 #define MOV_TRUN_DATA_OFFSET            0x01
 #define MOV_TRUN_FIRST_SAMPLE_FLAGS     0x04
@@ -223,13 +254,18 @@ void ff_mp4_parse_es_descr(AVIOContext *pb, int *es_id);
      (tag) == MKTAG('a', 'i', '1', '3') ||  \
      (tag) == MKTAG('a', 'i', '1', '5') ||  \
      (tag) == MKTAG('a', 'i', '1', '6') ||  \
+     (tag) == MKTAG('a', 'i', 'v', 'x') ||  \
      (tag) == MKTAG('A', 'V', 'i', 'n'))
 
 
-int ff_mov_read_esds(AVFormatContext *fc, AVIOContext *pb, MOVAtom atom);
+int ff_mov_read_esds(AVFormatContext *fc, AVIOContext *pb);
 enum AVCodecID ff_mov_get_lpcm_codec_id(int bps, int flags);
 
 int ff_mov_read_stsd_entries(MOVContext *c, AVIOContext *pb, int entries);
 void ff_mov_write_chan(AVIOContext *pb, int64_t channel_layout);
+
+#define FF_MOV_FLAG_MFRA_AUTO -1
+#define FF_MOV_FLAG_MFRA_DTS 1
+#define FF_MOV_FLAG_MFRA_PTS 2
 
 #endif /* AVFORMAT_ISOM_H */

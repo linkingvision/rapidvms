@@ -85,7 +85,7 @@ typedef enum {
     /*@}*/
 } MMSSCPacketType;
 
-typedef struct {
+typedef struct MMSTContext {
     MMSContext  mms;
     int outgoing_packet_seq;             ///< Outgoing packet sequence number.
     char path[256];                      ///< Path of the resource being asked for.
@@ -284,7 +284,7 @@ static MMSSCPacketType get_tcp_server_response(MMSTContext *mmst)
             if (length_remaining < 0
                 || length_remaining > sizeof(mms->in_buffer) - 12) {
                 av_log(NULL, AV_LOG_ERROR,
-                       "Incoming packet length %d exceeds bufsize %zu\n",
+                       "Incoming packet length %d exceeds bufsize %"SIZE_SPECIFIER"\n",
                        length_remaining, sizeof(mms->in_buffer) - 12);
                 return AVERROR_INVALIDDATA;
             }
@@ -320,7 +320,7 @@ static MMSSCPacketType get_tcp_server_response(MMSTContext *mmst)
             if (length_remaining < 0
                 || length_remaining > sizeof(mms->in_buffer) - 8) {
                 av_log(NULL, AV_LOG_ERROR,
-                       "Data length %d is invalid or too large (max=%zu)\n",
+                       "Data length %d is invalid or too large (max=%"SIZE_SPECIFIER")\n",
                        length_remaining, sizeof(mms->in_buffer));
                 return AVERROR_INVALIDDATA;
             }
@@ -477,8 +477,8 @@ static int mms_close(URLContext *h)
     }
 
     /* free all separately allocated pointers in mms */
-    av_free(mms->streams);
-    av_free(mms->asf_header);
+    av_freep(&mms->streams);
+    av_freep(&mms->asf_header);
 
     return 0;
 }

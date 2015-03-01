@@ -27,7 +27,9 @@
 #include "internal.h"
 #include "intreadwrite.h"
 #include "log.h"
+#include "mathematics.h"
 #include "pixdesc.h"
+#include "rational.h"
 
 void av_image_fill_max_pixsteps(int max_pixsteps[4], int max_pixstep_comps[4],
                                 const AVPixFmtDescriptor *pixdesc)
@@ -181,7 +183,7 @@ int avpriv_set_systematic_pal2(uint32_t pal[256], enum AVPixelFormat pix_fmt)
         default:
             return AVERROR(EINVAL);
         }
-        pal[i] = b + (g<<8) + (r<<16) + (0xFFU<<24);
+        pal[i] = b + (g << 8) + (r << 16) + (0xFFU << 24);
     }
 
     return 0;
@@ -236,6 +238,27 @@ int av_image_check_size(unsigned int w, unsigned int h, int log_offset, void *lo
         return 0;
 
     av_log(&imgutils, AV_LOG_ERROR, "Picture size %ux%u is invalid\n", w, h);
+    return AVERROR(EINVAL);
+}
+
+int av_image_check_sar(unsigned int w, unsigned int h, AVRational sar)
+{
+    int64_t scaled_dim;
+
+    if (!sar.den)
+        return AVERROR(EINVAL);
+
+    if (!sar.num || sar.num == sar.den)
+        return 0;
+
+    if (sar.num < sar.den)
+        scaled_dim = av_rescale_rnd(w, sar.num, sar.den, AV_ROUND_ZERO);
+    else
+        scaled_dim = av_rescale_rnd(h, sar.den, sar.num, AV_ROUND_ZERO);
+
+    if (scaled_dim > 0)
+        return 0;
+
     return AVERROR(EINVAL);
 }
 
@@ -294,55 +317,63 @@ void av_image_copy(uint8_t *dst_data[4], int dst_linesizes[4],
 }
 
 int av_image_fill_arrays(uint8_t *dst_data[4], int dst_linesize[4],
-                         const uint8_t *src,
-                         enum AVPixelFormat pix_fmt, int width, int height, int align)
+                         const uint8_t *src, enum AVPixelFormat pix_fmt,
+                         int width, int height, int align)
 {
     int ret, i;
 
-    if ((ret = av_image_check_size(width, height, 0, NULL)) < 0)
+    ret = av_image_check_size(width, height, 0, NULL);
+    if (ret < 0)
         return ret;
 
-    if ((ret = av_image_fill_linesizes(dst_linesize, pix_fmt, width)) < 0)
+    ret = av_image_fill_linesizes(dst_linesize, pix_fmt, width);
+    if (ret < 0)
         return ret;
 
     for (i = 0; i < 4; i++)
         dst_linesize[i] = FFALIGN(dst_linesize[i], align);
 
-    if ((ret = av_image_fill_pointers(dst_data, pix_fmt, width, NULL, dst_linesize)) < 0)
-        return ret;
-
     return av_image_fill_pointers(dst_data, pix_fmt, height, (uint8_t *)src, dst_linesize);
 }
 
-int av_image_get_buffer_size(enum AVPixelFormat pix_fmt, int width, int height, int align)
+int av_image_get_buffer_size(enum AVPixelFormat pix_fmt,
+                             int width, int height, int align)
 {
-    const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(pix_fmt);
     uint8_t *data[4];
     int linesize[4];
-
+    int ret;
+    const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(pix_fmt);
     if (!desc)
         return AVERROR(EINVAL);
-    if (av_image_check_size(width, height, 0, NULL) < 0)
-        return AVERROR(EINVAL);
+
+    ret = av_image_check_size(width, height, 0, NULL);
+    if (ret < 0)
+        return ret;
+
+    // do not include palette for these pseudo-paletted formats
     if (desc->flags & AV_PIX_FMT_FLAG_PSEUDOPAL)
-        // do not include palette for these pseudo-paletted formats
         return width * height;
-    return av_image_fill_arrays(data, linesize, NULL, pix_fmt, width, height, align);
+
+    return av_image_fill_arrays(data, linesize, NULL, pix_fmt,
+                                width, height, align);
 }
 
 int av_image_copy_to_buffer(uint8_t *dst, int dst_size,
-                            const uint8_t * const src_data[4], const int src_linesize[4],
-                            enum AVPixelFormat pix_fmt, int width, int height, int align)
+                            const uint8_t * const src_data[4],
+                            const int src_linesize[4],
+                            enum AVPixelFormat pix_fmt,
+                            int width, int height, int align)
 {
     int i, j, nb_planes = 0, linesize[4];
-    const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(pix_fmt);
     int size = av_image_get_buffer_size(pix_fmt, width, height, align);
+    const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(pix_fmt);
 
-    if (size > dst_size || size < 0)
+    if (size > dst_size || size < 0 || !desc)
         return AVERROR(EINVAL);
 
     for (i = 0; i < desc->nb_components; i++)
         nb_planes = FFMAX(desc->comp[i].plane, nb_planes);
+
     nb_planes++;
 
     av_image_fill_linesizes(linesize, pix_fmt, width);

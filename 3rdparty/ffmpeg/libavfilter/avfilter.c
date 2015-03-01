@@ -37,6 +37,9 @@
 #include "formats.h"
 #include "internal.h"
 
+#include "libavutil/ffversion.h"
+const char av_filter_ffversion[] = "FFmpeg version " FFMPEG_VERSION;
+
 static int ff_filter_frame_framed(AVFilterLink *link, AVFrame *frame);
 
 void ff_tlog_ref(void *ctx, AVFrame *ref, int end)
@@ -227,6 +230,11 @@ int avfilter_config_links(AVFilterContext *filter)
         AVFilterLink *inlink;
 
         if (!link) continue;
+        if (!link->src || !link->dst) {
+            av_log(filter, AV_LOG_ERROR,
+                   "Not all input and output are properly linked (%d).\n", i);
+            return AVERROR(EINVAL);
+        }
 
         inlink = link->src->nb_inputs ? link->src->inputs[0] : NULL;
         link->current_pts = AV_NOPTS_VALUE;
@@ -295,7 +303,7 @@ int avfilter_config_links(AVFilterContext *filter)
 
             if ((config_link = link->dstpad->config_props))
                 if ((ret = config_link(link)) < 0) {
-                    av_log(link->src, AV_LOG_ERROR,
+                    av_log(link->dst, AV_LOG_ERROR,
                            "Failed to configure input pad on %s\n",
                            link->dst->name);
                     return ret;
@@ -381,8 +389,23 @@ int ff_poll_frame(AVFilterLink *link)
     return min;
 }
 
-static const char *const var_names[] = {   "t",   "n",   "pos",        NULL };
-enum                                   { VAR_T, VAR_N, VAR_POS, VAR_VARS_NB };
+static const char *const var_names[] = {
+    "t",
+    "n",
+    "pos",
+    "w",
+    "h",
+    NULL
+};
+
+enum {
+    VAR_T,
+    VAR_N,
+    VAR_POS,
+    VAR_W,
+    VAR_H,
+    VAR_VARS_NB
+};
 
 static int set_enable_expr(AVFilterContext *ctx, const char *expr)
 {
@@ -627,22 +650,22 @@ AVFilterContext *ff_filter_alloc(const AVFilter *filter, const char *inst_name)
 
     ret->nb_inputs = avfilter_pad_count(filter->inputs);
     if (ret->nb_inputs ) {
-        ret->input_pads   = av_malloc(sizeof(AVFilterPad) * ret->nb_inputs);
+        ret->input_pads   = av_malloc_array(ret->nb_inputs, sizeof(AVFilterPad));
         if (!ret->input_pads)
             goto err;
         memcpy(ret->input_pads, filter->inputs, sizeof(AVFilterPad) * ret->nb_inputs);
-        ret->inputs       = av_mallocz(sizeof(AVFilterLink*) * ret->nb_inputs);
+        ret->inputs       = av_mallocz_array(ret->nb_inputs, sizeof(AVFilterLink*));
         if (!ret->inputs)
             goto err;
     }
 
     ret->nb_outputs = avfilter_pad_count(filter->outputs);
     if (ret->nb_outputs) {
-        ret->output_pads  = av_malloc(sizeof(AVFilterPad) * ret->nb_outputs);
+        ret->output_pads  = av_malloc_array(ret->nb_outputs, sizeof(AVFilterPad));
         if (!ret->output_pads)
             goto err;
         memcpy(ret->output_pads, filter->outputs, sizeof(AVFilterPad) * ret->nb_outputs);
-        ret->outputs      = av_mallocz(sizeof(AVFilterLink*) * ret->nb_outputs);
+        ret->outputs      = av_mallocz_array(ret->nb_outputs, sizeof(AVFilterLink*));
         if (!ret->outputs)
             goto err;
     }
@@ -942,21 +965,6 @@ int avfilter_init_str(AVFilterContext *filter, const char *args)
                 goto fail;
 #endif
         } else {
-#if CONFIG_MP_FILTER
-            if (!strcmp(filter->filter->name, "mp")) {
-                char *escaped;
-
-                if (!strncmp(args, "filter=", 7))
-                    args += 7;
-                ret = av_escape(&escaped, args, ":=", AV_ESCAPE_MODE_BACKSLASH, 0);
-                if (ret < 0) {
-                    av_log(filter, AV_LOG_ERROR, "Unable to escape MPlayer filters arg '%s'\n", args);
-                    goto fail;
-                }
-                ret = process_options(filter, &options, escaped);
-                av_free(escaped);
-            } else
-#endif
             ret = process_options(filter, &options, args);
             if (ret < 0)
                 goto fail;
@@ -1071,6 +1079,8 @@ static int ff_filter_frame_framed(AVFilterLink *link, AVFrame *frame)
         int64_t pos = av_frame_get_pkt_pos(out);
         dstctx->var_values[VAR_N] = link->frame_count;
         dstctx->var_values[VAR_T] = pts == AV_NOPTS_VALUE ? NAN : pts * av_q2d(link->time_base);
+        dstctx->var_values[VAR_W] = link->w;
+        dstctx->var_values[VAR_H] = link->h;
         dstctx->var_values[VAR_POS] = pos == -1 ? NAN : pos;
 
         dstctx->is_disabled = fabs(av_expr_eval(dstctx->enable, dstctx->var_values, NULL)) < 0.5;
@@ -1138,7 +1148,8 @@ int ff_filter_frame(AVFilterLink *link, AVFrame *frame)
 
     /* Consistency checks */
     if (link->type == AVMEDIA_TYPE_VIDEO) {
-        if (strcmp(link->dst->filter->name, "scale")) {
+        if (strcmp(link->dst->filter->name, "scale") &&
+            strcmp(link->dst->filter->name, "idet")) {
             av_assert1(frame->format                 == link->format);
             av_assert1(frame->width               == link->w);
             av_assert1(frame->height               == link->h);

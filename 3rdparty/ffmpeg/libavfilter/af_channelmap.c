@@ -88,9 +88,12 @@ static char* split(char *message, char delim) {
 
 static int get_channel_idx(char **map, int *ch, char delim, int max_ch)
 {
-    char *next = split(*map, delim);
+    char *next;
     int len;
     int n = 0;
+    if (!*map)
+        return AVERROR(EINVAL);
+    next = split(*map, delim);
     if (!next && delim == '-')
         return AVERROR(EINVAL);
     len = strlen(*map);
@@ -287,10 +290,16 @@ static av_cold int channelmap_init(AVFilterContext *ctx)
 static int channelmap_query_formats(AVFilterContext *ctx)
 {
     ChannelMapContext *s = ctx->priv;
+    AVFilterChannelLayouts *layouts;
 
     ff_set_common_formats(ctx, ff_planar_sample_fmts());
     ff_set_common_samplerates(ctx, ff_all_samplerates());
-    ff_channel_layouts_ref(ff_all_channel_layouts(), &ctx->inputs[0]->out_channel_layouts);
+
+    layouts = ff_all_channel_layouts();
+    if (!layouts)
+        return AVERROR(ENOMEM);
+
+    ff_channel_layouts_ref(layouts, &ctx->inputs[0]->out_channel_layouts);
     ff_channel_layouts_ref(s->channel_layouts,       &ctx->outputs[0]->in_channel_layouts);
 
     return 0;
@@ -312,7 +321,7 @@ static int channelmap_filter_frame(AVFilterLink *inlink, AVFrame *buf)
     if (nch_out > nch_in) {
         if (nch_out > FF_ARRAY_ELEMS(buf->data)) {
             uint8_t **new_extended_data =
-                av_mallocz(nch_out * sizeof(*buf->extended_data));
+                av_mallocz_array(nch_out, sizeof(*buf->extended_data));
             if (!new_extended_data) {
                 av_frame_free(&buf);
                 return AVERROR(ENOMEM);
@@ -337,6 +346,8 @@ static int channelmap_filter_frame(AVFilterLink *inlink, AVFrame *buf)
     if (buf->data != buf->extended_data)
         memcpy(buf->data, buf->extended_data,
            FFMIN(FF_ARRAY_ELEMS(buf->data), nch_out) * sizeof(buf->data[0]));
+
+    buf->channel_layout = outlink->channel_layout;
 
     return ff_filter_frame(outlink, buf);
 }

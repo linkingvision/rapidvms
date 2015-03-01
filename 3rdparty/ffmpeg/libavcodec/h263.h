@@ -29,6 +29,7 @@
 #if !FF_API_ASPECT_EXTENDED
 #define FF_ASPECT_EXTENDED 15
 #endif
+#define INT_BIT (CHAR_BIT * sizeof(int))
 
 // The defines below define the number of bits that are read at once for
 // reading vlc values. Changing these may improve speed and data cache needs
@@ -196,7 +197,7 @@ static inline int get_p_cbp(MpegEncContext * s,
         for (i = 0; i < 6; i++) {
             if (s->block_last_index[i] >= 0 && ((cbp >> (5 - i))&1)==0 ){
                 s->block_last_index[i]= -1;
-                s->dsp.clear_block(s->block[i]);
+                s->bdsp.clear_block(s->block[i]);
             }
         }
     }else{

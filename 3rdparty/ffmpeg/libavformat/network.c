@@ -66,7 +66,7 @@ GCRY_THREAD_OPTION_PTHREAD_IMPL;
 #endif
 #endif
 
-void ff_tls_init(void)
+int ff_tls_init(void)
 {
     avpriv_lock_avformat();
 #if CONFIG_OPENSSL
@@ -76,7 +76,9 @@ void ff_tls_init(void)
 #if HAVE_THREADS
         if (!CRYPTO_get_locking_callback()) {
             int i;
-            openssl_mutexes = av_malloc(sizeof(pthread_mutex_t) * CRYPTO_num_locks());
+            openssl_mutexes = av_malloc_array(sizeof(pthread_mutex_t), CRYPTO_num_locks());
+            if (!openssl_mutexes)
+                return AVERROR(ENOMEM);
             for (i = 0; i < CRYPTO_num_locks(); i++)
                 pthread_mutex_init(&openssl_mutexes[i], NULL);
             CRYPTO_set_locking_callback(openssl_lock);
@@ -96,6 +98,8 @@ void ff_tls_init(void)
     gnutls_global_init();
 #endif
     avpriv_unlock_avformat();
+
+    return 0;
 }
 
 void ff_tls_deinit(void)
@@ -163,8 +167,8 @@ int ff_network_wait_fd_timeout(int fd, int write, int64_t timeout, AVIOInterrupt
             return ret;
         if (timeout > 0) {
             if (!wait_start)
-                wait_start = av_gettime();
-            else if (av_gettime() - wait_start > timeout)
+                wait_start = av_gettime_relative();
+            else if (av_gettime_relative() - wait_start > timeout)
                 return AVERROR(ETIMEDOUT);
         }
     }

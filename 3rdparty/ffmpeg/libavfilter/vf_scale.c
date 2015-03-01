@@ -71,7 +71,7 @@ enum var_name {
     VARS_NB
 };
 
-typedef struct {
+typedef struct ScaleContext {
     const AVClass *class;
     struct SwsContext *sws;     ///< software scaler context
     struct SwsContext *isws[2]; ///< software scaler context for interlaced material
@@ -178,25 +178,31 @@ static int query_formats(AVFilterContext *ctx)
     int ret;
 
     if (ctx->inputs[0]) {
+        const AVPixFmtDescriptor *desc = NULL;
         formats = NULL;
-        for (pix_fmt = 0; pix_fmt < AV_PIX_FMT_NB; pix_fmt++)
+        while ((desc = av_pix_fmt_desc_next(desc))) {
+            pix_fmt = av_pix_fmt_desc_get_id(desc);
             if ((sws_isSupportedInput(pix_fmt) ||
                  sws_isSupportedEndiannessConversion(pix_fmt))
                 && (ret = ff_add_format(&formats, pix_fmt)) < 0) {
                 ff_formats_unref(&formats);
                 return ret;
             }
+        }
         ff_formats_ref(formats, &ctx->inputs[0]->out_formats);
     }
     if (ctx->outputs[0]) {
+        const AVPixFmtDescriptor *desc = NULL;
         formats = NULL;
-        for (pix_fmt = 0; pix_fmt < AV_PIX_FMT_NB; pix_fmt++)
+        while ((desc = av_pix_fmt_desc_next(desc))) {
+            pix_fmt = av_pix_fmt_desc_get_id(desc);
             if ((sws_isSupportedOutput(pix_fmt) || pix_fmt == AV_PIX_FMT_PAL8 ||
                  sws_isSupportedEndiannessConversion(pix_fmt))
                 && (ret = ff_add_format(&formats, pix_fmt)) < 0) {
                 ff_formats_unref(&formats);
                 return ret;
             }
+        }
         ff_formats_ref(formats, &ctx->outputs[0]->in_formats);
     }
 
@@ -366,6 +372,17 @@ static int config_props(AVFilterLink *outlink)
             av_opt_set_int(*s, "dsth", outlink->h >> !!i, 0);
             av_opt_set_int(*s, "dst_format", outfmt, 0);
             av_opt_set_int(*s, "sws_flags", scale->flags, 0);
+
+            /* Override YUV420P settings to have the correct (MPEG-2) chroma positions
+             * MPEG-2 chroma positions are used by convention
+             * XXX: support other 4:2:0 pixel formats */
+            if (inlink->format == AV_PIX_FMT_YUV420P) {
+                scale->in_v_chr_pos = (i == 0) ? 128 : (i == 1) ? 64 : 192;
+            }
+
+            if (outlink->format == AV_PIX_FMT_YUV420P) {
+                scale->out_v_chr_pos = (i == 0) ? 128 : (i == 1) ? 64 : 192;
+            }
 
             av_opt_set_int(*s, "src_h_chr_pos", scale->in_h_chr_pos, 0);
             av_opt_set_int(*s, "src_v_chr_pos", scale->in_v_chr_pos, 0);
@@ -551,10 +568,10 @@ static const AVOption scale_options[] = {
     { "mpeg",   NULL, 0, AV_OPT_TYPE_CONST, {.i64 = AVCOL_RANGE_MPEG}, 0, 0, FLAGS, "range" },
     { "tv",     NULL, 0, AV_OPT_TYPE_CONST, {.i64 = AVCOL_RANGE_MPEG}, 0, 0, FLAGS, "range" },
     { "pc",     NULL, 0, AV_OPT_TYPE_CONST, {.i64 = AVCOL_RANGE_JPEG}, 0, 0, FLAGS, "range" },
-    { "in_v_chr_pos",   "input vertical chroma position in luma grid/256"  , OFFSET(in_v_chr_pos), AV_OPT_TYPE_INT, { .i64 = -1}, -1, 512, FLAGS },
-    { "in_h_chr_pos",   "input horizontal chroma position in luma grid/256", OFFSET(in_h_chr_pos), AV_OPT_TYPE_INT, { .i64 = -1}, -1, 512, FLAGS },
-    { "out_v_chr_pos",   "output vertical chroma position in luma grid/256"  , OFFSET(out_v_chr_pos), AV_OPT_TYPE_INT, { .i64 = -1}, -1, 512, FLAGS },
-    { "out_h_chr_pos",   "output horizontal chroma position in luma grid/256", OFFSET(out_h_chr_pos), AV_OPT_TYPE_INT, { .i64 = -1}, -1, 512, FLAGS },
+    { "in_v_chr_pos",   "input vertical chroma position in luma grid/256"  ,   OFFSET(in_v_chr_pos),  AV_OPT_TYPE_INT, { .i64 = -513}, -513, 512, FLAGS },
+    { "in_h_chr_pos",   "input horizontal chroma position in luma grid/256",   OFFSET(in_h_chr_pos),  AV_OPT_TYPE_INT, { .i64 = -513}, -513, 512, FLAGS },
+    { "out_v_chr_pos",   "output vertical chroma position in luma grid/256"  , OFFSET(out_v_chr_pos), AV_OPT_TYPE_INT, { .i64 = -513}, -513, 512, FLAGS },
+    { "out_h_chr_pos",   "output horizontal chroma position in luma grid/256", OFFSET(out_h_chr_pos), AV_OPT_TYPE_INT, { .i64 = -513}, -513, 512, FLAGS },
     { "force_original_aspect_ratio", "decrease or increase w/h if necessary to keep the original AR", OFFSET(force_original_aspect_ratio), AV_OPT_TYPE_INT, { .i64 = 0}, 0, 2, FLAGS, "force_oar" },
     { "disable",  NULL, 0, AV_OPT_TYPE_CONST, {.i64 = 0 }, 0, 0, FLAGS, "force_oar" },
     { "decrease", NULL, 0, AV_OPT_TYPE_CONST, {.i64 = 1 }, 0, 0, FLAGS, "force_oar" },
@@ -567,6 +584,7 @@ static const AVClass scale_class = {
     .item_name        = av_default_item_name,
     .option           = scale_options,
     .version          = LIBAVUTIL_VERSION_INT,
+    .category         = AV_CLASS_CATEGORY_FILTER,
     .child_class_next = child_class_next,
 };
 

@@ -1,3 +1,0 @@
-./configure --prefix=/usr/  --disable-vaapi --enable-shared 
-
-

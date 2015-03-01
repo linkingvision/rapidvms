@@ -51,7 +51,7 @@ void av_audio_fifo_free(AVAudioFifo *af)
                 if (af->buf[i])
                     av_fifo_free(af->buf[i]);
             }
-            av_free(af->buf);
+            av_freep(&af->buf);
         }
         av_free(af);
     }
@@ -76,7 +76,7 @@ AVAudioFifo *av_audio_fifo_alloc(enum AVSampleFormat sample_fmt, int channels,
     af->sample_size = buf_size / nb_samples;
     af->nb_buffers  = av_sample_fmt_is_planar(sample_fmt) ? channels : 1;
 
-    af->buf = av_mallocz(af->nb_buffers * sizeof(*af->buf));
+    af->buf = av_mallocz_array(af->nb_buffers, sizeof(*af->buf));
     if (!af->buf)
         goto error;
 

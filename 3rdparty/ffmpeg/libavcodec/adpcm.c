@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001-2003 The ffmpeg Project
+ * Copyright (c) 2001-2003 The FFmpeg Project
  *
  * first version by Francois Revol (revol@free.fr)
  * fringe ADPCM codecs (e.g., DK3, DK4, Westwood)
@@ -246,6 +246,10 @@ static inline short adpcm_ms_expand_nibble(ADPCMChannelStatus *c, int nibble)
     c->sample1 = av_clip_int16(predictor);
     c->idelta = (ff_adpcm_AdaptationTable[(int)nibble] * c->idelta) >> 8;
     if (c->idelta < 16) c->idelta = 16;
+    if (c->idelta > INT_MAX/768) {
+        av_log(NULL, AV_LOG_WARNING, "idelta overflow\n");
+        c->idelta = INT_MAX/768;
+    }
 
     return c->sample1;
 }
@@ -265,7 +269,7 @@ static inline short adpcm_ima_oki_expand_nibble(ADPCMChannelStatus *c, int nibbl
     if (sign) predictor -= diff;
     else predictor += diff;
 
-    c->predictor = av_clip(predictor, -2048, 2047);
+    c->predictor = av_clip_intp2(predictor, 11);
     c->step_index = step_index;
 
     return c->predictor << 4;
@@ -555,17 +559,16 @@ static int get_nb_samples(AVCodecContext *avctx, GetByteContext *gb,
         case AV_CODEC_ID_ADPCM_EA_R2:
             header_size    = 4 + 5 * ch;
             *coded_samples = bytestream2_get_le32(gb);
-            *approx_nb_samples = 1;
             break;
         case AV_CODEC_ID_ADPCM_EA_R3:
             header_size    = 4 + 5 * ch;
             *coded_samples = bytestream2_get_be32(gb);
-            *approx_nb_samples = 1;
             break;
         }
         *coded_samples -= *coded_samples % 28;
         nb_samples      = (buf_size - header_size) * 2 / ch;
         nb_samples     -= nb_samples % 28;
+        *approx_nb_samples = 1;
         break;
     case AV_CODEC_ID_ADPCM_IMA_DK3:
         if (avctx->block_align > 0)
@@ -1531,7 +1534,7 @@ static int adpcm_decode_frame(AVCodecContext *avctx, void *data,
 
 static const enum AVSampleFormat sample_fmts_s16[]  = { AV_SAMPLE_FMT_S16,
                                                         AV_SAMPLE_FMT_NONE };
-static const enum AVSampleFormat sample_fmts_s16p[] = { AV_SAMPLE_FMT_S16,
+static const enum AVSampleFormat sample_fmts_s16p[] = { AV_SAMPLE_FMT_S16P,
                                                         AV_SAMPLE_FMT_NONE };
 static const enum AVSampleFormat sample_fmts_both[] = { AV_SAMPLE_FMT_S16,
                                                         AV_SAMPLE_FMT_S16P,

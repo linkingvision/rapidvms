@@ -83,7 +83,7 @@ typedef struct WavpackContext {
     int ch_offset;
 } WavpackContext;
 
-#define LEVEL_DECAY(a)  ((a + 0x80) >> 8)
+#define LEVEL_DECAY(a)  (((a) + 0x80) >> 8)
 
 static av_always_inline int get_tail(GetBitContext *gb, int k)
 {
@@ -253,6 +253,10 @@ static int wv_get_value(WavpackFrameContext *ctx, GetBitContext *gb,
     return sign ? ~ret : ret;
 
 error:
+    ret = get_bits_left(gb);
+    if (ret <= 0) {
+        av_log(ctx->avctx, AV_LOG_ERROR, "Too few bits (%d) left\n", ret);
+    }
     *last = 1;
     return 0;
 }
@@ -622,7 +626,7 @@ static int wavpack_decode_block(AVCodecContext *avctx, int block_no,
     ThreadFrame tframe = { .f = frame };
     WavpackFrameContext *s;
     GetByteContext gb;
-    void *samples_l, *samples_r;
+    void *samples_l = NULL, *samples_r = NULL;
     int ret;
     int got_terms   = 0, got_weights = 0, got_samples = 0,
         got_entropy = 0, got_bs      = 0, got_float   = 0, got_hybrid = 0;
@@ -902,7 +906,10 @@ static int wavpack_decode_block(AVCodecContext *avctx, int block_no,
                 chmask = bytestream2_get_le32(&gb);
                 break;
             case 5:
-                bytestream2_skip(&gb, 1);
+                size = bytestream2_get_byte(&gb);
+                if (avctx->channels != size)
+                    av_log(avctx, AV_LOG_WARNING, "%i channels signalled"
+                           " instead of %i.\n", size, avctx->channels);
                 chan  |= (bytestream2_get_byte(&gb) & 0xF) << 8;
                 chmask = bytestream2_get_le16(&gb);
                 break;

@@ -85,7 +85,7 @@ typedef struct MPADecodeContext {
     int err_recognition;
     AVCodecContext* avctx;
     MPADSPContext mpadsp;
-    AVFloatDSPContext fdsp;
+    AVFloatDSPContext *fdsp;
     AVFrame *frame;
 } MPADecodeContext;
 
@@ -216,7 +216,7 @@ static inline int l1_unscale(int n, int mant, int scale_factor)
     shift   = scale_factor_modshift[scale_factor];
     mod     = shift & 3;
     shift >>= 2;
-    val     = MUL64(mant + (-1 << n) + 1, scale_factor_mult[n-1][mod]);
+    val     = MUL64((int)(mant + (-1U << n) + 1), scale_factor_mult[n-1][mod]);
     shift  += n;
     /* NOTE: at this point, 1 <= shift >= 21 + 15 */
     return (int)((val + (1LL << (shift - 1))) >> shift);
@@ -406,6 +406,16 @@ static av_cold void decode_init_static(void)
     }
 }
 
+#if USE_FLOATS
+static av_cold int decode_close(AVCodecContext * avctx)
+{
+    MPADecodeContext *s = avctx->priv_data;
+    av_freep(&s->fdsp);
+
+    return 0;
+}
+#endif
+
 static av_cold int decode_init(AVCodecContext * avctx)
 {
     static int initialized_tables = 0;
@@ -418,7 +428,12 @@ static av_cold int decode_init(AVCodecContext * avctx)
 
     s->avctx = avctx;
 
-    avpriv_float_dsp_init(&s->fdsp, avctx->flags & CODEC_FLAG_BITEXACT);
+#if USE_FLOATS
+    s->fdsp = avpriv_float_dsp_alloc(avctx->flags & CODEC_FLAG_BITEXACT);
+    if (!s->fdsp)
+        return AVERROR(ENOMEM);
+#endif
+
     ff_mpadsp_init(&s->mpadsp);
 
     if (avctx->request_sample_fmt == OUT_FMT &&
@@ -1138,7 +1153,7 @@ found2:
         /* NOTE: the 1/sqrt(2) normalization factor is included in the
            global gain */
 #if USE_FLOATS
-       s->fdsp.butterflies_float(g0->sb_hybrid, g1->sb_hybrid, 576);
+       s->fdsp->butterflies_float(g0->sb_hybrid, g1->sb_hybrid, 576);
 #else
         tab0 = g0->sb_hybrid;
         tab1 = g1->sb_hybrid;
@@ -1603,7 +1618,7 @@ static int mp_decode_frame(MPADecodeContext *s, OUT_INT **samples,
 
     /* get output buffer */
     if (!samples) {
-        av_assert0(s->frame != NULL);
+        av_assert0(s->frame);
         s->frame->nb_samples = s->avctx->frame_size;
         if ((ret = ff_get_buffer(s->avctx, s->frame, 0)) < 0)
             return ret;
@@ -1705,7 +1720,9 @@ static int decode_frame(AVCodecContext * avctx, void *data, int *got_frame_ptr,
 static void mp_flush(MPADecodeContext *ctx)
 {
     memset(ctx->synth_buf, 0, sizeof(ctx->synth_buf));
+    memset(ctx->mdct_buf, 0, sizeof(ctx->mdct_buf));
     ctx->last_buf_size = 0;
+    ctx->dither_state = 0;
 }
 
 static void flush(AVCodecContext *avctx)
@@ -1817,7 +1834,7 @@ static av_cold int decode_close_mp3on4(AVCodecContext * avctx)
     int i;
 
     for (i = 0; i < s->frames; i++)
-        av_free(s->mp3decctx[i]);
+        av_freep(&s->mp3decctx[i]);
 
     return 0;
 }
@@ -1829,7 +1846,7 @@ static av_cold int decode_init_mp3on4(AVCodecContext * avctx)
     MPEG4AudioConfig cfg;
     int i;
 
-    if ((avctx->extradata_size < 2) || (avctx->extradata == NULL)) {
+    if ((avctx->extradata_size < 2) || !avctx->extradata) {
         av_log(avctx, AV_LOG_ERROR, "Codec extradata missing or too short.\n");
         return AVERROR_INVALIDDATA;
     }

@@ -39,7 +39,7 @@
  */
 #define FIFO_PACKETS_NUM 16
 
-typedef struct {
+typedef struct JackData {
     AVClass        *class;
     jack_client_t * client;
     int             activated;
@@ -163,7 +163,7 @@ static int start_jack(AVFormatContext *context)
     sem_init(&self->packet_count, 0, 0);
 
     self->sample_rate = jack_get_sample_rate(self->client);
-    self->ports       = av_malloc(self->nports * sizeof(*self->ports));
+    self->ports       = av_malloc_array(self->nports, sizeof(*self->ports));
     self->buffer_size = jack_get_buffer_size(self->client);
 
     /* Register JACK ports */
@@ -194,9 +194,9 @@ static int start_jack(AVFormatContext *context)
     }
 
     /* Create FIFO buffers */
-    self->filled_pkts = av_fifo_alloc(FIFO_PACKETS_NUM * sizeof(AVPacket));
+    self->filled_pkts = av_fifo_alloc_array(FIFO_PACKETS_NUM, sizeof(AVPacket));
     /* New packets FIFO with one extra packet for safety against underruns */
-    self->new_pkts    = av_fifo_alloc((FIFO_PACKETS_NUM + 1) * sizeof(AVPacket));
+    self->new_pkts    = av_fifo_alloc_array((FIFO_PACKETS_NUM + 1), sizeof(AVPacket));
     if ((test = supply_new_packets(self, context))) {
         jack_client_close(self->client);
         return test;
@@ -206,14 +206,14 @@ static int start_jack(AVFormatContext *context)
 
 }
 
-static void free_pkt_fifo(AVFifoBuffer *fifo)
+static void free_pkt_fifo(AVFifoBuffer **fifo)
 {
     AVPacket pkt;
-    while (av_fifo_size(fifo)) {
-        av_fifo_generic_read(fifo, &pkt, sizeof(pkt), NULL);
+    while (av_fifo_size(*fifo)) {
+        av_fifo_generic_read(*fifo, &pkt, sizeof(pkt), NULL);
         av_free_packet(&pkt);
     }
-    av_fifo_free(fifo);
+    av_fifo_freep(fifo);
 }
 
 static void stop_jack(JackData *self)
@@ -224,8 +224,8 @@ static void stop_jack(JackData *self)
         jack_client_close(self->client);
     }
     sem_destroy(&self->packet_count);
-    free_pkt_fifo(self->new_pkts);
-    free_pkt_fifo(self->filled_pkts);
+    free_pkt_fifo(&self->new_pkts);
+    free_pkt_fifo(&self->filled_pkts);
     av_freep(&self->ports);
     ff_timefilter_destroy(self->timefilter);
 }
@@ -287,8 +287,11 @@ static int audio_read_packet(AVFormatContext *context, AVPacket *pkt)
             av_log(context, AV_LOG_ERROR,
                    "Input error: timed out when waiting for JACK process callback output\n");
         } else {
+            char errbuf[128];
+            int ret = AVERROR(errno);
+            av_strerror(ret, errbuf, sizeof(errbuf));
             av_log(context, AV_LOG_ERROR, "Error while waiting for audio packet: %s\n",
-                   strerror(errno));
+                   errbuf);
         }
         if (!self->client)
             av_log(context, AV_LOG_ERROR, "Input error: JACK server is gone\n");
@@ -333,6 +336,7 @@ static const AVClass jack_indev_class = {
     .item_name      = av_default_item_name,
     .option         = options,
     .version        = LIBAVUTIL_VERSION_INT,
+    .category       = AV_CLASS_CATEGORY_DEVICE_AUDIO_INPUT,
 };
 
 AVInputFormat ff_jack_demuxer = {

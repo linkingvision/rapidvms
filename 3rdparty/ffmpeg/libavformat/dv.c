@@ -1,5 +1,5 @@
 /*
- * General DV muxer/demuxer
+ * General DV demuxer
  * Copyright (c) 2003 Roman Shaposhnik
  *
  * Many thanks to Dan Dennedy <dan@dennedy.org> for providing wealth
@@ -41,7 +41,7 @@
 #include "libavutil/avassert.h"
 
 struct DVDemuxContext {
-    const DVprofile*  sys;    /* Current DV profile. E.g.: 525/60, 625/50 */
+    const AVDVProfile*  sys;    /* Current DV profile. E.g.: 525/60, 625/50 */
     AVFormatContext*  fctx;
     AVStream*         vst;
     AVStream*         ast[4];
@@ -72,30 +72,33 @@ static inline uint16_t dv_audio_12to16(uint16_t sample)
     return result;
 }
 
-/*
- * This is the dumbest implementation of all -- it simply looks at
- * a fixed offset and if pack isn't there -- fails. We might want
- * to have a fallback mechanism for complete search of missing packs.
- */
-static const uint8_t *dv_extract_pack(uint8_t *frame, enum dv_pack_type t)
+static const uint8_t *dv_extract_pack(const uint8_t *frame, enum dv_pack_type t)
 {
     int offs;
+    int c;
 
-    switch (t) {
-    case dv_audio_source:
-        offs = (80 * 6 + 80 * 16 * 3 + 3);
-        break;
-    case dv_audio_control:
-        offs = (80 * 6 + 80 * 16 * 4 + 3);
-        break;
-    case dv_video_control:
-        offs = (80 * 5 + 48 + 5);
-        break;
-    case dv_timecode:
-        offs = (80*1 + 3 + 3);
-        break;
-    default:
-        return NULL;
+    for (c = 0; c < 10; c++) {
+        switch (t) {
+        case dv_audio_source:
+            if (c&1)    offs = (80 * 6 + 80 * 16 * 0 + 3 + c*12000);
+            else        offs = (80 * 6 + 80 * 16 * 3 + 3 + c*12000);
+            break;
+        case dv_audio_control:
+            if (c&1)    offs = (80 * 6 + 80 * 16 * 1 + 3 + c*12000);
+            else        offs = (80 * 6 + 80 * 16 * 4 + 3 + c*12000);
+            break;
+        case dv_video_control:
+            if (c&1)    offs = (80 * 3 + 8      + c*12000);
+            else        offs = (80 * 5 + 48 + 5 + c*12000);
+            break;
+        case dv_timecode:
+            offs = (80*1 + 3 + 3);
+            break;
+        default:
+            return NULL;
+        }
+        if (frame[offs] == t)
+            break;
     }
 
     return frame[offs] == t ? &frame[offs] : NULL;
@@ -113,8 +116,8 @@ static const int dv_audio_frequency[3] = {
  * 3. Audio is always returned as 16bit linear samples: 12bit nonlinear samples
  *    are converted into 16bit linear ones.
  */
-static int dv_extract_audio(uint8_t *frame, uint8_t **ppcm,
-                            const DVprofile *sys)
+static int dv_extract_audio(const uint8_t *frame, uint8_t **ppcm,
+                            const AVDVProfile *sys)
 {
     int size, chan, i, j, d, of, smpls, freq, quant, half_ch;
     uint16_t lc, rc;
@@ -216,7 +219,7 @@ static int dv_extract_audio(uint8_t *frame, uint8_t **ppcm,
     return size;
 }
 
-static int dv_extract_audio_info(DVDemuxContext *c, uint8_t *frame)
+static int dv_extract_audio_info(DVDemuxContext *c, const uint8_t *frame)
 {
     const uint8_t *as_pack;
     int freq, stype, smpls, quant, i, ach;
@@ -276,7 +279,7 @@ static int dv_extract_audio_info(DVDemuxContext *c, uint8_t *frame)
     return (c->sys->audio_min_samples[freq] + smpls) * 4; /* 2ch, 2bytes */
 }
 
-static int dv_extract_video_info(DVDemuxContext *c, uint8_t *frame)
+static int dv_extract_video_info(DVDemuxContext *c, const uint8_t *frame)
 {
     const uint8_t *vsc_pack;
     AVCodecContext *avctx;
@@ -288,7 +291,7 @@ static int dv_extract_video_info(DVDemuxContext *c, uint8_t *frame)
 
         avpriv_set_pts_info(c->vst, 64, c->sys->time_base.num,
                             c->sys->time_base.den);
-        avctx->time_base = c->sys->time_base;
+        c->vst->avg_frame_rate = av_inv_q(c->vst->time_base);
 
         /* finding out SAR is a little bit messy */
         vsc_pack = dv_extract_pack(frame, dv_video_control);
@@ -304,7 +307,7 @@ static int dv_extract_video_info(DVDemuxContext *c, uint8_t *frame)
     return size;
 }
 
-static int dv_extract_timecode(DVDemuxContext* c, uint8_t* frame, char *tc)
+static int dv_extract_timecode(DVDemuxContext* c, const uint8_t* frame, char *tc)
 {
     const uint8_t *tc_pack;
 
@@ -369,7 +372,7 @@ int avpriv_dv_produce_packet(DVDemuxContext *c, AVPacket *pkt,
     uint8_t *ppcm[5] = { 0 };
 
     if (buf_size < DV_PROFILE_BYTES ||
-        !(c->sys = avpriv_dv_frame_profile(c->sys, buf, buf_size)) ||
+        !(c->sys = av_dv_frame_profile(c->sys, buf, buf_size)) ||
         buf_size < c->sys->frame_size) {
         return -1;   /* Broken frame, or not enough data */
     }
@@ -419,9 +422,10 @@ static int64_t dv_frame_offset(AVFormatContext *s, DVDemuxContext *c,
                                int64_t timestamp, int flags)
 {
     // FIXME: sys may be wrong if last dv_read_packet() failed (buffer is junk)
-    const DVprofile *sys = avpriv_dv_codec_profile(c->vst->codec);
+    const AVDVProfile *sys = av_dv_codec_profile2(c->vst->codec->width, c->vst->codec->height,
+                                                 c->vst->codec->pix_fmt, c->vst->codec->time_base);
     int64_t offset;
-    int64_t size       = avio_size(s->pb) - s->data_offset;
+    int64_t size       = avio_size(s->pb) - s->internal->data_offset;
     int64_t max_offset = ((size - 1) / sys->frame_size) * sys->frame_size;
 
     offset = sys->frame_size * timestamp;
@@ -431,7 +435,7 @@ static int64_t dv_frame_offset(AVFormatContext *s, DVDemuxContext *c,
     else if (offset < 0)
         offset = 0;
 
-    return offset + s->data_offset;
+    return offset + s->internal->data_offset;
 }
 
 void ff_dv_offset_reset(DVDemuxContext *c, int64_t frame_offset)
@@ -468,6 +472,9 @@ static int dv_read_timecode(AVFormatContext *s) {
                                         partial_frame_size);
 
     RawDVContext *c = s->priv_data;
+    if (!partial_frame)
+        return AVERROR(ENOMEM);
+
     ret = avio_read(s->pb, partial_frame, partial_frame_size);
     if (ret < 0)
         goto finish;
@@ -500,7 +507,7 @@ static int dv_read_header(AVFormatContext *s)
 
     state = avio_rb32(s->pb);
     while ((state & 0xffffff7f) != 0x1f07003f) {
-        if (url_feof(s->pb)) {
+        if (avio_feof(s->pb)) {
             av_log(s, AV_LOG_ERROR, "Cannot find DV header.\n");
             return -1;
         }
@@ -519,9 +526,9 @@ static int dv_read_header(AVFormatContext *s)
         avio_seek(s->pb, -DV_PROFILE_BYTES, SEEK_CUR) < 0)
         return AVERROR(EIO);
 
-    c->dv_demux->sys = avpriv_dv_frame_profile(c->dv_demux->sys,
-                                               c->buf,
-                                               DV_PROFILE_BYTES);
+    c->dv_demux->sys = av_dv_frame_profile(c->dv_demux->sys,
+                                           c->buf,
+                                           DV_PROFILE_BYTES);
     if (!c->dv_demux->sys) {
         av_log(s, AV_LOG_ERROR,
                "Can't determine profile of DV input stream.\n");
@@ -576,7 +583,7 @@ static int dv_read_seek(AVFormatContext *s, int stream_index,
 static int dv_read_close(AVFormatContext *s)
 {
     RawDVContext *c = s->priv_data;
-    av_free(c->dv_demux);
+    av_freep(&c->dv_demux);
     return 0;
 }
 
@@ -622,7 +629,6 @@ static int dv_probe(AVProbeData *p)
     return 0;
 }
 
-#if CONFIG_DV_DEMUXER
 AVInputFormat ff_dv_demuxer = {
     .name           = "dv",
     .long_name      = NULL_IF_CONFIG_SMALL("DV (Digital Video)"),
@@ -634,4 +640,3 @@ AVInputFormat ff_dv_demuxer = {
     .read_seek      = dv_read_seek,
     .extensions     = "dv,dif",
 };
-#endif

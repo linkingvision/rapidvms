@@ -79,9 +79,6 @@ qpel{8,16}_mc??_old_c / *pixels{8,16}_l4
     Just used to work around a bug in an old libavcodec encoder version.
     Don't optimize them.
 
-tpel_mc_func {put,avg}_tpel_pixels_tab
-    Used only for SVQ3, so only optimize them if you need fast SVQ3 decoding.
-
 add_bytes/diff_bytes
     For huffyuv only, optimize if you want a faster ffhuffyuv codec.
 
@@ -139,9 +136,6 @@ dct_unquantize_mpeg2
 dct_unquantize_h263
     Used in MPEG-4/H.263 en/decoding.
 
-FIXME remaining functions?
-BTW, most of these functions are in dsputil.c/.h, some are in mpegvideo.c/.h.
-
 
 
 Alignment:
@@ -196,6 +190,11 @@ __asm__() block.
 
 Use external asm (nasm/yasm) or inline asm (__asm__()), do not use intrinsics.
 The latter requires a good optimizing compiler which gcc is not.
+
+When debugging a x86 external asm compilation issue, if lost in the macro
+expansions, add DBG=1 to your make command-line: the input file will be
+preprocessed, stripped of the debug/empty lines, then compiled, showing the
+actual lines causing issues.
 
 Inline asm vs. external asm
 ---------------------------
@@ -267,17 +266,6 @@ www.freescale.com/files/32bit/doc/ref_manual/ALTIVECPIM.pdf
 CELL/SPU:
 http://www-01.ibm.com/chips/techlib/techlib.nsf/techdocs/30B3520C93F437AB87257060006FFE5E/$file/Language_Extensions_for_CBEA_2.4.pdf
 http://www-01.ibm.com/chips/techlib/techlib.nsf/techdocs/9F820A5FFA3ECE8C8725716A0062585F/$file/CBE_Handbook_v1.1_24APR2007_pub.pdf
-
-SPARC-specific:
----------------
-SPARC Joint Programming Specification (JPS1): Commonality
-http://www.fujitsu.com/downloads/PRMPWR/JPS1-R1.0.4-Common-pub.pdf
-
-UltraSPARC III Processor User's Manual (contains instruction timings)
-http://www.sun.com/processors/manuals/USIIIv2.pdf
-
-VIS Whitepaper (contains optimization guidelines)
-http://www.sun.com/processors/vis/download/vis/vis_whitepaper.pdf
 
 GCC asm links:
 --------------

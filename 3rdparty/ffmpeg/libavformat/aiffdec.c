@@ -33,7 +33,7 @@
 #define AIFF                    0
 #define AIFF_C_VERSION1         0xA2805140
 
-typedef struct {
+typedef struct AIFFInputContext {
     int64_t data_end;
     int block_duration;
 } AIFFInputContext;
@@ -58,7 +58,7 @@ static int get_tag(AVIOContext *pb, uint32_t * tag)
 {
     int size;
 
-    if (url_feof(pb))
+    if (avio_feof(pb))
         return AVERROR(EIO);
 
     *tag = avio_rl32(pb);
@@ -116,7 +116,9 @@ static unsigned int get_aiff_header(AVFormatContext *s, int size,
     size -= 18;
 
     /* get codec id for AIFF-C */
-    if (version == AIFF_C_VERSION1) {
+    if (size < 4) {
+        version = AIFF;
+    } else if (version == AIFF_C_VERSION1) {
         codec->codec_tag = avio_rl32(pb);
         codec->codec_id  = ff_codec_get_id(ff_codec_aiff_tags, codec->codec_tag);
         size -= 4;
@@ -344,10 +346,16 @@ static int aiff_read_packet(AVFormatContext *s,
         return AVERROR_EOF;
 
     /* Now for that packet */
-    if (st->codec->block_align >= 17) // GSM, QCLP, IMA4
+    switch (st->codec->codec_id) {
+    case AV_CODEC_ID_ADPCM_IMA_QT:
+    case AV_CODEC_ID_GSM:
+    case AV_CODEC_ID_QDM2:
+    case AV_CODEC_ID_QCELP:
         size = st->codec->block_align;
-    else
+        break;
+    default:
         size = (MAX_SIZE / st->codec->block_align) * st->codec->block_align;
+    }
     size = FFMIN(max_size, size);
     res = av_get_packet(s->pb, pkt, size);
     if (res < 0)

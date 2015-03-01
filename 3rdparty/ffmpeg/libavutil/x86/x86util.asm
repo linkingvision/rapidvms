@@ -69,6 +69,15 @@
     SWAP %2, %3
 %endmacro
 
+%macro TRANSPOSE2x4x4B 5
+    SBUTTERFLY bw,  %1, %2, %5
+    SBUTTERFLY bw,  %3, %4, %5
+    SBUTTERFLY wd,  %1, %3, %5
+    SBUTTERFLY wd,  %2, %4, %5
+    SBUTTERFLY dq,  %1, %2, %5
+    SBUTTERFLY dq,  %3, %4, %5
+%endmacro
+
 %macro TRANSPOSE2x4x4W 5
     SBUTTERFLY wd,  %1, %2, %5
     SBUTTERFLY wd,  %3, %4, %5
@@ -96,6 +105,43 @@
     movlhps m%5, m%2, m%4
     movhlps m%4, m%2
     SWAP %5, %2, %3
+%endmacro
+
+%macro TRANSPOSE8x4D 9-11
+%if ARCH_X86_64
+    SBUTTERFLY dq,  %1, %2, %9
+    SBUTTERFLY dq,  %3, %4, %9
+    SBUTTERFLY dq,  %5, %6, %9
+    SBUTTERFLY dq,  %7, %8, %9
+    SBUTTERFLY qdq, %1, %3, %9
+    SBUTTERFLY qdq, %2, %4, %9
+    SBUTTERFLY qdq, %5, %7, %9
+    SBUTTERFLY qdq, %6, %8, %9
+    SWAP %2, %5
+    SWAP %4, %7
+%else
+; in:  m0..m7
+; out: m0..m7, unless %11 in which case m2 is in %9
+; spills into %9 and %10
+    movdqa %9, m%7
+    SBUTTERFLY dq,  %1, %2, %7
+    movdqa %10, m%2
+    movdqa m%7, %9
+    SBUTTERFLY dq,  %3, %4, %2
+    SBUTTERFLY dq,  %5, %6, %2
+    SBUTTERFLY dq,  %7, %8, %2
+    SBUTTERFLY qdq, %1, %3, %2
+    movdqa %9, m%3
+    movdqa m%2, %10
+    SBUTTERFLY qdq, %2, %4, %3
+    SBUTTERFLY qdq, %5, %7, %3
+    SBUTTERFLY qdq, %6, %8, %3
+    SWAP %2, %5
+    SWAP %4, %7
+%if %0<11
+    movdqa m%3, %9
+%endif
+%endif
 %endmacro
 
 %macro TRANSPOSE8x8W 9-11
@@ -273,6 +319,44 @@
 %endif
 %endmacro
 
+%macro HADDD 2 ; sum junk
+%if sizeof%1 == 32
+%define %2 xmm%2
+    vextracti128 %2, %1, 1
+%define %1 xmm%1
+    paddd   %1, %2
+%endif
+%if mmsize >= 16
+%if cpuflag(xop) && sizeof%1 == 16
+    vphadddq %1, %1
+%endif
+    movhlps %2, %1
+    paddd   %1, %2
+%endif
+%if notcpuflag(xop) || sizeof%1 != 16
+%if cpuflag(mmxext)
+    PSHUFLW %2, %1, q0032
+%else ; mmx
+    mova    %2, %1
+    psrlq   %2, 32
+%endif
+    paddd   %1, %2
+%endif
+%undef %1
+%undef %2
+%endmacro
+
+%macro HADDW 2 ; reg, tmp
+%if cpuflag(xop) && sizeof%1 == 16
+    vphaddwq  %1, %1
+    movhlps   %2, %1
+    paddd     %1, %2
+%else
+    pmaddwd %1, [pw_1]
+    HADDD   %1, %2
+%endif
+%endmacro
+
 %macro PALIGNR 4-5
 %if cpuflag(ssse3)
 %if %0==5
@@ -302,11 +386,19 @@
 %endif
 %endmacro
 
-%macro PAVGB 2
+%macro PAVGB 2-4
 %if cpuflag(mmxext)
     pavgb   %1, %2
 %elif cpuflag(3dnow)
     pavgusb %1, %2
+%elif cpuflag(mmx)
+    movu   %3, %2
+    por    %3, %1
+    pxor   %1, %2
+    pand   %1, %4
+    psrlq  %1, 1
+    psubb  %3, %1
+    SWAP   %1, %3
 %endif
 %endmacro
 
@@ -552,7 +644,9 @@
 %endmacro
 
 %macro SPLATW 2-3 0
-%if mmsize == 16
+%if cpuflag(avx2) && %3 == 0
+    vpbroadcastw %1, %2
+%elif mmsize == 16
     pshuflw    %1, %2, (%3)*0x55
     punpcklqdq %1, %1
 %elif cpuflag(mmxext)
@@ -582,6 +676,11 @@
 %elif cpuflag(sse)
     shufps  %1, %1, 0
 %endif
+%endmacro
+
+%macro CLIPUB 3 ;(dst, min, max)
+    pmaxub %1, %2
+    pminub %1, %3
 %endmacro
 
 %macro CLIPW 3 ;(dst, min, max)
@@ -696,4 +795,20 @@ PMA_EMU PMADCSWD, pmadcswd, pmaddwd, paddd
         mulps   %1, %2, %3
         addps   %1, %4
     %endif
+%endmacro
+
+%macro LSHIFT 2
+%if mmsize > 8
+    pslldq  %1, %2
+%else
+    psllq   %1, 8*(%2)
+%endif
+%endmacro
+
+%macro RSHIFT 2
+%if mmsize > 8
+    psrldq  %1, %2
+%else
+    psrlq   %1, 8*(%2)
+%endif
 %endmacro

@@ -53,7 +53,7 @@ static const uint8_t run_value_bits_short[16] = {
     3, 3, 3, 3, 3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 9
 };
 
-static const uint8_t *run_value_bits[2] = {
+static const uint8_t * const run_value_bits[2] = {
     run_value_bits_long, run_value_bits_short
 };
 
@@ -161,7 +161,7 @@ static av_always_inline float quantize_and_encode_band_cost_template(
                         di = t - CLIPPED_ESCAPE;
                         curbits += 21;
                     } else {
-                        int c = av_clip(quant(t, Q), 0, 8191);
+                        int c = av_clip_uintp2(quant(t, Q), 13);
                         di = t - c*cbrtf(c)*IQ;
                         curbits += av_log2(c)*2 - 4 + 1;
                     }
@@ -191,7 +191,7 @@ static av_always_inline float quantize_and_encode_band_cost_template(
             if (BT_ESC) {
                 for (j = 0; j < 2; j++) {
                     if (ff_aac_codebook_vectors[cb-1][curidx*2+j] == 64.0f) {
-                        int coef = av_clip(quant(fabsf(in[i+j]), Q), 0, 8191);
+                        int coef = av_clip_uintp2(quant(fabsf(in[i+j]), Q), 13);
                         int len = av_log2(coef);
 
                         put_bits(pb, len - 4 + 1, (1 << (len - 4 + 1)) - 2);
@@ -776,7 +776,6 @@ static void search_for_quantizers_twoloop(AVCodecContext *avctx,
         do {
             int prev = -1;
             tbits = 0;
-            fflag = 0;
             for (w = 0; w < sce->ics.num_windows; w += sce->ics.group_len[w]) {
                 start = w*128;
                 for (g = 0;  g < sce->ics.num_swb; g++) {
@@ -953,7 +952,6 @@ static void search_for_quantizers_faac(AVCodecContext *avctx, AACEncContext *s,
             }
             sce->zeroes[w*16+g] = 0;
             scf  = prev_scf = av_clip(SCALE_ONE_POS - SCALE_DIV_512 - log2f(1/maxq[w*16+g])*16/3, 60, 218);
-            step = 16;
             for (;;) {
                 float dist = 0.0f;
                 int quant_max;

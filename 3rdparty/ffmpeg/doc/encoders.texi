@@ -80,7 +80,7 @@ thresholds with quantizer steps to find the appropriate quantization with
 distortion below threshold band by band.
 
 The quality of this method is comparable to the two loop searching method
-descibed below, but somewhat a little better and slower.
+described below, but somewhat a little better and slower.
 
 @item anmr
 Average noise to mask ratio (ANMR) trellis-based solution.
@@ -807,7 +807,7 @@ while producing the worst quality.
 
 @item reservoir
 Enable use of bit reservoir when set to 1. Default value is 1. LAME
-has this enabled by default, but can be overriden by use
+has this enabled by default, but can be overridden by use
 @option{--nores} option.
 
 @item joint_stereo (@emph{-m j})
@@ -1032,7 +1032,7 @@ configuration. You need to explicitly configure the build with
 
 @subsection Option Mapping
 
-Most libopus options are modeled after the @command{opusenc} utility from
+Most libopus options are modelled after the @command{opusenc} utility from
 opus-tools. The following is an option mapping chart describing options
 supported by the libopus wrapper, and their @command{opusenc}-equivalent
 in parentheses.
@@ -1330,7 +1330,7 @@ ffmpeg -i INPUT -codec:v libtheora -b:v 1000k OUTPUT.ogg
 
 @section libvpx
 
-VP8 format supported through libvpx.
+VP8/VP9 format supported through libvpx.
 
 Requires the presence of the libvpx headers and library during configuration.
 You need to explicitly configure the build with @code{--enable-libvpx}.
@@ -1442,6 +1442,9 @@ g_lag_in_frames
 @item vp8flags error_resilient
 g_error_resilient
 
+@item aq_mode
+@code{VP9E_SET_AQ_MODE}
+
 @end table
 
 For more information about libvpx see:
@@ -1525,7 +1528,7 @@ for detail retention (adaptive quantization, psy-RD, psy-trellis).
 Many libx264 encoder options are mapped to FFmpeg global codec
 options, while unique encoder options are provided through private
 options. Additionally the @option{x264opts} and @option{x264-params}
-private options allows to pass a list of key=value tuples as accepted
+private options allows one to pass a list of key=value tuples as accepted
 by the libx264 @code{x264_param_parse} function.
 
 The x264 project website is at
@@ -1566,25 +1569,34 @@ kilobits/s.
 
 @item g (@emph{keyint})
 
-@item qmax (@emph{qpmax})
-
 @item qmin (@emph{qpmin})
+Minimum quantizer scale.
+
+@item qmax (@emph{qpmax})
+Maximum quantizer scale.
 
 @item qdiff (@emph{qpstep})
+Maximum difference between quantizer scales.
 
 @item qblur (@emph{qblur})
+Quantizer curve blur
 
 @item qcomp (@emph{qcomp})
+Quantizer curve compression factor
 
 @item refs (@emph{ref})
+Number of reference frames each P-frame can use. The range is from @var{0-16}.
 
 @item sc_threshold (@emph{scenecut})
+Sets the threshold for the scene change detection.
 
 @item trellis (@emph{trellis})
+Performs Trellis quantization to increase efficiency. Enabled by default.
 
 @item nr  (@emph{nr})
 
 @item me_range (@emph{merange})
+Maximum range of the motion search in pixels.
 
 @item me_method (@emph{me})
 Set motion estimation method. Possible values in the decreasing order
@@ -1606,10 +1618,13 @@ Hadamard exhaustive search (slowest).
 @end table
 
 @item subq (@emph{subme})
+Sub-pixel motion estimation method.
 
 @item b_strategy (@emph{b-adapt})
+Adaptive B-frame placement decision algorithm. Use only on first-pass.
 
 @item keyint_min (@emph{min-keyint})
+Minimum GOP size.
 
 @item coder
 Set entropy encoder. Possible values:
@@ -1636,6 +1651,7 @@ Ignore chroma in motion estimation. It generates the same effect as
 @end table
 
 @item threads (@emph{threads})
+Number of encoding threads.
 
 @item thread_type
 Set multithreading technique. Possible values:
@@ -1728,6 +1744,10 @@ Enable calculation and printing SSIM stats after the encoding.
 @item intra-refresh (@emph{intra-refresh})
 Enable the use of Periodic Intra Refresh instead of IDR frames when set
 to 1.
+
+@item avcintra-class (@emph{class})
+Configure the encoder to generate AVC-Intra.
+Valid values are 50,100 and 200
 
 @item bluray-compat (@emph{bluray-compat})
 Configure the encoder to be compatible with the bluray standard.
@@ -1853,7 +1873,7 @@ Override the x264 configuration using a :-separated list of key=value
 parameters.
 
 This option is functionally the same as the @option{x264opts}, but is
-duplicated for compability with the Libav fork.
+duplicated for compatibility with the Libav fork.
 
 For example to specify libx264 encoding options with @command{ffmpeg}:
 @example
@@ -1865,6 +1885,34 @@ no-fast-pskip=1:subq=6:8x8dct=0:trellis=0 OUTPUT
 
 Encoding ffpresets for common usages are provided so they can be used with the
 general presets system (e.g. passing the @option{pre} option).
+
+@section libx265
+
+x265 H.265/HEVC encoder wrapper.
+
+This encoder requires the presence of the libx265 headers and library
+during configuration. You need to explicitly configure the build with
+@option{--enable-libx265}.
+
+@subsection Options
+
+@table @option
+@item preset
+Set the x265 preset.
+
+@item tune
+Set the x265 tune parameter.
+
+@item x265-params
+Set x265 options using a list of @var{key}=@var{value} couples separated
+by ":". See @command{x265 --help} for a list of options.
+
+For example to specify libx265 encoding options with @option{-x265-params}:
+
+@example
+ffmpeg -i input -c:v libx265 -x265-params crf=26:psy-rd=1 output.mp4
+@end example
+@end table
 
 @section libxvid
 
@@ -2029,6 +2077,30 @@ fastest.
 
 @end table
 
+@section mpeg2
+
+MPEG-2 video encoder.
+
+@subsection Options
+
+@table @option
+@item seq_disp_ext @var{integer}
+Specifies if the encoder should write a sequence_display_extension to the
+output.
+@table @option
+@item -1
+@itemx auto
+Decide automatically to write it or not (this is the default) by checking if
+the data to be written is different from the default or unspecified values.
+@item 0
+@itemx never
+Never write it.
+@item 1
+@itemx always
+Always write it.
+@end table
+@end table
+
 @section png
 
 PNG image encoder.
@@ -2047,7 +2119,7 @@ Set physical density of pixels, in dots per meter, unset by default
 Apple ProRes encoder.
 
 FFmpeg contains 2 ProRes encoders, the prores-aw and prores-ks encoder.
-The used encoder can be choosen with the @code{-vcodec} option.
+The used encoder can be chosen with the @code{-vcodec} option.
 
 @subsection Private Options for prores-ks
 
@@ -2099,7 +2171,7 @@ Use @var{0} to disable alpha plane coding.
 @subsection Speed considerations
 
 In the default mode of operation the encoder has to honor frame constraints
-(i.e. not produc frames with size bigger than requested) while still making
+(i.e. not produce frames with size bigger than requested) while still making
 output picture as good as possible.
 A frame containing a lot of small details is harder to compress and the encoder
 would spend more time searching for appropriate quantizers for each slice.
@@ -2110,3 +2182,27 @@ For the fastest encoding speed set the @option{qscale} parameter (4 is the
 recommended value) and do not set a size constraint.
 
 @c man end VIDEO ENCODERS
+
+@chapter Subtitles Encoders
+@c man begin SUBTITLES ENCODERS
+
+@section dvdsub
+
+This codec encodes the bitmap subtitle format that is used in DVDs.
+Typically they are stored in VOBSUB file pairs (*.idx + *.sub),
+and they can also be used in Matroska files.
+
+@subsection Options
+
+@table @option
+@item even_rows_fix
+When set to 1, enable a work-around that makes the number of pixel rows
+even in all subtitles.  This fixes a problem with some players that
+cut off the bottom row if the number is odd.  The work-around just adds
+a fully transparent row if needed.  The overhead is low, typically
+one byte per subtitle on average.
+
+By default, this work-around is disabled.
+@end table
+
+@c man end SUBTITLES ENCODERS

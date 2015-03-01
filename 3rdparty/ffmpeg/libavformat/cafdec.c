@@ -25,6 +25,8 @@
  * Core Audio Format demuxer
  */
 
+#include <inttypes.h>
+
 #include "avformat.h"
 #include "internal.h"
 #include "isom.h"
@@ -34,7 +36,7 @@
 #include "libavutil/dict.h"
 #include "caf.h"
 
-typedef struct {
+typedef struct CafContext {
     int bytes_per_packet;           ///< bytes in a packet, or 0 if variable
     int frames_per_packet;          ///< frames in a packet, or 0 if variable
     int64_t num_bytes;              ///< total number of bytes in stream
@@ -44,7 +46,7 @@ typedef struct {
 
     int64_t data_start;             ///< data start position, in bytes
     int64_t data_size;              ///< raw data size, in bytes
-} CaffContext;
+} CafContext;
 
 static int probe(AVProbeData *p)
 {
@@ -57,7 +59,7 @@ static int probe(AVProbeData *p)
 static int read_desc_chunk(AVFormatContext *s)
 {
     AVIOContext *pb = s->pb;
-    CaffContext *caf  = s->priv_data;
+    CafContext *caf = s->priv_data;
     AVStream *st;
     int flags;
 
@@ -107,10 +109,9 @@ static int read_kuki_chunk(AVFormatContext *s, int64_t size)
            The lavc AAC decoder requires the data from the codec specific
            description as extradata input. */
         int strt, skip;
-        MOVAtom atom;
 
         strt = avio_tell(pb);
-        ff_mov_read_esds(s, pb, atom);
+        ff_mov_read_esds(s, pb);
         skip = size - (avio_tell(pb) - strt);
         if (skip < 0 || !st->codec->extradata ||
             st->codec->codec_id != AV_CODEC_ID_AAC) {
@@ -166,7 +167,7 @@ static int read_pakt_chunk(AVFormatContext *s, int64_t size)
 {
     AVIOContext *pb = s->pb;
     AVStream *st      = s->streams[0];
-    CaffContext *caf  = s->priv_data;
+    CafContext *caf   = s->priv_data;
     int64_t pos = 0, ccount, num_packets;
     int i;
 
@@ -203,7 +204,7 @@ static void read_info_chunk(AVFormatContext *s, int64_t size)
     AVIOContext *pb = s->pb;
     unsigned int i;
     unsigned int nb_entries = avio_rb32(pb);
-    for (i = 0; i < nb_entries; i++) {
+    for (i = 0; i < nb_entries && !avio_feof(pb); i++) {
         char key[32];
         char value[1024];
         avio_get_str(pb, INT_MAX, key, sizeof(key));
@@ -215,7 +216,7 @@ static void read_info_chunk(AVFormatContext *s, int64_t size)
 static int read_header(AVFormatContext *s)
 {
     AVIOContext *pb = s->pb;
-    CaffContext *caf  = s->priv_data;
+    CafContext *caf = s->priv_data;
     AVStream *st;
     uint32_t tag = 0;
     int found_data, ret;
@@ -239,7 +240,7 @@ static int read_header(AVFormatContext *s)
 
     /* parse each chunk */
     found_data = 0;
-    while (!url_feof(pb)) {
+    while (!avio_feof(pb)) {
 
         /* stop at data chunk if seeking is not supported or
            data chunk size is unknown */
@@ -249,7 +250,7 @@ static int read_header(AVFormatContext *s)
         tag  = avio_rb32(pb);
         size = avio_rb64(pb);
         pos  = avio_tell(pb);
-        if (url_feof(pb))
+        if (avio_feof(pb))
             break;
 
         switch (tag) {
@@ -285,7 +286,8 @@ static int read_header(AVFormatContext *s)
 
         default:
 #define _(x) ((x) >= ' ' ? (x) : ' ')
-            av_log(s, AV_LOG_WARNING, "skipping CAF chunk: %08X (%c%c%c%c), size %"PRId64"\n",
+            av_log(s, AV_LOG_WARNING,
+                   "skipping CAF chunk: %08"PRIX32" (%c%c%c%c), size %"PRId64"\n",
                 tag, _(tag>>24), _((tag>>16)&0xFF), _((tag>>8)&0xFF), _(tag&0xFF), size);
 #undef _
         case MKBETAG('f','r','e','e'):
@@ -332,11 +334,11 @@ static int read_packet(AVFormatContext *s, AVPacket *pkt)
 {
     AVIOContext *pb = s->pb;
     AVStream *st      = s->streams[0];
-    CaffContext *caf  = s->priv_data;
+    CafContext *caf   = s->priv_data;
     int res, pkt_size = 0, pkt_frames = 0;
     int64_t left      = CAF_MAX_PKT_SIZE;
 
-    if (url_feof(pb))
+    if (avio_feof(pb))
         return AVERROR_EOF;
 
     /* don't read past end of data chunk */
@@ -388,7 +390,7 @@ static int read_seek(AVFormatContext *s, int stream_index,
                      int64_t timestamp, int flags)
 {
     AVStream *st = s->streams[0];
-    CaffContext *caf = s->priv_data;
+    CafContext *caf = s->priv_data;
     int64_t pos, packet_cnt, frame_cnt;
 
     timestamp = FFMAX(timestamp, 0);
@@ -420,7 +422,7 @@ static int read_seek(AVFormatContext *s, int stream_index,
 AVInputFormat ff_caf_demuxer = {
     .name           = "caf",
     .long_name      = NULL_IF_CONFIG_SMALL("Apple CAF (Core Audio Format)"),
-    .priv_data_size = sizeof(CaffContext),
+    .priv_data_size = sizeof(CafContext),
     .read_probe     = probe,
     .read_header    = read_header,
     .read_packet    = read_packet,

@@ -40,11 +40,14 @@
  * Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
  */
 
+#include <inttypes.h>
+
 #include "libavutil/channel_layout.h"
 #include "avformat.h"
 #include "internal.h"
 #include "libavutil/intreadwrite.h"
 #include "libavutil/des.h"
+#include "libavutil/mathematics.h"
 #include "oma.h"
 #include "pcm.h"
 #include "id3v2.h"
@@ -172,7 +175,7 @@ static int nprobe(AVFormatContext *s, uint8_t *enc_header, unsigned size,
     taglen  = AV_RB32(&enc_header[pos + 32]);
     datalen = AV_RB32(&enc_header[pos + 36]) >> 4;
 
-    pos += 44L + taglen;
+    pos += 44LL + taglen;
 
     if (pos + (((uint64_t)datalen) << 4) > size)
         return -1;
@@ -215,7 +218,7 @@ static int decrypt_init(AVFormatContext *s, ID3v2ExtraMeta *em, uint8_t *header)
 
     if (geob->datasize < 64) {
         av_log(s, AV_LOG_ERROR,
-               "Invalid GEOB data size: %u\n", geob->datasize);
+               "Invalid GEOB data size: %"PRIu32"\n", geob->datasize);
         return AVERROR_INVALIDDATA;
     }
 
@@ -239,7 +242,7 @@ static int decrypt_init(AVFormatContext *s, ID3v2ExtraMeta *em, uint8_t *header)
         return AVERROR_INVALIDDATA;
     }
     oc->rid = AV_RB32(&gdata[OMA_ENC_HEADER_SIZE + 28]);
-    av_log(s, AV_LOG_DEBUG, "RID: %.8x\n", oc->rid);
+    av_log(s, AV_LOG_DEBUG, "RID: %.8"PRIx32"\n", oc->rid);
 
     memcpy(oc->iv, &header[0x58], 8);
     hex_log(s, AV_LOG_DEBUG, "IV", oc->iv, 8);
@@ -366,7 +369,7 @@ static int oma_read_header(AVFormatContext *s)
         channel_id = (codec_params >> 10) & 7;
         if (!channel_id) {
             av_log(s, AV_LOG_ERROR,
-                   "Invalid ATRAC-X channel id: %d\n", channel_id);
+                   "Invalid ATRAC-X channel id: %"PRIu32"\n", channel_id);
             return AVERROR_INVALIDDATA;
         }
         st->codec->channel_layout = ff_oma_chid_to_native_layout[channel_id - 1];
@@ -410,9 +413,12 @@ static int oma_read_header(AVFormatContext *s)
 
 static int oma_read_packet(AVFormatContext *s, AVPacket *pkt)
 {
-    OMAContext *oc = s->priv_data;
-    int packet_size = s->streams[0]->codec->block_align;
-    int ret = av_get_packet(s->pb, pkt, packet_size);
+    OMAContext *oc  = s->priv_data;
+    AVStream *st    = s->streams[0];
+    int packet_size = st->codec->block_align;
+    int byte_rate   = st->codec->bit_rate >> 3;
+    int64_t pos     = avio_tell(s->pb);
+    int ret         = av_get_packet(s->pb, pkt, packet_size);
 
     if (ret < packet_size)
         pkt->flags |= AV_PKT_FLAG_CORRUPT;
@@ -423,6 +429,12 @@ static int oma_read_packet(AVFormatContext *s, AVPacket *pkt)
         return AVERROR_EOF;
 
     pkt->stream_index = 0;
+
+    if (pos >= oc->content_start && byte_rate > 0) {
+        pkt->pts =
+        pkt->dts = av_rescale(pos - oc->content_start, st->time_base.den,
+                              byte_rate * (int64_t)st->time_base.num);
+    }
 
     if (oc->encrypted) {
         /* previous unencrypted block saved in IV for
@@ -462,7 +474,7 @@ static int oma_read_seek(struct AVFormatContext *s,
                          int stream_index, int64_t timestamp, int flags)
 {
     OMAContext *oc = s->priv_data;
-    int err = ff_pcm_read_seek(s, stream_index, timestamp, flags);
+    int64_t err = ff_pcm_read_seek(s, stream_index, timestamp, flags);
 
     if (!oc->encrypted)
         return err;

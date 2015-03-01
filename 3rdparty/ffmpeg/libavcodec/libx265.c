@@ -20,7 +20,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#if defined(_MSC_VER)
+#define X265_API_IMPORTS 1
+#endif
+
 #include <x265.h>
+#include <float.h>
 
 #include "libavutil/internal.h"
 #include "libavutil/common.h"
@@ -29,18 +34,13 @@
 #include "avcodec.h"
 #include "internal.h"
 
-#if defined(_MSC_VER)
-#define X265_API_IMPORTS 1
-#endif
-
 typedef struct libx265Context {
     const AVClass *class;
 
     x265_encoder *encoder;
     x265_param   *params;
-    uint8_t      *header;
-    int           header_size;
 
+    float crf;
     char *preset;
     char *tune;
     char *x265_opts;
@@ -66,7 +66,6 @@ static av_cold int libx265_encode_close(AVCodecContext *avctx)
     libx265Context *ctx = avctx->priv_data;
 
     av_frame_free(&avctx->coded_frame);
-    av_freep(&ctx->header);
 
     x265_param_free(ctx->params);
 
@@ -79,19 +78,11 @@ static av_cold int libx265_encode_close(AVCodecContext *avctx)
 static av_cold int libx265_encode_init(AVCodecContext *avctx)
 {
     libx265Context *ctx = avctx->priv_data;
-    x265_nal *nal;
-    uint8_t *buf;
-    char sar[10];
-    int sar_num, sar_den;
-    int nnal;
-    int ret;
-    int i;
 
     if (avctx->strict_std_compliance > FF_COMPLIANCE_EXPERIMENTAL &&
-        !av_pix_fmt_desc_get(avctx->pix_fmt)->log2_chroma_w &&
-        !av_pix_fmt_desc_get(avctx->pix_fmt)->log2_chroma_h) {
+        !av_pix_fmt_desc_get(avctx->pix_fmt)->log2_chroma_w) {
         av_log(avctx, AV_LOG_ERROR,
-               "4:4:4 support is not fully defined for HEVC yet. "
+               "4:2:2 and 4:4:4 support is not fully defined for HEVC yet. "
                "Set -strict experimental to encode anyway.\n");
         return AVERROR(ENOSYS);
     }
@@ -118,25 +109,30 @@ static av_cold int libx265_encode_init(AVCodecContext *avctx)
     ctx->params->fpsDenom        = avctx->time_base.num * avctx->ticks_per_frame;
     ctx->params->sourceWidth     = avctx->width;
     ctx->params->sourceHeight    = avctx->height;
+    ctx->params->bEnablePsnr     = !!(avctx->flags & CODEC_FLAG_PSNR);
 
-    av_reduce(&sar_num, &sar_den,
-              avctx->sample_aspect_ratio.num,
-              avctx->sample_aspect_ratio.den, 4096);
-    snprintf(sar, sizeof(sar), "%d:%d", sar_num, sar_den);
-    if (x265_param_parse(ctx->params, "sar", sar) == X265_PARAM_BAD_VALUE) {
-        av_log(avctx, AV_LOG_ERROR, "Invalid SAR: %d:%d.\n", sar_num, sar_den);
-        return AVERROR_INVALIDDATA;
+    if (avctx->sample_aspect_ratio.num > 0 && avctx->sample_aspect_ratio.den > 0) {
+        char sar[12];
+        int sar_num, sar_den;
+
+        av_reduce(&sar_num, &sar_den,
+                  avctx->sample_aspect_ratio.num,
+                  avctx->sample_aspect_ratio.den, 65535);
+        snprintf(sar, sizeof(sar), "%d:%d", sar_num, sar_den);
+        if (x265_param_parse(ctx->params, "sar", sar) == X265_PARAM_BAD_VALUE) {
+            av_log(avctx, AV_LOG_ERROR, "Invalid SAR: %d:%d.\n", sar_num, sar_den);
+            return AVERROR_INVALIDDATA;
+        }
     }
-
-    if (x265_max_bit_depth == 8)
-        ctx->params->internalBitDepth = 8;
-    else if (x265_max_bit_depth == 12)
-        ctx->params->internalBitDepth = 10;
 
     switch (avctx->pix_fmt) {
     case AV_PIX_FMT_YUV420P:
     case AV_PIX_FMT_YUV420P10:
         ctx->params->internalCsp = X265_CSP_I420;
+        break;
+    case AV_PIX_FMT_YUV422P:
+    case AV_PIX_FMT_YUV422P10:
+        ctx->params->internalCsp = X265_CSP_I422;
         break;
     case AV_PIX_FMT_YUV444P:
     case AV_PIX_FMT_YUV444P10:
@@ -144,10 +140,21 @@ static av_cold int libx265_encode_init(AVCodecContext *avctx)
         break;
     }
 
-    if (avctx->bit_rate > 0) {
+    if (ctx->crf >= 0) {
+        char crf[6];
+
+        snprintf(crf, sizeof(crf), "%2.2f", ctx->crf);
+        if (x265_param_parse(ctx->params, "crf", crf) == X265_PARAM_BAD_VALUE) {
+            av_log(avctx, AV_LOG_ERROR, "Invalid crf: %2.2f.\n", ctx->crf);
+            return AVERROR(EINVAL);
+        }
+    } else if (avctx->bit_rate > 0) {
         ctx->params->rc.bitrate         = avctx->bit_rate / 1000;
         ctx->params->rc.rateControlMode = X265_RC_ABR;
     }
+
+    if (!(avctx->flags & CODEC_FLAG_GLOBAL_HEADER))
+        ctx->params->bRepeatHeaders = 1;
 
     if (ctx->x265_opts) {
         AVDictionary *dict    = NULL;
@@ -181,35 +188,26 @@ static av_cold int libx265_encode_init(AVCodecContext *avctx)
         return AVERROR_INVALIDDATA;
     }
 
-    ret = x265_encoder_headers(ctx->encoder, &nal, &nnal);
-    if (ret < 0) {
-        av_log(avctx, AV_LOG_ERROR, "Cannot encode headers.\n");
-        libx265_encode_close(avctx);
-        return AVERROR_INVALIDDATA;
-    }
-
-    for (i = 0; i < nnal; i++)
-        ctx->header_size += nal[i].sizeBytes;
-
-    ctx->header = av_malloc(ctx->header_size + FF_INPUT_BUFFER_PADDING_SIZE);
-    if (!ctx->header) {
-        av_log(avctx, AV_LOG_ERROR,
-               "Cannot allocate HEVC header of size %d.\n", ctx->header_size);
-        libx265_encode_close(avctx);
-        return AVERROR(ENOMEM);
-    }
-
-    buf = ctx->header;
-    for (i = 0; i < nnal; i++) {
-        memcpy(buf, nal[i].payload, nal[i].sizeBytes);
-        buf += nal[i].sizeBytes;
-    }
-
     if (avctx->flags & CODEC_FLAG_GLOBAL_HEADER) {
-        avctx->extradata_size = ctx->header_size;
-        avctx->extradata = ctx->header;
-        ctx->header_size = 0;
-        ctx->header = NULL;
+        x265_nal *nal;
+        int nnal;
+
+        avctx->extradata_size = x265_encoder_headers(ctx->encoder, &nal, &nnal);
+        if (avctx->extradata_size <= 0) {
+            av_log(avctx, AV_LOG_ERROR, "Cannot encode headers.\n");
+            libx265_encode_close(avctx);
+            return AVERROR_INVALIDDATA;
+        }
+
+        avctx->extradata = av_malloc(avctx->extradata_size + FF_INPUT_BUFFER_PADDING_SIZE);
+        if (!avctx->extradata) {
+            av_log(avctx, AV_LOG_ERROR,
+                   "Cannot allocate HEVC header of size %d.\n", avctx->extradata_size);
+            libx265_encode_close(avctx);
+            return AVERROR(ENOMEM);
+        }
+
+        memcpy(avctx->extradata, nal[0].payload, avctx->extradata_size);
     }
 
     return 0;
@@ -238,6 +236,11 @@ static int libx265_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
 
         x265pic.pts      = pic->pts;
         x265pic.bitDepth = av_pix_fmt_desc_get(avctx->pix_fmt)->comp[0].depth_minus1 + 1;
+
+        x265pic.sliceType = pic->pict_type == AV_PICTURE_TYPE_I ? X265_TYPE_I :
+                            pic->pict_type == AV_PICTURE_TYPE_P ? X265_TYPE_P :
+                            pic->pict_type == AV_PICTURE_TYPE_B ? X265_TYPE_B :
+                            X265_TYPE_AUTO;
     }
 
     ret = x265_encoder_encode(ctx->encoder, &nal, &nnal,
@@ -251,22 +254,12 @@ static int libx265_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     for (i = 0; i < nnal; i++)
         payload += nal[i].sizeBytes;
 
-    payload += ctx->header_size;
-
     ret = ff_alloc_packet(pkt, payload);
     if (ret < 0) {
         av_log(avctx, AV_LOG_ERROR, "Error getting output packet.\n");
         return ret;
     }
     dst = pkt->data;
-
-    if (ctx->header) {
-        memcpy(dst, ctx->header, ctx->header_size);
-        dst += ctx->header_size;
-
-        av_freep(&ctx->header);
-        ctx->header_size = 0;
-    }
 
     for (i = 0; i < nnal; i++) {
         memcpy(dst, nal[i].payload, nal[i].sizeBytes);
@@ -285,14 +278,17 @@ static int libx265_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
 
 static const enum AVPixelFormat x265_csp_eight[] = {
     AV_PIX_FMT_YUV420P,
+    AV_PIX_FMT_YUV422P,
     AV_PIX_FMT_YUV444P,
     AV_PIX_FMT_NONE
 };
 
 static const enum AVPixelFormat x265_csp_twelve[] = {
     AV_PIX_FMT_YUV420P,
+    AV_PIX_FMT_YUV422P,
     AV_PIX_FMT_YUV444P,
     AV_PIX_FMT_YUV420P10,
+    AV_PIX_FMT_YUV422P10,
     AV_PIX_FMT_YUV444P10,
     AV_PIX_FMT_NONE
 };
@@ -308,6 +304,7 @@ static av_cold void libx265_encode_init_csp(AVCodec *codec)
 #define OFFSET(x) offsetof(libx265Context, x)
 #define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
 static const AVOption options[] = {
+    { "crf",         "set the x265 crf",                                                            OFFSET(crf),       AV_OPT_TYPE_FLOAT,  { .dbl = -1 }, -1, FLT_MAX, VE },
     { "preset",      "set the x265 preset",                                                         OFFSET(preset),    AV_OPT_TYPE_STRING, { 0 }, 0, 0, VE },
     { "tune",        "set the x265 tune parameter",                                                 OFFSET(tune),      AV_OPT_TYPE_STRING, { 0 }, 0, 0, VE },
     { "x265-params", "set the x265 configuration using a :-separated list of key=value parameters", OFFSET(x265_opts), AV_OPT_TYPE_STRING, { 0 }, 0, 0, VE },
@@ -321,6 +318,11 @@ static const AVClass class = {
     .version    = LIBAVUTIL_VERSION_INT,
 };
 
+static const AVCodecDefault x265_defaults[] = {
+    { "b", "0" },
+    { NULL },
+};
+
 AVCodec ff_libx265_encoder = {
     .name             = "libx265",
     .long_name        = NULL_IF_CONFIG_SMALL("libx265 H.265 / HEVC"),
@@ -332,5 +334,6 @@ AVCodec ff_libx265_encoder = {
     .close            = libx265_encode_close,
     .priv_data_size   = sizeof(libx265Context),
     .priv_class       = &class,
+    .defaults         = x265_defaults,
     .capabilities     = CODEC_CAP_DELAY | CODEC_CAP_AUTO_THREADS,
 };

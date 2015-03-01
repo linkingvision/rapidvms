@@ -21,6 +21,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include "libavutil/avassert.h"
 #include "libavutil/pixdesc.h"
 
 #include "internal.h"
@@ -46,21 +47,19 @@ void ff_hevc_unref_frame(HEVCContext *s, HEVCFrame *frame, int flags)
         frame->refPicList = NULL;
 
         frame->collocated_ref = NULL;
+
+        av_buffer_unref(&frame->hwaccel_priv_buf);
+        frame->hwaccel_picture_private = NULL;
     }
 }
 
 RefPicList *ff_hevc_get_ref_list(HEVCContext *s, HEVCFrame *ref, int x0, int y0)
 {
-    if (x0 < 0 || y0 < 0) {
-        return s->ref->refPicList;
-    } else {
-        int x_cb         = x0 >> s->sps->log2_ctb_size;
-        int y_cb         = y0 >> s->sps->log2_ctb_size;
-        int pic_width_cb = (s->sps->width + (1 << s->sps->log2_ctb_size) - 1) >>
-                           s->sps->log2_ctb_size;
-        int ctb_addr_ts  = s->pps->ctb_addr_rs_to_ts[y_cb * pic_width_cb + x_cb];
-        return (RefPicList *)ref->rpl_tab[ctb_addr_ts];
-    }
+    int x_cb         = x0 >> s->sps->log2_ctb_size;
+    int y_cb         = y0 >> s->sps->log2_ctb_size;
+    int pic_width_cb = s->sps->ctb_width;
+    int ctb_addr_ts  = s->pps->ctb_addr_rs_to_ts[y_cb * pic_width_cb + x_cb];
+    return (RefPicList *)ref->rpl_tab[ctb_addr_ts];
 }
 
 void ff_hevc_clear_refs(HEVCContext *s)
@@ -111,6 +110,18 @@ static HEVCFrame *alloc_frame(HEVCContext *s)
 
         frame->frame->top_field_first  = s->picture_struct == AV_PICTURE_STRUCTURE_TOP_FIELD;
         frame->frame->interlaced_frame = (s->picture_struct == AV_PICTURE_STRUCTURE_TOP_FIELD) || (s->picture_struct == AV_PICTURE_STRUCTURE_BOTTOM_FIELD);
+
+        if (s->avctx->hwaccel) {
+            const AVHWAccel *hwaccel = s->avctx->hwaccel;
+            av_assert0(!frame->hwaccel_picture_private);
+            if (hwaccel->frame_priv_data_size) {
+                frame->hwaccel_priv_buf = av_buffer_allocz(hwaccel->frame_priv_data_size);
+                if (!frame->hwaccel_priv_buf)
+                    goto fail;
+                frame->hwaccel_picture_private = frame->hwaccel_priv_buf->data;
+            }
+        }
+
         return frame;
 fail:
         ff_hevc_unref_frame(s, frame, ~0);
@@ -144,8 +155,12 @@ int ff_hevc_set_new_ref(HEVCContext *s, AVFrame **frame, int poc)
     *frame = ref->frame;
     s->ref = ref;
 
+    if (s->sh.pic_output_flag)
+        ref->flags = HEVC_FRAME_FLAG_OUTPUT | HEVC_FRAME_FLAG_SHORT_REF;
+    else
+        ref->flags = HEVC_FRAME_FLAG_SHORT_REF;
+
     ref->poc      = poc;
-    ref->flags    = HEVC_FRAME_FLAG_OUTPUT | HEVC_FRAME_FLAG_SHORT_REF;
     ref->sequence = s->seq_decode;
     ref->window   = s->sps->output_window;
 
@@ -159,12 +174,22 @@ int ff_hevc_output_frame(HEVCContext *s, AVFrame *out, int flush)
         int min_poc   = INT_MAX;
         int i, min_idx, ret;
 
+        if (s->sh.no_output_of_prior_pics_flag == 1) {
+            for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++) {
+                HEVCFrame *frame = &s->DPB[i];
+                if (!(frame->flags & HEVC_FRAME_FLAG_BUMPING) && frame->poc != s->poc &&
+                        frame->sequence == s->seq_output) {
+                    ff_hevc_unref_frame(s, frame, HEVC_FRAME_FLAG_OUTPUT);
+                }
+            }
+        }
+
         for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++) {
             HEVCFrame *frame = &s->DPB[i];
             if ((frame->flags & HEVC_FRAME_FLAG_OUTPUT) &&
                 frame->sequence == s->seq_output) {
                 nb_output++;
-                if (frame->poc < min_poc) {
+                if (frame->poc < min_poc || nb_output == 1) {
                     min_poc = frame->poc;
                     min_idx = i;
                 }
@@ -184,7 +209,10 @@ int ff_hevc_output_frame(HEVCContext *s, AVFrame *out, int flush)
             int pixel_shift = !!(desc->comp[0].depth_minus1 > 7);
 
             ret = av_frame_ref(out, src);
-            ff_hevc_unref_frame(s, frame, HEVC_FRAME_FLAG_OUTPUT);
+            if (frame->flags & HEVC_FRAME_FLAG_BUMPING)
+                ff_hevc_unref_frame(s, frame, HEVC_FRAME_FLAG_OUTPUT | HEVC_FRAME_FLAG_BUMPING);
+            else
+                ff_hevc_unref_frame(s, frame, HEVC_FRAME_FLAG_OUTPUT);
             if (ret < 0)
                 return ret;
 
@@ -207,6 +235,46 @@ int ff_hevc_output_frame(HEVCContext *s, AVFrame *out, int flush)
     } while (1);
 
     return 0;
+}
+
+void ff_hevc_bump_frame(HEVCContext *s)
+{
+    int dpb = 0;
+    int min_poc = INT_MAX;
+    int i;
+
+    for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++) {
+        HEVCFrame *frame = &s->DPB[i];
+        if ((frame->flags) &&
+            frame->sequence == s->seq_output &&
+            frame->poc != s->poc) {
+            dpb++;
+        }
+    }
+
+    if (s->sps && dpb >= s->sps->temporal_layer[s->sps->max_sub_layers - 1].max_dec_pic_buffering) {
+        for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++) {
+            HEVCFrame *frame = &s->DPB[i];
+            if ((frame->flags) &&
+                frame->sequence == s->seq_output &&
+                frame->poc != s->poc) {
+                if (frame->flags == HEVC_FRAME_FLAG_OUTPUT && frame->poc < min_poc) {
+                    min_poc = frame->poc;
+                }
+            }
+        }
+
+        for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++) {
+            HEVCFrame *frame = &s->DPB[i];
+            if (frame->flags & HEVC_FRAME_FLAG_OUTPUT &&
+                frame->sequence == s->seq_output &&
+                frame->poc <= min_poc) {
+                frame->flags |= HEVC_FRAME_FLAG_BUMPING;
+            }
+        }
+
+        dpb--;
+    }
 }
 
 static int init_slice_rpl(HEVCContext *s)
@@ -338,17 +406,19 @@ static HEVCFrame *generate_missing_ref(HEVCContext *s, int poc)
     if (!frame)
         return NULL;
 
-    if (!s->sps->pixel_shift) {
-        for (i = 0; frame->frame->buf[i]; i++)
-            memset(frame->frame->buf[i]->data, 1 << (s->sps->bit_depth - 1),
-                   frame->frame->buf[i]->size);
-    } else {
-        for (i = 0; frame->frame->data[i]; i++)
-            for (y = 0; y < (s->sps->height >> s->sps->vshift[i]); y++)
-                for (x = 0; x < (s->sps->width >> s->sps->hshift[i]); x++) {
-                    AV_WN16(frame->frame->data[i] + y * frame->frame->linesize[i] + 2 * x,
-                            1 << (s->sps->bit_depth - 1));
-                }
+    if (!s->avctx->hwaccel) {
+        if (!s->sps->pixel_shift) {
+            for (i = 0; frame->frame->buf[i]; i++)
+                memset(frame->frame->buf[i]->data, 1 << (s->sps->bit_depth - 1),
+                       frame->frame->buf[i]->size);
+        } else {
+            for (i = 0; frame->frame->data[i]; i++)
+                for (y = 0; y < (s->sps->height >> s->sps->vshift[i]); y++)
+                    for (x = 0; x < (s->sps->width >> s->sps->hshift[i]); x++) {
+                        AV_WN16(frame->frame->data[i] + y * frame->frame->linesize[i] + 2 * x,
+                                1 << (s->sps->bit_depth - 1));
+                    }
+        }
     }
 
     frame->poc      = poc;
@@ -389,7 +459,7 @@ int ff_hevc_frame_rps(HEVCContext *s)
     const ShortTermRPS *short_rps = s->sh.short_term_rps;
     const LongTermRPS  *long_rps  = &s->sh.long_term_rps;
     RefPicList               *rps = s->rps;
-    int i, ret;
+    int i, ret = 0;
 
     if (!short_rps) {
         rps[0].nb_refs = rps[1].nb_refs = 0;
@@ -423,7 +493,7 @@ int ff_hevc_frame_rps(HEVCContext *s)
 
         ret = add_candidate_ref(s, &rps[list], poc, HEVC_FRAME_FLAG_SHORT_REF);
         if (ret < 0)
-            return ret;
+            goto fail;
     }
 
     /* add the long refs */
@@ -433,14 +503,15 @@ int ff_hevc_frame_rps(HEVCContext *s)
 
         ret = add_candidate_ref(s, &rps[list], poc, HEVC_FRAME_FLAG_LONG_REF);
         if (ret < 0)
-            return ret;
+            goto fail;
     }
 
+fail:
     /* release any frames that are now unused */
     for (i = 0; i < FF_ARRAY_ELEMS(s->DPB); i++)
         ff_hevc_unref_frame(s, &s->DPB[i], 0);
 
-    return 0;
+    return ret;
 }
 
 int ff_hevc_compute_poc(HEVCContext *s, int poc_lsb)

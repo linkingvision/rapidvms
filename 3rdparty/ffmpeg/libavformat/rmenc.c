@@ -23,7 +23,7 @@
 #include "rm.h"
 #include "libavutil/dict.h"
 
-typedef struct {
+typedef struct StreamInfo {
     int nb_packets;
     int packet_total_size;
     int packet_max_size;
@@ -36,7 +36,7 @@ typedef struct {
     AVCodecContext *enc;
 } StreamInfo;
 
-typedef struct {
+typedef struct RMMuxContext {
     StreamInfo streams[2];
     StreamInfo *audio_stream, *video_stream;
     int data_pos; /* position of the data after the header */
@@ -315,6 +315,8 @@ static int rm_write_header(AVFormatContext *s)
     }
 
     for(n=0;n<s->nb_streams;n++) {
+        AVStream *st = s->streams[n];
+
         s->streams[n]->id = n;
         codec = s->streams[n]->codec;
         stream = &rm->streams[n];
@@ -334,7 +336,8 @@ static int rm_write_header(AVFormatContext *s)
             break;
         case AVMEDIA_TYPE_VIDEO:
             rm->video_stream = stream;
-            stream->frame_rate = (float)codec->time_base.den / (float)codec->time_base.num;
+            // TODO: should be avg_frame_rate
+            stream->frame_rate = (float)st->time_base.den / (float)st->time_base.num;
             /* XXX: dummy values */
             stream->packet_max_size = 4096;
             stream->nb_packets = 0;
@@ -361,6 +364,8 @@ static int rm_write_audio(AVFormatContext *s, const uint8_t *buf, int size, int 
 
     /* XXX: suppress this malloc */
     buf1 = av_malloc(size * sizeof(uint8_t));
+    if (!buf1)
+        return AVERROR(ENOMEM);
 
     write_packet_header(s, stream, size, !!(flags & AV_PKT_FLAG_KEY));
 

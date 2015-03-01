@@ -22,6 +22,7 @@
 #include "libavformat/avformat.h"
 #include "libavutil/opt.h"
 
+#include "decklink_common_c.h"
 #include "decklink_enc.h"
 
 #define OFFSET(x) offsetof(struct decklink_cctx, x)
@@ -38,6 +39,7 @@ static const AVClass decklink_muxer_class = {
     .item_name  = av_default_item_name,
     .option     = options,
     .version    = LIBAVUTIL_VERSION_INT,
+    .category   = AV_CLASS_CATEGORY_DEVICE_VIDEO_OUTPUT,
 };
 
 AVOutputFormat ff_decklink_muxer = {

@@ -192,7 +192,8 @@ static int read_packet(AVFormatContext* ctx, AVPacket *pkt)
     if (error = al_get_error(ad->device, &error_msg)) goto fail;
 
     /* Create a packet of appropriate size */
-    av_new_packet(pkt, nb_samples*ad->sample_step);
+    if ((error = av_new_packet(pkt, nb_samples*ad->sample_step)) < 0)
+        goto fail;
     pkt->pts = av_gettime();
 
     /* Fill the packet with the available samples */
@@ -236,7 +237,8 @@ static const AVClass class = {
     .class_name = "openal",
     .item_name = av_default_item_name,
     .option = options,
-    .version = LIBAVUTIL_VERSION_INT
+    .version = LIBAVUTIL_VERSION_INT,
+    .category = AV_CLASS_CATEGORY_DEVICE_AUDIO_INPUT,
 };
 
 AVInputFormat ff_openal_demuxer = {

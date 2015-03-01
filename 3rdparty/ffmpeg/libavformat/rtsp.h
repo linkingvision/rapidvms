@@ -70,6 +70,7 @@ enum RTSPControlTransport {
 };
 
 #define RTSP_DEFAULT_PORT   554
+#define RTSPS_DEFAULT_PORT  322
 #define RTSP_MAX_TRANSPORTS 8
 #define RTSP_TCP_MAX_PACKET_SIZE 1472
 #define RTSP_DEFAULT_NB_AUDIO_CHANNELS 1
@@ -404,6 +405,8 @@ typedef struct RTSPState {
      * User-Agent string
      */
     char *user_agent;
+
+    char default_lang[4];
 } RTSPState;
 
 #define RTSP_FLAG_FILTER_SRC  0x1    /**< Filter incoming UDP packets -
@@ -413,6 +416,7 @@ typedef struct RTSPState {
 #define RTSP_FLAG_CUSTOM_IO   0x4    /**< Do all IO via the AVIOContext. */
 #define RTSP_FLAG_RTCP_TO_SOURCE 0x8 /**< Send RTCP packets to the source
                                           address of received packets. */
+#define RTSP_FLAG_PREFER_TCP  0x10   /**< Try RTP via TCP first if possible. */
 
 typedef struct RTSPSource {
     char addr[128]; /**< Source-specific multicast include source IP address (from SDP content) */

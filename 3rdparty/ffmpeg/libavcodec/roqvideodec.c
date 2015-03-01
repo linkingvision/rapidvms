@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2003 the ffmpeg project
+ * Copyright (c) 2003 The FFmpeg Project
  *
  * This file is part of FFmpeg.
  *
@@ -189,7 +189,8 @@ static av_cold int roq_decode_init(AVCodecContext *avctx)
         return AVERROR(ENOMEM);
     }
 
-    avctx->pix_fmt = AV_PIX_FMT_YUV444P;
+    avctx->pix_fmt = AV_PIX_FMT_YUVJ444P;
+    avctx->color_range = AVCOL_RANGE_JPEG;
 
     return 0;
 }

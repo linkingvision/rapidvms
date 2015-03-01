@@ -39,17 +39,24 @@ static av_cold int utvideo_encode_init(AVCodecContext *avctx)
     UtVideoContext *utv = (UtVideoContext *)avctx->priv_data;
     UtVideoExtra *info;
     uint32_t flags, in_format;
+    int ret;
 
     switch (avctx->pix_fmt) {
     case AV_PIX_FMT_YUV420P:
         in_format = UTVF_YV12;
         avctx->bits_per_coded_sample = 12;
-        avctx->codec_tag = MKTAG('U', 'L', 'Y', '0');
+        if (avctx->colorspace == AVCOL_SPC_BT709)
+            avctx->codec_tag = MKTAG('U', 'L', 'H', '0');
+        else
+            avctx->codec_tag = MKTAG('U', 'L', 'Y', '0');
         break;
     case AV_PIX_FMT_YUYV422:
         in_format = UTVF_YUYV;
         avctx->bits_per_coded_sample = 16;
-        avctx->codec_tag = MKTAG('U', 'L', 'Y', '2');
+        if (avctx->colorspace == AVCOL_SPC_BT709)
+            avctx->codec_tag = MKTAG('U', 'L', 'H', '2');
+        else
+            avctx->codec_tag = MKTAG('U', 'L', 'Y', '2');
         break;
     case AV_PIX_FMT_BGR24:
         in_format = UTVF_NFCC_BGR_BU;
@@ -79,7 +86,7 @@ static av_cold int utvideo_encode_init(AVCodecContext *avctx)
     /* Alloc extradata buffer */
     info = (UtVideoExtra *)av_malloc(sizeof(*info));
 
-    if (info == NULL) {
+    if (!info) {
         av_log(avctx, AV_LOG_ERROR, "Could not allocate extradata buffer.\n");
         return AVERROR(ENOMEM);
     }
@@ -88,12 +95,16 @@ static av_cold int utvideo_encode_init(AVCodecContext *avctx)
      * We use this buffer to hold the data that Ut Video returns,
      * since we cannot decode planes separately with it.
      */
-    utv->buf_size = avpicture_get_size(avctx->pix_fmt,
-                                       avctx->width, avctx->height);
+    ret = avpicture_get_size(avctx->pix_fmt, avctx->width, avctx->height);
+    if (ret < 0)
+        return ret;
+    utv->buf_size = ret;
+
     utv->buffer = (uint8_t *)av_malloc(utv->buf_size);
 
     if (utv->buffer == NULL) {
         av_log(avctx, AV_LOG_ERROR, "Could not allocate output buffer.\n");
+        av_free(info);
         return AVERROR(ENOMEM);
     }
 

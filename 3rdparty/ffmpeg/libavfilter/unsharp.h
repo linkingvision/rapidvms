@@ -41,6 +41,10 @@ typedef struct {
     cl_kernel kernel_chroma;
     cl_mem cl_luma_mask;
     cl_mem cl_chroma_mask;
+    cl_mem cl_luma_mask_x;
+    cl_mem cl_chroma_mask_x;
+    cl_mem cl_luma_mask_y;
+    cl_mem cl_chroma_mask_y;
     int in_plane_size[8];
     int out_plane_size[8];
     int plane_num;
@@ -64,7 +68,7 @@ typedef struct UnsharpFilterParam {
     uint32_t *sc[MAX_MATRIX_SIZE - 1];       ///< finite state machine storage
 } UnsharpFilterParam;
 
-typedef struct {
+typedef struct UnsharpContext {
     const AVClass *class;
     int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
     float lamount, camount;

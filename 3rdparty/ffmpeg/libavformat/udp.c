@@ -40,6 +40,20 @@
 #include "os_support.h"
 #include "url.h"
 
+#if HAVE_UDPLITE_H
+#include "udplite.h"
+#else
+/* On many Linux systems, udplite.h is missing but the kernel supports UDP-Lite.
+ * So, we provide a fallback here.
+ */
+#define UDPLITE_SEND_CSCOV                               10
+#define UDPLITE_RECV_CSCOV                               11
+#endif
+
+#ifndef IPPROTO_UDPLITE
+#define IPPROTO_UDPLITE                                  136
+#endif
+
 #if HAVE_PTHREAD_CANCEL
 #include <pthread.h>
 #endif
@@ -55,13 +69,16 @@
 
 #define UDP_TX_BUF_SIZE 32768
 #define UDP_MAX_PKT_SIZE 65536
+#define UDP_HEADER_SIZE 8
 
-typedef struct {
+typedef struct UDPContext {
     const AVClass *class;
     int udp_fd;
     int ttl;
+    int udplite_coverage;
     int buffer_size;
     int is_multicast;
+    int is_broadcast;
     int local_port;
     int reuse_socket;
     int overrun_nonfatal;
@@ -94,8 +111,10 @@ static const AVOption options[] = {
 {"buffer_size", "set packet buffer size in bytes", OFFSET(buffer_size), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, D|E },
 {"localport", "set local port to bind to", OFFSET(local_port), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, D|E },
 {"localaddr", "choose local IP address", OFFSET(local_addr), AV_OPT_TYPE_STRING, {.str = ""}, 0, 0, D|E },
+{"udplite_coverage", "choose UDPLite head size which should be validated by checksum", OFFSET(udplite_coverage), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, D|E },
 {"pkt_size", "set size of UDP packets", OFFSET(packet_size), AV_OPT_TYPE_INT, {.i64 = 1472}, 0, INT_MAX, D|E },
 {"reuse", "explicitly allow or disallow reusing UDP sockets", OFFSET(reuse_socket), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1, D|E },
+{"broadcast", "explicitly allow or disallow broadcast destination", OFFSET(is_broadcast), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1, E },
 {"ttl", "set the time to live value (for multicast only)", OFFSET(ttl), AV_OPT_TYPE_INT, {.i64 = 16}, 0, INT_MAX, E },
 {"connect", "set if connect() should be called on socket", OFFSET(is_connected), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1, D|E },
 /* TODO 'sources', 'block' option */
@@ -107,6 +126,13 @@ static const AVOption options[] = {
 
 static const AVClass udp_context_class = {
     .class_name     = "udp",
+    .item_name      = av_default_item_name,
+    .option         = options,
+    .version        = LIBAVUTIL_VERSION_INT,
+};
+
+static const AVClass udplite_context_class = {
+    .class_name     = "udplite",
     .item_name      = av_default_item_name,
     .option         = options,
     .version        = LIBAVUTIL_VERSION_INT,
@@ -311,7 +337,7 @@ static int udp_set_url(struct sockaddr_storage *addr,
     int addr_len;
 
     res0 = udp_resolve_host(hostname, port, SOCK_DGRAM, AF_UNSPEC, 0);
-    if (res0 == 0) return AVERROR(EIO);
+    if (!res0) return AVERROR(EIO);
     memcpy(addr, res0->ai_addr, res0->ai_addrlen);
     addr_len = res0->ai_addrlen;
     freeaddrinfo(res0);
@@ -323,17 +349,20 @@ static int udp_socket_create(UDPContext *s, struct sockaddr_storage *addr,
                              socklen_t *addr_len, const char *localaddr)
 {
     int udp_fd = -1;
-    struct addrinfo *res0 = NULL, *res = NULL;
+    struct addrinfo *res0, *res;
     int family = AF_UNSPEC;
 
     if (((struct sockaddr *) &s->dest_addr)->sa_family)
         family = ((struct sockaddr *) &s->dest_addr)->sa_family;
     res0 = udp_resolve_host(localaddr[0] ? localaddr : NULL, s->local_port,
                             SOCK_DGRAM, family, AI_PASSIVE);
-    if (res0 == 0)
+    if (!res0)
         goto fail;
     for (res = res0; res; res=res->ai_next) {
-        udp_fd = ff_socket(res->ai_family, SOCK_DGRAM, 0);
+        if (s->udplite_coverage)
+            udp_fd = ff_socket(res->ai_family, SOCK_DGRAM, IPPROTO_UDPLITE);
+        else
+            udp_fd = ff_socket(res->ai_family, SOCK_DGRAM, 0);
         if (udp_fd != -1) break;
         log_net_error(NULL, AV_LOG_ERROR, "socket");
     }
@@ -527,7 +556,7 @@ static int parse_source_list(char *buf, char **sources, int *num_sources,
 static int udp_open(URLContext *h, const char *uri, int flags)
 {
     char hostname[1024], localaddr[1024] = "";
-    int port, udp_fd = -1, tmp, bind_ret = -1;
+    int port, udp_fd = -1, tmp, bind_ret = -1, dscp = -1;
     UDPContext *s = h->priv_data;
     int is_output;
     const char *p;
@@ -568,6 +597,9 @@ static int udp_open(URLContext *h, const char *uri, int flags)
         if (av_find_info_tag(buf, sizeof(buf), "ttl", p)) {
             s->ttl = strtol(buf, NULL, 10);
         }
+        if (av_find_info_tag(buf, sizeof(buf), "udplite_coverage", p)) {
+            s->udplite_coverage = strtol(buf, NULL, 10);
+        }
         if (av_find_info_tag(buf, sizeof(buf), "localport", p)) {
             s->local_port = strtol(buf, NULL, 10);
         }
@@ -579,6 +611,9 @@ static int udp_open(URLContext *h, const char *uri, int flags)
         }
         if (av_find_info_tag(buf, sizeof(buf), "connect", p)) {
             s->is_connected = strtol(buf, NULL, 10);
+        }
+        if (av_find_info_tag(buf, sizeof(buf), "dscp", p)) {
+            dscp = strtol(buf, NULL, 10);
         }
         if (av_find_info_tag(buf, sizeof(buf), "fifo_size", p)) {
             s->circular_buffer_size = strtol(buf, NULL, 10);
@@ -602,6 +637,8 @@ static int udp_open(URLContext *h, const char *uri, int flags)
         }
         if (!is_output && av_find_info_tag(buf, sizeof(buf), "timeout", p))
             s->timeout = strtol(buf, NULL, 10);
+        if (is_output && av_find_info_tag(buf, sizeof(buf), "broadcast", p))
+            s->is_broadcast = strtol(buf, NULL, 10);
     }
     /* handling needed to support options picking from both AVOption and URL */
     s->circular_buffer_size *= 188;
@@ -639,6 +676,31 @@ static int udp_open(URLContext *h, const char *uri, int flags)
     if (s->reuse_socket || (s->is_multicast && !reuse_specified)) {
         s->reuse_socket = 1;
         if (setsockopt (udp_fd, SOL_SOCKET, SO_REUSEADDR, &(s->reuse_socket), sizeof(s->reuse_socket)) != 0)
+            goto fail;
+    }
+
+    if (s->is_broadcast) {
+#ifdef SO_BROADCAST
+        if (setsockopt (udp_fd, SOL_SOCKET, SO_BROADCAST, &(s->is_broadcast), sizeof(s->is_broadcast)) != 0)
+#endif
+           goto fail;
+    }
+
+    /* Set the checksum coverage for UDP-Lite (RFC 3828) for sending and receiving.
+     * The receiver coverage has to be less than or equal to the sender coverage.
+     * Otherwise, the receiver will drop all packets.
+     */
+    if (s->udplite_coverage) {
+        if (setsockopt (udp_fd, IPPROTO_UDPLITE, UDPLITE_SEND_CSCOV, &(s->udplite_coverage), sizeof(s->udplite_coverage)) != 0)
+            av_log(h, AV_LOG_WARNING, "socket option UDPLITE_SEND_CSCOV not available");
+
+        if (setsockopt (udp_fd, IPPROTO_UDPLITE, UDPLITE_RECV_CSCOV, &(s->udplite_coverage), sizeof(s->udplite_coverage)) != 0)
+            av_log(h, AV_LOG_WARNING, "socket option UDPLITE_RECV_CSCOV not available");
+    }
+
+    if (dscp >= 0) {
+        dscp <<= 2;
+        if (setsockopt (udp_fd, IPPROTO_IP, IP_TOS, &dscp, sizeof(dscp)) != 0)
             goto fail;
     }
 
@@ -695,8 +757,7 @@ static int udp_open(URLContext *h, const char *uri, int flags)
             goto fail;
         }
     } else {
-        /* set udp recv buffer size to the largest possible udp packet size to
-         * avoid losing data on OSes that set this too low by default. */
+        /* set udp recv buffer size to the requested value (default 64K) */
         tmp = s->buffer_size;
         if (setsockopt(udp_fd, SOL_SOCKET, SO_RCVBUF, &tmp, sizeof(tmp)) < 0) {
             log_net_error(h, AV_LOG_WARNING, "setsockopt(SO_RECVBUF)");
@@ -704,8 +765,11 @@ static int udp_open(URLContext *h, const char *uri, int flags)
         len = sizeof(tmp);
         if (getsockopt(udp_fd, SOL_SOCKET, SO_RCVBUF, &tmp, &len) < 0) {
             log_net_error(h, AV_LOG_WARNING, "getsockopt(SO_RCVBUF)");
-        } else
+        } else {
             av_log(h, AV_LOG_DEBUG, "end receive buffer size reported is %d\n", tmp);
+            if(tmp < s->buffer_size)
+                av_log(h, AV_LOG_WARNING, "attempted to set receive buffer to size %d but it only ended up set as %d", s->buffer_size, tmp);
+        }
 
         /* make the socket non-blocking */
         ff_socket_nonblock(udp_fd, 1);
@@ -759,7 +823,7 @@ static int udp_open(URLContext *h, const char *uri, int flags)
  fail:
     if (udp_fd >= 0)
         closesocket(udp_fd);
-    av_fifo_free(s->fifo);
+    av_fifo_freep(&s->fifo);
     for (i = 0; i < num_include_sources; i++)
         av_freep(&include_sources[i]);
     for (i = 0; i < num_exclude_sources; i++)
@@ -767,13 +831,23 @@ static int udp_open(URLContext *h, const char *uri, int flags)
     return AVERROR(EIO);
 }
 
+static int udplite_open(URLContext *h, const char *uri, int flags)
+{
+    UDPContext *s = h->priv_data;
+
+    // set default checksum coverage
+    s->udplite_coverage = UDP_HEADER_SIZE;
+
+    return udp_open(h, uri, flags);
+}
+
 static int udp_read(URLContext *h, uint8_t *buf, int size)
 {
     UDPContext *s = h->priv_data;
     int ret;
+#if HAVE_PTHREAD_CANCEL
     int avail, nonblock = h->flags & AVIO_FLAG_NONBLOCK;
 
-#if HAVE_PTHREAD_CANCEL
     if (s->fifo) {
         pthread_mutex_lock(&s->mutex);
         do {
@@ -850,13 +924,13 @@ static int udp_write(URLContext *h, const uint8_t *buf, int size)
 static int udp_close(URLContext *h)
 {
     UDPContext *s = h->priv_data;
-    int ret;
 
     if (s->is_multicast && (h->flags & AVIO_FLAG_READ))
         udp_leave_multicast_group(s->udp_fd, (struct sockaddr *)&s->dest_addr,(struct sockaddr *)&s->local_addr_storage);
     closesocket(s->udp_fd);
 #if HAVE_PTHREAD_CANCEL
     if (s->thread_started) {
+        int ret;
         pthread_cancel(s->circular_buffer_thread);
         ret = pthread_join(s->circular_buffer_thread, NULL);
         if (ret != 0)
@@ -865,7 +939,7 @@ static int udp_close(URLContext *h)
         pthread_cond_destroy(&s->cond);
     }
 #endif
-    av_fifo_free(s->fifo);
+    av_fifo_freep(&s->fifo);
     return 0;
 }
 
@@ -878,5 +952,17 @@ URLProtocol ff_udp_protocol = {
     .url_get_file_handle = udp_get_file_handle,
     .priv_data_size      = sizeof(UDPContext),
     .priv_data_class     = &udp_context_class,
+    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+};
+
+URLProtocol ff_udplite_protocol = {
+    .name                = "udplite",
+    .url_open            = udplite_open,
+    .url_read            = udp_read,
+    .url_write           = udp_write,
+    .url_close           = udp_close,
+    .url_get_file_handle = udp_get_file_handle,
+    .priv_data_size      = sizeof(UDPContext),
+    .priv_data_class     = &udplite_context_class,
     .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };

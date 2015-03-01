@@ -32,15 +32,24 @@
 #include "cabac.h"
 #include "config.h"
 
+#ifndef UNCHECKED_BITSTREAM_READER
+#define UNCHECKED_BITSTREAM_READER !CONFIG_SAFE_BITSTREAM_READER
+#endif
+
+#if ARCH_AARCH64
+#   include "aarch64/cabac.h"
+#endif
+#if ARCH_ARM
+#   include "arm/cabac.h"
+#endif
 #if ARCH_X86
 #   include "x86/cabac.h"
 #endif
 
-extern uint8_t ff_h264_cabac_tables[512 + 4*2*64 + 4*64 + 63];
-static uint8_t * const ff_h264_norm_shift = ff_h264_cabac_tables + H264_NORM_SHIFT_OFFSET;
-static uint8_t * const ff_h264_lps_range = ff_h264_cabac_tables + H264_LPS_RANGE_OFFSET;
-static uint8_t * const ff_h264_mlps_state = ff_h264_cabac_tables + H264_MLPS_STATE_OFFSET;
-static uint8_t * const ff_h264_last_coeff_flag_offset_8x8 = ff_h264_cabac_tables + H264_LAST_COEFF_FLAG_OFFSET_8x8_OFFSET;
+static CABAC_TABLE_CONST uint8_t * const ff_h264_norm_shift = ff_h264_cabac_tables + H264_NORM_SHIFT_OFFSET;
+static CABAC_TABLE_CONST uint8_t * const ff_h264_lps_range = ff_h264_cabac_tables + H264_LPS_RANGE_OFFSET;
+static CABAC_TABLE_CONST uint8_t * const ff_h264_mlps_state = ff_h264_cabac_tables + H264_MLPS_STATE_OFFSET;
+static CABAC_TABLE_CONST uint8_t * const ff_h264_last_coeff_flag_offset_8x8 = ff_h264_cabac_tables + H264_LAST_COEFF_FLAG_OFFSET_8x8_OFFSET;
 
 static void refill(CABACContext *c){
 #if CABAC_BITS == 16

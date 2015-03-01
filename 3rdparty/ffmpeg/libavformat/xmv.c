@@ -25,7 +25,7 @@
  * Microsoft XMV demuxer
  */
 
-#include <stdint.h>
+#include <inttypes.h>
 
 #include "libavutil/intreadwrite.h"
 
@@ -155,7 +155,7 @@ static int xmv_read_header(AVFormatContext *s)
 
     file_version = avio_rl32(pb);
     if ((file_version != 4) && (file_version != 2))
-        avpriv_request_sample(s, "Uncommon version %d", file_version);
+        avpriv_request_sample(s, "Uncommon version %"PRIu32"", file_version);
 
 
     /* Video track */
@@ -182,7 +182,7 @@ static int xmv_read_header(AVFormatContext *s)
 
     avio_skip(pb, 2); /* Unknown (padding?) */
 
-    xmv->audio = av_malloc(xmv->audio_track_count * sizeof(XMVAudioPacket));
+    xmv->audio = av_malloc_array(xmv->audio_track_count, sizeof(XMVAudioPacket));
     if (!xmv->audio) {
         ret = AVERROR(ENOMEM);
         goto fail;
@@ -219,7 +219,7 @@ static int xmv_read_header(AVFormatContext *s)
 
         if (!packet->channels || !packet->sample_rate ||
              packet->channels >= UINT16_MAX / XMV_BLOCK_ALIGN_SIZE) {
-            av_log(s, AV_LOG_ERROR, "Invalid parameters for audio track %d.\n",
+            av_log(s, AV_LOG_ERROR, "Invalid parameters for audio track %"PRIu16".\n",
                    audio_track);
             ret = AVERROR_INVALIDDATA;
             goto fail;
@@ -294,6 +294,7 @@ static int xmv_process_packet_header(AVFormatContext *s)
 {
     XMVDemuxContext *xmv = s->priv_data;
     AVIOContext     *pb  = s->pb;
+    int ret;
 
     uint8_t  data[8];
     uint16_t audio_track;
@@ -381,9 +382,10 @@ static int xmv_process_packet_header(AVFormatContext *s)
                 av_assert0(xmv->video.stream_index < s->nb_streams);
 
                 if (vst->codec->extradata_size < 4) {
-                    av_free(vst->codec->extradata);
+                    av_freep(&vst->codec->extradata);
 
-                    ff_alloc_extradata(vst->codec, 4);
+                    if ((ret = ff_alloc_extradata(vst->codec, 4)) < 0)
+                        return ret;
                 }
 
                 memcpy(vst->codec->extradata, xmv->video.extradata, 4);

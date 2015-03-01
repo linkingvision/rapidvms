@@ -206,7 +206,7 @@ static int dv1394_close(AVFormatContext * context)
         av_log(context, AV_LOG_ERROR, "Failed to munmap DV1394 ring buffer: %s\n", strerror(errno));
 
     close(dv->fd);
-    av_free(dv->dv_demux);
+    av_freep(&dv->dv_demux);
 
     return 0;
 }
@@ -224,6 +224,7 @@ static const AVClass dv1394_class = {
     .item_name  = av_default_item_name,
     .option     = options,
     .version    = LIBAVUTIL_VERSION_INT,
+    .category   = AV_CLASS_CATEGORY_DEVICE_VIDEO_INPUT,
 };
 
 AVInputFormat ff_dv1394_demuxer = {

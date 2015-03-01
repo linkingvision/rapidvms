@@ -1,6 +1,9 @@
 FATE_VP3-$(call DEMDEC, MATROSKA, THEORA) += fate-theora-coeff-level64
 fate-theora-coeff-level64: CMD = framecrc -flags +bitexact -i $(TARGET_SAMPLES)/vp3/coeff_level64.mkv
 
+FATE_VP3-$(call DEMDEC, OGG, THEORA) += fate-theora-offset
+fate-theora-offset: CMD = framecrc -flags +bitexact -i $(TARGET_SAMPLES)/vp3/offset_test.ogv
+
 FATE_VP3-$(call DEMDEC, AVI, VP3) += fate-vp31
 fate-vp31: CMD = framecrc -flags +bitexact -i $(TARGET_SAMPLES)/vp3/vp31.avi
 
@@ -28,8 +31,23 @@ fate-vp6f: CMD = framecrc -flags +bitexact -i $(TARGET_SAMPLES)/flash-vp6/clip10
 FATE_VP8-$(call DEMDEC, FLV, VP8) += fate-vp8-alpha
 fate-vp8-alpha: CMD = framecrc -i $(TARGET_SAMPLES)/vp8_alpha/vp8_video_with_alpha.webm -vcodec copy
 
+FATE_VP8-$(call DEMDEC, WEBM_DASH_MANIFEST, VP8) += fate-webm-dash-manifest
+fate-webm-dash-manifest: CMD = run ffmpeg -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video1.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video2.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_audio1.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_audio2.webm -c copy -map 0 -map 1 -map 2 -map 3 -f webm_dash_manifest -adaptation_sets "id=0,streams=0,1 id=1,streams=2,3" -
+
+FATE_VP8-$(call DEMDEC, WEBM_DASH_MANIFEST, VP8) += fate-webm-dash-manifest-unaligned-video-streams
+fate-webm-dash-manifest-unaligned-video-streams: CMD = run ffmpeg -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video1.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video3.webm -c copy -map 0 -map 1 -f webm_dash_manifest -adaptation_sets "id=0,streams=0,1" -
+
+FATE_VP8-$(call DEMDEC, WEBM_DASH_MANIFEST, VP8) += fate-webm-dash-manifest-unaligned-audio-streams
+fate-webm-dash-manifest-unaligned-audio-streams: CMD = run ffmpeg -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_audio1.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_audio3.webm -c copy -map 0 -map 1 -f webm_dash_manifest -adaptation_sets "id=0,streams=0,1" -
+
+FATE_VP8-$(call DEMDEC, WEBM_DASH_MANIFEST, VP8) += fate-webm-dash-manifest-representations
+fate-webm-dash-manifest-representations: CMD = run ffmpeg -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video1.webm -f webm_dash_manifest -i $(TARGET_SAMPLES)/vp8/dash_video4.webm -c copy -map 0 -map 1 -f webm_dash_manifest -adaptation_sets "id=0,streams=0,1" -
+
 FATE_SAMPLES_AVCONV += $(FATE_VP6-yes)
 fate-vp6: $(FATE_VP6-yes)
+
+FATE_SAMPLES_AVCONV-$(call DEMDEC, AVI, VP7) += fate-vp7
+fate-vp7: CMD = framecrc -flags +bitexact -i $(TARGET_SAMPLES)/vp7/potter-40.vp7 -frames 30 -an
 
 VP8_SUITE = 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017
 
@@ -83,6 +101,7 @@ $(eval $(call FATE_VP9_SUITE,parallelmode-akiyo,$(1),$(2)))
 $(eval $(call FATE_VP9_SUITE,segmentation-aq-akiyo,$(1),$(2)))
 $(eval $(call FATE_VP9_SUITE,segmentation-sf-akiyo,$(1),$(2)))
 $(eval $(call FATE_VP9_SUITE,tiling-pedestrian,$(1),$(2)))
+$(eval $(call FATE_VP9_SUITE,trac3849,$(1),$(2)))
 endef
 
 $(eval $(call FATE_VP9_FULL))

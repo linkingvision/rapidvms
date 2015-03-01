@@ -64,7 +64,7 @@ AVFILTER_DEFINE_CLASS(blackdetect);
 #define YUVJ_FORMATS \
     AV_PIX_FMT_YUVJ411P, AV_PIX_FMT_YUVJ420P, AV_PIX_FMT_YUVJ422P, AV_PIX_FMT_YUVJ444P, AV_PIX_FMT_YUVJ440P
 
-static enum AVPixelFormat yuvj_formats[] = {
+static const enum AVPixelFormat yuvj_formats[] = {
     YUVJ_FORMATS, AV_PIX_FMT_NONE
 };
 
@@ -134,6 +134,7 @@ static int request_frame(AVFilterLink *outlink)
     return ret;
 }
 
+// TODO: document metadata
 static int filter_frame(AVFilterLink *inlink, AVFrame *picref)
 {
     AVFilterContext *ctx = inlink->dst;
@@ -161,12 +162,16 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *picref)
             /* black starts here */
             blackdetect->black_started = 1;
             blackdetect->black_start = picref->pts;
+            av_dict_set(avpriv_frame_get_metadatap(picref), "lavfi.black_start",
+                av_ts2timestr(blackdetect->black_start, &inlink->time_base), 0);
         }
     } else if (blackdetect->black_started) {
         /* black ends here */
         blackdetect->black_started = 0;
         blackdetect->black_end = picref->pts;
         check_black_end(ctx);
+        av_dict_set(avpriv_frame_get_metadatap(picref), "lavfi.black_end",
+            av_ts2timestr(blackdetect->black_end, &inlink->time_base), 0);
     }
 
     blackdetect->last_picref_pts = picref->pts;

@@ -5,6 +5,14 @@
 # first so "all" becomes default target
 all: all-yes
 
+DEFAULT_YASMD=.dbg
+
+ifeq (1, DBG)
+YASMD=$(DEFAULT_YASMD)
+else
+YASMD=
+endif
+
 ifndef SUBDIR
 
 ifndef V
@@ -51,6 +59,9 @@ COMPILE_HOSTC = $(call COMPILE,HOSTCC)
 %.o: %.cpp
 	$(COMPILE_CXX)
 
+%.o: %.m
+	$(COMPILE_C)
+
 %.s: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -S -o $@ $<
 
@@ -90,7 +101,7 @@ include $(SRC_PATH)/arch.mak
 
 OBJS      += $(OBJS-yes)
 SLIBOBJS  += $(SLIBOBJS-yes)
-FFLIBS    := $(FFLIBS-yes) $(FFLIBS)
+FFLIBS    := $($(NAME)_FFLIBS) $(FFLIBS-yes) $(FFLIBS)
 TESTPROGS += $(TESTPROGS-yes)
 
 LDLIBS       = $(FFLIBS:%=%$(BUILDSUF))
@@ -135,17 +146,17 @@ $(TOOLOBJS): | tools
 
 OBJDIRS := $(OBJDIRS) $(dir $(OBJS) $(HOBJS) $(HOSTOBJS) $(SLIBOBJS) $(TESTOBJS))
 
-CLEANSUFFIXES     = *.d *.o *~ *.h.c *.map *.ver *.ho *.gcno *.gcda
+CLEANSUFFIXES     = *.d *.o *~ *.h.c *.map *.ver *.ho *.gcno *.gcda *$(DEFAULT_YASMD).asm
 DISTCLEANSUFFIXES = *.pc
 LIBSUFFIXES       = *.a *.lib *.so *.so.* *.dylib *.dll *.def *.dll.a
 
 define RULES
 clean::
-	$(RM) $(OBJS) $(OBJS:.o=.d)
+	$(RM) $(OBJS) $(OBJS:.o=.d) $(OBJS:.o=$(DEFAULT_YASMD).d)
 	$(RM) $(HOSTPROGS)
 	$(RM) $(TOOLS)
 endef
 
 $(eval $(RULES))
 
--include $(wildcard $(OBJS:.o=.d) $(HOSTOBJS:.o=.d) $(TESTOBJS:.o=.d) $(HOBJS:.o=.d) $(SLIBOBJS:.o=.d))
+-include $(wildcard $(OBJS:.o=.d) $(HOSTOBJS:.o=.d) $(TESTOBJS:.o=.d) $(HOBJS:.o=.d) $(SLIBOBJS:.o=.d)) $(OBJS:.o=$(DEFAULT_YASMD).d)

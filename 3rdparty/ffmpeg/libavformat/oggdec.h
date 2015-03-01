@@ -129,7 +129,11 @@ extern const struct ogg_codec ff_theora_codec;
 extern const struct ogg_codec ff_vorbis_codec;
 extern const struct ogg_codec ff_vp8_codec;
 
-int ff_vorbis_comment(AVFormatContext *ms, AVDictionary **m, const uint8_t *buf, int size);
+int ff_vorbis_comment(AVFormatContext *ms, AVDictionary **m,
+                      const uint8_t *buf, int size, int parse_picture);
+
+int ff_vorbis_stream_comment(AVFormatContext *as, AVStream *st,
+                             const uint8_t *buf, int size);
 
 static inline int
 ogg_find_stream (struct ogg * ogg, int serial)

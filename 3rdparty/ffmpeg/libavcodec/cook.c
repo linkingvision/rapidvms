@@ -44,9 +44,10 @@
 
 #include "libavutil/channel_layout.h"
 #include "libavutil/lfg.h"
+
+#include "audiodsp.h"
 #include "avcodec.h"
 #include "get_bits.h"
-#include "dsputil.h"
 #include "bytestream.h"
 #include "fft.h"
 #include "internal.h"
@@ -64,12 +65,12 @@
 #define SUBBAND_SIZE    20
 #define MAX_SUBPACKETS   5
 
-typedef struct {
+typedef struct cook_gains {
     int *now;
     int *previous;
 } cook_gains;
 
-typedef struct {
+typedef struct COOKSubpacket {
     int                 ch_idx;
     int                 size;
     int                 num_channels;
@@ -123,7 +124,7 @@ typedef struct cook {
     void (*saturate_output)(struct cook *q, float *out);
 
     AVCodecContext*     avctx;
-    DSPContext          dsp;
+    AudioDSPContext     adsp;
     GetBitContext       gb;
     /* stream data */
     int                 num_vectors;
@@ -219,7 +220,7 @@ static av_cold int init_cook_mlt(COOKContext *q)
     int j, ret;
     int mlt_size = q->samples_per_channel;
 
-    if ((q->mlt_window = av_malloc(mlt_size * sizeof(*q->mlt_window))) == 0)
+    if ((q->mlt_window = av_malloc_array(mlt_size, sizeof(*q->mlt_window))) == 0)
         return AVERROR(ENOMEM);
 
     /* Initialize the MLT window: simple sine window. */
@@ -417,7 +418,7 @@ static void categorize(COOKContext *q, COOKSubpacket *p, const int *quant_index_
         num_bits = 0;
         index    = 0;
         for (j = p->total_subbands; j > 0; j--) {
-            exp_idx = av_clip((i - quant_index_table[index] + bias) / 2, 0, 7);
+            exp_idx = av_clip_uintp2((i - quant_index_table[index] + bias) / 2, 3);
             index++;
             num_bits += expbits_tab[exp_idx];
         }
@@ -428,7 +429,7 @@ static void categorize(COOKContext *q, COOKSubpacket *p, const int *quant_index_
     /* Calculate total number of bits. */
     num_bits = 0;
     for (i = 0; i < p->total_subbands; i++) {
-        exp_idx = av_clip((bias - quant_index_table[i]) / 2, 0, 7);
+        exp_idx = av_clip_uintp2((bias - quant_index_table[i]) / 2, 3);
         num_bits += expbits_tab[exp_idx];
         exp_index1[i] = exp_idx;
         exp_index2[i] = exp_idx;
@@ -873,8 +874,8 @@ static inline void decode_bytes_and_gain(COOKContext *q, COOKSubpacket *p,
  */
 static void saturate_output_float(COOKContext *q, float *out)
 {
-    q->dsp.vector_clipf(out, q->mono_mdct_output + q->samples_per_channel,
-                        -1.0f, 1.0f, FFALIGN(q->samples_per_channel, 8));
+    q->adsp.vector_clipf(out, q->mono_mdct_output + q->samples_per_channel,
+                         -1.0f, 1.0f, FFALIGN(q->samples_per_channel, 8));
 }
 
 
@@ -1057,7 +1058,7 @@ static av_cold int cook_decode_init(AVCodecContext *avctx)
     q->avctx = avctx;
 
     /* Take care of the codec specific extradata. */
-    if (extradata_size <= 0) {
+    if (extradata_size < 8) {
         av_log(avctx, AV_LOG_ERROR, "Necessary extradata missing!\n");
         return AVERROR_INVALIDDATA;
     }
@@ -1072,7 +1073,7 @@ static av_cold int cook_decode_init(AVCodecContext *avctx)
     /* Initialize RNG. */
     av_lfg_init(&q->random_state, 0);
 
-    ff_dsputil_init(&q->dsp, avctx);
+    ff_audiodsp_init(&q->adsp);
 
     while (edata_ptr < edata_ptr_end) {
         /* 8 for mono, 16 for stereo, ? for multichannel
@@ -1214,8 +1215,8 @@ static av_cold int cook_decode_init(AVCodecContext *avctx)
 
         q->num_subpackets++;
         s++;
-        if (s > MAX_SUBPACKETS) {
-            avpriv_request_sample(avctx, "subpackets > %d", MAX_SUBPACKETS);
+        if (s > FFMIN(MAX_SUBPACKETS, avctx->block_align)) {
+            avpriv_request_sample(avctx, "subpackets > %d", FFMIN(MAX_SUBPACKETS, avctx->block_align));
             return AVERROR_PATCHWELCOME;
         }
     }
@@ -1238,7 +1239,7 @@ static av_cold int cook_decode_init(AVCodecContext *avctx)
         av_mallocz(avctx->block_align
                    + DECODE_BYTES_PAD1(avctx->block_align)
                    + FF_INPUT_BUFFER_PADDING_SIZE);
-    if (q->decoded_bytes_buffer == NULL)
+    if (!q->decoded_bytes_buffer)
         return AVERROR(ENOMEM);
 
     /* Initialize transform. */

@@ -75,7 +75,9 @@ int ff_fill_line_with_color(uint8_t *line[4], int pixel_step[4], int w, uint8_t 
         for (i = 0; i < 4; i++)
             dst_color[rgba_map[i]] = rgba_color[i];
 
-        line[0] = av_malloc(w * pixel_step[0]);
+        line[0] = av_malloc_array(w, pixel_step[0]);
+        if (!line[0])
+            return AVERROR(ENOMEM);
         for (i = 0; i < w; i++)
             memcpy(line[0] + i * pixel_step[0], dst_color, pixel_step[0]);
         if (rgba_map_ptr)
@@ -95,6 +97,11 @@ int ff_fill_line_with_color(uint8_t *line[4], int pixel_step[4], int w, uint8_t 
             pixel_step[plane] = 1;
             line_size = FF_CEIL_RSHIFT(w, hsub1) * pixel_step[plane];
             line[plane] = av_malloc(line_size);
+            if (!line[plane]) {
+                while(plane && line[plane-1])
+                    av_freep(&line[--plane]);
+                return AVERROR(ENOMEM);
+            }
             memset(line[plane], dst_color[plane], line_size);
         }
     }
@@ -517,15 +524,14 @@ int ff_draw_round_to_sub(FFDrawContext *draw, int sub_dir, int round_dir,
 
 AVFilterFormats *ff_draw_supported_pixel_formats(unsigned flags)
 {
-    enum AVPixelFormat i, pix_fmts[AV_PIX_FMT_NB + 1];
-    unsigned n = 0;
+    enum AVPixelFormat i;
     FFDrawContext draw;
+    AVFilterFormats *fmts = NULL;
 
-    for (i = 0; i < AV_PIX_FMT_NB; i++)
+    for (i = 0; av_pix_fmt_desc_get(i); i++)
         if (ff_draw_init(&draw, i, flags) >= 0)
-            pix_fmts[n++] = i;
-    pix_fmts[n++] = AV_PIX_FMT_NONE;
-    return ff_make_format_list(pix_fmts);
+            ff_add_format(&fmts, i);
+    return fmts;
 }
 
 #ifdef TEST
@@ -540,7 +546,7 @@ int main(void)
     FFDrawColor color;
     int r, i;
 
-    for (f = 0; f < AV_PIX_FMT_NB; f++) {
+    for (f = 0; av_pix_fmt_desc_get(f); f++) {
         desc = av_pix_fmt_desc_get(f);
         if (!desc->name)
             continue;

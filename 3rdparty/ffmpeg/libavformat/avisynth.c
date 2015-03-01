@@ -43,7 +43,7 @@
       #define AVISYNTH_LIB "libavxsynth.so"
     #endif
 
-  #define LoadLibrary(x) dlopen(x, RTLD_NOW | RTLD_GLOBAL)
+  #define LoadLibrary(x) dlopen(x, RTLD_NOW | RTLD_LOCAL)
   #define GetProcAddress dlsym
   #define FreeLibrary dlclose
 #endif
@@ -294,6 +294,7 @@ static int avisynth_create_stream_audio(AVFormatContext *s, AVStream *st)
     st->codec->channels    = avs->vi->nchannels;
     st->time_base          = (AVRational) { 1,
                                             avs->vi->audio_samples_per_second };
+    st->duration           = avs->vi->num_audio_samples;
 
     switch (avs->vi->sample_type) {
     case AVS_SAMPLE_INT8:

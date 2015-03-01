@@ -47,7 +47,7 @@ static const int wv_rates[16] = {
     32000, 44100, 48000, 64000, 88200, 96000, 192000,    -1
 };
 
-typedef struct {
+typedef struct WVContext {
     uint8_t block_header[WV_HEADER_SIZE];
     WvHeader header;
     int rate, chan, bpp;
@@ -124,7 +124,7 @@ static int wv_read_block_header(AVFormatContext *ctx, AVIOContext *pb)
                    "Cannot determine additional parameters\n");
             return AVERROR_INVALIDDATA;
         }
-        while (avio_tell(pb) < block_end) {
+        while (avio_tell(pb) < block_end && !avio_feof(pb)) {
             int id, size;
             id   = avio_r8(pb);
             size = (id & 0x80) ? avio_rl24(pb) : avio_r8(pb);
@@ -260,7 +260,7 @@ static int wv_read_packet(AVFormatContext *s, AVPacket *pkt)
     int64_t pos;
     uint32_t block_samples;
 
-    if (url_feof(s->pb))
+    if (avio_feof(s->pb))
         return AVERROR_EOF;
     if (wc->block_parsed) {
         if ((ret = wv_read_block_header(s, s->pb)) < 0)

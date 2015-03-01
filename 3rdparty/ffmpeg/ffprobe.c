@@ -33,6 +33,7 @@
 #include "libavutil/avassert.h"
 #include "libavutil/avstring.h"
 #include "libavutil/bprint.h"
+#include "libavutil/hash.h"
 #include "libavutil/opt.h"
 #include "libavutil/pixdesc.h"
 #include "libavutil/dict.h"
@@ -65,6 +66,9 @@ static int do_show_stream_disposition = 0;
 static int do_show_data    = 0;
 static int do_show_program_version  = 0;
 static int do_show_library_versions = 0;
+static int do_show_pixel_formats = 0;
+static int do_show_pixel_format_flags = 0;
+static int do_show_pixel_format_components = 0;
 
 static int do_show_chapter_tags = 0;
 static int do_show_format_tags = 0;
@@ -80,8 +84,9 @@ static int show_private_data            = 1;
 
 static char *print_format;
 static char *stream_specifier;
+static char *show_data_hash;
 
-typedef struct {
+typedef struct ReadInterval {
     int id;             ///< identifier
     int64_t start, end; ///< start, end in second/AV_TIME_BASE units
     int has_start, has_end;
@@ -123,11 +128,18 @@ typedef enum {
     SECTION_ID_FRAME,
     SECTION_ID_FRAMES,
     SECTION_ID_FRAME_TAGS,
+    SECTION_ID_FRAME_SIDE_DATA_LIST,
+    SECTION_ID_FRAME_SIDE_DATA,
     SECTION_ID_LIBRARY_VERSION,
     SECTION_ID_LIBRARY_VERSIONS,
     SECTION_ID_PACKET,
     SECTION_ID_PACKETS,
     SECTION_ID_PACKETS_AND_FRAMES,
+    SECTION_ID_PIXEL_FORMAT,
+    SECTION_ID_PIXEL_FORMAT_FLAGS,
+    SECTION_ID_PIXEL_FORMAT_COMPONENT,
+    SECTION_ID_PIXEL_FORMAT_COMPONENTS,
+    SECTION_ID_PIXEL_FORMATS,
     SECTION_ID_PROGRAM_STREAM_DISPOSITION,
     SECTION_ID_PROGRAM_STREAM_TAGS,
     SECTION_ID_PROGRAM,
@@ -152,13 +164,20 @@ static struct section sections[] = {
     [SECTION_ID_FORMAT] =             { SECTION_ID_FORMAT, "format", 0, { SECTION_ID_FORMAT_TAGS, -1 } },
     [SECTION_ID_FORMAT_TAGS] =        { SECTION_ID_FORMAT_TAGS, "tags", SECTION_FLAG_HAS_VARIABLE_FIELDS, { -1 }, .element_name = "tag", .unique_name = "format_tags" },
     [SECTION_ID_FRAMES] =             { SECTION_ID_FRAMES, "frames", SECTION_FLAG_IS_ARRAY, { SECTION_ID_FRAME, SECTION_ID_SUBTITLE, -1 } },
-    [SECTION_ID_FRAME] =              { SECTION_ID_FRAME, "frame", 0, { SECTION_ID_FRAME_TAGS, -1 } },
+    [SECTION_ID_FRAME] =              { SECTION_ID_FRAME, "frame", 0, { SECTION_ID_FRAME_TAGS, SECTION_ID_FRAME_SIDE_DATA_LIST, -1 } },
     [SECTION_ID_FRAME_TAGS] =         { SECTION_ID_FRAME_TAGS, "tags", SECTION_FLAG_HAS_VARIABLE_FIELDS, { -1 }, .element_name = "tag", .unique_name = "frame_tags" },
+    [SECTION_ID_FRAME_SIDE_DATA_LIST] ={ SECTION_ID_FRAME_SIDE_DATA_LIST, "side_data_list", SECTION_FLAG_IS_ARRAY, { SECTION_ID_FRAME_SIDE_DATA, -1 } },
+    [SECTION_ID_FRAME_SIDE_DATA] =     { SECTION_ID_FRAME_SIDE_DATA, "side_data", 0, { -1 } },
     [SECTION_ID_LIBRARY_VERSIONS] =   { SECTION_ID_LIBRARY_VERSIONS, "library_versions", SECTION_FLAG_IS_ARRAY, { SECTION_ID_LIBRARY_VERSION, -1 } },
     [SECTION_ID_LIBRARY_VERSION] =    { SECTION_ID_LIBRARY_VERSION, "library_version", 0, { -1 } },
     [SECTION_ID_PACKETS] =            { SECTION_ID_PACKETS, "packets", SECTION_FLAG_IS_ARRAY, { SECTION_ID_PACKET, -1} },
     [SECTION_ID_PACKETS_AND_FRAMES] = { SECTION_ID_PACKETS_AND_FRAMES, "packets_and_frames", SECTION_FLAG_IS_ARRAY, { SECTION_ID_PACKET, -1} },
     [SECTION_ID_PACKET] =             { SECTION_ID_PACKET, "packet", 0, { -1 } },
+    [SECTION_ID_PIXEL_FORMATS] =      { SECTION_ID_PIXEL_FORMATS, "pixel_formats", SECTION_FLAG_IS_ARRAY, { SECTION_ID_PIXEL_FORMAT, -1 } },
+    [SECTION_ID_PIXEL_FORMAT] =       { SECTION_ID_PIXEL_FORMAT, "pixel_format", 0, { SECTION_ID_PIXEL_FORMAT_FLAGS, SECTION_ID_PIXEL_FORMAT_COMPONENTS, -1 } },
+    [SECTION_ID_PIXEL_FORMAT_FLAGS] = { SECTION_ID_PIXEL_FORMAT_FLAGS, "flags", 0, { -1 }, .unique_name = "pixel_format_flags" },
+    [SECTION_ID_PIXEL_FORMAT_COMPONENTS] = { SECTION_ID_PIXEL_FORMAT_COMPONENTS, "components", SECTION_FLAG_IS_ARRAY, {SECTION_ID_PIXEL_FORMAT_COMPONENT, -1 }, .unique_name = "pixel_format_components" },
+    [SECTION_ID_PIXEL_FORMAT_COMPONENT]  = { SECTION_ID_PIXEL_FORMAT_COMPONENT, "component", 0, { -1 } },
     [SECTION_ID_PROGRAM_STREAM_DISPOSITION] = { SECTION_ID_PROGRAM_STREAM_DISPOSITION, "disposition", 0, { -1 }, .unique_name = "program_stream_disposition" },
     [SECTION_ID_PROGRAM_STREAM_TAGS] =        { SECTION_ID_PROGRAM_STREAM_TAGS, "tags", SECTION_FLAG_HAS_VARIABLE_FIELDS, { -1 }, .element_name = "tag", .unique_name = "program_stream_tags" },
     [SECTION_ID_PROGRAM] =                    { SECTION_ID_PROGRAM, "program", 0, { SECTION_ID_PROGRAM_TAGS, SECTION_ID_PROGRAM_STREAMS, -1 } },
@@ -169,7 +188,8 @@ static struct section sections[] = {
     [SECTION_ID_PROGRAMS] =                   { SECTION_ID_PROGRAMS, "programs", SECTION_FLAG_IS_ARRAY, { SECTION_ID_PROGRAM, -1 } },
     [SECTION_ID_ROOT] =               { SECTION_ID_ROOT, "root", SECTION_FLAG_IS_WRAPPER,
                                         { SECTION_ID_CHAPTERS, SECTION_ID_FORMAT, SECTION_ID_FRAMES, SECTION_ID_PROGRAMS, SECTION_ID_STREAMS,
-                                          SECTION_ID_PACKETS, SECTION_ID_ERROR, SECTION_ID_PROGRAM_VERSION, SECTION_ID_LIBRARY_VERSIONS, -1} },
+                                          SECTION_ID_PACKETS, SECTION_ID_ERROR, SECTION_ID_PROGRAM_VERSION, SECTION_ID_LIBRARY_VERSIONS,
+                                          SECTION_ID_PIXEL_FORMATS, -1} },
     [SECTION_ID_STREAMS] =            { SECTION_ID_STREAMS, "streams", SECTION_FLAG_IS_ARRAY, { SECTION_ID_STREAM, -1 } },
     [SECTION_ID_STREAM] =             { SECTION_ID_STREAM, "stream", 0, { SECTION_ID_STREAM_DISPOSITION, SECTION_ID_STREAM_TAGS, -1 } },
     [SECTION_ID_STREAM_DISPOSITION] = { SECTION_ID_STREAM_DISPOSITION, "disposition", 0, { -1 }, .unique_name = "stream_disposition" },
@@ -183,6 +203,8 @@ static const OptionDef *options;
 static const char *input_filename;
 static AVInputFormat *iformat = NULL;
 
+static struct AVHashContext *hash;
+
 static const char *const binary_unit_prefixes [] = { "", "Ki", "Mi", "Gi", "Ti", "Pi" };
 static const char *const decimal_unit_prefixes[] = { "", "K" , "M" , "G" , "T" , "P"  };
 
@@ -191,6 +213,7 @@ static const char unit_hertz_str[]          = "Hz"   ;
 static const char unit_byte_str[]           = "byte" ;
 static const char unit_bit_per_second_str[] = "bit/s";
 
+static int nb_streams;
 static uint64_t *nb_streams_packets;
 static uint64_t *nb_streams_frames;
 static int *selected_streams;
@@ -680,6 +703,21 @@ static void writer_print_data(WriterContext *wctx, const char *name,
     av_bprint_finalize(&bp, NULL);
 }
 
+static void writer_print_data_hash(WriterContext *wctx, const char *name,
+                                   uint8_t *data, int size)
+{
+    char *p, buf[AV_HASH_MAX_SIZE * 2 + 64] = { 0 };
+
+    if (!hash)
+        return;
+    av_hash_init(hash);
+    av_hash_update(hash, data, size);
+    snprintf(buf, sizeof(buf), "%s:", av_hash_get_name(hash));
+    p = buf + strlen(buf);
+    av_hash_final_hex(hash, p, buf + sizeof(buf) - p);
+    writer_print_string(wctx, name, buf, 0);
+}
+
 #define MAX_REGISTERED_WRITERS_NB 64
 
 static const Writer *registered_writers[MAX_REGISTERED_WRITERS_NB + 1];
@@ -1154,7 +1192,7 @@ static const Writer flat_writer = {
 
 /* INI format output */
 
-typedef struct {
+typedef struct INIContext {
     const AVClass *class;
     int hierarchical;
 } INIContext;
@@ -1258,7 +1296,7 @@ static const Writer ini_writer = {
 
 /* JSON output */
 
-typedef struct {
+typedef struct JSONContext {
     const AVClass *class;
     int indent_level;
     int compact;
@@ -1420,7 +1458,7 @@ static const Writer json_writer = {
 
 /* XML output */
 
-typedef struct {
+typedef struct XMLContext {
     const AVClass *class;
     int within_tag;
     int indent_level;
@@ -1632,6 +1670,14 @@ static void writer_register_all(void)
 #define print_section_header(s) writer_print_section_header(w, s)
 #define print_section_footer(s) writer_print_section_footer(w, s)
 
+#define REALLOCZ_ARRAY_STREAM(ptr, cur_n, new_n)                        \
+{                                                                       \
+    ret = av_reallocp_array(&(ptr), (new_n), sizeof(*(ptr)));           \
+    if (ret < 0)                                                        \
+        goto end;                                                       \
+    memset( (ptr) + (cur_n), 0, ((new_n) - (cur_n)) * sizeof(*(ptr)) ); \
+}
+
 static inline int show_tags(WriterContext *w, AVDictionary *tags, int section_id)
 {
     AVDictionaryEntry *tag = NULL;
@@ -1679,6 +1725,7 @@ static void show_packet(WriterContext *w, AVFormatContext *fmt_ctx, AVPacket *pk
     print_fmt("flags", "%c",      pkt->flags & AV_PKT_FLAG_KEY ? 'K' : '_');
     if (do_show_data)
         writer_print_data(w, "data", pkt->data, pkt->size);
+    writer_print_data_hash(w, "data_hash", pkt->data, pkt->size);
     writer_print_section_footer(w);
 
     av_bprint_finalize(&pbuf, NULL);
@@ -1713,6 +1760,7 @@ static void show_frame(WriterContext *w, AVFrame *frame, AVStream *stream,
 {
     AVBPrint pbuf;
     const char *s;
+    int i;
 
     av_bprint_init(&pbuf, 1, AV_BPRINT_SIZE_UNLIMITED);
 
@@ -1775,6 +1823,20 @@ static void show_frame(WriterContext *w, AVFrame *frame, AVStream *stream,
     }
     if (do_show_frame_tags)
         show_tags(w, av_frame_get_metadata(frame), SECTION_ID_FRAME_TAGS);
+    if (frame->nb_side_data) {
+        writer_print_section_header(w, SECTION_ID_FRAME_SIDE_DATA_LIST);
+        for (i = 0; i < frame->nb_side_data; i++) {
+            AVFrameSideData *sd = frame->side_data[i];
+            const char *name;
+
+            writer_print_section_header(w, SECTION_ID_FRAME_SIDE_DATA);
+            name = av_frame_side_data_name(sd->type);
+            print_str("side_data_type", name ? name : "unknown");
+            print_int("side_data_size", sd->size);
+            writer_print_section_footer(w);
+        }
+        writer_print_section_footer(w);
+    }
 
     writer_print_section_footer(w);
 
@@ -1893,6 +1955,12 @@ static int read_interval_packets(WriterContext *w, AVFormatContext *fmt_ctx,
         goto end;
     }
     while (!av_read_frame(fmt_ctx, &pkt)) {
+        if (fmt_ctx->nb_streams > nb_streams) {
+            REALLOCZ_ARRAY_STREAM(nb_streams_frames,  nb_streams, fmt_ctx->nb_streams);
+            REALLOCZ_ARRAY_STREAM(nb_streams_packets, nb_streams, fmt_ctx->nb_streams);
+            REALLOCZ_ARRAY_STREAM(selected_streams,   nb_streams, fmt_ctx->nb_streams);
+            nb_streams = fmt_ctx->nb_streams;
+        }
         if (selected_streams[pkt.stream_index]) {
             AVRational tb = fmt_ctx->streams[pkt.stream_index]->time_base;
 
@@ -1976,6 +2044,7 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
     const char *s;
     AVRational sar, dar;
     AVBPrint pbuf;
+    const AVCodecDescriptor *cd;
     int ret = 0;
 
     av_bprint_init(&pbuf, 1, AV_BPRINT_SIZE_UNLIMITED);
@@ -1992,6 +2061,12 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
             if (!do_bitexact) {
                 if (dec->long_name) print_str    ("codec_long_name", dec->long_name);
                 else                print_str_opt("codec_long_name", "unknown");
+            }
+        } else if ((cd = avcodec_descriptor_get(stream->codec->codec_id))) {
+            print_str_opt("codec_name", cd->name);
+            if (!do_bitexact) {
+                print_str_opt("codec_long_name",
+                              cd->long_name ? cd->long_name : "unknown");
             }
         } else {
             print_str_opt("codec_name", "unknown");
@@ -2036,6 +2111,29 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
             if (s) print_str    ("pix_fmt", s);
             else   print_str_opt("pix_fmt", "unknown");
             print_int("level",   dec_ctx->level);
+            if (dec_ctx->color_range != AVCOL_RANGE_UNSPECIFIED)
+                print_str    ("color_range", av_color_range_name(dec_ctx->color_range));
+            else
+                print_str_opt("color_range", "N/A");
+            s = av_get_colorspace_name(dec_ctx->colorspace);
+            if (s) print_str    ("color_space", s);
+            else   print_str_opt("color_space", "unknown");
+
+            if (dec_ctx->color_trc != AVCOL_TRC_UNSPECIFIED)
+                print_str("color_transfer", av_color_transfer_name(dec_ctx->color_trc));
+            else
+                print_str_opt("color_transfer", av_color_transfer_name(dec_ctx->color_trc));
+
+            if (dec_ctx->color_primaries != AVCOL_PRI_UNSPECIFIED)
+                print_str("color_primaries", av_color_primaries_name(dec_ctx->color_primaries));
+            else
+                print_str_opt("color_primaries", av_color_primaries_name(dec_ctx->color_primaries));
+
+            if (dec_ctx->chroma_sample_location != AVCHROMA_LOC_UNSPECIFIED)
+                print_str("chroma_location", av_chroma_location_name(dec_ctx->chroma_sample_location));
+            else
+                print_str_opt("chroma_location", av_chroma_location_name(dec_ctx->chroma_sample_location));
+
             if (dec_ctx->timecode_frame_start >= 0) {
                 char tcbuf[AV_TIMECODE_STR_SIZE];
                 av_timecode_make_mpeg_tc_string(tcbuf, dec_ctx->timecode_frame_start);
@@ -2043,6 +2141,7 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
             } else {
                 print_str_opt("timecode", "N/A");
             }
+            print_int("refs", dec_ctx->refs);
             break;
 
         case AVMEDIA_TYPE_AUDIO:
@@ -2100,6 +2199,10 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
     print_time("duration",    stream->duration, &stream->time_base);
     if (dec_ctx->bit_rate > 0) print_val    ("bit_rate", dec_ctx->bit_rate, unit_bit_per_second_str);
     else                       print_str_opt("bit_rate", "N/A");
+    if (dec_ctx->rc_max_rate > 0) print_val ("max_bit_rate", dec_ctx->rc_max_rate, unit_bit_per_second_str);
+    else                       print_str_opt("max_bit_rate", "N/A");
+    if (dec_ctx->bits_per_raw_sample > 0) print_fmt("bits_per_raw_sample", "%d", dec_ctx->bits_per_raw_sample);
+    else                       print_str_opt("bits_per_raw_sample", "N/A");
     if (stream->nb_frames) print_fmt    ("nb_frames", "%"PRId64, stream->nb_frames);
     else                   print_str_opt("nb_frames", "N/A");
     if (nb_streams_frames[stream_idx])  print_fmt    ("nb_read_frames", "%"PRIu64, nb_streams_frames[stream_idx]);
@@ -2109,6 +2212,8 @@ static int show_stream(WriterContext *w, AVFormatContext *fmt_ctx, int stream_id
     if (do_show_data)
         writer_print_data(w, "extradata", dec_ctx->extradata,
                                           dec_ctx->extradata_size);
+    writer_print_data_hash(w, "extradata_hash", dec_ctx->extradata,
+                                                dec_ctx->extradata_size);
 
     /* Print disposition information */
 #define PRINT_DISPOSITION(flagname, name) do {                                \
@@ -2282,12 +2387,20 @@ static int open_input_file(AVFormatContext **fmt_ctx_ptr, const char *filename)
     AVFormatContext *fmt_ctx = NULL;
     AVDictionaryEntry *t;
     AVDictionary **opts;
+    int scan_all_pmts_set = 0;
 
+    if (!av_dict_get(format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE)) {
+        av_dict_set(&format_opts, "scan_all_pmts", "1", AV_DICT_DONT_OVERWRITE);
+        scan_all_pmts_set = 1;
+    }
     if ((err = avformat_open_input(&fmt_ctx, filename,
                                    iformat, &format_opts)) < 0) {
         print_error(filename, err);
         return err;
     }
+    *fmt_ctx_ptr = fmt_ctx;
+    if (scan_all_pmts_set)
+        av_dict_set(&format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE);
     if ((t = av_dict_get(format_opts, "", NULL, AV_DICT_IGNORE_SUFFIX))) {
         av_log(NULL, AV_LOG_ERROR, "Option %s not found.\n", t->key);
         return AVERROR_OPTION_NOT_FOUND;
@@ -2297,13 +2410,16 @@ static int open_input_file(AVFormatContext **fmt_ctx_ptr, const char *filename)
     opts = setup_find_stream_info_opts(fmt_ctx, codec_opts);
     orig_nb_streams = fmt_ctx->nb_streams;
 
-    if ((err = avformat_find_stream_info(fmt_ctx, opts)) < 0) {
-        print_error(filename, err);
-        return err;
-    }
+    err = avformat_find_stream_info(fmt_ctx, opts);
+
     for (i = 0; i < orig_nb_streams; i++)
         av_dict_free(&opts[i]);
     av_freep(&opts);
+
+    if (err < 0) {
+        print_error(filename, err);
+        return err;
+    }
 
     av_dump_format(fmt_ctx, 0, filename, 0);
 
@@ -2354,7 +2470,7 @@ static void close_input_file(AVFormatContext **ctx_ptr)
 
 static int probe_file(WriterContext *wctx, const char *filename)
 {
-    AVFormatContext *fmt_ctx;
+    AVFormatContext *fmt_ctx = NULL;
     int ret, i;
     int section_id;
 
@@ -2363,13 +2479,14 @@ static int probe_file(WriterContext *wctx, const char *filename)
 
     ret = open_input_file(&fmt_ctx, filename);
     if (ret < 0)
-        return ret;
+        goto end;
 
 #define CHECK_END if (ret < 0) goto end
 
-    nb_streams_frames  = av_calloc(fmt_ctx->nb_streams, sizeof(*nb_streams_frames));
-    nb_streams_packets = av_calloc(fmt_ctx->nb_streams, sizeof(*nb_streams_packets));
-    selected_streams   = av_calloc(fmt_ctx->nb_streams, sizeof(*selected_streams));
+    nb_streams = fmt_ctx->nb_streams;
+    REALLOCZ_ARRAY_STREAM(nb_streams_frames,0,fmt_ctx->nb_streams);
+    REALLOCZ_ARRAY_STREAM(nb_streams_packets,0,fmt_ctx->nb_streams);
+    REALLOCZ_ARRAY_STREAM(selected_streams,0,fmt_ctx->nb_streams);
 
     for (i = 0; i < fmt_ctx->nb_streams; i++) {
         if (stream_specifier) {
@@ -2420,7 +2537,8 @@ static int probe_file(WriterContext *wctx, const char *filename)
     }
 
 end:
-    close_input_file(&fmt_ctx);
+    if (fmt_ctx)
+        close_input_file(&fmt_ctx);
     av_freep(&nb_streams_frames);
     av_freep(&nb_streams_packets);
     av_freep(&selected_streams);
@@ -2444,8 +2562,6 @@ static void ffprobe_show_program_version(WriterContext *w)
     print_str("version", FFMPEG_VERSION);
     print_fmt("copyright", "Copyright (c) %d-%d the FFmpeg developers",
               program_birth_year, CONFIG_THIS_YEAR);
-    print_str("build_date", __DATE__);
-    print_str("build_time", __TIME__);
     print_str("compiler_ident", CC_IDENT);
     print_str("configuration", FFMPEG_CONFIGURATION);
     writer_print_section_footer(w);
@@ -2479,6 +2595,58 @@ static void ffprobe_show_library_versions(WriterContext *w)
     SHOW_LIB_VERSION(swscale,    SWSCALE);
     SHOW_LIB_VERSION(swresample, SWRESAMPLE);
     SHOW_LIB_VERSION(postproc,   POSTPROC);
+    writer_print_section_footer(w);
+}
+
+#define PRINT_PIX_FMT_FLAG(flagname, name)                                \
+    do {                                                                  \
+        print_int(name, !!(pixdesc->flags & AV_PIX_FMT_FLAG_##flagname)); \
+    } while (0)
+
+static void ffprobe_show_pixel_formats(WriterContext *w)
+{
+    const AVPixFmtDescriptor *pixdesc = NULL;
+    int i, n;
+
+    writer_print_section_header(w, SECTION_ID_PIXEL_FORMATS);
+    while (pixdesc = av_pix_fmt_desc_next(pixdesc)) {
+        writer_print_section_header(w, SECTION_ID_PIXEL_FORMAT);
+        print_str("name", pixdesc->name);
+        print_int("nb_components", pixdesc->nb_components);
+        if ((pixdesc->nb_components >= 3) && !(pixdesc->flags & AV_PIX_FMT_FLAG_RGB)) {
+            print_int    ("log2_chroma_w", pixdesc->log2_chroma_w);
+            print_int    ("log2_chroma_h", pixdesc->log2_chroma_h);
+        } else {
+            print_str_opt("log2_chroma_w", "N/A");
+            print_str_opt("log2_chroma_h", "N/A");
+        }
+        n = av_get_bits_per_pixel(pixdesc);
+        if (n) print_int    ("bits_per_pixel", n);
+        else   print_str_opt("bits_per_pixel", "N/A");
+        if (do_show_pixel_format_flags) {
+            writer_print_section_header(w, SECTION_ID_PIXEL_FORMAT_FLAGS);
+            PRINT_PIX_FMT_FLAG(BE,        "big_endian");
+            PRINT_PIX_FMT_FLAG(PAL,       "palette");
+            PRINT_PIX_FMT_FLAG(BITSTREAM, "bitstream");
+            PRINT_PIX_FMT_FLAG(HWACCEL,   "hwaccel");
+            PRINT_PIX_FMT_FLAG(PLANAR,    "planar");
+            PRINT_PIX_FMT_FLAG(RGB,       "rgb");
+            PRINT_PIX_FMT_FLAG(PSEUDOPAL, "pseudopal");
+            PRINT_PIX_FMT_FLAG(ALPHA,     "alpha");
+            writer_print_section_footer(w);
+        }
+        if (do_show_pixel_format_components && (pixdesc->nb_components > 0)) {
+            writer_print_section_header(w, SECTION_ID_PIXEL_FORMAT_COMPONENTS);
+            for (i = 0; i < pixdesc->nb_components; i++) {
+                writer_print_section_header(w, SECTION_ID_PIXEL_FORMAT_COMPONENT);
+                print_int("index", i + 1);
+                print_int("bit_depth", pixdesc->comp[i].depth_minus1 + 1);
+                writer_print_section_footer(w);
+            }
+            writer_print_section_footer(w);
+        }
+        writer_print_section_footer(w);
+    }
     writer_print_section_footer(w);
 }
 
@@ -2717,7 +2885,7 @@ static int parse_read_intervals(const char *intervals_spec)
             n++;
     n++;
 
-    read_intervals = av_malloc(n * sizeof(*read_intervals));
+    read_intervals = av_malloc_array(n, sizeof(*read_intervals));
     if (!read_intervals) {
         ret = AVERROR(ENOMEM);
         goto end;
@@ -2815,6 +2983,7 @@ DEFINE_OPT_SHOW_SECTION(format,           FORMAT);
 DEFINE_OPT_SHOW_SECTION(frames,           FRAMES);
 DEFINE_OPT_SHOW_SECTION(library_versions, LIBRARY_VERSIONS);
 DEFINE_OPT_SHOW_SECTION(packets,          PACKETS);
+DEFINE_OPT_SHOW_SECTION(pixel_formats,    PIXEL_FORMATS);
 DEFINE_OPT_SHOW_SECTION(program_version,  PROGRAM_VERSION);
 DEFINE_OPT_SHOW_SECTION(streams,          STREAMS);
 DEFINE_OPT_SHOW_SECTION(programs,         PROGRAMS);
@@ -2836,6 +3005,7 @@ static const OptionDef real_options[] = {
     { "select_streams", OPT_STRING | HAS_ARG, {(void*)&stream_specifier}, "select the specified streams", "stream_specifier" },
     { "sections", OPT_EXIT, {.func_arg = opt_sections}, "print sections structure and section information, and exit" },
     { "show_data",    OPT_BOOL, {(void*)&do_show_data}, "show packets data" },
+    { "show_data_hash", OPT_STRING | HAS_ARG, {(void*)&show_data_hash}, "show packets data hash" },
     { "show_error",   0, {(void*)&opt_show_error},  "show probing error" },
     { "show_format",  0, {(void*)&opt_show_format}, "show format/container info" },
     { "show_frames",  0, {(void*)&opt_show_frames}, "show frames info" },
@@ -2852,6 +3022,7 @@ static const OptionDef real_options[] = {
     { "show_program_version",  0, {(void*)&opt_show_program_version},  "show ffprobe version" },
     { "show_library_versions", 0, {(void*)&opt_show_library_versions}, "show library versions" },
     { "show_versions",         0, {(void*)&opt_show_versions}, "show program and library versions" },
+    { "show_pixel_formats", 0, {(void*)&opt_show_pixel_formats}, "show pixel format descriptions" },
     { "show_private_data", OPT_BOOL, {(void*)&show_private_data}, "show private data" },
     { "private",           OPT_BOOL, {(void*)&show_private_data}, "same as show_private_data" },
     { "bitexact", OPT_BOOL, {&do_bitexact}, "force bitexact output" },
@@ -2908,6 +3079,9 @@ int main(int argc, char **argv)
     SET_DO_SHOW(FRAMES, frames);
     SET_DO_SHOW(LIBRARY_VERSIONS, library_versions);
     SET_DO_SHOW(PACKETS, packets);
+    SET_DO_SHOW(PIXEL_FORMATS, pixel_formats);
+    SET_DO_SHOW(PIXEL_FORMAT_FLAGS, pixel_format_flags);
+    SET_DO_SHOW(PIXEL_FORMAT_COMPONENTS, pixel_format_components);
     SET_DO_SHOW(PROGRAM_VERSION, program_version);
     SET_DO_SHOW(PROGRAMS, programs);
     SET_DO_SHOW(STREAMS, streams);
@@ -2939,6 +3113,21 @@ int main(int argc, char **argv)
     w_name = av_strtok(print_format, "=", &buf);
     w_args = buf;
 
+    if (show_data_hash) {
+        if ((ret = av_hash_alloc(&hash, show_data_hash)) < 0) {
+            if (ret == AVERROR(EINVAL)) {
+                const char *n;
+                av_log(NULL, AV_LOG_ERROR,
+                       "Unknown hash algorithm '%s'\nKnown algorithms:",
+                       show_data_hash);
+                for (i = 0; (n = av_hash_names(i)); i++)
+                    av_log(NULL, AV_LOG_ERROR, " %s", n);
+                av_log(NULL, AV_LOG_ERROR, "\n");
+            }
+            goto end;
+        }
+    }
+
     w = writer_get_by_name(w_name);
     if (!w) {
         av_log(NULL, AV_LOG_ERROR, "Unknown output format with name '%s'\n", w_name);
@@ -2957,10 +3146,12 @@ int main(int argc, char **argv)
             ffprobe_show_program_version(wctx);
         if (do_show_library_versions)
             ffprobe_show_library_versions(wctx);
+        if (do_show_pixel_formats)
+            ffprobe_show_pixel_formats(wctx);
 
         if (!input_filename &&
             ((do_show_format || do_show_programs || do_show_streams || do_show_chapters || do_show_packets || do_show_error) ||
-             (!do_show_program_version && !do_show_library_versions))) {
+             (!do_show_program_version && !do_show_library_versions && !do_show_pixel_formats))) {
             show_usage();
             av_log(NULL, AV_LOG_ERROR, "You have to specify one input file.\n");
             av_log(NULL, AV_LOG_ERROR, "Use -h to get full help or, even better, run 'man %s'.\n", program_name);
@@ -2978,6 +3169,7 @@ int main(int argc, char **argv)
 end:
     av_freep(&print_format);
     av_freep(&read_intervals);
+    av_hash_freep(&hash);
 
     uninit_opts();
     for (i = 0; i < FF_ARRAY_ELEMS(sections); i++)

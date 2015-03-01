@@ -51,9 +51,12 @@ typedef struct {
     ASS_Track    *track;
     char *filename;
     char *charenc;
+    char *force_style;
+    int stream_index;
     uint8_t rgba_map[4];
     int     pix_step[4];       ///< steps per pixel for each plane of the main output
     int original_w, original_h;
+    int shaping;
     FFDrawContext draw;
 } AssContext;
 
@@ -67,19 +70,21 @@ typedef struct {
 
 /* libass supports a log level ranging from 0 to 7 */
 static const int ass_libavfilter_log_level_map[] = {
-    AV_LOG_QUIET,               /* 0 */
-    AV_LOG_PANIC,               /* 1 */
-    AV_LOG_FATAL,               /* 2 */
-    AV_LOG_ERROR,               /* 3 */
-    AV_LOG_WARNING,             /* 4 */
-    AV_LOG_INFO,                /* 5 */
-    AV_LOG_VERBOSE,             /* 6 */
-    AV_LOG_DEBUG,               /* 7 */
+    [0] = AV_LOG_FATAL,     /* MSGL_FATAL */
+    [1] = AV_LOG_ERROR,     /* MSGL_ERR */
+    [2] = AV_LOG_WARNING,   /* MSGL_WARN */
+    [3] = AV_LOG_WARNING,   /* <undefined> */
+    [4] = AV_LOG_INFO,      /* MSGL_INFO */
+    [5] = AV_LOG_INFO,      /* <undefined> */
+    [6] = AV_LOG_VERBOSE,   /* MSGL_V */
+    [7] = AV_LOG_DEBUG,     /* MSGL_DBG2 */
 };
 
 static void ass_log(int ass_level, const char *fmt, va_list args, void *ctx)
 {
-    int level = ass_libavfilter_log_level_map[ass_level];
+    const int ass_level_clip = av_clip(ass_level, 0,
+        FF_ARRAY_ELEMS(ass_libavfilter_log_level_map) - 1);
+    const int level = ass_libavfilter_log_level_map[ass_level_clip];
 
     av_vlog(ctx, level, fmt, args);
     av_log(ctx, level, "\n");
@@ -107,7 +112,6 @@ static av_cold int init(AVFilterContext *ctx)
         return AVERROR(EINVAL);
     }
 
-    ass_set_fonts(ass->renderer, NULL, NULL, 1, NULL, 1);
     return 0;
 }
 
@@ -139,6 +143,8 @@ static int config_input(AVFilterLink *inlink)
     if (ass->original_w && ass->original_h)
         ass_set_aspect_ratio(ass->renderer, (double)inlink->w / inlink->h,
                              (double)ass->original_w / ass->original_h);
+    if (ass->shaping != -1)
+        ass_set_shaper(ass->renderer, ass->shaping);
 
     return 0;
 }
@@ -147,7 +153,7 @@ static int config_input(AVFilterLink *inlink)
 #define AR(c)  ( (c)>>24)
 #define AG(c)  (((c)>>16)&0xFF)
 #define AB(c)  (((c)>>8) &0xFF)
-#define AA(c)  ((0xFF-c) &0xFF)
+#define AA(c)  ((0xFF-(c)) &0xFF)
 
 static void overlay_ass_image(AssContext *ass, AVFrame *picref,
                               const ASS_Image *image)
@@ -205,6 +211,10 @@ static const AVFilterPad ass_outputs[] = {
 
 static const AVOption ass_options[] = {
     COMMON_OPTIONS
+    {"shaping", "set shaping engine", OFFSET(shaping), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 1, FLAGS, "shaping_mode"},
+        {"auto", NULL,                 0, AV_OPT_TYPE_CONST, {.i64 = -1},                  INT_MIN, INT_MAX, FLAGS, "shaping_mode"},
+        {"simple",  "simple shaping",  0, AV_OPT_TYPE_CONST, {.i64 = ASS_SHAPING_SIMPLE},  INT_MIN, INT_MAX, FLAGS, "shaping_mode"},
+        {"complex", "complex shaping", 0, AV_OPT_TYPE_CONST, {.i64 = ASS_SHAPING_COMPLEX}, INT_MIN, INT_MAX, FLAGS, "shaping_mode"},
     {NULL},
 };
 
@@ -217,6 +227,9 @@ static av_cold int init_ass(AVFilterContext *ctx)
 
     if (ret < 0)
         return ret;
+
+    /* Initialize fonts */
+    ass_set_fonts(ass->renderer, NULL, NULL, 1, NULL, 1);
 
     ass->track = ass_read_file(ass->library, ass->filename, NULL);
     if (!ass->track) {
@@ -245,15 +258,42 @@ AVFilter ff_vf_ass = {
 
 static const AVOption subtitles_options[] = {
     COMMON_OPTIONS
-    {"charenc", "set input character encoding", OFFSET(charenc), AV_OPT_TYPE_STRING, {.str = NULL}, CHAR_MIN, CHAR_MAX, FLAGS},
+    {"charenc",      "set input character encoding", OFFSET(charenc),      AV_OPT_TYPE_STRING, {.str = NULL}, CHAR_MIN, CHAR_MAX, FLAGS},
+    {"stream_index", "set stream index",             OFFSET(stream_index), AV_OPT_TYPE_INT,    { .i64 = -1 }, -1,       INT_MAX,  FLAGS},
+    {"si",           "set stream index",             OFFSET(stream_index), AV_OPT_TYPE_INT,    { .i64 = -1 }, -1,       INT_MAX,  FLAGS},
+    {"force_style",  "force subtitle style",         OFFSET(force_style),  AV_OPT_TYPE_STRING, {.str = NULL}, CHAR_MIN, CHAR_MAX, FLAGS},
     {NULL},
 };
+
+static const char * const font_mimetypes[] = {
+    "application/x-truetype-font",
+    "application/vnd.ms-opentype",
+    "application/x-font-ttf",
+    NULL
+};
+
+static int attachment_is_font(AVStream * st)
+{
+    const AVDictionaryEntry *tag = NULL;
+    int n;
+
+    tag = av_dict_get(st->metadata, "mimetype", NULL, AV_DICT_MATCH_CASE);
+
+    if (tag) {
+        for (n = 0; font_mimetypes[n]; n++) {
+            if (av_strcasecmp(font_mimetypes[n], tag->value) == 0)
+                return 1;
+        }
+    }
+    return 0;
+}
 
 AVFILTER_DEFINE_CLASS(subtitles);
 
 static av_cold int init_subtitles(AVFilterContext *ctx)
 {
-    int ret, sid;
+    int j, ret, sid;
+    int k = 0;
     AVDictionary *codec_opts = NULL;
     AVFormatContext *fmt = NULL;
     AVCodecContext *dec_ctx = NULL;
@@ -284,7 +324,23 @@ static av_cold int init_subtitles(AVFilterContext *ctx)
         goto end;
 
     /* Locate subtitles stream */
-    ret = av_find_best_stream(fmt, AVMEDIA_TYPE_SUBTITLE, -1, -1, NULL, 0);
+    if (ass->stream_index < 0)
+        ret = av_find_best_stream(fmt, AVMEDIA_TYPE_SUBTITLE, -1, -1, NULL, 0);
+    else {
+        ret = -1;
+        if (ass->stream_index < fmt->nb_streams) {
+            for (j = 0; j < fmt->nb_streams; j++) {
+                if (fmt->streams[j]->codec->codec_type == AVMEDIA_TYPE_SUBTITLE) {
+                    if (ass->stream_index == k) {
+                        ret = j;
+                        break;
+                    }
+                    k++;
+                }
+            }
+        }
+    }
+
     if (ret < 0) {
         av_log(ctx, AV_LOG_ERROR, "Unable to locate subtitle stream in %s\n",
                ass->filename);
@@ -292,6 +348,31 @@ static av_cold int init_subtitles(AVFilterContext *ctx)
     }
     sid = ret;
     st = fmt->streams[sid];
+
+    /* Load attached fonts */
+    for (j = 0; j < fmt->nb_streams; j++) {
+        AVStream *st = fmt->streams[j];
+        if (st->codec->codec_type == AVMEDIA_TYPE_ATTACHMENT &&
+            attachment_is_font(st)) {
+            const AVDictionaryEntry *tag = NULL;
+            tag = av_dict_get(st->metadata, "filename", NULL,
+                              AV_DICT_MATCH_CASE);
+
+            if (tag) {
+                av_log(ctx, AV_LOG_DEBUG, "Loading attached font: %s\n",
+                       tag->value);
+                ass_add_font(ass->library, tag->value,
+                             st->codec->extradata,
+                             st->codec->extradata_size);
+            } else {
+                av_log(ctx, AV_LOG_WARNING,
+                       "Font attachment has no filename, ignored.\n");
+            }
+        }
+    }
+
+    /* Initialize fonts */
+    ass_set_fonts(ass->renderer, NULL, NULL, 1, NULL, 1);
 
     /* Open decoder */
     dec_ctx = st->codec;
@@ -313,6 +394,27 @@ static av_cold int init_subtitles(AVFilterContext *ctx)
     if (ret < 0)
         goto end;
 
+    if (ass->force_style) {
+        char **list = NULL;
+        char *temp = NULL;
+        char *ptr = av_strtok(ass->force_style, ",", &temp);
+        int i = 0;
+        while (ptr) {
+            av_dynarray_add(&list, &i, ptr);
+            if (!list) {
+                ret = AVERROR(ENOMEM);
+                goto end;
+            }
+            ptr = av_strtok(NULL, ",", &temp);
+        }
+        av_dynarray_add(&list, &i, NULL);
+        if (!list) {
+            ret = AVERROR(ENOMEM);
+            goto end;
+        }
+        ass_set_style_overrides(ass->library, list);
+        av_free(list);
+    }
     /* Decode subtitles and push them into the renderer (libass) */
     if (dec_ctx->subtitle_header)
         ass_process_codec_private(ass->track,

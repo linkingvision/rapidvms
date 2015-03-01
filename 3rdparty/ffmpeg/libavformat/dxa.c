@@ -19,6 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include <inttypes.h>
+
 #include "libavutil/intreadwrite.h"
 #include "avformat.h"
 #include "internal.h"
@@ -26,7 +28,7 @@
 
 #define DXA_EXTRA_SIZE  9
 
-typedef struct{
+typedef struct DXAContext {
     int frames;
     int has_sound;
     int bpc;
@@ -104,13 +106,13 @@ static int dxa_read_header(AVFormatContext *s)
         ast = avformat_new_stream(s, NULL);
         if (!ast)
             return AVERROR(ENOMEM);
-        ret = ff_get_wav_header(pb, ast->codec, fsize);
+        ret = ff_get_wav_header(pb, ast->codec, fsize, 0);
         if (ret < 0)
             return ret;
         if (ast->codec->sample_rate > 0)
             avpriv_set_pts_info(ast, 64, 1, ast->codec->sample_rate);
         // find 'data' chunk
-        while(avio_tell(pb) < c->vidpos && !url_feof(pb)){
+        while(avio_tell(pb) < c->vidpos && !avio_feof(pb)){
             tag = avio_rl32(pb);
             fsize = avio_rl32(pb);
             if(tag == MKTAG('d', 'a', 't', 'a')) break;
@@ -168,7 +170,7 @@ static int dxa_read_packet(AVFormatContext *s, AVPacket *pkt)
         return 0;
     }
     avio_seek(s->pb, c->vidpos, SEEK_SET);
-    while(!url_feof(s->pb) && c->frames){
+    while(!avio_feof(s->pb) && c->frames){
         if ((ret = avio_read(s->pb, buf, 4)) != 4) {
             av_log(s, AV_LOG_ERROR, "failed reading chunk type\n");
             return ret < 0 ? ret : AVERROR_INVALIDDATA;
@@ -196,7 +198,8 @@ static int dxa_read_packet(AVFormatContext *s, AVPacket *pkt)
             }
             size = AV_RB32(buf + 5);
             if(size > 0xFFFFFF){
-                av_log(s, AV_LOG_ERROR, "Frame size is too big: %d\n", size);
+                av_log(s, AV_LOG_ERROR, "Frame size is too big: %"PRIu32"\n",
+                       size);
                 return AVERROR_INVALIDDATA;
             }
             if(av_new_packet(pkt, size + DXA_EXTRA_SIZE + pal_size) < 0)

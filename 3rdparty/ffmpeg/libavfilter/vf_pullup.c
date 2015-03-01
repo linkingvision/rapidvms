@@ -69,7 +69,7 @@ static int query_formats(AVFilterContext *ctx)
 
 #define ABS(a) (((a) ^ ((a) >> 31)) - ((a) >> 31))
 
-static int diff_c(const uint8_t *a, const uint8_t *b, int s)
+static int diff_c(const uint8_t *a, const uint8_t *b, ptrdiff_t s)
 {
     int i, j, diff = 0;
 
@@ -83,7 +83,7 @@ static int diff_c(const uint8_t *a, const uint8_t *b, int s)
     return diff;
 }
 
-static int comb_c(const uint8_t *a, const uint8_t *b, int s)
+static int comb_c(const uint8_t *a, const uint8_t *b, ptrdiff_t s)
 {
     int i, j, comb = 0;
 
@@ -98,7 +98,7 @@ static int comb_c(const uint8_t *a, const uint8_t *b, int s)
     return comb;
 }
 
-static int var_c(const uint8_t *a, const uint8_t *b, int s)
+static int var_c(const uint8_t *a, const uint8_t *b, ptrdiff_t s)
 {
     int i, j, var = 0;
 
@@ -137,7 +137,7 @@ static void free_field_queue(PullupField *head)
         av_free(f->combs);
         av_free(f->vars);
         next = f->next;
-        memset(f, 0, sizeof(*f));
+        memset(f, 0, sizeof(*f)); // clear all pointers to avoid stale ones
         av_free(f);
         f = next;
     } while (f != head);
@@ -389,8 +389,8 @@ static void compute_affinity(PullupContext *s, PullupField *f)
         int v  = f->vars[i];
         int lv = f->prev->vars[i];
         int rv = f->next->vars[i];
-        int lc = f->combs[i] - (v + lv) + ABS(v - lv);
-        int rc = f->next->combs[i] - (v + rv) + ABS(v - rv);
+        int lc = f->      combs[i] - 2*(v < lv ? v : lv);
+        int rc = f->next->combs[i] - 2*(v < rv ? v : rv);
 
         lc = FFMAX(lc, 0);
         rc = FFMAX(rc, 0);
@@ -531,7 +531,7 @@ static void pullup_release_frame(PullupFrame *f)
 
 static void compute_metric(PullupContext *s, int *dest,
                            PullupField *fa, int pa, PullupField *fb, int pb,
-                           int (*func)(const uint8_t *, const uint8_t *, int))
+                           int (*func)(const uint8_t *, const uint8_t *, ptrdiff_t))
 {
     int mp = s->metric_plane;
     int xstep = 8;

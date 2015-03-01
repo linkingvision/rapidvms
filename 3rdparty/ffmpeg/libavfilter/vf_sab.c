@@ -180,7 +180,7 @@ static int open_filter_param(FilterParam *f, int width, int height, unsigned int
     vec = sws_getGaussianVec(f->radius, f->quality);
     f->dist_width    = vec->length;
     f->dist_linesize = FFALIGN(vec->length, 8);
-    f->dist_coeff    = av_malloc(f->dist_width * f->dist_linesize * sizeof(*f->dist_coeff));
+    f->dist_coeff    = av_malloc_array(f->dist_width, f->dist_linesize * sizeof(*f->dist_coeff));
     if (!f->dist_coeff) {
         sws_freeVec(vec);
         return AVERROR(ENOMEM);
@@ -253,8 +253,7 @@ static void blur(uint8_t       *dst, const int dst_linesize,
                 for (dy = 0; dy < radius*2 + 1; dy++) {
                     int dx;
                     int iy = y+dy - radius;
-                    if      (iy < 0)  iy = -iy;
-                    else if (iy >= h) iy = h+h-iy-1;
+                    iy = avpriv_mirror(iy, h-1);
 
                     for (dx = 0; dx < radius*2 + 1; dx++) {
                         const int ix = x+dx - radius;
@@ -265,13 +264,11 @@ static void blur(uint8_t       *dst, const int dst_linesize,
                 for (dy = 0; dy < radius*2+1; dy++) {
                     int dx;
                     int iy = y+dy - radius;
-                    if      (iy <  0) iy = -iy;
-                    else if (iy >= h) iy = h+h-iy-1;
+                    iy = avpriv_mirror(iy, h-1);
 
                     for (dx = 0; dx < radius*2 + 1; dx++) {
                         int ix = x+dx - radius;
-                        if      (ix < 0)  ix = -ix;
-                        else if (ix >= w) ix = w+w-ix-1;
+                        ix = avpriv_mirror(ix, w-1);
                         UPDATE_FACTOR;
                     }
                 }

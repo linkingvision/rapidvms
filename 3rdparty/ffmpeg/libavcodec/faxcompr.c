@@ -287,8 +287,8 @@ int ff_ccitt_unpack(AVCodecContext *avctx, const uint8_t *src, int srcsize,
     int runsize = avctx->width + 2;
     int has_eol;
 
-    runs = av_malloc(runsize * sizeof(runs[0]));
-    ref  = av_malloc(runsize * sizeof(ref[0]));
+    runs = av_malloc_array(runsize, sizeof(runs[0]));
+    ref  = av_malloc_array(runsize, sizeof(ref[0]));
     if (!runs || !ref) {
         ret = AVERROR(ENOMEM);
         goto fail;
@@ -296,7 +296,8 @@ int ff_ccitt_unpack(AVCodecContext *avctx, const uint8_t *src, int srcsize,
     ref[0] = avctx->width;
     ref[1] = 0;
     ref[2] = 0;
-    init_get_bits(&gb, src, srcsize * 8);
+    if ((ret = init_get_bits8(&gb, src, srcsize)) < 0)
+        goto fail;
     has_eol = show_bits(&gb, 12) == 1 || show_bits(&gb, 16) == 1;
 
     for (j = 0; j < height; j++) {

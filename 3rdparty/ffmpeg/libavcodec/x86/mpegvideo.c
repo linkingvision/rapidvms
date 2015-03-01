@@ -25,7 +25,6 @@
 #include "libavutil/x86/cpu.h"
 #include "libavcodec/avcodec.h"
 #include "libavcodec/mpegvideo.h"
-#include "dsputil_x86.h"
 
 #if HAVE_MMX_INLINE
 
@@ -445,7 +444,7 @@ __asm__ volatile(
 
 #endif /* HAVE_MMX_INLINE */
 
-av_cold void ff_MPV_common_init_x86(MpegEncContext *s)
+av_cold void ff_mpv_common_init_x86(MpegEncContext *s)
 {
 #if HAVE_MMX_INLINE
     int cpu_flags = av_get_cpu_flags();

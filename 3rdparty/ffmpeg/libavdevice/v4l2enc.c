@@ -22,6 +22,7 @@
 #include "avdevice.h"
 
 typedef struct {
+    AVClass *class;
     int fd;
 } V4L2Context;
 
@@ -55,7 +56,7 @@ static av_cold int write_header(AVFormatContext *s1)
 
     enc_ctx = s1->streams[0]->codec;
 
-    v4l2_pixfmt = avpriv_fmt_ff2v4l(enc_ctx->pix_fmt, AV_CODEC_ID_RAWVIDEO);
+    v4l2_pixfmt = ff_fmt_ff2v4l(enc_ctx->pix_fmt, AV_CODEC_ID_RAWVIDEO);
     if (!v4l2_pixfmt) { // XXX: try to force them one by one?
         av_log(s1, AV_LOG_ERROR, "Unknown V4L2 pixel format equivalent for %s\n",
                av_get_pix_fmt_name(enc_ctx->pix_fmt));
@@ -97,6 +98,13 @@ static int write_trailer(AVFormatContext *s1)
     return 0;
 }
 
+static const AVClass v4l2_class = {
+    .class_name = "V4L2 outdev",
+    .item_name  = av_default_item_name,
+    .version    = LIBAVUTIL_VERSION_INT,
+    .category   = AV_CLASS_CATEGORY_DEVICE_VIDEO_OUTPUT,
+};
+
 AVOutputFormat ff_v4l2_muxer = {
     .name           = "v4l2",
     .long_name      = NULL_IF_CONFIG_SMALL("Video4Linux2 output device"),
@@ -107,4 +115,5 @@ AVOutputFormat ff_v4l2_muxer = {
     .write_packet   = write_packet,
     .write_trailer  = write_trailer,
     .flags          = AVFMT_NOFILE,
+    .priv_class     = &v4l2_class,
 };

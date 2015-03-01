@@ -7,7 +7,7 @@ all the encoders and decoders. In addition each codec may support
 so-called private options, which are specific for a given codec.
 
 Sometimes, a global option may only affect a specific kind of codec,
-and may be unsensical or ignored by another, so you need to be aware
+and may be nonsensical or ignored by another, so you need to be aware
 of the meaning of the specified options. Also some options are
 meant only for decoding or encoding.
 
@@ -71,7 +71,9 @@ Force low delay.
 @item global_header
 Place global headers in extradata instead of every keyframe.
 @item bitexact
-Use only bitexact stuff (except (I)DCT).
+Only write platform-, build- and time-independent data. (except (I)DCT).
+This ensures that file and data checksums are reproducible and match between
+platforms. Its primary use is for regression testing.
 @item aic
 Apply H263 advanced intra coding / mpeg4 ac prediction.
 @item cbp
@@ -285,6 +287,11 @@ detect bitstream specification deviations
 detect improper bitstream length
 @item explode
 abort decoding on minor error detection
+@item ignore_err
+ignore decoding errors, and continue decoding.
+This is useful if you want to analyze the content of a video and thus want
+everything to be decoded no matter what. This option will not result in a video
+that is pleasing to watch in case of errors.
 @item careful
 consider things that violate the spec and have not been seen in the wild as errors
 @item compliant
@@ -389,6 +396,9 @@ Possible values:
 
 @item simplemmx
 
+@item simpleauto
+Automatically pick a IDCT compatible with the simple one
+
 @item arm
 
 @item altivec
@@ -424,6 +434,8 @@ Possible values:
 iterative motion vector (MV) search (slow)
 @item deblock
 use strong deblock filter for damaged MBs
+@item favor_inter
+favor predicting from the previous frame instead of the current
 @end table
 
 @item bits_per_coded_sample @var{integer}
@@ -483,10 +495,14 @@ visualize block types
 picture buffer allocations
 @item thread_ops
 threading operations
+@item nomc
+skip motion compensation
 @end table
 
 @item vismv @var{integer} (@emph{decoding,video})
 Visualize motion vectors (MVs).
+
+This option is deprecated, see the codecview filter instead.
 
 Possible values:
 @table @samp
@@ -787,6 +803,9 @@ Frame data might be split into multiple chunks.
 Show all frames before the first keyframe.
 @item skiprd
 Deprecated, use mpegvideo private options instead.
+@item export_mvs
+Export motion vectors into frame side-data (see @code{AV_FRAME_DATA_MOTION_VECTORS})
+for codecs that support it. See also @file{doc/examples/export_mvs.c}.
 @end table
 
 @item error @var{integer} (@emph{encoding,video})
@@ -846,6 +865,14 @@ Possible values:
 
 @item mpeg2_aac_he
 
+@item mpeg4_sp
+
+@item mpeg4_core
+
+@item mpeg4_main
+
+@item mpeg4_asp
+
 @item dts
 
 @item dts_es
@@ -879,7 +906,7 @@ Set frame skip factor.
 Set frame skip exponent.
 Negative values behave identical to the corresponding positive ones, except
 that the score is normalized.
-Positive values exist primarly for compatibility reasons and are not so useful.
+Positive values exist primarily for compatibility reasons and are not so useful.
 
 @item skipcmp @var{integer} (@emph{encoding,video})
 Set frame skip compare function.
@@ -1025,15 +1052,26 @@ Set the log level offset.
 Number of slices, used in parallelized encoding.
 
 @item thread_type @var{flags} (@emph{decoding/encoding,video})
-Select multithreading type.
+Select which multithreading methods to use.
+
+Use of @samp{frame} will increase decoding delay by one frame per
+thread, so clients which cannot provide future frames should not use
+it.
 
 Possible values:
 @table @samp
 @item slice
+Decode more than one part of a single frame at once.
+
+Multithreading using slices works only when the video was encoded with
+slices.
 
 @item frame
-
+Decode more than one frame at once.
 @end table
+
+Default value is @samp{slice+frame}.
+
 @item audio_service_type @var{integer} (@emph{encoding,audio})
 Set audio service type.
 
@@ -1088,6 +1126,19 @@ Interlaced video, bottom coded first, top displayed first
 Set to 1 to disable processing alpha (transparency). This works like the
 @samp{gray} flag in the @option{flags} option which skips chroma information
 instead of alpha. Default is 0.
+
+@item codec_whitelist @var{list} (@emph{input})
+"," separated List of allowed decoders. By default all are allowed.
+
+@item dump_separator @var{string} (@emph{input})
+Separator used to separate the fields printed on the command line about the
+Stream parameters.
+For example to separate the fields with newlines and indention:
+@example
+ffprobe -dump_separator "
+                          "  -i ~/videos/matrixbench_mpeg2.mpg
+@end example
+
 @end table
 
 @c man end CODEC OPTIONS

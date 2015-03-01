@@ -32,7 +32,7 @@
 
 static URLProtocol *first_protocol = NULL;
 
-URLProtocol *ffurl_protocol_next(URLProtocol *prev)
+URLProtocol *ffurl_protocol_next(const URLProtocol *prev)
 {
     return prev ? prev->next : first_protocol;
 }
@@ -98,7 +98,7 @@ int ffurl_register_protocol(URLProtocol *protocol)
 {
     URLProtocol **p;
     p = &first_protocol;
-    while (*p != NULL)
+    while (*p)
         p = &(*p)->next;
     *p             = protocol;
     protocol->next = NULL;
@@ -261,7 +261,7 @@ int ffurl_alloc(URLContext **puc, const char *filename, int flags,
        return url_alloc_for_protocol(puc, p, filename, flags, int_cb);
 
     *puc = NULL;
-    if (av_strstart("https:", filename, NULL))
+    if (av_strstart(filename, "https:", NULL))
         av_log(NULL, AV_LOG_WARNING, "https protocol not found, recompile with openssl or gnutls enabled.\n");
     return AVERROR_PROTOCOL_NOT_FOUND;
 }
@@ -270,10 +270,12 @@ int ffurl_open(URLContext **puc, const char *filename, int flags,
                const AVIOInterruptCB *int_cb, AVDictionary **options)
 {
     int ret = ffurl_alloc(puc, filename, flags, int_cb);
-    if (ret)
+    if (ret < 0)
         return ret;
     if (options && (*puc)->prot->priv_data_class &&
         (ret = av_opt_set_dict((*puc)->priv_data, options)) < 0)
+        goto fail;
+    if ((ret = av_opt_set_dict(*puc, options)) < 0)
         goto fail;
     ret = ffurl_connect(*puc, options);
     if (!ret)
@@ -310,8 +312,8 @@ static inline int retry_transfer_wrapper(URLContext *h, uint8_t *buf,
             } else {
                 if (h->rw_timeout) {
                     if (!wait_since)
-                        wait_since = av_gettime();
-                    else if (av_gettime() > wait_since + h->rw_timeout)
+                        wait_since = av_gettime_relative();
+                    else if (av_gettime_relative() > wait_since + h->rw_timeout)
                         return AVERROR(EIO);
                 }
                 av_usleep(1000);
@@ -399,7 +401,7 @@ int avio_check(const char *url, int flags)
 {
     URLContext *h;
     int ret = ffurl_alloc(&h, url, flags, NULL);
-    if (ret)
+    if (ret < 0)
         return ret;
 
     if (h->prot->url_check) {

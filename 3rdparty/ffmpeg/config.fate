@@ -1,1 +1,0 @@
-config:x86:x86_32:generic:linux:gcc 4.8 (Ubuntu/Linaro 4.8.1-10ubuntu9):--disable-vaapi --disable-programs --disable-static --enable-shared --prefix=/home/ubu/work/ve/linux

@@ -162,7 +162,7 @@ typedef struct AacPsyContext{
 /**
  * LAME psy model preset struct
  */
-typedef struct {
+typedef struct PsyLamePreset {
     int   quality;  ///< Quality to map the rest of the vaules to.
      /* This is overloaded to be both kbps per channel in ABR mode, and
       * requested quality in constant quality mode.
@@ -354,7 +354,7 @@ static av_cold int psy_3gpp_init(FFPsyContext *ctx) {
         }
     }
 
-    pctx->ch = av_mallocz(sizeof(AacPsyChannel) * ctx->avctx->channels);
+    pctx->ch = av_mallocz_array(ctx->avctx->channels, sizeof(AacPsyChannel));
 
     lame_window_init(pctx, ctx->avctx);
 

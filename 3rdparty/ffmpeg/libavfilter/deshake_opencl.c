@@ -31,7 +31,7 @@
 #include "libavutil/opencl_internal.h"
 
 #define PLANE_NUM 3
-#define ROUND_TO_16(a) ((((a - 1)/16)+1)*16)
+#define ROUND_TO_16(a) (((((a) - 1)/16)+1)*16)
 
 int ff_opencl_transform(AVFilterContext *ctx,
                         int width, int height, int cw, int ch,
@@ -57,7 +57,7 @@ int ff_opencl_transform(AVFilterContext *ctx,
         av_log(ctx, AV_LOG_ERROR, "Selected interpolate method is invalid\n");
         return AVERROR(EINVAL);
     }
-    ret = ff_opencl_set_parameter(&param_lu,
+    ret = avpriv_opencl_set_parameter(&param_lu,
                                   FF_OPENCL_PARAM_INFO(deshake->opencl_ctx.cl_inbuf),
                                   FF_OPENCL_PARAM_INFO(deshake->opencl_ctx.cl_outbuf),
                                   FF_OPENCL_PARAM_INFO(packed_matrix_lu),
@@ -70,7 +70,7 @@ int ff_opencl_transform(AVFilterContext *ctx,
                                   NULL);
     if (ret < 0)
         return ret;
-    ret = ff_opencl_set_parameter(&param_ch,
+    ret = avpriv_opencl_set_parameter(&param_ch,
                                   FF_OPENCL_PARAM_INFO(deshake->opencl_ctx.cl_inbuf),
                                   FF_OPENCL_PARAM_INFO(deshake->opencl_ctx.cl_outbuf),
                                   FF_OPENCL_PARAM_INFO(packed_matrix_ch),

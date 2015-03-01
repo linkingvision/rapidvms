@@ -56,8 +56,8 @@ static av_cold int cng_encode_init(AVCodecContext *avctx)
     p->order = 10;
     if ((ret = ff_lpc_init(&p->lpc, avctx->frame_size, p->order, FF_LPC_TYPE_LEVINSON)) < 0)
         return ret;
-    p->samples32 = av_malloc(avctx->frame_size * sizeof(*p->samples32));
-    p->ref_coef = av_malloc(p->order * sizeof(*p->ref_coef));
+    p->samples32 = av_malloc_array(avctx->frame_size, sizeof(*p->samples32));
+    p->ref_coef = av_malloc_array(p->order, sizeof(*p->ref_coef));
     if (!p->samples32 || !p->ref_coef) {
         cng_encode_close(avctx);
         return AVERROR(ENOMEM);
@@ -87,7 +87,7 @@ static int cng_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
     energy /= frame->nb_samples;
     if (energy > 0) {
         double dbov = 10 * log10(energy / 1081109975);
-        qdbov = av_clip(-floor(dbov), 0, 127);
+        qdbov = av_clip_uintp2(-floor(dbov), 7);
     } else {
         qdbov = 127;
     }

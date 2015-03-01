@@ -1,6 +1,113 @@
 Entries are sorted chronologically from oldest to youngest within each release,
 releases are sorted from youngest to oldest.
 
+version <next>:
+- nvenc encoder
+- 10bit spp filter
+- colorlevels filter
+- RIFX format for *.wav files
+- RTP/mpegts muxer
+- non continuous cache protocol support
+- tblend filter
+- cropdetect support for non 8bpp, absolute (if limit >= 1) and relative (if limit < 1.0) threshold
+- Camellia symmetric block cipher
+- OpenH264 encoder wrapper
+- VOC seeking support
+- Closed caption Decoder
+- fspp, uspp, pp7 MPlayer postprocessing filters ported to native filters
+- showpalette filter
+- Twofish symmetric block cipher
+- Support DNx100 (960x720@8)
+- eq2 filter ported from libmpcodecs as eq filter
+- removed libmpcodecs
+- Changed default DNxHD colour range in QuickTime .mov derivatives to mpeg range
+- ported softpulldown filter from libmpcodecs as repeatfields filter
+- dcshift filter
+- RTP depacketizer for loss tolerant payload format for MP3 audio (RFC 5219)
+- RTP depacketizer for AC3 payload format (RFC 4184)
+- palettegen and paletteuse filters
+- VP9 RTP payload format (draft 0) experimental depacketizer
+- RTP depacketizer for DV (RFC 6469)
+- DXVA2-accelerated HEVC decoding
+- AAC ELD 480 decoding
+- Intel QSV-accelerated H.264 decoding
+- DSS SP decoder and DSS demuxer
+- Fix stsd atom corruption in DNxHD QuickTimes
+- Canopus HQX decoder
+- RTP depacketization of T.140 text (RFC 4103)
+
+
+version 2.5:
+- HEVC/H.265 RTP payload format (draft v6) packetizer
+- SUP/PGS subtitle demuxer
+- ffprobe -show_pixel_formats option
+- CAST128 symmetric block cipher, ECB mode
+- STL subtitle demuxer and decoder
+- libutvideo YUV 4:2:2 10bit support
+- XCB-based screen-grabber
+- UDP-Lite support (RFC 3828)
+- xBR scaling filter
+- AVFoundation screen capturing support
+- ffserver supports codec private options
+- creating DASH compatible fragmented MP4, MPEG-DASH segmenting muxer
+- WebP muxer with animated WebP support
+- zygoaudio decoding support
+- APNG demuxer
+- postproc visualization support
+
+
+version 2.4:
+- Icecast protocol
+- ported lenscorrection filter from frei0r filter
+- large optimizations in dctdnoiz to make it usable
+- ICY metadata are now requested by default with the HTTP protocol
+- support for using metadata in stream specifiers in fftools
+- LZMA compression support in TIFF decoder
+- H.261 RTP payload format (RFC 4587) depacketizer and experimental packetizer
+- HEVC/H.265 RTP payload format (draft v6) depacketizer
+- added codecview filter to visualize information exported by some codecs
+- Matroska 3D support thorugh side data
+- HTML generation using texi2html is deprecated in favor of makeinfo/texi2any
+- silenceremove filter
+
+
+version 2.3:
+- AC3 fixed-point decoding
+- shuffleplanes filter
+- subfile protocol
+- Phantom Cine demuxer
+- replaygain data export
+- VP7 video decoder
+- Alias PIX image encoder and decoder
+- Improvements to the BRender PIX image decoder
+- Improvements to the XBM decoder
+- QTKit input device
+- improvements to OpenEXR image decoder
+- support decoding 16-bit RLE SGI images
+- GDI screen grabbing for Windows
+- alternative rendition support for HTTP Live Streaming
+- AVFoundation input device
+- Direct Stream Digital (DSD) decoder
+- Magic Lantern Video (MLV) demuxer
+- On2 AVC (Audio for Video) decoder
+- support for decoding through DXVA2 in ffmpeg
+- libbs2b-based stereo-to-binaural audio filter
+- libx264 reference frames count limiting depending on level
+- native Opus decoder
+- display matrix export and rotation API
+- WebVTT encoder
+- showcqt multimedia filter
+- zoompan filter
+- signalstats filter
+- hqx filter (hq2x, hq3x, hq4x)
+- flanger filter
+- Image format auto-detection
+- LRC demuxer and muxer
+- Samba protocol (via libsmbclient)
+- WebM DASH Manifest muxer
+- libfribidi support in drawtext
+
+
 version 2.2:
 
 - HNM version 4 demuxer and video decoder
@@ -29,6 +136,7 @@ version 2.2:
 - libx265 encoder
 - dejudder filter
 - Autodetect VDA like all other hardware accelerations
+- aliases and defaults for Ogg subtypes (opus, spx)
 
 
 version 2.1:
@@ -216,7 +324,7 @@ version 1.1:
 - JSON captions for TED talks decoding support
 - SOX Resampler support in libswresample
 - aselect filter
-- SGI RLE 8-bit decoder
+- SGI RLE 8-bit / Silicon Graphics RLE 8-bit video decoder
 - Silicon Graphics Motion Video Compressor 1 & 2 decoder
 - Silicon Graphics Movie demuxer
 - apad filter
@@ -260,7 +368,9 @@ version 1.0:
 - RTMPE protocol support
 - RTMPTE protocol support
 - showwaves and showspectrum filter
-- LucasArts SMUSH playback support
+- LucasArts SMUSH SANM playback support
+- LucasArts SMUSH VIMA audio decoder (ADPCM)
+- LucasArts SMUSH demuxer
 - SAMI, RealText and SubViewer demuxers and decoders
 - Heart Of Darkness PAF playback support
 - iec61883 device
@@ -384,6 +494,7 @@ version 0.10:
 - ffwavesynth decoder
 - aviocat tool
 - ffeval tool
+- support encoding and decoding 4-channel SGI images
 
 
 version 0.9:

@@ -51,11 +51,12 @@ int ff_rtsp_setup_output_streams(AVFormatContext *s, const char *addr)
     char *sdp;
     AVFormatContext sdp_ctx, *ctx_array[1];
 
-    s->start_time_realtime = av_gettime();
+    if (s->start_time_realtime == 0  ||  s->start_time_realtime == AV_NOPTS_VALUE)
+        s->start_time_realtime = av_gettime();
 
     /* Announce the stream */
     sdp = av_mallocz(SDP_MAX_SIZE);
-    if (sdp == NULL)
+    if (!sdp)
         return AVERROR(ENOMEM);
     /* We create the SDP based on the RTSP AVFormatContext where we
      * aren't allowed to change the filename field. (We create the SDP
@@ -83,7 +84,7 @@ int ff_rtsp_setup_output_streams(AVFormatContext *s, const char *addr)
                                   reply, NULL, sdp, strlen(sdp));
     av_free(sdp);
     if (reply->status_code != RTSP_STATUS_OK)
-        return AVERROR_INVALIDDATA;
+        return ff_rtsp_averror(reply->status_code, AVERROR_INVALIDDATA);
 
     /* Set up the RTSPStreams for each AVStream */
     for (i = 0; i < s->nb_streams; i++) {
@@ -115,7 +116,7 @@ static int rtsp_write_record(AVFormatContext *s)
              "Range: npt=0.000-\r\n");
     ff_rtsp_send_cmd(s, "RECORD", rt->control_uri, cmd, reply, NULL);
     if (reply->status_code != RTSP_STATUS_OK)
-        return -1;
+        return ff_rtsp_averror(reply->status_code, -1);
     rt->state = RTSP_STATE_STREAMING;
     return 0;
 }
@@ -211,7 +212,7 @@ static int rtsp_write_packet(AVFormatContext *s, AVPacket *pkt)
     rtsp_st = rt->rtsp_streams[pkt->stream_index];
     rtpctx = rtsp_st->transport_priv;
 
-    ret = ff_write_chained(rtpctx, 0, pkt, s);
+    ret = ff_write_chained(rtpctx, 0, pkt, s, 0);
     /* ff_write_chained does all the RTP packetization. If using TCP as
      * transport, rtpctx->pb is only a dyn_packet_buf that queues up the
      * packets, so we need to send them out on the TCP connection separately.

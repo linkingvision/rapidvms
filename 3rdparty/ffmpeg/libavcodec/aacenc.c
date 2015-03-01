@@ -252,7 +252,7 @@ static void apply_window_and_mdct(AACEncContext *s, SingleChannelElement *sce,
     int i;
     float *output = sce->ret_buf;
 
-    apply_window[sce->ics.window_sequence[0]](&s->fdsp, sce, audio);
+    apply_window[sce->ics.window_sequence[0]](s->fdsp, sce, audio);
 
     if (sce->ics.window_sequence[0] != EIGHT_SHORT_SEQUENCE)
         s->mdct1024.mdct_calc(&s->mdct1024, sce->coeffs, output);
@@ -567,6 +567,10 @@ static int aac_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
                 ics->group_len[w] = wi[ch].grouping[w];
 
             apply_window_and_mdct(s, &cpe->ch[ch], overlap);
+            if (isnan(cpe->ch->coeffs[0])) {
+                av_log(avctx, AV_LOG_ERROR, "Input contains NaN\n");
+                return AVERROR(EINVAL);
+            }
         }
         start_ch += chans;
     }
@@ -678,6 +682,7 @@ static av_cold int aac_encode_end(AVCodecContext *avctx)
         ff_psy_preprocess_end(s->psypp);
     av_freep(&s->buffer.samples);
     av_freep(&s->cpe);
+    av_freep(&s->fdsp);
     ff_af_queue_close(&s->afq);
     return 0;
 }
@@ -686,7 +691,9 @@ static av_cold int dsp_init(AVCodecContext *avctx, AACEncContext *s)
 {
     int ret = 0;
 
-    avpriv_float_dsp_init(&s->fdsp, avctx->flags & CODEC_FLAG_BITEXACT);
+    s->fdsp = avpriv_float_dsp_alloc(avctx->flags & CODEC_FLAG_BITEXACT);
+    if (!s->fdsp)
+        return AVERROR(ENOMEM);
 
     // window init
     ff_kbd_window_init(ff_aac_kbd_long_1024, 4.0, 1024);
@@ -705,8 +712,8 @@ static av_cold int dsp_init(AVCodecContext *avctx, AACEncContext *s)
 static av_cold int alloc_buffers(AVCodecContext *avctx, AACEncContext *s)
 {
     int ch;
-    FF_ALLOCZ_OR_GOTO(avctx, s->buffer.samples, 3 * 1024 * s->channels * sizeof(s->buffer.samples[0]), alloc_fail);
-    FF_ALLOCZ_OR_GOTO(avctx, s->cpe, sizeof(ChannelElement) * s->chan_map[0], alloc_fail);
+    FF_ALLOCZ_ARRAY_OR_GOTO(avctx, s->buffer.samples, s->channels, 3 * 1024 * sizeof(s->buffer.samples[0]), alloc_fail);
+    FF_ALLOCZ_ARRAY_OR_GOTO(avctx, s->cpe, s->chan_map[0], sizeof(ChannelElement), alloc_fail);
     FF_ALLOCZ_OR_GOTO(avctx, avctx->extradata, 5 + FF_INPUT_BUFFER_PADDING_SIZE, alloc_fail);
 
     for(ch = 0; ch < s->channels; ch++)
@@ -733,7 +740,7 @@ static av_cold int aac_encode_init(AVCodecContext *avctx)
 
     s->channels = avctx->channels;
 
-    ERROR_IF(i == 16,
+    ERROR_IF(i >= 12,
              "Unsupported sample rate %d\n", avctx->sample_rate);
     ERROR_IF(s->channels > AAC_MAX_CHANNELS,
              "Unsupported number of channels: %d\n", s->channels);
@@ -746,10 +753,10 @@ static av_cold int aac_encode_init(AVCodecContext *avctx)
 
     s->chan_map = aac_chan_configs[s->channels-1];
 
-    if (ret = dsp_init(avctx, s))
+    if ((ret = dsp_init(avctx, s)) < 0)
         goto fail;
 
-    if (ret = alloc_buffers(avctx, s))
+    if ((ret = alloc_buffers(avctx, s)) < 0)
         goto fail;
 
     avctx->extradata_size = 5;
@@ -761,7 +768,8 @@ static av_cold int aac_encode_init(AVCodecContext *avctx)
     lengths[1] = ff_aac_num_swb_128[i];
     for (i = 0; i < s->chan_map[0]; i++)
         grouping[i] = s->chan_map[i + 1] == TYPE_CPE;
-    if (ret = ff_psy_init(&s->psy, avctx, 2, sizes, lengths, s->chan_map[0], grouping))
+    if ((ret = ff_psy_init(&s->psy, avctx, 2, sizes, lengths,
+                           s->chan_map[0], grouping)) < 0)
         goto fail;
     s->psypp = ff_psy_preprocess_init(avctx);
     s->coder = &ff_aac_coders[s->options.aac_coder];
@@ -769,14 +777,14 @@ static av_cold int aac_encode_init(AVCodecContext *avctx)
     if (HAVE_MIPSDSPR1)
         ff_aac_coder_init_mips(s);
 
-    s->lambda = avctx->global_quality ? avctx->global_quality : 120;
+    s->lambda = avctx->global_quality > 0 ? avctx->global_quality : 120;
 
     ff_aac_tableinit();
 
     for (i = 0; i < 428; i++)
         ff_aac_pow34sf_tab[i] = sqrt(ff_aac_pow2sf_tab[i] * sqrt(ff_aac_pow2sf_tab[i]));
 
-    avctx->delay = 1024;
+    avctx->initial_padding = 1024;
     ff_af_queue_init(avctx, &s->afq);
 
     return 0;

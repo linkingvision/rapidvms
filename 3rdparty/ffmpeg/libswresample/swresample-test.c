@@ -31,6 +31,8 @@
 
 #define SAMPLES 1000
 
+#define SWR_CH_MAX 32
+
 #define ASSERT_LEVEL 2
 
 static double get(uint8_t *a[], int ch, int index, int ch_count, enum AVSampleFormat f){
@@ -151,7 +153,7 @@ static void audiogen(void *data, enum AVSampleFormat sample_fmt,
     unsigned static rnd;
 
 #define PUT_SAMPLE set(data, ch, k, channels, sample_fmt, v);
-#define uint_rand(x) (x = x * 1664525 + 1013904223)
+#define uint_rand(x) ((x) = (x) * 1664525 + 1013904223)
 #define dbl_rand(x) (uint_rand(x)*2.0 / (double)UINT_MAX - 1)
     k = 0;
 
@@ -164,7 +166,7 @@ static void audiogen(void *data, enum AVSampleFormat sample_fmt,
         a += M_PI * 1000.0 * 2.0 / sample_rate;
     }
 
-    /* 1 second of varing frequency between 100 and 10000 Hz */
+    /* 1 second of varying frequency between 100 and 10000 Hz */
     a = 0;
     for (i = 0; i < 1 * sample_rate && k < nb_samples; i++, k++) {
         v = sin(a) * 0.30;

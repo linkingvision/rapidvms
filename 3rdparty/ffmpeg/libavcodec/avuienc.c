@@ -22,29 +22,33 @@
 
 #include "avcodec.h"
 #include "internal.h"
+#include "libavutil/intreadwrite.h"
 
 static av_cold int avui_encode_init(AVCodecContext *avctx)
 {
-    avctx->coded_frame = av_frame_alloc();
-
     if (avctx->width != 720 || avctx->height != 486 && avctx->height != 576) {
         av_log(avctx, AV_LOG_ERROR, "Only 720x486 and 720x576 are supported.\n");
         return AVERROR(EINVAL);
     }
-    if (!avctx->coded_frame) {
-        av_log(avctx, AV_LOG_ERROR, "Could not allocate frame.\n");
+    if (!(avctx->extradata = av_mallocz(144 + FF_INPUT_BUFFER_PADDING_SIZE)))
         return AVERROR(ENOMEM);
-    }
-    if (!(avctx->extradata = av_mallocz(24 + FF_INPUT_BUFFER_PADDING_SIZE)))
-        return AVERROR(ENOMEM);
-    avctx->extradata_size = 24;
+    avctx->extradata_size = 144;
     memcpy(avctx->extradata, "\0\0\0\x18""APRGAPRG0001", 16);
     if (avctx->field_order > AV_FIELD_PROGRESSIVE) {
         avctx->extradata[19] = 2;
     } else {
         avctx->extradata[19] = 1;
     }
+    memcpy(avctx->extradata + 24, "\0\0\0\x78""ARESARES0001""\0\0\0\x98", 20);
+    AV_WB32(avctx->extradata + 44, avctx->width);
+    AV_WB32(avctx->extradata + 48, avctx->height);
+    memcpy(avctx->extradata + 52, "\0\0\0\x1\0\0\0\x20\0\0\0\x2", 12);
 
+    avctx->coded_frame = av_frame_alloc();
+    if (!avctx->coded_frame) {
+        av_log(avctx, AV_LOG_ERROR, "Could not allocate frame.\n");
+        return AVERROR(ENOMEM);
+    }
 
     return 0;
 }
@@ -52,7 +56,7 @@ static av_cold int avui_encode_init(AVCodecContext *avctx)
 static int avui_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
                              const AVFrame *pic, int *got_packet)
 {
-    uint8_t *dst, *src = pic->data[0];
+    uint8_t *dst;
     int i, j, skip, ret, size, interlaced;
 
     interlaced = avctx->field_order > AV_FIELD_PROGRESSIVE;
@@ -74,6 +78,7 @@ static int avui_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     avctx->coded_frame->pict_type = AV_PICTURE_TYPE_I;
 
     for (i = 0; i <= interlaced; i++) {
+        uint8_t *src;
         if (interlaced && avctx->height == 486) {
             src = pic->data[0] + (1 - i) * pic->linesize[0];
         } else {

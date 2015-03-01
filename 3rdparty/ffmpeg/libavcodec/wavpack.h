@@ -53,7 +53,7 @@
 #define WV_FLT_ZERO_SENT  0x08
 #define WV_FLT_ZERO_SIGN  0x10
 
-#define WV_MAX_SAMPLES    131072
+#define WV_MAX_SAMPLES    150000
 
 enum WP_ID_Flags {
     WP_IDF_MASK   = 0x3F,
@@ -99,20 +99,20 @@ typedef struct WvChannel {
 
 // macros for manipulating median values
 #define GET_MED(n) ((c->median[n] >> 4) + 1)
-#define DEC_MED(n) c->median[n] -= ((c->median[n] + (128 >> n) - 2) / (128 >> n)) * 2
-#define INC_MED(n) c->median[n] += ((c->median[n] + (128 >> n)    ) / (128 >> n)) * 5
+#define DEC_MED(n) c->median[n] -= ((c->median[n] + (128 >> (n)) - 2) / (128 >> (n))) * 2
+#define INC_MED(n) c->median[n] += ((c->median[n] + (128 >> (n))    ) / (128 >> (n))) * 5
 
 // macros for applying weight
 #define UPDATE_WEIGHT_CLIP(weight, delta, samples, in) \
-    if (samples && in) { \
-        if ((samples ^ in) < 0) { \
-            weight -= delta; \
-            if (weight < -1024) \
-                weight = -1024; \
+    if ((samples) && (in)) { \
+        if (((samples) ^ (in)) < 0) { \
+            (weight) -= (delta); \
+            if ((weight) < -1024) \
+                (weight) = -1024; \
         } else { \
-            weight += delta; \
-            if (weight > 1024) \
-                weight = 1024; \
+            (weight) += (delta); \
+            if ((weight) > 1024) \
+                (weight) = 1024; \
         } \
     }
 

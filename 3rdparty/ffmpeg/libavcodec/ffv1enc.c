@@ -166,7 +166,7 @@ static void find_best_state(uint8_t best_state[256][256],
                     best_len[k]      = len;
                     best_state[i][k] = j;
                 }
-                for (m = 0; m < 256; m++)
+                for (m = 1; m < 256; m++)
                     if (occ[m]) {
                         newocc[      one_state[      m]] += occ[m] * p;
                         newocc[256 - one_state[256 - m]] += occ[m] * (1 - p);
@@ -405,7 +405,8 @@ static int encode_plane(FFV1Context *s, uint8_t *src, int w, int h,
     return 0;
 }
 
-static int encode_rgb_frame(FFV1Context *s, uint8_t *src[3], int w, int h, const int stride[3])
+static int encode_rgb_frame(FFV1Context *s, const uint8_t *src[3],
+                             int w, int h, const int stride[3])
 {
     int x, y, p, i;
     const int ring_size = s->avctx->context_model ? 3 : 2;
@@ -427,15 +428,15 @@ static int encode_rgb_frame(FFV1Context *s, uint8_t *src[3], int w, int h, const
         for (x = 0; x < w; x++) {
             int b, g, r, av_uninit(a);
             if (lbd) {
-                unsigned v = *((uint32_t*)(src[0] + x*4 + stride[0]*y));
+                unsigned v = *((const uint32_t*)(src[0] + x*4 + stride[0]*y));
                 b =  v        & 0xFF;
                 g = (v >>  8) & 0xFF;
                 r = (v >> 16) & 0xFF;
                 a =  v >> 24;
             } else {
-                b = *((uint16_t*)(src[0] + x*2 + stride[0]*y));
-                g = *((uint16_t*)(src[1] + x*2 + stride[1]*y));
-                r = *((uint16_t*)(src[2] + x*2 + stride[2]*y));
+                b = *((const uint16_t *)(src[0] + x*2 + stride[0]*y));
+                g = *((const uint16_t *)(src[1] + x*2 + stride[1]*y));
+                r = *((const uint16_t *)(src[2] + x*2 + stride[2]*y));
             }
 
             if (s->slice_coding_mode != 1) {
@@ -549,7 +550,7 @@ static int write_extradata(FFV1Context *f)
 
     f->avctx->extradata_size = 10000 + 4 +
                                     (11 * 11 * 5 * 5 * 5 + 11 * 11 * 11) * 32;
-    f->avctx->extradata = av_malloc(f->avctx->extradata_size);
+    f->avctx->extradata = av_malloc(f->avctx->extradata_size + FF_INPUT_BUFFER_PADDING_SIZE);
     if (!f->avctx->extradata)
         return AVERROR(ENOMEM);
     ff_init_range_encoder(c, f->avctx->extradata, f->avctx->extradata_size);
@@ -862,9 +863,11 @@ static av_cold int encode_init(AVCodecContext *avctx)
     }
     if (avctx->stats_in) {
         char *p = avctx->stats_in;
-        uint8_t best_state[256][256];
+        uint8_t (*best_state)[256] = av_malloc_array(256, 256);
         int gob_count = 0;
         char *next;
+        if (!best_state)
+            return AVERROR(ENOMEM);
 
         av_assert0(s->version >= 2);
 
@@ -875,6 +878,7 @@ static av_cold int encode_init(AVCodecContext *avctx)
                     if (next == p) {
                         av_log(avctx, AV_LOG_ERROR,
                                "2Pass file invalid at %d %d [%s]\n", j, i, p);
+                        av_freep(&best_state);
                         return AVERROR_INVALIDDATA;
                     }
                     p = next;
@@ -888,6 +892,7 @@ static av_cold int encode_init(AVCodecContext *avctx)
                                 av_log(avctx, AV_LOG_ERROR,
                                        "2Pass file invalid at %d %d %d %d [%s]\n",
                                        i, j, k, m, p);
+                                av_freep(&best_state);
                                 return AVERROR_INVALIDDATA;
                             }
                             p = next;
@@ -896,6 +901,7 @@ static av_cold int encode_init(AVCodecContext *avctx)
             gob_count = strtol(p, &next, 0);
             if (next == p || gob_count <= 0) {
                 av_log(avctx, AV_LOG_ERROR, "2Pass file invalid\n");
+                av_freep(&best_state);
                 return AVERROR_INVALIDDATA;
             }
             p = next;
@@ -918,7 +924,7 @@ static av_cold int encode_init(AVCodecContext *avctx)
                         if (a+b)
                             p = 256.0 * b / (a + b);
                         s->initial_states[i][jp][k] =
-                            best_state[av_clip(round(p), 1, 255)][av_clip((a + b) / gob_count, 0, 255)];
+                            best_state[av_clip(round(p), 1, 255)][av_clip_uint8((a + b) / gob_count)];
                         for(jp++; jp<j; jp++)
                             s->initial_states[i][jp][k] = s->initial_states[i][jp-1][k];
                         a=b=0;
@@ -929,10 +935,11 @@ static av_cold int encode_init(AVCodecContext *avctx)
                         p = 256.0 * b / (a + b);
                     }
                     s->initial_states[i][j][k] =
-                        best_state[av_clip(round(p), 1, 255)][av_clip((a + b) / gob_count, 0, 255)];
+                        best_state[av_clip(round(p), 1, 255)][av_clip_uint8((a + b) / gob_count)];
                 }
             }
         }
+        av_freep(&best_state);
     }
 
     if (s->version > 1) {
@@ -1010,7 +1017,7 @@ static void encode_slice_header(FFV1Context *f, FFV1Context *fs)
     }
 }
 
-static void choose_rct_params(FFV1Context *fs, uint8_t *src[3], const int stride[3], int w, int h)
+static void choose_rct_params(FFV1Context *fs, const uint8_t *src[3], const int stride[3], int w, int h)
 {
 #define NB_Y_COEFF 15
     static const int rct_y_coeff[15][2] = {
@@ -1046,14 +1053,14 @@ static void choose_rct_params(FFV1Context *fs, uint8_t *src[3], const int stride
             int b, g, r;
             int ab, ag, ar;
             if (lbd) {
-                unsigned v = *((uint32_t*)(src[0] + x*4 + stride[0]*y));
+                unsigned v = *((const uint32_t*)(src[0] + x*4 + stride[0]*y));
                 b =  v        & 0xFF;
                 g = (v >>  8) & 0xFF;
                 r = (v >> 16) & 0xFF;
             } else {
-                b = *((uint16_t*)(src[0] + x*2 + stride[0]*y));
-                g = *((uint16_t*)(src[1] + x*2 + stride[1]*y));
-                r = *((uint16_t*)(src[2] + x*2 + stride[2]*y));
+                b = *((const uint16_t*)(src[0] + x*2 + stride[0]*y));
+                g = *((const uint16_t*)(src[1] + x*2 + stride[1]*y));
+                r = *((const uint16_t*)(src[2] + x*2 + stride[2]*y));
             }
 
             ar = r - lastr;
@@ -1104,9 +1111,9 @@ static int encode_slice(AVCodecContext *c, void *arg)
     const int ps     = av_pix_fmt_desc_get(c->pix_fmt)->comp[0].step_minus1 + 1;
     int ret;
     RangeCoder c_bak = fs->c;
-    uint8_t *planes[3] = {p->data[0] + ps*x + y*p->linesize[0],
-                          p->data[1] + ps*x + y*p->linesize[1],
-                          p->data[2] + ps*x + y*p->linesize[2]};
+    const uint8_t *planes[3] = {p->data[0] + ps*x + y*p->linesize[0],
+                                p->data[1] + ps*x + y*p->linesize[1],
+                                p->data[2] + ps*x + y*p->linesize[2]};
 
     fs->slice_coding_mode = 0;
     if (f->version > 3) {

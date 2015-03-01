@@ -1,5 +1,5 @@
 /* Electronic Arts Multimedia File Demuxer
- * Copyright (c) 2004  The ffmpeg Project
+ * Copyright (c) 2004 The FFmpeg Project
  * Copyright (c) 2006-2008 Peter Ross
  *
  * This file is part of FFmpeg.
@@ -24,6 +24,8 @@
  * Electronic Arts Multimedia file demuxer (WVE/UV2/etc.)
  * by Robin Kay (komadori at gekkou.co.uk)
  */
+
+#include <inttypes.h>
 
 #include "libavutil/intreadwrite.h"
 #include "avformat.h"
@@ -107,7 +109,7 @@ static int process_audio_header_elements(AVFormatContext *s)
     ea->sample_rate  = -1;
     ea->num_channels = 1;
 
-    while (!url_feof(pb) && in_header) {
+    while (!avio_feof(pb) && in_header) {
         int in_subheader;
         uint8_t byte;
         byte = avio_r8(pb);
@@ -116,7 +118,7 @@ static int process_audio_header_elements(AVFormatContext *s)
         case 0xFD:
             av_log(s, AV_LOG_DEBUG, "entered audio subheader\n");
             in_subheader = 1;
-            while (!url_feof(pb) && in_subheader) {
+            while (!avio_feof(pb) && in_subheader) {
                 uint8_t subbyte;
                 subbyte = avio_r8(pb);
 
@@ -152,7 +154,7 @@ static int process_audio_header_elements(AVFormatContext *s)
                     break;
                 case 0x8A:
                     av_log(s, AV_LOG_DEBUG,
-                           "element 0x%02x set to 0x%08x\n",
+                           "element 0x%02x set to 0x%08"PRIx32"\n",
                            subbyte, read_arbitrary(pb));
                     av_log(s, AV_LOG_DEBUG, "exited audio subheader\n");
                     in_subheader = 0;
@@ -171,7 +173,7 @@ static int process_audio_header_elements(AVFormatContext *s)
                     break;
                 default:
                     av_log(s, AV_LOG_DEBUG,
-                           "element 0x%02x set to 0x%08x\n",
+                           "element 0x%02x set to 0x%08"PRIx32"\n",
                            subbyte, read_arbitrary(pb));
                     break;
                 }
@@ -183,7 +185,7 @@ static int process_audio_header_elements(AVFormatContext *s)
             break;
         default:
             av_log(s, AV_LOG_DEBUG,
-                   "header element 0x%02x set to 0x%08x\n",
+                   "header element 0x%02x set to 0x%08"PRIx32"\n",
                    byte, read_arbitrary(pb));
             break;
         }
@@ -410,14 +412,18 @@ static int process_ea_header(AVFormatContext *s)
         case pQGT_TAG:
         case TGQs_TAG:
             ea->video_codec = AV_CODEC_ID_TGQ;
+            ea->time_base   = (AVRational) { 1, 15 };
             break;
 
         case pIQT_TAG:
             ea->video_codec = AV_CODEC_ID_TQI;
+            ea->time_base   = (AVRational) { 1, 15 };
             break;
 
         case MADk_TAG:
             ea->video_codec = AV_CODEC_ID_MAD;
+            avio_skip(pb, 6);
+            ea->time_base = (AVRational) { avio_rl16(pb), 1000 };
             break;
 
         case MVhd_TAG:
@@ -550,7 +556,7 @@ static int ea_read_packet(AVFormatContext *s, AVPacket *pkt)
     while (!packet_read || partial_packet) {
         chunk_type = avio_rl32(pb);
         chunk_size = ea->big_endian ? avio_rb32(pb) : avio_rl32(pb);
-        if (chunk_size <= 8)
+        if (chunk_size < 8)
             return AVERROR_INVALIDDATA;
         chunk_size -= 8;
 
@@ -575,11 +581,16 @@ static int ea_read_packet(AVFormatContext *s, AVPacket *pkt)
                 avio_skip(pb, 8);
                 chunk_size -= 12;
             }
+
             if (partial_packet) {
                 avpriv_request_sample(s, "video header followed by audio packet");
                 av_free_packet(pkt);
                 partial_packet = 0;
             }
+
+            if (!chunk_size)
+                continue;
+
             ret = av_get_packet(pb, pkt, chunk_size);
             if (ret < 0)
                 return ret;
@@ -640,6 +651,9 @@ static int ea_read_packet(AVFormatContext *s, AVPacket *pkt)
             goto get_video_packet;
 
         case mTCD_TAG:
+            if (chunk_size < 8)
+                return AVERROR_INVALIDDATA;
+
             avio_skip(pb, 8);               // skip ea DCT header
             chunk_size -= 8;
             goto get_video_packet;
@@ -650,6 +664,9 @@ static int ea_read_packet(AVFormatContext *s, AVPacket *pkt)
             key = AV_PKT_FLAG_KEY;
         case MV0F_TAG:
 get_video_packet:
+            if (!chunk_size)
+                continue;
+
             if (partial_packet) {
                 ret = av_append_packet(pb, pkt, chunk_size);
             } else

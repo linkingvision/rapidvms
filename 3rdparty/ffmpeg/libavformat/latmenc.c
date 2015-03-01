@@ -29,7 +29,7 @@
 
 #define MAX_EXTRADATA_SIZE 1024
 
-typedef struct {
+typedef struct LATMContext {
     AVClass *av_class;
     int off;
     int channel_conf;
@@ -227,4 +227,5 @@ AVOutputFormat ff_latm_muxer = {
     .write_header   = latm_write_header,
     .write_packet   = latm_write_packet,
     .priv_class     = &latm_muxer_class,
+    .flags          = AVFMT_NOTIMESTAMPS,
 };

@@ -89,7 +89,7 @@ static av_cold int MPA_encode_init(AVCodecContext *avctx)
     bitrate = bitrate / 1000;
     s->nb_channels = channels;
     avctx->frame_size = MPA_FRAME_SIZE;
-    avctx->delay      = 512 - 32 + 1;
+    avctx->initial_padding = 512 - 32 + 1;
 
     /* encoding freq */
     s->lsf = 0;
@@ -108,9 +108,14 @@ static av_cold int MPA_encode_init(AVCodecContext *avctx)
     s->freq_index = i;
 
     /* encoding bitrate & frequency */
-    for(i=0;i<15;i++) {
+    for(i=1;i<15;i++) {
         if (avpriv_mpa_bitrate_tab[s->lsf][1][i] == bitrate)
             break;
+    }
+    if (i == 15 && !avctx->bit_rate) {
+        i = 14;
+        bitrate = avpriv_mpa_bitrate_tab[s->lsf][1][i];
+        avctx->bit_rate = bitrate * 1000;
     }
     if (i == 15){
         av_log(avctx, AV_LOG_ERROR, "bitrate %d is not allowed in mp2\n", bitrate);
@@ -700,9 +705,10 @@ static void encode_frame(MpegAudioContext *s,
                                 else
                                     q1 = sample >> shift;
                                 q1 = (q1 * mult) >> P;
-                                q[m] = ((q1 + (1 << P)) * steps) >> (P + 1);
-                                if (q[m] < 0)
-                                    q[m] = 0;
+                                q1 += 1 << P;
+                                if (q1 < 0)
+                                    q1 = 0;
+                                q[m] = (q1 * (unsigned)steps) >> (P + 1);
                             }
 #endif
                             if (q[m] >= steps)
@@ -765,7 +771,7 @@ static int MPA_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
     encode_frame(s, bit_alloc, padding);
 
     if (frame->pts != AV_NOPTS_VALUE)
-        avpkt->pts = frame->pts - ff_samples_to_time_base(avctx, avctx->delay);
+        avpkt->pts = frame->pts - ff_samples_to_time_base(avctx, avctx->initial_padding);
 
     avpkt->size = put_bits_count(&s->pb) / 8;
     *got_packet_ptr = 1;
@@ -773,7 +779,7 @@ static int MPA_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
 }
 
 static const AVCodecDefault mp2_defaults[] = {
-    { "b",    "128k" },
+    { "b", "0" },
     { NULL },
 };
 

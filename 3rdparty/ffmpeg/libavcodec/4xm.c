@@ -24,13 +24,16 @@
  * 4XM codec.
  */
 
+#include <inttypes.h>
+
 #include "libavutil/avassert.h"
 #include "libavutil/frame.h"
 #include "libavutil/imgutils.h"
 #include "libavutil/intreadwrite.h"
 #include "avcodec.h"
+#include "blockdsp.h"
+#include "bswapdsp.h"
 #include "bytestream.h"
-#include "dsputil.h"
 #include "get_bits.h"
 #include "internal.h"
 
@@ -131,7 +134,8 @@ typedef struct CFrameBuffer {
 
 typedef struct FourXContext {
     AVCodecContext *avctx;
-    DSPContext dsp;
+    BlockDSPContext bdsp;
+    BswapDSPContext bbdsp;
     uint16_t *frame_buffer;
     uint16_t *last_frame_buffer;
     GetBitContext pre_gb;          ///< ac/dc prefix
@@ -335,21 +339,25 @@ static inline void mcdc(uint16_t *dst, const uint16_t *src, int log2w,
     }
 }
 
-static int decode_p_block(FourXContext *f, uint16_t *dst, uint16_t *src,
+static int decode_p_block(FourXContext *f, uint16_t *dst, const uint16_t *src,
                           int log2w, int log2h, int stride)
 {
-    const int index = size2index[log2h][log2w];
-    const int h     = 1 << log2h;
-    int code        = get_vlc2(&f->gb,
-                               block_type_vlc[1 - (f->version > 1)][index].table,
-                               BLOCK_TYPE_VLC_BITS, 1);
-    uint16_t *start = f->last_frame_buffer;
-    uint16_t *end   = start + stride * (f->avctx->height - h + 1) - (1 << log2w);
-    int ret;
-    int scale   = 1;
+    int index, h, code, ret, scale = 1;
+    uint16_t *start, *end;
     unsigned dc = 0;
 
-    av_assert0(code >= 0 && code <= 6 && log2w >= 0);
+    av_assert0(log2w >= 0 && log2h >= 0);
+
+    index = size2index[log2h][log2w];
+    av_assert0(index >= 0);
+
+    h     = 1 << log2h;
+    code  = get_vlc2(&f->gb, block_type_vlc[1 - (f->version > 1)][index].table,
+                     BLOCK_TYPE_VLC_BITS, 1);
+    av_assert0(code >= 0 && code <= 6);
+
+    start = f->last_frame_buffer;
+    end   = start + stride * (f->avctx->height - h + 1) - (1 << log2w);
 
     if (code == 1) {
         log2h--;
@@ -456,8 +464,8 @@ static int decode_p_frame(FourXContext *f, const uint8_t *buf, int length)
                           bitstream_size);
     if (!f->bitstream_buffer)
         return AVERROR(ENOMEM);
-    f->dsp.bswap_buf(f->bitstream_buffer, (const uint32_t*)(buf + extra),
-                     bitstream_size / 4);
+    f->bbdsp.bswap_buf(f->bitstream_buffer, (const uint32_t *) (buf + extra),
+                       bitstream_size / 4);
     init_get_bits(&f->gb, f->bitstream_buffer, 8 * bitstream_size);
 
     wordstream_offset = extra + bitstream_size;
@@ -590,7 +598,7 @@ static int decode_i_mb(FourXContext *f)
     int ret;
     int i;
 
-    f->dsp.clear_blocks(f->block[0]);
+    f->bdsp.clear_blocks(f->block[0]);
 
     for (i = 0; i < 6; i++)
         if ((ret = decode_i_block(f, f->block[i])) < 0)
@@ -795,8 +803,8 @@ static int decode_i_frame(FourXContext *f, const uint8_t *buf, int length)
                           prestream_size);
     if (!f->bitstream_buffer)
         return AVERROR(ENOMEM);
-    f->dsp.bswap_buf(f->bitstream_buffer, (const uint32_t*)prestream,
-                     prestream_size / 4);
+    f->bbdsp.bswap_buf(f->bitstream_buffer, (const uint32_t *) prestream,
+                       prestream_size / 4);
     init_get_bits(&f->pre_gb, f->bitstream_buffer, 8 * prestream_size);
 
     f->last_dc = 0 * 128 * 8 * 8;
@@ -831,7 +839,7 @@ static int decode_frame(AVCodecContext *avctx, void *data,
     av_assert0(avctx->width % 16 == 0 && avctx->height % 16 == 0);
 
     if (buf_size < AV_RL32(buf + 4) + 8) {
-        av_log(f->avctx, AV_LOG_ERROR, "size mismatch %d %d\n",
+        av_log(f->avctx, AV_LOG_ERROR, "size mismatch %d %"PRIu32"\n",
                buf_size, AV_RL32(buf + 4));
         return AVERROR_INVALIDDATA;
     }
@@ -996,7 +1004,8 @@ static av_cold int decode_init(AVCodecContext *avctx)
     }
 
     f->version = AV_RL32(avctx->extradata) >> 16;
-    ff_dsputil_init(&f->dsp, avctx);
+    ff_blockdsp_init(&f->bdsp, avctx);
+    ff_bswapdsp_init(&f->bbdsp);
     f->avctx = avctx;
     init_vlcs(f);
 

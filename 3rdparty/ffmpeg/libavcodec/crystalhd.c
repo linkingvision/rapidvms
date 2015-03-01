@@ -77,7 +77,6 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 #include <libcrystalhd/bc_dts_types.h>
 #include <libcrystalhd/bc_dts_defs.h>
@@ -89,6 +88,10 @@
 #include "libavutil/imgutils.h"
 #include "libavutil/intreadwrite.h"
 #include "libavutil/opt.h"
+
+#if HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 
 /** Timeout parameter passed to DtsProcOutput() in us */
 #define OUTPUT_PROC_TIMEOUT 50
@@ -359,7 +362,7 @@ static av_cold int uninit(AVCodecContext *avctx)
         av_bitstream_filter_close(priv->bsfc);
     }
 
-    av_free(priv->sps_pps_buf);
+    av_freep(&priv->sps_pps_buf);
 
     av_frame_free (&priv->pic);
 
@@ -419,7 +422,7 @@ static av_cold int init(AVCodecContext *avctx)
             int dummy_int;
 
             /* Back up the extradata so it can be restored at close time. */
-            priv->orig_extradata = av_malloc(avctx->extradata_size);
+            priv->orig_extradata = av_malloc(avctx->extradata_size + FF_INPUT_BUFFER_PADDING_SIZE);
             if (!priv->orig_extradata) {
                 av_log(avctx, AV_LOG_ERROR,
                        "Failed to allocate copy of extradata\n");

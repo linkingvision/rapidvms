@@ -45,7 +45,7 @@
 #include "avdevice.h"
 #include "fbdev_common.h"
 
-typedef struct {
+typedef struct FBDevContext {
     AVClass *class;          ///< class for private options
     int frame_size;          ///< size in bytes of a grabbed frame
     AVRational framerate_q;  ///< framerate
@@ -68,6 +68,7 @@ static av_cold int fbdev_read_header(AVFormatContext *avctx)
     AVStream *st = NULL;
     enum AVPixelFormat pix_fmt;
     int ret, flags = O_RDONLY;
+    const char* device;
 
     if (!(st = avformat_new_stream(avctx, NULL)))
         return AVERROR(ENOMEM);
@@ -77,11 +78,16 @@ static av_cold int fbdev_read_header(AVFormatContext *avctx)
     if (avctx->flags & AVFMT_FLAG_NONBLOCK)
         flags |= O_NONBLOCK;
 
-    if ((fbdev->fd = avpriv_open(avctx->filename, flags)) == -1) {
+    if (avctx->filename[0])
+        device = avctx->filename;
+    else
+        device = ff_fbdev_default_device();
+
+    if ((fbdev->fd = avpriv_open(device, flags)) == -1) {
         ret = AVERROR(errno);
         av_log(avctx, AV_LOG_ERROR,
                "Could not open framebuffer device '%s': %s\n",
-               avctx->filename, av_err2str(ret));
+               device, av_err2str(ret));
         return ret;
     }
 
@@ -175,9 +181,10 @@ static int fbdev_read_packet(AVFormatContext *avctx, AVPacket *pkt)
         return ret;
 
     /* refresh fbdev->varinfo, visible data position may change at each call */
-    if (ioctl(fbdev->fd, FBIOGET_VSCREENINFO, &fbdev->varinfo) < 0)
+    if (ioctl(fbdev->fd, FBIOGET_VSCREENINFO, &fbdev->varinfo) < 0) {
         av_log(avctx, AV_LOG_WARNING,
-               "Error refreshing variable info: %s\n", av_err2str(ret));
+               "Error refreshing variable info: %s\n", av_err2str(AVERROR(errno)));
+    }
 
     pkt->pts = curtime;
 
@@ -205,6 +212,11 @@ static av_cold int fbdev_read_close(AVFormatContext *avctx)
     return 0;
 }
 
+static int fbdev_get_device_list(AVFormatContext *s, AVDeviceInfoList *device_list)
+{
+    return ff_fbdev_get_device_list(device_list);
+}
+
 #define OFFSET(x) offsetof(FBDevContext, x)
 #define DEC AV_OPT_FLAG_DECODING_PARAM
 static const AVOption options[] = {
@@ -217,6 +229,7 @@ static const AVClass fbdev_class = {
     .item_name  = av_default_item_name,
     .option     = options,
     .version    = LIBAVUTIL_VERSION_INT,
+    .category   = AV_CLASS_CATEGORY_DEVICE_VIDEO_INPUT,
 };
 
 AVInputFormat ff_fbdev_demuxer = {
@@ -226,6 +239,7 @@ AVInputFormat ff_fbdev_demuxer = {
     .read_header    = fbdev_read_header,
     .read_packet    = fbdev_read_packet,
     .read_close     = fbdev_read_close,
+    .get_device_list = fbdev_get_device_list,
     .flags          = AVFMT_NOFILE,
     .priv_class     = &fbdev_class,
 };

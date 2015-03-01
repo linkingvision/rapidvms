@@ -49,7 +49,7 @@ typedef struct LibvorbisEncContext {
     int dsp_initialized;                /**< vd has been initialized        */
     vorbis_comment vc;                  /**< VorbisComment info             */
     double iblock;                      /**< impulse block bias option      */
-    VorbisParseContext vp;              /**< parse context to get durations */
+    AVVorbisParseContext *vp;           /**< parse context to get durations */
     AudioFrameQueue afq;                /**< frame queue for timestamps     */
 } LibvorbisEncContext;
 
@@ -183,9 +183,11 @@ static av_cold int libvorbis_encode_close(AVCodecContext *avctx)
     vorbis_dsp_clear(&s->vd);
     vorbis_info_clear(&s->vi);
 
-    av_fifo_free(s->pkt_fifo);
+    av_fifo_freep(&s->pkt_fifo);
     ff_af_queue_close(&s->afq);
     av_freep(&avctx->extradata);
+
+    av_vorbis_parse_free(&s->vp);
 
     return 0;
 }
@@ -246,7 +248,8 @@ static av_cold int libvorbis_encode_init(AVCodecContext *avctx)
     offset += header_code.bytes;
     av_assert0(offset == avctx->extradata_size);
 
-    if ((ret = avpriv_vorbis_parse_extradata(avctx, &s->vp)) < 0) {
+    s->vp = av_vorbis_parse_init(avctx->extradata, avctx->extradata_size);
+    if (!s->vp) {
         av_log(avctx, AV_LOG_ERROR, "invalid extradata\n");
         return ret;
     }
@@ -295,7 +298,7 @@ static int libvorbis_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
         if ((ret = ff_af_queue_add(&s->afq, frame)) < 0)
             return ret;
     } else {
-        if (!s->eof)
+        if (!s->eof && s->afq.frame_alloc)
             if ((ret = vorbis_analysis_wrote(&s->vd, 0)) < 0) {
                 av_log(avctx, AV_LOG_ERROR, "error in vorbis_analysis_wrote()\n");
                 return vorbis_error_to_averror(ret);
@@ -341,15 +344,16 @@ static int libvorbis_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
 
     avpkt->pts = ff_samples_to_time_base(avctx, op.granulepos);
 
-    duration = avpriv_vorbis_parse_frame(&s->vp, avpkt->data, avpkt->size);
+    duration = av_vorbis_parse_frame(s->vp, avpkt->data, avpkt->size);
     if (duration > 0) {
         /* we do not know encoder delay until we get the first packet from
          * libvorbis, so we have to update the AudioFrameQueue counts */
-        if (!avctx->delay && s->afq.frames) {
-            avctx->delay              = duration;
+        if (!avctx->initial_padding && s->afq.frames) {
+            avctx->initial_padding    = duration;
             av_assert0(!s->afq.remaining_delay);
             s->afq.frames->duration  += duration;
-            s->afq.frames->pts       -= duration;
+            if (s->afq.frames->pts != AV_NOPTS_VALUE)
+                s->afq.frames->pts       -= duration;
             s->afq.remaining_samples += duration;
         }
         ff_af_queue_remove(&s->afq, duration, &avpkt->pts, &avpkt->duration);
@@ -368,7 +372,7 @@ AVCodec ff_libvorbis_encoder = {
     .init           = libvorbis_encode_init,
     .encode2        = libvorbis_encode_frame,
     .close          = libvorbis_encode_close,
-    .capabilities   = CODEC_CAP_DELAY,
+    .capabilities   = CODEC_CAP_DELAY | CODEC_CAP_SMALL_LAST_FRAME,
     .sample_fmts    = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_FLTP,
                                                       AV_SAMPLE_FMT_NONE },
     .priv_class     = &vorbis_class,

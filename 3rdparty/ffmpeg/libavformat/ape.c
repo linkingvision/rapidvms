@@ -40,7 +40,7 @@
 
 #define APE_EXTRADATA_SIZE 6
 
-typedef struct {
+typedef struct APEFrame {
     int64_t pos;
     int nblocks;
     int size;
@@ -48,7 +48,7 @@ typedef struct {
     int64_t pts;
 } APEFrame;
 
-typedef struct {
+typedef struct APEContext {
     /* Derived fields */
     uint32_t junklength;
     uint32_t firstframe;
@@ -264,7 +264,7 @@ static int ape_read_header(AVFormatContext * s)
     }
     if (ape->seektablelength / sizeof(*ape->seektable) < ape->totalframes) {
         av_log(s, AV_LOG_ERROR,
-               "Number of seek entries is less than number of frames: %zu vs. %"PRIu32"\n",
+               "Number of seek entries is less than number of frames: %"SIZE_SPECIFIER" vs. %"PRIu32"\n",
                ape->seektablelength / sizeof(*ape->seektable), ape->totalframes);
         return AVERROR_INVALIDDATA;
     }
@@ -389,7 +389,7 @@ static int ape_read_packet(AVFormatContext * s, AVPacket * pkt)
     APEContext *ape = s->priv_data;
     uint32_t extra_size = 8;
 
-    if (url_feof(s->pb))
+    if (avio_feof(s->pb))
         return AVERROR_EOF;
     if (ape->currentframe >= ape->totalframes)
         return AVERROR_EOF;

@@ -38,17 +38,23 @@ void ff_avfilter_default_free_buffer(AVFilterBuffer *ptr)
 {
     if (ptr->extended_data != ptr->data)
         av_freep(&ptr->extended_data);
-    av_free(ptr->data[0]);
+    av_freep(&ptr->data[0]);
     av_free(ptr);
 }
 
-static void copy_video_props(AVFilterBufferRefVideoProps *dst, AVFilterBufferRefVideoProps *src) {
+static int copy_video_props(AVFilterBufferRefVideoProps *dst, AVFilterBufferRefVideoProps *src) {
     *dst = *src;
     if (src->qp_table) {
         int qsize = src->qp_table_size;
         dst->qp_table = av_malloc(qsize);
+        if (!dst->qp_table) {
+            av_log(NULL, AV_LOG_ERROR, "Failed to allocate qp_table\n");
+            dst->qp_table_size = 0;
+            return AVERROR(ENOMEM);
+        }
         memcpy(dst->qp_table, src->qp_table, qsize);
     }
+    return 0;
 }
 
 AVFilterBufferRef *avfilter_ref_buffer(AVFilterBufferRef *ref, int pmask)
@@ -79,7 +85,7 @@ AVFilterBufferRef *avfilter_ref_buffer(AVFilterBufferRef *ref, int pmask)
 
         if (ref->extended_data && ref->extended_data != ref->data) {
             int nb_channels = av_get_channel_layout_nb_channels(ref->audio->channel_layout);
-            if (!(ret->extended_data = av_malloc(sizeof(*ret->extended_data) *
+            if (!(ret->extended_data = av_malloc_array(sizeof(*ret->extended_data),
                                                  nb_channels))) {
                 av_freep(&ret->audio);
                 av_freep(&ret);
@@ -150,7 +156,7 @@ int avfilter_copy_frame_props(AVFilterBufferRef *dst, const AVFrame *src)
     return 0;
 }
 
-void avfilter_copy_buffer_ref_props(AVFilterBufferRef *dst, AVFilterBufferRef *src)
+void avfilter_copy_buffer_ref_props(AVFilterBufferRef *dst, const AVFilterBufferRef *src)
 {
     // copy common properties
     dst->pts             = src->pts;

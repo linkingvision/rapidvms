@@ -130,9 +130,9 @@ static av_cold int init(AVFilterContext *ctx)
 
     mb->cache_allocated = mb->w * mb->h * 3;
     mb->cache_used = 0;
-    mb->point_cache= av_malloc(sizeof(*mb->point_cache)*mb->cache_allocated);
-    mb-> next_cache= av_malloc(sizeof(*mb-> next_cache)*mb->cache_allocated);
-    mb-> zyklus    = av_malloc(sizeof(*mb->zyklus) * (mb->maxiter+16));
+    mb->point_cache= av_malloc_array(mb->cache_allocated, sizeof(*mb->point_cache));
+    mb-> next_cache= av_malloc_array(mb->cache_allocated, sizeof(*mb-> next_cache));
+    mb-> zyklus    = av_malloc_array(mb->maxiter + 16, sizeof(*mb->zyklus));
 
     return 0;
 }
@@ -354,14 +354,14 @@ static void draw_mandelbrot(AVFilterContext *ctx, uint32_t *color, int linesize,
             }
             if(!c){
                 if(mb->inner==PERIOD){
-                int j;
-                for(j=i-1; j; j--)
-                    if(SQR(mb->zyklus[j][0]-zr) + SQR(mb->zyklus[j][1]-zi) < epsilon*epsilon*10)
-                        break;
-                if(j){
-                    c= i-j;
-                    c= ((c<<5)&0xE0) + ((c<<10)&0xE000) + ((c<<15)&0xE00000);
-                }
+                    int j;
+                    for(j=i-1; j; j--)
+                        if(SQR(mb->zyklus[j][0]-zr) + SQR(mb->zyklus[j][1]-zi) < epsilon*epsilon*10)
+                            break;
+                    if(j){
+                        c= i-j;
+                        c= ((c<<5)&0xE0) + ((c<<10)&0xE000) + ((c<<15)&0xE00000);
+                    }
                 }else if(mb->inner==CONVTIME){
                     c= floor(i*255.0/mb->maxiter+dv)*0x010101;
                 } else if(mb->inner==MINCOL){

@@ -6,6 +6,7 @@
     { "version"    , OPT_EXIT, {.func_arg = show_version},      "show version" },
     { "buildconf"  , OPT_EXIT, {.func_arg = show_buildconf},    "show build configuration" },
     { "formats"    , OPT_EXIT, {.func_arg = show_formats  },    "show available formats" },
+    { "devices"    , OPT_EXIT, {.func_arg = show_devices  },    "show available devices" },
     { "codecs"     , OPT_EXIT, {.func_arg = show_codecs   },    "show available codecs" },
     { "decoders"   , OPT_EXIT, {.func_arg = show_decoders },    "show available decoders" },
     { "encoders"   , OPT_EXIT, {.func_arg = show_encoders },    "show available encoders" },
@@ -25,4 +26,10 @@
 #if CONFIG_OPENCL
     { "opencl_bench", OPT_EXIT, {.func_arg = opt_opencl_bench}, "run benchmark on all OpenCL devices and show results" },
     { "opencl_options", HAS_ARG, {.func_arg = opt_opencl},      "set OpenCL environment options" },
+#endif
+#if CONFIG_AVDEVICE
+    { "sources"    , OPT_EXIT | HAS_ARG, { .func_arg = show_sources },
+      "list sources of the input device", "device" },
+    { "sinks"      , OPT_EXIT | HAS_ARG, { .func_arg = show_sinks },
+      "list sinks of the output device", "device" },
 #endif

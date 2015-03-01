@@ -29,6 +29,7 @@
 #include "libavutil/tree.h"
 #include "libavcodec/bytestream.h"
 #include "avio_internal.h"
+#include "isom.h"
 #include "nut.h"
 #include "riff.h"
 
@@ -145,7 +146,7 @@ static uint64_t find_any_startcode(AVIOContext *bc, int64_t pos)
         /* Note, this may fail if the stream is not seekable, but that should
          * not matter, as in this case we simply start where we currently are */
         avio_seek(bc, pos, SEEK_SET);
-    while (!url_feof(bc)) {
+    while (!avio_feof(bc)) {
         state = (state << 8) | avio_r8(bc);
         if ((state >> 56) != 'N')
             continue;
@@ -183,11 +184,11 @@ static int64_t find_startcode(AVIOContext *bc, uint64_t code, int64_t pos)
 static int nut_probe(AVProbeData *p)
 {
     int i;
-    uint64_t code = 0;
 
-    for (i = 0; i < p->buf_size; i++) {
-        code = (code << 8) | p->buf[i];
-        if (code == MAIN_STARTCODE)
+    for (i = 0; i < p->buf_size-8; i++) {
+        if (AV_RB32(p->buf+i) != MAIN_STARTCODE>>32)
+            continue;
+        if (AV_RB32(p->buf+i+4) == (MAIN_STARTCODE & 0xFFFFFFFF))
             return AVPROBE_SCORE_MAX;
     }
     return 0;
@@ -228,13 +229,13 @@ static int decode_main_header(NUTContext *nut)
     end  = get_packetheader(nut, bc, 1, MAIN_STARTCODE);
     end += avio_tell(bc);
 
-    tmp = ffio_read_varlen(bc);
-    if (tmp < 2 && tmp > 4) {
-        av_log(s, AV_LOG_ERROR, "Version %"PRId64" not supported.\n",
-               tmp);
+    nut->version = ffio_read_varlen(bc);
+    if (nut->version < NUT_MIN_VERSION &&
+        nut->version > NUT_MAX_VERSION) {
+        av_log(s, AV_LOG_ERROR, "Version %d not supported.\n",
+               nut->version);
         return AVERROR(ENOSYS);
     }
-    nut->version = tmp;
     if (nut->version > 3)
         nut->minor_version = ffio_read_varlen(bc);
 
@@ -340,6 +341,11 @@ static int decode_main_header(NUTContext *nut)
         av_assert0(nut->header_len[0] == 0);
     }
 
+    // flags had been effectively introduced in version 4
+    if (nut->version > 3 && end > avio_tell(bc) + 4) {
+        nut->flags = ffio_read_varlen(bc);
+    }
+
     if (skip_reserved(bc, end) || ffio_get_checksum(bc)) {
         av_log(s, AV_LOG_ERROR, "main header checksum mismatch\n");
         return AVERROR_INVALIDDATA;
@@ -381,6 +387,7 @@ static int decode_stream_header(NUTContext *nut)
         st->codec->codec_id   = av_codec_get_id((const AVCodecTag * const []) {
                                                     ff_nut_video_tags,
                                                     ff_codec_bmp_tags,
+                                                    ff_codec_movvideo_tags,
                                                     0
                                                 },
                                                 tmp);
@@ -390,6 +397,7 @@ static int decode_stream_header(NUTContext *nut)
         st->codec->codec_id   = av_codec_get_id((const AVCodecTag * const []) {
                                                     ff_nut_audio_tags,
                                                     ff_codec_wav_tags,
+                                                    ff_nut_audio_extra_tags,
                                                     0
                                                 },
                                                 tmp);
@@ -476,9 +484,11 @@ static int decode_info_header(NUTContext *nut)
     int64_t value, end;
     char name[256], str_value[1024], type_str[256];
     const char *type;
+    int *event_flags        = NULL;
     AVChapter *chapter      = NULL;
     AVStream *st            = NULL;
     AVDictionary **metadata = NULL;
+    int metadata_flag       = 0;
 
     end  = get_packetheader(nut, bc, 1, INFO_STARTCODE);
     end += avio_tell(bc);
@@ -499,8 +509,13 @@ static int decode_info_header(NUTContext *nut)
     } else if (stream_id_plus1) {
         st       = s->streams[stream_id_plus1 - 1];
         metadata = &st->metadata;
-    } else
+        event_flags = &st->event_flags;
+        metadata_flag = AVSTREAM_EVENT_FLAG_METADATA_UPDATED;
+    } else {
         metadata = &s->metadata;
+        event_flags = &s->event_flags;
+        metadata_flag = AVFMT_EVENT_FLAG_METADATA_UPDATED;
+    }
 
     for (i = 0; i < count; i++) {
         get_str(bc, name, sizeof(name));
@@ -544,8 +559,11 @@ static int decode_info_header(NUTContext *nut)
             }
 
             if (metadata && av_strcasecmp(name, "Uses") &&
-                av_strcasecmp(name, "Depends") && av_strcasecmp(name, "Replaces"))
+                av_strcasecmp(name, "Depends") && av_strcasecmp(name, "Replaces")) {
+                if (event_flags)
+                    *event_flags |= metadata_flag;
                 av_dict_set(metadata, name, str_value, 0);
+            }
         }
     }
 
@@ -576,6 +594,14 @@ static int decode_syncpoint(NUTContext *nut, int64_t *ts, int64_t *back_ptr)
 
     ff_nut_reset_ts(nut, nut->time_base[tmp % nut->time_base_count],
                     tmp / nut->time_base_count);
+
+    if (nut->flags & NUT_BROADCAST) {
+        tmp = ffio_read_varlen(bc);
+        av_log(s, AV_LOG_VERBOSE, "Syncpoint wallclock %"PRId64"\n",
+               av_rescale_q(tmp / nut->time_base_count,
+                            nut->time_base[tmp % nut->time_base_count],
+                            AV_TIME_BASE_Q));
+    }
 
     if (skip_reserved(bc, end) || ffio_get_checksum(bc)) {
         av_log(s, AV_LOG_ERROR, "sync point checksum mismatch\n");
@@ -764,7 +790,7 @@ static int nut_read_header(AVFormatContext *s)
         decode_info_header(nut);
     }
 
-    s->data_offset = pos - 8;
+    s->internal->data_offset = pos - 8;
 
     if (bc->seekable) {
         int64_t orig_pos = avio_tell(bc);
@@ -897,7 +923,8 @@ static int decode_frame_header(NUTContext *nut, int64_t *pts, int *stream_id,
     int size, flags, size_mul, pts_delta, i, reserved_count;
     uint64_t tmp;
 
-    if (avio_tell(bc) > nut->last_syncpoint_pos + nut->max_distance) {
+    if (!(nut->flags & NUT_PIPE) &&
+        avio_tell(bc) > nut->last_syncpoint_pos + nut->max_distance) {
         av_log(s, AV_LOG_ERROR,
                "Last frame must have been damaged %"PRId64" > %"PRId64" + %d\n",
                avio_tell(bc), nut->last_syncpoint_pos, nut->max_distance);
@@ -950,8 +977,9 @@ static int decode_frame_header(NUTContext *nut, int64_t *pts, int *stream_id,
 
     if (flags & FLAG_CHECKSUM) {
         avio_rb32(bc); // FIXME check this
-    } else if (size > 2 * nut->max_distance || FFABS(stc->last_pts - *pts) >
-               stc->max_pts_distance) {
+    } else if (!(nut->flags & NUT_PIPE) &&
+               size > 2 * nut->max_distance ||
+               FFABS(stc->last_pts - *pts) > stc->max_pts_distance) {
         av_log(s, AV_LOG_ERROR, "frame size > 2max_distance and no checksum\n");
         return AVERROR_INVALIDDATA;
     }
@@ -966,11 +994,10 @@ static int decode_frame(NUTContext *nut, AVPacket *pkt, int frame_code)
 {
     AVFormatContext *s = nut->avf;
     AVIOContext *bc    = s->pb;
-    int size, stream_id, discard;
+    int size, stream_id, discard, ret;
     int64_t pts, last_IP_pts;
     StreamContext *stc;
     uint8_t header_idx;
-    int ret;
 
     size = decode_frame_header(nut, &pts, &stream_id, &header_idx, frame_code);
     if (size < 0)
@@ -992,8 +1019,9 @@ static int decode_frame(NUTContext *nut, AVPacket *pkt, int frame_code)
         return 1;
     }
 
-    if (av_new_packet(pkt, size + nut->header_len[header_idx]) < 0)
-        return AVERROR(ENOMEM);
+    ret = av_new_packet(pkt, size + nut->header_len[header_idx]);
+    if (ret < 0)
+        return ret;
     memcpy(pkt->data, nut->header[header_idx], nut->header_len[header_idx]);
     pkt->pos = avio_tell(bc); // FIXME
     if (stc->last_flags & FLAG_SM_DATA) {
@@ -1038,7 +1066,7 @@ static int nut_read_packet(AVFormatContext *s, AVPacket *pkt)
             pos -= 8;
         } else {
             frame_code = avio_r8(bc);
-            if (url_feof(bc))
+            if (avio_feof(bc))
                 return AVERROR_EOF;
             if (frame_code == 'N') {
                 tmp = frame_code;
@@ -1116,6 +1144,10 @@ static int read_seek(AVFormatContext *s, int stream_index,
     Syncpoint *sp, *next_node[2] = { &nopts_sp, &nopts_sp };
     int64_t pos, pos2, ts;
     int i;
+
+    if (nut->flags & NUT_PIPE) {
+        return AVERROR(ENOSYS);
+    }
 
     if (st->index_entries) {
         int index = av_index_search_timestamp(st, pts, flags);

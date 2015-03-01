@@ -26,13 +26,15 @@
 
 SECTION_RODATA
 
-pw_pixel_max: times 8 dw ((1 << 10)-1)
 pd_32:        times 4 dd 32
 
 SECTION .text
 
+cextern pw_1023
+%define pw_pixel_max pw_1023
+
 ;-----------------------------------------------------------------------------
-; void h264_idct_add(pixel *dst, dctcoef *block, int stride)
+; void ff_h264_idct_add_10(pixel *dst, int16_t *block, int stride)
 ;-----------------------------------------------------------------------------
 %macro STORE_DIFFx2 6
     psrad       %1, 6
@@ -89,7 +91,9 @@ IDCT_ADD_10
 %endif
 
 ;-----------------------------------------------------------------------------
-; h264_idct_add16(pixel *dst, const int *block_offset, dctcoef *block, int stride, const uint8_t nnzc[6*8])
+; void ff_h264_idct_add16_10(pixel *dst, const int *block_offset,
+;                            int16_t *block, int stride,
+;                            const uint8_t nnzc[6*8])
 ;-----------------------------------------------------------------------------
 ;;;;;;; NO FATE SAMPLES TRIGGER THIS
 %macro ADD4x4IDCT 0
@@ -163,7 +167,7 @@ IDCT_ADD16_10
 %endif
 
 ;-----------------------------------------------------------------------------
-; void h264_idct_dc_add(pixel *dst, dctcoef *block, int stride)
+; void ff_h264_idct_dc_add_10(pixel *dst, int16_t *block, int stride)
 ;-----------------------------------------------------------------------------
 %macro IDCT_DC_ADD_OP_10 3
     pxor      m5, m5
@@ -205,7 +209,7 @@ cglobal h264_idct_dc_add_10,3,3
     RET
 
 ;-----------------------------------------------------------------------------
-; void h264_idct8_dc_add(pixel *dst, dctcoef *block, int stride)
+; void ff_h264_idct8_dc_add_10(pixel *dst, int16_t *block, int stride)
 ;-----------------------------------------------------------------------------
 %macro IDCT8_DC_ADD 0
 cglobal h264_idct8_dc_add_10,3,4,7
@@ -230,7 +234,9 @@ IDCT8_DC_ADD
 %endif
 
 ;-----------------------------------------------------------------------------
-; h264_idct_add16intra(pixel *dst, const int *block_offset, dctcoef *block, int stride, const uint8_t nnzc[6*8])
+; void ff_h264_idct_add16intra_10(pixel *dst, const int *block_offset,
+;                                 int16_t *block, int stride,
+;                                 const uint8_t nnzc[6*8])
 ;-----------------------------------------------------------------------------
 %macro AC 1
 .ac%1:
@@ -304,7 +310,9 @@ IDCT_ADD16INTRA_10
 
 %assign last_block 36
 ;-----------------------------------------------------------------------------
-; h264_idct_add8(pixel **dst, const int *block_offset, dctcoef *block, int stride, const uint8_t nnzc[6*8])
+; void ff_h264_idct_add8_10(pixel **dst, const int *block_offset,
+;                           int16_t *block, int stride,
+;                           const uint8_t nnzc[6*8])
 ;-----------------------------------------------------------------------------
 %macro IDCT_ADD8 0
 cglobal h264_idct_add8_10,5,8,7
@@ -340,7 +348,7 @@ IDCT_ADD8
 %endif
 
 ;-----------------------------------------------------------------------------
-; void h264_idct8_add(pixel *dst, dctcoef *block, int stride)
+; void ff_h264_idct8_add_10(pixel *dst, int16_t *block, int stride)
 ;-----------------------------------------------------------------------------
 %macro IDCT8_1D 2
     SWAP      0, 1
@@ -549,7 +557,9 @@ IDCT8_ADD
 %endif
 
 ;-----------------------------------------------------------------------------
-; h264_idct8_add4(pixel **dst, const int *block_offset, dctcoef *block, int stride, const uint8_t nnzc[6*8])
+; void ff_h264_idct8_add4_10(pixel **dst, const int *block_offset,
+;                            int16_t *block, int stride,
+;                            const uint8_t nnzc[6*8])
 ;-----------------------------------------------------------------------------
 ;;;;;;; NO FATE SAMPLES TRIGGER THIS
 %macro IDCT8_ADD4_OP 2

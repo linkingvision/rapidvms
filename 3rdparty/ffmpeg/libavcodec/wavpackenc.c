@@ -30,17 +30,17 @@
 #include "wavpack.h"
 
 #define UPDATE_WEIGHT(weight, delta, source, result) \
-    if (source && result) { \
-        int32_t s = (int32_t) (source ^ result) >> 31; \
-        weight = (delta ^ s) + (weight - s); \
+    if ((source) && (result)) { \
+        int32_t s = (int32_t) ((source) ^ (result)) >> 31; \
+        weight = ((delta) ^ s) + ((weight) - s); \
     }
 
-#define APPLY_WEIGHT_F(weight, sample) (((((sample & 0xffff) * weight) >> 9) + \
-    (((sample & ~0xffff) >> 9) * weight) + 1) >> 1)
+#define APPLY_WEIGHT_F(weight, sample) ((((((sample) & 0xffff) * (weight)) >> 9) + \
+    ((((sample) & ~0xffff) >> 9) * (weight)) + 1) >> 1)
 
-#define APPLY_WEIGHT_I(weight, sample) ((weight * sample + 512) >> 10)
+#define APPLY_WEIGHT_I(weight, sample) (((weight) * (sample) + 512) >> 10)
 
-#define APPLY_WEIGHT(weight, sample) (sample != (short) sample ? \
+#define APPLY_WEIGHT(weight, sample) ((sample) != (short) (sample) ? \
     APPLY_WEIGHT_F(weight, sample) : APPLY_WEIGHT_I (weight, sample))
 
 #define CLEAR(destin) memset(&destin, 0, sizeof(destin));
@@ -135,7 +135,7 @@ static av_cold int wavpack_encode_init(AVCodecContext *avctx)
         else
             block_samples = avctx->sample_rate;
 
-        while (block_samples * avctx->channels > 150000)
+        while (block_samples * avctx->channels > WV_MAX_SAMPLES)
             block_samples /= 2;
 
         while (block_samples * avctx->channels < 40000)
@@ -638,16 +638,16 @@ static uint32_t log2sample(uint32_t v, int limit, uint32_t *result)
 
     if ((v += v >> 9) < (1 << 8)) {
         dbits = nbits_table[v];
-        result += (dbits << 8) + wp_log2_table[(v << (9 - dbits)) & 0xff];
+        *result += (dbits << 8) + wp_log2_table[(v << (9 - dbits)) & 0xff];
     } else {
-        if (v < (1L << 16))
+        if (v < (1 << 16))
             dbits = nbits_table[v >> 8] + 8;
-        else if (v < (1L << 24))
+        else if (v < (1 << 24))
             dbits = nbits_table[v >> 16] + 16;
         else
             dbits = nbits_table[v >> 24] + 24;
 
-        result += dbits = (dbits << 8) + wp_log2_table[(v >> (dbits - 9)) & 0xff];
+        *result += dbits = (dbits << 8) + wp_log2_table[(v >> (dbits - 9)) & 0xff];
 
         if (limit && dbits >= limit)
             return 1;
@@ -1967,8 +1967,8 @@ static int wv_stereo(WavPackEncodeContext *s,
 #define count_bits(av) ( \
  (av) < (1 << 8) ? nbits_table[av] : \
   ( \
-   (av) < (1L << 16) ? nbits_table[(av) >> 8] + 8 : \
-   ((av) < (1L << 24) ? nbits_table[(av) >> 16] + 16 : nbits_table[(av) >> 24] + 24) \
+   (av) < (1 << 16) ? nbits_table[(av) >> 8] + 8 : \
+   ((av) < (1 << 24) ? nbits_table[(av) >> 16] + 16 : nbits_table[(av) >> 24] + 24) \
   ) \
 )
 
@@ -2487,6 +2487,9 @@ static int wavpack_encode_block(WavPackEncodeContext *s,
     struct Decorr *dpp;
     PutByteContext pb;
 
+    if (s->flags & WV_MONO_DATA) {
+        CLEAR(s->w);
+    }
     if (!(s->flags & WV_MONO) && s->optimize_mono) {
         int32_t lor = 0, diff = 0;
 
@@ -2813,6 +2816,8 @@ static int wavpack_encode_block(WavPackEncodeContext *s,
     block_size = bytestream2_tell_p(&pb);
     AV_WL32(out + 4, block_size - 8);
 
+    av_assert0(!bytestream2_get_eof(&pb));
+
     return block_size;
 }
 
@@ -2876,10 +2881,11 @@ static int wavpack_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
             return AVERROR(ENOMEM);
     }
 
-    if ((ret = ff_alloc_packet2(avctx, avpkt, s->block_samples * avctx->channels * 8)) < 0)
+    buf_size = s->block_samples * avctx->channels * 8
+             + 200 /* for headers */;
+    if ((ret = ff_alloc_packet2(avctx, avpkt, buf_size)) < 0)
         return ret;
     buf = avpkt->data;
-    buf_size = avpkt->size;
 
     for (s->ch_offset = 0; s->ch_offset < avctx->channels;) {
         set_samplerate(s);

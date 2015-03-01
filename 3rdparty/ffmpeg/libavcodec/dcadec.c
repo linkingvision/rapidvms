@@ -34,32 +34,22 @@
 #include "libavutil/mathematics.h"
 #include "libavutil/opt.h"
 #include "libavutil/samplefmt.h"
+
 #include "avcodec.h"
-#include "fft.h"
-#include "get_bits.h"
-#include "dcadata.h"
-#include "dcahuff.h"
 #include "dca.h"
+#include "dcadata.h"
+#include "dcadsp.h"
+#include "dcahuff.h"
+#include "fft.h"
+#include "fmtconvert.h"
+#include "get_bits.h"
+#include "internal.h"
 #include "mathops.h"
 #include "synth_filter.h"
-#include "dcadsp.h"
-#include "fmtconvert.h"
-#include "internal.h"
 
 #if ARCH_ARM
 #   include "arm/dca.h"
 #endif
-
-//#define TRACE
-
-#define DCA_PRIM_CHANNELS_MAX  (7)
-#define DCA_ABITS_MAX         (32)      /* Should be 28 */
-#define DCA_SUBSUBFRAMES_MAX   (4)
-#define DCA_SUBFRAMES_MAX     (16)
-#define DCA_BLOCKS_MAX        (16)
-#define DCA_LFE_MAX            (3)
-#define DCA_CHSETS_MAX         (4)
-#define DCA_CHSET_CHANS_MAX    (8)
 
 enum DCAMode {
     DCA_MONO = 0,
@@ -75,25 +65,6 @@ enum DCAMode {
     DCA_4F2R
 };
 
-/* these are unconfirmed but should be mostly correct */
-enum DCAExSSSpeakerMask {
-    DCA_EXSS_FRONT_CENTER          = 0x0001,
-    DCA_EXSS_FRONT_LEFT_RIGHT      = 0x0002,
-    DCA_EXSS_SIDE_REAR_LEFT_RIGHT  = 0x0004,
-    DCA_EXSS_LFE                   = 0x0008,
-    DCA_EXSS_REAR_CENTER           = 0x0010,
-    DCA_EXSS_FRONT_HIGH_LEFT_RIGHT = 0x0020,
-    DCA_EXSS_REAR_LEFT_RIGHT       = 0x0040,
-    DCA_EXSS_FRONT_HIGH_CENTER     = 0x0080,
-    DCA_EXSS_OVERHEAD              = 0x0100,
-    DCA_EXSS_CENTER_LEFT_RIGHT     = 0x0200,
-    DCA_EXSS_WIDE_LEFT_RIGHT       = 0x0400,
-    DCA_EXSS_SIDE_LEFT_RIGHT       = 0x0800,
-    DCA_EXSS_LFE2                  = 0x1000,
-    DCA_EXSS_SIDE_HIGH_LEFT_RIGHT  = 0x2000,
-    DCA_EXSS_REAR_HIGH_CENTER      = 0x4000,
-    DCA_EXSS_REAR_HIGH_LEFT_RIGHT  = 0x8000,
-};
 
 enum DCAXxchSpeakerMask {
     DCA_XXCH_FRONT_CENTER          = 0x0000001,
@@ -126,191 +97,6 @@ enum DCAXxchSpeakerMask {
     DCA_XXCH_REAR_LOW_RIGHT        = 0x8000000,
 };
 
-static const uint32_t map_xxch_to_native[28] = {
-    AV_CH_FRONT_CENTER,
-    AV_CH_FRONT_LEFT,
-    AV_CH_FRONT_RIGHT,
-    AV_CH_SIDE_LEFT,
-    AV_CH_SIDE_RIGHT,
-    AV_CH_LOW_FREQUENCY,
-    AV_CH_BACK_CENTER,
-    AV_CH_BACK_LEFT,
-    AV_CH_BACK_RIGHT,
-    AV_CH_SIDE_LEFT,           /* side surround left -- dup sur side L */
-    AV_CH_SIDE_RIGHT,          /* side surround right -- dup sur side R */
-    AV_CH_FRONT_LEFT_OF_CENTER,
-    AV_CH_FRONT_RIGHT_OF_CENTER,
-    AV_CH_TOP_FRONT_LEFT,
-    AV_CH_TOP_FRONT_CENTER,
-    AV_CH_TOP_FRONT_RIGHT,
-    AV_CH_LOW_FREQUENCY,        /* lfe2 -- duplicate lfe1 position */
-    AV_CH_FRONT_LEFT_OF_CENTER, /* side front left -- dup front cntr L */
-    AV_CH_FRONT_RIGHT_OF_CENTER,/* side front right -- dup front cntr R */
-    AV_CH_TOP_CENTER,           /* overhead */
-    AV_CH_TOP_FRONT_LEFT,       /* side high left -- dup */
-    AV_CH_TOP_FRONT_RIGHT,      /* side high right -- dup */
-    AV_CH_TOP_BACK_CENTER,
-    AV_CH_TOP_BACK_LEFT,
-    AV_CH_TOP_BACK_RIGHT,
-    AV_CH_BACK_CENTER,          /* rear low center -- dup */
-    AV_CH_BACK_LEFT,            /* rear low left -- dup */
-    AV_CH_BACK_RIGHT            /* read low right -- dup  */
-};
-
-enum DCAExtensionMask {
-    DCA_EXT_CORE       = 0x001, ///< core in core substream
-    DCA_EXT_XXCH       = 0x002, ///< XXCh channels extension in core substream
-    DCA_EXT_X96        = 0x004, ///< 96/24 extension in core substream
-    DCA_EXT_XCH        = 0x008, ///< XCh channel extension in core substream
-    DCA_EXT_EXSS_CORE  = 0x010, ///< core in ExSS (extension substream)
-    DCA_EXT_EXSS_XBR   = 0x020, ///< extended bitrate extension in ExSS
-    DCA_EXT_EXSS_XXCH  = 0x040, ///< XXCh channels extension in ExSS
-    DCA_EXT_EXSS_X96   = 0x080, ///< 96/24 extension in ExSS
-    DCA_EXT_EXSS_LBR   = 0x100, ///< low bitrate component in ExSS
-    DCA_EXT_EXSS_XLL   = 0x200, ///< lossless extension in ExSS
-};
-
-/* -1 are reserved or unknown */
-static const int dca_ext_audio_descr_mask[] = {
-    DCA_EXT_XCH,
-    -1,
-    DCA_EXT_X96,
-    DCA_EXT_XCH | DCA_EXT_X96,
-    -1,
-    -1,
-    DCA_EXT_XXCH,
-    -1,
-};
-
-/* extensions that reside in core substream */
-#define DCA_CORE_EXTS (DCA_EXT_XCH | DCA_EXT_XXCH | DCA_EXT_X96)
-
-/* Tables for mapping dts channel configurations to libavcodec multichannel api.
- * Some compromises have been made for special configurations. Most configurations
- * are never used so complete accuracy is not needed.
- *
- * L = left, R = right, C = center, S = surround, F = front, R = rear, T = total, OV = overhead.
- * S  -> side, when both rear and back are configured move one of them to the side channel
- * OV -> center back
- * All 2 channel configurations -> AV_CH_LAYOUT_STEREO
- */
-static const uint64_t dca_core_channel_layout[] = {
-    AV_CH_FRONT_CENTER,                                                     ///< 1, A
-    AV_CH_LAYOUT_STEREO,                                                    ///< 2, A + B (dual mono)
-    AV_CH_LAYOUT_STEREO,                                                    ///< 2, L + R (stereo)
-    AV_CH_LAYOUT_STEREO,                                                    ///< 2, (L + R) + (L - R) (sum-difference)
-    AV_CH_LAYOUT_STEREO,                                                    ///< 2, LT + RT (left and right total)
-    AV_CH_LAYOUT_STEREO | AV_CH_FRONT_CENTER,                               ///< 3, C + L + R
-    AV_CH_LAYOUT_STEREO | AV_CH_BACK_CENTER,                                ///< 3, L + R + S
-    AV_CH_LAYOUT_STEREO | AV_CH_FRONT_CENTER | AV_CH_BACK_CENTER,           ///< 4, C + L + R + S
-    AV_CH_LAYOUT_STEREO | AV_CH_SIDE_LEFT | AV_CH_SIDE_RIGHT,               ///< 4, L + R + SL + SR
-
-    AV_CH_LAYOUT_STEREO | AV_CH_FRONT_CENTER | AV_CH_SIDE_LEFT |
-    AV_CH_SIDE_RIGHT,                                                       ///< 5, C + L + R + SL + SR
-
-    AV_CH_LAYOUT_STEREO | AV_CH_SIDE_LEFT | AV_CH_SIDE_RIGHT |
-    AV_CH_FRONT_LEFT_OF_CENTER | AV_CH_FRONT_RIGHT_OF_CENTER,               ///< 6, CL + CR + L + R + SL + SR
-
-    AV_CH_LAYOUT_STEREO | AV_CH_BACK_LEFT | AV_CH_BACK_RIGHT |
-    AV_CH_FRONT_CENTER  | AV_CH_BACK_CENTER,                                ///< 6, C + L + R + LR + RR + OV
-
-    AV_CH_FRONT_CENTER | AV_CH_FRONT_RIGHT_OF_CENTER |
-    AV_CH_FRONT_LEFT_OF_CENTER | AV_CH_BACK_CENTER   |
-    AV_CH_BACK_LEFT | AV_CH_BACK_RIGHT,                                     ///< 6, CF + CR + LF + RF + LR + RR
-
-    AV_CH_FRONT_LEFT_OF_CENTER | AV_CH_FRONT_CENTER   |
-    AV_CH_FRONT_RIGHT_OF_CENTER | AV_CH_LAYOUT_STEREO |
-    AV_CH_SIDE_LEFT | AV_CH_SIDE_RIGHT,                                     ///< 7, CL + C + CR + L + R + SL + SR
-
-    AV_CH_FRONT_LEFT_OF_CENTER | AV_CH_FRONT_RIGHT_OF_CENTER |
-    AV_CH_LAYOUT_STEREO | AV_CH_SIDE_LEFT | AV_CH_SIDE_RIGHT |
-    AV_CH_BACK_LEFT | AV_CH_BACK_RIGHT,                                     ///< 8, CL + CR + L + R + SL1 + SL2 + SR1 + SR2
-
-    AV_CH_FRONT_LEFT_OF_CENTER | AV_CH_FRONT_CENTER   |
-    AV_CH_FRONT_RIGHT_OF_CENTER | AV_CH_LAYOUT_STEREO |
-    AV_CH_SIDE_LEFT | AV_CH_BACK_CENTER | AV_CH_SIDE_RIGHT,                 ///< 8, CL + C + CR + L + R + SL + S + SR
-};
-
-static const int8_t dca_lfe_index[] = {
-    1, 2, 2, 2, 2, 3, 2, 3, 2, 3, 2, 3, 1, 3, 2, 3
-};
-
-static const int8_t dca_channel_reorder_lfe[][9] = {
-    { 0, -1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  3, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  4, -1, -1, -1, -1, -1},
-    { 0,  1,  3,  4, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  4,  5, -1, -1, -1, -1},
-    { 3,  4,  0,  1,  5,  6, -1, -1, -1},
-    { 2,  0,  1,  4,  5,  6, -1, -1, -1},
-    { 0,  6,  4,  5,  2,  3, -1, -1, -1},
-    { 4,  2,  5,  0,  1,  6,  7, -1, -1},
-    { 5,  6,  0,  1,  7,  3,  8,  4, -1},
-    { 4,  2,  5,  0,  1,  6,  8,  7, -1},
-};
-
-static const int8_t dca_channel_reorder_lfe_xch[][9] = {
-    { 0,  2, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  3, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  3, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  3, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  3, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  4, -1, -1, -1, -1, -1},
-    { 0,  1,  3,  4, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  4,  5, -1, -1, -1, -1},
-    { 0,  1,  4,  5,  3, -1, -1, -1, -1},
-    { 2,  0,  1,  5,  6,  4, -1, -1, -1},
-    { 3,  4,  0,  1,  6,  7,  5, -1, -1},
-    { 2,  0,  1,  4,  5,  6,  7, -1, -1},
-    { 0,  6,  4,  5,  2,  3,  7, -1, -1},
-    { 4,  2,  5,  0,  1,  7,  8,  6, -1},
-    { 5,  6,  0,  1,  8,  3,  9,  4,  7},
-    { 4,  2,  5,  0,  1,  6,  9,  8,  7},
-};
-
-static const int8_t dca_channel_reorder_nolfe[][9] = {
-    { 0, -1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  2, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  3, -1, -1, -1, -1, -1},
-    { 0,  1,  2,  3, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  3,  4, -1, -1, -1, -1},
-    { 2,  3,  0,  1,  4,  5, -1, -1, -1},
-    { 2,  0,  1,  3,  4,  5, -1, -1, -1},
-    { 0,  5,  3,  4,  1,  2, -1, -1, -1},
-    { 3,  2,  4,  0,  1,  5,  6, -1, -1},
-    { 4,  5,  0,  1,  6,  2,  7,  3, -1},
-    { 3,  2,  4,  0,  1,  5,  7,  6, -1},
-};
-
-static const int8_t dca_channel_reorder_nolfe_xch[][9] = {
-    { 0,  1, -1, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  2, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  2, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  2, -1, -1, -1, -1, -1, -1},
-    { 0,  1,  2, -1, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  3, -1, -1, -1, -1, -1},
-    { 0,  1,  2,  3, -1, -1, -1, -1, -1},
-    { 2,  0,  1,  3,  4, -1, -1, -1, -1},
-    { 0,  1,  3,  4,  2, -1, -1, -1, -1},
-    { 2,  0,  1,  4,  5,  3, -1, -1, -1},
-    { 2,  3,  0,  1,  5,  6,  4, -1, -1},
-    { 2,  0,  1,  3,  4,  5,  6, -1, -1},
-    { 0,  5,  3,  4,  1,  2,  6, -1, -1},
-    { 3,  2,  4,  0,  1,  6,  7,  5, -1},
-    { 4,  5,  0,  1,  7,  2,  8,  3,  6},
-    { 3,  2,  4,  0,  1,  5,  8,  7,  6},
-};
-
 #define DCA_DOLBY                  101           /* FIXME */
 
 #define DCA_CHANNEL_BITS             6
@@ -320,15 +106,11 @@ static const int8_t dca_channel_reorder_nolfe_xch[][9] = {
 
 #define HEADER_SIZE                 14
 
-#define DCA_MAX_FRAME_SIZE       16384
-#define DCA_MAX_EXSS_HEADER_SIZE  4096
-
-#define DCA_BUFFER_PADDING_SIZE   1024
-
 #define DCA_NSYNCAUX        0x9A1105A0
 
+
 /** Bit allocation */
-typedef struct {
+typedef struct BitAlloc {
     int offset;                 ///< code values offset
     int maxbits[8];             ///< max bits in VLC
     int wrap;                   ///< wrap for get_vlc2()
@@ -347,145 +129,7 @@ static av_always_inline int get_bitalloc(GetBitContext *gb, BitAlloc *ba,
            ba->offset;
 }
 
-typedef struct {
-    const AVClass *class;       ///< class for AVOptions
-    AVCodecContext *avctx;
-    /* Frame header */
-    int frame_type;             ///< type of the current frame
-    int samples_deficit;        ///< deficit sample count
-    int crc_present;            ///< crc is present in the bitstream
-    int sample_blocks;          ///< number of PCM sample blocks
-    int frame_size;             ///< primary frame byte size
-    int amode;                  ///< audio channels arrangement
-    int sample_rate;            ///< audio sampling rate
-    int bit_rate;               ///< transmission bit rate
-    int bit_rate_index;         ///< transmission bit rate index
-
-    int dynrange;               ///< embedded dynamic range flag
-    int timestamp;              ///< embedded time stamp flag
-    int aux_data;               ///< auxiliary data flag
-    int hdcd;                   ///< source material is mastered in HDCD
-    int ext_descr;              ///< extension audio descriptor flag
-    int ext_coding;             ///< extended coding flag
-    int aspf;                   ///< audio sync word insertion flag
-    int lfe;                    ///< low frequency effects flag
-    int predictor_history;      ///< predictor history flag
-    int header_crc;             ///< header crc check bytes
-    int multirate_inter;        ///< multirate interpolator switch
-    int version;                ///< encoder software revision
-    int copy_history;           ///< copy history
-    int source_pcm_res;         ///< source pcm resolution
-    int front_sum;              ///< front sum/difference flag
-    int surround_sum;           ///< surround sum/difference flag
-    int dialog_norm;            ///< dialog normalisation parameter
-
-    /* Primary audio coding header */
-    int subframes;              ///< number of subframes
-    int total_channels;         ///< number of channels including extensions
-    int prim_channels;          ///< number of primary audio channels
-    int subband_activity[DCA_PRIM_CHANNELS_MAX];    ///< subband activity count
-    int vq_start_subband[DCA_PRIM_CHANNELS_MAX];    ///< high frequency vq start subband
-    int joint_intensity[DCA_PRIM_CHANNELS_MAX];     ///< joint intensity coding index
-    int transient_huffman[DCA_PRIM_CHANNELS_MAX];   ///< transient mode code book
-    int scalefactor_huffman[DCA_PRIM_CHANNELS_MAX]; ///< scale factor code book
-    int bitalloc_huffman[DCA_PRIM_CHANNELS_MAX];    ///< bit allocation quantizer select
-    int quant_index_huffman[DCA_PRIM_CHANNELS_MAX][DCA_ABITS_MAX]; ///< quantization index codebook select
-    float scalefactor_adj[DCA_PRIM_CHANNELS_MAX][DCA_ABITS_MAX];   ///< scale factor adjustment
-
-    /* Primary audio coding side information */
-    int subsubframes[DCA_SUBFRAMES_MAX];                         ///< number of subsubframes
-    int partial_samples[DCA_SUBFRAMES_MAX];                      ///< partial subsubframe samples count
-    int prediction_mode[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS];    ///< prediction mode (ADPCM used or not)
-    int prediction_vq[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS];      ///< prediction VQ coefs
-    int bitalloc[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS];           ///< bit allocation index
-    int transition_mode[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS];    ///< transition mode (transients)
-    int32_t scale_factor[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS][2];///< scale factors (2 if transient)
-    int joint_huff[DCA_PRIM_CHANNELS_MAX];                       ///< joint subband scale factors codebook
-    int joint_scale_factor[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS]; ///< joint subband scale factors
-    float downmix_coef[DCA_PRIM_CHANNELS_MAX + 1][2];            ///< stereo downmix coefficients
-    int dynrange_coef;                                           ///< dynamic range coefficient
-
-    /* Core substream's embedded downmix coefficients (cf. ETSI TS 102 114 V1.4.1)
-     * Input:  primary audio channels (incl. LFE if present)
-     * Output: downmix audio channels (up to 4, no LFE) */
-    uint8_t  core_downmix;                                       ///< embedded downmix coefficients available
-    uint8_t  core_downmix_amode;                                 ///< audio channel arrangement of embedded downmix
-    uint16_t core_downmix_codes[DCA_PRIM_CHANNELS_MAX + 1][4];   ///< embedded downmix coefficients (9-bit codes)
-
-    int32_t  high_freq_vq[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS];  ///< VQ encoded high frequency subbands
-
-    float lfe_data[2 * DCA_LFE_MAX * (DCA_BLOCKS_MAX + 4)];      ///< Low frequency effect data
-    int lfe_scale_factor;
-
-    /* Subband samples history (for ADPCM) */
-    DECLARE_ALIGNED(16, float, subband_samples_hist)[DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS][4];
-    DECLARE_ALIGNED(32, float, subband_fir_hist)[DCA_PRIM_CHANNELS_MAX][512];
-    DECLARE_ALIGNED(32, float, subband_fir_noidea)[DCA_PRIM_CHANNELS_MAX][32];
-    int hist_index[DCA_PRIM_CHANNELS_MAX];
-    DECLARE_ALIGNED(32, float, raXin)[32];
-
-    int output;                 ///< type of output
-
-    DECLARE_ALIGNED(32, float, subband_samples)[DCA_BLOCKS_MAX][DCA_PRIM_CHANNELS_MAX][DCA_SUBBANDS][8];
-    float *samples_chanptr[DCA_PRIM_CHANNELS_MAX + 1];
-    float *extra_channels[DCA_PRIM_CHANNELS_MAX + 1];
-    uint8_t *extra_channels_buffer;
-    unsigned int extra_channels_buffer_size;
-
-    uint8_t dca_buffer[DCA_MAX_FRAME_SIZE + DCA_MAX_EXSS_HEADER_SIZE + DCA_BUFFER_PADDING_SIZE];
-    int dca_buffer_size;        ///< how much data is in the dca_buffer
-
-    const int8_t *channel_order_tab;  ///< channel reordering table, lfe and non lfe
-    GetBitContext gb;
-    /* Current position in DCA frame */
-    int current_subframe;
-    int current_subsubframe;
-
-    int core_ext_mask;          ///< present extensions in the core substream
-
-    /* XCh extension information */
-    int xch_present;            ///< XCh extension present and valid
-    int xch_base_channel;       ///< index of first (only) channel containing XCH data
-    int xch_disable;            ///< whether the XCh extension should be decoded or not
-
-    /* XXCH extension information */
-    int xxch_chset;
-    int xxch_nbits_spk_mask;
-    uint32_t xxch_core_spkmask;
-    uint32_t xxch_spk_masks[4]; /* speaker masks, last element is core mask */
-    int xxch_chset_nch[4];
-    float xxch_dmix_sf[DCA_CHSETS_MAX];
-
-    uint32_t xxch_dmix_embedded;  /* lower layer has mix pre-embedded, per chset */
-    float xxch_dmix_coeff[DCA_PRIM_CHANNELS_MAX][32]; /* worst case sizing */
-
-    int8_t xxch_order_tab[32];
-    int8_t lfe_index;
-
-    /* ExSS header parser */
-    int static_fields;          ///< static fields present
-    int mix_metadata;           ///< mixing metadata present
-    int num_mix_configs;        ///< number of mix out configurations
-    int mix_config_num_ch[4];   ///< number of channels in each mix out configuration
-
-    int profile;
-
-    int debug_flag;             ///< used for suppressing repeated error messages output
-    AVFloatDSPContext fdsp;
-    FFTContext imdct;
-    SynthFilterContext synth;
-    DCADSPContext dcadsp;
-    FmtConvertContext fmt_conv;
-} DCAContext;
-
-static const uint16_t dca_vlc_offs[] = {
-        0,   512,   640,   768,  1282,  1794,  2436,  3080,  3770,  4454,  5364,
-     5372,  5380,  5388,  5392,  5396,  5412,  5420,  5428,  5460,  5492,  5508,
-     5572,  5604,  5668,  5796,  5860,  5892,  6412,  6668,  6796,  7308,  7564,
-     7820,  8076,  8620,  9132,  9388,  9910, 10166, 10680, 11196, 11726, 12240,
-    12752, 13298, 13810, 14326, 14840, 15500, 16022, 16540, 17158, 17678, 18264,
-    18796, 19352, 19926, 20468, 21472, 22398, 23014, 23622,
-};
+static float dca_dmix_code(unsigned code);
 
 static av_cold void dca_init_vlcs(void)
 {
@@ -497,28 +141,28 @@ static av_cold void dca_init_vlcs(void)
         return;
 
     dca_bitalloc_index.offset = 1;
-    dca_bitalloc_index.wrap = 2;
+    dca_bitalloc_index.wrap   = 2;
     for (i = 0; i < 5; i++) {
-        dca_bitalloc_index.vlc[i].table = &dca_table[dca_vlc_offs[i]];
-        dca_bitalloc_index.vlc[i].table_allocated = dca_vlc_offs[i + 1] - dca_vlc_offs[i];
+        dca_bitalloc_index.vlc[i].table           = &dca_table[ff_dca_vlc_offs[i]];
+        dca_bitalloc_index.vlc[i].table_allocated = ff_dca_vlc_offs[i + 1] - ff_dca_vlc_offs[i];
         init_vlc(&dca_bitalloc_index.vlc[i], bitalloc_12_vlc_bits[i], 12,
                  bitalloc_12_bits[i], 1, 1,
                  bitalloc_12_codes[i], 2, 2, INIT_VLC_USE_NEW_STATIC);
     }
     dca_scalefactor.offset = -64;
-    dca_scalefactor.wrap = 2;
+    dca_scalefactor.wrap   = 2;
     for (i = 0; i < 5; i++) {
-        dca_scalefactor.vlc[i].table = &dca_table[dca_vlc_offs[i + 5]];
-        dca_scalefactor.vlc[i].table_allocated = dca_vlc_offs[i + 6] - dca_vlc_offs[i + 5];
+        dca_scalefactor.vlc[i].table           = &dca_table[ff_dca_vlc_offs[i + 5]];
+        dca_scalefactor.vlc[i].table_allocated = ff_dca_vlc_offs[i + 6] - ff_dca_vlc_offs[i + 5];
         init_vlc(&dca_scalefactor.vlc[i], SCALES_VLC_BITS, 129,
                  scales_bits[i], 1, 1,
                  scales_codes[i], 2, 2, INIT_VLC_USE_NEW_STATIC);
     }
     dca_tmode.offset = 0;
-    dca_tmode.wrap = 1;
+    dca_tmode.wrap   = 1;
     for (i = 0; i < 4; i++) {
-        dca_tmode.vlc[i].table = &dca_table[dca_vlc_offs[i + 10]];
-        dca_tmode.vlc[i].table_allocated = dca_vlc_offs[i + 11] - dca_vlc_offs[i + 10];
+        dca_tmode.vlc[i].table           = &dca_table[ff_dca_vlc_offs[i + 10]];
+        dca_tmode.vlc[i].table_allocated = ff_dca_vlc_offs[i + 11] - ff_dca_vlc_offs[i + 10];
         init_vlc(&dca_tmode.vlc[i], tmode_vlc_bits[i], 4,
                  tmode_bits[i], 1, 1,
                  tmode_codes[i], 2, 2, INIT_VLC_USE_NEW_STATIC);
@@ -530,8 +174,8 @@ static av_cold void dca_init_vlcs(void)
                 break;
             dca_smpl_bitalloc[i + 1].offset                 = bitalloc_offsets[i];
             dca_smpl_bitalloc[i + 1].wrap                   = 1 + (j > 4);
-            dca_smpl_bitalloc[i + 1].vlc[j].table           = &dca_table[dca_vlc_offs[c]];
-            dca_smpl_bitalloc[i + 1].vlc[j].table_allocated = dca_vlc_offs[c + 1] - dca_vlc_offs[c];
+            dca_smpl_bitalloc[i + 1].vlc[j].table           = &dca_table[ff_dca_vlc_offs[c]];
+            dca_smpl_bitalloc[i + 1].vlc[j].table_allocated = ff_dca_vlc_offs[c + 1] - ff_dca_vlc_offs[c];
 
             init_vlc(&dca_smpl_bitalloc[i + 1].vlc[j], bitalloc_maxbits[i][j],
                      bitalloc_sizes[i],
@@ -568,7 +212,7 @@ static int dca_parse_audio_coding_header(DCAContext *s, int base_channel,
     static const int bitlen[11] = { 0, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3 };
     static const int thr[11]    = { 0, 1, 3, 3, 3, 3, 7, 7, 7, 7, 7 };
     int hdr_pos = 0, hdr_size = 0;
-    float sign, mag, scale_factor;
+    float scale_factor;
     int this_chans, acc_mask;
     int embedded_downmix;
     int nchans, mask[8];
@@ -598,8 +242,14 @@ static int dca_parse_audio_coding_header(DCAContext *s, int base_channel,
         /* check for downmixing information */
         if (get_bits1(&s->gb)) {
             embedded_downmix = get_bits1(&s->gb);
-            scale_factor     =
-               1.0f / dca_dmixtable[(get_bits(&s->gb, 6) - 1) << 2];
+            coeff            = get_bits(&s->gb, 6);
+
+            if (coeff<1 || coeff>61) {
+                av_log(s->avctx, AV_LOG_ERROR, "6bit coeff %d is out of range\n", coeff);
+                return AVERROR_INVALIDDATA;
+            }
+
+            scale_factor     = -1.0f / dca_dmix_code((coeff<<2)-3);
 
             s->xxch_dmix_sf[s->xxch_chset] = scale_factor;
 
@@ -619,10 +269,12 @@ static int dca_parse_audio_coding_header(DCAContext *s, int base_channel,
                         }
 
                         coeff = get_bits(&s->gb, 7);
-                        sign  = (coeff & 64) ? 1.0 : -1.0;
-                        mag   = dca_dmixtable[((coeff & 63) - 1) << 2];
                         ichan = dca_xxch2index(s, 1 << i);
-                        s->xxch_dmix_coeff[j][ichan] = sign * mag;
+                        if ((coeff&63)<1 || (coeff&63)>61) {
+                            av_log(s->avctx, AV_LOG_ERROR, "7bit coeff %d is out of range\n", coeff);
+                            return AVERROR_INVALIDDATA;
+                        }
+                        s->xxch_dmix_coeff[j][ichan] = dca_dmix_code((coeff<<2)-3);
                     }
                 }
             }
@@ -631,7 +283,6 @@ static int dca_parse_audio_coding_header(DCAContext *s, int base_channel,
 
     if (s->prim_channels > DCA_PRIM_CHANNELS_MAX)
         s->prim_channels = DCA_PRIM_CHANNELS_MAX;
-
 
     for (i = base_channel; i < s->prim_channels; i++) {
         s->subband_activity[i] = get_bits(&s->gb, 5) + 2;
@@ -680,33 +331,6 @@ static int dca_parse_audio_coding_header(DCAContext *s, int base_channel,
     s->current_subframe    = 0;
     s->current_subsubframe = 0;
 
-#ifdef TRACE
-    av_log(s->avctx, AV_LOG_DEBUG, "subframes: %i\n", s->subframes);
-    av_log(s->avctx, AV_LOG_DEBUG, "prim channels: %i\n", s->prim_channels);
-    for (i = base_channel; i < s->prim_channels; i++) {
-        av_log(s->avctx, AV_LOG_DEBUG, "subband activity: %i\n",
-               s->subband_activity[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "vq start subband: %i\n",
-               s->vq_start_subband[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "joint intensity: %i\n",
-               s->joint_intensity[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "transient mode codebook: %i\n",
-               s->transient_huffman[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "scale factor codebook: %i\n",
-               s->scalefactor_huffman[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "bit allocation quantizer: %i\n",
-               s->bitalloc_huffman[i]);
-        av_log(s->avctx, AV_LOG_DEBUG, "quant index huff:");
-        for (j = 0; j < 11; j++)
-            av_log(s->avctx, AV_LOG_DEBUG, " %i", s->quant_index_huffman[i][j]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-        av_log(s->avctx, AV_LOG_DEBUG, "scalefac adj:");
-        for (j = 0; j < 11; j++)
-            av_log(s->avctx, AV_LOG_DEBUG, " %1.3f", s->scalefactor_adj[i][j]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-#endif
-
     return 0;
 }
 
@@ -730,7 +354,7 @@ static int dca_parse_frame_header(DCAContext *s)
     if (!s->sample_rate)
         return AVERROR_INVALIDDATA;
     s->bit_rate_index    = get_bits(&s->gb, 5);
-    s->bit_rate          = dca_bit_rates[s->bit_rate_index];
+    s->bit_rate          = ff_dca_bit_rates[s->bit_rate_index];
     if (!s->bit_rate)
         return AVERROR_INVALIDDATA;
 
@@ -768,56 +392,18 @@ static int dca_parse_frame_header(DCAContext *s)
     if (s->lfe)
         s->output |= DCA_LFE;
 
-#ifdef TRACE
-    av_log(s->avctx, AV_LOG_DEBUG, "frame type: %i\n", s->frame_type);
-    av_log(s->avctx, AV_LOG_DEBUG, "samples deficit: %i\n", s->samples_deficit);
-    av_log(s->avctx, AV_LOG_DEBUG, "crc present: %i\n", s->crc_present);
-    av_log(s->avctx, AV_LOG_DEBUG, "sample blocks: %i (%i samples)\n",
-           s->sample_blocks, s->sample_blocks * 32);
-    av_log(s->avctx, AV_LOG_DEBUG, "frame size: %i bytes\n", s->frame_size);
-    av_log(s->avctx, AV_LOG_DEBUG, "amode: %i (%i channels)\n",
-           s->amode, dca_channels[s->amode]);
-    av_log(s->avctx, AV_LOG_DEBUG, "sample rate: %i Hz\n",
-           s->sample_rate);
-    av_log(s->avctx, AV_LOG_DEBUG, "bit rate: %i bits/s\n",
-           s->bit_rate);
-    av_log(s->avctx, AV_LOG_DEBUG, "dynrange: %i\n", s->dynrange);
-    av_log(s->avctx, AV_LOG_DEBUG, "timestamp: %i\n", s->timestamp);
-    av_log(s->avctx, AV_LOG_DEBUG, "aux_data: %i\n", s->aux_data);
-    av_log(s->avctx, AV_LOG_DEBUG, "hdcd: %i\n", s->hdcd);
-    av_log(s->avctx, AV_LOG_DEBUG, "ext descr: %i\n", s->ext_descr);
-    av_log(s->avctx, AV_LOG_DEBUG, "ext coding: %i\n", s->ext_coding);
-    av_log(s->avctx, AV_LOG_DEBUG, "aspf: %i\n", s->aspf);
-    av_log(s->avctx, AV_LOG_DEBUG, "lfe: %i\n", s->lfe);
-    av_log(s->avctx, AV_LOG_DEBUG, "predictor history: %i\n",
-           s->predictor_history);
-    av_log(s->avctx, AV_LOG_DEBUG, "header crc: %i\n", s->header_crc);
-    av_log(s->avctx, AV_LOG_DEBUG, "multirate inter: %i\n",
-           s->multirate_inter);
-    av_log(s->avctx, AV_LOG_DEBUG, "version number: %i\n", s->version);
-    av_log(s->avctx, AV_LOG_DEBUG, "copy history: %i\n", s->copy_history);
-    av_log(s->avctx, AV_LOG_DEBUG,
-           "source pcm resolution: %i (%i bits/sample)\n",
-           s->source_pcm_res, dca_bits_per_sample[s->source_pcm_res]);
-    av_log(s->avctx, AV_LOG_DEBUG, "front sum: %i\n", s->front_sum);
-    av_log(s->avctx, AV_LOG_DEBUG, "surround sum: %i\n", s->surround_sum);
-    av_log(s->avctx, AV_LOG_DEBUG, "dialog norm: %i\n", s->dialog_norm);
-    av_log(s->avctx, AV_LOG_DEBUG, "\n");
-#endif
-
     /* Primary audio coding header */
-    s->subframes         = get_bits(&s->gb, 4) + 1;
+    s->subframes = get_bits(&s->gb, 4) + 1;
 
     return dca_parse_audio_coding_header(s, 0, 0);
 }
-
 
 static inline int get_scale(GetBitContext *gb, int level, int value, int log2range)
 {
     if (level < 5) {
         /* huffman encoded */
         value += get_bitalloc(gb, &dca_scalefactor, level);
-        value = av_clip(value, 0, (1 << log2range) - 1);
+        value  = av_clip(value, 0, (1 << log2range) - 1);
     } else if (level < 8) {
         if (level + 1 > log2range) {
             skip_bits(gb, level + 1 - log2range);
@@ -904,11 +490,11 @@ static int dca_subframe_header(DCAContext *s, int base_channel, int block_index)
                s->subband_activity[j] * sizeof(s->scale_factor[0][0][0]) * 2);
 
         if (s->scalefactor_huffman[j] == 6) {
-            scale_table = scale_factor_quant7;
-            log_size = 7;
+            scale_table = ff_dca_scale_factor_quant7;
+            log_size    = 7;
         } else {
-            scale_table = scale_factor_quant6;
-            log_size = 6;
+            scale_table = ff_dca_scale_factor_quant6;
+            log_size    = 6;
         }
 
         /* When huffman coded, only the difference is encoded */
@@ -986,7 +572,7 @@ static int dca_subframe_header(DCAContext *s, int base_channel, int block_index)
     if (!base_channel && s->lfe) {
         int quant7;
         /* LFE samples */
-        int lfe_samples = 2 * s->lfe * (4 + block_index);
+        int lfe_samples    = 2 * s->lfe * (4 + block_index);
         int lfe_end_sample = 2 * s->lfe * (4 + block_index + s->subsubframes[s->current_subframe]);
         float lfe_scale;
 
@@ -1001,7 +587,7 @@ static int dca_subframe_header(DCAContext *s, int base_channel, int block_index)
             avpriv_request_sample(s->avctx, "LFEScaleIndex larger than 127");
             return AVERROR_INVALIDDATA;
         }
-        s->lfe_scale_factor = scale_factor_quant7[quant7];
+        s->lfe_scale_factor = ff_dca_scale_factor_quant7[quant7];
 
         /* Quantization step size * scale factor */
         lfe_scale = 0.035 * s->lfe_scale_factor;
@@ -1009,72 +595,6 @@ static int dca_subframe_header(DCAContext *s, int base_channel, int block_index)
         for (j = lfe_samples; j < lfe_end_sample; j++)
             s->lfe_data[j] *= lfe_scale;
     }
-
-#ifdef TRACE
-    av_log(s->avctx, AV_LOG_DEBUG, "subsubframes: %i\n",
-           s->subsubframes[s->current_subframe]);
-    av_log(s->avctx, AV_LOG_DEBUG, "partial samples: %i\n",
-           s->partial_samples[s->current_subframe]);
-
-    for (j = base_channel; j < s->prim_channels; j++) {
-        av_log(s->avctx, AV_LOG_DEBUG, "prediction mode:");
-        for (k = 0; k < s->subband_activity[j]; k++)
-            av_log(s->avctx, AV_LOG_DEBUG, " %i", s->prediction_mode[j][k]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-    for (j = base_channel; j < s->prim_channels; j++) {
-        for (k = 0; k < s->subband_activity[j]; k++)
-            av_log(s->avctx, AV_LOG_DEBUG,
-                   "prediction coefs: %f, %f, %f, %f\n",
-                   (float) adpcm_vb[s->prediction_vq[j][k]][0] / 8192,
-                   (float) adpcm_vb[s->prediction_vq[j][k]][1] / 8192,
-                   (float) adpcm_vb[s->prediction_vq[j][k]][2] / 8192,
-                   (float) adpcm_vb[s->prediction_vq[j][k]][3] / 8192);
-    }
-    for (j = base_channel; j < s->prim_channels; j++) {
-        av_log(s->avctx, AV_LOG_DEBUG, "bitalloc index: ");
-        for (k = 0; k < s->vq_start_subband[j]; k++)
-            av_log(s->avctx, AV_LOG_DEBUG, "%2.2i ", s->bitalloc[j][k]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-    for (j = base_channel; j < s->prim_channels; j++) {
-        av_log(s->avctx, AV_LOG_DEBUG, "Transition mode:");
-        for (k = 0; k < s->subband_activity[j]; k++)
-            av_log(s->avctx, AV_LOG_DEBUG, " %i", s->transition_mode[j][k]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-    for (j = base_channel; j < s->prim_channels; j++) {
-        av_log(s->avctx, AV_LOG_DEBUG, "Scale factor:");
-        for (k = 0; k < s->subband_activity[j]; k++) {
-            if (k >= s->vq_start_subband[j] || s->bitalloc[j][k] > 0)
-                av_log(s->avctx, AV_LOG_DEBUG, " %i", s->scale_factor[j][k][0]);
-            if (k < s->vq_start_subband[j] && s->transition_mode[j][k])
-                av_log(s->avctx, AV_LOG_DEBUG, " %i(t)", s->scale_factor[j][k][1]);
-        }
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-    for (j = base_channel; j < s->prim_channels; j++) {
-        if (s->joint_intensity[j] > 0) {
-            int source_channel = s->joint_intensity[j] - 1;
-            av_log(s->avctx, AV_LOG_DEBUG, "Joint scale factor index:\n");
-            for (k = s->subband_activity[j]; k < s->subband_activity[source_channel]; k++)
-                av_log(s->avctx, AV_LOG_DEBUG, " %i", s->joint_scale_factor[j][k]);
-            av_log(s->avctx, AV_LOG_DEBUG, "\n");
-        }
-    }
-    for (j = base_channel; j < s->prim_channels; j++)
-        for (k = s->vq_start_subband[j]; k < s->subband_activity[j]; k++)
-            av_log(s->avctx, AV_LOG_DEBUG, "VQ index: %i\n", s->high_freq_vq[j][k]);
-    if (!base_channel && s->lfe) {
-        int lfe_samples = 2 * s->lfe * (4 + block_index);
-        int lfe_end_sample = 2 * s->lfe * (4 + block_index + s->subsubframes[s->current_subframe]);
-
-        av_log(s->avctx, AV_LOG_DEBUG, "LFE samples:\n");
-        for (j = lfe_samples; j < lfe_end_sample; j++)
-            av_log(s->avctx, AV_LOG_DEBUG, " %f", s->lfe_data[j]);
-        av_log(s->avctx, AV_LOG_DEBUG, "\n");
-    }
-#endif
 
     return 0;
 }
@@ -1091,9 +611,9 @@ static void qmf_32_subbands(DCAContext *s, int chans,
 
     /* Select filter */
     if (!s->multirate_inter)    /* Non-perfect reconstruction */
-        prCoeff = fir_32bands_nonperfect;
+        prCoeff = ff_dca_fir_32bands_nonperfect;
     else                        /* Perfect reconstruction */
-        prCoeff = fir_32bands_perfect;
+        prCoeff = ff_dca_fir_32bands_perfect;
 
     s->dcadsp.qmf_32_subbands(samples_in, sb_act, &s->synth, &s->imdct,
                               s->subband_fir_hist[chans],
@@ -1120,11 +640,11 @@ static void lfe_interpolation_fir(DCAContext *s, int decimation_select,
 
     /* Select decimation filter */
     if (decimation_select == 1) {
-        idx = 1;
-        prCoeff = lfe_fir_128;
+        idx     = 1;
+        prCoeff = ff_dca_lfe_fir_128;
     } else {
-        idx = 0;
-        prCoeff = lfe_fir_64;
+        idx     = 0;
+        prCoeff = ff_dca_lfe_fir_64;
     }
     /* Interpolation */
     for (deciindex = 0; deciindex < num_deci_sample; deciindex++) {
@@ -1208,15 +728,14 @@ static void dca_downmix(float **samples, int srcfmt, int lfe_present,
         break;
     }
     if (lfe_present) {
-        int lf_buf = dca_lfe_index[srcfmt];
-        int lf_idx = dca_channels [srcfmt];
+        int lf_buf = ff_dca_lfe_index[srcfmt];
+        int lf_idx =  ff_dca_channels[srcfmt];
         for (i = 0; i < 256; i++) {
             samples[0][i] += samples[lf_buf][i] * coef[lf_idx][0];
             samples[1][i] += samples[lf_buf][i] * coef[lf_idx][1];
         }
     }
 }
-
 
 #ifndef decode_blockcodes
 /* Very compact version of the block code decoder that does not use table
@@ -1229,7 +748,7 @@ static int decode_blockcode(int code, int levels, int32_t *values)
     for (i = 0; i < 4; i++) {
         int div = FASTDIV(code, levels);
         values[i] = code - offset - div * levels;
-        code = div;
+        code      = div;
     }
 
     return code;
@@ -1262,9 +781,9 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
 
     /* Select quantization step size table */
     if (s->bit_rate_index == 0x1f)
-        quant_step_table = lossless_quant_d;
+        quant_step_table = ff_dca_lossless_quant_d;
     else
-        quant_step_table = lossy_quant_d;
+        quant_step_table = ff_dca_lossy_quant_d;
 
     for (k = base_channel; k < s->prim_channels; k++) {
         float rscale[DCA_SUBBANDS];
@@ -1297,7 +816,7 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
                 /* Deal with transients */
                 int sfi = s->transition_mode[k][l] && subsubframe >= s->transition_mode[k][l];
                 rscale[l] = quant_step_size * s->scale_factor[k][l][sfi] *
-                               s->scalefactor_adj[k][sel];
+                            s->scalefactor_adj[k][sel];
 
                 if (abits >= 11 || !dca_smpl_bitalloc[abits].vlc[sel].table) {
                     if (abits <= 7) {
@@ -1309,8 +828,8 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
 
                         block_code1 = get_bits(&s->gb, size);
                         block_code2 = get_bits(&s->gb, size);
-                        err = decode_blockcodes(block_code1, block_code2,
-                                                levels, block + 8 * l);
+                        err         = decode_blockcodes(block_code1, block_code2,
+                                                        levels, block + 8 * l);
                         if (err) {
                             av_log(s->avctx, AV_LOG_ERROR,
                                    "ERROR: block code look-up failed\n");
@@ -1325,9 +844,8 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
                     /* Huffman coded */
                     for (m = 0; m < 8; m++)
                         block[8 * l + m] = get_bitalloc(&s->gb,
-                                                &dca_smpl_bitalloc[abits], sel);
+                                                        &dca_smpl_bitalloc[abits], sel);
                 }
-
             }
         }
 
@@ -1342,24 +860,24 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
             if (s->prediction_mode[k][l]) {
                 int n;
                 if (s->predictor_history)
-                    subband_samples[k][l][0] += (adpcm_vb[s->prediction_vq[k][l]][0] *
+                    subband_samples[k][l][0] += (ff_dca_adpcm_vb[s->prediction_vq[k][l]][0] *
                                                  s->subband_samples_hist[k][l][3] +
-                                                 adpcm_vb[s->prediction_vq[k][l]][1] *
+                                                 ff_dca_adpcm_vb[s->prediction_vq[k][l]][1] *
                                                  s->subband_samples_hist[k][l][2] +
-                                                 adpcm_vb[s->prediction_vq[k][l]][2] *
+                                                 ff_dca_adpcm_vb[s->prediction_vq[k][l]][2] *
                                                  s->subband_samples_hist[k][l][1] +
-                                                 adpcm_vb[s->prediction_vq[k][l]][3] *
+                                                 ff_dca_adpcm_vb[s->prediction_vq[k][l]][3] *
                                                  s->subband_samples_hist[k][l][0]) *
                                                 (1.0f / 8192);
                 for (m = 1; m < 8; m++) {
-                    float sum = adpcm_vb[s->prediction_vq[k][l]][0] *
+                    float sum = ff_dca_adpcm_vb[s->prediction_vq[k][l]][0] *
                                 subband_samples[k][l][m - 1];
                     for (n = 2; n <= 4; n++)
                         if (m >= n)
-                            sum += adpcm_vb[s->prediction_vq[k][l]][n - 1] *
+                            sum += ff_dca_adpcm_vb[s->prediction_vq[k][l]][n - 1] *
                                    subband_samples[k][l][m - n];
                         else if (s->predictor_history)
-                            sum += adpcm_vb[s->prediction_vq[k][l]][n - 1] *
+                            sum += ff_dca_adpcm_vb[s->prediction_vq[k][l]][n - 1] *
                                    s->subband_samples_hist[k][l][m - n + 4];
                     subband_samples[k][l][m] += sum * (1.0f / 8192);
                 }
@@ -1376,7 +894,7 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
                 s->debug_flag |= 0x01;
             }
             s->dcadsp.decode_hf(subband_samples[k], s->high_freq_vq[k],
-                                high_freq_vq, subsubframe * 8,
+                                ff_dca_high_freq_vq, subsubframe * 8,
                                 s->scale_factor[k], s->vq_start_subband[k],
                                 s->subband_activity[k]);
         }
@@ -1384,11 +902,7 @@ static int dca_subsubframe(DCAContext *s, int base_channel, int block_index)
 
     /* Check for DSYNC after subsubframe */
     if (s->aspf || subsubframe == s->subsubframes[s->current_subframe] - 1) {
-        if (0xFFFF == get_bits(&s->gb, 16)) {   /* 0xFFFF */
-#ifdef TRACE
-            av_log(s->avctx, AV_LOG_DEBUG, "Got subframe DSYNC\n");
-#endif
-        } else {
+        if (get_bits(&s->gb, 16) != 0xFFFF) {
             av_log(s->avctx, AV_LOG_ERROR, "Didn't get subframe DSYNC\n");
             return AVERROR_INVALIDDATA;
         }
@@ -1409,12 +923,10 @@ static int dca_filter_channels(DCAContext *s, int block_index)
 
     /* 32 subbands QMF */
     for (k = 0; k < s->prim_channels; k++) {
-/*        static float pcm_to_double[8] = { 32768.0, 32768.0, 524288.0, 524288.0,
-                                            0, 8388608.0, 8388608.0 };*/
         if (s->channel_order_tab[k] >= 0)
             qmf_32_subbands(s, k, subband_samples[k],
                             s->samples_chanptr[s->channel_order_tab[k]],
-                            M_SQRT1_2 / 32768.0 /* pcm_to_double[s->source_pcm_res] */);
+                            M_SQRT1_2 / 32768.0);
     }
 
     /* Generate LFE samples for this subsubframe FIXME!!! */
@@ -1434,7 +946,6 @@ static int dca_filter_channels(DCAContext *s, int block_index)
 
     return 0;
 }
-
 
 static int dca_subframe_footer(DCAContext *s, int base_channel)
 {
@@ -1503,7 +1014,7 @@ static int dca_subframe_footer(DCAContext *s, int base_channel)
                            am);
                     return AVERROR_INVALIDDATA;
                 }
-                for (out = 0; out < dca_channels[s->core_downmix_amode]; out++) {
+                for (out = 0; out < ff_dca_channels[s->core_downmix_amode]; out++) {
                     for (in = 0; in < s->prim_channels + !!s->lfe; in++) {
                         uint16_t tmp = get_bits(&s->gb, 9);
                         if ((tmp & 0xFF) > 241) {
@@ -1522,8 +1033,8 @@ static int dca_subframe_footer(DCAContext *s, int base_channel)
 
             // additional data (reserved, cf. ETSI TS 102 114 V1.4.1)
             if ((reserved = (aux_data_end - get_bits_count(&s->gb))) < 0) {
-                 av_log(s->avctx, AV_LOG_ERROR,
-                        "Overread auxiliary data by %d bits\n", -reserved);
+                av_log(s->avctx, AV_LOG_ERROR,
+                       "Overread auxiliary data by %d bits\n", -reserved);
                 return AVERROR_INVALIDDATA;
             } else if (reserved) {
                 avpriv_request_sample(s->avctx,
@@ -1557,18 +1068,12 @@ static int dca_decode_block(DCAContext *s, int base_channel, int block_index)
     }
 
     if (!s->current_subsubframe) {
-#ifdef TRACE
-        av_log(s->avctx, AV_LOG_DEBUG, "DSYNC dca_subframe_header\n");
-#endif
         /* Read subframe header */
         if ((ret = dca_subframe_header(s, base_channel, block_index)))
             return ret;
     }
 
     /* Read subsubframe */
-#ifdef TRACE
-    av_log(s->avctx, AV_LOG_DEBUG, "DSYNC dca_subsubframe\n");
-#endif
     if ((ret = dca_subsubframe(s, base_channel, block_index)))
         return ret;
 
@@ -1579,9 +1084,6 @@ static int dca_decode_block(DCAContext *s, int base_channel, int block_index)
         s->current_subframe++;
     }
     if (s->current_subframe >= s->subframes) {
-#ifdef TRACE
-        av_log(s->avctx, AV_LOG_DEBUG, "DSYNC dca_subframe_footer\n");
-#endif
         /* Read subframe footer */
         if ((ret = dca_subframe_footer(s, base_channel)))
             return ret;
@@ -1590,190 +1092,7 @@ static int dca_decode_block(DCAContext *s, int base_channel, int block_index)
     return 0;
 }
 
-/**
- * Return the number of channels in an ExSS speaker mask (HD)
- */
-static int dca_exss_mask2count(int mask)
-{
-    /* count bits that mean speaker pairs twice */
-    return av_popcount(mask) +
-           av_popcount(mask & (DCA_EXSS_CENTER_LEFT_RIGHT      |
-                               DCA_EXSS_FRONT_LEFT_RIGHT       |
-                               DCA_EXSS_FRONT_HIGH_LEFT_RIGHT  |
-                               DCA_EXSS_WIDE_LEFT_RIGHT        |
-                               DCA_EXSS_SIDE_LEFT_RIGHT        |
-                               DCA_EXSS_SIDE_HIGH_LEFT_RIGHT   |
-                               DCA_EXSS_SIDE_REAR_LEFT_RIGHT   |
-                               DCA_EXSS_REAR_LEFT_RIGHT        |
-                               DCA_EXSS_REAR_HIGH_LEFT_RIGHT));
-}
-
-/**
- * Skip mixing coefficients of a single mix out configuration (HD)
- */
-static void dca_exss_skip_mix_coeffs(GetBitContext *gb, int channels, int out_ch)
-{
-    int i;
-
-    for (i = 0; i < channels; i++) {
-        int mix_map_mask = get_bits(gb, out_ch);
-        int num_coeffs = av_popcount(mix_map_mask);
-        skip_bits_long(gb, num_coeffs * 6);
-    }
-}
-
-/**
- * Parse extension substream asset header (HD)
- */
-static int dca_exss_parse_asset_header(DCAContext *s)
-{
-    int header_pos = get_bits_count(&s->gb);
-    int header_size;
-    int channels = 0;
-    int embedded_stereo = 0;
-    int embedded_6ch    = 0;
-    int drc_code_present;
-    int av_uninit(extensions_mask);
-    int i, j;
-
-    if (get_bits_left(&s->gb) < 16)
-        return -1;
-
-    /* We will parse just enough to get to the extensions bitmask with which
-     * we can set the profile value. */
-
-    header_size = get_bits(&s->gb, 9) + 1;
-    skip_bits(&s->gb, 3); // asset index
-
-    if (s->static_fields) {
-        if (get_bits1(&s->gb))
-            skip_bits(&s->gb, 4); // asset type descriptor
-        if (get_bits1(&s->gb))
-            skip_bits_long(&s->gb, 24); // language descriptor
-
-        if (get_bits1(&s->gb)) {
-            /* How can one fit 1024 bytes of text here if the maximum value
-             * for the asset header size field above was 512 bytes? */
-            int text_length = get_bits(&s->gb, 10) + 1;
-            if (get_bits_left(&s->gb) < text_length * 8)
-                return -1;
-            skip_bits_long(&s->gb, text_length * 8); // info text
-        }
-
-        skip_bits(&s->gb, 5); // bit resolution - 1
-        skip_bits(&s->gb, 4); // max sample rate code
-        channels = get_bits(&s->gb, 8) + 1;
-
-        if (get_bits1(&s->gb)) { // 1-to-1 channels to speakers
-            int spkr_remap_sets;
-            int spkr_mask_size = 16;
-            int num_spkrs[7];
-
-            if (channels > 2)
-                embedded_stereo = get_bits1(&s->gb);
-            if (channels > 6)
-                embedded_6ch = get_bits1(&s->gb);
-
-            if (get_bits1(&s->gb)) {
-                spkr_mask_size = (get_bits(&s->gb, 2) + 1) << 2;
-                skip_bits(&s->gb, spkr_mask_size); // spkr activity mask
-            }
-
-            spkr_remap_sets = get_bits(&s->gb, 3);
-
-            for (i = 0; i < spkr_remap_sets; i++) {
-                /* std layout mask for each remap set */
-                num_spkrs[i] = dca_exss_mask2count(get_bits(&s->gb, spkr_mask_size));
-            }
-
-            for (i = 0; i < spkr_remap_sets; i++) {
-                int num_dec_ch_remaps = get_bits(&s->gb, 5) + 1;
-                if (get_bits_left(&s->gb) < 0)
-                    return -1;
-
-                for (j = 0; j < num_spkrs[i]; j++) {
-                    int remap_dec_ch_mask = get_bits_long(&s->gb, num_dec_ch_remaps);
-                    int num_dec_ch = av_popcount(remap_dec_ch_mask);
-                    skip_bits_long(&s->gb, num_dec_ch * 5); // remap codes
-                }
-            }
-
-        } else {
-            skip_bits(&s->gb, 3); // representation type
-        }
-    }
-
-    drc_code_present = get_bits1(&s->gb);
-    if (drc_code_present)
-        get_bits(&s->gb, 8); // drc code
-
-    if (get_bits1(&s->gb))
-        skip_bits(&s->gb, 5); // dialog normalization code
-
-    if (drc_code_present && embedded_stereo)
-        get_bits(&s->gb, 8); // drc stereo code
-
-    if (s->mix_metadata && get_bits1(&s->gb)) {
-        skip_bits(&s->gb, 1); // external mix
-        skip_bits(&s->gb, 6); // post mix gain code
-
-        if (get_bits(&s->gb, 2) != 3) // mixer drc code
-            skip_bits(&s->gb, 3); // drc limit
-        else
-            skip_bits(&s->gb, 8); // custom drc code
-
-        if (get_bits1(&s->gb)) // channel specific scaling
-            for (i = 0; i < s->num_mix_configs; i++)
-                skip_bits_long(&s->gb, s->mix_config_num_ch[i] * 6); // scale codes
-        else
-            skip_bits_long(&s->gb, s->num_mix_configs * 6); // scale codes
-
-        for (i = 0; i < s->num_mix_configs; i++) {
-            if (get_bits_left(&s->gb) < 0)
-                return -1;
-            dca_exss_skip_mix_coeffs(&s->gb, channels, s->mix_config_num_ch[i]);
-            if (embedded_6ch)
-                dca_exss_skip_mix_coeffs(&s->gb, 6, s->mix_config_num_ch[i]);
-            if (embedded_stereo)
-                dca_exss_skip_mix_coeffs(&s->gb, 2, s->mix_config_num_ch[i]);
-        }
-    }
-
-    switch (get_bits(&s->gb, 2)) {
-    case 0: extensions_mask = get_bits(&s->gb, 12); break;
-    case 1: extensions_mask = DCA_EXT_EXSS_XLL;     break;
-    case 2: extensions_mask = DCA_EXT_EXSS_LBR;     break;
-    case 3: extensions_mask = 0; /* aux coding */   break;
-    }
-
-    /* not parsed further, we were only interested in the extensions mask */
-
-    if (get_bits_left(&s->gb) < 0)
-        return -1;
-
-    if (get_bits_count(&s->gb) - header_pos > header_size * 8) {
-        av_log(s->avctx, AV_LOG_WARNING, "Asset header size mismatch.\n");
-        return -1;
-    }
-    skip_bits_long(&s->gb, header_pos + header_size * 8 - get_bits_count(&s->gb));
-
-    if (extensions_mask & DCA_EXT_EXSS_XLL)
-        s->profile = FF_PROFILE_DTS_HD_MA;
-    else if (extensions_mask & (DCA_EXT_EXSS_XBR | DCA_EXT_EXSS_X96 |
-                                DCA_EXT_EXSS_XXCH))
-        s->profile = FF_PROFILE_DTS_HD_HRA;
-
-    if (!(extensions_mask & DCA_EXT_CORE))
-        av_log(s->avctx, AV_LOG_WARNING, "DTS core detection mismatch.\n");
-    if ((extensions_mask & DCA_CORE_EXTS) != s->core_ext_mask)
-        av_log(s->avctx, AV_LOG_WARNING,
-               "DTS extensions detection mismatch (%d, %d)\n",
-               extensions_mask & DCA_CORE_EXTS, s->core_ext_mask);
-
-    return 0;
-}
-
-static int dca_xbr_parse_frame(DCAContext *s)
+int ff_dca_xbr_parse_frame(DCAContext *s)
 {
     int scale_table_high[DCA_CHSET_CHANS_MAX][DCA_SUBBANDS][2];
     int active_bands[DCA_CHSETS_MAX][DCA_CHSET_CHANS_MAX];
@@ -1845,9 +1164,9 @@ static int dca_xbr_parse_frame(DCAContext *s)
                     int nbits;
 
                     if (s->scalefactor_huffman[chan_base+i] == 6) {
-                        scale_table = scale_factor_quant7;
+                        scale_table = ff_dca_scale_factor_quant7;
                     } else {
-                        scale_table = scale_factor_quant6;
+                        scale_table = ff_dca_scale_factor_quant6;
                     }
 
                     nbits = anctemp[i];
@@ -1870,7 +1189,7 @@ static int dca_xbr_parse_frame(DCAContext *s)
             for(i = 0; i < n_xbr_ch[chset]; i++) {
                 for(j = 0; j < active_bands[chset][i]; j++) {
                     const int xbr_abits = abits_high[i][j];
-                    const float quant_step_size = lossless_quant_d[xbr_abits];
+                    const float quant_step_size = ff_dca_lossless_quant_d[xbr_abits];
                     const int sfi = xbr_tmode && s->transition_mode[i][j] && subsubframe >= s->transition_mode[i][j];
                     const float rscale = quant_step_size * scale_table_high[i][j][sfi];
                     float *subband_samples = s->subband_samples[k][chan_base+i][j];
@@ -1933,8 +1252,9 @@ static int dca_xbr_parse_frame(DCAContext *s)
     return 0;
 }
 
+
 /* parse initial header for XXCH and dump details */
-static int dca_xxch_decode_frame(DCAContext *s)
+int ff_dca_xxch_decode_frame(DCAContext *s)
 {
     int hdr_size, spkmsk_bits, num_chsets, core_spk, hdr_pos;
     int i, chset, base_channel, chstart, fsize[8];
@@ -1987,120 +1307,11 @@ static int dca_xxch_decode_frame(DCAContext *s)
     return 0;
 }
 
-/**
- * Parse extension substream header (HD)
- */
-static void dca_exss_parse_header(DCAContext *s)
+static float dca_dmix_code(unsigned code)
 {
-    int asset_size[8];
-    int ss_index;
-    int blownup;
-    int num_audiop = 1;
-    int num_assets = 1;
-    int active_ss_mask[8];
-    int i, j;
-    int start_posn;
-    int hdrsize;
-    uint32_t mkr;
-
-    if (get_bits_left(&s->gb) < 52)
-        return;
-
-    start_posn = get_bits_count(&s->gb) - 32;
-
-    skip_bits(&s->gb, 8); // user data
-    ss_index = get_bits(&s->gb, 2);
-
-    blownup = get_bits1(&s->gb);
-    hdrsize = get_bits(&s->gb,  8 + 4 * blownup) + 1; // header_size
-    skip_bits(&s->gb, 16 + 4 * blownup); // hd_size
-
-    s->static_fields = get_bits1(&s->gb);
-    if (s->static_fields) {
-        skip_bits(&s->gb, 2); // reference clock code
-        skip_bits(&s->gb, 3); // frame duration code
-
-        if (get_bits1(&s->gb))
-            skip_bits_long(&s->gb, 36); // timestamp
-
-        /* a single stream can contain multiple audio assets that can be
-         * combined to form multiple audio presentations */
-
-        num_audiop = get_bits(&s->gb, 3) + 1;
-        if (num_audiop > 1) {
-            avpriv_request_sample(s->avctx,
-                                  "Multiple DTS-HD audio presentations");
-            /* ignore such streams for now */
-            return;
-        }
-
-        num_assets = get_bits(&s->gb, 3) + 1;
-        if (num_assets > 1) {
-            avpriv_request_sample(s->avctx, "Multiple DTS-HD audio assets");
-            /* ignore such streams for now */
-            return;
-        }
-
-        for (i = 0; i < num_audiop; i++)
-            active_ss_mask[i] = get_bits(&s->gb, ss_index + 1);
-
-        for (i = 0; i < num_audiop; i++)
-            for (j = 0; j <= ss_index; j++)
-                if (active_ss_mask[i] & (1 << j))
-                    skip_bits(&s->gb, 8); // active asset mask
-
-        s->mix_metadata = get_bits1(&s->gb);
-        if (s->mix_metadata) {
-            int mix_out_mask_size;
-
-            skip_bits(&s->gb, 2); // adjustment level
-            mix_out_mask_size  = (get_bits(&s->gb, 2) + 1) << 2;
-            s->num_mix_configs =  get_bits(&s->gb, 2) + 1;
-
-            for (i = 0; i < s->num_mix_configs; i++) {
-                int mix_out_mask        = get_bits(&s->gb, mix_out_mask_size);
-                s->mix_config_num_ch[i] = dca_exss_mask2count(mix_out_mask);
-            }
-        }
-    }
-
-    for (i = 0; i < num_assets; i++)
-        asset_size[i] = get_bits_long(&s->gb, 16 + 4 * blownup);
-
-    for (i = 0; i < num_assets; i++) {
-        if (dca_exss_parse_asset_header(s))
-            return;
-    }
-
-    /* not parsed further, we were only interested in the extensions mask
-     * from the asset header */
-
-    if (num_assets > 0) {
-        j = get_bits_count(&s->gb);
-        if (start_posn + hdrsize * 8 > j)
-            skip_bits_long(&s->gb, start_posn + hdrsize * 8 - j);
-
-        for (i = 0; i < num_assets; i++) {
-            start_posn = get_bits_count(&s->gb);
-            mkr        = get_bits_long(&s->gb, 32);
-
-            /* parse extensions that we know about */
-            if (mkr == 0x655e315e) {
-                dca_xbr_parse_frame(s);
-            } else if (mkr == 0x47004a03) {
-                dca_xxch_decode_frame(s);
-                s->core_ext_mask |= DCA_EXT_XXCH; /* xxx use for chan reordering */
-            } else {
-                av_log(s->avctx, AV_LOG_DEBUG,
-                       "DTS-ExSS: unknown marker = 0x%08x\n", mkr);
-            }
-
-            /* skip to end of block */
-            j = get_bits_count(&s->gb);
-            if (start_posn + asset_size[i] * 8 > j)
-                skip_bits_long(&s->gb, start_posn + asset_size[i] * 8 - j);
-        }
-    }
+    int sign = (code >> 8) - 1;
+    code &= 0xff;
+    return ((ff_dca_dmixtable[code] ^ sign) - sign) * (1.0 / (1 << 15));
 }
 
 /**
@@ -2112,7 +1323,7 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
 {
     AVFrame *frame     = data;
     const uint8_t *buf = avpkt->data;
-    int buf_size = avpkt->size;
+    int buf_size       = avpkt->size;
     int channel_mask;
     int channel_layout;
     int lfe_samples;
@@ -2135,19 +1346,18 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
 
     s->xch_present = 0;
 
-    s->dca_buffer_size = ff_dca_convert_bitstream(buf, buf_size, s->dca_buffer,
+    s->dca_buffer_size = avpriv_dca_convert_bitstream(buf, buf_size, s->dca_buffer,
                                                   DCA_MAX_FRAME_SIZE + DCA_MAX_EXSS_HEADER_SIZE);
     if (s->dca_buffer_size == AVERROR_INVALIDDATA) {
         av_log(avctx, AV_LOG_ERROR, "Not a valid DCA frame\n");
         return AVERROR_INVALIDDATA;
     }
 
-    init_get_bits(&s->gb, s->dca_buffer, s->dca_buffer_size * 8);
     if ((ret = dca_parse_frame_header(s)) < 0) {
-        //seems like the frame is corrupt, try with the next one
+        // seems like the frame is corrupt, try with the next one
         return ret;
     }
-    //set AVCodec values with parsed data
+    // set AVCodec values with parsed data
     avctx->sample_rate = s->sample_rate;
     avctx->bit_rate    = s->bit_rate;
 
@@ -2172,38 +1382,32 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
              */
             if (s->core_downmix && (s->core_downmix_amode == DCA_STEREO ||
                                     s->core_downmix_amode == DCA_STEREO_TOTAL)) {
-                int sign, code;
-                for (i = 0; i < s->prim_channels + !!s->lfe; i++) {
-                    sign = s->core_downmix_codes[i][0] & 0x100 ? 1 : -1;
-                    code = s->core_downmix_codes[i][0] & 0x0FF;
-                    s->downmix_coef[i][0] = (!code ? 0.0f :
-                                             sign * dca_dmixtable[code - 1]);
-                    sign = s->core_downmix_codes[i][1] & 0x100 ? 1 : -1;
-                    code = s->core_downmix_codes[i][1] & 0x0FF;
-                    s->downmix_coef[i][1] = (!code ? 0.0f :
-                                             sign * dca_dmixtable[code - 1]);
+                for (i = 0; i < num_core_channels + !!s->lfe; i++) {
+                    /* Range checked earlier */
+                    s->downmix_coef[i][0] = dca_dmix_code(s->core_downmix_codes[i][0]);
+                    s->downmix_coef[i][1] = dca_dmix_code(s->core_downmix_codes[i][1]);
                 }
                 s->output = s->core_downmix_amode;
             } else {
                 int am = s->amode & DCA_CHANNEL_MASK;
-                if (am >= FF_ARRAY_ELEMS(dca_default_coeffs)) {
+                if (am >= FF_ARRAY_ELEMS(ff_dca_default_coeffs)) {
                     av_log(s->avctx, AV_LOG_ERROR,
                            "Invalid channel mode %d\n", am);
                     return AVERROR_INVALIDDATA;
                 }
-                if (s->prim_channels + !!s->lfe >
-                    FF_ARRAY_ELEMS(dca_default_coeffs[0])) {
+                if (num_core_channels + !!s->lfe >
+                    FF_ARRAY_ELEMS(ff_dca_default_coeffs[0])) {
                     avpriv_request_sample(s->avctx, "Downmixing %d channels",
                                           s->prim_channels + !!s->lfe);
                     return AVERROR_PATCHWELCOME;
                 }
-                for (i = 0; i < s->prim_channels + !!s->lfe; i++) {
-                    s->downmix_coef[i][0] = dca_default_coeffs[am][i][0];
-                    s->downmix_coef[i][1] = dca_default_coeffs[am][i][1];
+                for (i = 0; i < num_core_channels + !!s->lfe; i++) {
+                    s->downmix_coef[i][0] = ff_dca_default_coeffs[am][i][0];
+                    s->downmix_coef[i][1] = ff_dca_default_coeffs[am][i][1];
                 }
             }
             av_dlog(s->avctx, "Stereo downmix coeffs:\n");
-            for (i = 0; i < s->prim_channels + !!s->lfe; i++) {
+            for (i = 0; i < num_core_channels + !!s->lfe; i++) {
                 av_dlog(s->avctx, "L, input channel %d = %f\n", i,
                         s->downmix_coef[i][0]);
                 av_dlog(s->avctx, "R, input channel %d = %f\n", i,
@@ -2213,7 +1417,7 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
     }
 
     if (s->ext_coding)
-        s->core_ext_mask = dca_ext_audio_descr_mask[s->ext_descr];
+        s->core_ext_mask = ff_dca_ext_audio_descr_mask[s->ext_descr];
     else
         s->core_ext_mask = 0;
 
@@ -2222,7 +1426,6 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
     /* only scan for extensions if ext_descr was unknown or indicated a
      * supported XCh extension */
     if (s->core_ext_mask < 0 || s->core_ext_mask & (DCA_EXT_XCH | DCA_EXT_XXCH)) {
-
         /* if ext_descr was unknown, clear s->core_ext_mask so that the
          * extensions scan can fill it up */
         s->core_ext_mask = FFMAX(s->core_ext_mask, 0);
@@ -2253,8 +1456,9 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
                 /* extension amode(number of channels in extension) should be 1 */
                 /* AFAIK XCh is not used for more channels */
                 if ((ext_amode = get_bits(&s->gb, 4)) != 1) {
-                    av_log(avctx, AV_LOG_ERROR, "XCh extension amode %d not"
-                           " supported!\n", ext_amode);
+                    av_log(avctx, AV_LOG_ERROR,
+                           "XCh extension amode %d not supported!\n",
+                           ext_amode);
                     continue;
                 }
 
@@ -2280,7 +1484,7 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
                 /* usually found either in core or HD part in DTS-HD HRA streams,
                  * but not in DTS-ES which contains XCh extensions instead */
                 s->core_ext_mask |= DCA_EXT_XXCH;
-                dca_xxch_decode_frame(s);
+                ff_dca_xxch_decode_frame(s);
                 break;
 
             case 0x1d95f262: {
@@ -2314,7 +1518,7 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
     /* check for ExSS (HD part) */
     if (s->dca_buffer_size - s->frame_size > 32 &&
         get_bits_long(&s->gb, 32) == DCA_HD_MARKER)
-        dca_exss_parse_header(s);
+        ff_dca_exss_parse_header(s);
 
     avctx->profile = s->profile;
 
@@ -2328,7 +1532,18 @@ static int dca_decode_frame(AVCodecContext *avctx, void *data,
             < num_core_channels + !!s->lfe + s->xxch_chset_nch[0]))
     { /* xxx should also do MA extensions */
         if (s->amode < 16) {
-            avctx->channel_layout = dca_core_channel_layout[s->amode];
+            avctx->channel_layout = ff_dca_core_channel_layout[s->amode];
+
+            if (s->prim_channels + !!s->lfe > 2 &&
+                avctx->request_channel_layout == AV_CH_LAYOUT_STEREO) {
+                /*
+                 * Neither the core's auxiliary data nor our default tables contain
+                 * downmix coefficients for the additional channel coded in the XCh
+                 * extension, so when we're doing a Stereo downmix, don't decode it.
+                 */
+                s->xch_disable = 1;
+            }
+
 #if FF_API_REQUEST_CHANNELS
 FF_DISABLE_DEPRECATION_WARNINGS
             if (s->xch_present && !s->xch_disable &&
@@ -2338,23 +1553,27 @@ FF_ENABLE_DEPRECATION_WARNINGS
 #else
             if (s->xch_present && !s->xch_disable) {
 #endif
+                if (avctx->channel_layout & AV_CH_BACK_CENTER) {
+                    avpriv_request_sample(avctx, "XCh with Back center channel");
+                    return AVERROR_INVALIDDATA;
+                }
                 avctx->channel_layout |= AV_CH_BACK_CENTER;
                 if (s->lfe) {
                     avctx->channel_layout |= AV_CH_LOW_FREQUENCY;
-                    s->channel_order_tab = dca_channel_reorder_lfe_xch[s->amode];
+                    s->channel_order_tab = ff_dca_channel_reorder_lfe_xch[s->amode];
                 } else {
-                    s->channel_order_tab = dca_channel_reorder_nolfe_xch[s->amode];
+                    s->channel_order_tab = ff_dca_channel_reorder_nolfe_xch[s->amode];
                 }
                 if (s->channel_order_tab[s->xch_base_channel] < 0)
                     return AVERROR_INVALIDDATA;
             } else {
-                channels = num_core_channels + !!s->lfe;
+                channels       = num_core_channels + !!s->lfe;
                 s->xch_present = 0; /* disable further xch processing */
                 if (s->lfe) {
                     avctx->channel_layout |= AV_CH_LOW_FREQUENCY;
-                    s->channel_order_tab = dca_channel_reorder_lfe[s->amode];
+                    s->channel_order_tab = ff_dca_channel_reorder_lfe[s->amode];
                 } else
-                    s->channel_order_tab = dca_channel_reorder_nolfe[s->amode];
+                    s->channel_order_tab = ff_dca_channel_reorder_nolfe[s->amode];
             }
 
             if (channels > !!s->lfe &&
@@ -2366,17 +1585,17 @@ FF_ENABLE_DEPRECATION_WARNINGS
                 return AVERROR_INVALIDDATA;
             }
 
-            if (s->prim_channels + !!s->lfe > 2 &&
+            if (num_core_channels + !!s->lfe > 2 &&
                 avctx->request_channel_layout == AV_CH_LAYOUT_STEREO) {
-                channels = 2;
-                s->output = s->prim_channels == 2 ? s->amode : DCA_STEREO;
+                channels              = 2;
+                s->output             = s->prim_channels == 2 ? s->amode : DCA_STEREO;
                 avctx->channel_layout = AV_CH_LAYOUT_STEREO;
             }
             else if (avctx->request_channel_layout & AV_CH_LAYOUT_NATIVE) {
                 static const int8_t dca_channel_order_native[9] = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
                 s->channel_order_tab = dca_channel_order_native;
             }
-            s->lfe_index = dca_lfe_index[s->amode];
+            s->lfe_index = ff_dca_lfe_index[s->amode];
         } else {
             av_log(avctx, AV_LOG_ERROR,
                    "Non standard configuration %d !\n", s->amode);
@@ -2407,15 +1626,15 @@ FF_ENABLE_DEPRECATION_WARNINGS
         channel_layout = 0;
         for (i = 0; i < s->xxch_nbits_spk_mask; ++i) {
             if (channel_mask & (1 << i)) {
-                channel_layout |= map_xxch_to_native[i];
+                channel_layout |= ff_dca_map_xxch_to_native[i];
             }
         }
 
-        /* make sure that we have managed to get equivelant dts/avcodec channel
+        /* make sure that we have managed to get equivalent dts/avcodec channel
          * masks in some sense -- unfortunately some channels could overlap */
         if (av_popcount(channel_mask) != av_popcount(channel_layout)) {
             av_log(avctx, AV_LOG_DEBUG,
-                   "DTS-XXCH: Inconsistant avcodec/dts channel layouts\n");
+                   "DTS-XXCH: Inconsistent avcodec/dts channel layouts\n");
             return AVERROR_INVALIDDATA;
         }
 
@@ -2428,11 +1647,12 @@ FF_ENABLE_DEPRECATION_WARNINGS
                                   : s->xxch_core_spkmask;
                 for (i = 0; i < s->xxch_nbits_spk_mask; i++) {
                     if (mask & ~(DCA_XXCH_LFE1 | DCA_XXCH_LFE2) & (1 << i)) {
-                        lavc = map_xxch_to_native[i];
+                        lavc = ff_dca_map_xxch_to_native[i];
                         posn = av_popcount(channel_layout & (lavc - 1));
                         s->xxch_order_tab[j++] = posn;
                     }
                 }
+
             }
 
             s->lfe_index = av_popcount(channel_layout & (AV_CH_LOW_FREQUENCY-1));
@@ -2456,7 +1676,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
     frame->nb_samples = 256 * (s->sample_blocks / 8);
     if ((ret = ff_get_buffer(avctx, frame, 0)) < 0)
         return ret;
-    samples_flt = (float **)frame->extended_data;
+    samples_flt = (float **) frame->extended_data;
 
     /* allocate buffer for extra channels if downmixing */
     if (avctx->channels < full_channels) {
@@ -2471,7 +1691,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
         if (!s->extra_channels_buffer)
             return AVERROR(ENOMEM);
 
-        ret = av_samples_fill_arrays((uint8_t **)s->extra_channels, NULL,
+        ret = av_samples_fill_arrays((uint8_t **) s->extra_channels, NULL,
                                      s->extra_channels_buffer,
                                      full_channels - channels,
                                      frame->nb_samples, avctx->sample_fmt, 0);
@@ -2496,8 +1716,8 @@ FF_ENABLE_DEPRECATION_WARNINGS
             float *back_chan = s->samples_chanptr[s->channel_order_tab[s->xch_base_channel]];
             float *lt_chan   = s->samples_chanptr[s->channel_order_tab[s->xch_base_channel - 2]];
             float *rt_chan   = s->samples_chanptr[s->channel_order_tab[s->xch_base_channel - 1]];
-            s->fdsp.vector_fmac_scalar(lt_chan, back_chan, -M_SQRT1_2, 256);
-            s->fdsp.vector_fmac_scalar(rt_chan, back_chan, -M_SQRT1_2, 256);
+            s->fdsp->vector_fmac_scalar(lt_chan, back_chan, -M_SQRT1_2, 256);
+            s->fdsp->vector_fmac_scalar(rt_chan, back_chan, -M_SQRT1_2, 256);
         }
 
         /* If stream contains XXCH, we might need to undo an embedded downmix */
@@ -2517,7 +1737,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
                             scale = s->xxch_dmix_coeff[j][k];
                             if (scale != 0.0) {
                                 dst_chan = s->samples_chanptr[achan];
-                                s->fdsp.vector_fmac_scalar(dst_chan, src_chan,
+                                s->fdsp->vector_fmac_scalar(dst_chan, src_chan,
                                                            -scale, 256);
                             }
                         }
@@ -2567,8 +1787,6 @@ FF_ENABLE_DEPRECATION_WARNINGS
     return buf_size;
 }
 
-
-
 /**
  * DCA initialization
  *
@@ -2582,7 +1800,10 @@ static av_cold int dca_decode_init(AVCodecContext *avctx)
     s->avctx = avctx;
     dca_init_vlcs();
 
-    avpriv_float_dsp_init(&s->fdsp, avctx->flags & CODEC_FLAG_BITEXACT);
+    s->fdsp = avpriv_float_dsp_alloc(avctx->flags & CODEC_FLAG_BITEXACT);
+    if (!s->fdsp)
+        return AVERROR(ENOMEM);
+
     ff_mdct_init(&s->imdct, 6, 1, 1.0);
     ff_synth_filter_init(&s->synth);
     ff_dcadsp_init(&s->dcadsp);
@@ -2609,6 +1830,7 @@ static av_cold int dca_decode_end(AVCodecContext *avctx)
     DCAContext *s = avctx->priv_data;
     ff_mdct_end(&s->imdct);
     av_freep(&s->extra_channels_buffer);
+    av_freep(&s->fdsp);
     return 0;
 }
 
@@ -2622,7 +1844,7 @@ static const AVProfile profiles[] = {
 };
 
 static const AVOption options[] = {
-    { "disable_xch", "disable decoding of the XCh extension", offsetof(DCAContext, xch_disable), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM|AV_OPT_FLAG_AUDIO_PARAM },
+    { "disable_xch", "disable decoding of the XCh extension", offsetof(DCAContext, xch_disable), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_AUDIO_PARAM },
     { NULL },
 };
 

@@ -19,6 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include <inttypes.h>
+
 #include "libavutil/intreadwrite.h"
 #include "libavcodec/bytestream.h"
 #include "avformat.h"
@@ -44,7 +46,7 @@ static const AVCodecTag lxf_tags[] = {
     { AV_CODEC_ID_NONE,        0 },
 };
 
-typedef struct {
+typedef struct LXFDemuxContext {
     int channels;                       ///< number of audio channels. zero means no audio
     int frame_number;                   ///< current video frame
     uint32_t video_format, packet_type, extended_size;
@@ -81,7 +83,7 @@ static int check_checksum(const uint8_t *header, int size)
  * @param[out] header where to copy the ident to
  * @return 0 if an ident was found, < 0 on I/O error
  */
-static int sync(AVFormatContext *s, uint8_t *header)
+static int lxf_sync(AVFormatContext *s, uint8_t *header)
 {
     uint8_t buf[LXF_IDENT_LENGTH];
     int ret;
@@ -90,7 +92,7 @@ static int sync(AVFormatContext *s, uint8_t *header)
         return ret < 0 ? ret : AVERROR_EOF;
 
     while (memcmp(buf, LXF_IDENT, LXF_IDENT_LENGTH)) {
-        if (url_feof(s->pb))
+        if (avio_feof(s->pb))
             return AVERROR_EOF;
 
         memmove(buf, &buf[1], LXF_IDENT_LENGTH-1);
@@ -118,7 +120,7 @@ static int get_packet_header(AVFormatContext *s)
     const uint8_t *p = header + LXF_IDENT_LENGTH;
 
     //find and read the ident
-    if ((ret = sync(s, header)) < 0)
+    if ((ret = lxf_sync(s, header)) < 0)
         return ret;
 
     ret = avio_read(pb, header + LXF_IDENT_LENGTH, 8);
@@ -128,12 +130,12 @@ static int get_packet_header(AVFormatContext *s)
     version     = bytestream_get_le32(&p);
     header_size = bytestream_get_le32(&p);
     if (version > 1)
-        avpriv_request_sample(s, "Unknown format version %i\n", version);
+        avpriv_request_sample(s, "Unknown format version %"PRIu32"\n", version);
 
     if (header_size < (version ? 72 : 60) ||
         header_size > LXF_MAX_PACKET_HEADER_SIZE ||
         (header_size & 3)) {
-        av_log(s, AV_LOG_ERROR, "Invalid header size 0x%x\n", header_size);
+        av_log(s, AV_LOG_ERROR, "Invalid header size 0x%"PRIx32"\n", header_size);
         return AVERROR_INVALIDDATA;
     }
 
@@ -301,7 +303,8 @@ static int lxf_read_packet(AVFormatContext *s, AVPacket *pkt)
     stream = lxf->packet_type;
 
     if (stream > 1) {
-        av_log(s, AV_LOG_WARNING, "got packet with illegal stream index %u\n", stream);
+        av_log(s, AV_LOG_WARNING,
+               "got packet with illegal stream index %"PRIu32"\n", stream);
         return AVERROR(EAGAIN);
     }
 

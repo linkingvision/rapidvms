@@ -54,7 +54,7 @@ typedef enum {
     CHUNK_TYPE_STREAM_CHANGE = 0x4324,
 } ChunkType;
 
-typedef struct {
+typedef struct MMSHContext {
     MMSContext mms;
     uint8_t location[1024];
     int request_seq;  ///< request packet sequence
@@ -119,7 +119,7 @@ static int read_data_packet(MMSHContext *mmsh, const int len)
     int res;
     if (len > sizeof(mms->in_buffer)) {
         av_log(NULL, AV_LOG_ERROR,
-               "Data packet length %d exceeds the in_buffer size %zu\n",
+               "Data packet length %d exceeds the in_buffer size %"SIZE_SPECIFIER"\n",
                len, sizeof(mms->in_buffer));
         return AVERROR(EIO);
     }
@@ -194,7 +194,7 @@ static int get_http_header_data(MMSHContext *mmsh)
             if (len) {
                 if (len > sizeof(mms->in_buffer)) {
                     av_log(NULL, AV_LOG_ERROR,
-                           "Other packet len = %d exceed the in_buffer size %zu\n",
+                           "Other packet len = %d exceed the in_buffer size %"SIZE_SPECIFIER"\n",
                            len, sizeof(mms->in_buffer));
                     return AVERROR(EIO);
                 }

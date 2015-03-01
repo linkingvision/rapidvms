@@ -31,12 +31,12 @@
 #define DELAY_FRAMES   32
 
 static const int mpc_rate[4] = { 44100, 48000, 37800, 32000 };
-typedef struct {
+typedef struct MPCFrame {
     int64_t pos;
     int size, skip;
 }MPCFrame;
 
-typedef struct {
+typedef struct MPCContext {
     int ver;
     uint32_t curframe, lastframe;
     uint32_t fcount;
@@ -152,7 +152,7 @@ static int mpc_read_packet(AVFormatContext *s, AVPacket *pkt)
     }
     c->curbits = (curbits + size2) & 0x1F;
 
-    if ((ret = av_new_packet(pkt, size)) < 0)
+    if ((ret = av_new_packet(pkt, size + 4)) < 0)
         return ret;
 
     pkt->data[0] = curbits;

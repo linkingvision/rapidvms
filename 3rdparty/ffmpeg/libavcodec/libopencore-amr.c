@@ -1,6 +1,6 @@
 /*
  * AMR Audio decoder stub
- * Copyright (c) 2003 the ffmpeg project
+ * Copyright (c) 2003 The FFmpeg Project
  *
  * This file is part of FFmpeg.
  *
@@ -199,7 +199,7 @@ static av_cold int amr_nb_encode_init(AVCodecContext *avctx)
     }
 
     avctx->frame_size  = 160;
-    avctx->delay       =  50;
+    avctx->initial_padding = 50;
     ff_af_queue_init(avctx, &s->afq);
 
     s->enc_state = Encoder_Interface_init(s->enc_dtx);
@@ -241,12 +241,12 @@ static int amr_nb_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
 
     if (frame) {
         if (frame->nb_samples < avctx->frame_size) {
-            flush_buf = av_mallocz(avctx->frame_size * sizeof(*flush_buf));
+            flush_buf = av_mallocz_array(avctx->frame_size, sizeof(*flush_buf));
             if (!flush_buf)
                 return AVERROR(ENOMEM);
             memcpy(flush_buf, samples, frame->nb_samples * sizeof(*flush_buf));
             samples = flush_buf;
-            if (frame->nb_samples < avctx->frame_size - avctx->delay)
+            if (frame->nb_samples < avctx->frame_size - avctx->initial_padding)
                 s->enc_last_frame = -1;
         }
         if ((ret = ff_af_queue_add(&s->afq, frame)) < 0) {
@@ -256,7 +256,7 @@ static int amr_nb_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
     } else {
         if (s->enc_last_frame < 0)
             return 0;
-        flush_buf = av_mallocz(avctx->frame_size * sizeof(*flush_buf));
+        flush_buf = av_mallocz_array(avctx->frame_size, sizeof(*flush_buf));
         if (!flush_buf)
             return AVERROR(ENOMEM);
         samples = flush_buf;

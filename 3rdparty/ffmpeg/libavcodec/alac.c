@@ -45,7 +45,10 @@
  * 32bit  samplerate
  */
 
+#include <inttypes.h>
+
 #include "libavutil/channel_layout.h"
+#include "libavutil/opt.h"
 #include "avcodec.h"
 #include "get_bits.h"
 #include "bytestream.h"
@@ -57,7 +60,8 @@
 
 #define ALAC_EXTRADATA_SIZE 36
 
-typedef struct {
+typedef struct ALACContext {
+    AVClass *class;
     AVCodecContext *avctx;
     GetBitContext gb;
     int channels;
@@ -76,6 +80,7 @@ typedef struct {
     int nb_samples;     /**< number of samples in the current frame */
 
     int direct_output;
+    int extra_bit_bug;
 } ALACContext;
 
 static inline unsigned int decode_scalar(GetBitContext *gb, int k, int bps)
@@ -283,7 +288,7 @@ static int decode_element(AVCodecContext *avctx, AVFrame *frame, int ch_index,
     else
         output_samples = alac->max_samples_per_frame;
     if (!output_samples || output_samples > alac->max_samples_per_frame) {
-        av_log(avctx, AV_LOG_ERROR, "invalid samples per frame: %d\n",
+        av_log(avctx, AV_LOG_ERROR, "invalid samples per frame: %"PRIu32"\n",
                output_samples);
         return AVERROR_INVALIDDATA;
     }
@@ -294,7 +299,7 @@ static int decode_element(AVCodecContext *avctx, AVFrame *frame, int ch_index,
         if ((ret = ff_thread_get_buffer(avctx, &tframe, 0)) < 0)
             return ret;
     } else if (output_samples != alac->nb_samples) {
-        av_log(avctx, AV_LOG_ERROR, "sample count mismatch: %u != %d\n",
+        av_log(avctx, AV_LOG_ERROR, "sample count mismatch: %"PRIu32" != %d\n",
                output_samples, alac->nb_samples);
         return AVERROR_INVALIDDATA;
     }
@@ -378,12 +383,17 @@ static int decode_element(AVCodecContext *avctx, AVFrame *frame, int ch_index,
         decorr_left_weight = 0;
     }
 
+    if (alac->extra_bits && alac->extra_bit_bug) {
+        append_extra_bits(alac->output_samples_buffer, alac->extra_bits_buffer,
+                          alac->extra_bits, channels, alac->nb_samples);
+    }
+
     if (channels == 2 && decorr_left_weight) {
         decorrelate_stereo(alac->output_samples_buffer, alac->nb_samples,
                            decorr_shift, decorr_left_weight);
     }
 
-    if (alac->extra_bits) {
+    if (alac->extra_bits && !alac->extra_bit_bug) {
         append_extra_bits(alac->output_samples_buffer, alac->extra_bits_buffer,
                           alac->extra_bits, channels, alac->nb_samples);
     }
@@ -549,7 +559,8 @@ static int alac_set_info(ALACContext *alac)
     alac->max_samples_per_frame = bytestream2_get_be32u(&gb);
     if (!alac->max_samples_per_frame ||
         alac->max_samples_per_frame > INT_MAX / sizeof(int32_t)) {
-        av_log(alac->avctx, AV_LOG_ERROR, "max samples per frame invalid: %u\n",
+        av_log(alac->avctx, AV_LOG_ERROR,
+               "max samples per frame invalid: %"PRIu32"\n",
                alac->max_samples_per_frame);
         return AVERROR_INVALIDDATA;
     }
@@ -627,6 +638,20 @@ static int init_thread_copy(AVCodecContext *avctx)
     return allocate_buffers(alac);
 }
 
+static const AVOption options[] = {
+    { "extra_bits_bug", "Force non-standard decoding process",
+      offsetof(ALACContext, extra_bit_bug), AV_OPT_TYPE_INT, { .i64 = 0 },
+      0, 1, AV_OPT_FLAG_AUDIO_PARAM | AV_OPT_FLAG_DECODING_PARAM },
+    { NULL },
+};
+
+static const AVClass alac_class = {
+    .class_name = "alac",
+    .item_name  = av_default_item_name,
+    .option     = options,
+    .version    = LIBAVUTIL_VERSION_INT,
+};
+
 AVCodec ff_alac_decoder = {
     .name           = "alac",
     .long_name      = NULL_IF_CONFIG_SMALL("ALAC (Apple Lossless Audio Codec)"),
@@ -638,4 +663,5 @@ AVCodec ff_alac_decoder = {
     .decode         = alac_decode_frame,
     .init_thread_copy = ONLY_IF_THREADS_ENABLED(init_thread_copy),
     .capabilities   = CODEC_CAP_DR1 | CODEC_CAP_FRAME_THREADS,
+    .priv_class     = &alac_class
 };

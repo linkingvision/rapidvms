@@ -44,6 +44,11 @@ int ff_load_image(uint8_t *data[4], int linesize[4],
         return ret;
     }
 
+    if ((ret = avformat_find_stream_info(format_ctx, NULL)) < 0) {
+        av_log(log_ctx, AV_LOG_ERROR, "Find stream info failed\n");
+        return ret;
+    }
+
     codec_ctx = format_ctx->streams[0]->codec;
     codec = avcodec_find_decoder(codec_ctx->codec_id);
     if (!codec) {
@@ -72,9 +77,10 @@ int ff_load_image(uint8_t *data[4], int linesize[4],
     ret = avcodec_decode_video2(codec_ctx, frame, &frame_decoded, &pkt);
     if (ret < 0 || !frame_decoded) {
         av_log(log_ctx, AV_LOG_ERROR, "Failed to decode image from file\n");
+        if (ret >= 0)
+            ret = -1;
         goto end;
     }
-    ret = 0;
 
     *w       = frame->width;
     *h       = frame->height;
