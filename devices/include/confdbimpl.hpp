@@ -18,9 +18,9 @@ inline BOOL SysConfDataDefault(VSCConfData &pConf)
 		pConf.data.conf.VIPCMap[i] = CONF_MAP_INVALID_MIN;
 	}
 
-	VSCConfData.data.conf.RTSPServerPort = 9554;
-	strcpy(VSCConfData.data.conf.MulticastStartIPV4, "226.0.0.1");
-	VSCConfData.data.conf.OAPIPort = 9080;
+	pConf.data.conf.RTSPServerPort = 9554;
+	strcpy(pConf.data.conf.MulticastStartIPV4, "226.0.0.1");
+	pConf.data.conf.OAPIPort = 9080;
 
     return TRUE;
 }
