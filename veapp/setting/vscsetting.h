@@ -14,11 +14,14 @@
 #include "vsclanguage.h"
 #include "vschdfsrecord.h"
 #include "vscrtsprtp.h"
+#include "vscvideosetting.h"
+#include "vscoapi.h"
 
 
 #define VSC_SETTING_INDEX_SYSTEM 0
-#define VSC_SETTING_INDEX_MEDIA 1
-#define VSC_SETTING_INDEX_STORAGE 2
+#define VSC_SETTING_INDEX_NETWORK 1
+#define VSC_SETTING_INDEX_MEDIA 2
+#define VSC_SETTING_INDEX_STORAGE 3
 
 class VSCSetting : public QWidget
 {
@@ -57,6 +60,8 @@ private:
 	VSCRecorderConf *m_RecorderConf;
 	VSCHdfsRecord *m_HdfsRecord;
 	VSCRtspRtp *m_RtspRtp;
+	VSCOAPI *m_OAPI;
+	VSCVideoSetting *m_VideoSetting;
 	QVBoxLayout* m_Layout;
 	VSCDeviceList &m_DeviceList;
 };
