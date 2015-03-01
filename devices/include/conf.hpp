@@ -5,7 +5,7 @@
 
 #include "utility.hpp"
 
-#define VE_VERSION "r1.1.5-20150223"
+#define VE_VERSION "r1.1.5-20150315"
 #define VE_INFO "OpenCVR r1.1.5 2015"
 
 #define CONF_NAME_MAX 128
@@ -232,12 +232,22 @@ typedef struct __VSCConfUserKey {
 //------------------------------------------------------------------------------
 
 typedef struct __VSCConfData__ {
-    u32 DeviceMap[CONF_MAP_MAX];
-    u32 Language;
-    u32 DeviceNum;
-    u32 VIPCMap[CONF_MAP_MAX];
-    u32 VIPCNum;
-    u32 ConfVer;/* Current version is 0 */
+	u32 DeviceMap[CONF_MAP_MAX];
+	u32 Language;
+	u32 DeviceNum;
+	u32 VIPCMap[CONF_MAP_MAX];
+	u32 VIPCNum;
+	u32 ConfVer;/* Current version is 0 */
+
+	/*  media config  */
+	u8 HWAccel;/* 0 : default SW decoding, 1 use HW accel */ 
+	u8 RTSPAuth;/* 0 : disable RTSP Auth, 1 enable Auth */
+	u16 RTSPServerPort; /* RTSP server Port */
+	s8 MulticastStartIPV4[VSC_CONF_PARAM_MAX];/* IPV4 Multicast Start Address */
+
+	/* API  */
+	u16 OAPIPort;/* OAPI server port */
+	
 }VSCConfData__;
 
 typedef struct __VSCDeviceData__ {
@@ -272,6 +282,8 @@ typedef struct __VSCDeviceData__ {
 	u32 Mining;/* 1 stand for mining, 0 stand for no mining */
 
 	u32 HWDecode;/* 1 stand for HWDecoding, 0 soft, this is for Intel media SDK */
+
+	u8 IPV6; /* 1 stand for IPV6 address, 0 stand for IPV4 */
 }VSCDeviceData__;
 
 

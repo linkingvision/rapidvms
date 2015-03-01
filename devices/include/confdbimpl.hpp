@@ -8,15 +8,19 @@ using namespace std;
 
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
-    pConf.data.conf.DeviceNum = 0;
-    for (s32 i = 0; i < CONF_MAP_MAX; i ++)
-    {
-        pConf.data.conf.DeviceMap[i] = CONF_MAP_INVALID_MIN;
-    }
-    for (s32 i = 0; i < CONF_MAP_MAX; i ++)
-    {
-        pConf.data.conf.VIPCMap[i] = CONF_MAP_INVALID_MIN;
-    }
+	pConf.data.conf.DeviceNum = 0;
+	for (s32 i = 0; i < CONF_MAP_MAX; i ++)
+	{
+		pConf.data.conf.DeviceMap[i] = CONF_MAP_INVALID_MIN;
+	}
+	for (s32 i = 0; i < CONF_MAP_MAX; i ++)
+	{
+		pConf.data.conf.VIPCMap[i] = CONF_MAP_INVALID_MIN;
+	}
+
+	VSCConfData.data.conf.RTSPServerPort = 9554;
+	strcpy(VSCConfData.data.conf.MulticastStartIPV4, "226.0.0.1");
+	VSCConfData.data.conf.OAPIPort = 9080;
 
     return TRUE;
 }
