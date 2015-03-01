@@ -24,7 +24,7 @@
       <number>40</number>
      </property>
      <item row="0" column="2">
-      <widget class="QLineEdit" name="passwd">
+      <widget class="QLineEdit" name="rtspPort">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -32,7 +32,7 @@
         </size>
        </property>
        <property name="text">
-        <string>554</string>
+        <string>9554</string>
        </property>
        <property name="readOnly">
         <bool>false</bool>
@@ -49,12 +49,12 @@
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>User </string>
+        <string>RTSP Auth</string>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="auth">
        <property name="text">
         <string/>
        </property>
@@ -63,39 +63,24 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>RTP</string>
+        <string>Multicast Start</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QComboBox" name="comboBox">
-       <property name="minimumSize">
-        <size>
-         <width>200</width>
-         <height>0</height>
-        </size>
-       </property>
+      <widget class="QLineEdit" name="multiCastStart">
        <property name="maximumSize">
         <size>
-         <width>200</width>
+         <width>16777215</width>
          <height>16777215</height>
         </size>
        </property>
-       <item>
-        <property name="text">
-         <string>UDP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>TCP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Multicast</string>
-        </property>
-       </item>
+       <property name="text">
+        <string>226.0.0.1</string>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
     </layout>
