@@ -83,11 +83,26 @@
        </item>
        <item>
         <property name="text">
+         <string>Network</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>OAPI</string>
+         </property>
+        </item>
+       </item>
+       <item>
+        <property name="text">
          <string>Media</string>
         </property>
         <item>
          <property name="text">
           <string>RTSP/RTP</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Video</string>
          </property>
         </item>
        </item>
