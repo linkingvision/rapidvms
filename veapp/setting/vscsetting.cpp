@@ -20,7 +20,9 @@ VSCSetting::VSCSetting(QWidget *parent, VSCDeviceList &pDeviceList)
 	m_RecorderConf = new VSCRecorderConf(pMap);
 	m_HdfsRecord = new VSCHdfsRecord();
 	m_RtspRtp = new VSCRtspRtp();
-	
+	m_OAPI = new VSCOAPI();
+	m_VideoSetting = new VSCVideoSetting();
+
 	m_Layout->setMargin(0);
 
 	ui.widget->setLayout(m_Layout);
@@ -88,6 +90,12 @@ void VSCSetting::removeAll()
 	m_HdfsRecord->hide();
 	m_Layout->removeWidget(m_RtspRtp);
 	m_RtspRtp->hide();
+
+	m_Layout->removeWidget(m_OAPI);
+	m_OAPI->hide();
+
+	m_Layout->removeWidget(m_VideoSetting);
+	m_VideoSetting->hide();
 }
 
 void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
@@ -122,7 +130,16 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 			m_Layout->addWidget(m_Language);
 			m_Language->show();
 		}
-	}else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_MEDIA) == parent)
+	}else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_NETWORK) == parent)
+	{
+		VDC_DEBUG( "%s  Media Setting\n",__FUNCTION__);
+		if (col == 0)
+		{
+			removeAll();
+			m_Layout->addWidget(m_OAPI);
+			m_OAPI->show();
+		}
+	} else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_MEDIA) == parent)
 	{
 		VDC_DEBUG( "%s  Media Setting\n",__FUNCTION__);
 		if (col == 0)
@@ -130,6 +147,11 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 			removeAll();
 			m_Layout->addWidget(m_RtspRtp);
 			m_RtspRtp->show();
+		}else if (col == 1)
+		{
+			removeAll();
+			m_Layout->addWidget(m_VideoSetting);
+			m_VideoSetting->show();
 		}
 	}
 	else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_STORAGE) == parent)
