@@ -273,6 +273,18 @@
     <CustomBuild Include="..\..\mining\include\mframework.hpp">
       <Filter>mining\include</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\setting\vscoapi.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscoapi.ui">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscvideosetting.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscvideosetting.ui">
+      <Filter>setting</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -626,6 +638,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_mframework.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\setting\vscoapi.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscoapi.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscoapi.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscvideosetting.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvideosetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvideosetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -762,6 +792,12 @@
     </ClInclude>
     <ClInclude Include="..\..\mining\include\minterfacemgrimpl.hpp">
       <Filter>mining\include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscoapi.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvideosetting.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
