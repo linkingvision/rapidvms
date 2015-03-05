@@ -29,6 +29,8 @@
 #define VE_PIX_FMT_BGR8    (VE_PIX_FMT_BGR|8)
 
 typedef struct __RawFrame {
+ 	u32 secs;       /* timestamp in seconds */
+	u32 msecs;      /* timestamp in mseconds */
 #define VE_NUM_POINTERS 8
 	char *data[VE_NUM_POINTERS];
 	int linesize[VE_NUM_POINTERS];
