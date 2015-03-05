@@ -9,8 +9,10 @@ typedef struct __VeBox
 {
 	u32 x0; 
 	u32 y0; 
-	u32 w;
-	u32 h;	
+	u32 w;/* box width */
+	u32 h;/* box height */	
+	u32 rw;/* image width */
+	u32 rh;/* image height */
 }VeBox;
 
 typedef struct __VeObj
@@ -31,8 +33,8 @@ typedef struct __VeObjGroup
 typedef struct __VeMotionBox
 {
 	u32 size;/* Total num of BOX */
-	u32 w; /* Real width */
-	u32 h; /* Real heigh */
+	u32 rw; /* image width */
+	u32 rh; /* image heigh */
 	u32 survival;/* survival frames */ 
 	VeBox mot[VE_MOT_BOX_MAX];
 }VeMotionBox;
