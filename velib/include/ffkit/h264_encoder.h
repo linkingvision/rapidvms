@@ -2,7 +2,7 @@
 #ifndef __ffkit_h264_encoder_h
 #define __ffkit_h264_encoder_h
 
-#include "ffkit/options.h"
+#include "ffkit/ffoptions.h"
 #include "ffkit/av_packet.h"
 #include "ffkit/av_packet_factory.h"
 #include "ffkit/frame_types.h"

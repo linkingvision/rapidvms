@@ -2,7 +2,7 @@
 #ifndef __ffkit_jpeg_encoder_h
 #define __ffkit_jpeg_encoder_h
 
-#include "ffkit/options.h"
+#include "ffkit/ffoptions.h"
 #include "ffkit/av_packet.h"
 #include "ffkit/av_packet_factory.h"
 #include "cppkit/ck_memory.h"

@@ -2,7 +2,7 @@
 #ifndef __ffkit_jpeg_decoder_h
 #define __ffkit_jpeg_decoder_h
 
-#include "ffkit/options.h"
+#include "ffkit/ffoptions.h"
 #include "ffkit/av_demuxer.h"
 #include "ffkit/av_packet.h"
 #include "ffkit/av_packet_factory.h"

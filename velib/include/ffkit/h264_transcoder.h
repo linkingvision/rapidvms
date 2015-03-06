@@ -6,7 +6,7 @@
 #include "ffkit/h264_decoder.h"
 #include "ffkit/h264_encoder.h"
 #include "ffkit/av_muxer.h"
-#include "ffkit/options.h"
+#include "ffkit/ffoptions.h"
 #include "ffkit/frame_types.h"
 
 namespace ffkit

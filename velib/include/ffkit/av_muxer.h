@@ -2,7 +2,7 @@
 #ifndef __ffkit_av_muxer_h
 #define __ffkit_av_muxer_h
 
-#include "ffkit/options.h"
+#include "ffkit/ffoptions.h"
 #include "ffkit/av_packet.h"
 #include "ffkit/av_packet_factory.h"
 #include "cppkit/ck_memory.h"
