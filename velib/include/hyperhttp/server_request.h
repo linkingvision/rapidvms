@@ -37,7 +37,7 @@
 #include "cppkit/ck_string.h"
 #include "cppkit/ck_memory.h"
 #include "cppkit/ck_byte_ptr.h"
-#include "hyperhttp/uri.h"
+#include "hyperhttp/hyperuri.h"
 #include "hyperhttp/methods.h"
 
 namespace hyperhttp

@@ -38,7 +38,7 @@
 #include <unordered_map>
 #include <memory>
 
-#include "hyperhttp/uri.h"
+#include "hyperhttp/hyperuri.h"
 #include "hyperhttp/methods.h"
 
 namespace hyperhttp
