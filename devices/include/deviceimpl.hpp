@@ -52,8 +52,12 @@ DeviceParam::DeviceParam()
 	strcpy(m_Conf.data.conf.CameraIndex, "1");
 
 	m_Conf.data.conf.UseProfileToken = 0;
-	//m_Conf.data.conf.Recording = 1;//Default start recording
-	m_Conf.data.conf.Recording = 0;//Default start recording//xsmart
+
+	m_Conf.data.conf.Recording = 0;
+
+	//TODO add default 
+	m_Conf.data.conf.Mining = 0;
+	m_Conf.data.conf.HWAccel = 0;
 	strcpy(m_Conf.data.conf.OnvifProfileToken, "quality_h264");
 	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
 	m_bOnvifUrlGetted = FALSE;
@@ -344,22 +348,27 @@ DeviceStatus Device::CheckDevice()
         /* Camera from offline to online */
         if (m_OnlineUrl == FALSE)
         {
+        	BOOL HWAccel = FALSE;
+		if (m_param.m_Conf.data.conf.HWAccel == 1)
+		{
+			HWAccel = TRUE;
+		}
 		if (m_param.UpdateUrl() == FALSE)
 		{
 		    return  DEV_NO_CHANGE;
 		}
 		if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
 		{
-			m_vPlay.Init(m_param.m_strUrl);
+			m_vPlay.Init(m_param.m_strUrl, HWAccel);
 		}else
 		{
 			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
-				m_param.m_Conf.data.conf.Password);
+				m_param.m_Conf.data.conf.Password, HWAccel);
 			VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 			if (m_param.m_bHasSubStream == TRUE)
 			{
 				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.data.conf.User,
-					m_param.m_Conf.data.conf.Password);			
+					m_param.m_Conf.data.conf.Password, HWAccel);			
 			}
 		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
