@@ -10,8 +10,18 @@ VSCVideoSetting::VSCVideoSetting(QWidget *parent)
     : QWidget(parent)
 {
 	ui.setupUi(this);
-	//ui.user->setText("admin");
-	//ui.passwd->setText("admin");
+
+	gFactory->GetDefaultHWAccel(m_bHWAccel);
+
+	if (m_bHWAccel  == 1)
+	{
+	        ui.hwaccel->setChecked(true);
+	}else
+	{
+		ui.hwaccel->setChecked(false);
+	}
+
+	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
 
 
@@ -19,6 +29,15 @@ VSCVideoSetting::VSCVideoSetting(QWidget *parent)
 
 void VSCVideoSetting::applyConfig()
 {
+	if (ui.hwaccel->isChecked() == true)
+	{
+		m_bHWAccel  = 1;
+	}else
+	{
+		m_bHWAccel  = 0;
+	}
+
+	gFactory->SetDefaultHWAccel(m_bHWAccel);
 
 	return;
 
