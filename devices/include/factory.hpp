@@ -118,6 +118,14 @@ public:
 	BOOL GetLang(VSCLangType &pLang);
 	BOOL SetLang(VSCLangType &pLang);
 
+	/* OpenCVR API port */
+	BOOL GetOAPIPort(u16 &pPort);
+	BOOL SetOAPIPort(u16 &pPort);
+
+	/* Defualt HW HWAccel enable or disable */
+	BOOL GetDefaultHWAccel(BOOL &pHWAccel);
+	BOOL SetDefaultHWAccel(BOOL &pHWAccel);
+
 public:
 	/* UI can use this for display device tree */
 	BOOL GetDeviceParamMap(DeviceParamMap &pMap);
