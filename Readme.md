@@ -84,6 +84,8 @@ Mail  : [xsmart@veyesys.com](xsmart@veyesys.com)
 Skype : xsmart@veyesys.com
 
 QQ    : 2104915834
+
+Wechat: ![](https://raw.githubusercontent.com/xsmart/ve-img/master/wechat/xsmart_wechat.png)
 ### Note: ###
 	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
     
