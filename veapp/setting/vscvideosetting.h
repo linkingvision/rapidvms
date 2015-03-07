@@ -22,6 +22,7 @@ public:
     Ui::VSCVideoSetting ui;
 	
 private:
+	BOOL m_bHWAccel;
 
     
 };
