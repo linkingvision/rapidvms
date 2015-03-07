@@ -408,6 +408,59 @@ inline BOOL Factory::SetLang(VSCLangType &pLang)
 	return TRUE;
 }
 
+inline BOOL Factory::GetOAPIPort(u16 &pPort)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	pPort = sys.data.conf.OAPIPort;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetOAPIPort(u16 &pPort)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	sys.data.conf.OAPIPort = pPort;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
+inline BOOL Factory::GetDefaultHWAccel(BOOL &pHWAccel)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (sys.data.conf.HWAccel == 1)
+	{
+		pHWAccel = TRUE;
+	}else
+	{
+		pHWAccel = FALSE;
+	}
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetDefaultHWAccel(BOOL &pHWAccel)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (pHWAccel == 1)
+	{
+		sys.data.conf.HWAccel = 1;
+	}else
+	{
+		sys.data.conf.HWAccel = 0;
+	}
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
+
 inline BOOL Factory::InitLicense()
 {
 	astring strLicense;
