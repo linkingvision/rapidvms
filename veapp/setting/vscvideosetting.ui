@@ -44,7 +44,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QCheckBox" name="auth">
+      <widget class="QCheckBox" name="hwaccel">
        <property name="text">
         <string/>
        </property>
