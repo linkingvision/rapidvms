@@ -83,45 +83,61 @@ void VSCCameraAdd::PreView()
 
 void VSCCameraAdd::setupDefaultValue()
 {
-    switch(m_Param.m_Conf.data.conf.nSubType)
-    {
-    case VSC_SUB_DEVICE_FILE:
-        ui.radioButtonFile->setChecked(true);
-        break;
-    case VSC_SUB_DEVICE_RTSP:
-        ui.radioButtonRtsp->setChecked(true);
-        break;
-    case VSC_SUB_DEVICE_ONVIF:
-        ui.radioButtonOnvif->setChecked(true);
-        break;
-    default:
-        return;
-    }
+	switch(m_Param.m_Conf.data.conf.nSubType)
+	{
+	case VSC_SUB_DEVICE_FILE:
+	    ui.radioButtonFile->setChecked(true);
+	    break;
+	case VSC_SUB_DEVICE_RTSP:
+	    ui.radioButtonRtsp->setChecked(true);
+	    break;
+	case VSC_SUB_DEVICE_ONVIF:
+	    ui.radioButtonOnvif->setChecked(true);
+	    break;
+	default:
+	    return;
+	}
 
-    ui.lineEditName->setText(m_Param.m_Conf.data.conf.Name);
-    ui.lineEditIP->setText(m_Param.m_Conf.data.conf.IP);
-    ui.lineEditPort->setText(m_Param.m_Conf.data.conf.Port);
-    ui.lineEditUser->setText(m_Param.m_Conf.data.conf.User);
-    ui.lineEditPassword->setText(m_Param.m_Conf.data.conf.Password);
+	ui.lineEditName->setText(m_Param.m_Conf.data.conf.Name);
+	ui.lineEditIP->setText(m_Param.m_Conf.data.conf.IP);
+	ui.lineEditPort->setText(m_Param.m_Conf.data.conf.Port);
+	ui.lineEditUser->setText(m_Param.m_Conf.data.conf.User);
+	ui.lineEditPassword->setText(m_Param.m_Conf.data.conf.Password);
 
-    ui.lineEditRtspLoc->setText(m_Param.m_Conf.data.conf.RtspLocation);
+	ui.lineEditRtspLoc->setText(m_Param.m_Conf.data.conf.RtspLocation);
 
-    //ui.lineFileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
-    ui.fileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
+	//ui.lineFileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
+	ui.fileLoc->setText(m_Param.m_Conf.data.conf.FileLocation);
 
-    ui.lineOnvifAddr->setText(m_Param.m_Conf.data.conf.OnvifAddress);
+	ui.lineOnvifAddr->setText(m_Param.m_Conf.data.conf.OnvifAddress);
 
-    ui.lineEditProfileToken->setText(m_Param.m_Conf.data.conf.OnvifProfileToken);
+	ui.lineEditProfileToken->setText(m_Param.m_Conf.data.conf.OnvifProfileToken);
 
-    if (m_Param.m_Conf.data.conf.UseProfileToken == 1)
-    {
-        ui.checkBoxProfileToken->setChecked(true);
-        ui.lineEditProfileToken->setDisabled(0);
-    }else
-    {
-        ui.checkBoxProfileToken->setChecked(false);
-        ui.lineEditProfileToken->setDisabled(1);
-    }
+	if (m_Param.m_Conf.data.conf.UseProfileToken == 1)
+	{
+	    ui.checkBoxProfileToken->setChecked(true);
+	    ui.lineEditProfileToken->setDisabled(0);
+	}else
+	{
+	    ui.checkBoxProfileToken->setChecked(false);
+	    ui.lineEditProfileToken->setDisabled(1);
+	}
+
+	if (m_Param.m_Conf.data.conf.HWAccel == 1)
+	{
+		ui.checkBoxHWAccel->setChecked(true);
+	}else
+	{
+		ui.checkBoxHWAccel->setChecked(false);
+	}
+
+	if (m_Param.m_Conf.data.conf.Mining == 1)
+	{
+		ui.checkBoxDataMining->setChecked(true);
+	}else
+	{
+		ui.checkBoxDataMining->setChecked(false);
+	}
 
 }
 
@@ -135,54 +151,74 @@ void VSCCameraAdd::updateParamValue(QLineEdit *ld, s8 * pParam)
 
 void VSCCameraAdd::applyConfig()
 {
-    VDC_DEBUG( "%s  ID %d\n",__FUNCTION__, m_nId);
-    /* Update m_Param from UI  */
-    updateParamValue(ui.lineEditName, m_Param.m_Conf.data.conf.Name);
+	VDC_DEBUG( "%s  ID %d\n",__FUNCTION__, m_nId);
+	/* Update m_Param from UI  */
+	updateParamValue(ui.lineEditName, m_Param.m_Conf.data.conf.Name);
 
-    updateParamValue(ui.lineEditIP, m_Param.m_Conf.data.conf.IP);
-    updateParamValue(ui.lineEditPort, m_Param.m_Conf.data.conf.Port);
-    updateParamValue(ui.lineEditUser, m_Param.m_Conf.data.conf.User);
-    updateParamValue(ui.lineEditPassword, m_Param.m_Conf.data.conf.Password);
+	updateParamValue(ui.lineEditIP, m_Param.m_Conf.data.conf.IP);
+	updateParamValue(ui.lineEditPort, m_Param.m_Conf.data.conf.Port);
+	updateParamValue(ui.lineEditUser, m_Param.m_Conf.data.conf.User);
+	updateParamValue(ui.lineEditPassword, m_Param.m_Conf.data.conf.Password);
 
 
-    updateParamValue(ui.lineEditRtspLoc, m_Param.m_Conf.data.conf.RtspLocation);
-    //updateParamValue(ui.lineFileLoc, m_Param.m_Conf.data.conf.FileLocation);
-    /* Update the File location */
-    strcpy(m_Param.m_Conf.data.conf.FileLocation, ui.fileLoc->text().toStdString().c_str());
-    updateParamValue(ui.lineOnvifAddr, m_Param.m_Conf.data.conf.OnvifAddress);
-    updateParamValue(ui.lineEditProfileToken, m_Param.m_Conf.data.conf.OnvifProfileToken);
-    m_Param.m_Conf.data.conf.nType = VSC_DEVICE_CAM;
-    if (ui.radioButtonRtsp->isChecked() == true)
-    {
-        m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_RTSP;
-    }else if (ui.radioButtonOnvif->isChecked() == true)
-    {
-        m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_ONVIF;
-    }else if (ui.radioButtonFile->isChecked() == true)
-    {
-        m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_FILE;
-    }
+	updateParamValue(ui.lineEditRtspLoc, m_Param.m_Conf.data.conf.RtspLocation);
+	//updateParamValue(ui.lineFileLoc, m_Param.m_Conf.data.conf.FileLocation);
+	/* Update the File location */
+	strcpy(m_Param.m_Conf.data.conf.FileLocation, ui.fileLoc->text().toStdString().c_str());
+	updateParamValue(ui.lineOnvifAddr, m_Param.m_Conf.data.conf.OnvifAddress);
+	updateParamValue(ui.lineEditProfileToken, m_Param.m_Conf.data.conf.OnvifProfileToken);
+	updateParamValue(ui.lineEditProfileToken2, m_Param.m_Conf.data.conf.OnvifProfileToken2);
+	m_Param.m_Conf.data.conf.nType = VSC_DEVICE_CAM;
+	if (ui.radioButtonRtsp->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_RTSP;
+	}else if (ui.radioButtonOnvif->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_ONVIF;
+	}else if (ui.radioButtonFile->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.nSubType = VSC_SUB_DEVICE_FILE;
+	}
 
-    if (ui.checkBoxProfileToken->isChecked() == true)
-    {
-        m_Param.m_Conf.data.conf.UseProfileToken = 1;
-    }else
-    {
-        m_Param.m_Conf.data.conf.UseProfileToken = 0;
-    }
+	if (ui.checkBoxProfileToken->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.UseProfileToken = 1;
+	}else
+	{
+	    m_Param.m_Conf.data.conf.UseProfileToken = 0;
+	}
 
-    if (m_nId > 0)
-    {
-        gFactory->DelDevice(m_nId);
-    }
-    VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
-    /* m_nId <= 0 is Add Camera Device */
-    m_nId = gFactory->AddDevice(m_Param);
+	/* HWAccel */
+	if (ui.checkBoxHWAccel->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.HWAccel = 1;
+	}else
+	{
+	    m_Param.m_Conf.data.conf.HWAccel = 0;
+	}
 
-    VDC_DEBUG( "%s  ID %d\n",__FUNCTION__, m_nId);
-    //PreView();
-    VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
-    //emit CameraTreeUpdated();
+	/* Mining */
+	if (ui.checkBoxDataMining->isChecked() == true)
+	{
+	    m_Param.m_Conf.data.conf.Mining = 1;
+	}else
+	{
+	    m_Param.m_Conf.data.conf.Mining = 0;
+	}
+
+
+	if (m_nId > 0)
+	{
+	    gFactory->DelDevice(m_nId);
+	}
+	VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
+	/* m_nId <= 0 is Add Camera Device */
+	m_nId = gFactory->AddDevice(m_Param);
+
+	VDC_DEBUG( "%s  ID %d\n",__FUNCTION__, m_nId);
+	//PreView();
+	VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
+	//emit CameraTreeUpdated();
 }
 
 void VSCCameraAdd::mouseDoubleClickEvent(QMouseEvent *e)
