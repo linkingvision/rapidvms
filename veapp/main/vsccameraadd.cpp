@@ -7,9 +7,22 @@ extern Factory *gFactory;
 VSCCameraAdd::VSCCameraAdd(DeviceParam &Param, QWidget *parent)
     : QWidget(parent)
 {
-    ui.setupUi(this);
-    m_Param = Param;
-    m_nId = m_Param.m_Conf.data.conf.nId;
+	ui.setupUi(this);
+	m_Param = Param;
+
+	BOOL bHWAccel;
+
+	m_nId = m_Param.m_Conf.data.conf.nId;
+	if (m_nId == 0)
+	{
+		gFactory->GetDefaultHWAccel(bHWAccel);
+		if (bHWAccel == TRUE)
+		{
+			VDC_DEBUG( "%s  Enable default the HWAccel\n",__FUNCTION__);
+			m_Param.m_Conf.data.conf.HWAccel = 1;
+		}
+	}
+	
 #if 0
     m_pFloating = new QAction(QIcon(tr("images/open.ico")), tr("Floating"), this);
     //m_pUnFloating = new QAction(QIcon(tr("images/open.ico")), tr("UnFloating"), this);
@@ -112,6 +125,7 @@ void VSCCameraAdd::setupDefaultValue()
 	ui.lineOnvifAddr->setText(m_Param.m_Conf.data.conf.OnvifAddress);
 
 	ui.lineEditProfileToken->setText(m_Param.m_Conf.data.conf.OnvifProfileToken);
+	ui.lineEditProfileToken2->setText(m_Param.m_Conf.data.conf.OnvifProfileToken2);
 
 	if (m_Param.m_Conf.data.conf.UseProfileToken == 1)
 	{
