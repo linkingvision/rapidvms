@@ -40,7 +40,7 @@
         <number>3</number>
        </property>
        <item row="15" column="1">
-        <widget class="QCheckBox" name="checkBoxProfileToken_2">
+        <widget class="QCheckBox" name="checkBoxDataMining">
          <property name="text">
           <string/>
          </property>
@@ -56,7 +56,7 @@
        <item row="15" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Data Minig</string>
+          <string>Data Mining</string>
          </property>
         </widget>
        </item>
@@ -288,7 +288,7 @@
         </widget>
        </item>
        <item row="19" column="1">
-        <widget class="QLineEdit" name="lineEditProfileToken_2">
+        <widget class="QLineEdit" name="lineEditProfileToken2">
          <property name="maximumSize">
           <size>
            <width>300</width>
@@ -331,7 +331,7 @@
         </widget>
        </item>
        <item row="14" column="1">
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="checkBoxHWAccel">
          <property name="text">
           <string/>
          </property>
