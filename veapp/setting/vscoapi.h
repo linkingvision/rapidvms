@@ -22,6 +22,7 @@ public:
     Ui::VSCOAPI ui;
 	
 private:
+	u16 m_port;
 
     
 };
