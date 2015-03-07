@@ -281,7 +281,7 @@ typedef struct __VSCDeviceData__ {
 	u32 ConnectType;/* 0 UDP, 1 TCP, 2 Multicast, 3 HTTP */
 	u32 Mining;/* 1 stand for mining, 0 stand for no mining */
 
-	u32 HWDecode;/* 1 stand for HWDecoding, 0 soft, this is for Intel media SDK */
+	u32 HWAccel;/* 1 stand for HWAccel, 0 soft, this is for Intel media SDK */
 
 	u8 IPV6; /* 1 stand for IPV6 address, 0 stand for IPV4 */
 }VSCDeviceData__;
