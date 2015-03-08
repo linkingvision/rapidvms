@@ -24,10 +24,17 @@ inline BOOL MiningInterfaceMgr::Init()
 	MMReqStream type = MM_STREAM_LAST;
 	m_pDevice->GetReqStream( type);
 	/* Current we only use sub raw stream */
-	if (type == MM_STREAM_SUB_RAW)
+	if (type & MM_STREAM_SUB_RAW != 0)
 	{
 		m_pFactory.RegSubRawCallback(m_id, 
 			(DeviceRawCallbackFunctionPtr)MiningInterfaceMgr::RawHandler, 
+				(void *)this);
+	}
+
+	if (type & MM_STREAM_SEQ != 0)
+	{
+		m_pFactory.RegSeqCallback(m_id, 
+			(DeviceSeqCallbackFunctionPtr)MiningInterfaceMgr::SeqHandler, 
 				(void *)this);
 	}
 	//TODO add callback RetCallback from process module
@@ -44,6 +51,18 @@ inline void MiningInterfaceMgr::RawHandler(RawFrame& frame, void * pParam)
     MiningInterfaceMgr *pMgr = static_cast<MiningInterfaceMgr *> (pParam);
     
     return pMgr->RawHandler1(frame);
+}
+
+inline void MiningInterfaceMgr::SeqHandler1(VideoSeqFrame& frame)
+{
+	m_pDevice->ProcessSeq(frame);
+}
+
+inline void MiningInterfaceMgr::SeqHandler(VideoSeqFrame& frame, void * pParam)
+{
+    MiningInterfaceMgr *pMgr = static_cast<MiningInterfaceMgr *> (pParam);
+    
+    return pMgr->SeqHandler1(frame);
 }
 
 #endif /* __M_INTERFACE_MGR_IMPL_HPP__ */

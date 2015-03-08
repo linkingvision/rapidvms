@@ -33,8 +33,9 @@ typedef enum __MMReqStream
 {
 	MM_STREAM_MAIN = 1,
 	MM_STREAM_SUB = 2,
-	MM_STREAM_MAIN_RAW = 1,
-	MM_STREAM_SUB_RAW = 2,
+	MM_STREAM_MAIN_RAW = 4,
+	MM_STREAM_SUB_RAW = 8,
+	MM_STREAM_SEQ = 16,
 	MM_STREAM_LAST
 }MMReqStream;
 
@@ -64,6 +65,7 @@ public:
 	/* Process decoded or compressed data */
 	virtual BOOL Process(VideoFrame& frame) = 0;
 	virtual BOOL ProcessRaw(RawFrame& frame) = 0;
+	virtual BOOL ProcessSeq(VideoSeqFrame& seq) = 0;
 
 	/* Get the stream type of this module */
 	virtual BOOL GetReqStream(MMReqStream& type) = 0;

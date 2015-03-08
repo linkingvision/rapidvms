@@ -23,6 +23,9 @@ public:
 	inline void RawHandler1(RawFrame& frame);
 	inline static void RawHandler(RawFrame& frame, void * pParam);	
 
+	inline void SeqHandler1(VideoSeqFrame& frame);
+	inline static void SeqHandler(VideoSeqFrame& frame, void * pParam);	
+
 		
 private:
 	MiningInterface * m_pDevice;
