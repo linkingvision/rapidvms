@@ -308,6 +308,7 @@ void VSCCameraAdd::radioButtonClicked()
 
     ui.lineOnvifAddr->setDisabled(0);
     ui.lineEditProfileToken->setDisabled(0);
+    ui.lineEditProfileToken2->setDisabled(0);
     ui.checkBoxProfileToken->setDisabled(0);
 
     if(this->ui.radioButtonFile->isChecked())
@@ -320,6 +321,7 @@ void VSCCameraAdd::radioButtonClicked()
         ui.lineEditRtspLoc->setDisabled(1);
         ui.lineOnvifAddr->setDisabled(1);
         ui.lineEditProfileToken->setDisabled(1);
+	 ui.lineEditProfileToken2->setDisabled(1);
         ui.checkBoxProfileToken->setDisabled(1);
     }
 
@@ -330,6 +332,7 @@ void VSCCameraAdd::radioButtonClicked()
 
         //ui.lineFileLoc->setDisabled(1);
         ui.lineEditProfileToken->setDisabled(1);
+        ui.lineEditProfileToken2->setDisabled(1);
         ui.checkBoxProfileToken->setDisabled(1);
     }
     if(this->ui.radioButtonOnvif->isChecked())

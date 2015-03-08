@@ -98,7 +98,7 @@ inline BOOL MiningModule::InitOneDevice(DeviceParam & Param)
 	if (Param.m_Conf.data.conf.Mining == 0)
 	{
 		VDC_DEBUG( "%s Device %d not enable Mining.\n",__FUNCTION__, id);	
-		//return FALSE;
+		return FALSE;
 	}
 	MiningInterface *pInterface = m_CreateDevice(id);	
 	if (pInterface == NULL)
