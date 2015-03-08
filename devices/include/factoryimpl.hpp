@@ -460,6 +460,46 @@ inline BOOL Factory::SetDefaultHWAccel(BOOL &pHWAccel)
 	return TRUE;
 }
 
+inline BOOL Factory::GetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (sys.data.conf.RTSPAuth == 1)
+	{
+		pAuth = TRUE;
+	}else
+	{
+		pAuth = FALSE;
+	}
+	pMultiAddr = sys.data.conf.MulticastStartIPV4;
+	pPort = sys.data.conf.RTSPServerPort;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (pAuth == 1)
+	{
+		sys.data.conf.RTSPAuth = 1;
+	}else
+	{
+		sys.data.conf.RTSPAuth = 0;
+	}
+	if (pMultiAddr.length() < VSC_CONF_PARAM_MAX)
+	{
+		strcpy(sys.data.conf.MulticastStartIPV4, pMultiAddr.c_str());
+	}
+
+	sys.data.conf.RTSPServerPort = pPort;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
 
 inline BOOL Factory::InitLicense()
 {
