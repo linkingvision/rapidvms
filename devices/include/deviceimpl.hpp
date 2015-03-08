@@ -703,6 +703,29 @@ BOOL Device::UnRegRawCallback(void * pParam)
 	return TRUE;
 }
 
+BOOL Device::RegSeqCallback(DeviceSeqCallbackFunctionPtr pCallback, void * pParam)
+{
+	Lock();
+	SeqLock();
+	
+	m_SeqMap[pParam] = pCallback;
+	SeqUnLock();
+	UnLock();
+	return TRUE;
+}
+
+BOOL Device::UnRegSeqCallback(void * pParam)
+{
+	Lock();
+	SeqLock();
+
+	m_SeqMap.erase(pParam);
+	SeqUnLock();
+	
+	UnLock();
+	return TRUE;
+}
+
 BOOL Device::RegDelCallback(DeviceDelCallbackFunctionPtr pCallback, void * pParam)
 {
 	Lock();
@@ -927,14 +950,26 @@ BOOL Device::StartRaw()
 
   BOOL Device::StartHdfsRecord()
 {
-    if (m_param.m_Conf.data.conf.HdfsRecording == 0)
-    {
-        return FALSE;
-    }
-    VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-    StartData();
+	if (m_param.m_Conf.data.conf.HdfsRecording == 0)
+	{
+	    return FALSE;
+	}
+	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
+	StartData();
 
-    return TRUE;
+	Lock();
+	if (m_pHdfsRecord == NULL)
+	{
+		m_pHdfsRecord = m_pVHdfsdb.StartRecord(
+			m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
+		m_pHdfsRecord->RegSeqCallback((HDFSDataHandler)Device::SeqHandler, (void *)this);
+
+	}
+
+	
+
+	UnLock();
+    	return TRUE;
 }
  BOOL Device::StopHdfsRecord()
 {
@@ -952,8 +987,9 @@ BOOL Device::StartRaw()
 		delete m_pHdfsRecord;
 		m_pHdfsRecord = NULL;
 	}
+	
 	UnLock();
-    	return TRUE;
+	return TRUE;
 }
 
 BOOL Device::DataHandler(void* pData, VideoFrame& frame)
@@ -1113,6 +1149,39 @@ BOOL Device::RawHandler1(RawFrame& frame)
 	}
 
 	SubUnLock();
+	return TRUE;
+}
+
+
+BOOL Device::SeqHandler(void* pData, VideoSeqFrame& frame)
+{
+    int dummy = errno;
+    LPDevice pThread = (LPDevice)pData;
+
+    if (pThread)
+    {
+        return pThread->SeqHandler1(frame);
+    }
+}
+
+BOOL Device::SeqHandler1(VideoSeqFrame& frame)
+{
+	SeqLock();
+	VDC_DEBUG("SeqHandler1 (%d, %d)\n", frame.start, frame.end);	
+	/* 1. Send to client */
+	DeviceSeqCallbackMap::iterator it = m_SeqMap.begin();
+
+	for(; it!=m_SeqMap.end(); ++it)
+	{
+	    void *pParam = (*it).first;
+	    DeviceSeqCallbackFunctionPtr pFunc = (*it).second;
+	    if (pFunc)
+	    {
+	        pFunc(frame, pParam);
+	    }
+	}
+	
+	SeqUnLock();
 	return TRUE;
 }
 
