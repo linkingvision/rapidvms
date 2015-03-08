@@ -11,6 +11,7 @@ VSCCameraAdd::VSCCameraAdd(DeviceParam &Param, QWidget *parent)
 	m_Param = Param;
 
 	BOOL bHWAccel;
+	BOOL bMining;
 
 	m_nId = m_Param.m_Conf.data.conf.nId;
 	if (m_nId == 0)
@@ -20,6 +21,13 @@ VSCCameraAdd::VSCCameraAdd(DeviceParam &Param, QWidget *parent)
 		{
 			VDC_DEBUG( "%s  Enable default the HWAccel\n",__FUNCTION__);
 			m_Param.m_Conf.data.conf.HWAccel = 1;
+		}
+
+		gFactory->GetDefaultMining(bMining);
+		if (bMining == TRUE)
+		{
+			VDC_DEBUG( "%s  Enable default the Mining\n",__FUNCTION__);
+			m_Param.m_Conf.data.conf.Mining = 1;
 		}
 	}
 	
