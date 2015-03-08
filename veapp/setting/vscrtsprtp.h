@@ -9,20 +9,21 @@
 
 class VSCRtspRtp : public QWidget
 {
-    Q_OBJECT
-
+	Q_OBJECT
 public:
-    VSCRtspRtp(QWidget *parent = 0);
-    ~VSCRtspRtp(){}
+	VSCRtspRtp(QWidget *parent = 0);
+	~VSCRtspRtp(){}
 
 public slots:   
-  void applyConfig();
+	void applyConfig();
 	
 public:
-    Ui::VSCRtspRtp ui;
+	Ui::VSCRtspRtp ui;
 	
 private:
-
+	BOOL m_pAuth;
+	astring m_pMultiAddr;
+	u16 m_pPort;
     
 };
 
