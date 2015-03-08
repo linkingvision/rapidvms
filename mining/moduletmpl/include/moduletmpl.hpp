@@ -20,6 +20,7 @@ public:
 	/* Process decoded or compressed data */
 	virtual BOOL Process(VideoFrame& frame);
 	virtual BOOL ProcessRaw(RawFrame& frame);
+	virtual BOOL ProcessSeq(VideoSeqFrame& frame);
 
 	/* Get the stream type of this module */
 	virtual BOOL GetReqStream(MMReqStream& type);

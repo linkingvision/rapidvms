@@ -29,11 +29,17 @@ BOOL ModuleTmpl::ProcessRaw(RawFrame& frame)
 	return TRUE;
 }
 
+BOOL ModuleTmpl::ProcessSeq(VideoSeqFrame& frame)
+{
+	printf("%s id %d (%d, %d)\n", __FUNCTION__, m_id, frame.start, frame.end);
+	return TRUE;
+}
+
 /* Get the stream type of this module */
 BOOL ModuleTmpl::GetReqStream(MMReqStream& type)
 {
 	/* use subraw video for processing */
-	type = MM_STREAM_SUB_RAW;
+	type = MM_STREAM_SUB_RAW | MM_STREAM_SEQ;
 	return TRUE;
 }
 
