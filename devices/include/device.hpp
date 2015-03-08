@@ -55,19 +55,31 @@ typedef enum
 	DEV_LAST
 } DeviceStatus;
 
+
+/* Device video data callback */
 #ifdef WIN32
+/* Compressed data callback */
 typedef void (__cdecl * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
+/* Raw data callback */
 typedef void (__cdecl * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
+/* Video Seq callback */
+typedef void (__cdecl * DeviceSeqCallbackFunctionPtr)(VideoSeqFrame& frame, void * pParam);
+/* Device Delete function */
 typedef void (__cdecl * DeviceDelCallbackFunctionPtr)(void * pParam);
 
 #else
+/* Compressed data callback */
 typedef void ( * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
+/* Raw data callback */
 typedef void ( * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
+/* Video Seq callback */
+typedef void (__cdecl * DeviceSeqCallbackFunctionPtr)(VideoSeqFrame& frame, void * pParam);
+/* Device Delete function */
 typedef void ( * DeviceDelCallbackFunctionPtr)(void * pParam);
-
 #endif
 typedef std::map<void *, DeviceDataCallbackFunctionPtr> DeviceDataCallbackMap;
 typedef std::map<void *, DeviceRawCallbackFunctionPtr> DeviceRawCallbackMap;
+typedef std::map<void *, DeviceSeqCallbackFunctionPtr> DeviceSeqCallbackMap;
 typedef std::map<void *, DeviceDelCallbackFunctionPtr> DeviceDelCallbackMap;
 
 class DeviceParam
@@ -166,17 +178,25 @@ public:
 	inline BOOL DataHandler1(VideoFrame& frame);
 	inline static BOOL SubDataHandler(void* pData, VideoFrame& frame);
 	inline BOOL SubDataHandler1(VideoFrame& frame);
+	
 	/* Raw Data */
 	inline static BOOL RawHandler(void* pData, RawFrame& frame);
 	inline BOOL RawHandler1(RawFrame& frame);
 	inline static BOOL SubRawHandler(void* pData, RawFrame& frame);
 	inline BOOL SubRawHandler1(RawFrame& frame);
 
+	/* Seq data */
+	inline static BOOL SeqHandler(void* pData, VideoSeqFrame& frame);
+	inline BOOL SeqHandler1(VideoSeqFrame& frame);	
+
 public:
 	inline void Lock(){m_Lock.lock();}
 	inline void UnLock(){m_Lock.unlock();}
 	inline void SubLock(){m_SubLock.lock();}
 	inline void SubUnLock(){m_SubLock.unlock();}
+
+	inline void SeqLock(){m_SeqLock.lock();}
+	inline void SeqUnLock(){m_SeqLock.unlock();}
 
 public:
 	/* Data  callback*/
@@ -191,7 +211,11 @@ public:
 	inline BOOL RegSubRawCallback(DeviceRawCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegSubRawCallback(void * pParam);
 
+	/* Video Seq data callback  */
+	inline BOOL RegSeqCallback(DeviceSeqCallbackFunctionPtr pCallback, void * pParam);
+	inline BOOL UnRegSeqCallback(void * pParam);
 
+	
 	inline BOOL RegDelCallback(DeviceDelCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegDelCallback(void * pParam);
 	
@@ -227,6 +251,8 @@ private:
 	DeviceRawCallbackMap m_RawMap;
 	DeviceRawCallbackMap m_SubRawMap;
 
+	DeviceSeqCallbackMap m_SeqMap;
+
 	DeviceDelCallbackMap m_DelMap;
 
 private:
@@ -236,6 +262,7 @@ private:
 	tthread::thread *m_pThread;
 	fast_mutex m_Lock;
 	fast_mutex m_SubLock;
+	fast_mutex m_SeqLock;
 private:
 	VDB &m_pVdb;
 	VHdfsDB &m_pVHdfsdb;
