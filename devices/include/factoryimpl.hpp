@@ -711,6 +711,33 @@ inline BOOL Factory::UnRegRawCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
+inline BOOL Factory::RegSeqCallback(s32 nIndex, DeviceSeqCallbackFunctionPtr pCallback,
+        void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->RegSeqCallback(pCallback, pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
+inline BOOL Factory::UnRegSeqCallback(s32 nIndex, void * pParam)
+{
+    Lock();
+    if (m_DeviceMap[nIndex] != NULL)
+    {
+        m_DeviceMap[nIndex]->UnRegSeqCallback(pParam);
+    }
+
+    UnLock();
+
+    return TRUE;
+}
+
 inline BOOL Factory::RegSubRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback,
         void * pParam)
 {
