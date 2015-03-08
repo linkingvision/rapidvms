@@ -18,6 +18,10 @@ inline MiningInterfaceMgr::MiningInterfaceMgr(u32 id,
 inline MiningInterfaceMgr::~MiningInterfaceMgr()
 {
 	Cleanup();
+	if (m_pDevice)
+	{
+		delete m_pDevice;
+	}
 }
 
 inline BOOL MiningInterfaceMgr::Init()
