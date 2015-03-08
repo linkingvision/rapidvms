@@ -467,6 +467,38 @@ inline BOOL Factory::SetDefaultHWAccel(BOOL &pHWAccel)
 	return TRUE;
 }
 
+inline BOOL Factory::GetDefaultMining(BOOL &pMining)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (sys.data.conf.Mining == 1)
+	{
+		pMining = TRUE;
+	}else
+	{
+		pMining = FALSE;
+	}
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetDefaultMining(BOOL &pMining)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	if (pMining == 1)
+	{
+		sys.data.conf.Mining = 1;
+	}else
+	{
+		sys.data.conf.Mining = 0;
+	}
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
 inline BOOL Factory::GetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort)
 {	
 	VSCConfData sys;

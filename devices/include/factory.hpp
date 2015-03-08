@@ -130,6 +130,10 @@ public:
 	BOOL GetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort);
 	BOOL SetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort);
 
+	/* Defualt Mining enable or disable */
+	BOOL GetDefaultMining(BOOL &pMining);
+	BOOL SetDefaultMining(BOOL &pMining);
+
 public:
 	/* UI can use this for display device tree */
 	BOOL GetDeviceParamMap(DeviceParamMap &pMap);
