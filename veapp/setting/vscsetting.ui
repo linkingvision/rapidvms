@@ -116,6 +116,16 @@
          </property>
         </item>
        </item>
+       <item>
+        <property name="text">
+         <string>Mining</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Mining</string>
+         </property>
+        </item>
+       </item>
       </widget>
      </item>
      <item>
