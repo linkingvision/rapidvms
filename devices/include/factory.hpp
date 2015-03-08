@@ -126,6 +126,9 @@ public:
 	BOOL GetDefaultHWAccel(BOOL &pHWAccel);
 	BOOL SetDefaultHWAccel(BOOL &pHWAccel);
 
+	BOOL GetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort);
+	BOOL SetRTSPServer(BOOL &pAuth, astring &pMultiAddr, u16 &pPort);
+
 public:
 	/* UI can use this for display device tree */
 	BOOL GetDeviceParamMap(DeviceParamMap &pMap);
