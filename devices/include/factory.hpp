@@ -203,6 +203,10 @@ public:
 	BOOL RegSubRawCallback(s32 nIndex, DeviceRawCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegSubRawCallback(s32 nIndex, void * pParam);
 
+	/* Seq data  */
+	BOOL RegSeqCallback(s32 nIndex, DeviceSeqCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegSeqCallback(s32 nIndex, void * pParam);
+	
 	BOOL RegDelCallback(s32 nIndex, DeviceDelCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDelCallback(s32 nIndex, void * pParam);
 
