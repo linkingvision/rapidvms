@@ -34,6 +34,10 @@ public:
 	inline BOOL Valid();
 	inline BOOL Init();
 	inline BOOL InitOneDevice(DeviceParam & Param);
+	inline BOOL DeleteOneDevice(int id);
+    	inline static BOOL DeviceChangeCallbackFunc(void* pData,
+						FactoryDeviceChangeData change);
+    	inline BOOL DeviceChangeCallbackFunc1(FactoryDeviceChangeData change);
 		
 private:
 	MiningInterface * m_module;
