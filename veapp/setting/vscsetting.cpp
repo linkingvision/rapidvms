@@ -23,6 +23,8 @@ VSCSetting::VSCSetting(QWidget *parent, VSCDeviceList &pDeviceList)
 	m_OAPI = new VSCOAPI();
 	m_VideoSetting = new VSCVideoSetting();
 
+	m_MiningSetting = new VSCMiningSetting();
+
 	m_Layout->setMargin(0);
 
 	ui.widget->setLayout(m_Layout);
@@ -96,6 +98,9 @@ void VSCSetting::removeAll()
 
 	m_Layout->removeWidget(m_VideoSetting);
 	m_VideoSetting->hide();
+
+	m_Layout->removeWidget(m_MiningSetting);
+	m_MiningSetting->hide();
 }
 
 void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
@@ -162,6 +167,16 @@ void VSCSetting::treeClicked(QTreeWidgetItem *item, int column)
 			removeAll();
 			m_Layout->addWidget(m_HdfsRecord);
 			m_HdfsRecord->show();
+		}
+	}
+	else if (ui.treeWidget->topLevelItem(VSC_SETTING_INDEX_MINING) == parent)
+	{
+		VDC_DEBUG( "%s  Mining Setting\n",__FUNCTION__);
+		if (col == 0)
+		{
+			removeAll();
+			m_Layout->addWidget(m_MiningSetting);
+			m_MiningSetting->show();
 		}
 	}
 

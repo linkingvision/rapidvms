@@ -15,6 +15,7 @@
 #include "vschdfsrecord.h"
 #include "vscrtsprtp.h"
 #include "vscvideosetting.h"
+#include "vscminingsetting.h"
 #include "vscoapi.h"
 
 
@@ -22,6 +23,7 @@
 #define VSC_SETTING_INDEX_NETWORK 1
 #define VSC_SETTING_INDEX_MEDIA 2
 #define VSC_SETTING_INDEX_STORAGE 3
+#define VSC_SETTING_INDEX_MINING 4
 
 class VSCSetting : public QWidget
 {
@@ -62,6 +64,7 @@ private:
 	VSCRtspRtp *m_RtspRtp;
 	VSCOAPI *m_OAPI;
 	VSCVideoSetting *m_VideoSetting;
+	VSCMiningSetting *m_MiningSetting;
 	QVBoxLayout* m_Layout;
 	VSCDeviceList &m_DeviceList;
 };
