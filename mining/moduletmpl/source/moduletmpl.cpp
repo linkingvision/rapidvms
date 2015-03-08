@@ -25,7 +25,7 @@ BOOL ModuleTmpl::Process(VideoFrame& frame)
 }
 BOOL ModuleTmpl::ProcessRaw(RawFrame& frame)
 {
-	printf("%s id %d (%d, %d)\n", __FUNCTION__, m_id, frame.width, frame.height);
+	//printf("%s id %d (%d, %d)\n", __FUNCTION__, m_id, frame.width, frame.height);
 	return TRUE;
 }
 
@@ -39,7 +39,8 @@ BOOL ModuleTmpl::ProcessSeq(VideoSeqFrame& frame)
 BOOL ModuleTmpl::GetReqStream(MMReqStream& type)
 {
 	/* use subraw video for processing */
-	type = MM_STREAM_SUB_RAW | MM_STREAM_SEQ;
+	int typeAll = MM_STREAM_SUB_RAW | MM_STREAM_SEQ;
+	type = (MMReqStream)typeAll;
 	return TRUE;
 }
 
