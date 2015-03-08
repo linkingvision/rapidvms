@@ -247,6 +247,7 @@ typedef struct __VSCConfData__ {
 
 	/* API  */
 	u16 OAPIPort;/* OAPI server port */
+	u8 Mining;/* 0 : default disable Mining, 1 default enable Mining */ 
 	
 }VSCConfData__;
 
