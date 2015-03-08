@@ -44,6 +44,7 @@ void CmnHttpServer::run()
 
 		ServerSideResponse ssResponse;
 		ssResponse.SetBody(body);
+		ssResponse.SetContentType("text/html; charset=UTF-8");
 		ssResponse.WriteResponse(clientSocket);
 
 		clientSocket->Shutdown(SOCKET_SHUT_FLAGS);
