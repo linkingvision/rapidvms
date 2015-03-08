@@ -17,6 +17,7 @@
 #include "hdddevice.hpp"
 #include <QThread>
 #include <qdebug.h>
+#include "cmnserver.hpp"
 
 typedef enum
 {
@@ -273,6 +274,8 @@ private:
 	s8 m_strVIPCMap[FACTORY_DEVICE_ID_MAX];
 	ConfDB m_Conf;
 	SysDB m_SysPath;
+private:
+	CmnHttpServer *m_pHttpServer;
 };
 
 typedef Factory* LPFactory;

@@ -179,6 +179,13 @@ inline BOOL Factory::Init()
 	//start();
 	m_HddTask = new FactoryHddTask(*this);
 	m_HddTask->start();
+
+	if (sysData.data.conf.OAPIPort == 0)
+	{
+		sysData.data.conf.OAPIPort = 9080;
+	}
+	m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
+	m_pHttpServer->start();
 	return TRUE;
 }
 
