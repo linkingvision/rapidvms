@@ -1129,7 +1129,7 @@ BOOL Device::RawHandler(void* pData, RawFrame& frame)
 BOOL Device::RawHandler1(RawFrame& frame)
 {
 	SubLock();
-	VDC_DEBUG("RawHandler1 (%d, %d)\n", frame.width, frame.height);	
+	//VDC_DEBUG("RawHandler1 (%d, %d)\n", frame.width, frame.height);	
 	/* 1. Send to client */
 	DeviceRawCallbackMap::iterator it = m_RawMap.begin();
 
@@ -1167,7 +1167,7 @@ BOOL Device::SeqHandler(void* pData, VideoSeqFrame& frame)
 BOOL Device::SeqHandler1(VideoSeqFrame& frame)
 {
 	SeqLock();
-	VDC_DEBUG("SeqHandler1 (%d, %d)\n", frame.start, frame.end);	
+	//VDC_DEBUG("SeqHandler1 (%d, %d)\n", frame.start, frame.end);	
 	/* 1. Send to client */
 	DeviceSeqCallbackMap::iterator it = m_SeqMap.begin();
 
