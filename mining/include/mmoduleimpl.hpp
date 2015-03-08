@@ -32,6 +32,61 @@ inline MiningModule::~MiningModule()
 {
 }
 
+BOOL MiningModule::DeviceChangeCallbackFunc(void* pData, 
+								FactoryDeviceChangeData change)
+{
+	if (pData)
+	{
+		MiningModule * pModule = (MiningModule *)pData;
+		pModule->DeviceChangeCallbackFunc1(change);
+	}
+	return TRUE;
+}
+BOOL MiningModule::DeviceChangeCallbackFunc1(FactoryDeviceChangeData change)
+{
+	VDC_DEBUG( "MiningModule Device Change Callback %d type %d Begin\n", 
+					change.id, change.type);
+	
+	if (change.type == FACTORY_DEVICE_DEL)
+	{
+		DeleteOneDevice(change.id);
+	}
+	if (change.type == FACTORY_DEVICE_ADD)
+	{
+		DeviceParam Param;
+		m_pFactory.GetDeviceParamById(Param, change.id);
+		
+		InitOneDevice(Param);
+	}
+	VDC_DEBUG( "MiningModule Device Change Callback %d type %d End \n", 
+					change.id, change.type);
+
+	return true;
+}
+
+BOOL MiningModule::DeleteOneDevice(int id)
+{
+	MiningInterfaceMgr *pMgr = NULL;
+        MInterfaceMgrMap::iterator it = m_mgrMap.begin(); 
+        for(; it!=m_mgrMap.end(); ++it)
+        {
+            if ((*it).second->GetId() == id)
+            {
+				pMgr = (*it).second;
+				m_mgrMap.erase(it);
+            	break;
+            }
+        }
+
+	if (pMgr)
+	{
+		delete pMgr;
+		pMgr = NULL;
+	}
+
+	return TRUE;
+}
+
 inline BOOL MiningModule::Valid()
 {
 	return m_Init;
@@ -43,7 +98,7 @@ inline BOOL MiningModule::InitOneDevice(DeviceParam & Param)
 	if (Param.m_Conf.data.conf.Mining == 0)
 	{
 		VDC_DEBUG( "%s Device %d not enable Mining.\n",__FUNCTION__, id);	
-		//TODO return;
+		//return FALSE;
 	}
 	MiningInterface *pInterface = m_CreateDevice(id);	
 	if (pInterface == NULL)
@@ -74,71 +129,14 @@ inline BOOL MiningModule::Init()
         {
             InitOneDevice((*it).second);
         }
-	//TODO add callback device delete from factory
+
+	
+	m_pFactory.RegDeviceChangeNotify((void *)this, 
+			(FactoryDeviceChangeNotify)(MiningModule::DeviceChangeCallbackFunc));
+
 
 	return true;
 }
-#if 0
-/* Process decoded or compressed data */
-inline BOOL MiningModule::Process(s32 id, VideoFrame& frame)
-{
-	if (m_module)
-	{
-		return m_module->Process(id, frame);
-	}
-	return FALSE;
-}
-inline BOOL MiningModule::ProcessRaw(s32 id, RawFrame& frame)
-{
-	if (m_module)
-	{
-		return m_module->ProcessRaw(id, frame);
-	}
-	return FALSE;
-}
 
-/* Get the stream type of this module */
-inline BOOL MiningModule::GetReqStream(MMReqStream& type)
-{
-	if (m_module)
-	{
-		return m_module->GetReqStream(type);
-	}
-	return FALSE;
-}
-
-inline BOOL MiningModule::RegRetCallback(MiningCallbackFunctionPtr pCallback, void * pParam)
-{
-	if (m_module)
-	{
-		return m_module->RegRetCallback(pCallback, pParam);
-	}
-	return FALSE;
-}
-inline BOOL MiningModule::UnRegDataCallback(void * pParam)
-{
-	if (m_module)
-	{
-		return m_module->UnRegDataCallback(pParam);
-	}
-	return FALSE;
-}
-inline u32 MiningModule::GetFlags()
-{
-	if (m_module)
-	{
-		return m_module->GetFlags();
-	}
-	return FALSE;
-}
-inline astring MiningModule::GetVersion()
-{
-	if (m_module)
-	{
-		return m_module->GetVersion();
-	}
-	return FALSE;
-}
-#endif
 
 #endif /* __M_MODULE_IMPL_HPP__ */
