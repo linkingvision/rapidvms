@@ -2,6 +2,10 @@
 #define _V_VIDEO_TYPE_H_
 #include "type.hpp"
 
+#include "Poco/Buffer.h"
+
+typedef Poco::Buffer<u8> VEBuffer;
+
 #define MAKE_VE_RAW(a,b,c,d) (a | (b << 8) | (c << 16) | (d << 24))
 
 #define VE_PIX_FMT_YUV420P MAKE_VE_RAW('I','4','2','0') /* 16  YVU420 planar */
@@ -79,6 +83,21 @@ typedef struct __VideoFrame
 	u32 dataLen;
 	u8   *dataBuf;
 }VideoFrame;
+
+typedef enum __VideoSeqType
+{
+	VIDEO_SEQ_MP4 = 1,
+	VIDEO_SEQ_AVI,
+	VIDEO_SEQ_LAST
+}VideoSeqType;
+
+typedef struct __VideoSeqFrame
+{
+	VideoSeqType seqType;
+ 	u32 start;/*Start time of the video*/
+	u32 end;/*End time of the video*/
+	VEBuffer  * dataBuf;
+}VideoSeqFrame;
 
 typedef struct __InfoFrame
 {

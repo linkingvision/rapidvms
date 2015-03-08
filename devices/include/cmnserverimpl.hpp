@@ -26,26 +26,31 @@ void CmnHttpServer::run()
 
 	while(1)
 	{
-	        XRef<XSocket> clientSocket = socket.Accept();
+		XRef<XSocket> clientSocket = socket.Accept();
 
-	        ServerSideRequest request;
+		ServerSideRequest request;
+		try
+		{
+			request.ReadRequest(clientSocket);
 
-	        request.ReadRequest(clientSocket);
+			const URI uri = request.GetURI();
 
-		 const URI uri = request.GetURI();
+			XString body = "<!DOCTYPE html>\
+			<html>\
+			<head ><title>OpenCVR</title></head>\
+			<body>\
+			<h1>Wellcome OpenCVR //TODO</h1><br>\
+			</body>\
+			</html>";
 
-		XString body = "<!DOCTYPE html>\
-<html>\
-<head ><title>OpenCVR</title></head>\
-<body>\
-<h1>Wellcome OpenCVR //TODO</h1><br>\
-</body>\
-</html>";
-
-		ServerSideResponse ssResponse;
-		ssResponse.SetBody(body);
-		ssResponse.SetContentType("text/html; charset=UTF-8");
-		ssResponse.WriteResponse(clientSocket);
+			ServerSideResponse ssResponse;
+			ssResponse.SetBody(body);
+			ssResponse.SetContentType("text/html; charset=UTF-8");
+			ssResponse.WriteResponse(clientSocket);
+		}
+		catch(XSDK::XException)
+		{
+		}
 
 		clientSocket->Shutdown(SOCKET_SHUT_FLAGS);
 		clientSocket->Close();

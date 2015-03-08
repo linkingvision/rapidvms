@@ -114,6 +114,4 @@ inline bool isPlatformLittleEndian()
 #define BIG_ORDER ((1 >> 1 == 0) ? 0 : 1)
 #endif
 
-
-
 #endif /* _VDC_UTILITY_H_ */
