@@ -10,32 +10,50 @@
 
 inline MiningInterfaceMgr::MiningInterfaceMgr(u32 id, 
 			Factory &pFactory, MiningInterface * pDevice)
-:m_id(id), m_pDevice(pDevice), m_pFactory(pFactory)
+:m_id(id), m_pDevice(pDevice), m_pFactory(pFactory), 
+ m_type(MM_STREAM_LAST)
 {
 	Init();
 }
 inline MiningInterfaceMgr::~MiningInterfaceMgr()
 {
+	Cleanup();
 }
 
 inline BOOL MiningInterfaceMgr::Init()
 {
 	/* Reg the data callback from factory */
-	MMReqStream type = MM_STREAM_LAST;
-	m_pDevice->GetReqStream( type);
+	
+	m_pDevice->GetReqStream( m_type);
 	/* Current we only use sub raw stream */
-	if (type & MM_STREAM_SUB_RAW != 0)
+	if ((m_type & MM_STREAM_SUB_RAW) != 0)
 	{
 		m_pFactory.RegSubRawCallback(m_id, 
 			(DeviceRawCallbackFunctionPtr)MiningInterfaceMgr::RawHandler, 
 				(void *)this);
 	}
 
-	if (type & MM_STREAM_SEQ != 0)
+	if ((m_type & MM_STREAM_SEQ) != 0)
 	{
 		m_pFactory.RegSeqCallback(m_id, 
 			(DeviceSeqCallbackFunctionPtr)MiningInterfaceMgr::SeqHandler, 
 				(void *)this);
+	}
+	//TODO add callback RetCallback from process module
+	return TRUE;
+}
+
+inline BOOL MiningInterfaceMgr::Cleanup()
+{
+	/* Current we only use sub raw stream */
+	if (m_type & MM_STREAM_SUB_RAW != 0)
+	{
+		m_pFactory.UnRegSubRawCallback(m_id, (void *)this);
+	}
+
+	if (m_type & MM_STREAM_SEQ != 0)
+	{
+		m_pFactory.UnRegSeqCallback(m_id, (void *)this);
 	}
 	//TODO add callback RetCallback from process module
 	return TRUE;
