@@ -35,7 +35,7 @@ private:
 
 };
 
-typedef std::map<int, VSCRecorder > RecorderMap;
+typedef std::map<int, VSCRecorder* > RecorderMap;
 
 
 #endif // __VSC_VMS_H__

@@ -14,7 +14,7 @@ VSCRecorderConf::VSCRecorderConf(RecorderMap &pMap, QWidget *parent)
 	RecorderMap::iterator it = pMap.begin(); 
 	for(; it!= pMap.end(); ++it)
 	{
-		ui.gridLayout->addWidget(new VSCRecorderOne((*it).second), i /3,  i%3);
+		//ui.gridLayout->addWidget(new VSCRecorderOne((*it).second), i /3,  i%3);
 		i ++;
 	}
 }
