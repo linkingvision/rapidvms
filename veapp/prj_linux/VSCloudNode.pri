@@ -25,30 +25,16 @@ HEADERS += ../main/vscvipc.h \
     ../main/vscipcgroupmap.h \
     ../main/vscviewconf.h \
     ../main/vscvipcadd.h \
-    ../../devices/include/cefactory.hpp \
+    ../../devices/include/cmnserverimpl.hpp \
     ../../devices/include/conf.hpp \
     ../../devices/include/confdb.hpp \
-    ../../devices/include/config.hpp \
-    ../../devices/include/database.hpp \
-    ../../devices/include/datasink.hpp \
-    ../../devices/include/datasrc.hpp \
     ../../devices/include/device.hpp \
-    ../../devices/include/ffmpeg_api.hpp \
-    ../../devices/include/ffmpeg_codecs.hpp \
-    ../../devices/include/ffmpeg_impl.hpp \
-    ../../devices/include/ffmpeg_scale.hpp \
+    ../../devices/include/deviceimpl.hpp \
+    ../../devices/include/factoryimpl.hpp \
     ../../devices/include/hdddevice.hpp \
-    ../../devices/include/mpipeline.hpp \
     ../../devices/include/sysdb.hpp \
+    ../../devices/include/cmnserver.hpp \
     ../../devices/include/factory.hpp \
-    ../setting/vscsetting.h \
-    ../setting/vsclicense.h \
-    ../setting/vscversion.h \
-    ../setting/vscrecorderconf.h \
-    ../setting/vscuser.h \
-    ../setting/vscuserstatus.h \
-    ../setting/vschdfsrecord.h \
-    ../setting/vscrtsprtp.h \
     ../disk/vschdddevice.h \
     ../disk/vschddone.h \
     ../disk/vschddedit.h \
@@ -59,16 +45,28 @@ HEADERS += ../main/vscvipc.h \
     ../vms/vscrecorderone.h \
     ../vms/vscrecorderpanel.h \
     ../vms/vscrecorder.h \
-    ../vms/vsczbtreeitem.h
-SOURCES += ../setting/vsclicense.cpp \
-    ../setting/vscrecorderconf.cpp \
-    ../setting/vscsetting.cpp \
-    ../setting/vscuser.cpp \
-    ../setting/vscuserstatus.cpp \
-    ../setting/vscversion.cpp \
-    ../setting/vschdfsrecord.cpp \
-    ../setting/vscrtsprtp.cpp \
-    ../disk/vschdddevice.cpp \
+    ../vms/vsczbtreeitem.h \
+    ../setting/vscsetting.h \
+    ../setting/vsclicense.h \
+    ../setting/vscversion.h \
+    ../setting/vscrecorderconf.h \
+    ../setting/vscuser.h \
+    ../setting/vscuserstatus.h \
+    ../setting/vschdfsrecord.h \
+    ../setting/vscrtsprtp.h \
+    ../setting/vsclanguage.h \
+    ../setting/vsclogin.h \
+    ../setting/vscoapi.h \
+    ../setting/vscvideosetting.h \
+    ../setting/vscminingsetting.h \
+    ../../mining/include/mframeworkimpl.hpp \
+    ../../mining/include/minterface.hpp \
+    ../../mining/include/minterfacemgr.hpp \
+    ../../mining/include/minterfacemgrimpl.hpp \
+    ../../mining/include/mmodule.hpp \
+    ../../mining/include/mmoduleimpl.hpp \
+    ../../mining/include/mframework.hpp
+SOURCES += ../disk/vschdddevice.cpp \
     ../disk/vschddedit.cpp \
     ../disk/vschddone.cpp \
     ../disk/vschddoneedit.cpp \
@@ -96,7 +94,20 @@ SOURCES += ../setting/vsclicense.cpp \
     ../main/vscview.cpp \
     ../main/vscviewconf.cpp \
     ../main/vscvipc.cpp \
-    ../main/vscvipcadd.cpp
+    ../main/vscvipcadd.cpp \
+    ../setting/vschdfsrecord.cpp \
+    ../setting/vsclanguage.cpp \
+    ../setting/vsclicense.cpp \
+    ../setting/vsclogin.cpp \
+    ../setting/vscminingsetting.cpp \
+    ../setting/vscoapi.cpp \
+    ../setting/vscrecorderconf.cpp \
+    ../setting/vscrtsprtp.cpp \
+    ../setting/vscsetting.cpp \
+    ../setting/vscuser.cpp \
+    ../setting/vscuserstatus.cpp \
+    ../setting/vscversion.cpp \
+    ../setting/vscvideosetting.cpp
 FORMS += ../main/vscview.ui \
     ../main/vscmainwindows.ui \
     ../main/vscdevicelist.ui \
@@ -109,6 +120,13 @@ FORMS += ../main/vscview.ui \
     ../main/vscipcgroupconf.ui \
     ../main/vscipcgroupmap.ui \
     ../main/vscviewconf.ui \
+    ../disk/vschdddevice.ui \
+    ../disk/vschddone.ui \
+    ../disk/vschddedit.ui \
+    ../disk/vschddoneedit.ui \
+    ../vms/vscrecorderadd.ui \
+    ../vms/vscsiteadd.ui \
+    ../vms/vscrecorderone.ui \
     ../setting/vscsetting.ui \
     ../setting/vsclicense.ui \
     ../setting/vscversion.ui \
@@ -117,13 +135,11 @@ FORMS += ../main/vscview.ui \
     ../setting/vscuserstatus.ui \
     ../setting/vschdfsrecord.ui \
     ../setting/vscrtsprtp.ui \
-    ../disk/vschdddevice.ui \
-    ../disk/vschddone.ui \
-    ../disk/vschddedit.ui \
-    ../disk/vschddoneedit.ui \
-    ../vms/vscrecorderadd.ui \
-    ../vms/vscsiteadd.ui \
-    ../vms/vscrecorderone.ui
-TRANSLATIONS += ../main/translations/vscloudnode_zh.ts
+    ../setting/vsclanguage.ui \
+    ../setting/vsclogin.ui \
+    ../setting/vscoapi.ui \
+    ../setting/vscvideosetting.ui \
+    ../setting/vscminingsetting.ui
+TRANSLATIONS += ../main/translations/opencvr_zh.ts
 RESOURCES += ../main/vscmainwindows.qrc \
     ../darkstyle/style.qrc
