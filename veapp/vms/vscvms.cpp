@@ -79,7 +79,6 @@ void VSCVmsZb::mousePressEvent(QMouseEvent *event)
 
 BOOL VSCVmsZb::GetRecorderMap(RecorderMap & pMap)
 {
-	//pMap = mMap;
 	return true;
 }
 
