@@ -73,7 +73,7 @@ typedef void ( * DeviceDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam
 /* Raw data callback */
 typedef void ( * DeviceRawCallbackFunctionPtr)(RawFrame& frame, void * pParam);
 /* Video Seq callback */
-typedef void (__cdecl * DeviceSeqCallbackFunctionPtr)(VideoSeqFrame& frame, void * pParam);
+typedef void ( * DeviceSeqCallbackFunctionPtr)(VideoSeqFrame& frame, void * pParam);
 /* Device Delete function */
 typedef void ( * DeviceDelCallbackFunctionPtr)(void * pParam);
 #endif

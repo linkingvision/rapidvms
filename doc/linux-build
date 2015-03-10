@@ -1,4 +1,4 @@
-ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev freeglut3-dev
+ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev freeglut3-dev uuid-dev
 centos: sudo yum install nasm xorg-x11-server-devel zlib-devel gcc gcc-c++ gstreamer-devel   gstreamer-plugins-base-devel libxslt-devel
 
 
