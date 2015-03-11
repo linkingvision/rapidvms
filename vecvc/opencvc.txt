@@ -1,1 +1,2 @@
-Open Cloud Video Client, the client will be for Windows, MacOS, Android IOS
+Open Cloud Video Center, the CVC is only on linux and windows, it can be standalone, also the OpenCVR 
+has a build in CVC
