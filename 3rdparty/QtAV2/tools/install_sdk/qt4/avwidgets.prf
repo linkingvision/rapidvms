@@ -1,3 +1,0 @@
-load(qt_functions.prf)
-qtAddLibrary(QtAV)
-qtAddLibrary(QtAVWidgets)
