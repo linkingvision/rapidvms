@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/QMLPlayer/main.qml</file>
+        <file>qml/QMLPlayer/Button.qml</file>
+        <file>qml/QMLPlayer/ProgressBar.qml</file>
+        <file>qml/QMLPlayer/Slider.qml</file>
+        <file>qml/QMLPlayer/utils.js</file>
+        <file>qml/QMLPlayer/ControlPanel.qml</file>
+        <file>qml/QMLPlayer/VideoCodec.qml</file>
+        <file>qml/QMLPlayer/ConfigPanel.qml</file>
+        <file>qml/QMLPlayer/Page.qml</file>
+        <file>qml/QMLPlayer/SubtitlePage.qml</file>
+        <file>qml/QMLPlayer/AudioPage.qml</file>
+        <file>qml/QMLPlayer/DelegateItem.qml</file>
+        <file>qml/QMLPlayer/Menu.qml</file>
+        <file>qml/QMLPlayer/MediaInfoPage.qml</file>
+        <file>qml/QMLPlayer/About.qml</file>
+        <file>i18n/QMLPlayer_zh_CN.qm</file>
+        <file>qml/QMLPlayer/PreviewPage.qml</file>
+    </qresource>
+</RCC>
