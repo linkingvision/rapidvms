@@ -2,6 +2,8 @@
 #### open source ONVIF Video Recorder ####
 
 ----------
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/arch/arch.png)
+
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20141203.png)
 
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20150212.jpg)
@@ -85,7 +87,7 @@ Skype : xsmart@veyesys.com
 
 QQ    : 2104915834
 
-Wechat: ![](https://raw.githubusercontent.com/xsmart/ve-img/master/wechat/xsmart_wechat.png)
+WeChat: ![](https://raw.githubusercontent.com/xsmart/ve-img/master/wechat/xsmart_wechat.png)
 ### Note: ###
 	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
     
