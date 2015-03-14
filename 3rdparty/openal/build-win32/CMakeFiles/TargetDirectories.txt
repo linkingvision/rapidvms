@@ -1,6 +1,0 @@
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/CMakeFiles/OpenAL32.dir
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/CMakeFiles/openal-info.dir
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/utils/alsoft-config/CMakeFiles/ALL_BUILD.dir
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/CMakeFiles/common.dir
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/CMakeFiles/makehrtf.dir
-C:/work/60-video/ve/opencvr/3rdparty/openal/build-win32/CMakeFiles/ZERO_CHECK.dir
