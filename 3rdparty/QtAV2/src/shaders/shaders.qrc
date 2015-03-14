@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file>planar.f.glsl</file>
+        <file>rgb.f.glsl</file>
+    </qresource>
+</RCC>
