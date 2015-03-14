@@ -1,0 +1,133 @@
+﻿Build started 2015-03-14 15:51:27.
+     1>Project "C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64\OpenAL32.vcxproj" on node 3 (Build target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/work/60-video/ve/opencvr/3rdparty/openal/CMakeLists.txt
+         CMake does not need to re-run because C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\3rdparty\openal\include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\Alc" /nologo /W3 /WX- /O2 /Ob2 /D WIN32 /D _WINDOWS /D NDEBUG /D NDEBUG /D _WIN32 /D _WIN32_WINNT=0x0502 /D AL_BUILD_LIBRARY /D AL_ALEXT_PROTOTYPES /D _LARGEFILE_SOURCE /D _LARGE_FILES /D restrict= /D inline=__inline /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D strcasecmp=_stricmp /D strncasecmp=_strnicmp /D snprintf=_snprintf /D "CMAKE_INTDIR=\"Release\"" /D OpenAL32_EXPORTS /D _WINDLL /D _MBCS /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"OpenAL32.dir\Release\\" /Fd"OpenAL32.dir\Release\vc120.pdb" /Gd /TC /wd4098 /errorReport:prompt "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alAuxEffectSlot.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alBuffer.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alEffect.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alError.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alExtension.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alFilter.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alFontsound.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alListener.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alMidi.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alPreset.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alSoundfont.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alSource.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alState.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\alThunk.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\sample_cvt.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\ALc.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\ALu.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\alcConfig.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\alcRing.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\bs2b.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\autowah.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\chorus.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\compressor.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\dedicated.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\distortion.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\echo.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\equalizer.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\flanger.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\modulator.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\reverb.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\helpers.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\hrtf.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\panning.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\mixer.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\mixer_c.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\mixer_sse.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\mixer_sse2.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\mixer_sse41.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\dummy.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\fluidsynth.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\soft.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\loopback.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\winmm.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\mmdevapi.c" "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\wave.c"
+         alAuxEffectSlot.c
+         alBuffer.c
+         alEffect.c
+         alError.c
+         alExtension.c
+         alFilter.c
+         alFontsound.c
+         alListener.c
+         alMidi.c
+         alPreset.c
+         alSoundfont.c
+         alSource.c
+         alState.c
+         alThunk.c
+         sample_cvt.c
+         ALc.c
+         ALu.c
+         alcConfig.c
+         alcRing.c
+         bs2b.c
+         Generating Code...
+         Compiling...
+         autowah.c
+         chorus.c
+         compressor.c
+         dedicated.c
+         distortion.c
+         echo.c
+         equalizer.c
+         flanger.c
+         modulator.c
+         reverb.c
+         helpers.c
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\helpers.c(700): warning C4244: 'function' : conversion from 'ptrdiff_t' to 'ALsizei', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\helpers.c(768): warning C4267: 'function' : conversion from 'size_t' to 'ALsizei', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\helpers.c(786): warning C4267: 'function' : conversion from 'size_t' to 'ALsizei', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\helpers.c(796): warning C4244: 'function' : conversion from '__int64' to 'ALsizei', possible loss of data
+         hrtf.c
+         panning.c
+         mixer.c
+         mixer_c.c
+         mixer_sse.c
+         mixer_sse2.c
+         mixer_sse41.c
+         sf2load.c
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c(41): warning C4267: '-=' : conversion from 'size_t' to 'ALuint', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c(1049): warning C4267: '-=' : conversion from 'size_t' to 'ALuint', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c(1075): warning C4267: '-=' : conversion from 'size_t' to 'ALuint', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c(1119): warning C4267: '-=' : conversion from 'size_t' to 'ALuint', possible loss of data
+     1>C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\sf2load.c(1129): warning C4267: '-=' : conversion from 'size_t' to 'ALuint', possible loss of data
+         dummy.c
+         Generating Code...
+         Compiling...
+         fluidsynth.c
+         soft.c
+         loopback.c
+         winmm.c
+         mmdevapi.c
+         wave.c
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\3rdparty\openal\include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\Alc" /nologo /W3 /WX- /O2 /Ob2 /D WIN32 /D _WINDOWS /D NDEBUG /D NDEBUG /D _WIN32 /D _WIN32_WINNT=0x0502 /D AL_BUILD_LIBRARY /D AL_ALEXT_PROTOTYPES /D _LARGEFILE_SOURCE /D _LARGE_FILES /D restrict= /D inline=__inline /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D strcasecmp=_stricmp /D strncasecmp=_strnicmp /D snprintf=_snprintf /D "CMAKE_INTDIR=\"Release\"" /D OpenAL32_EXPORTS /D _WINDLL /D _MBCS /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"OpenAL32.dir\Release\/Alc/effects/null.c.obj" /Fd"OpenAL32.dir\Release\vc120.pdb" /Gd /TC /wd4098 /errorReport:prompt "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\effects\null.c"
+         null.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\3rdparty\openal\include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\Alc" /nologo /W3 /WX- /O2 /Ob2 /D WIN32 /D _WINDOWS /D NDEBUG /D NDEBUG /D _WIN32 /D _WIN32_WINNT=0x0502 /D AL_BUILD_LIBRARY /D AL_ALEXT_PROTOTYPES /D _LARGEFILE_SOURCE /D _LARGE_FILES /D restrict= /D inline=__inline /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D strcasecmp=_stricmp /D strncasecmp=_strnicmp /D snprintf=_snprintf /D "CMAKE_INTDIR=\"Release\"" /D OpenAL32_EXPORTS /D _WINDLL /D _MBCS /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"OpenAL32.dir\Release\/Alc/midi/base.c.obj" /Fd"OpenAL32.dir\Release\vc120.pdb" /Gd /TC /wd4098 /errorReport:prompt "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\midi\base.c"
+         base.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\3rdparty\openal\include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\Alc" /nologo /W3 /WX- /O2 /Ob2 /D WIN32 /D _WINDOWS /D NDEBUG /D NDEBUG /D _WIN32 /D _WIN32_WINNT=0x0502 /D AL_BUILD_LIBRARY /D AL_ALEXT_PROTOTYPES /D _LARGEFILE_SOURCE /D _LARGE_FILES /D restrict= /D inline=__inline /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D strcasecmp=_stricmp /D strncasecmp=_strnicmp /D snprintf=_snprintf /D "CMAKE_INTDIR=\"Release\"" /D OpenAL32_EXPORTS /D _WINDLL /D _MBCS /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"OpenAL32.dir\Release\/Alc/backends/base.c.obj" /Fd"OpenAL32.dir\Release\vc120.pdb" /Gd /TC /wd4098 /errorReport:prompt "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\base.c"
+         base.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\3rdparty\openal\include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\OpenAL32\Include" /I"C:\work\60-video\ve\opencvr\3rdparty\openal\Alc" /nologo /W3 /WX- /O2 /Ob2 /D WIN32 /D _WINDOWS /D NDEBUG /D NDEBUG /D _WIN32 /D _WIN32_WINNT=0x0502 /D AL_BUILD_LIBRARY /D AL_ALEXT_PROTOTYPES /D _LARGEFILE_SOURCE /D _LARGE_FILES /D restrict= /D inline=__inline /D _CRT_SECURE_NO_WARNINGS /D _CRT_NONSTDC_NO_DEPRECATE /D strcasecmp=_stricmp /D strncasecmp=_strnicmp /D snprintf=_snprintf /D "CMAKE_INTDIR=\"Release\"" /D OpenAL32_EXPORTS /D _WINDLL /D _MBCS /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"OpenAL32.dir\Release\/Alc/backends/null.c.obj" /Fd"OpenAL32.dir\Release\vc120.pdb" /Gd /TC /wd4098 /errorReport:prompt "C:\work\60-video\ve\opencvr\3rdparty\openal\Alc\backends\null.c"
+         null.c
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64\Release\OpenAL32.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib" /LIBPATH:"C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/Release" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib Release\common.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/work/60-video/ve/opencvr/3rdparty/openal/build-win64/Release/OpenAL32.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/60-video/ve/opencvr/3rdparty/openal/build-win64/Release/OpenAL32.lib" /MACHINE:X64  /machine:x64 /DLL OpenAL32.dir\Release\alAuxEffectSlot.obj
+         OpenAL32.dir\Release\alBuffer.obj
+         OpenAL32.dir\Release\alEffect.obj
+         OpenAL32.dir\Release\alError.obj
+         OpenAL32.dir\Release\alExtension.obj
+         OpenAL32.dir\Release\alFilter.obj
+         OpenAL32.dir\Release\alFontsound.obj
+         OpenAL32.dir\Release\alListener.obj
+         OpenAL32.dir\Release\alMidi.obj
+         OpenAL32.dir\Release\alPreset.obj
+         OpenAL32.dir\Release\alSoundfont.obj
+         OpenAL32.dir\Release\alSource.obj
+         OpenAL32.dir\Release\alState.obj
+         OpenAL32.dir\Release\alThunk.obj
+         OpenAL32.dir\Release\sample_cvt.obj
+         OpenAL32.dir\Release\ALc.obj
+         OpenAL32.dir\Release\ALu.obj
+         OpenAL32.dir\Release\alcConfig.obj
+         OpenAL32.dir\Release\alcRing.obj
+         OpenAL32.dir\Release\bs2b.obj
+         OpenAL32.dir\Release\autowah.obj
+         OpenAL32.dir\Release\chorus.obj
+         OpenAL32.dir\Release\compressor.obj
+         OpenAL32.dir\Release\dedicated.obj
+         OpenAL32.dir\Release\distortion.obj
+         OpenAL32.dir\Release\echo.obj
+         OpenAL32.dir\Release\equalizer.obj
+         OpenAL32.dir\Release\flanger.obj
+         OpenAL32.dir\Release\modulator.obj
+         OpenAL32.dir\Release\reverb.obj
+         OpenAL32.dir\Release\helpers.obj
+         OpenAL32.dir\Release\hrtf.obj
+         OpenAL32.dir\Release\panning.obj
+         OpenAL32.dir\Release\mixer.obj
+         OpenAL32.dir\Release\mixer_c.obj
+         OpenAL32.dir\Release\mixer_sse.obj
+         OpenAL32.dir\Release\mixer_sse2.obj
+         OpenAL32.dir\Release\mixer_sse41.obj
+         OpenAL32.dir\Release\sf2load.obj
+         OpenAL32.dir\Release\dummy.obj
+         OpenAL32.dir\Release\fluidsynth.obj
+         OpenAL32.dir\Release\soft.obj
+         OpenAL32.dir\Release\loopback.obj
+         OpenAL32.dir\Release\winmm.obj
+         OpenAL32.dir\Release\mmdevapi.obj
+         OpenAL32.dir\Release\wave.obj
+         OpenAL32.dir\Release\/Alc/effects/null.c.obj
+         OpenAL32.dir\Release\/Alc/midi/base.c.obj
+         OpenAL32.dir\Release\/Alc/backends/base.c.obj
+         OpenAL32.dir\Release\/Alc/backends/null.c.obj
+            Creating library C:/work/60-video/ve/opencvr/3rdparty/openal/build-win64/Release/OpenAL32.lib and object C:/work/60-video/ve/opencvr/3rdparty/openal/build-win64/Release/OpenAL32.exp
+         OpenAL32.vcxproj -> C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64\Release\OpenAL32.dll
+     1>Done Building Project "C:\work\60-video\ve\opencvr\3rdparty\openal\build-win64\OpenAL32.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:20.45

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\work\60-video\ve\opencvr\3rdparty\openal\build-win32\CMakeFiles\da8949e1c30259b71720eff20c2cb4c7\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D42ACC92-B83C-48BE-985B-D7DA42167CDC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
