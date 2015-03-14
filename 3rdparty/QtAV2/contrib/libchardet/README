@@ -1,0 +1,5 @@
+Charset detector
+
+Charset detector in Mozilla is a XPCOM component which receive bytes as incoming data and base on the bytes of data "guess" what the charset of the data is and report it to the caller.
+
+cnangel at 2010/04/07 19:54:41
