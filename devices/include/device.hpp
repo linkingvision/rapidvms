@@ -96,6 +96,8 @@ public:
 		m_strUrl = pParam.m_strUrl;
 		m_strUrlSubStream = pParam.m_strUrlSubStream;
 		m_bHasSubStream = pParam.m_bHasSubStream;
+		m_bOnvifUrlGetted = pParam.m_bOnvifUrlGetted;
+		m_bOnline = pParam.m_bOnline;
 		return *this;
 	}
 
@@ -110,6 +112,8 @@ public:
 	astring m_strUrl;
 	astring m_strUrlSubStream;
 	BOOL m_bHasSubStream;
+
+	BOOL m_bOnline;
 };
 
 
@@ -149,6 +153,11 @@ class Device
 public:
 	inline Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam);
 	inline ~Device();
+
+public:
+	/* Below 2 api is for a new thread to do some network task whitch may be blocked */
+	BOOL GetDeviceParam(DeviceParam &pParam);
+	BOOL SetDeviceParam(DeviceParam &pParam);
 
 public:	
 	inline BOOL StartData();
