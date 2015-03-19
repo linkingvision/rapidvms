@@ -1,0 +1,9 @@
+﻿Build started 2015-03-19 20:42:31.
+     1>Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         miniupnpc.vcxproj -> C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\Release\miniupnpc.lib
+     1>Done Building Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.14

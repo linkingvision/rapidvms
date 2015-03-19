@@ -1,0 +1,46 @@
+﻿Build started 2015-03-19 20:42:36.
+     1>Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D _CRT_SECURE_NO_WARNINGS /D MINIUPNP_STATICLIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /errorReport:prompt ..\connecthostport.c ..\igd_desc_parse.c ..\minisoap.c ..\miniupnpc.c ..\miniwget.c ..\minixml.c ..\portlistingparse.c ..\receivedata.c ..\upnpcommands.c ..\upnperrors.c ..\upnpreplyparse.c
+         connecthostport.c
+     1>..\connecthostport.c(186): warning C4244: '=' : conversion from 'SOCKET' to 'int', possible loss of data
+     1>..\connecthostport.c(208): warning C4267: 'function' : conversion from 'size_t' to 'int', possible loss of data
+         igd_desc_parse.c
+         minisoap.c
+         miniupnpc.c
+     1>..\miniupnpc.c(398): warning C4244: '=' : conversion from 'SOCKET' to 'int', possible loss of data
+     1>..\miniupnpc.c(430): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>..\miniupnpc.c(515): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>..\miniupnpc.c(623): warning C4267: 'function' : conversion from 'size_t' to 'int', possible loss of data
+     1>..\miniupnpc.c(808): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+     1>..\miniupnpc.c(812): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
+     1>..\miniupnpc.c(814): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+     1>..\miniupnpc.c(846): warning C4267: '+=' : conversion from 'size_t' to 'int', possible loss of data
+         miniwget.c
+     1>..\miniwget.c(511): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
+         minixml.c
+         portlistingparse.c
+         receivedata.c
+         upnpcommands.c
+         upnperrors.c
+         upnpreplyparse.c
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\x64\Release\miniupnpc.lib" /NOLOGO /MACHINE:X64 /LTCG x64\Release\connecthostport.obj
+         x64\Release\igd_desc_parse.obj
+         x64\Release\minisoap.obj
+         x64\Release\miniupnpc.obj
+         x64\Release\miniwget.obj
+         x64\Release\minixml.obj
+         x64\Release\portlistingparse.obj
+         x64\Release\receivedata.obj
+         x64\Release\upnpcommands.obj
+         x64\Release\upnperrors.obj
+         x64\Release\upnpreplyparse.obj
+         miniupnpc.vcxproj -> C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\x64\Release\miniupnpc.lib
+     1>Done Building Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.45

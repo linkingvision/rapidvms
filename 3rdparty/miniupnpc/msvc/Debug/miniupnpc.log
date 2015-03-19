@@ -1,0 +1,44 @@
+﻿Build started 2015-03-19 20:42:25.
+     1>Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D MINIUPNP_STATICLIB /D DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\connecthostport.c ..\igd_desc_parse.c ..\minisoap.c ..\miniupnpc.c ..\miniwget.c ..\minixml.c ..\portlistingparse.c ..\receivedata.c ..\upnpcommands.c ..\upnperrors.c ..\upnpreplyparse.c
+         upnpreplyparse.c
+         upnperrors.c
+         upnpcommands.c
+         receivedata.c
+         portlistingparse.c
+         minixml.c
+         miniwget.c
+         miniupnpc.c
+     1>c:\users\farmer\desktop\miniupnp-master\miniupnpc\miniupnpc.c(430): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>c:\users\farmer\desktop\miniupnp-master\miniupnpc\miniupnpc.c(455): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>c:\users\farmer\desktop\miniupnp-master\miniupnpc\miniupnpc.c(457): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>c:\users\farmer\desktop\miniupnp-master\miniupnpc\miniupnpc.c(459): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>c:\users\farmer\desktop\miniupnp-master\miniupnpc\miniupnpc.c(515): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         minisoap.c
+         igd_desc_parse.c
+         connecthostport.c
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\Debug\miniupnpc.lib" /NOLOGO Debug\connecthostport.obj
+         Debug\igd_desc_parse.obj
+         Debug\minisoap.obj
+         Debug\miniupnpc.obj
+         Debug\miniwget.obj
+         Debug\minixml.obj
+         Debug\portlistingparse.obj
+         Debug\receivedata.obj
+         Debug\upnpcommands.obj
+         Debug\upnperrors.obj
+         Debug\upnpreplyparse.obj
+         miniupnpc.vcxproj -> C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\Debug\miniupnpc.lib
+     1>Done Building Project "C:\Users\farmer\Desktop\miniupnp-master\miniupnpc\msvc\miniupnpc.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.34
