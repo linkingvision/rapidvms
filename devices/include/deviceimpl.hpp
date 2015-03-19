@@ -62,15 +62,19 @@ DeviceParam::DeviceParam()
 	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
+	m_bOnline = FALSE;
 
 }
 
 DeviceParam::DeviceParam(VSCDeviceData &pData)
 {
-    memset(&m_Conf, 0, sizeof(m_Conf));
+	memset(&m_Conf, 0, sizeof(m_Conf));
 
-    memcpy(&m_Conf, &(pData), sizeof(m_Conf));
-    //UpdateUrl();
+	memcpy(&m_Conf, &(pData), sizeof(m_Conf));
+	
+	m_bOnvifUrlGetted = FALSE;
+	m_bHasSubStream = FALSE;
+	m_bOnline = FALSE;
 }
 
 inline std::string Replace(std::string &str, const char *string_to_replace, const char *new_string)
