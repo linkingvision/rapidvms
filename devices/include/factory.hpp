@@ -92,7 +92,7 @@ public:
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
-							int &ch, int &type);
+							int &ch, astring &type);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
 

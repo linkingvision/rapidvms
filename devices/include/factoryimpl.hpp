@@ -208,7 +208,7 @@ inline BOOL Factory::CallDeviceChange(FactoryDeviceChangeData data)
         }	
 	 return TRUE;
 }
-inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, int &type)
+inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type)
 {
 	VPlay::GetLicenseInfo(strHostId, ch, type);
 	return m_Conf.GetLicense(strLicense);
