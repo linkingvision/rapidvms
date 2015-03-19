@@ -35,7 +35,7 @@ public:
 	~VPlay();
 public:
 	static BOOL SetLicense(astring &strLicense);
-	static BOOL GetLicenseInfo(astring &strHostId, int &ch, int &type);
+	static BOOL GetLicenseInfo(astring &strHostId, int &ch, astring &type);
 public:
 	BOOL Init(BOOL bRealStream, string strUrl, string strUser, string strPass, BOOL bHWAccel = FALSE);
 	BOOL Init(string strFile, BOOL bHWAccel = FALSE);
