@@ -1699,71 +1699,93 @@ inline void Factory::Run(void * pParam)
 
 inline void Factory::run()
 {
-    int lastIdx = 0;
-    /* Create the thread to update the Disk status */
-    //First updateDisk Status and then start the thread to update the disk status
-    while (1)
-    {
-
-        Lock();
-        DeviceMap::iterator it = m_DeviceMap.begin(); 
-        for(; it!=m_DeviceMap.end(); ++it)
-        {
-            s32 nIndex = (*it).first;
-            DeviceMap::iterator next = it;
-	     next ++;
-	     //VDC_DEBUG( "%s run CheckDevice %d   1\n",__FUNCTION__, nIndex);
-	     
-	     if (lastIdx +1 > nIndex  && next != m_DeviceMap.end())
-	     {
-			continue;
-	     }
-            if (next == m_DeviceMap.end())
-            {
-            	  lastIdx = 0; 
-            }else
-            {
-            	 lastIdx = nIndex;
-            }
-	    //VDC_DEBUG( "%s run CheckDevice %d   2\n",__FUNCTION__, nIndex);
-	     if (m_DeviceMap[nIndex])
-	     {
-	        FactoryDeviceChangeData change;
-		 change.id = nIndex;
-		switch (m_DeviceMap[nIndex]->CheckDevice())
+	DeviceParamMap paramMap;
+	/* Create the thread to update the Disk status */
+	while (1)
+	{
+		paramMap.clear();
 		{
-		    case DEV_OFF2ON:
-		    {
-		        change.type = FACTORY_DEVICE_ONLINE;
-			 UnLock(); 
-			 CallDeviceChange(change);
-			 Lock();
-		        break;
-		    }
-		    case DEV_ON2OFF:
-		    {
-		        change.type = FACTORY_DEVICE_OFFLINE;
-			 UnLock(); 
-			 CallDeviceChange(change);
-			 Lock();
-		        break;
-		    }
-		    default:
-		    {
-
-		        break;
-		    }
+			/* Got all the device param */
+			Lock();
+			DeviceMap::iterator it = m_DeviceMap.begin(); 
+			for(; it!=m_DeviceMap.end(); ++it)
+			{	
+				s32 nIndex = (*it).first;
+				DeviceParam pParam;
+				m_DeviceMap[nIndex]->GetDeviceParam(pParam);
+				paramMap[nIndex] = pParam;
+			}
+			UnLock();
 		}
-	     }
-	     break;
-        }   
-        UnLock();
-#ifdef WIN32
-        Sleep(1000 * 2);
-#else
-	sleep(2);
-#endif
-    }
+		{
+			/* Loop all the deviceparam */
+			DeviceParamMap::iterator it = paramMap.begin(); 
+			for(; it!=paramMap.end(); ++it)
+			{	
+				/* Loop to check the device and update the url */
+				s32 nIndex = (*it).first;
+				(*it).second.m_wipOnline = (*it).second.CheckOnline();
+				if ((*it).second.m_OnlineUrl == FALSE)
+				{
+					(*it).second.m_wipOnlineUrl = (*it).second.UpdateUrl();
+				}
+			}
+		}
+		{
+			/* Loop all the deviceparam result and set to device */
+			DeviceParamMap::iterator it = paramMap.begin(); 
+			for(; it!=paramMap.end(); ++it)
+			{	
+				/* Loop to check the device and update the url */
+				s32 nIndex = (*it).first;
+				Lock();
+				DeviceMap::iterator it1 = m_DeviceMap.find(nIndex), 
+							ite1 = m_DeviceMap.end();
+
+				if (it1 == ite1) 
+				{
+					/* the id may be delete */
+					UnLock();
+					continue;
+				}
+
+				DeviceStatus bCheck = m_DeviceMap[nIndex]->CheckDevice(
+					(*it).second.m_strUrl, (*it).second.m_strUrlSubStream, 
+					(*it).second.m_bHasSubStream, 
+					(*it).second.m_wipOnline, (*it).second.m_wipOnlineUrl);
+				
+				FactoryDeviceChangeData change;
+				change.id = nIndex;
+				switch (bCheck)
+				{
+					case DEV_OFF2ON:
+					{
+						change.type = FACTORY_DEVICE_ONLINE;
+						UnLock(); 
+						CallDeviceChange(change);
+						Lock();
+						break;
+					}
+					case DEV_ON2OFF:
+					{
+						change.type = FACTORY_DEVICE_OFFLINE;
+						UnLock(); 
+						CallDeviceChange(change);
+						Lock();
+						break;
+					}
+					default:
+					{
+
+						break;
+					}
+				}
+				UnLock();
+			}
+		}
+		ve_sleep(1000 * 60);
+	}
+	
 }
 
 
