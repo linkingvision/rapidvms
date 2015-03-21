@@ -1783,7 +1783,7 @@ inline void Factory::run()
 				UnLock();
 			}
 		}
-		ve_sleep(1000 * 60);
+		ve_sleep(1000 * 20);
 	}
 	
 }
