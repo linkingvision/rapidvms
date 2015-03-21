@@ -21,13 +21,14 @@ void VSCLicense::UpdateUI()
 	astring strHostId = ""; 
 	char channel[256];
 	int ch = 0;
-	int type = 0;
+	astring type = " ";
 	gFactory->GetLicense(strLicense, strHostId, ch, type);
 	memset(channel, 0, 256);
 	sprintf(channel, "%d", ch);
 	ui.lic->setText(strLicense.c_str());
 	ui.hostId->setText(strHostId.c_str());
 	ui.channel->setText(channel);
+	ui.type->setText(type.c_str());
 
 	return;
 }
