@@ -11,6 +11,8 @@ VSCLogin::VSCLogin(QWidget *parent)
 
    connect(ui.pbLogin, SIGNAL(clicked()), this, SLOT(LoginClicked()));
    connect(ui.pbExit, SIGNAL(clicked()), this, SLOT(ExitClicked()));
+   connect(ui.passwd, SIGNAL(returnPressed()), ui.pbLogin, SIGNAL(clicked()));
+    
 
 
 }
