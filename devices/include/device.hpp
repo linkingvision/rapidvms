@@ -97,7 +97,7 @@ public:
 		m_strUrlSubStream = pParam.m_strUrlSubStream;
 		m_bHasSubStream = pParam.m_bHasSubStream;
 		m_bOnvifUrlGetted = pParam.m_bOnvifUrlGetted;
-		m_bOnline = pParam.m_bOnline;
+		m_Online = pParam.m_Online;
 		return *this;
 	}
 
@@ -113,7 +113,12 @@ public:
 	astring m_strUrlSubStream;
 	BOOL m_bHasSubStream;
 
-	BOOL m_bOnline;
+	BOOL m_Online;
+	BOOL m_OnlineUrl;
+
+	/* backend status  */
+	BOOL m_wipOnline;
+	BOOL m_wipOnlineUrl;
 };
 
 
@@ -155,9 +160,8 @@ public:
 	inline ~Device();
 
 public:
-	/* Below 2 api is for a new thread to do some network task whitch may be blocked */
-	BOOL GetDeviceParam(DeviceParam &pParam);
-	BOOL SetDeviceParam(DeviceParam &pParam);
+	/* Below api is for a new thread to do some network task whitch may be blocked */
+	inline BOOL GetDeviceParam(DeviceParam &pParam);
 
 public:	
 	inline BOOL StartData();
@@ -179,7 +183,8 @@ public:
 	
 	inline BOOL SetRecord(BOOL bRecording);
 	inline BOOL SetHdfsRecord(BOOL bRecording);
-	inline DeviceStatus CheckDevice();
+	inline DeviceStatus CheckDevice(astring strUrl, astring strUrlSubStream, 
+		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl);
 
 public:
 	/* Data  */
@@ -277,8 +282,6 @@ private:
 	VHdfsDB &m_pVHdfsdb;
 	RecordSession *m_pRecord;
 	HdfsRecSession *m_pHdfsRecord;
-	BOOL m_Online;
-	BOOL m_OnlineUrl;
 
 private:
 	ContinuousMove m_continuousMove;
