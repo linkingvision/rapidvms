@@ -62,7 +62,9 @@ DeviceParam::DeviceParam()
 	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
-	m_bOnline = FALSE;
+	
+	m_Online = FALSE;
+	m_OnlineUrl = FALSE;
 
 }
 
@@ -74,7 +76,8 @@ DeviceParam::DeviceParam(VSCDeviceData &pData)
 	
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
-	m_bOnline = FALSE;
+	m_Online = FALSE;
+	m_OnlineUrl = FALSE;
 }
 
 inline std::string Replace(std::string &str, const char *string_to_replace, const char *new_string)
@@ -267,9 +270,13 @@ BOOL DeviceParam::UpdateUrl()
 
 DeviceParam::DeviceParam(const DeviceParam &pParam)
 {
-    memset(&m_Conf, 0, sizeof(m_Conf));
+	memset(&m_Conf, 0, sizeof(m_Conf));
 
-    memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+	memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+	m_bOnvifUrlGetted = pParam.m_bOnvifUrlGetted;
+	m_bHasSubStream = pParam.m_bHasSubStream;
+	m_Online = pParam.m_Online;
+	m_OnlineUrl = pParam.m_OnlineUrl;
 }
 
 
@@ -280,9 +287,7 @@ DeviceParam::~DeviceParam()
 Device::Device(VDB &pVdb, VHdfsDB &pVHdfsdb, const DeviceParam &pParam)
 :m_bStarted(FALSE), m_param(pParam),
 m_pVdb(pVdb), m_pVHdfsdb(pVHdfsdb), m_pRecord(NULL), 
-m_pHdfsRecord(NULL), 
-m_Online(FALSE), 
-m_OnlineUrl(FALSE), m_ptzInited(FALSE), 
+m_pHdfsRecord(NULL),  m_ptzInited(FALSE), 
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
 m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0),
 m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay), 
@@ -345,22 +350,32 @@ Device::~Device()
 	delete m_pvPlaySubStream;
 }
 
-DeviceStatus Device::CheckDevice()
+BOOL Device::GetDeviceParam(DeviceParam &pParam)
 {
-    if (m_param.CheckOnline() == TRUE)
+	pParam = m_param;
+	return TRUE;
+}
+
+DeviceStatus Device::CheckDevice(astring strUrl, astring strUrlSubStream, 
+		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl)
+{
+    if (bOnline == TRUE)
     {
         /* Camera from offline to online */
-        if (m_OnlineUrl == FALSE)
+        if (m_param.m_OnlineUrl == FALSE)
         {
         	BOOL HWAccel = FALSE;
 		if (m_param.m_Conf.data.conf.HWAccel == 1)
 		{
 			HWAccel = TRUE;
 		}
-		if (m_param.UpdateUrl() == FALSE)
+		if (bOnlineUrl == FALSE)
 		{
 		    return  DEV_NO_CHANGE;
 		}
+		m_param.m_strUrl = strUrl;
+		m_param.m_strUrlSubStream = strUrlSubStream;
+		m_param.m_bHasSubStream = bHasSubStream;
 		if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_DEVICE_FILE)
 		{
 			m_vPlay.Init(m_param.m_strUrl, HWAccel);
@@ -379,19 +394,19 @@ DeviceStatus Device::CheckDevice()
 
 		StartRecord();
 		StartHdfsRecord();
-		m_OnlineUrl = TRUE;
+		m_param.m_OnlineUrl = TRUE;
 		UpdatePTZConf();
         }
-        if (m_Online == FALSE)
+        if (m_param.m_Online == FALSE)
         {
-            m_Online = TRUE;
+            m_param.m_Online = TRUE;
             return DEV_OFF2ON;
         }
     }else
     {
-        if (m_Online == TRUE)
+        if (m_param.m_Online == TRUE)
         {
-            m_Online = FALSE;
+            m_param.m_Online = FALSE;
             return DEV_ON2OFF;
         }
     }
@@ -541,7 +556,7 @@ BOOL Device::ShowAlarm(HWND hWnd)
 
  BOOL Device::PtzAction(FPtzAction action, float speed)
 {
-	if (m_Online == FALSE || m_ptzInited == FALSE)
+	if (m_param.m_Online == FALSE || m_ptzInited == FALSE)
 	{
 		VDC_DEBUG( "%s PTZ Camera is Offline\n",__FUNCTION__);
 		return TRUE;
@@ -1246,7 +1261,7 @@ BOOL Device::SubRawHandler1(RawFrame& frame)
 BOOL Device::GetDeviceOnline()
 {
     BOOL online = true;
-    return m_Online;
+	return m_param.m_Online;
 }
 
 BOOL Device::GetUrl(std::string &url)
@@ -1256,7 +1271,7 @@ BOOL Device::GetUrl(std::string &url)
 }
 BOOL Device::GetDeviceRtspUrl(astring & strUrl)
 {
-	if (m_OnlineUrl == FALSE)
+	if (m_param.m_OnlineUrl == FALSE)
 	{
 		return FALSE;
 	}
