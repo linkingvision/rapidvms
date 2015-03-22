@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{ab385797-5380-4111-8b51-f6f3612755e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helpers\memenv">
+      <UniqueIdentifier>{bd76a3c0-f60b-419e-97e6-d344a6572478}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\helpers\memenv\memenv.cc">
+      <Filter>helpers\memenv</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\helpers\memenv\memenv.h">
+      <Filter>helpers\memenv</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>
