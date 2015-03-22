@@ -65,7 +65,7 @@ class BytewiseComparatorImpl : public Comparator {
   }
 };
 }  // namespace
-
+#if 0 //xsmart
 static port::OnceType once = LEVELDB_ONCE_INIT;
 static const Comparator* bytewise;
 
@@ -77,5 +77,14 @@ const Comparator* BytewiseComparator() {
   port::InitOnce(&once, InitModule);
   return bytewise;
 }
+#else
+// Intentionally not destroyed to prevent destructor racing
+// with background threads.
+static const Comparator* bytewise = new BytewiseComparatorImpl;
+
+const Comparator* BytewiseComparator() {
+  return bytewise;
+}
+#endif
 
 }  // namespace leveldb

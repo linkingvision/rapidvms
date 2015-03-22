@@ -238,7 +238,9 @@ inline bool GetHeapProfile(void (*func)(void*, const char*, int), void* arg) {
 }
 typedef intptr_t OnceType;
 #define LEVELDB_ONCE_INIT 0
-extern void InitOnce(OnceType* once, void (*initializer)());
+inline void InitOnce(OnceType* once, void (*initializer)())
+{
+}
 }
 }
 
