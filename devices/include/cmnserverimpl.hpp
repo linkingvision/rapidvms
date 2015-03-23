@@ -21,6 +21,7 @@ CmnHttpServer::~CmnHttpServer()
 void CmnHttpServer::run()
 {
         XSocket socket;
+        //XSSLSocket socket;
         socket.Bind(m_port);
         socket.Listen();
 
