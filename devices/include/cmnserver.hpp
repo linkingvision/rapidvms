@@ -14,6 +14,7 @@
 #include "XSDK/XHash.h"
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XSocket.h"
+#include "XSDK/XSSLSocket.h"
 #include "Webby/ClientSideRequest.h"
 #include "Webby/ClientSideResponse.h"
 #include "Webby/ServerSideRequest.h"
