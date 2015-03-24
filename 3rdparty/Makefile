@@ -15,8 +15,8 @@ openssl_build:
 	cd openssl-linux; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/linux -fPIC;
 	$(MAKE) -C openssl-linux && $(MAKE) -C openssl-linux install;
 leveldb_build:
-	cd leveldb-linux; chmod +x ./build_detect_platform;
-	$(MAKE) -C leveldb-linux; 
+	cd leveldb; chmod +x ./build_detect_platform;
+	$(MAKE) -C leveldb; 
 onvifc_build:
 	cd onvifc/prj_linux/ ; qmake .;
 	$(MAKE) -C onvifc/prj_linux; 
