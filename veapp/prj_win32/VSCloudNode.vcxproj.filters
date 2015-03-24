@@ -285,6 +285,15 @@
     <CustomBuild Include="..\setting\vscvideosetting.ui">
       <Filter>setting</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\devices\include\cmnserver.hpp">
+      <Filter>Device\include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscminingsetting.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\setting\vscminingsetting.ui">
+      <Filter>setting</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -656,6 +665,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscvideosetting.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\vscminingsetting.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscminingsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscminingsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -745,9 +769,6 @@
     <ClInclude Include="GeneratedFiles\ui_vscrtsprtp.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\devices\include\cmnserver.hpp">
-      <Filter>Device\include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\devices\include\conf.hpp">
       <Filter>Device\include</Filter>
     </ClInclude>
@@ -797,6 +818,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscvideosetting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\cmnserverimpl.hpp">
+      <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscminingsetting.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
