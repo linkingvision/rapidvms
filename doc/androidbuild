@@ -6,7 +6,7 @@ http://doc.qt.io/qt-5/android-support.html
  ./build/tools/make-standalone-toolchain.sh   --toolchain=arm-linux-androideabi-4.8
  
 poco:
-./configure --config=Android --no-samples --no-tests --omit=Crypto
+./configure --config=Android --no-samples --no-tests --omit=Crypto,Data/ODBC
 make
 
 
