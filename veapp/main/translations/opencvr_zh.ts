@@ -17,7 +17,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="139"/>
+        <location filename="../main.cpp" line="112"/>
         <source>Starting ...</source>
         <translation type="unfinished">启动中...</translation>
     </message>
@@ -34,132 +34,141 @@
         <translation type="unfinished">窗口</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="45"/>
+        <location filename="../vsccameraadd.ui" line="216"/>
         <source>RTSP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="52"/>
+        <location filename="../vsccameraadd.ui" line="209"/>
         <source>IP Address</source>
         <translation type="unfinished">地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="59"/>
+        <location filename="../vsccameraadd.ui" line="202"/>
         <source>MainStream</source>
         <translation type="unfinished">主码流</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="76"/>
+        <location filename="../vsccameraadd.ui" line="185"/>
         <source>Device Name</source>
         <translation type="unfinished">设备名称</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="93"/>
+        <location filename="../vsccameraadd.ui" line="168"/>
         <source>Port</source>
         <translation type="unfinished">端口</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="120"/>
-        <source>Profile </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../vsccameraadd.ui" line="137"/>
+        <location filename="../vsccameraadd.ui" line="90"/>
         <source>Password</source>
         <translation type="unfinished">密码</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="144"/>
+        <location filename="../vsccameraadd.ui" line="83"/>
         <source>ONVIF Address</source>
         <translation type="unfinished">ONVIF地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="161"/>
-        <source>ONVIF ProfileS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../vsccameraadd.ui" line="168"/>
+        <location filename="../vsccameraadd.ui" line="134"/>
         <source>User</source>
         <translation type="unfinished">用户名</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="175"/>
+        <location filename="../vsccameraadd.ui" line="127"/>
         <source>RTSP Location</source>
         <translation type="unfinished">RTSP地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="202"/>
+        <location filename="../vsccameraadd.ui" line="66"/>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vsccameraadd.ui" line="141"/>
+        <source>ONVIF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vsccameraadd.ui" line="223"/>
         <source>File</source>
         <translation type="unfinished">文件</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="209"/>
+        <location filename="../vsccameraadd.ui" line="230"/>
         <source>File Location</source>
         <translation type="unfinished">文件位置</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="224"/>
+        <location filename="../vsccameraadd.ui" line="245"/>
         <source>C:\work\24-video\Outlet\MVI_4397.MOV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="265"/>
+        <location filename="../vsccameraadd.ui" line="286"/>
         <source>SubStream</source>
         <translation type="unfinished">辅码流</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="283"/>
+        <location filename="../vsccameraadd.ui" line="304"/>
         <source>UDP</source>
         <translation type="unfinished">UDP</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="288"/>
+        <location filename="../vsccameraadd.ui" line="309"/>
         <source>TCP</source>
         <translation type="unfinished">TCP</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="293"/>
+        <location filename="../vsccameraadd.ui" line="314"/>
         <source>Multicast</source>
         <translation type="unfinished">组播</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="301"/>
         <source>Connection Type</source>
-        <translation type="unfinished">连接方式</translation>
+        <translation type="obsolete">连接方式</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="308"/>
+        <location filename="../vsccameraadd.ui" line="59"/>
         <source>Data Mining</source>
         <translation type="unfinished">数据挖掘</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="382"/>
+        <location filename="../vsccameraadd.ui" line="322"/>
+        <source>Connection</source>
+        <translation type="unfinished">流模式</translation>
+    </message>
+    <message>
+        <location filename="../vsccameraadd.ui" line="329"/>
+        <source>HW accel</source>
+        <translation type="unfinished">硬件加速</translation>
+    </message>
+    <message>
+        <location filename="../vsccameraadd.ui" line="410"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="418"/>
+        <location filename="../vsccameraadd.ui" line="446"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="14"/>
+        <location filename="../vsccameraadd.cpp" line="35"/>
         <source>images/open.ico</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="14"/>
+        <location filename="../vsccameraadd.cpp" line="35"/>
         <source>Floating</source>
         <translation type="unfinished">浮动</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="56"/>
+        <location filename="../vsccameraadd.cpp" line="77"/>
         <source>Select File</source>
         <translation type="unfinished">选择文件</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="58"/>
+        <location filename="../vsccameraadd.cpp" line="79"/>
         <source>Video Files(*.MOV *.mp4 *.avi *.ts *.mpg)</source>
         <translation type="unfinished">视频文件((*.MOV *.mp4 *.avi *.ts *.mpg))</translation>
     </message>
@@ -604,12 +613,17 @@
         <translation type="unfinished">通道</translation>
     </message>
     <message>
-        <location filename="../../setting/vsclicense.ui" line="110"/>
+        <location filename="../../setting/vsclicense.ui" line="63"/>
+        <source>Type</source>
+        <translation type="unfinished">类型</translation>
+    </message>
+    <message>
+        <location filename="../../setting/vsclicense.ui" line="133"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../../setting/vsclicense.ui" line="146"/>
+        <location filename="../../setting/vsclicense.ui" line="169"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
@@ -890,6 +904,57 @@
     </message>
 </context>
 <context>
+    <name>VSCMiningSetting</name>
+    <message>
+        <location filename="../../setting/vscminingsetting.ui" line="14"/>
+        <source>HDFS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscminingsetting.ui" line="42"/>
+        <source>Default Mining Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscminingsetting.ui" line="109"/>
+        <source>Apply</source>
+        <translation type="unfinished">应用</translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscminingsetting.ui" line="145"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+</context>
+<context>
+    <name>VSCOAPI</name>
+    <message>
+        <location filename="../../setting/vscoapi.ui" line="14"/>
+        <source>HDFS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscoapi.ui" line="35"/>
+        <source>9080</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscoapi.ui" line="45"/>
+        <source>OAPI Server Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscoapi.ui" line="105"/>
+        <source>Apply</source>
+        <translation type="unfinished">应用</translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscoapi.ui" line="141"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+</context>
+<context>
     <name>VSCPlayControl</name>
     <message>
         <location filename="../vscplaycontrol.ui" line="20"/>
@@ -1023,36 +1088,42 @@
     </message>
     <message>
         <location filename="../../setting/vscrtsprtp.ui" line="52"/>
-        <source>User </source>
-        <translation type="unfinished">用户名</translation>
-    </message>
-    <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="66"/>
-        <source>RTP</source>
+        <source>RTSP Auth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="86"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="66"/>
+        <source>Multicast Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscrtsprtp.ui" line="79"/>
+        <source>226.0.0.1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User </source>
+        <translation type="obsolete">用户名</translation>
+    </message>
+    <message>
         <source>UDP</source>
-        <translation type="unfinished">UDP</translation>
+        <translation type="obsolete">UDP</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="91"/>
         <source>TCP</source>
-        <translation type="unfinished">TCP</translation>
+        <translation type="obsolete">TCP</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="96"/>
         <source>Multicast</source>
-        <translation type="unfinished">组播</translation>
+        <translation type="obsolete">组播</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="157"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="142"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="193"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="178"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
@@ -1170,23 +1241,44 @@
     </message>
     <message>
         <location filename="../../setting/vscsetting.ui" line="86"/>
-        <source>Media</source>
-        <translation type="unfinished">媒体</translation>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setting/vscsetting.ui" line="90"/>
-        <source>RTSP/RTP</source>
+        <source>OAPI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setting/vscsetting.ui" line="96"/>
+        <source>Media</source>
+        <translation type="unfinished">媒体</translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscsetting.ui" line="100"/>
+        <source>RTSP/RTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscsetting.ui" line="105"/>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscsetting.ui" line="111"/>
         <source>Hadoop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setting/vscsetting.ui" line="100"/>
+        <location filename="../../setting/vscsetting.ui" line="115"/>
         <source>HDFS</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscsetting.ui" line="121"/>
+        <location filename="../../setting/vscsetting.ui" line="125"/>
+        <source>Mining</source>
+        <translation type="unfinished">数据挖掘</translation>
     </message>
 </context>
 <context>
@@ -1451,6 +1543,29 @@
         <location filename="../../setting/vscversion.ui" line="40"/>
         <source>Info</source>
         <translation type="unfinished">信息</translation>
+    </message>
+</context>
+<context>
+    <name>VSCVideoSetting</name>
+    <message>
+        <location filename="../../setting/vscvideosetting.ui" line="14"/>
+        <source>HDFS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscvideosetting.ui" line="42"/>
+        <source>Default HW accel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscvideosetting.ui" line="109"/>
+        <source>Apply</source>
+        <translation type="unfinished">应用</translation>
+    </message>
+    <message>
+        <location filename="../../setting/vscvideosetting.ui" line="145"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
     </message>
 </context>
 <context>
