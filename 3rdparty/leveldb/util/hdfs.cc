@@ -110,6 +110,46 @@ bool Hdfs::LoadSymbol() {
     return false;
   }
 #endif
+#ifdef LEVELDB_PLATFORM_WINDOWS
+	void* _libraryInstance;
+	_libraryInstance = ::LoadLibraryW(L"hdfs.dll");
+        if( _libraryInstance == 0 )
+        {
+		LPVOID str = 0;
+		DWORD_PTR args[1] = { (DWORD_PTR)_libraryName.c_str() };
+
+		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+		               NULL,
+		               GetLastError(),
+		               MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		               (LPTSTR)&str,
+		               0,
+		               (va_list*)args );
+
+		LocalFree( str );
+    		fprintf(stderr, "resolve symbol from hdfs.dll error: %s\n", error);
+        }
+
+	*(void**)(&hdfsConnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsConnect");
+	*(void**)(&hdfsDisconnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsDisconnect");
+	*(void**)(&hdfsCreateDirectoryHdfs) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsCreateDirectoryHdfs");
+	*(void**)(&hdfsListDirectory) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsListDirectory");
+	*(void**)(&hdfsGetPathInfo) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsGetPathInfo");
+	*(void**)(&hdfsFreeFileInfo) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsFreeFileInfo");
+	*(void**)(&hdfsDelete) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsDelete");
+	*(void**)(&hdfsExists) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsExists");
+	*(void**)(&hdfsRename) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsRename");
+	*(void**)(&hdfsCopy) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsCopy");
+	*(void**)(&hdfsOpenFile) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsOpenFile");
+	*(void**)(&hdfsCloseFile) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsCloseFile");
+	*(void**)(&hdfsRead) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsRead");
+	*(void**)(&hdfsPread) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsPread");
+	*(void**)(&hdfsWrite) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsWrite");
+	*(void**)(&hdfsFlush) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsFlush");
+	*(void**)(&hdfsSync) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsSync");
+	*(void**)(&hdfsTell) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsTell");
+	*(void**)(&hdfsSeek) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsSeek");
+#endif
 
   return true;
 }
