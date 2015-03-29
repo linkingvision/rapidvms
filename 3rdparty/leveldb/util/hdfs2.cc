@@ -130,6 +130,8 @@ bool Hdfs2::LoadSymbol() {
         }
 
 	*(void**)(&hdfsConnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsConnect");
+	*(void**)(&hdfsDisconnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsDisconnect");
+
 #endif
   return true;
 }
