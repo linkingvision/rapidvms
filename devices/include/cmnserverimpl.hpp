@@ -20,14 +20,24 @@ CmnHttpServer::~CmnHttpServer()
 
 void CmnHttpServer::run()
 {
+#define  CMN_SSL_SOCKET
+#ifndef CMN_SSL_SOCKET
         XSocket socket;
-        //XSSLSocket socket;
+#else
+        XSSLSocket socket;
+        socket.UsePEMCertificateFile( "C:\\videodb\\ServerCRT1.crt" );
+        socket.UsePEMRSAPrivateKeyFile( "C:\\videodb\\PrivateKey1.key" );
+#endif
         socket.Bind(m_port);
         socket.Listen();
 
 	while(1)
 	{
+#ifndef CMN_SSL_SOCKET
 		XRef<XSocket> clientSocket = socket.Accept();
+#else
+		XRef<XSocket> clientSocket = socket.Accept();
+#endif
 
 		ServerSideRequest request;
 		try
@@ -52,8 +62,9 @@ void CmnHttpServer::run()
 		catch(XSDK::XException)
 		{
 		}
-
+#ifndef CMN_SSL_SOCKET
 		clientSocket->Shutdown(SOCKET_SHUT_FLAGS);
+#endif
 		clientSocket->Close();
 	}
 }
