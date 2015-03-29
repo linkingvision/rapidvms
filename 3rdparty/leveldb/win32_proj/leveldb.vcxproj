@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1862779A-91D0-45C1-A05B-A03755FE2F28}</ProjectGuid>
+    <RootNamespace>leveldb</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\include;..\port\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WIN32_WINNT=0x0501;LEVELDB_PLATFORM_WINDOWS;OS_WIN;COMPILER_MSVC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;4800;4355;4244;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\include;..\port\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WIN32_WINNT=0x0501;LEVELDB_PLATFORM_WINDOWS;OS_WIN;COMPILER_MSVC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;4800;4355;4244;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..;..\include;..\port\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0501;LEVELDB_PLATFORM_WINDOWS;OS_WIN;COMPILER_MSVC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;4800;4355;4244;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..;..\include;..\port\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0501;LEVELDB_PLATFORM_WINDOWS;OS_WIN;COMPILER_MSVC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;4800;4355;4244;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\db\builder.cc" />
+    <ClCompile Include="..\db\c.cc" />
+    <ClCompile Include="..\db\db_impl.cc" />
+    <ClCompile Include="..\db\db_iter.cc" />
+    <ClCompile Include="..\db\dbformat.cc" />
+    <ClCompile Include="..\db\filename.cc" />
+    <ClCompile Include="..\db\log_reader.cc" />
+    <ClCompile Include="..\db\log_writer.cc" />
+    <ClCompile Include="..\db\memtable.cc" />
+    <ClCompile Include="..\db\repair.cc" />
+    <ClCompile Include="..\db\table_cache.cc" />
+    <ClCompile Include="..\db\version_edit.cc" />
+    <ClCompile Include="..\db\version_set.cc" />
+    <ClCompile Include="..\db\write_batch.cc" />
+    <ClCompile Include="..\table\block.cc" />
+    <ClCompile Include="..\table\block_builder.cc" />
+    <ClCompile Include="..\table\filter_block.cc" />
+    <ClCompile Include="..\table\format.cc" />
+    <ClCompile Include="..\table\iterator.cc" />
+    <ClCompile Include="..\table\merger.cc" />
+    <ClCompile Include="..\table\table.cc" />
+    <ClCompile Include="..\table\table_builder.cc" />
+    <ClCompile Include="..\table\two_level_iterator.cc" />
+    <ClCompile Include="..\util\arena.cc" />
+    <ClCompile Include="..\util\cache.cc" />
+    <ClCompile Include="..\util\coding.cc" />
+    <ClCompile Include="..\util\comparator.cc" />
+    <ClCompile Include="..\util\crc32c.cc" />
+    <ClCompile Include="..\util\env.cc" />
+    <ClCompile Include="..\util\env_dfs.cc" />
+    <ClCompile Include="..\util\env_win.cc" />
+    <ClCompile Include="..\util\filter_policy.cc" />
+    <ClCompile Include="..\util\hash.cc" />
+    <ClCompile Include="..\util\hdfs.cc" />
+    <ClCompile Include="..\util\hdfs2.cc" />
+    <ClCompile Include="..\util\histogram.cc" />
+    <ClCompile Include="..\util\logging.cc" />
+    <ClCompile Include="..\util\options.cc" />
+    <ClCompile Include="..\util\status.cc" />
+    <ClCompile Include="..\util\testharness.cc" />
+    <ClCompile Include="..\util\testutil.cc" />
+    <ClCompile Include="..\port\port_android.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\port\port_boost.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\port\port_posix.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\port\port_win.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\db\builder.h" />
+    <CustomBuildStep Include="..\db\db_impl.h" />
+    <CustomBuildStep Include="..\db\db_iter.h" />
+    <CustomBuildStep Include="..\db\dbformat.h" />
+    <CustomBuildStep Include="..\db\filename.h" />
+    <CustomBuildStep Include="..\db\log_format.h" />
+    <CustomBuildStep Include="..\db\log_reader.h" />
+    <CustomBuildStep Include="..\db\log_writer.h" />
+    <CustomBuildStep Include="..\db\memtable.h" />
+    <CustomBuildStep Include="..\db\skiplist.h" />
+    <CustomBuildStep Include="..\db\snapshot.h" />
+    <CustomBuildStep Include="..\db\table_cache.h" />
+    <CustomBuildStep Include="..\db\version_edit.h" />
+    <CustomBuildStep Include="..\db\version_set.h" />
+    <CustomBuildStep Include="..\db\write_batch_internal.h" />
+    <CustomBuildStep Include="..\include\leveldb\c.h" />
+    <CustomBuildStep Include="..\include\leveldb\cache.h" />
+    <CustomBuildStep Include="..\include\leveldb\comparator.h" />
+    <CustomBuildStep Include="..\include\leveldb\db.h" />
+    <CustomBuildStep Include="..\include\leveldb\env.h" />
+    <CustomBuildStep Include="..\include\leveldb\iterator.h" />
+    <CustomBuildStep Include="..\include\leveldb\options.h" />
+    <CustomBuildStep Include="..\include\leveldb\slice.h" />
+    <CustomBuildStep Include="..\include\leveldb\status.h" />
+    <CustomBuildStep Include="..\include\leveldb\table.h" />
+    <CustomBuildStep Include="..\include\leveldb\table_builder.h" />
+    <CustomBuildStep Include="..\include\leveldb\write_batch.h" />
+    <CustomBuildStep Include="..\table\block.h" />
+    <CustomBuildStep Include="..\table\block_builder.h" />
+    <CustomBuildStep Include="..\table\format.h" />
+    <CustomBuildStep Include="..\table\iterator_wrapper.h" />
+    <CustomBuildStep Include="..\table\merger.h" />
+    <CustomBuildStep Include="..\table\two_level_iterator.h" />
+    <CustomBuildStep Include="..\util\arena.h" />
+    <CustomBuildStep Include="..\util\coding.h" />
+    <CustomBuildStep Include="..\util\crc32c.h" />
+    <CustomBuildStep Include="..\util\hash.h" />
+    <CustomBuildStep Include="..\util\histogram.h" />
+    <CustomBuildStep Include="..\util\logging.h" />
+    <CustomBuildStep Include="..\util\mutexlock.h" />
+    <CustomBuildStep Include="..\util\posix_logger.h" />
+    <CustomBuildStep Include="..\util\random.h" />
+    <CustomBuildStep Include="..\util\testharness.h" />
+    <CustomBuildStep Include="..\util\testutil.h" />
+    <CustomBuildStep Include="..\port\atomic_pointer.h" />
+    <CustomBuildStep Include="..\port\port.h" />
+    <CustomBuildStep Include="..\port\port_android.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\port\port_boost.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\port\port_example.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\port\port_posix.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <ClInclude Include="..\port\port_win.h" />
+    <CustomBuildStep Include="..\port\win\stdint.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
