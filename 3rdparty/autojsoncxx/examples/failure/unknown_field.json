@@ -1,0 +1,53 @@
+[
+    {
+        "ID": 7947402710862746952,
+        "nickname": "bigger than bigger",
+        "birthday": {
+            "year": 1984,
+            "month": 9,
+            "day": 2
+        },
+        "block_event": {
+            "serial_number": 9097588792683265916,
+            "administrator ID": 10720293540521355122,
+            "date": {
+                "year": 1970,
+                "month": 12,
+                "day": 31,
+                "hour": 21,
+                "minute": 33,
+                "second": 2
+            },
+            "description": "advertisement",
+            "details": "most likely a troll"
+        }
+    },
+    {
+        "ID": 13478355757133566847,
+        "nickname": "→☛∅∆ℵ",
+        "birthday": {
+            "year": 2001,
+            "month": 1,
+            "day": 23
+        },
+        "block_event": null,
+        "dark_history": [
+            {
+                "serial_number": 11932018656737597978,
+                "administrator ID": 8027685536805674999,
+                "date": {
+                    "year": 2013,
+                    "month": 3,
+                    "day": 8
+                },
+                "description": "copyright infringement",
+                "details": ""
+            }
+        ],
+        "optional_attributes": {
+            "Self description": "Can you handle characters above Basic Multilingual Plane?😄🎅 🎁🐱✈️🐘🔢𠁆𠝻𡎦𡌠",
+            "Open ID": "something@somewhere.com",
+            "Auth-Token": "45F13704-A60D-4D44-B161-89BAB88E528C"
+        }
+    }
+]
