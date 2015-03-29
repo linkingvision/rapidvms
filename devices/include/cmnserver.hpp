@@ -55,7 +55,32 @@ private:
 	u16 m_port;
 };
 
+class CmnHttpsServer:public QThread
+{
+	Q_OBJECT
+public:
+	inline CmnHttpsServer(u16 port);
+	inline ~CmnHttpsServer();
+	
+public:
+	void Lock()
+	{
+		m_Lock.lock();
+	}
+	void UnLock()
+	{
+		m_Lock.unlock();
+	}
+public:
+	inline void run();
+
+private:
+	fast_mutex m_Lock;
+	u16 m_port;
+};
+
 typedef CmnHttpServer* LPCmnHttpServer;
+typedef CmnHttpsServer* LPCmnHttpsServer;
 
 
 #include "cmnserverimpl.hpp"
