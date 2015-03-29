@@ -109,6 +109,28 @@ bool Hdfs2::LoadSymbol() {
     return false;
   }
 #endif
+#ifdef LEVELDB_PLATFORM_WINDOWS
+	void* _libraryInstance;
+	_libraryInstance = ::LoadLibraryW(L"hdfs.dll");
+        if( _libraryInstance == 0 )
+        {
+		LPVOID str = 0;
+		DWORD_PTR args[1] = { (DWORD_PTR)_libraryName.c_str() };
+
+		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+		               NULL,
+		               GetLastError(),
+		               MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		               (LPTSTR)&str,
+		               0,
+		               (va_list*)args );
+
+		LocalFree( str );
+    		fprintf(stderr, "resolve symbol from hdfs.dll error: %s\n", error);
+        }
+
+	*(void**)(&hdfsConnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsConnect");
+#endif
   return true;
 }
 
