@@ -27,6 +27,19 @@
     </message>
 </context>
 <context>
+    <name>SwitchButton</name>
+    <message>
+        <location filename="../../setting/switchbutton.h" line="24"/>
+        <source>on</source>
+        <translation type="unfinished">开</translation>
+    </message>
+    <message>
+        <location filename="../../setting/switchbutton.h" line="24"/>
+        <source>off</source>
+        <translation type="unfinished">关</translation>
+    </message>
+</context>
+<context>
     <name>VSCCameraAdd</name>
     <message>
         <location filename="../vsccameraadd.ui" line="14"/>
@@ -34,92 +47,92 @@
         <translation type="unfinished">窗口</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="216"/>
+        <location filename="../vsccameraadd.ui" line="200"/>
         <source>RTSP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="209"/>
+        <location filename="../vsccameraadd.ui" line="193"/>
         <source>IP Address</source>
         <translation type="unfinished">地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="202"/>
+        <location filename="../vsccameraadd.ui" line="186"/>
         <source>MainStream</source>
         <translation type="unfinished">主码流</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="185"/>
+        <location filename="../vsccameraadd.ui" line="169"/>
         <source>Device Name</source>
         <translation type="unfinished">设备名称</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="168"/>
+        <location filename="../vsccameraadd.ui" line="152"/>
         <source>Port</source>
         <translation type="unfinished">端口</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="90"/>
+        <location filename="../vsccameraadd.ui" line="74"/>
         <source>Password</source>
         <translation type="unfinished">密码</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="83"/>
+        <location filename="../vsccameraadd.ui" line="67"/>
         <source>ONVIF Address</source>
         <translation type="unfinished">ONVIF地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="134"/>
+        <location filename="../vsccameraadd.ui" line="118"/>
         <source>User</source>
         <translation type="unfinished">用户名</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="127"/>
+        <location filename="../vsccameraadd.ui" line="111"/>
         <source>RTSP Location</source>
         <translation type="unfinished">RTSP地址</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="66"/>
+        <location filename="../vsccameraadd.ui" line="50"/>
         <source>Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="141"/>
+        <location filename="../vsccameraadd.ui" line="125"/>
         <source>ONVIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="223"/>
+        <location filename="../vsccameraadd.ui" line="207"/>
         <source>File</source>
         <translation type="unfinished">文件</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="230"/>
+        <location filename="../vsccameraadd.ui" line="214"/>
         <source>File Location</source>
         <translation type="unfinished">文件位置</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="245"/>
+        <location filename="../vsccameraadd.ui" line="229"/>
         <source>C:\work\24-video\Outlet\MVI_4397.MOV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="286"/>
+        <location filename="../vsccameraadd.ui" line="270"/>
         <source>SubStream</source>
         <translation type="unfinished">辅码流</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="304"/>
+        <location filename="../vsccameraadd.ui" line="288"/>
         <source>UDP</source>
         <translation type="unfinished">UDP</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="309"/>
+        <location filename="../vsccameraadd.ui" line="293"/>
         <source>TCP</source>
         <translation type="unfinished">TCP</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="314"/>
+        <location filename="../vsccameraadd.ui" line="298"/>
         <source>Multicast</source>
         <translation type="unfinished">组播</translation>
     </message>
@@ -128,27 +141,27 @@
         <translation type="obsolete">连接方式</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="59"/>
+        <location filename="../vsccameraadd.ui" line="43"/>
         <source>Data Mining</source>
         <translation type="unfinished">数据挖掘</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="322"/>
+        <location filename="../vsccameraadd.ui" line="306"/>
         <source>Connection</source>
         <translation type="unfinished">流模式</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="329"/>
+        <location filename="../vsccameraadd.ui" line="313"/>
         <source>HW accel</source>
         <translation type="unfinished">硬件加速</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="410"/>
+        <location filename="../vsccameraadd.ui" line="420"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.ui" line="446"/>
+        <location filename="../vsccameraadd.ui" line="456"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
