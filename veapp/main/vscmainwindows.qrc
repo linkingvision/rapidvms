@@ -37,6 +37,7 @@
         <file>resources/hdfsstoprecord.png</file>
         <file>resources/hadoop.png</file>
         <file>resources/dome-recordhdfs.png</file>
+        <file>resources/switchputton.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
