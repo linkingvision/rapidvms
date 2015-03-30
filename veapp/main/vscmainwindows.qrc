@@ -38,6 +38,12 @@
         <file>resources/hadoop.png</file>
         <file>resources/dome-recordhdfs.png</file>
         <file>resources/switchputton.png</file>
+        <file>resources/radiobutton_checked.png</file>
+        <file>resources/radiobutton_checked_hover.png</file>
+        <file>resources/radiobutton_checked_pressed.png</file>
+        <file>resources/radiobutton_unchecked.png</file>
+        <file>resources/radiobutton_unchecked_hover.png</file>
+        <file>resources/radiobutton_unchecked_pressed.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
