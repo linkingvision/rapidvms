@@ -17,15 +17,6 @@
    <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>15</number>
-   </property>
-   <property name="leftMargin">
-    <number>9</number>
-   </property>
-   <property name="topMargin">
-    <number>9</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <property name="spacing">
@@ -39,17 +30,30 @@
        <property name="verticalSpacing">
         <number>3</number>
        </property>
-       <item row="15" column="1">
-        <widget class="QCheckBox" name="checkBoxDataMining">
+       <item row="8" column="0">
+        <widget class="QLabel" name="labelPort">
          <property name="text">
-          <string/>
+          <string>Port</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
-        <widget class="QCheckBox" name="checkBoxProfileToken">
-         <property name="text">
-          <string/>
+       <item row="11" column="1">
+        <widget class="QLineEdit" name="lineEditRtspLoc">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lineEditPort">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -139,33 +143,6 @@
         <widget class="QRadioButton" name="radioButtonOnvif">
          <property name="text">
           <string>ONVIF</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="1">
-        <widget class="QLineEdit" name="lineEditRtspLoc">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEditPort">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="labelPort">
-         <property name="text">
-          <string>Port</string>
          </property>
         </widget>
        </item>
@@ -330,10 +307,81 @@
          </property>
         </widget>
        </item>
-       <item row="14" column="1">
-        <widget class="QCheckBox" name="checkBoxHWAccel">
+       <item row="16" column="1">
+        <widget class="SwitchButton" name="checkBoxProfileToken">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="vscmainwindows.qrc">
+           <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="1">
+        <widget class="SwitchButton" name="checkBoxDataMining">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="vscmainwindows.qrc">
+           <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="1">
+        <widget class="SwitchButton" name="checkBoxHWAccel">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="vscmainwindows.qrc">
+           <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -483,6 +531,13 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SwitchButton</class>
+   <extends>QPushButton</extends>
+   <header>switchbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="vscmainwindows.qrc"/>
  </resources>
