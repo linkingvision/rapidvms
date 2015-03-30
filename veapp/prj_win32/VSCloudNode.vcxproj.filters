@@ -294,6 +294,9 @@
     <CustomBuild Include="..\setting\vscminingsetting.ui">
       <Filter>setting</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\setting\switchbutton.h">
+      <Filter>setting</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -678,6 +681,15 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_vscminingsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\setting\switchbutton.cpp">
+      <Filter>setting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_switchbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_switchbutton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
