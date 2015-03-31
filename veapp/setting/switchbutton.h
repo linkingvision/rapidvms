@@ -18,7 +18,7 @@ public:
     explicit SwitchButton(QWidget* parent = 0);
 
     /** Set the color for on and off status. */
-    void setColors(const QColor on=Qt::blue, const QColor off=Qt::gray);
+    void setColors(const QColor on=Qt::darkGreen, const QColor off=Qt::gray);
 
     /** Set the labels for on and off status. */
     void setLabels(const QString on=QString(tr("on")), const QString off=QString(tr("off")));
