@@ -32,8 +32,8 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 				(FactoryDeviceChangeNotify)(VSCDeviceList::DeviceChangeCallbackFunc));
 
 
-	ui.pbRecorder->hide();
-	ui.lbRecorder->hide();
+	//ui.pbRecorder->hide();
+	//ui.lbRecorder->hide();
 	
 	//ui.pbDmining->hide();
 	//ui.lbMining->hide();
