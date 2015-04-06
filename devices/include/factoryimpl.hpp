@@ -184,8 +184,8 @@ inline BOOL Factory::Init()
 	{
 		sysData.data.conf.OAPIPort = 9080;
 	}
-	m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
-	m_pHttpServer->start();
+	//m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
+	//m_pHttpServer->start();
 	return TRUE;
 }
 
