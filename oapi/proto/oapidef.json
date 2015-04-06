@@ -1,0 +1,25 @@
+[
+{
+    "name": "Device",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+        ["std::string", "Name", {"required": true}],
+        ["std::string", "Param", {"required": true}],
+		
+		["std::string", "IP", {"required": true}],
+		["std::string", "Port", {"required": true}],
+		["std::string", "User", {"required": true}],
+		["std::string", "Password", {"required": true}]
+    ]
+},
+{
+    "name": "DeviceList",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::Device>", "list"]
+    ]
+}
+]
