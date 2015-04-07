@@ -83,9 +83,8 @@ private:
 typedef CmnOAPIServer* LPCmnOAPIServer;
 typedef CmnOAPISSLServer* LPCmnOAPISSLServer;
 
-class OAPIServer:
+class OAPIServer
 {
-	Q_OBJECT
 public:
 	inline OAPIServer(Factory &pFactory);
 	inline ~OAPIServer();
@@ -103,7 +102,7 @@ public:
 	inline void start()
 	{
 		m_cmn.start();
-		m_ssl.start();
+		//m_ssl.start();
 	}
 
 private:
