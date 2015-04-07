@@ -17,7 +17,7 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../vwidget \
     ./../../devices/include \
     ./../../mining/include \
-    ./../../3rdparty/leveldb-linux/include \
+    ./../../3rdparty/leveldb/include \
     ./../../utility \
     ./../../3rdparty/poco/Foundation/include \
     ./../../3rdparty/poco/Net/include \
@@ -38,12 +38,12 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../vms \
     ./../../3rdparty/openssl-linux/include
 LIBS +=  \
-    -L"./../../3rdparty/leveldb-linux/" \
+    -L"./../../3rdparty/leveldb/" \
     -L"./../../velib/lib/linux/" \
     -L"./Debug" \
     -L"./../../3rdparty/openssl-linux/" \
     -L"./../../3rdparty/onvifc/prj_linux/lib" \
-    -L"./../../3rdparty/leveldb-linux/" \
+    -L"./../../3rdparty/leveldb/" \
     -L"../../linux/lib" \
     -lavcodec \
     -lavformat \
