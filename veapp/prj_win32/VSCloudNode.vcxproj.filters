@@ -297,6 +297,9 @@
     <CustomBuild Include="..\setting\switchbutton.h">
       <Filter>setting</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\devices\include\cmnoapiserver.hpp">
+      <Filter>Device\include</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -692,6 +695,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_switchbutton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -837,6 +846,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscminingsetting.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\devices\include\cmnoapiserverimpl.hpp">
+      <Filter>Device\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
