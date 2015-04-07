@@ -30,6 +30,7 @@ CmnOAPIServer::~CmnOAPIServer()
 
 void CmnOAPIServer::run()
 {
+	m_port = 9080;
         XSocket socket;
 
         socket.Bind(m_port);
@@ -76,19 +77,20 @@ CmnOAPISSLServer::CmnOAPISSLServer(Factory &pFactory)
 {
 
 }
-CmnHttpsServer::~CmnOAPISSLServer()
+CmnOAPISSLServer::~CmnOAPISSLServer()
 {
 
 }
 
-void CmnHttpsServer::run()
+void CmnOAPISSLServer::run()
 {
-        XSSLSocket socket;
-        socket.UsePEMCertificateFile( "C:\\videodb\\ServerCRT1.crt" );
-        socket.UsePEMRSAPrivateKeyFile( "C:\\videodb\\PrivateKey1.key" );
+	m_port = 9554;
+	XSSLSocket socket;
+	socket.UsePEMCertificateFile( "C:\\videodb\\ServerCRT1.crt" );
+	socket.UsePEMRSAPrivateKeyFile( "C:\\videodb\\PrivateKey1.key" );
 
-        socket.Bind(m_port);
-        socket.Listen();
+	socket.Bind(m_port);
+	socket.Listen();
 
 	while(1)
 	{
