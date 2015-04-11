@@ -10,6 +10,12 @@
     <height>369</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Master Hard Disk Selecting</string>
   </property>

@@ -32,8 +32,14 @@ VSCHddOneEdit::VSCHddOneEdit(	QStorageInfo hdd, VDBDiskMap &pDisk,
     : QWidget(parent), m_pDisk(pDisk), m_pStatus(pStatus), m_hdd(hdd), m_added(false)
 {
 	s8 DiskTitle[1024];
-
+#ifdef WIN32
+	setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+#endif
 	ui.setupUi(this);
+#ifdef WIN32
+	setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+	ui.tableWidget->setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+#endif
 	m_totalSize = m_hdd.bytesTotal()/(1024 * 1024);
 	m_freeSize = m_hdd.bytesFree()/(1024 * 1024);
 	astring strName = m_hdd.rootPath().toStdString();
@@ -73,13 +79,13 @@ VSCHddOneEdit::VSCHddOneEdit(	QStorageInfo hdd, VDBDiskMap &pDisk,
 
 	connect(ui.horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(setFreeValue(int)));  
 
-	connect(ui.checkBox, SIGNAL( stateChanged(int) ), this, SLOT(diskSelected(int)));
+	connect(ui.checkBox, SIGNAL( toggled(bool) ), this, SLOT(diskSelected(bool)));
 
 }
 
-void VSCHddOneEdit::diskSelected(int value)
+void VSCHddOneEdit::diskSelected(bool value)
 {
-	if (m_added == true && value != Qt::Checked)
+	if (m_added == true && value != true)
 	{
 		QMessageBox msgBox(this);
 		//Set text
@@ -107,7 +113,7 @@ void VSCHddOneEdit::diskSelected(int value)
 		m_added = false;
 		return;
 	}
-	else if (m_added == false && value == Qt::Checked)
+	else if (m_added == false && value == true)
 	{
 		s64 limitSize = (ui.horizontalSlider->value() - (m_totalSize - m_freeSize));
 		VDC_DEBUG( "%s Del Hdd strHdd %s %s limit %lld\n",__FUNCTION__, 

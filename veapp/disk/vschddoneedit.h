@@ -17,7 +17,7 @@ public:
 	~VSCHddOneEdit(){}
 public slots:  
 	void setFreeValue(int value);  
-	void diskSelected(int value);  
+	void diskSelected(bool value);  
 public:
 	bool isChecked()
 	{
