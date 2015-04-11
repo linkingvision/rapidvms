@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Disk selecting</string>
+   <string>Disk select</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../main/vscmainwindows.qrc">
