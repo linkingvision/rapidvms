@@ -11,6 +11,7 @@
 #include "debug.hpp"
 #include <QThread>
 #include "factory.hpp"
+#include "oapis.hpp"
 
 #include "XSDK/XHash.h"
 #include "XSDK/TimeUtils.h"
@@ -31,6 +32,31 @@ using namespace WEBBY;
 */
 
 using namespace UtilityLib;
+
+class CmnOAPIServerSession: public QThread
+{
+	Q_OBJECT
+public:
+	inline CmnOAPIServerSession(Factory &pFactory, XSocket * pSocket);
+	inline ~CmnOAPIServerSession();
+	
+public:
+	void Lock()
+	{
+		m_Lock.lock();
+	}
+	void UnLock()
+	{
+		m_Lock.unlock();
+	}
+public:
+	inline void run();
+
+private:
+	fast_mutex m_Lock;
+	XSocket * m_pSocket;
+	Factory &m_pFactory;
+};
 
 class CmnOAPIServer:public QThread
 {
@@ -54,6 +80,7 @@ public:
 private:
 	fast_mutex m_Lock;
 	u16 m_port;
+	Factory &m_pFactory;
 };
 
 class CmnOAPISSLServer:public QThread
@@ -83,11 +110,11 @@ private:
 typedef CmnOAPIServer* LPCmnOAPIServer;
 typedef CmnOAPISSLServer* LPCmnOAPISSLServer;
 
-class OAPIServer
+class OAPIServerWrapper
 {
 public:
-	inline OAPIServer(Factory &pFactory);
-	inline ~OAPIServer();
+	inline OAPIServerWrapper(Factory &pFactory);
+	inline ~OAPIServerWrapper();
 	
 public:
 	void Lock()
