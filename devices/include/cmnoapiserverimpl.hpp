@@ -8,18 +8,49 @@
 #ifndef __VSC_CMN_OAPI_SERVER_IMPL__H_
 #define __VSC_CMN_OAPI_SERVER_IMPL__H_
 
+CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, XSocket * pSocket)
+:m_pFactory(pFactory), m_pSocket(pSocket)
+{
+
+}
+CmnOAPIServerSession::~CmnOAPIServerSession()
+{
+
+}
+
+void CmnOAPIServerSession::run()
+{
+	/* Process command from oapi client  */
+	OAPIHeader header;
+	OAPIServer server(m_pSocket, m_pFactory);
+	while(1)
+	{
+		m_pSocket->RawRecv((void *)&header, sizeof(header));
+		if (server.Process(header) == FALSE)
+		{
+			/* this socket is broken */
+			delete m_pSocket;
+			break;
+		}
+	}
+
+	/* kill my self */
+	delete this;
+}
+
 /* Below is SSL */
-OAPIServer::OAPIServer(Factory &pFactory)
+OAPIServerWrapper::OAPIServerWrapper(Factory &pFactory)
 :m_cmn(pFactory), m_ssl(pFactory)
 {
 
 }
-OAPIServer::~OAPIServer()
+OAPIServerWrapper::~OAPIServerWrapper()
 {
 
 }
 
 CmnOAPIServer::CmnOAPIServer(Factory &pFactory)
+:m_pFactory(pFactory)
 {
 
 }
@@ -39,6 +70,11 @@ void CmnOAPIServer::run()
 	while(1)
 	{
 		XRef<XSocket> clientSocket = socket.Accept();
+
+		CmnOAPIServerSession *session = new CmnOAPIServerSession(m_pFactory, 
+			clientSocket.Get());
+		session->start();
+#if 0
 
 		ServerSideRequest request;
 		try
@@ -66,6 +102,7 @@ void CmnOAPIServer::run()
 		
 		clientSocket->Shutdown(SOCKET_SHUT_FLAGS);
 		clientSocket->Close();
+#endif
 	}
 }
 
