@@ -25,7 +25,7 @@ public:
 	inline OAPIServer(XSocket *pSocket, Factory &pFactory);
 	inline ~OAPIServer();
 public:
-	BOOL Process();
+	inline BOOL Process(OAPIHeader &header);
 public:
 	void Lock()
 	{
@@ -38,6 +38,8 @@ public:
 
 private:
 	fast_mutex m_Lock;
+	XSocket * m_pSocket;
+	Factory &m_pFactory;
 };
 
 #include "oapisimpl.hpp"
