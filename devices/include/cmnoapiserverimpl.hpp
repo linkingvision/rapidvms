@@ -8,7 +8,7 @@
 #ifndef __VSC_CMN_OAPI_SERVER_IMPL__H_
 #define __VSC_CMN_OAPI_SERVER_IMPL__H_
 
-CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, XSocket * pSocket)
+CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, XRef<XSocket> pSocket)
 :m_pFactory(pFactory), m_pSocket(pSocket)
 {
 
@@ -25,17 +25,18 @@ void CmnOAPIServerSession::run()
 	OAPIServer server(m_pSocket, m_pFactory);
 	while(1)
 	{
-		m_pSocket->RawRecv((void *)&header, sizeof(header));
-		if (server.Process(header) == FALSE)
+		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header));
+		if (nRet == sizeof(header) && server.Process(header) == TRUE)
 		{
-			/* this socket is broken */
-			delete m_pSocket;
+			continue;
+		}else
+		{
 			break;
 		}
 	}
 
 	/* kill my self */
-	delete this;
+	//delete this;
 }
 
 /* Below is SSL */
@@ -72,7 +73,7 @@ void CmnOAPIServer::run()
 		XRef<XSocket> clientSocket = socket.Accept();
 
 		CmnOAPIServerSession *session = new CmnOAPIServerSession(m_pFactory, 
-			clientSocket.Get());
+			clientSocket);
 		session->start();
 #if 0
 
