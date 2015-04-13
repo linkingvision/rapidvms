@@ -8,6 +8,7 @@
 #ifndef __VSC_OAPI_CMN_H_
 #define __VSC_OAPI_CMN_H_
 #include "oapiproto.hpp"
+#include "utility/type.hpp"
 #include "XSDK/XHash.h"
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XSocket.h"
