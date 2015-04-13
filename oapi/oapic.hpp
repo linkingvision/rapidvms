@@ -21,14 +21,14 @@ using namespace std;
 class OAPIClient
 {
 public:
-	inline OAPIClient(XSocket *pSocket);
+	inline OAPIClient(XRef<XSocket> pSocket);
 	inline ~OAPIClient();
 public:
-	BOOL Process();
+	inline BOOL DeviceListRequest(oapi::DeviceList &list);
 public:
 
 private:
-
+	XRef<XSocket> m_pSocket;
 };
 
 #include "oapicimpl.hpp"
