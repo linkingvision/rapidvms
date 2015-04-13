@@ -17,15 +17,19 @@
 
 using namespace XSDK;
 using namespace std;
+using namespace oapi;
 
 /* a internal thread to process all the request of XSocket */
 class OAPIServer
 {
 public:
-	inline OAPIServer(XSocket *pSocket, Factory &pFactory);
+	inline OAPIServer(XRef<XSocket> pSocket, Factory &pFactory);
 	inline ~OAPIServer();
 public:
 	inline BOOL Process(OAPIHeader &header);
+
+public:
+	inline BOOL ProcessGetDevice(s32 len);	
 public:
 	void Lock()
 	{
@@ -38,7 +42,7 @@ public:
 
 private:
 	fast_mutex m_Lock;
-	XSocket * m_pSocket;
+	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
 };
 
