@@ -37,7 +37,7 @@ class CmnOAPIServerSession: public QThread
 {
 	Q_OBJECT
 public:
-	inline CmnOAPIServerSession(Factory &pFactory, XSocket * pSocket);
+	inline CmnOAPIServerSession(Factory &pFactory, XRef<XSocket> pSocket);
 	inline ~CmnOAPIServerSession();
 	
 public:
@@ -54,7 +54,7 @@ public:
 
 private:
 	fast_mutex m_Lock;
-	XSocket * m_pSocket;
+	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
 };
 
