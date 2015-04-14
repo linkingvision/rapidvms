@@ -1,13 +1,22 @@
 #include "oapic.hpp"
 int main(int argc, char *argv[])
 {
-	XSocket pSocket;
+	XRef<XSocket> pSocket = new XSocket;
 	
-	XSDK::XString host = "127.0.0.1";
-	pSocket.Connect(host, 9080);
+	try
+    {
+		XSDK::XString host = "127.0.0.1";
+		pSocket->Connect(host, 9080);
+		
+		oapi::DeviceList list;
+		OAPIClient pClient(pSocket);
+		
+		pClient.DeviceListRequest(list);
+    }
+	catch( XSDK::XException& ex )
+	{
+		
+	}
 	
-	oapi::DeviceList list;
-	OAPIClient pClient(&pSocket);
-	
-	pClient.DeviceListRequest(list);
+	x_sleep(10000);
 }
