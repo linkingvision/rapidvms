@@ -8,6 +8,47 @@
 #ifndef __VSC_OAPIS_IMPL_H_
 #define __VSC_OAPIS_IMPL_H_
 
+BOOL OAPIConverter::Converter(VSCDeviceData__ &from, oapi::Device &to)
+{
+	to.nId = from.nId;
+	to.nType = from.nType;
+	to.nSubType = from.nSubType;
+	
+	to.Name = from.Name;
+	to.Param = from.Param;
+	
+	to.IP = from.IP;
+	to.Port = from.Port;
+	to.User = from.User;
+	to.Password = from.Password;
+
+	
+	to.RtspLocation = from.RtspLocation;
+	to.FileLocation = from.FileLocation;
+	to.OnvifAddress = from.OnvifAddress;
+	to.CameraIndex = from.CameraIndex;
+
+	to.UseProfileToken = from.UseProfileToken;
+	to.OnvifProfileToken = from.OnvifProfileToken;
+
+	to.Recording = from.Recording;
+	to.GroupId = from.GroupId;
+	to.HdfsRecording = from.HdfsRecording;
+
+	to.OnvifProfileToken2 = from.OnvifProfileToken2;
+
+	to.ConnectType = from.ConnectType;
+	to.Mining = from.Mining;
+	to.HWAccel = from.HWAccel;
+	to.IPV6 = from.IPV6;
+	
+	return TRUE;
+}
+BOOL OAPIConverter::Converter(oapi::Device &from, VSCDeviceData__ &to)
+{
+	return TRUE;
+}
+
 OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
 :m_pFactory(pFactory), m_pSocket(pSocket)
 {
@@ -20,46 +61,25 @@ OAPIServer::~OAPIServer()
 
 BOOL OAPIServer::ProcessGetDevice(s32 len)
 {
-#if 0
-	char *pRecv = new char [len + 1];
-	
-	s32 nRet = m_pSocket->Recv((void *)pRecv, len);
-	if (nRet == len)
-	{
-
-		
-	}else
-	{
-		/* this socket is broken */
-		delete pRecv;
-		return FALSE;
-	}
-#endif
-#if 0
-	autojsoncxx::ParsingResult result;
-	Person p;
-	if (!autojsoncxx::from_json_file("person.json", p, result)) {
-	    std::cerr << result << '\n';
-	    return -1;
-	}
-
-#endif
 	if (len != 0)
 	{
 		return FALSE;
 	}
-	oapi::Device data;
-	data.nId = 100;
-	data.Name = "oapitest";
 
 	oapi::DeviceList dataList;
-	dataList.Num = 2;
-	dataList.list.push_back(data);
+	dataList.Num = 0;
 
-	data.nId = 101;
-	data.Name = "oapitest1";
-	dataList.list.push_back(data);
+	DeviceParamMap pDeviceMap;
+	m_pFactory.GetDeviceParamMap(pDeviceMap);
 
+	DeviceParamMap::iterator it = pDeviceMap.begin(); 
+	for(; it!=pDeviceMap.end(); ++it)
+	{
+		oapi::Device data;
+		OAPIConverter::Converter(((*it).second).m_Conf.data.conf, data);
+		dataList.list.push_back(data);
+		dataList.Num ++;
+	}
 	//autojsoncxx::to_json_string
 
 	std::string strJson = autojsoncxx::to_pretty_json_string(dataList);
