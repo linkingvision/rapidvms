@@ -23,7 +23,7 @@
 
 Factory *gFactory = NULL;
 MFramework *gMFramework = NULL;
-OAPIServer *gOAPIServer = NULL;
+OAPIServerWrapper *gOAPIServer = NULL;
 
 void LoadLangZH(QApplication &a)
 {
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 	gMFramework->start();
 
 	/* Start the OpenCVR api server */
-	gOAPIServer = new OAPIServer(*gFactory);
+	gOAPIServer = new OAPIServerWrapper(*gFactory);
 	gOAPIServer->start();
 	
 	return a.exec();

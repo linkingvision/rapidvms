@@ -504,6 +504,15 @@
        </item>
        <item>
         <property name="text">
+         <string>Recorders</string>
+        </property>
+        <property name="icon">
+         <iconset resource="vscmainwindows.qrc">
+          <normaloff>:/action/resources/computer.png</normaloff>:/action/resources/computer.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Views</string>
         </property>
         <property name="icon">
