@@ -19,6 +19,13 @@ using namespace XSDK;
 using namespace std;
 using namespace oapi;
 
+class OAPIConverter
+{
+public:
+	inline static BOOL Converter(VSCDeviceData__ &from, oapi::Device &to);
+	inline static BOOL Converter(oapi::Device &from, VSCDeviceData__ &to);
+};
+
 /* a internal thread to process all the request of XSocket */
 class OAPIServer
 {
