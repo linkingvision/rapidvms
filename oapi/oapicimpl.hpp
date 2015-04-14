@@ -38,9 +38,10 @@ BOOL OAPIClient::DeviceListRequest(oapi::DeviceList &list)
 			autojsoncxx::ParsingResult result;
 			if (!autojsoncxx::from_json_string(pRecv, list, result)) 
 			{
-			    std::cerr << result << '\n';
-			    return FALSE;
-			}			
+			    //std::cerr << result << '\n';
+			    //return FALSE;
+			}
+			delete pRecv;
 			
 		}else
 		{
