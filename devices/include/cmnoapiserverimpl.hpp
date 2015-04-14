@@ -11,7 +11,8 @@
 CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, XRef<XSocket> pSocket)
 :m_pFactory(pFactory), m_pSocket(pSocket)
 {
-
+	/* auto delete when the thread exit */
+	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 CmnOAPIServerSession::~CmnOAPIServerSession()
 {
@@ -35,8 +36,7 @@ void CmnOAPIServerSession::run()
 		}
 	}
 
-	/* kill my self */
-	//delete this;
+	return;
 }
 
 /* Below is SSL */
