@@ -1,17 +1,73 @@
 [
 {
+    "name": "OapiID",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}]
+    ]
+},
+{
+    "name": "OapiStatus",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "Status", {"required": true}]
+    ]
+},
+{
+    "name": "AuthNonce",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "Nonce", {"required": true}]
+    ]
+},
+{
+    "name": "Login",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "User", {"required": true}],
+		["std::string", "Password", {"required": true}]
+    ]
+},
+{
     "name": "Device",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
         ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nType", {"required": true}],
+		["unsigned int", "nSubType", {"required": true}],
+		
         ["std::string", "Name", {"required": true}],
         ["std::string", "Param", {"required": true}],
 		
 		["std::string", "IP", {"required": true}],
 		["std::string", "Port", {"required": true}],
 		["std::string", "User", {"required": true}],
-		["std::string", "Password", {"required": true}]
+		["std::string", "Password", {"required": true}],
+		
+		["std::string", "RtspLocation", {"required": true}],
+		["std::string", "FileLocation", {"required": true}],
+		["std::string", "OnvifAddress", {"required": true}],
+		["std::string", "CameraIndex", {"required": true}],
+		
+		
+        ["unsigned int", "UseProfileToken", {"required": true}],
+		["std::string", "OnvifProfileToken", {"required": true}],
+		
+        ["unsigned int", "Recording", {"required": true}],
+		["unsigned int", "GroupId", {"required": true}],
+		["unsigned int", "HdfsRecording", {"required": true}],	
+
+		["std::string", "OnvifProfileToken2", {"required": true}],
+		
+        ["unsigned int", "ConnectType", {"required": true}],
+		["unsigned int", "Mining", {"required": true}],
+		["unsigned int", "HWAccel", {"required": true}],	
+		["unsigned int", "IPV6", {"required": true}]		
     ]
 },
 {
