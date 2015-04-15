@@ -330,11 +330,6 @@ void VSCDeviceList::NotifyAddVms(int nId)
 		        AddSite(pParam);
 		        break;
 		    }
-		    case VSC_VMS_RECORDER:
-		    {
-		        
-		        break;
-		    }
 		    default:
 		    {
 
@@ -364,22 +359,7 @@ void VSCDeviceList::NotifyDelVms(int nId)
 			}
 		}
 	}
-	/* PG */
-	{
-		QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_RECORDER);
 
-		int cnt = qtreewidgetitem->childCount();
-		//VDC_DEBUG( "%s cnt %d\n",__FUNCTION__, cnt);
-		for (int i = 0; i < cnt; i ++)
-		{
-			QTreeWidgetItem * pChild = qtreewidgetitem->child(i);
-			VSCVms *pVms = dynamic_cast<VSCVms*>(pChild);
-			if (pVms && pVms->GetDeviceId() == nId)
-			{
-				qtreewidgetitem->removeChild(pChild);
-			}
-		}
-	}
 	return;
 }
 

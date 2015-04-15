@@ -9,9 +9,10 @@
 #include "QTimer"
 #include "vscrecorder.h"
 
-#define VSC_DEVICE_INDEX_SITE 0
+
 #define VSC_DEVICE_INDEX_IPC 0
 #define VSC_DEVICE_INDEX_RECORDER 1
+#define VSC_DEVICE_INDEX_SITE 1
 
 #define VSC_DEVICE_INDEX_VIEW 2
 #define VSC_DEVICE_INDEX_DSIK 3
