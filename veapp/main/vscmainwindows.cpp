@@ -249,13 +249,7 @@ void VSCMainWindows::AddCamera()
 
 void VSCMainWindows::AddRecorder()
 {
-    DeviceParam mParam;
-    VSCRecorderAdd *pRecorderadd = new VSCRecorderAdd(mParam, this);
-
-    m_pMainArea->addTab(pRecorderadd, QIcon(tr(":/action/resources/computer.png")), tr("Recorder"));  
-    m_pMainArea->setCurrentWidget(pRecorderadd);
-	ViewHideFocus();
-    //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
+	AddSite();
 }
 
 void VSCMainWindows::AddSite()
@@ -265,7 +259,7 @@ void VSCMainWindows::AddSite()
     VSCVmsDataItemDefault(mParam);
     VSCSiteAdd *pSiteadd = new VSCSiteAdd(mParam, this);
 
-    m_pMainArea->addTab(pSiteadd, QIcon(tr(":/action/resources/site.png")), tr("Site"));  
+    m_pMainArea->addTab(pSiteadd, QIcon(tr(":/action/resources/computer.png")), tr("Recorder"));  
     m_pMainArea->setCurrentWidget(pSiteadd);
 	ViewHideFocus();
 }
