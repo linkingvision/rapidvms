@@ -503,16 +503,6 @@ void VSCDeviceList::VmsTreeUpdated()
 		                AddSite(pData.data.conf.vms[i]);
 		                break;
 		            }
-		            case VSC_VMS_RECORDER:
-		            {
-		                
-		                break;
-		            }
-		            case VSC_VMS_VIRTUL_IPC:
-		            {
-		                //AddVirtualIPC(pData.data.conf.vms[i]);
-		                break;
-		            }
 		            default:
 		            {
 

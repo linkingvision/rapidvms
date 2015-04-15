@@ -39,7 +39,6 @@
 #include "factory.hpp"
 #include "vscsearch.h"
 #include "vsctoolbar.h"
-#include "vscrecorderadd.h"
 #include "vscsiteadd.h"
 #include "vscsetting.h"
 #include "vschddedit.h"
