@@ -50,22 +50,19 @@ typedef enum
 	OAPI_CMD_LAST
 } OAPICmd;
 
+/* Device Type */
 typedef enum
 {
     VSC_DEVICE_CAM = 1,
-    VSC_DEVICE_RECORDER,
-
     VSC_DEVICE_LAST
 } VSCDeviceType;
 
-/* Device Type */
 typedef enum
 {
     VSC_SUB_DEVICE_USB_CAM = 1,
     VSC_SUB_DEVICE_FILE,
     VSC_SUB_DEVICE_RTSP,
     VSC_SUB_DEVICE_ONVIF,
-    VSC_SUB_DEVICE_ONVIF_RECODER,
     VSC_SUB_DEVICE_GB28181,
 
     VSC_SUB_DEVICE_LAST
@@ -73,20 +70,13 @@ typedef enum
 
 typedef enum
 {
-    VSC_VMS_RECORDER = 1,
-    VSC_VMS_SITE,
-    VSC_VMS_VIRTUL_IPC,
-    
+    VSC_VMS_SITE = 1,
     VSC_VMS_LAST
 } VSCVmsType;
 
 typedef enum
 {
-    VSC_SUB_VMS_PG = 1,
-    VSC_SUB_VMS_ZB,
-    VSC_SUB_VIPC_FILE,
-    VSC_SUB_VIPC_LIVE,
-    
+    VSC_SUB_VMS_OAPI = 1,
     VSC_SUB_VMS_LAST
 } VSCVmsSubType;
 
