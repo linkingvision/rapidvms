@@ -1319,7 +1319,8 @@ inline BOOL Factory::GetVmsById(VSCVmsDataItem &pParam, int nId)
 
 inline s32 Factory::AddVms(VSCVmsDataItem &pParam)
 {
-	VSCVmsData VmsData;
+	VSCVmsData * pVmsData = new VSCVmsData;
+	VSCVmsData &VmsData = *pVmsData;
 	FactoryDeviceChangeData change;
 	int id = -1;
 	Lock();
@@ -1344,11 +1345,14 @@ inline s32 Factory::AddVms(VSCVmsDataItem &pParam)
 	change.id = id;
 	change.type = FACTORY_VMS_ADD;
 	CallDeviceChange(change);
+
+	delete pVmsData;
 	return id;
 }
 inline BOOL Factory::DelVms(s32 Id)
 {
-	VSCVmsData VmsData;
+	VSCVmsData * pVmsData = new VSCVmsData;
+	VSCVmsData &VmsData = *pVmsData;
 	FactoryDeviceChangeData change;
 	Lock();
 	m_Conf.GetVmsData(VmsData);
@@ -1358,6 +1362,7 @@ inline BOOL Factory::DelVms(s32 Id)
 	}else
 	{
 		UnLock();
+		delete pVmsData;
 		return FALSE;
 	}
 	
@@ -1366,6 +1371,8 @@ inline BOOL Factory::DelVms(s32 Id)
 	change.id = Id;
 	change.type = FACTORY_VMS_DEL;
 	CallDeviceChange(change);
+
+	delete pVmsData;
 	return TRUE;
 }
 
