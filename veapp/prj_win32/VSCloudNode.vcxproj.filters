@@ -162,12 +162,6 @@
     <CustomBuild Include="..\setting\vscversion.ui">
       <Filter>setting</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorderadd.h">
-      <Filter>vms</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorderadd.ui">
-      <Filter>vms</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\vms\vscsiteadd.h">
       <Filter>vms</Filter>
     </CustomBuild>
@@ -464,15 +458,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscversion.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\vms\vscrecorderadd.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderadd.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderadd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="..\vms\vscsiteadd.cpp">
       <Filter>vms</Filter>
     </ClCompile>
@@ -746,9 +731,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscversion.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_vscrecorderadd.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscsiteadd.h">
