@@ -83,6 +83,8 @@ public slots:
 	void StartHdfsRecordAll();
 	void StopHdfsRecordAll();
 
+	/* VMS */
+
 signals:
 	void SurveillanceClicked();
 	void EmapClicked();
@@ -105,14 +107,14 @@ signals:
 	/* View */
 	void ViewDeleteClicked(int nId);
 
-	//void VSCZbIpcDeleteClicked(int nId);
-	//void VSCZbIpcStopRecordClicked(int nId);
-
 	/* Cam Group */
 	void VGroupAddClicked();
 	void VGroupEditClicked(int nId);
 	void VGroupDeleteClicked(int nId);
 	void VGroupMapClicked();
+
+	/* VMS */
+	void VMSDeleteClicked(int nId);
 private:
     Ui::VSCDeviceList ui;
 private:

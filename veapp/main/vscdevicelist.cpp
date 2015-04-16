@@ -15,7 +15,7 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 	VGroupTreeUpdated();
 	CameraTreeUpdated();
 	DiskTreeUpdated();
-	//VmsTreeUpdated();
+	VmsTreeUpdated();
 	ViewTreeUpdated();
 	VIPCTreeUpdated();
 
@@ -46,43 +46,46 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 
 void VSCDeviceList::SetupConnections()
 {
-    connect(ui.pbSurveillance, SIGNAL(clicked()), this, SLOT(SurveillanceClick()));
-    connect(ui.pbCamera, SIGNAL(clicked()), this, SLOT(CameraAddClick()));
-    connect(ui.pbEmap, SIGNAL(clicked()), this, SLOT(EmapClick()));
-    connect(ui.pbDmining, SIGNAL(clicked()), this, SLOT(DminingClick()));
-    connect(ui.pbSearch, SIGNAL(clicked()), this, SLOT(SearchClick()));
-    connect(ui.pbRecorder, SIGNAL(clicked()), this, SLOT(RecorderClick()));
-    connect(ui.pbVIPC, SIGNAL(clicked()), this, SLOT(VIPCAddClick()));
+	connect(ui.pbSurveillance, SIGNAL(clicked()), this, SLOT(SurveillanceClick()));
+	connect(ui.pbCamera, SIGNAL(clicked()), this, SLOT(CameraAddClick()));
+	connect(ui.pbEmap, SIGNAL(clicked()), this, SLOT(EmapClick()));
+	connect(ui.pbDmining, SIGNAL(clicked()), this, SLOT(DminingClick()));
+	connect(ui.pbSearch, SIGNAL(clicked()), this, SLOT(SearchClick()));
+	connect(ui.pbRecorder, SIGNAL(clicked()), this, SLOT(RecorderClick()));
+	connect(ui.pbVIPC, SIGNAL(clicked()), this, SLOT(VIPCAddClick()));
+
+	connect(ui.treeWidget, SIGNAL(CameraAddClicked()), this, SIGNAL(CameraAddClicked()));
+	connect(ui.treeWidget, SIGNAL(CameraEditClicked(int)), this, SIGNAL(CameraEditClicked(int)));
+	connect(ui.treeWidget, SIGNAL(CameraDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
+
+
+	connect(ui.treeWidget, SIGNAL(StartRecordAllClicked()), this, SLOT(StartRecordAll()));
+	connect(ui.treeWidget, SIGNAL(StopRecordAllClicked()), this, SLOT(StopRecordAll()));
+	connect(ui.treeWidget, SIGNAL(StartHdfsRecordAllClicked()), this, SLOT(StartHdfsRecordAll()));
+	connect(ui.treeWidget, SIGNAL(StopHdfsRecordAllClicked()), this, SLOT(StopHdfsRecordAll()));
+
+
+	/* VIPC */
+	connect(ui.treeWidget, SIGNAL(VIPCAddClicked()), this, SIGNAL(VIPCAddClicked()));
+	connect(ui.treeWidget, SIGNAL(VIPCEditClicked(int)), this, SIGNAL(VIPCEditClicked(int)));
+	connect(ui.treeWidget, SIGNAL(VIPCDeleteClicked(int)), this, SIGNAL(VIPCDeleteClicked(int)));
+
+	/* View */
+	connect(ui.treeWidget, SIGNAL(ViewDeleteClicked(int)), this, SIGNAL(ViewDeleteClicked(int)));
+
+	connect(ui.treeWidget, SIGNAL(DiskEditClicked()), this, SIGNAL(DiskEditClicked()));
+	connect(ui.pbTrash, SIGNAL(CameraDeleted()), this, SLOT(CameraTreeUpdated()));
+
+	/* Group */
+	connect(ui.treeWidget, SIGNAL(VGroupAddClicked()), this, SIGNAL(VGroupAddClicked()));
+	connect(ui.treeWidget, SIGNAL(VGroupEditClicked(int)), this, SIGNAL(VGroupEditClicked(int)));
+	connect(ui.treeWidget, SIGNAL(VGroupDeleteClicked(int)), this, SIGNAL(VGroupDeleteClicked(int)));
+	connect(ui.treeWidget, SIGNAL(VGroupMapClicked()), this, SIGNAL(VGroupMapClicked()));
+
+	/* VMS */
+	connect(ui.treeWidget, SIGNAL(VMSDeleteClicked(int)), this, SIGNAL(VMSDeleteClicked(int)));
+
 	
-    connect(ui.treeWidget, SIGNAL(CameraAddClicked()), this, SIGNAL(CameraAddClicked()));
-    connect(ui.treeWidget, SIGNAL(CameraEditClicked(int)), this, SIGNAL(CameraEditClicked(int)));
-    connect(ui.treeWidget, SIGNAL(CameraDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
-
-
-    connect(ui.treeWidget, SIGNAL(StartRecordAllClicked()), this, SLOT(StartRecordAll()));
-    connect(ui.treeWidget, SIGNAL(StopRecordAllClicked()), this, SLOT(StopRecordAll()));
-    connect(ui.treeWidget, SIGNAL(StartHdfsRecordAllClicked()), this, SLOT(StartHdfsRecordAll()));
-    connect(ui.treeWidget, SIGNAL(StopHdfsRecordAllClicked()), this, SLOT(StopHdfsRecordAll()));
-
-
-    /* VIPC */
-    connect(ui.treeWidget, SIGNAL(VIPCAddClicked()), this, SIGNAL(VIPCAddClicked()));
-    connect(ui.treeWidget, SIGNAL(VIPCEditClicked(int)), this, SIGNAL(VIPCEditClicked(int)));
-    connect(ui.treeWidget, SIGNAL(VIPCDeleteClicked(int)), this, SIGNAL(VIPCDeleteClicked(int)));
-
-	/*VSCZbIpc*/
-	//connect(ui.treeWidget, SIGNAL(VSCZbIpcDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
-	//connect(ui.treeWidget, SIGNAL(VSCZbIpcStopRecordClicked(int)), this, SIGNAL(RecorderClicked(int)));
-    /* View */
-    connect(ui.treeWidget, SIGNAL(ViewDeleteClicked(int)), this, SIGNAL(ViewDeleteClicked(int)));
-
-    connect(ui.treeWidget, SIGNAL(DiskEditClicked()), this, SIGNAL(DiskEditClicked()));
-    connect(ui.pbTrash, SIGNAL(CameraDeleted()), this, SLOT(CameraTreeUpdated()));
-
-    connect(ui.treeWidget, SIGNAL(VGroupAddClicked()), this, SIGNAL(VGroupAddClicked()));
-    connect(ui.treeWidget, SIGNAL(VGroupEditClicked(int)), this, SIGNAL(VGroupEditClicked(int)));
-    connect(ui.treeWidget, SIGNAL(VGroupDeleteClicked(int)), this, SIGNAL(VGroupDeleteClicked(int)));
-    connect(ui.treeWidget, SIGNAL(VGroupMapClicked()), this, SIGNAL(VGroupMapClicked()));
 }
 
 
@@ -483,12 +486,6 @@ void VSCDeviceList::VmsTreeUpdated()
 
 		qDeleteAll(qtreewidgetitem->takeChildren());
 	}
-	/* Delete all the site */
-	{
-		QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_RECORDER);
-
-		qDeleteAll(qtreewidgetitem->takeChildren());
-	}
 
 	VSCVmsData pData;
 	gFactory->GetVms(pData);
@@ -617,31 +614,6 @@ void VSCDeviceList::CameraTreeUpdated()
 
     ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_IPC)->setExpanded(true);
 
-#if 0
-	/* Add a group for test */
-    QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_IPC);
-    QIcon icon1;
-    icon1.addFile(QStringLiteral(":/device/resources/camgroup.png"), QSize(), QIcon::Normal, QIcon::Off);
-    //icon1.addFile(QStringLiteral(":/device/resources/camera-record.png"), QSize(), QIcon::Normal, QIcon::Off);
-
-    VSCVGroupDataItem groupItem;
-    QTreeWidgetItem *qtreewidgetitemChild = new VSCDeviceIPCGroup(qtreewidgetitem, groupItem);
-
-    qtreewidgetitemChild->setIcon(0, icon1);
-
-    qtreewidgetitemChild->setText(0, QApplication::translate("",  "Group", 0));
-    QIcon icon2;
-    icon2.addFile(QStringLiteral(":/device/resources/dome.png"), QSize(), QIcon::Normal, QIcon::Off);
-    //icon1.addFile(QStringLiteral(":/device/resources/camera-record.png"), QSize(), QIcon::Normal, QIcon::Off);
-
-    QTreeWidgetItem *qtreewidgetitemChild2 = new QTreeWidgetItem(qtreewidgetitemChild);
-
-    qtreewidgetitemChild2->setIcon(0, icon2);
-
-    qtreewidgetitemChild2->setText(0, QApplication::translate("",  "Camera", 0));
-
-    qtreewidgetitem->setExpanded(true);
-#endif
 }
 
 
@@ -813,14 +785,14 @@ void VSCDeviceList::AddSite(VSCVmsDataItem &pParam)//添加site
 {
     QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_SITE);//所有的
     QIcon icon1;
-    icon1.addFile(QStringLiteral(":/action/resources/site.png"), QSize(), QIcon::Normal, QIcon::Off);
+    icon1.addFile(QStringLiteral(":/action/resources/computer.png"), QSize(), QIcon::Normal, QIcon::Off);
     //icon1.addFile(QStringLiteral(":/device/resources/camera-record.png"), QSize(), QIcon::Normal, QIcon::Off);
 
-    QTreeWidgetItem *qtreewidgetitemChild = new VSCVmsZb(qtreewidgetitem, pParam);
+	QTreeWidgetItem *qtreewidgetitemChild = new VSCVmsOAPI(qtreewidgetitem, pParam);
 
     qtreewidgetitemChild->setIcon(0, icon1);
 
-    qtreewidgetitemChild->setText(0, QApplication::translate("Site",
+    qtreewidgetitemChild->setText(0, QApplication::translate("Recorder",
             pParam.Name, 0));
 
     qtreewidgetitem->setExpanded(true);
