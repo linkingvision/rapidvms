@@ -55,6 +55,9 @@ public slots:
 	/* View */
 	void DeleteView(int nId);
 
+	/* VMS */
+	void DeleteVMS(int nId);
+
 	/* VIPC */
 	void AddVGroup();
 	void EditVGroup(int nId);

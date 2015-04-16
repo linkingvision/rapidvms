@@ -151,6 +151,9 @@ void VSCMainWindows::SetupConnections()
 	/* View */
 	connect(m_pDeviceList, SIGNAL(ViewDeleteClicked(int)), this, SLOT(DeleteView(int)));
 
+	/* VMS */
+	connect(m_pDeviceList, SIGNAL(VMSDeleteClicked(int)), this, SLOT(DeleteVMS(int)));
+
 
 	//connect(this, SIGNAL(CameraDeleted()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 	connect(m_pToolBar->ui.pbFullScreen, SIGNAL(clicked()), this, SLOT(SetFullScreen()));
@@ -535,6 +538,35 @@ void VSCMainWindows::DeleteView(int nId)
 
     return;
 }
+
+void VSCMainWindows::DeleteVMS(int nId)
+{
+    VDC_DEBUG( "%s %d\n",__FUNCTION__, nId);
+    QMessageBox msgBox(this);
+    //Set text
+    msgBox.setText(tr("Delete the Rcorder ..."));
+        //Set predefined icon, icon is show on left side of text.
+    msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
+
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        //Set focus of ok button
+    msgBox.setDefaultButton(QMessageBox::Ok);
+
+        //execute message box. method exec() return the button value of cliecke button
+    int ret = msgBox.exec();
+
+    switch (ret) {
+    case QMessageBox::Ok:
+       gFactory->DelVms(nId);
+       break;
+    default:
+       // should never be reached
+       break;
+    }
+
+    return;
+}
+
 
 void VSCMainWindows::CreateActions()
 {
