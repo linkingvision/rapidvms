@@ -27,23 +27,18 @@ public:
 	void SetupConnections();
 
 public slots:
-    void CameraAddClick();
-    void CameraEditClick();
-    void CameraDeleteClick();
-    void CameraRecordClick();
-    void CameraStopRecordClick();
-    void CameraHdfsRecordClick();
-    void CameraStopHdfsRecordClick();
-	
-    void VIPCAddClick();
-    void VIPCEditClick();
-    void VIPCDeleteClick();
+	void CameraAddClick();
+	void CameraEditClick();
+	void CameraDeleteClick();
+	void CameraRecordClick();
+	void CameraStopRecordClick();
+	void CameraHdfsRecordClick();
+	void CameraStopHdfsRecordClick();
 
-    void ViewDeleteClick();
-
-	void VSCZbIpcDeleteClick();//hjy
-	void VSCZbIpcRecordClick();
-	void VSCZbIpcStopRecordClick();
+	void VIPCAddClick();
+	void VIPCEditClick();
+	void VIPCDeleteClick();
+	void ViewDeleteClick();
 
 	void VGroupAddClick();
 	void VGroupEditClick();
@@ -53,6 +48,9 @@ public slots:
 	void StopRecordAllClick();
 	void StartHdfsRecordAllClick();
 	void StopHdfsRecordAllClick();
+
+	/* VMS */
+	void VMSDeleteClick();
 
 signals:
 	void CameraAddClicked();
@@ -64,7 +62,7 @@ signals:
 	void VIPCDeleteClicked(int nId);
 
 	void DiskEditClicked();
-
+	
 	void ViewDeleteClicked(int nId);
 
 	void VGroupAddClicked();
@@ -72,13 +70,13 @@ signals:
 	void VGroupDeleteClicked(int nId);
 	void VGroupMapClicked();
 
-	void VSCZbIpcDeleteClicked(int nId);//hjy
 	void StartRecordAllClicked();
 	void StopRecordAllClicked();
 	void StartHdfsRecordAllClicked();
 	void StopHdfsRecordAllClicked();
-	//void VSCZbIpcRecordClicked(int nId);
-	//void VSCZbIpcStopRecordClicked(int nId);
+
+	/* VMS */
+	void VMSDeleteClicked(int nId);
 
 private:
 	QAction *pActDeleteCamera;
@@ -109,10 +107,10 @@ private:
 
 	/* View */
 	QAction *pActDelView;
-	
-	QAction *pActDelVSCZbIpc;
-	QAction *pActRecordVSCZbIpc;
-	QAction *pActStopRecordVSCZbIpc;
+
+	/* VMS */
+	QAction *pActDelVMS;
+	QAction *pActRefreshVMS;
 
 	QMenu *pPopMenu;
 	
