@@ -28,7 +28,7 @@
         <number>2</number>
        </property>
        <property name="verticalSpacing">
-        <number>0</number>
+        <number>3</number>
        </property>
        <item row="5" column="0">
         <widget class="QLabel" name="labelIP">

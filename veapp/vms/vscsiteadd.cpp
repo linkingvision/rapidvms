@@ -55,7 +55,7 @@ void VSCSiteAdd::applyConfig()
 	updateParamValue(ui.lineEditUser, m_Param.User);
 	updateParamValue(ui.lineEditPassword, m_Param.Password);
 	m_Param.nType = VSC_VMS_SITE;
-       m_Param.nSubType = VSC_SUB_VMS_ZB;
+       m_Param.nSubType = VSC_SUB_VMS_OAPI;
 	if (m_nId > 0)
 	{
 	    gFactory->DelVms(m_nId);
