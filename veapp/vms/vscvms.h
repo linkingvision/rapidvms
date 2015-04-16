@@ -10,7 +10,7 @@
 
 class VSCVms : public QObject , public QTreeWidgetItem //多继承，qobject必须在继承的类的第一个
 {
-	Q_OBJECT;
+	Q_OBJECT
 
 public:
 	void mousePressEvent(QMouseEvent *event);
@@ -34,30 +34,14 @@ private:
 
 };
 
-class VSCVmsPg : public VSCVms
+class VSCVmsOAPI : public VSCVms
 {
 public:
 	void mousePressEvent(QMouseEvent *event);
 
 public:
-    VSCVmsPg(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
-    ~VSCVmsPg();
-public:
-	virtual BOOL Refresh(){return FALSE;}
-
-
-private:
-
-};
-
-class VSCVmsZb : public VSCVms
-{
-public:
-	void mousePressEvent(QMouseEvent *event);
-
-public:
-    VSCVmsZb(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
-    ~VSCVmsZb();
+    VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
+    ~VSCVmsOAPI();
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
@@ -68,23 +52,5 @@ private:
 	RecorderMap mMap;
 	QString mIp;
 };
-
-class VSCVmsVirtualIPC : public VSCVms
-{
-public:
-	void mousePressEvent(QMouseEvent *event);
-
-public:
-	VSCVmsVirtualIPC(QTreeWidgetItem *parent, VSCVmsDataItem &pParam):
-		VSCVms(parent, pParam){}
-	~VSCVmsVirtualIPC(){}
-public:
-	/* Reconnect site to refresh the data */
-	virtual BOOL Refresh(){return true;}
-	virtual BOOL GetRecorderMap(RecorderMap & pMap){return true;}
-private:
-
-};
-
 
 #endif // __VSC_VMS_H__
