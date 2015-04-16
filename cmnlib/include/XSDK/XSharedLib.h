@@ -81,9 +81,12 @@
 #undef DLLEXPORT
 
 #ifdef IS_WINDOWS
-    #define X_API __declspec(dllexport)
-    #define DLLIMPORT __declspec(dllimport)
-    #define DLLEXPORT __declspec(dllexport)
+    //#define X_API __declspec(dllexport)
+    //#define DLLIMPORT __declspec(dllimport)
+    //#define DLLEXPORT __declspec(dllexport)
+    #define X_API 
+    #define DLLIMPORT 
+    #define DLLEXPORT 
 #else
     // On *nix, CK_API et al. expand into nothingness...
     #if (!defined(X_API))
