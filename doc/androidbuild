@@ -9,4 +9,8 @@ poco:
 ./configure --config=Android --no-samples --no-tests --omit=Crypto,Data/ODBC
 make
 
+openssl
+./config no-asm os/compiler:arm-linux-androideabi-gcc
+ffmpeg
+./configure  --disable-vaapi --disable-programs  --disable-static --enable-shared --cross-prefix=arm-linux-androideabi-  --target-os=linux --arch=arm --prefix=/hom/usr/install
 
