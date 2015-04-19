@@ -1,7 +1,6 @@
 #include "vscvms.h"
 #include "factory.hpp"
 #include "QColor"
-#include "vsczbtreeitem.h"
 #include <QTranslator>
 #include <QtWidgets/QApplication>
 #include <vscdevicetree.h>
@@ -60,7 +59,3 @@ void VSCVmsOAPI::mousePressEvent(QMouseEvent *event)
 
 }
 
-BOOL VSCVmsOAPI::GetRecorderMap(RecorderMap & pMap)
-{
-	return true;
-}

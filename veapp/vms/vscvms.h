@@ -5,7 +5,6 @@
 #include <QTimer>
 #include <QTreeWidgetItem>
 #include "factory.hpp"
-#include "vscrecorder.h"
 #include <QObject>
 
 class VSCVms : public QObject , public QTreeWidgetItem //多继承，qobject必须在继承的类的第一个
@@ -24,7 +23,6 @@ public:
 	{
 	    return m_Param.nId;
 	}
-	virtual BOOL GetRecorderMap(RecorderMap & pMap){return FALSE;}
 	virtual BOOL Refresh(){return FALSE;}
 
 
@@ -45,11 +43,9 @@ public:
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
-	virtual BOOL GetRecorderMap(RecorderMap & pMap);
 	void printNVRList(const QJsonObject& json);//	
 	void ShowRefresh(const QJsonObject& json);
 private:
-	RecorderMap mMap;
 	QString mIp;
 };
 
