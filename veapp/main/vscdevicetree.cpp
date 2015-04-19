@@ -6,7 +6,6 @@
 #include "vscdeviceipc.h"
 #include <QPainter>
 #include "vscdevicelist.h"
-#include "vsczbtreeitem.h"
 
 extern Factory *gFactory;
 
@@ -258,26 +257,6 @@ void VSCDeviceTree::mousePressEvent(QMouseEvent *event)
 
 			QDrag *drag = new QDrag(this);
 			drag->setMimeData(mimeData);
-			drag->setPixmap(pixmap);
-                      drag->setHotSpot(QPoint(drag->pixmap().width()/2,
-                             drag->pixmap().height()/2));
-			drag->exec();
-			QTreeWidget::mousePressEvent(event);
-			return ;
-		}
-		VSCZbTreeItemIPC *pSiteIpc = dynamic_cast<VSCZbTreeItemIPC * >(selectedItem);
-	    //VSCDeviceIPC *pIpc = (VSCDeviceIPC * )(selectedItem);
-        // Create data
-		if (pSiteIpc)
-		{
-			VSCQMimeDataIPC *pMimeIpc = new VSCQMimeDataIPC();
-			
-			// Create drag
-			QPixmap pixmap(":/device/resources/camera1.png");
-			QPainter painter(&pixmap);
-
-			QDrag *drag = new QDrag(this);
-			drag->setMimeData(pMimeIpc);
 			drag->setPixmap(pixmap);
                       drag->setHotSpot(QPoint(drag->pixmap().width()/2,
                              drag->pixmap().height()/2));

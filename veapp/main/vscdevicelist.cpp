@@ -898,52 +898,12 @@ void VSCDeviceList::UpdateOnline()
 
 }
 
-BOOL VSCDeviceList::GetRecorderMap(RecorderMap &pMap)
-{
-	//TODO get all the recorder from VSC_DEVICE_INDEX_SITE
-	return true;
-
-	/* Site */
-	{
-		QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_SITE);
-
-		int cnt = qtreewidgetitem->childCount();
-		//VDC_DEBUG( "%s cnt %d\n",__FUNCTION__, cnt);
-		for (int i = 0; i < cnt; i ++)
-		{
-			QTreeWidgetItem * pChild = qtreewidgetitem->child(i);
-			VSCVms *pVms = dynamic_cast<VSCVms*>(pChild);
-			
-				pVms->GetRecorderMap(pMap);
-
-		}
-	}
-	/*//fake
-	VSCRecorder zb1(0, "192.168.12.12", VSC_SUB_VMS_ZB);
-	VSCRecorder zb2(0, "192.168.12.32", VSC_SUB_VMS_ZB);
-	VSCRecorder zb3(0, "192.168.12.33", VSC_SUB_VMS_ZB);
-	pMap.insert( std::map<int, VSCRecorder>::value_type(0, zb1) );
-	pMap.insert( std::map<int, VSCRecorder>::value_type(1, zb2) );
-	pMap.insert( std::map<int, VSCRecorder>::value_type(2, zb3) );
-	//pMap.insert( std::map<int, VSCRecorder>::value_type(3, zb3) );*/
-	return TRUE;
-}
 
 void VSCDeviceList::RemoveAllCamera()
 {
     QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_IPC);
 
     qDeleteAll(qtreewidgetitem->takeChildren());
-#if 0
-    int cnt = qtreewidgetitem->childCount();
-    VDC_DEBUG( "%s cnt %d\n",__FUNCTION__, cnt);
-    for (int i = 0; i < cnt; i ++)
-    {
-        VDC_DEBUG( "%s cnt %d\n",__FUNCTION__, i);
-        QTreeWidgetItem * pChild = qtreewidgetitem->child(i);
-        delete pChild;
-    }
-#endif
 }
 
 VSCDeviceList::~VSCDeviceList()

@@ -7,7 +7,6 @@
 #include "ui_vscdevicelist.h"
 #include "factory.hpp"
 #include "QTimer"
-#include "vscrecorder.h"
 
 
 #define VSC_DEVICE_INDEX_IPC 0
@@ -59,7 +58,6 @@ public:
 	void AddDisk(astring strTitle);
 	void AddVGroup(VSCVGroupDataItem &pParam);
 	void RemoveAllCamera();
-	BOOL GetRecorderMap(RecorderMap &pMap);
 	void CameraTreeUpdated();
 	void VIPCTreeUpdated();
 
