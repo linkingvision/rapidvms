@@ -32,14 +32,40 @@ private:
 
 };
 
+
+/* The QThread will get the device status and update the data to UI */
+class VSCVMSOAPIThread :public QThread
+{
+public:
+    VSCVMSOAPIThread(VSCVmsDataItem &pParam)
+    :m_Quit(FALSE)
+    {
+	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+    }
+    ~VSCVMSOAPIThread();
+public:
+	/* Get the device list from oapi server */
+	void run();
+	void setQuit()
+	{
+	    m_Quit = TRUE;
+           return;
+	}
+private:
+	VSCVmsDataItem m_pParam;
+	BOOL m_Quit;
+};
+
 class VSCVmsOAPI : public VSCVms
 {
 public:
 	void mousePressEvent(QMouseEvent *event);
 
 public:
-    VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
-    ~VSCVmsOAPI();
+	VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
+	~VSCVmsOAPI();
+public slots:
+	void UpdateDeviceParamMap(DeviceParamMap &pMap);
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
