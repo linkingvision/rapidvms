@@ -97,8 +97,7 @@ void VSCCameraAdd::PreView()
         return;
     }
     m_pVideo->StopPlay();
-    m_pVideo->SetPlayId(m_nId);
-    m_pVideo->StartPlay("fake");
+	m_pVideo->StartPlay(m_nId);
 
 }
 
