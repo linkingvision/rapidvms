@@ -8,7 +8,6 @@
 #include "vscvwidget.h"
 #include "vsclicense.h"
 #include "vscversion.h"
-#include "vscrecorderconf.h"
 #include "vscdevicelist.h"
 #include "vscuser.h"
 #include "vsclanguage.h"
@@ -59,7 +58,6 @@ private:
 	VSCVersion *m_Version;
 	VSCUser *m_User;
 	VSCLanguage *m_Language;
-	VSCRecorderConf *m_RecorderConf;
 	VSCHdfsRecord *m_HdfsRecord;
 	VSCRtspRtp *m_RtspRtp;
 	VSCOAPI *m_OAPI;

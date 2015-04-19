@@ -10,14 +10,13 @@ VSCSetting::VSCSetting(QWidget *parent, VSCDeviceList &pDeviceList)
 {
 	ui.setupUi(this);
 	SetupConnections();
-	RecorderMap pMap;
-	pDeviceList.GetRecorderMap(pMap);
+
 	m_License = new VSCLicense();
 	m_Version = new VSCVersion();
 	m_User = new VSCUser();
 	m_Language = new VSCLanguage();
 	m_Layout = new QVBoxLayout();
-	m_RecorderConf = new VSCRecorderConf(pMap);
+
 	m_HdfsRecord = new VSCHdfsRecord();
 	m_RtspRtp = new VSCRtspRtp();
 	m_OAPI = new VSCOAPI();
@@ -36,7 +35,6 @@ VSCSetting::~VSCSetting()
 	delete m_License;
 	delete m_Version;
 	delete m_Layout;
-	delete m_RecorderConf;
 }
 
 void VSCSetting::SetupConnections()
@@ -84,9 +82,6 @@ void VSCSetting::removeAll()
 
 	m_Layout->removeWidget(m_Language);
 	m_Language->hide();
-	
-	m_Layout->removeWidget(m_RecorderConf);
-	m_RecorderConf->hide();
 
 	m_Layout->removeWidget(m_HdfsRecord);
 	m_HdfsRecord->hide();
