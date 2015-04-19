@@ -15,30 +15,31 @@
 #include <QMenu>
 using  namespace tthread;
 
-class FFmpegScale;
 namespace Ui {
 class VSCVWidget;
 }
 class VSCVideoControl;
 class VSCPbThread;
 class VSCVideoInfo;
+#define  VWIDGET_OAPI_ID_OFFSET 10 * 1000
+#define  VWIDGET_ID_OFFSET 1000 * 1000
 
-#define  VWIDGET_ID_OFFSET 60000
-
+class VSCVWidgetProxy;
 class VE_LIBRARY_API VSCVWidget : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    VSCVWidget(s32 nId, QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~VSCVWidget();
-    void mouseDoubleClickEvent(QMouseEvent *e);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mousePressEvent(QMouseEvent *event);
-    void wheelEvent ( QWheelEvent * event );
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dragMoveEvent(QDragMoveEvent *event);
-    void contextMenuEvent(QContextMenuEvent* e) ;
+	VSCVWidget(s32 nId, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+	~VSCVWidget();
+	void mouseDoubleClickEvent(QMouseEvent *e);
+	void mouseReleaseEvent(QMouseEvent *event);
+	void mousePressEvent(QMouseEvent *event);
+	void wheelEvent ( QWheelEvent * event );
+	void dragEnterEvent(QDragEnterEvent *event);
+	void dragMoveEvent(QDragMoveEvent *event);
+	void contextMenuEvent(QContextMenuEvent* e) ;
+
     Qt::DropActions supportedDropActions () const
     {
             return Qt::MoveAction;
@@ -50,16 +51,7 @@ public:
         m_nId = nId;
     }
     void SetVideoFocus(BOOL bFocus);
-#if 0
-    virtual bool eventFilter(QObject *obj, QEvent *event)
-    {
-        if (event->type() == QEvent::MouseMove && obj == m_pVideoControl)
-        {
-            VDC_DEBUG( "%s mouseMoveEvent %p\n",__FUNCTION__, this);
-        }
-	 return false;
-    }
-#endif
+
     BOOL SetVideoUpdate(BOOL update);
     BOOL SetVideoUpdateNoPaint(BOOL update);
     BOOL ChangeLayout();
@@ -78,12 +70,11 @@ public slots:
     void videoMouseMove(QMouseEvent *e);
     void UpdateVideoControl();
     void videoResizeEventTimer();
-    void instantPbClick();
+    void InstantPbClick();
     void TimeLineChanged(int nStatus );
     void InstantPbPause();
     void InstantPbPlay();
     void TimeLineLengthChanged(int index);
-    void SetRenderD3D();
     void videoResizeEvent();
     void PTZEnable();
     void AutoFocus();
@@ -100,89 +91,46 @@ signals:
 
 
 public:
-    BOOL StartPlay(std::string strUrl);
+    BOOL StartPlay(int nId);
     BOOL StartPlayById(int nId);
     BOOL StopPlay(BOOL bForce = FALSE);
-    BOOL StartPlayLive(std::string strUrl);
+    BOOL StartPlayLive();
     BOOL StopPlayLive(BOOL bForce = FALSE);
 
     static void LiveDelCallback(void * pParam);
     void LiveDelCallback();
-    int GetPlayId()
-    {
-    	if (m_pStarted == false)
-    	{
-    		return 0;
-    	}else
-    	{
-    		return m_nPlayId;
-    	}
-    }
+    int GetPlayId();
     void LivePlayControlUI();
     void InstantPbControlUI();
     void InstantPbControlUISimple();
     void StopPlayUI();
-    BOOL DeviceDeleted(u32 nId);
-    BOOL SetPlayId(u32 nPlayId);
-    static void DeviceDeletedCallback(u32 nId, void * pParam);
     
-
-/* Thread */
 private:
-    tthread::thread *m_videoThread;
-    HWND m_videoWindow;
-    //mediaPipeline *m_pipe;
-    tthread::fast_mutex m_Mutex;
-    BOOL m_bFocus;
-    s32 m_nId;
-    u32 m_nPlayId;
-    s32 m_w;
-    s32 m_h;
-    unsigned char *m_pRenderBuffer;
-    BOOL m_pStarted;
-    BOOL m_bDeviceDeleted;
-    QAction *m_pStop;
-    QAction *m_pHelp;
-    QAction *m_pRecord;
-    QAction *m_pPTZ;
-    QAction *m_pDisplay1;
-    QAction *m_pDisplay2;
-    QAction *m_pDisplay3;
-    QAction *m_pDisplay4;
+	HWND m_videoWindow;
+	BOOL m_bFocus;
+	s32 m_nId;
 
-    QAction *m_pFloating;
-    QAction *m_pTabbed;
-    QAction *m_pControlEnable;
-	 QMenu * popupMenu;
+	BOOL m_pStarted;
 
 
-    /* TTF Font */
-    int m_nFontSize;
-    int m_lastTime;
-    BOOL m_InstantPbMode;
+	int m_lastTime;
+	BOOL m_InstantPbMode;
 private:
-    VSCVideoControl *m_pVideoControl;
-    VSCVideoInfo * m_pVideoInfo;
-    QWidget  * m_pVideo;
+	VSCVideoControl *m_pVideoControl;
+	VSCVideoInfo * m_pVideoInfo;
+	QWidget  * m_pVideo;
 	
 private:
-    QTimer *m_Timer;
-    QTimer *m_TimerResize;
-    time_t m_lastMoveTime;
-    struct timeval m_lastPressed;
-    VSCPbThread *m_pbThread;
-
-public:
-    Ui::VSCVWidget *p_ui;
-    Ui::VSCVWidget &ui;
-/* Playback  */
-private: 
-    BOOL m_autoUpdate;
+	QTimer *m_Timer;
+	QTimer *m_TimerResize;
+	time_t m_lastMoveTime;
+	struct timeval m_lastPressed;
+	
 private:
-    BOOL m_DragStart;
-    s32 m_lastDragX;
-    s32 m_lastWidth;
-    s32 m_lastHeight;
+	BOOL m_DragStart;
+	s32 m_lastDragX;
+	s32 m_lastWidth;
+	s32 m_lastHeight;
 
 	BOOL m_PtzStart;
 	s32 m_lastPtzX;
@@ -190,7 +138,27 @@ private:
 	BOOL m_PtzEnable;
 	struct timeval m_lastPtz;
 	struct timeval m_lastPtzZoom;
+private:
+	VSCVWidgetProxy *m_pProxy;
+
+public:
+	Ui::VSCVWidget *p_ui;
+	Ui::VSCVWidget &ui;
 	
+private:
+	QAction *m_pStop;
+	QAction *m_pHelp;
+	QAction *m_pRecord;
+	QAction *m_pPTZ;
+	QAction *m_pDisplay1;
+	QAction *m_pDisplay2;
+	QAction *m_pDisplay3;
+	QAction *m_pDisplay4;
+
+	QAction *m_pFloating;
+	QAction *m_pTabbed;
+	QAction *m_pControlEnable;
+	QMenu * popupMenu;
     
 };
 

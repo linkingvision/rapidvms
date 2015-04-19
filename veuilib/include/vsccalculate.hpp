@@ -19,7 +19,7 @@ public:
 		delete m_Timer;
 	}
 public slots:
-	void show_cpu_memory_state();
+	void showCpuMemoryState();
 
 private:
 	QLabel* m_label;
