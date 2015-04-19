@@ -171,27 +171,6 @@
     <CustomBuild Include="..\vms\vscvms.h">
       <Filter>vms</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorderone.h">
-      <Filter>vms</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorderone.ui">
-      <Filter>vms</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\setting\vscrecorderconf.h">
-      <Filter>setting</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\setting\vscrecorderconf.ui">
-      <Filter>setting</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorderpanel.h">
-      <Filter>vms</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\vms\vscrecorder.h">
-      <Filter>vms</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\vms\vsczbtreeitem.h">
-      <Filter>vms</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\darkstyle\style.qrc">
       <Filter>darkstyle</Filter>
     </CustomBuild>
@@ -476,51 +455,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscvms.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\vms\vscrecorderone.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderone.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderone.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\setting\vscrecorderconf.cpp">
-      <Filter>setting</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderconf.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderconf.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\vms\vscrecorderpanel.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorderpanel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorderpanel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\vms\vscrecorder.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecorder.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscrecorder.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\vms\vsczbtreeitem.cpp">
-      <Filter>vms</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vsczbtreeitem.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vsczbtreeitem.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_style.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -734,12 +668,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscsiteadd.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_vscrecorderone.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_vscrecorderconf.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\main\vscvipc.h">
