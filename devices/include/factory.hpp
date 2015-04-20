@@ -56,6 +56,7 @@ typedef std::list<LPDevice> DeviceList;
 typedef std::list<DeviceParam> DeviceParamList;
 typedef std::map<int, LPDevice> DeviceMap;
 typedef std::map<int, DeviceParam> DeviceParamMap;
+typedef std::map<int, int> DeviceOnlineMap;
 typedef std::map<int, VIPCDeviceParam> VIPCDeviceParamMap;
 typedef std::map<void *, FactoryDeviceChangeNotify> DeviceChangeNofityMap;
 #define FACTORY_DEVICE_ID_MAX 4096
@@ -136,6 +137,7 @@ public:
 public:
 	/* UI can use this for display device tree */
 	BOOL GetDeviceParamMap(DeviceParamMap &pMap);
+	BOOL GetDeviceOnlineMap(DeviceOnlineMap &pMap);
        BOOL GetVIPCDeviceParamMap(VIPCDeviceParamMap &pMap);
        /* Device function */
 	s32 AddDevice(DeviceParam & pParam);
@@ -258,6 +260,7 @@ public:
 private:
 	DeviceMap m_DeviceMap;
 	DeviceParamMap m_DeviceParamMap;
+	DeviceOnlineMap m_DeviceOnlineMap;
 
 	/* Virtual IP camera param */
 	VIPCDeviceParamMap m_VIPCDeviceParamMap;

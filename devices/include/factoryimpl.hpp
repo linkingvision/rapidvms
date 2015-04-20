@@ -620,6 +620,13 @@ inline BOOL Factory::GetDeviceParamMap(DeviceParamMap &pMap)
     return TRUE;
 }
 
+inline BOOL Factory::GetDeviceOnlineMap(DeviceOnlineMap &pMap)
+{
+    pMap = m_DeviceOnlineMap;
+
+    return TRUE;
+}
+
 inline BOOL Factory::GetVIPCDeviceParamMap(VIPCDeviceParamMap &pMap)
 {
     pMap = m_VIPCDeviceParamMap;
@@ -637,6 +644,7 @@ inline s32 Factory::InitAddDevice(DeviceParam & pParam, u32 nIndex)
     	m_DeviceMap[nIndex] = NULL;
     }
     m_DeviceParamMap[nIndex] = pParam;
+    m_DeviceOnlineMap[nIndex] = 0;
 
     return TRUE;
 }
@@ -1190,6 +1198,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 	m_DeviceMap[nId] = NULL;
     }
     m_DeviceParamMap[nId] = pParam;
+    m_DeviceOnlineMap[nId] = 0;
     m_Conf.AddDevice(pParam.m_Conf, nId);
 
     UnLock();
@@ -1217,6 +1226,7 @@ inline BOOL Factory::DelDevice(s32 nIndex)
     delete m_DeviceMap[nIndex];
     m_DeviceMap[nIndex] = NULL;
     m_DeviceParamMap.erase(nIndex);
+    m_DeviceOnlineMap.erase(nIndex);
     m_DeviceMap.erase(nIndex);
     m_Conf.DelDevice(nIndex);
     UnLock();
@@ -1768,6 +1778,7 @@ inline void Factory::run()
 					case DEV_OFF2ON:
 					{
 						change.type = FACTORY_DEVICE_ONLINE;
+						m_DeviceOnlineMap[nIndex] = 1;
 						UnLock(); 
 						CallDeviceChange(change);
 						Lock();
@@ -1776,6 +1787,7 @@ inline void Factory::run()
 					case DEV_ON2OFF:
 					{
 						change.type = FACTORY_DEVICE_OFFLINE;
+						m_DeviceOnlineMap[nIndex] = 0;
 						UnLock(); 
 						CallDeviceChange(change);
 						Lock();
