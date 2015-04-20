@@ -67,7 +67,8 @@
         ["unsigned int", "ConnectType", {"required": true}],
 		["unsigned int", "Mining", {"required": true}],
 		["unsigned int", "HWAccel", {"required": true}],	
-		["unsigned int", "IPV6", {"required": true}]		
+		["unsigned int", "IPV6", {"required": true}],
+		["unsigned int", "Online", {"required": true}]		
     ]
 },
 {
@@ -76,6 +77,32 @@
     "members": [
         ["unsigned int", "Num", {"required": true}],
         ["std::vector<oapi::Device>", "list"]
+    ]
+},
+{
+    "name": "LiveView",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nSubId", {"required": true}]
+    ]
+},
+{
+    "name": "Playback",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nPlayTime", {"required": true}]
+    ]
+},
+{
+    "name": "PlaybackSeek",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["unsigned int", "nPlayTime", {"required": true}]
     ]
 }
 ]
