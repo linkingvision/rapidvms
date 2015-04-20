@@ -23,8 +23,15 @@ class OAPIClient
 public:
 	inline OAPIClient(XRef<XSocket> pSocket);
 	inline ~OAPIClient();
+/* send request */
 public:
-	inline BOOL DeviceListRequest(oapi::DeviceList &list);
+	inline BOOL Setup(std::string strUser, std::string strPasswd);
+	inline BOOL SendDeviceListRequest();
+	inline BOOL StartLiveview(int nId);
+	inline BOOL StopLiveview(int nId);
+/* Parse all the list */
+public:
+	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::DeviceList &list);
 public:
 
 private:
