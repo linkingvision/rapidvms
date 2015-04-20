@@ -70,13 +70,16 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 	dataList.Num = 0;
 
 	DeviceParamMap pDeviceMap;
+	DeviceOnlineMap pDeviceOnlineMap;
 	m_pFactory.GetDeviceParamMap(pDeviceMap);
+	m_pFactory.GetDeviceOnlineMap(pDeviceOnlineMap);
 
 	DeviceParamMap::iterator it = pDeviceMap.begin(); 
 	for(; it!=pDeviceMap.end(); ++it)
 	{
 		oapi::Device data;
 		OAPIConverter::Converter(((*it).second).m_Conf.data.conf, data);
+		data.Online = pDeviceOnlineMap[(*it).first];
 		dataList.list.push_back(data);
 		dataList.Num ++;
 	}
@@ -89,7 +92,7 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 		return FALSE;
 	}
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_GET_DEVICE_RSP);
+	header.cmd = htonl(OAPI_CMD_KEEPALIVE_RSQ);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -108,7 +111,7 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 	{
 		case OAPI_CMD_KEEPALIVE_REQ:
 			break;
-		case OAPI_CMD_GET_DEVICE_REQ:
+		case OAPI_CMD_DEVICE_LIST_REQ:
 			return ProcessGetDevice(header.length);
 			break;
 		default:
