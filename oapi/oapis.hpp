@@ -37,6 +37,11 @@ public:
 
 public:
 	inline BOOL ProcessGetDevice(s32 len);	
+	inline BOOL ProcessStartLive(s32 len);
+	inline BOOL ProcessStopLive(s32 len);
+public:
+	inline void DataHandler1(VideoFrame& frame);
+	inline static void DataHandler(VideoFrame& frame, void * pParam);	
 public:
 	void Lock()
 	{
@@ -51,6 +56,7 @@ private:
 	fast_mutex m_Lock;
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
+	int m_nLiveviewId;
 };
 
 #include "oapisimpl.hpp"
