@@ -245,7 +245,6 @@ typedef struct __VSCVmsDataItem__ {
 	s8 User[VSC_CONF_PARAM_MAX];
 	s8 Password[VSC_CONF_PARAM_MAX];
 
-	s8 OnvifAddress[VSC_CONF_PARAM_MAX];
 	u32 GroupId;
 	u32 Used;/* 1 stand for used, 0 stand for not used */
 }VSCVmsDataItem;
