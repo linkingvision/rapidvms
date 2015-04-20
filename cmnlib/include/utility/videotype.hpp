@@ -84,6 +84,16 @@ typedef struct __VideoFrame
 	u8   *dataBuf;
 }VideoFrame;
 
+typedef struct __VideoFrameHeader
+{
+	u32 streamType; /* VideoStreamType */
+ 	u32 frameType; /* VideoFrameType */
+ 	u32 secs;       /* timestamp in seconds */
+	u32 msecs;      /* timestamp in mseconds */
+	u32 dataLen;
+}VideoFrameHeader;
+
+
 typedef enum __VideoSeqType
 {
 	VIDEO_SEQ_MP4 = 1,
