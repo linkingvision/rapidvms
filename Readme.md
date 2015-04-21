@@ -88,18 +88,6 @@ Skype : xsmart@veyesys.com
 QQ    : 2104915834
 
 WeChat: ![](https://raw.githubusercontent.com/xsmart/ve-img/master/wechat/xsmart_wechat.png)
-### Note: ###
-	Please Delete C:\videodb if use OpenCVR V2014-0630.msi and before.
-    
-	For Axis Camera, Plase disable the replay attack protection
-	System Options
-	Advanced
-		Plain Config
-		Webservice(Select Group)
-			Disable the Enable replay attack protection
-	
-	For Sony camera, Please make the vdcye time same with the camera
-		
 
 
 		
