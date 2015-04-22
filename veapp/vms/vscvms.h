@@ -36,6 +36,7 @@ private:
 /* The QThread will get the device status and update the data to UI */
 class VSCVMSOAPIThread :public QThread
 {
+	Q_OBJECT
 public:
     VSCVMSOAPIThread(VSCVmsDataItem &pParam)
     :m_Quit(FALSE)
@@ -58,6 +59,7 @@ private:
 
 class VSCVmsOAPI : public VSCVms
 {
+	Q_OBJECT
 public:
 	void mousePressEvent(QMouseEvent *event);
 
@@ -65,7 +67,9 @@ public:
 	VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
 	~VSCVmsOAPI();
 public slots:
-	void UpdateDeviceParamMap(DeviceParamMap &pMap);
+	void UpdateDeviceParamMap(DeviceParamMap &pMap)
+	{
+	}
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
