@@ -50,7 +50,7 @@ BOOL OAPIConverter::Converter(oapi::Device &from, VSCDeviceData__ &to)
 }
 
 OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
-:m_pFactory(pFactory), m_pSocket(pSocket), m_nLiveviewId(0)
+:m_pFactory(pFactory), m_pSocket(pSocket), m_nLiveviewId(0), m_cnt(0)
 {
 
 }
@@ -201,7 +201,8 @@ inline void OAPIServer::DataHandler1(VideoFrame& frame)
 	frameHeader.secs = htonl(frame.secs);
 	frameHeader.msecs = htonl(frame.msecs);
 	frameHeader.dataLen = htonl(frame.dataLen);
-	
+
+	printf("Send a new frame %d\n", m_cnt++);
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)&frameHeader, sizeof(frameHeader));
 	m_pSocket->Send((void *)frame.dataBuf, frame.dataLen);
