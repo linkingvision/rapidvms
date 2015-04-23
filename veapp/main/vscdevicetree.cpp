@@ -197,7 +197,7 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
 		VSCVms *pVMS = dynamic_cast<VSCVms * >(item);
 		if (pVMS)
 		{
-			pPopMenu->addAction(pActRefreshVMS);
+			//pPopMenu->addAction(pActRefreshVMS);
 			pPopMenu->addAction(pActDelVMS);
 		}
 
