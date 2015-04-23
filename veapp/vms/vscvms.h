@@ -43,7 +43,9 @@ public:
     {
 	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
     }
-    ~VSCVMSOAPIThread();
+    ~VSCVMSOAPIThread()
+    {
+    }
 public:
 	/* Get the device list from oapi server */
 	void run();
@@ -52,6 +54,8 @@ public:
 	    m_Quit = TRUE;
            return;
 	}
+signals:
+    void UpdateDeviceList(oapi::DeviceList plist);
 private:
 	VSCVmsDataItem m_pParam;
 	BOOL m_Quit;
@@ -67,9 +71,7 @@ public:
 	VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
 	~VSCVmsOAPI();
 public slots:
-	void UpdateDeviceParamMap(DeviceParamMap &pMap)
-	{
-	}
+	void UpdateDeviceList(oapi::DeviceList plist);
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
@@ -77,6 +79,7 @@ public:
 	void ShowRefresh(const QJsonObject& json);
 private:
 	QString mIp;
+	VSCVMSOAPIThread *m_pThread;
 };
 
 #endif // __VSC_VMS_H__
