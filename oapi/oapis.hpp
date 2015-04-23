@@ -57,6 +57,7 @@ private:
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
 	int m_nLiveviewId;
+	int m_cnt;
 };
 
 #include "oapisimpl.hpp"

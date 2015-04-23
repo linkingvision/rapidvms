@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 	int frameCnt =0;
 	char *pRecv = NULL;
 	int nRecvLen = 0;
+	s32 nRet = 0;
 	
 	try
 	{
@@ -18,13 +19,20 @@ int main(int argc, char *argv[])
 		
 		pClient.Setup("admin", "admin");
 		pClient.SendDeviceListRequest();
-		pClient.StartLiveview(1);
+		pClient.StartLiveview(2);
+		pSocket->SetRecvTimeout(1 * 1000);
 		while(1)
 		{
-			s32 nRet = pSocket->Recv((void *)&header, sizeof(header));
+			nRet = pSocket->Recv((void *)&header, sizeof(header));
 			if (nRet != sizeof(header))
 			{
-				break;
+				if (pSocket->Valid() == true)
+				{
+					continue;
+				}else
+				{
+					break;
+				}
 			}
 			//TODO check if return 0
 
