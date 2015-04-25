@@ -51,6 +51,7 @@ public slots:
 
 	/* VMS */
 	void VMSDeleteClick();
+	void VMSRefreshClick();
 
 signals:
 	void CameraAddClicked();

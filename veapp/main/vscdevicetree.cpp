@@ -115,6 +115,7 @@ void VSCDeviceTree::SetupConnections()
 
 	/* VMS */
 	connect(pActDelVMS, SIGNAL(triggered()), this, SLOT(VMSDeleteClick()));
+	connect(pActRefreshVMS, SIGNAL(triggered()), this, SLOT(VMSRefreshClick()));
 	
 }
 
@@ -197,7 +198,7 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
 		VSCVms *pVMS = dynamic_cast<VSCVms * >(item);
 		if (pVMS)
 		{
-			//pPopMenu->addAction(pActRefreshVMS);
+			pPopMenu->addAction(pActRefreshVMS);
 			pPopMenu->addAction(pActDelVMS);
 		}
 
@@ -505,6 +506,26 @@ void VSCDeviceTree::VMSDeleteClick()
 
     return;
 }
+
+void VSCDeviceTree::VMSRefreshClick()
+{
+    QTreeWidgetItem *item = NULL;
+    item = currentItem();
+
+    VDC_DEBUG( "%s \n",__FUNCTION__);
+    if(item != NULL)
+    {
+        VSCVms *pVMS = dynamic_cast<VSCVms * >(item);
+        if (pVMS)
+        {
+            VDC_DEBUG( "%s \n",__FUNCTION__);
+            pVMS->Refresh();
+        }
+    }
+
+    return;
+}
+
 
 void VSCDeviceTree::VGroupAddClick()
 {
