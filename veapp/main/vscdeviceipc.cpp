@@ -75,10 +75,12 @@ VSCDeviceIPC::~VSCDeviceIPC()
 
 }
 
-VSCDeviceIPCOAPI::VSCDeviceIPCOAPI(QTreeWidgetItem *parent, oapi::Device &pParam)
+VSCDeviceIPCOAPI::VSCDeviceIPCOAPI(QTreeWidgetItem *parent, oapi::Device &pParam, 
+	VSCVmsDataItem &pVMSParam)
     : QTreeWidgetItem(parent)
 {
 	m_Param = pParam;
+	memcpy(&m_pVMSParam, &pVMSParam, sizeof(VSCVmsDataItem));
 	if (pParam.Online == 1)
 	{
 		UpdateOnline(TRUE);

@@ -39,14 +39,20 @@ public:
 	void mousePressEvent(QMouseEvent *event);
 
 public:
-    VSCDeviceIPCOAPI(QTreeWidgetItem *parent, oapi::Device &pParam);
+    VSCDeviceIPCOAPI(QTreeWidgetItem *parent, oapi::Device &pParam, 
+		VSCVmsDataItem &pVMSParam);
     ~VSCDeviceIPCOAPI();
 	
 public:
 	u32 GetDeviceId()
 	{
-	    return m_Param.nId;
+		return m_Param.nId;
 	}
+	u32 GetVMSId()
+	{
+		return m_pVMSParam.nId;
+	}
+	
 	
 public:
     void UpdateOnline(BOOL bonline);
@@ -55,6 +61,7 @@ public:
 
 private:
 	oapi::Device m_Param;
+	VSCVmsDataItem m_pVMSParam;
 
 };
 
