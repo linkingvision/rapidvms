@@ -33,6 +33,31 @@ private:
 
 };
 
+class VSCDeviceIPCOAPI : public QTreeWidgetItem
+{
+public:
+	void mousePressEvent(QMouseEvent *event);
+
+public:
+    VSCDeviceIPCOAPI(QTreeWidgetItem *parent, oapi::Device &pParam);
+    ~VSCDeviceIPCOAPI();
+	
+public:
+	u32 GetDeviceId()
+	{
+	    return m_Param.nId;
+	}
+	
+public:
+    void UpdateOnline(BOOL bonline);
+    void UpdateRecord(BOOL bRecording);	
+
+
+private:
+	oapi::Device m_Param;
+
+};
+
 
 class VSCDeviceIPCGroup : public QTreeWidgetItem
 {
