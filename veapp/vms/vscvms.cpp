@@ -5,6 +5,7 @@
 #include <QtWidgets/QApplication>
 #include <vscdevicetree.h>
 #include <QEventLoop>
+#include "vscdeviceipc.h"
 
 #include "cppkit/ck_string.h"
 #include "cppkit/os/ck_sprintf.h"
@@ -19,6 +20,7 @@ extern Factory *gFactory;
 VSCVms::VSCVms(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
     : QTreeWidgetItem(parent), m_pParent(parent)
 {
+	qRegisterMetaType<oapi::DeviceList>("oapi::DeviceList");     
 	memcpy(&m_Param, &pParam, sizeof(VSCVmsDataItem));
 }
 
@@ -48,26 +50,18 @@ VSCVmsOAPI::~VSCVmsOAPI()
 	m_pThread->setQuit();
 }
 
-
-void VSCVmsOAPI::printNVRList(const QJsonObject& json)
-{
-}
-
 BOOL VSCVmsOAPI::Refresh()
 {
+
 	m_pThread->setQuit();
+
+	qDeleteAll(this->takeChildren());
 
 	m_pThread = new VSCVMSOAPIThread(m_Param);
 	connect(m_pThread, SIGNAL(UpdateDeviceList(oapi::DeviceList)), this,
 						SLOT(UpdateDeviceList(oapi::DeviceList)));	
 	m_pThread->start();
 	return TRUE;	
-}
-
-
-void VSCVmsOAPI::ShowRefresh(const QJsonObject& json)
-{
-	return ;	
 }
 
 void VSCVmsOAPI::mousePressEvent(QMouseEvent *event)
@@ -78,6 +72,38 @@ void VSCVmsOAPI::mousePressEvent(QMouseEvent *event)
 void VSCVmsOAPI::UpdateDeviceList(oapi::DeviceList plist)
 {
 	printf("UpdateDeviceList ==============\n");
+
+	std::vector<oapi::Device>::iterator iter; 
+	for (iter = plist.list.begin(); iter != plist.list.end(); iter++)
+	{  
+		AddIPCamera(*iter, this);
+	}  
+}
+
+void VSCVmsOAPI::AddIPCamera(oapi::Device &pParam, QTreeWidgetItem *qtreewidgetitem)
+{
+    //QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_IPC);
+    QIcon icon1;
+    icon1.addFile(QStringLiteral(":/device/resources/dome.png"), QSize(), QIcon::Normal, QIcon::Off);
+
+    QTreeWidgetItem *qtreewidgetitemChild = new VSCDeviceIPCOAPI(qtreewidgetitem, pParam);
+
+    qtreewidgetitemChild->setIcon(0, icon1);
+
+    qtreewidgetitemChild->setText(0, QApplication::translate("",
+            pParam.Name.c_str(), 0));
+
+    qtreewidgetitem->setExpanded(true);
+#if 0
+    VSCDeviceIPC *pIPC = dynamic_cast<VSCDeviceIPC*>(qtreewidgetitemChild);
+    if (pParam.m_Conf.data.conf.Recording == 1)
+    {
+		pIPC->UpdateRecord(TRUE);
+    }else
+    {
+    	pIPC->UpdateRecord(FALSE);
+    }
+#endif
 }
 
 void VSCVMSOAPIThread::run()
@@ -148,6 +174,7 @@ void VSCVMSOAPIThread::run()
 						{
 							oapi::DeviceList list;
 							pClient.ParseDeviceList(pRecv, header.length, list);
+							emit UpdateDeviceList(list);
 							printf("UpdateDeviceList ==============\n");
 							break;
 						}

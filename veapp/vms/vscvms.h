@@ -76,8 +76,7 @@ public slots:
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
-	void printNVRList(const QJsonObject& json);//	
-	void ShowRefresh(const QJsonObject& json);
+	void AddIPCamera(oapi::Device &pParam, QTreeWidgetItem *qtreewidgetitem);
 private:
 	QString mIp;
 	VSCVMSOAPIThread *m_pThread;
