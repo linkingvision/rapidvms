@@ -37,7 +37,7 @@ VSCVms::~VSCVms()
 }
 
 VSCVmsOAPI::VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
-: VSCVms(parent, pParam), m_pThread(NULL)
+: VSCVms(parent, pParam), m_pThread(NULL), m_loading(NULL)
 {
 	m_pThread = new VSCVMSOAPIThread(pParam);
 	connect(m_pThread, SIGNAL(UpdateDeviceList(oapi::DeviceList)), this,
@@ -52,7 +52,12 @@ VSCVmsOAPI::~VSCVmsOAPI()
 
 BOOL VSCVmsOAPI::Refresh()
 {
-
+	if (m_loading)
+	{
+		delete m_loading;
+		m_loading = NULL;
+	}
+	m_loading = new VSCLoading(NULL);
 	m_pThread->setQuit();
 
 	qDeleteAll(this->takeChildren());
@@ -77,7 +82,12 @@ void VSCVmsOAPI::UpdateDeviceList(oapi::DeviceList plist)
 	for (iter = plist.list.begin(); iter != plist.list.end(); iter++)
 	{  
 		AddIPCamera(*iter, this);
-	}  
+	} 
+	if (m_loading)
+	{
+		delete m_loading;
+		m_loading = NULL;
+	}
 }
 
 void VSCVmsOAPI::AddIPCamera(oapi::Device &pParam, QTreeWidgetItem *qtreewidgetitem)

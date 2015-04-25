@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QTreeWidgetItem>
 #include "factory.hpp"
+#include "vscloading.hpp"
 #include <QObject>
 
 class VSCVms : public QObject , public QTreeWidgetItem //多继承，qobject必须在继承的类的第一个
@@ -80,6 +81,7 @@ public:
 private:
 	QString mIp;
 	VSCVMSOAPIThread *m_pThread;
+	VSCLoading *m_loading;
 };
 
 #endif // __VSC_VMS_H__
