@@ -86,7 +86,8 @@ void VSCVmsOAPI::AddIPCamera(oapi::Device &pParam, QTreeWidgetItem *qtreewidgeti
     QIcon icon1;
     icon1.addFile(QStringLiteral(":/device/resources/dome.png"), QSize(), QIcon::Normal, QIcon::Off);
 
-    QTreeWidgetItem *qtreewidgetitemChild = new VSCDeviceIPCOAPI(qtreewidgetitem, pParam);
+    QTreeWidgetItem *qtreewidgetitemChild = new VSCDeviceIPCOAPI(qtreewidgetitem, pParam, 
+				m_Param);
 
     qtreewidgetitemChild->setIcon(0, icon1);
 
