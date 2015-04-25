@@ -26,7 +26,7 @@ public:
 	virtual BOOL Refresh(){return FALSE;}
 
 
-private:
+public:
 	VSCVmsDataItem m_Param;
 	QTreeWidgetItem *m_pParent;
 

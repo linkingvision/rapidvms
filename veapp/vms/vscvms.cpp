@@ -55,6 +55,12 @@ void VSCVmsOAPI::printNVRList(const QJsonObject& json)
 
 BOOL VSCVmsOAPI::Refresh()
 {
+	m_pThread->setQuit();
+
+	m_pThread = new VSCVMSOAPIThread(m_Param);
+	connect(m_pThread, SIGNAL(UpdateDeviceList(oapi::DeviceList)), this,
+						SLOT(UpdateDeviceList(oapi::DeviceList)));	
+	m_pThread->start();
 	return TRUE;	
 }
 
