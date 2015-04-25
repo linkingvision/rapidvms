@@ -45,7 +45,7 @@ VSCVmsOAPI::VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
 
 VSCVmsOAPI::~VSCVmsOAPI()
 {
-
+	m_pThread->setQuit();
 }
 
 
@@ -86,93 +86,98 @@ void VSCVMSOAPIThread::run()
 	ck_string ckPort = m_pParam.Port;
 
 	u16 Port = ckPort.to_uint16(10);
-	
-	try
-	{
-		XSDK::XString host = m_pParam.IP;
-		pSocket->Connect(host, Port);
-		
-		oapi::DeviceList list;
-		OAPIClient pClient(pSocket);
-		
-		pClient.Setup(m_pParam.User, m_pParam.Password);
-		pClient.SendDeviceListRequest();
-		//pClient.StartLiveview(2);
-		pSocket->SetRecvTimeout(1 * 1000);
-		while(m_Quit != TRUE)
-		{
-			nRet = pSocket->Recv((void *)&header, sizeof(header));
-			if (nRet != sizeof(header))
-			{
-				if (pSocket->Valid() == true)
-				{
-					continue;
-				}else
-				{
-					break;
-				}
-			}
 
-			header.version = ntohl(header.version);
-			header.cmd = ntohl(header.cmd);
-			header.length = ntohl(header.length);
-			if (header.length > nRecvLen)
-			{
-				if (pRecv)
-				{
-					delete [] pRecv;
-					pRecv = NULL;
-				}
-				pRecv = new char[header.length + 1];
-				nRecvLen = header.length + 1;
-			}
+	while(m_Quit != TRUE)
+	{
+		try
+		{
+			XSDK::XString host = m_pParam.IP;
+			pSocket->Connect(host, Port);
 			
-			s32 nRetBody = pSocket->Recv((void *)pRecv, header.length);
-			if (nRetBody == header.length)
+			oapi::DeviceList list;
+			OAPIClient pClient(pSocket);
+			
+			pClient.Setup(m_pParam.User, m_pParam.Password);
+			pClient.SendDeviceListRequest();
+			//pClient.StartLiveview(2);
+			pSocket->SetRecvTimeout(1 * 1000);
+			while(m_Quit != TRUE)
 			{
-				switch(header.cmd)
+				nRet = pSocket->Recv((void *)&header, sizeof(header));
+				if (nRet != sizeof(header))
 				{
-					case OAPI_CMD_DEVICE_LIST_RSP:
+					printf("%s---%d\n", __FILE__, __LINE__);
+					if (pSocket->Valid() == true)
 					{
-						oapi::DeviceList list;
-						pClient.ParseDeviceList(pRecv, header.length, list);
+						printf("%s---%d\n", __FILE__, __LINE__);
+						continue;
+					}else
+					{
+						printf("%s---%d\n", __FILE__, __LINE__);
 						break;
 					}
-					case OAPI_CMD_FRAME:
-					{
-						//printf("Go a new frame %d\n", frameCnt++);
-						break;
-					}
-					case OAPI_NOTIFY_DEVICE_ADD:
-						break;
-					case OAPI_NOTIFY_DEVICE_DEL:
-						break;
-					case OAPI_NOTIFY_DEVICE_ONLINE:
-						break;
-					case OAPI_NOTIFY_DEVICE_OFFLINE:
-						break;
-					case OAPI_NOTIFY_DEVICE_RECORDING_ON:
-						break;
-					case OAPI_NOTIFY_DEVICE_RECORDING_OFF:
-						break;
-					case OAPI_NOTIFY_DEVICE_GROUP_CHANGE:
-						break;
-					default:
-						break;		
 				}
+				printf("%s---%d\n", __FILE__, __LINE__);
+
+				header.version = ntohl(header.version);
+				header.cmd = ntohl(header.cmd);
+				header.length = ntohl(header.length);
+				if (header.length > nRecvLen)
+				{
+					if (pRecv)
+					{
+						delete [] pRecv;
+						pRecv = NULL;
+					}
+					pRecv = new char[header.length + 1];
+					nRecvLen = header.length + 1;
+				}
+				
+				s32 nRetBody = pSocket->Recv((void *)pRecv, header.length);
+				if (nRetBody == header.length)
+				{
+					switch(header.cmd)
+					{
+						case OAPI_CMD_DEVICE_LIST_RSP:
+						{
+							oapi::DeviceList list;
+							pClient.ParseDeviceList(pRecv, header.length, list);
+							printf("UpdateDeviceList ==============\n");
+							break;
+						}
+						case OAPI_CMD_FRAME:
+						{
+							//printf("Go a new frame %d\n", frameCnt++);
+							break;
+						}
+						case OAPI_NOTIFY_DEVICE_ADD:
+							break;
+						case OAPI_NOTIFY_DEVICE_DEL:
+							break;
+						case OAPI_NOTIFY_DEVICE_ONLINE:
+							break;
+						case OAPI_NOTIFY_DEVICE_OFFLINE:
+							break;
+						case OAPI_NOTIFY_DEVICE_RECORDING_ON:
+							break;
+						case OAPI_NOTIFY_DEVICE_RECORDING_OFF:
+							break;
+						case OAPI_NOTIFY_DEVICE_GROUP_CHANGE:
+							break;
+						default:
+							break;		
+					}
+				}
+
 			}
 
 		}
+		catch( XSDK::XException& ex )
+		{
+			
+		}
 
 	}
-	catch( XSDK::XException& ex )
-	{
-		
-	}
-	
-	while(m_Quit != TRUE)
-	{
-		
-	}
+
 }
 

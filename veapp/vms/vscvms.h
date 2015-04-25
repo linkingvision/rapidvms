@@ -42,6 +42,7 @@ public:
     :m_Quit(FALSE)
     {
 	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+	memcpy(&m_pParam, &pParam, sizeof(VSCVmsDataItem));
     }
     ~VSCVMSOAPIThread()
     {
