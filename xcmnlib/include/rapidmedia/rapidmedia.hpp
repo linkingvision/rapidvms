@@ -24,6 +24,8 @@ public:
 
 	BOOL Start();
 	BOOL Stop();
+	BOOL StartRaw();
+	BOOL StopRaw();
 
 public:
 	RapidMediaData * m_data;
