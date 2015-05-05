@@ -5,6 +5,7 @@
 #include <mutex>
 #include <list>
 #include <memory>
+#include "cppkit/os/ck_exports.h"
 
 extern "C"
 {
@@ -15,7 +16,7 @@ extern "C"
 namespace ffkit
 {
 
-class locky
+class CK_API locky
 {
 public:
     static void register_ffmpeg();
