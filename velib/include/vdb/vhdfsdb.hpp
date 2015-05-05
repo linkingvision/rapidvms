@@ -2,7 +2,7 @@
 #define __V_HDFS_DB_HPP__
 #include "utility.hpp"
 #include "debug.hpp"
-#include "videotype.hpp"
+#include "utility/videotype.hpp"
 
 using namespace UtilityLib;
 

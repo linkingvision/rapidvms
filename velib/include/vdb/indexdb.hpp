@@ -2,7 +2,7 @@
 #define __INDEX_DB_HPP__
 #include "utility.hpp"
 #include "Poco/Data/Session.h"
-#include "videotype.hpp"
+#include "utility/videotype.hpp"
 
 
 using namespace UtilityLib;

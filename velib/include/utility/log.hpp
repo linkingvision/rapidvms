@@ -20,8 +20,6 @@
 using namespace tthread;
 using namespace LIBCLI;
 
-typedef std::string astring;
-
 namespace UtilityLib
 {
 }

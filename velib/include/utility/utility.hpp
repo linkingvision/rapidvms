@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "tinythread.h"
-#include "fast_mutex.h"
+#include "utility/tinythread.h"
+#include "utility/fast_mutex.h"
 
 #include <iostream>
 #include <sstream>
@@ -20,7 +20,7 @@
 
 #include <winsock2.h>
 #include <Ws2tcpip.h>
-#include "type.hpp"
+#include "utility/type.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <io.h>

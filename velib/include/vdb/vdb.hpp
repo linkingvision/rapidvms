@@ -2,7 +2,7 @@
 #define __VDB_HPP__
 #include "utility.hpp"
 #include "debug.hpp"
-#include "videotype.hpp"
+#include "utility/videotype.hpp"
 #include "recordsession.hpp"
 #include "pbsession.hpp"
 #include "indexdb.hpp"

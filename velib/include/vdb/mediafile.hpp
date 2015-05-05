@@ -2,7 +2,7 @@
 #define __MEDIA_FILE_HPP__
 #include "utility.hpp"
 #include "vdbfile.hpp"
-#include "videotype.hpp"
+#include "utility/videotype.hpp"
 
 typedef enum
 {
