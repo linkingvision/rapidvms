@@ -44,6 +44,7 @@ typedef enum __VideoStreamType
 	VIDEO_STREAM_AUDIO,
 	VIDEO_STREAM_INFO,
 	VIDEO_STREAM_TEXT,
+	VIDEO_STREAM_END,
 	VIDEO_STREAM_LAST
 }VideoStreamType;
 
@@ -53,10 +54,11 @@ typedef enum __CodecType
         CODEC_H265 = 98,
         CODEC_MPEG4 = 97,
         CODEC_MJPEG = 26,
-        CODEC_PCMA = 8,
         CODEC_PCMU = 0, 
+        CODEC_PCMA = 8,
         CODEC_G711A = 19,
         CODEC_G711U = 20, 
+        CODEC_AAC = 100,
         CODEC_LAST = 1000
 }CodecType;
 
@@ -121,6 +123,28 @@ typedef struct __InfoFrameI /* All I frame use thie */
 	u32 padding4;
 	u16 padding5;
 }InfoFrameI;
+
+
+typedef struct __InfoFrame
+{
+        CodecType video;
+        u32 vWidth;
+        u32 vHeight;
+        u32 vFps;
+        CodecType audio;
+        u32 aRate;
+        u32 aBitrate;
+        u32 aChannels;
+        u32 aBitspersample;
+        u32 padding1;
+        u32 padding2;
+        u32 padding3;
+        u32 padding4;
+        u32 padding5;
+        u32 padding6;
+        u32 padding7;
+        u32 padding8;
+}InfoFrame;
 
 
 #define MF_FILE_MAX_LENGTH 16 * 1024 * 1024
