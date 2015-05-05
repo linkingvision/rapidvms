@@ -3,13 +3,14 @@
 #define __ffkit_av_packet_h
 
 #include "cppkit/ck_types.h"
+#include "cppkit/os/ck_exports.h"
 
 class av_packet_test;
 
 namespace ffkit
 {
 
-class av_packet
+class CK_API av_packet
 {
     friend class ::av_packet_test;
 
