@@ -50,15 +50,16 @@ typedef enum __VideoStreamType
 
 typedef enum __CodecType
 {
-        CODEC_H264 = 96,
-        CODEC_H265 = 98,
-        CODEC_MPEG4 = 97,
-        CODEC_MJPEG = 26,
         CODEC_PCMU = 0, 
         CODEC_PCMA = 8,
         CODEC_G711A = 19,
         CODEC_G711U = 20, 
+        CODEC_H264 = 96,
+        CODEC_H265 = 98,
+        CODEC_MPEG4 = 97,
+        CODEC_MJPEG = 26,
         CODEC_AAC = 100,
+        CODEC_NONE = 254,
         CODEC_LAST = 1000
 }CodecType;
 
@@ -69,6 +70,7 @@ typedef enum __VideoFrameType
     VIDEO_FRM_P = 2,
     VIDEO_FRM_B = 3,
     VIDEO_FRM_INFO = 4,
+    VIDEO_FRM_AUDIO = 5,
     VIDEO_FRM_LAST
 } VideoFrameType;
 
@@ -101,16 +103,16 @@ typedef enum __VideoSeqType
 
 typedef struct __InfoFrameP /* All P frame use this */
 {
-	u16 video;/* CodecType */
-	u16 audio;/* CodecType */
-	u32 padding1;
+	u8 video;/* CodecType */
+	u8 audio;/* CodecType */
+	u16 padding1;
 }InfoFrameP;
 
 typedef struct __InfoFrameI /* All I frame use thie */
 {
-	u16 video;/* CodecType */
-	u16 audio;/* CodecType */
-	u32 padding0;
+	u8 video;/* CodecType */
+	u8 audio;/* CodecType */
+	u16 padding0;
 	u16 vFps;
 	u32 vWidth;
 	u32 vHeight;
