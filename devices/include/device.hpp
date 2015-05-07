@@ -93,7 +93,10 @@ public:
 	{
 		memset(&m_Conf, 0, sizeof(m_Conf));
 		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-		m_strUrl = pParam.m_strUrl;
+		if (pParam.m_strUrl.length() > 0)
+		{
+			m_strUrl = pParam.m_strUrl;
+		}
 		m_strUrlSubStream = pParam.m_strUrlSubStream;
 		m_bHasSubStream = pParam.m_bHasSubStream;
 		m_bOnvifUrlGetted = pParam.m_bOnvifUrlGetted;
