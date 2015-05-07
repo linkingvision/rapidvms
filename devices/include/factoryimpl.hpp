@@ -1729,7 +1729,12 @@ inline void Factory::run()
 			{	
 				s32 nIndex = (*it).first;
 				DeviceParam pParam;
-				m_DeviceMap[nIndex]->GetDeviceParam(pParam);
+				Device *pDevice = m_DeviceMap[nIndex];
+				if (pDevice == NULL)
+				{
+					continue;//TODO
+				}
+				pDevice->GetDeviceParam(pParam);
 				paramMap[nIndex] = pParam;
 			}
 			UnLock();
