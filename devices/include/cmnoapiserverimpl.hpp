@@ -29,10 +29,19 @@ void CmnOAPIServerSession::run()
 		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header));
 		if (nRet == sizeof(header) && server.Process(header) == TRUE)
 		{
+			printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
 			continue;
 		}else
 		{
-			break;
+			if (m_pSocket->Valid() == true)
+			{
+				printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
+				continue;
+			}else
+			{
+				printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
+				break;
+			}
 		}
 	}
 
@@ -41,7 +50,8 @@ void CmnOAPIServerSession::run()
 
 /* Below is SSL */
 OAPIServerWrapper::OAPIServerWrapper(Factory &pFactory)
-:m_cmn(pFactory), m_ssl(pFactory)
+//:m_cmn(pFactory), m_ssl(pFactory)
+:m_cmn(pFactory)
 {
 
 }
