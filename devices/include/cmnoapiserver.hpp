@@ -135,7 +135,7 @@ public:
 private:
 	fast_mutex m_Lock;
 	CmnOAPIServer m_cmn;
-	CmnOAPISSLServer m_ssl;
+	//CmnOAPISSLServer m_ssl;
 };
 
 
