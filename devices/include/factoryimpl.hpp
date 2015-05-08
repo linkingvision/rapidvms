@@ -1227,7 +1227,9 @@ inline BOOL Factory::DelDevice(s32 nIndex)
     m_DeviceMap[nIndex] = NULL;
     m_DeviceParamMap.erase(nIndex);
     m_DeviceOnlineMap.erase(nIndex);
+    int size1 = m_DeviceMap.size();
     m_DeviceMap.erase(nIndex);
+    int size2 = m_DeviceMap.size();
     m_Conf.DelDevice(nIndex);
     UnLock();
     ReleaseDeviceID(nIndex);
