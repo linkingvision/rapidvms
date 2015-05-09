@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapicmn.hpp"
 
-#define VE_VERSION "r2.0.1-20150515"
-#define VE_INFO "OpenCVR r2.0.1 2015"
+#define VE_VERSION "r1.2.1-20150515"
+#define VE_INFO "OpenCVR r1.2.1 2015"
 
 #define CONF_NAME_MAX 128
 /* support Camera num */
@@ -421,7 +421,7 @@ inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
     sprintf(item.Name, "Recorder");
 
     strcpy(item.IP, "192.168.0.1");
-    strcpy(item.Port, "80");
+    strcpy(item.Port, "9080");
     strcpy(item.User, "admin");
     strcpy(item.Password, "admin");
     strcpy(item.Param, "none");
