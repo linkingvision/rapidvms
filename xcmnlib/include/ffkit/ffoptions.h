@@ -38,6 +38,8 @@ struct codec_options
 
 CK_API struct codec_options get_fast_h264_decoder_options();
 
+CK_API struct codec_options get_fast_decoder_options();
+
 CK_API struct codec_options get_fast_h264_encoder_options( int bitRate, int picWidth, int picHeight, int gopSize, int timeBaseNum, int timeBaseDen );
 
 CK_API struct codec_options get_hls_h264_encoder_options( int bitRate, int picWidth, int picHeight, int gopSize, int timeBaseNum, int timeBaseDen );
