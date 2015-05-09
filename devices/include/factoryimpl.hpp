@@ -1217,8 +1217,10 @@ inline BOOL Factory::DelDevice(s32 nIndex)
     {
         return FALSE;
     }
+    change.id = nIndex;
+    change.type = FACTORY_DEVICE_DEL;
+    CallDeviceChange(change);
 
-    //TODO check is this device can be delete or not
     Lock();
     VDC_DEBUG( "%s Cleanup Begin\n",__FUNCTION__);
     m_DeviceMap[nIndex]->Cleanup();
@@ -1234,9 +1236,6 @@ inline BOOL Factory::DelDevice(s32 nIndex)
     UnLock();
     ReleaseDeviceID(nIndex);
 	
-    change.id = nIndex;
-    change.type = FACTORY_DEVICE_DEL;
-    CallDeviceChange(change);
     return TRUE;
 }
 
@@ -1325,6 +1324,7 @@ inline BOOL Factory::GetVmsById(VSCVmsDataItem &pParam, int nId)
 		UnLock();
 		return FALSE;
 	}
+	UnLock();
 	return TRUE;
 	
 }
