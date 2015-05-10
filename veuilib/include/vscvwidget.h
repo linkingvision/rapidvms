@@ -13,6 +13,7 @@
 #include "device.hpp"
 #include <QTimer>
 #include <QMenu>
+#include <QMimeData>
 using  namespace tthread;
 
 namespace Ui {
@@ -21,7 +22,6 @@ class VSCVWidget;
 class VSCVideoControl;
 class VSCPbThread;
 class VSCVideoInfo;
-#define  VWIDGET_OAPI_ID_OFFSET 10 * 1000
 #define  VWIDGET_ID_OFFSET 1000 * 1000
 
 class VSCVWidgetProxy;
@@ -78,6 +78,7 @@ public slots:
     void videoResizeEvent();
     void PTZEnable();
     void AutoFocus();
+    void LiveDelCallback();
 
 signals:
     void ShowDisplayClicked(int nId);
@@ -91,14 +92,13 @@ signals:
 
 
 public:
-    BOOL StartPlay(int nId);
-    BOOL StartPlayById(int nId);
-    BOOL StopPlay(BOOL bForce = FALSE);
-    BOOL StartPlayLive();
-    BOOL StopPlayLive(BOOL bForce = FALSE);
-
-    static void LiveDelCallback(void * pParam);
-    void LiveDelCallback();
+	BOOL StartPlay(int nId);
+	BOOL StartPlay(int OAPIId, int nId);
+	BOOL StartPlayById(int nId);
+	BOOL StopPlay(BOOL bForce = FALSE);
+	BOOL StartPlayLive();
+	BOOL StopPlayLive(BOOL bForce = FALSE);
+    
     int GetPlayId();
     void LivePlayControlUI();
     void InstantPbControlUI();
@@ -160,6 +160,20 @@ private:
 	QAction *m_pControlEnable;
 	QMenu * popupMenu;
     
+};
+
+class VE_LIBRARY_API VSCQMimeOAPI : public QMimeData
+{
+public:
+	VSCQMimeOAPI(int OAPIId, int DeviceId)
+	: nOAPIId(OAPIId),nDeviceId(DeviceId)
+	{
+	}
+	~VSCQMimeOAPI(){}
+public:
+	int nDeviceId;/* Remote Camera ID */
+	int nOAPIId;/* Remote OpenCVR ID */
+	
 };
 
 #endif // QT_VSC_V_WIDGET_H
