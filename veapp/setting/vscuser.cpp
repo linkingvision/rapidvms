@@ -4,6 +4,8 @@
 #include "debug.hpp"
 #include "vschddone.h"
 #include "factory.hpp"
+#include "vscloading.hpp"
+
 
 extern Factory *gFactory;
 
@@ -50,7 +52,11 @@ void VSCUser::applyConfig()
 		{
 			strcpy(m_Param.data.conf.Passwd, strPasswd.c_str());
 		}
+		VSCLoading *loading = new VSCLoading(this);
+		loading->Processing(3);
 		gFactory->SetUserData(m_Param);
+		
+		delete loading;
 		return;
 	}
 
