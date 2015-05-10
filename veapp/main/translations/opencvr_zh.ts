@@ -1258,7 +1258,7 @@
     <message>
         <location filename="../../setting/vscsetting.ui" line="111"/>
         <source>Hadoop</source>
-        <translation type="unfinished">大树据</translation>
+        <translation type="unfinished">大数据</translation>
     </message>
     <message>
         <location filename="../../setting/vscsetting.ui" line="115"/>
