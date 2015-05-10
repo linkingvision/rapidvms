@@ -18,6 +18,8 @@ class VE_LIBRARY_API VSCLoading : public QWidget
 public:
 	VSCLoading(QWidget *parent);
 	~VSCLoading();
+public:
+	void Processing(int cnt);
 private:
 	QLabel * m_label;
 	QMovie * m_movie;
