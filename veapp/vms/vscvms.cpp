@@ -149,18 +149,15 @@ void VSCVMSOAPIThread::run()
 				nRet = pSocket->Recv((void *)&header, sizeof(header));
 				if (nRet != sizeof(header))
 				{
-					printf("%s---%d\n", __FILE__, __LINE__);
 					if (pSocket->Valid() == true)
 					{
-						printf("%s---%d\n", __FILE__, __LINE__);
 						continue;
 					}else
 					{
-						printf("%s---%d\n", __FILE__, __LINE__);
 						break;
 					}
 				}
-				printf("%s---%d\n", __FILE__, __LINE__);
+				//printf("%s---%d\n", __FILE__, __LINE__);
 
 				header.version = ntohl(header.version);
 				header.cmd = ntohl(header.cmd);
