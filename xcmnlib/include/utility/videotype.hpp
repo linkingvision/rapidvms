@@ -89,6 +89,7 @@ typedef struct __VideoFrameHeader
 {
 	u32 streamType; /* VideoStreamType */
  	u32 frameType; /* VideoFrameType */
+	u32 seq;/* seq for frame lost */
  	u32 secs;       /* timestamp in seconds */
 	u32 msecs;      /* timestamp in mseconds */
 	u32 dataLen;
