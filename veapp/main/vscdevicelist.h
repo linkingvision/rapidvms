@@ -58,10 +58,10 @@ public:
 	void AddDisk(astring strTitle);
 	void AddVGroup(VSCVGroupDataItem &pParam);
 	void RemoveAllCamera();
-	void CameraTreeUpdated();
-	void VIPCTreeUpdated();
 
 public slots:
+	void CameraTreeUpdated();
+	void VIPCTreeUpdated();
 	void SurveillanceClick();
 	void CameraAddClick();
 	void EmapClick();

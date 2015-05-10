@@ -6,6 +6,7 @@
 #include "vscdeviceipc.h"
 #include <QPainter>
 #include "vscdevicelist.h"
+#include "vscvwidget.h"
 
 extern Factory *gFactory;
 
@@ -231,27 +232,23 @@ void VSCDeviceTree::contextMenuEvent(QContextMenuEvent * event)
 
 void VSCDeviceTree::mousePressEvent(QMouseEvent *event)
 {
-	VDC_DEBUG( "%s \n",__FUNCTION__);
-	// Get current selection
 	QTreeWidgetItem *selectedItem = currentItem();
-	
-    if (event->buttons() & Qt::RightButton)
-    {
-        return;
-    }
+
+	if (event->buttons() & Qt::RightButton)
+	{
+		return;
+	}
 	// If the selected Item exists
 	if (selectedItem)
 	{
 		VSCDeviceIPC *pIpc = dynamic_cast<VSCDeviceIPC * >(selectedItem);
-	    //VSCDeviceIPC *pIpc = (VSCDeviceIPC * )(selectedItem);
-        // Create data
 		if (pIpc)
 		{
-		    u32 nId = pIpc->GetDeviceId();
-		    VDC_DEBUG( "%s id %d\n",__FUNCTION__, nId);
+			u32 nId = pIpc->GetDeviceId();
+			VDC_DEBUG( "%s id %d\n",__FUNCTION__, nId);
 			QMimeData *mimeData = new QMimeData();
 			mimeData->setText(QString::number(nId));
-			
+
 			// Create drag
 			QPixmap pixmap(":/device/resources/camera1.png");
 			QPainter painter(&pixmap);
@@ -259,8 +256,30 @@ void VSCDeviceTree::mousePressEvent(QMouseEvent *event)
 			QDrag *drag = new QDrag(this);
 			drag->setMimeData(mimeData);
 			drag->setPixmap(pixmap);
-                      drag->setHotSpot(QPoint(drag->pixmap().width()/2,
-                             drag->pixmap().height()/2));
+			      drag->setHotSpot(QPoint(drag->pixmap().width()/2,
+			             drag->pixmap().height()/2));
+			drag->exec();
+			QTreeWidget::mousePressEvent(event);
+			return ;
+		}
+
+		VSCDeviceIPCOAPI *pIPCOAPI = dynamic_cast<VSCDeviceIPCOAPI * >(selectedItem);
+		if (pIPCOAPI)
+		{
+			u32 nId = pIPCOAPI->GetDeviceId();
+			u32 nOAPIId = pIPCOAPI->GetVMSId();
+			VDC_DEBUG( "%s id %d oapi id\n",__FUNCTION__, nId, nOAPIId);
+			QMimeData *mimeData = new VSCQMimeOAPI(nOAPIId, nId);
+
+			// Create drag
+			QPixmap pixmap(":/device/resources/camera1.png");
+			QPainter painter(&pixmap);
+
+			QDrag *drag = new QDrag(this);
+			drag->setMimeData(mimeData);
+			drag->setPixmap(pixmap);
+			      drag->setHotSpot(QPoint(drag->pixmap().width()/2,
+			             drag->pixmap().height()/2));
 			drag->exec();
 			QTreeWidget::mousePressEvent(event);
 			return ;
