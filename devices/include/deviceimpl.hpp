@@ -320,6 +320,8 @@ Device::~Device()
 	        pFunc(pParam);
 	    }
 	}
+	SubUnLock();
+	UnLock();
 
 	m_vPlay.StopGetData();
 	m_vPlay.StopGetRawFrame();
@@ -332,6 +334,9 @@ Device::~Device()
 		delete m_pHdfsRecord;
 		m_pHdfsRecord = NULL;
 	}
+	
+	Lock();
+	SubLock();
 	
 	if (m_pRecord)
 	{
