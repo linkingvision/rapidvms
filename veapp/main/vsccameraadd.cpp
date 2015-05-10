@@ -1,6 +1,7 @@
 #include "vsccameraadd.h"
 #include "vscvwidget.h"
 #include <QFileDialog>
+#include "vscloading.hpp"
 
 extern Factory *gFactory;
 
@@ -92,12 +93,14 @@ void VSCCameraAdd::fileSelect()
 
 void VSCCameraAdd::PreView()
 {
-    if (m_nId <= 0)
-    {
-        return;
-    }
-    m_pVideo->StopPlay();
+	if (m_nId <= 0)
+	{
+	    return;
+	}
+	m_pVideo->StopPlay(TRUE);
+	QCoreApplication::processEvents();
 	m_pVideo->StartPlay(m_nId);
+	QCoreApplication::processEvents();
 
 }
 
@@ -227,7 +230,9 @@ void VSCCameraAdd::applyConfig()
 	    m_Param.m_Conf.data.conf.Mining = 0;
 	}
 
-
+	VSCLoading *loading = new VSCLoading(this);
+	loading->Processing(1);
+	
 	if (m_nId > 0)
 	{
 	    gFactory->DelDevice(m_nId);
@@ -235,11 +240,12 @@ void VSCCameraAdd::applyConfig()
 	VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
 	/* m_nId <= 0 is Add Camera Device */
 	m_nId = gFactory->AddDevice(m_Param);
-
+	
+	QCoreApplication::processEvents();
 	VDC_DEBUG( "%s  ID %d\n",__FUNCTION__, m_nId);
-	//PreView();
+	PreView();
 	VDC_DEBUG( "%s  Line %d\n",__FUNCTION__, __LINE__);
-	//emit CameraTreeUpdated();
+	delete loading;
 }
 
 void VSCCameraAdd::mouseDoubleClickEvent(QMouseEvent *e)

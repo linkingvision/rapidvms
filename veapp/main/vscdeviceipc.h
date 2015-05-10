@@ -1,5 +1,3 @@
-
-
 #ifndef VSCDEVICE_IPC_H
 #define VSCDEVICE_IPC_H
 
