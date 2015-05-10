@@ -202,7 +202,7 @@ inline void OAPIServer::DataHandler1(VideoFrame& frame)
 	frameHeader.msecs = htonl(frame.msecs);
 	frameHeader.dataLen = htonl(frame.dataLen);
 
-	printf("Send a new frame %d\n", m_cnt++);
+	//printf("Send a new frame %d\n", m_cnt++);
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)&frameHeader, sizeof(frameHeader));
 	m_pSocket->Send((void *)frame.dataBuf, frame.dataLen);
