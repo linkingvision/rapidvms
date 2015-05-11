@@ -1,6 +1,8 @@
 # OpenCVR #
 #### open source ONVIF Video Recorder ####
 
+[https://github.com/xsmart/opencvr/wiki/OpenCVR-Wiki](https://github.com/xsmart/opencvr/wiki/OpenCVR-Wiki "Wiki")
+
 ----------
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/arch/arch.png)
 
