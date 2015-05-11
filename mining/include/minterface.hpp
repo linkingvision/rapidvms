@@ -9,6 +9,7 @@
 #define __M_INTERFACE_HPP__
 #include "utility.hpp"
 #include "videotype.hpp"
+#include "hdfsrecsession.hpp"
 #include "miningtype.hpp"
 
 using namespace std;
