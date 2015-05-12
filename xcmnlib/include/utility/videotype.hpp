@@ -28,7 +28,16 @@
 #define VE_PIX_FMT_BGR     (('B'<<24)|('G'<<16)|('R'<<8))
 #define VE_PIX_FMT_BGR8    (VE_PIX_FMT_BGR|8)
 
+typedef enum __VideoRawType
+{
+	VIDEO_RAW_VIDEO = 1,
+	VIDEO_RAW_AUDIO,
+	VIDEO_RAW_TEXT,
+	VIDEO_RAW_LAST
+}VideoRawType;
+
 typedef struct __RawFrame {
+	VideoRawType type;
  	u32 secs;       /* timestamp in seconds */
 	u32 msecs;      /* timestamp in mseconds */
 #define VE_NUM_POINTERS 8
