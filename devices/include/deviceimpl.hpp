@@ -66,6 +66,19 @@ DeviceParam::DeviceParam()
 	m_Online = FALSE;
 	m_OnlineUrl = FALSE;
 
+	astring IP = m_Conf.data.conf.IP;
+	m_strUrl = "rtsp://" + IP + ":" + "554" + "/Streaming";
+	m_strUrlSubStream = "rtsp://" + IP + ":" + "554" + "/Streaming";
+
+}
+
+BOOL DeviceParam::UpdateDefaultUrl()
+{
+	astring IP = m_Conf.data.conf.IP;
+	m_strUrl = "rtsp://" + IP + ":" + "554" + "/Streaming";
+	m_strUrlSubStream = "rtsp://" + IP + ":" + "554" + "/Streaming";
+
+	return TRUE;
 }
 
 DeviceParam::DeviceParam(VSCDeviceData &pData)
@@ -300,6 +313,7 @@ m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream)
 	}
 	
 	m_param = pParam;
+	m_param.UpdateDefaultUrl();
 	return ;
 }
 
