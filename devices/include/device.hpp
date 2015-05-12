@@ -108,6 +108,7 @@ public:
 	inline BOOL UpdateUrl();
 	inline BOOL UpdateUrlOnvif();
 	inline BOOL CheckOnline();
+	inline BOOL UpdateDefaultUrl();
 
 public:
 	VSCDeviceData m_Conf;
