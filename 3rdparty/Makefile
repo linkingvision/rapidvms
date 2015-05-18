@@ -1,18 +1,19 @@
+-include ../common.mk
 all:poco_build ffmpeg_build openssl_build leveldb_build onvifc_build
 
 clean:distclean
 distclean:poco_clean ffmpeg_clean openssl_clean leveldb_clean onvifc_clean
 
 poco_build:
-	cd poco; chmod +x ./configure; chmod +x ./build/script/*; ./configure --no-tests --no-samples --omit=Data/ODBC,Data/MySQL,Crypto,MongoDB,NetSSL_OpenSSL,CppUnit,PDF --prefix=$(VE_PATH)/linux;
+	cd poco; chmod +x ./configure; chmod +x ./build/script/*; ./configure --no-tests --no-samples --omit=Data/ODBC,Data/MySQL,Crypto,MongoDB,NetSSL_OpenSSL,CppUnit,PDF --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C poco && $(MAKE) -C poco install;
 
 ffmpeg_build:
-	cd ffmpeg; chmod +x ./configure; chmod +x version.sh; ./configure  --disable-vaapi --disable-programs  --disable-static --enable-shared --prefix=$(VE_PATH)/linux;
+	cd ffmpeg; chmod +x ./configure; chmod +x version.sh; ./configure  --disable-vaapi --disable-programs  --disable-static --enable-shared --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C ffmpeg && $(MAKE) -C ffmpeg install;
 
 openssl_build:
-	cd openssl-linux; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/linux -fPIC;
+	cd openssl-linux; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
 	$(MAKE) -C openssl-linux && $(MAKE) -C openssl-linux install;
 leveldb_build:
 	cd leveldb; chmod +x ./build_detect_platform;
