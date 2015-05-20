@@ -17,7 +17,7 @@
 #### Release Version ####
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 
-### Functions ###
+### Features list ###
 	ONVIF profile S support.
     Unlimited timeline playback.
 	Anti file system fragment recording system.
@@ -26,9 +26,10 @@
 	PTZ Support
 	ONVIF ProfileS simulator
 	Emap
-	Data Mining
+	Data Mining Framework 
 	HDFS Video Recording
 	Intel Media SDK HW accel
+	MJPEG/MPEG4/H264/H265 support
 
 ## Install ##
 #### Windows ####
