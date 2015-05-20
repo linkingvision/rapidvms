@@ -80,7 +80,12 @@ char* get_time_str(char* p, size_t len)
 {
     const uint64_t thread_id = DfsEnv::gettid();
     struct timeval now_tv;
+#ifdef LEVELDB_PLATFORM_WINDOWS
 	tera::gettimeofday(&now_tv, NULL);
+#endif
+#ifdef LEVELDB_PLATFORM_POSIX
+        gettimeofday(&now_tv, NULL);
+#endif
     const time_t seconds = now_tv.tv_sec;
     struct tm t;
 #ifdef LEVELDB_PLATFORM_POSIX
@@ -481,9 +486,13 @@ void InitNfsEnv(const std::string& mountpoint,
     if (inited) {
         return;
     }
+#ifndef LEVELDB_PLATFORM_POSIX
+   dfs_env = NULL;
+#else
     Nfs::Init(mountpoint, conf_path);
     Dfs* dfs = Nfs::GetInstance();
     dfs_env = new DfsEnv(dfs);
+#endif
     inited = true;
 }
 
