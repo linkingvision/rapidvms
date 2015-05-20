@@ -17,7 +17,8 @@ openssl_build:
 	$(MAKE) -C openssl-linux && $(MAKE) -C openssl-linux install;
 leveldb_build:
 	cd leveldb; chmod +x ./build_detect_platform;
-	$(MAKE) -C leveldb; 
+	$(MAKE) -C leveldb;
+	rm -rf ./leveldb/libleveldb.so* 
 onvifc_build:
 	cd onvifc/prj_linux/ ; qmake .;
 	$(MAKE) -C onvifc/prj_linux; 
