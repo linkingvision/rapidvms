@@ -1,1 +1,0 @@
-Pre build velib veuilib for linux android MacOS
