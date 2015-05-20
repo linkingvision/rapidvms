@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DLINUX_OS -DQT_DLL -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_NETWORK_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DQT_SQL_LIB -DQT_CONCURRENT_LIB -DQT_HELP_LIB -DQT_PRINTSUPPORT_LIB -DQT_SCRIPT_LIB -DQT_SVG_LIB -DQT_WEBKITWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DQT_NO_BLUEZ -DQT_NO_UDEV -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_PRINTSUPPORT_LIB -DQT_HELP_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_XMLPATTERNS_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SCRIPT_LIB -DQT_DBUS_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
 CXXFLAGS      = -pipe -std=c++11 -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-INCPATH       = -I../../../../Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I. -IGeneratedFiles -I. -I./GeneratedFiles/Debug -I../main -I./../playback -I./../vwidget -I../../devices/include -I../../mining/include -I../../3rdparty/leveldb/include -I./../../utility -I../../3rdparty/poco/Foundation/include -I../../3rdparty/poco/Net/include -I../../3rdparty/poco/Util/include -I../../3rdparty/onvifc/include -I../../velib/include -I../../velib/include/vplay -I../../velib/include/utility -I../../velib/include/vdb -I../../veuilib/include -I../../3rdparty/poco/Data/include -I../../3rdparty/poco/Data/SQLite/include -I./../recorder -I../setting -I./../event -I./../systeminfo -I../disk -I../vms -I../../3rdparty/openssl-linux/include -I../../../../Qt5.4.0/5.4/gcc_64/include -I../../../../Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp -I../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets -I../../../../Qt5.4.0/5.4/gcc_64/include/QtGui -I../../../../Qt5.4.0/5.4/gcc_64/include/QtSql -I../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I../../../../Qt5.4.0/5.4/gcc_64/include/QtQml -I../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork -I../../../../Qt5.4.0/5.4/gcc_64/include/QtXml -I../../../../Qt5.4.0/5.4/gcc_64/include/QtScript -I../../../../Qt5.4.0/5.4/gcc_64/include/QtDBus -I../../../../Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I../../../../Qt5.4.0/5.4/gcc_64/include/QtCore -IGeneratedFiles/debug -IGeneratedFiles
+INCPATH       = -I../../../../Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I. -IGeneratedFiles -I. -I./GeneratedFiles/Debug -I../main -I./../playback -I./../vwidget -I../../devices/include -I../../mining/include -I../../3rdparty/leveldb/include -I./../../utility -I../../3rdparty/poco/Foundation/include -I../../3rdparty/poco/Net/include -I../../3rdparty/poco/Util/include -I../../3rdparty/onvifc/include -I../../velib/include -I../../velib/include/vplay -I../../velib/include/utility -I../../velib/include/vdb -I../../xcmnlib/include -I../../xcmnlib/include/utility -I../../veuilib/include -I../../3rdparty/poco/Data/include -I../../3rdparty/poco/Data/SQLite/include -I../../3rdparty/autojsoncxx/include -I../../3rdparty/autojsoncxx/rapidjson/include -I../../oapi -I./../recorder -I../setting -I./../event -I./../systeminfo -I../disk -I../vms -I../../3rdparty/openssl-linux/include -I../../../../Qt5.4.0/5.4/gcc_64/include -I../../../../Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I../../../../Qt5.4.0/5.4/gcc_64/include/QtHelp -I../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets -I../../../../Qt5.4.0/5.4/gcc_64/include/QtGui -I../../../../Qt5.4.0/5.4/gcc_64/include/QtSql -I../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I../../../../Qt5.4.0/5.4/gcc_64/include/QtQml -I../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork -I../../../../Qt5.4.0/5.4/gcc_64/include/QtXml -I../../../../Qt5.4.0/5.4/gcc_64/include/QtScript -I../../../../Qt5.4.0/5.4/gcc_64/include/QtDBus -I../../../../Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I../../../../Qt5.4.0/5.4/gcc_64/include/QtCore -IGeneratedFiles/debug -IGeneratedFiles
 QMAKE         = /home/user/Qt5.4.0/5.4/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = OpenCVR1.0.0
 DISTDIR = /home/user/work/opencvr/veapp/prj_linux/debug/OpenCVR1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/user/Qt5.4.0/5.4/gcc_64 -Wl,-rpath,/home/user/Qt5.4.0/5.4/gcc_64/lib -Wl,-rpath-link,/home/user/Qt5.4.0/5.4/gcc_64/lib
-LIBS          = $(SUBLIBS) -L./../../3rdparty/leveldb/ -L./../../velib/lib/linux/ -L./Debug -L./../../3rdparty/openssl-linux/ -L./../../3rdparty/onvifc/prj_linux/lib -L../../linux/lib -lavcodec -lavformat -lavutil -lswscale -lleveldb -lonvifc -lvelib -lveuilib -lPocoFoundation -lssl -lcrypto -ldl -L/home/user/Qt5.4.0/5.4/gcc_64/lib -lQt5PrintSupport -lQt5Help -lQt5Widgets -lQt5Gui -lQt5Sql -lQt5XmlPatterns -lQt5Qml -lQt5Network -lQt5Xml -lQt5Script -lQt5DBus -lQt5Concurrent -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L./../../3rdparty/leveldb/ -L./Debug -L./../../3rdparty/openssl-linux/ -L./../../3rdparty/onvifc/prj_linux/lib -L../../output/Ubuntu-14.04-64bit/lib -lcmnlib -lavcodec -lavformat -lavutil -lswscale -lleveldb -lonvifc -lvelib -lveuilib -lPocoFoundation -lssl -lcrypto -ldl -L/home/user/Qt5.4.0/5.4/gcc_64/lib -lQt5PrintSupport -lQt5Help -lQt5Widgets -lQt5Gui -lQt5Sql -lQt5XmlPatterns -lQt5Qml -lQt5Network -lQt5Xml -lQt5Script -lQt5DBus -lQt5Concurrent -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,13 +52,8 @@ SOURCES       = ../disk/vschdddevice.cpp \
 		../disk/vschddedit.cpp \
 		../disk/vschddone.cpp \
 		../disk/vschddoneedit.cpp \
-		../vms/vscrecorder.cpp \
-		../vms/vscrecorderadd.cpp \
-		../vms/vscrecorderone.cpp \
-		../vms/vscrecorderpanel.cpp \
 		../vms/vscsiteadd.cpp \
 		../vms/vscvms.cpp \
-		../vms/vsczbtreeitem.cpp \
 		../main/main.cpp \
 		../main/vsccameraadd.cpp \
 		../main/vscdeviceipc.cpp \
@@ -77,13 +72,13 @@ SOURCES       = ../disk/vschdddevice.cpp \
 		../main/vscviewconf.cpp \
 		../main/vscvipc.cpp \
 		../main/vscvipcadd.cpp \
+		../setting/switchbutton.cpp \
 		../setting/vschdfsrecord.cpp \
 		../setting/vsclanguage.cpp \
 		../setting/vsclicense.cpp \
 		../setting/vsclogin.cpp \
 		../setting/vscminingsetting.cpp \
 		../setting/vscoapi.cpp \
-		../setting/vscrecorderconf.cpp \
 		../setting/vscrtsprtp.cpp \
 		../setting/vscsetting.cpp \
 		../setting/vscuser.cpp \
@@ -107,22 +102,17 @@ SOURCES       = ../disk/vschdddevice.cpp \
 		GeneratedFiles/debug/moc_vscviewconf.cpp \
 		GeneratedFiles/debug/moc_vscvipcadd.cpp \
 		GeneratedFiles/debug/moc_cmnserver.cpp \
+		GeneratedFiles/debug/moc_cmnoapiserver.cpp \
 		GeneratedFiles/debug/moc_factory.cpp \
 		GeneratedFiles/debug/moc_vschdddevice.cpp \
 		GeneratedFiles/debug/moc_vschddone.cpp \
 		GeneratedFiles/debug/moc_vschddedit.cpp \
 		GeneratedFiles/debug/moc_vschddoneedit.cpp \
-		GeneratedFiles/debug/moc_vscrecorderadd.cpp \
 		GeneratedFiles/debug/moc_vscsiteadd.cpp \
 		GeneratedFiles/debug/moc_vscvms.cpp \
-		GeneratedFiles/debug/moc_vscrecorderone.cpp \
-		GeneratedFiles/debug/moc_vscrecorderpanel.cpp \
-		GeneratedFiles/debug/moc_vscrecorder.cpp \
-		GeneratedFiles/debug/moc_vsczbtreeitem.cpp \
 		GeneratedFiles/debug/moc_vscsetting.cpp \
 		GeneratedFiles/debug/moc_vsclicense.cpp \
 		GeneratedFiles/debug/moc_vscversion.cpp \
-		GeneratedFiles/debug/moc_vscrecorderconf.cpp \
 		GeneratedFiles/debug/moc_vscuser.cpp \
 		GeneratedFiles/debug/moc_vscuserstatus.cpp \
 		GeneratedFiles/debug/moc_vschdfsrecord.cpp \
@@ -132,18 +122,14 @@ SOURCES       = ../disk/vschdddevice.cpp \
 		GeneratedFiles/debug/moc_vscoapi.cpp \
 		GeneratedFiles/debug/moc_vscvideosetting.cpp \
 		GeneratedFiles/debug/moc_vscminingsetting.cpp \
+		GeneratedFiles/debug/moc_switchbutton.cpp \
 		GeneratedFiles/debug/moc_mframework.cpp
 OBJECTS       = debug/vschdddevice.o \
 		debug/vschddedit.o \
 		debug/vschddone.o \
 		debug/vschddoneedit.o \
-		debug/vscrecorder.o \
-		debug/vscrecorderadd.o \
-		debug/vscrecorderone.o \
-		debug/vscrecorderpanel.o \
 		debug/vscsiteadd.o \
 		debug/vscvms.o \
-		debug/vsczbtreeitem.o \
 		debug/main.o \
 		debug/vsccameraadd.o \
 		debug/vscdeviceipc.o \
@@ -162,13 +148,13 @@ OBJECTS       = debug/vschdddevice.o \
 		debug/vscviewconf.o \
 		debug/vscvipc.o \
 		debug/vscvipcadd.o \
+		debug/switchbutton.o \
 		debug/vschdfsrecord.o \
 		debug/vsclanguage.o \
 		debug/vsclicense.o \
 		debug/vsclogin.o \
 		debug/vscminingsetting.o \
 		debug/vscoapi.o \
-		debug/vscrecorderconf.o \
 		debug/vscrtsprtp.o \
 		debug/vscsetting.o \
 		debug/vscuser.o \
@@ -193,22 +179,17 @@ OBJECTS       = debug/vschdddevice.o \
 		debug/moc_vscviewconf.o \
 		debug/moc_vscvipcadd.o \
 		debug/moc_cmnserver.o \
+		debug/moc_cmnoapiserver.o \
 		debug/moc_factory.o \
 		debug/moc_vschdddevice.o \
 		debug/moc_vschddone.o \
 		debug/moc_vschddedit.o \
 		debug/moc_vschddoneedit.o \
-		debug/moc_vscrecorderadd.o \
 		debug/moc_vscsiteadd.o \
 		debug/moc_vscvms.o \
-		debug/moc_vscrecorderone.o \
-		debug/moc_vscrecorderpanel.o \
-		debug/moc_vscrecorder.o \
-		debug/moc_vsczbtreeitem.o \
 		debug/moc_vscsetting.o \
 		debug/moc_vsclicense.o \
 		debug/moc_vscversion.o \
-		debug/moc_vscrecorderconf.o \
 		debug/moc_vscuser.o \
 		debug/moc_vscuserstatus.o \
 		debug/moc_vschdfsrecord.o \
@@ -218,6 +199,7 @@ OBJECTS       = debug/vschdddevice.o \
 		debug/moc_vscoapi.o \
 		debug/moc_vscvideosetting.o \
 		debug/moc_vscminingsetting.o \
+		debug/moc_switchbutton.o \
 		debug/moc_mframework.o
 DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.4.0/5.4/gcc_64/mkspecs/common/shell-unix.conf \
@@ -360,6 +342,7 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../main/vscipcgroupmap.h \
 		../main/vscviewconf.h \
 		../main/vscvipcadd.h \
+		../../devices/include/cmnoapiserverimpl.hpp \
 		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/conf.hpp \
 		../../devices/include/confdb.hpp \
@@ -369,22 +352,17 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../devices/include/hdddevice.hpp \
 		../../devices/include/sysdb.hpp \
 		../../devices/include/cmnserver.hpp \
+		../../devices/include/cmnoapiserver.hpp \
 		../../devices/include/factory.hpp \
 		../disk/vschdddevice.h \
 		../disk/vschddone.h \
 		../disk/vschddedit.h \
 		../disk/vschddoneedit.h \
-		../vms/vscrecorderadd.h \
 		../vms/vscsiteadd.h \
 		../vms/vscvms.h \
-		../vms/vscrecorderone.h \
-		../vms/vscrecorderpanel.h \
-		../vms/vscrecorder.h \
-		../vms/vsczbtreeitem.h \
 		../setting/vscsetting.h \
 		../setting/vsclicense.h \
 		../setting/vscversion.h \
-		../setting/vscrecorderconf.h \
 		../setting/vscuser.h \
 		../setting/vscuserstatus.h \
 		../setting/vschdfsrecord.h \
@@ -394,6 +372,7 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../setting/vscoapi.h \
 		../setting/vscvideosetting.h \
 		../setting/vscminingsetting.h \
+		../setting/switchbutton.h \
 		../../mining/include/mframeworkimpl.hpp \
 		../../mining/include/minterface.hpp \
 		../../mining/include/minterfacemgr.hpp \
@@ -404,13 +383,8 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../disk/vschddedit.cpp \
 		../disk/vschddone.cpp \
 		../disk/vschddoneedit.cpp \
-		../vms/vscrecorder.cpp \
-		../vms/vscrecorderadd.cpp \
-		../vms/vscrecorderone.cpp \
-		../vms/vscrecorderpanel.cpp \
 		../vms/vscsiteadd.cpp \
 		../vms/vscvms.cpp \
-		../vms/vsczbtreeitem.cpp \
 		../main/main.cpp \
 		../main/vsccameraadd.cpp \
 		../main/vscdeviceipc.cpp \
@@ -429,13 +403,13 @@ DIST          = ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../main/vscviewconf.cpp \
 		../main/vscvipc.cpp \
 		../main/vscvipcadd.cpp \
+		../setting/switchbutton.cpp \
 		../setting/vschdfsrecord.cpp \
 		../setting/vsclanguage.cpp \
 		../setting/vsclicense.cpp \
 		../setting/vsclogin.cpp \
 		../setting/vscminingsetting.cpp \
 		../setting/vscoapi.cpp \
-		../setting/vscrecorderconf.cpp \
 		../setting/vscrtsprtp.cpp \
 		../setting/vscsetting.cpp \
 		../setting/vscuser.cpp \
@@ -469,7 +443,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscrecorderadd.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscrecorderone.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscrecorderconf.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdfsrecord.h GeneratedFiles/ui_vscrtsprtp.h GeneratedFiles/ui_vsclanguage.h GeneratedFiles/ui_vsclogin.h GeneratedFiles/ui_vscoapi.h GeneratedFiles/ui_vscvideosetting.h GeneratedFiles/ui_vscminingsetting.h $(OBJECTS)  
+$(TARGET): GeneratedFiles/ui_vscview.h GeneratedFiles/ui_vscmainwindows.h GeneratedFiles/ui_vscdevicelist.h GeneratedFiles/ui_vsccameraadd.h GeneratedFiles/ui_vscsearch.h GeneratedFiles/ui_vscplaycontrol.h GeneratedFiles/ui_vscplayback.h GeneratedFiles/ui_vsctoolbar.h GeneratedFiles/ui_vscvipcadd.h GeneratedFiles/ui_vscipcgroupconf.h GeneratedFiles/ui_vscipcgroupmap.h GeneratedFiles/ui_vscviewconf.h GeneratedFiles/ui_vschdddevice.h GeneratedFiles/ui_vschddone.h GeneratedFiles/ui_vschddedit.h GeneratedFiles/ui_vschddoneedit.h GeneratedFiles/ui_vscsiteadd.h GeneratedFiles/ui_vscsetting.h GeneratedFiles/ui_vsclicense.h GeneratedFiles/ui_vscversion.h GeneratedFiles/ui_vscuser.h GeneratedFiles/ui_vscuserstatus.h GeneratedFiles/ui_vschdfsrecord.h GeneratedFiles/ui_vscrtsprtp.h GeneratedFiles/ui_vsclanguage.h GeneratedFiles/ui_vsclogin.h GeneratedFiles/ui_vscoapi.h GeneratedFiles/ui_vscvideosetting.h GeneratedFiles/ui_vscminingsetting.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: VSCloudNode.pro ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++/qmake.conf ../../../../Qt5.4.0/5.4/gcc_64/mkspecs/features/spec_pre.prf \
@@ -766,9 +740,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../main/vscmainwindows.qrc ../darkstyle/style.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../main/vscvipc.h ../prj_win32/resource.h ../main/vscdevicelist.h ../main/vscdockwidget.h ../main/vscmainwindows.h ../main/vscview.h ../main/vscdeviceipc.h ../main/vscdevicetree.h ../main/vsccameraadd.h ../main/vscdevicetrash.h ../main/vscsearch.h ../main/vscplaycontrol.h ../main/vscplayback.h ../main/vsctoolbar.h ../main/vscipcgroupconf.h ../main/vscipcgroupmap.h ../main/vscviewconf.h ../main/vscvipcadd.h ../../devices/include/cmnserverimpl.hpp ../../devices/include/conf.hpp ../../devices/include/confdb.hpp ../../devices/include/device.hpp ../../devices/include/deviceimpl.hpp ../../devices/include/factoryimpl.hpp ../../devices/include/hdddevice.hpp ../../devices/include/sysdb.hpp ../../devices/include/cmnserver.hpp ../../devices/include/factory.hpp ../disk/vschdddevice.h ../disk/vschddone.h ../disk/vschddedit.h ../disk/vschddoneedit.h ../vms/vscrecorderadd.h ../vms/vscsiteadd.h ../vms/vscvms.h ../vms/vscrecorderone.h ../vms/vscrecorderpanel.h ../vms/vscrecorder.h ../vms/vsczbtreeitem.h ../setting/vscsetting.h ../setting/vsclicense.h ../setting/vscversion.h ../setting/vscrecorderconf.h ../setting/vscuser.h ../setting/vscuserstatus.h ../setting/vschdfsrecord.h ../setting/vscrtsprtp.h ../setting/vsclanguage.h ../setting/vsclogin.h ../setting/vscoapi.h ../setting/vscvideosetting.h ../setting/vscminingsetting.h ../../mining/include/mframeworkimpl.hpp ../../mining/include/minterface.hpp ../../mining/include/minterfacemgr.hpp ../../mining/include/minterfacemgrimpl.hpp ../../mining/include/mmodule.hpp ../../mining/include/mmoduleimpl.hpp ../../mining/include/mframework.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../disk/vschdddevice.cpp ../disk/vschddedit.cpp ../disk/vschddone.cpp ../disk/vschddoneedit.cpp ../vms/vscrecorder.cpp ../vms/vscrecorderadd.cpp ../vms/vscrecorderone.cpp ../vms/vscrecorderpanel.cpp ../vms/vscsiteadd.cpp ../vms/vscvms.cpp ../vms/vsczbtreeitem.cpp ../main/main.cpp ../main/vsccameraadd.cpp ../main/vscdeviceipc.cpp ../main/vscdevicelist.cpp ../main/vscdevicetrash.cpp ../main/vscdevicetree.cpp ../main/vscdockwidget.cpp ../main/vscipcgroupconf.cpp ../main/vscipcgroupmap.cpp ../main/vscmainwindows.cpp ../main/vscplayback.cpp ../main/vscplaycontrol.cpp ../main/vscsearch.cpp ../main/vsctoobar.cpp ../main/vscview.cpp ../main/vscviewconf.cpp ../main/vscvipc.cpp ../main/vscvipcadd.cpp ../setting/vschdfsrecord.cpp ../setting/vsclanguage.cpp ../setting/vsclicense.cpp ../setting/vsclogin.cpp ../setting/vscminingsetting.cpp ../setting/vscoapi.cpp ../setting/vscrecorderconf.cpp ../setting/vscrtsprtp.cpp ../setting/vscsetting.cpp ../setting/vscuser.cpp ../setting/vscuserstatus.cpp ../setting/vscversion.cpp ../setting/vscvideosetting.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../main/vscview.ui ../main/vscmainwindows.ui ../main/vscdevicelist.ui ../main/vsccameraadd.ui ../main/vscsearch.ui ../main/vscplaycontrol.ui ../main/vscplayback.ui ../main/vsctoolbar.ui ../main/vscvipcadd.ui ../main/vscipcgroupconf.ui ../main/vscipcgroupmap.ui ../main/vscviewconf.ui ../disk/vschdddevice.ui ../disk/vschddone.ui ../disk/vschddedit.ui ../disk/vschddoneedit.ui ../vms/vscrecorderadd.ui ../vms/vscsiteadd.ui ../vms/vscrecorderone.ui ../setting/vscsetting.ui ../setting/vsclicense.ui ../setting/vscversion.ui ../setting/vscrecorderconf.ui ../setting/vscuser.ui ../setting/vscuserstatus.ui ../setting/vschdfsrecord.ui ../setting/vscrtsprtp.ui ../setting/vsclanguage.ui ../setting/vsclogin.ui ../setting/vscoapi.ui ../setting/vscvideosetting.ui ../setting/vscminingsetting.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../main/vscvipc.h ../prj_win32/resource.h ../main/vscdevicelist.h ../main/vscdockwidget.h ../main/vscmainwindows.h ../main/vscview.h ../main/vscdeviceipc.h ../main/vscdevicetree.h ../main/vsccameraadd.h ../main/vscdevicetrash.h ../main/vscsearch.h ../main/vscplaycontrol.h ../main/vscplayback.h ../main/vsctoolbar.h ../main/vscipcgroupconf.h ../main/vscipcgroupmap.h ../main/vscviewconf.h ../main/vscvipcadd.h ../../devices/include/cmnoapiserverimpl.hpp ../../devices/include/cmnserverimpl.hpp ../../devices/include/conf.hpp ../../devices/include/confdb.hpp ../../devices/include/device.hpp ../../devices/include/deviceimpl.hpp ../../devices/include/factoryimpl.hpp ../../devices/include/hdddevice.hpp ../../devices/include/sysdb.hpp ../../devices/include/cmnserver.hpp ../../devices/include/cmnoapiserver.hpp ../../devices/include/factory.hpp ../disk/vschdddevice.h ../disk/vschddone.h ../disk/vschddedit.h ../disk/vschddoneedit.h ../vms/vscsiteadd.h ../vms/vscvms.h ../setting/vscsetting.h ../setting/vsclicense.h ../setting/vscversion.h ../setting/vscuser.h ../setting/vscuserstatus.h ../setting/vschdfsrecord.h ../setting/vscrtsprtp.h ../setting/vsclanguage.h ../setting/vsclogin.h ../setting/vscoapi.h ../setting/vscvideosetting.h ../setting/vscminingsetting.h ../setting/switchbutton.h ../../mining/include/mframeworkimpl.hpp ../../mining/include/minterface.hpp ../../mining/include/minterfacemgr.hpp ../../mining/include/minterfacemgrimpl.hpp ../../mining/include/mmodule.hpp ../../mining/include/mmoduleimpl.hpp ../../mining/include/mframework.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../disk/vschdddevice.cpp ../disk/vschddedit.cpp ../disk/vschddone.cpp ../disk/vschddoneedit.cpp ../vms/vscsiteadd.cpp ../vms/vscvms.cpp ../main/main.cpp ../main/vsccameraadd.cpp ../main/vscdeviceipc.cpp ../main/vscdevicelist.cpp ../main/vscdevicetrash.cpp ../main/vscdevicetree.cpp ../main/vscdockwidget.cpp ../main/vscipcgroupconf.cpp ../main/vscipcgroupmap.cpp ../main/vscmainwindows.cpp ../main/vscplayback.cpp ../main/vscplaycontrol.cpp ../main/vscsearch.cpp ../main/vsctoobar.cpp ../main/vscview.cpp ../main/vscviewconf.cpp ../main/vscvipc.cpp ../main/vscvipcadd.cpp ../setting/switchbutton.cpp ../setting/vschdfsrecord.cpp ../setting/vsclanguage.cpp ../setting/vsclicense.cpp ../setting/vsclogin.cpp ../setting/vscminingsetting.cpp ../setting/vscoapi.cpp ../setting/vscrtsprtp.cpp ../setting/vscsetting.cpp ../setting/vscuser.cpp ../setting/vscuserstatus.cpp ../setting/vscversion.cpp ../setting/vscvideosetting.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../main/vscview.ui ../main/vscmainwindows.ui ../main/vscdevicelist.ui ../main/vsccameraadd.ui ../main/vscsearch.ui ../main/vscplaycontrol.ui ../main/vscplayback.ui ../main/vsctoolbar.ui ../main/vscvipcadd.ui ../main/vscipcgroupconf.ui ../main/vscipcgroupmap.ui ../main/vscviewconf.ui ../disk/vschdddevice.ui ../disk/vschddone.ui ../disk/vschddedit.ui ../disk/vschddoneedit.ui ../vms/vscsiteadd.ui ../setting/vscsetting.ui ../setting/vsclicense.ui ../setting/vscversion.ui ../setting/vscuser.ui ../setting/vscuserstatus.ui ../setting/vschdfsrecord.ui ../setting/vscrtsprtp.ui ../setting/vsclanguage.ui ../setting/vsclogin.ui ../setting/vscoapi.ui ../setting/vscvideosetting.ui ../setting/vscminingsetting.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../main/translations/opencvr_zh.ts $(DISTDIR)/
 
 
@@ -809,36 +783,43 @@ GeneratedFiles/qrc_vscmainwindows.cpp: ../main/vscmainwindows.qrc \
 		../main/resources/camgroup.png \
 		../main/resources/dome-record.png \
 		../main/resources/virtualipc.png \
-		../main/resources/syncpb.png \
-		../main/resources/computer.png \
-		../main/resources/refresh.png \
-		../main/resources/setting.png \
-		../main/resources/hadoop.png \
-		../main/resources/alarmno.png \
-		../main/resources/control_panel.png \
-		../main/resources/map.png \
-		../main/resources/buttonhover.png \
-		../main/resources/alarm.png \
-		../main/resources/view-fullscreen.png \
-		../main/resources/recordstart.png \
-		../main/resources/videosearch.png \
-		../main/resources/mining.png \
-		../main/resources/dome-recordhdfs.png \
 		../main/resources/tabbed.png \
-		../main/resources/user.png \
-		../main/resources/hdfsstartrecord.png \
-		../main/resources/surveillance.png \
-		../main/resources/float.png \
-		../main/resources/button.png \
-		../main/resources/edit.png \
-		../main/resources/playview.png \
-		../main/resources/search.png \
-		../main/resources/buttonpress.png \
-		../main/resources/recordstop.png \
-		../main/resources/new.png \
-		../main/resources/user-trash-2.png \
+		../main/resources/buttonhover.png \
 		../main/resources/display.png \
+		../main/resources/edit.png \
+		../main/resources/new.png \
+		../main/resources/computer.png \
+		../main/resources/view-fullscreen.png \
+		../main/resources/map.png \
+		../main/resources/videosearch.png \
+		../main/resources/float.png \
+		../main/resources/radiobutton_checked.png \
+		../main/resources/mining.png \
+		../main/resources/alarmno.png \
+		../main/resources/radiobutton_unchecked_pressed.png \
+		../main/resources/surveillance.png \
+		../main/resources/radiobutton_unchecked_hover.png \
+		../main/resources/setting.png \
+		../main/resources/alarm.png \
+		../main/resources/recordstop.png \
+		../main/resources/switchputton.png \
 		../main/resources/hdfsstoprecord.png \
+		../main/resources/radiobutton_checked_pressed.png \
+		../main/resources/control_panel.png \
+		../main/resources/playview.png \
+		../main/resources/radiobutton_unchecked.png \
+		../main/resources/dome-recordhdfs.png \
+		../main/resources/button.png \
+		../main/resources/user.png \
+		../main/resources/recordstart.png \
+		../main/resources/refresh.png \
+		../main/resources/hdfsstartrecord.png \
+		../main/resources/buttonpress.png \
+		../main/resources/search.png \
+		../main/resources/syncpb.png \
+		../main/resources/user-trash-2.png \
+		../main/resources/hadoop.png \
+		../main/resources/radiobutton_checked_hover.png \
 		../main/resources/stop.png \
 		../main/resources/12+1.png \
 		../main/resources/8x8.png \
@@ -879,9 +860,9 @@ GeneratedFiles/qrc_style.cpp: ../darkstyle/style.qrc \
 		../darkstyle/style.qss
 	/home/user/Qt5.4.0/5.4/gcc_64/bin/rcc -name style ../darkstyle/style.qrc -o GeneratedFiles/qrc_style.cpp
 
-compiler_moc_header_make_all: GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_cmnserver.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vsclanguage.cpp GeneratedFiles/debug/moc_vsclogin.cpp GeneratedFiles/debug/moc_vscoapi.cpp GeneratedFiles/debug/moc_vscvideosetting.cpp GeneratedFiles/debug/moc_vscminingsetting.cpp GeneratedFiles/debug/moc_mframework.cpp
+compiler_moc_header_make_all: GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_cmnserver.cpp GeneratedFiles/debug/moc_cmnoapiserver.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vsclanguage.cpp GeneratedFiles/debug/moc_vsclogin.cpp GeneratedFiles/debug/moc_vscoapi.cpp GeneratedFiles/debug/moc_vscvideosetting.cpp GeneratedFiles/debug/moc_vscminingsetting.cpp GeneratedFiles/debug/moc_switchbutton.cpp GeneratedFiles/debug/moc_mframework.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_cmnserver.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscrecorderadd.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscrecorderone.cpp GeneratedFiles/debug/moc_vscrecorderpanel.cpp GeneratedFiles/debug/moc_vscrecorder.cpp GeneratedFiles/debug/moc_vsczbtreeitem.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscrecorderconf.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vsclanguage.cpp GeneratedFiles/debug/moc_vsclogin.cpp GeneratedFiles/debug/moc_vscoapi.cpp GeneratedFiles/debug/moc_vscvideosetting.cpp GeneratedFiles/debug/moc_vscminingsetting.cpp GeneratedFiles/debug/moc_mframework.cpp
+	-$(DEL_FILE) GeneratedFiles/debug/moc_vscdevicelist.cpp GeneratedFiles/debug/moc_vscdockwidget.cpp GeneratedFiles/debug/moc_vscmainwindows.cpp GeneratedFiles/debug/moc_vscview.cpp GeneratedFiles/debug/moc_vscdevicetree.cpp GeneratedFiles/debug/moc_vsccameraadd.cpp GeneratedFiles/debug/moc_vscdevicetrash.cpp GeneratedFiles/debug/moc_vscsearch.cpp GeneratedFiles/debug/moc_vscplaycontrol.cpp GeneratedFiles/debug/moc_vscplayback.cpp GeneratedFiles/debug/moc_vsctoolbar.cpp GeneratedFiles/debug/moc_vscipcgroupconf.cpp GeneratedFiles/debug/moc_vscipcgroupmap.cpp GeneratedFiles/debug/moc_vscviewconf.cpp GeneratedFiles/debug/moc_vscvipcadd.cpp GeneratedFiles/debug/moc_cmnserver.cpp GeneratedFiles/debug/moc_cmnoapiserver.cpp GeneratedFiles/debug/moc_factory.cpp GeneratedFiles/debug/moc_vschdddevice.cpp GeneratedFiles/debug/moc_vschddone.cpp GeneratedFiles/debug/moc_vschddedit.cpp GeneratedFiles/debug/moc_vschddoneedit.cpp GeneratedFiles/debug/moc_vscsiteadd.cpp GeneratedFiles/debug/moc_vscvms.cpp GeneratedFiles/debug/moc_vscsetting.cpp GeneratedFiles/debug/moc_vsclicense.cpp GeneratedFiles/debug/moc_vscversion.cpp GeneratedFiles/debug/moc_vscuser.cpp GeneratedFiles/debug/moc_vscuserstatus.cpp GeneratedFiles/debug/moc_vschdfsrecord.cpp GeneratedFiles/debug/moc_vscrtsprtp.cpp GeneratedFiles/debug/moc_vsclanguage.cpp GeneratedFiles/debug/moc_vsclogin.cpp GeneratedFiles/debug/moc_vscoapi.cpp GeneratedFiles/debug/moc_vscvideosetting.cpp GeneratedFiles/debug/moc_vscminingsetting.cpp GeneratedFiles/debug/moc_switchbutton.cpp GeneratedFiles/debug/moc_mframework.cpp
 GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
@@ -985,18 +966,187 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscdevicelist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
+		../main/vscdevicetrash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QContextMenuEvent \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QResizeEvent \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../3rdparty/leveldb/include/leveldb/db.h \
 		../../3rdparty/leveldb/include/leveldb/iterator.h \
 		../../3rdparty/leveldb/include/leveldb/slice.h \
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -1026,7 +1176,6 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -1073,8 +1222,15 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -1086,19 +1242,11 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -1117,6 +1265,7 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -1195,120 +1344,29 @@ GeneratedFiles/debug/moc_vscdevicelist.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
+		../main/vscdevicetree.h \
+		../vms/vscvms.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../vms/vscrecorder.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
+		../../veuilib/include/vscloading.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMovie \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmovie.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimagereader.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimageiohandler.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qplugin.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfactoryinterface.h \
+		../main/vscvipc.h \
+		../../veuilib/include/vscviewtree.h \
 		../main/vscdevicelist.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicelist.h -o GeneratedFiles/debug/moc_vscdevicelist.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicelist.h -o GeneratedFiles/debug/moc_vscdevicelist.cpp
 
 GeneratedFiles/debug/moc_vscdockwidget.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDockWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdockwidget.h \
@@ -1414,7 +1472,7 @@ GeneratedFiles/debug/moc_vscdockwidget.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		../main/vscdockwidget.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdockwidget.h -o GeneratedFiles/debug/moc_vscdockwidget.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdockwidget.h -o GeneratedFiles/debug/moc_vscdockwidget.cpp
 
 GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1522,27 +1580,44 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
 		GeneratedFiles/ui_vscmainwindows.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../veuilib/include/vevent.hpp \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
-		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
-		../../3rdparty/poco/Foundation/include/Poco/Config.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
-		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
-		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../xcmnlib/include/utility/videotype.hpp \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -1551,6 +1626,117 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
 		../../3rdparty/onvifc/include/devicemanagement.h \
@@ -1579,7 +1765,6 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -1634,10 +1819,22 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../velib/include/vdb/indexdb.hpp \
 		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
 		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -1656,6 +1853,7 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -1734,118 +1932,40 @@ GeneratedFiles/debug/moc_vscmainwindows.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../main/vscdockwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDockWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdockwidget.h \
 		../main/vscview.h \
 		GeneratedFiles/ui_vscview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../../veuilib/include/vemap.hpp \
 		../main/vscmainwindows.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscmainwindows.h -o GeneratedFiles/debug/moc_vscmainwindows.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscmainwindows.h -o GeneratedFiles/debug/moc_vscmainwindows.cpp
 
 GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -1951,14 +2071,167 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
 		GeneratedFiles/ui_vscview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../veuilib/include/vscvwidget.h \
 		../../devices/include/device.hpp \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../3rdparty/onvifc/include/devicemanagement.h \
 		../../3rdparty/onvifc/include/service.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
@@ -1984,7 +2257,6 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -2031,8 +2303,15 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -2044,19 +2323,11 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -2075,6 +2346,7 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -2148,15 +2420,10 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -2175,99 +2442,14 @@ GeneratedFiles/debug/moc_vscview.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtW
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../main/vscview.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscview.h -o GeneratedFiles/debug/moc_vscview.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscview.h -o GeneratedFiles/debug/moc_vscview.cpp
 
 GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -2401,15 +2583,126 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../3rdparty/leveldb/include/leveldb/db.h \
 		../../3rdparty/leveldb/include/leveldb/iterator.h \
 		../../3rdparty/leveldb/include/leveldb/slice.h \
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -2486,8 +2779,15 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -2499,19 +2799,11 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -2530,6 +2822,7 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -2608,105 +2901,34 @@ GeneratedFiles/debug/moc_vscdevicetree.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../vms/vscvms.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
-		../vms/vscrecorder.h \
+		../../veuilib/include/vscloading.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMovie \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmovie.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimagereader.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimageiohandler.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qplugin.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfactoryinterface.h \
 		../main/vscvipc.h \
 		../../veuilib/include/vscviewtree.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../main/vscdevicetree.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicetree.h -o GeneratedFiles/debug/moc_vscdevicetree.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicetree.h -o GeneratedFiles/debug/moc_vscdevicetree.cpp
 
 GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -2811,10 +3033,66 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsccameraadd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
+		../setting/switchbutton.h \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -2823,6 +3101,117 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -2852,7 +3241,6 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -2899,8 +3287,15 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -2912,19 +3307,11 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -2943,6 +3330,7 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -3021,92 +3409,6 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
@@ -3114,11 +3416,10 @@ GeneratedFiles/debug/moc_vsccameraadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../main/vsccameraadd.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsccameraadd.h -o GeneratedFiles/debug/moc_vsccameraadd.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsccameraadd.h -o GeneratedFiles/debug/moc_vsccameraadd.cpp
 
 GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -3260,15 +3561,126 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../3rdparty/leveldb/include/leveldb/db.h \
 		../../3rdparty/leveldb/include/leveldb/iterator.h \
 		../../3rdparty/leveldb/include/leveldb/slice.h \
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -3345,8 +3757,15 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -3358,19 +3777,11 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -3389,6 +3800,7 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -3467,95 +3879,9 @@ GeneratedFiles/debug/moc_vscdevicetrash.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../main/vscdevicetrash.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicetrash.h -o GeneratedFiles/debug/moc_vscdevicetrash.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscdevicetrash.h -o GeneratedFiles/debug/moc_vscdevicetrash.cpp
 
 GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -3660,10 +3986,59 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsearch.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QProgressBar \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qprogressbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -3672,6 +4047,117 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -3701,7 +4187,6 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -3748,8 +4233,15 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -3761,19 +4253,11 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -3792,6 +4276,7 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -3870,92 +4355,6 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QEvent \
 		../../3rdparty/onvifc/include/devicesearcher.h \
@@ -3964,7 +4363,7 @@ GeneratedFiles/debug/moc_vscsearch.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/qabstractsocket.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtNetwork/qhostaddress.h \
 		../main/vscsearch.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscsearch.h -o GeneratedFiles/debug/moc_vscsearch.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscsearch.h -o GeneratedFiles/debug/moc_vscsearch.cpp
 
 GeneratedFiles/debug/moc_vscplaycontrol.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -4069,12 +4468,57 @@ GeneratedFiles/debug/moc_vscplaycontrol.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../main/vscplaycontrol.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscplaycontrol.h -o GeneratedFiles/debug/moc_vscplaycontrol.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscplaycontrol.h -o GeneratedFiles/debug/moc_vscplaycontrol.cpp
 
 GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -4179,14 +4623,169 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscplayback.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../veuilib/include/vscvwidget.h \
 		../../devices/include/device.hpp \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../3rdparty/onvifc/include/devicemanagement.h \
 		../../3rdparty/onvifc/include/service.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
@@ -4213,7 +4812,6 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -4260,8 +4858,15 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -4273,19 +4878,11 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -4304,6 +4901,7 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -4377,15 +4975,10 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../../veuilib/include/vscvideowall.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -4404,99 +4997,14 @@ GeneratedFiles/debug/moc_vscplayback.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTabWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../main/vscplaycontrol.h \
 		GeneratedFiles/ui_vscplaycontrol.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QCalendarWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcalendarwidget.h \
 		../main/vscplayback.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscplayback.h -o GeneratedFiles/debug/moc_vscplayback.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscplayback.h -o GeneratedFiles/debug/moc_vscplayback.cpp
 
 GeneratedFiles/debug/moc_vsctoolbar.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -4601,21 +5109,64 @@ GeneratedFiles/debug/moc_vsctoolbar.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vsctoolbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../veuilib/include/vsccalculate.hpp \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
 		../main/vsctoolbar.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsctoolbar.h -o GeneratedFiles/debug/moc_vsctoolbar.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vsctoolbar.h -o GeneratedFiles/debug/moc_vsctoolbar.cpp
 
 GeneratedFiles/debug/moc_vscipcgroupconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -4721,17 +5272,67 @@ GeneratedFiles/debug/moc_vscipcgroupconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inc
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscipcgroupconf.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../main/vscipcgroupconf.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscipcgroupconf.h -o GeneratedFiles/debug/moc_vscipcgroupconf.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscipcgroupconf.h -o GeneratedFiles/debug/moc_vscipcgroupconf.cpp
 
 GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -4848,11 +5449,49 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QDrag \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qdrag.h \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../velib/include/utility/utility.hpp \
 		GeneratedFiles/ui_vscipcgroupmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -4861,6 +5500,117 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -4890,7 +5640,6 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -4937,8 +5686,15 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -4950,19 +5706,11 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -4981,6 +5729,7 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -5059,95 +5808,9 @@ GeneratedFiles/debug/moc_vscipcgroupmap.cpp: ../../../../Qt5.4.0/5.4/gcc_64/incl
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../main/vscipcgroupmap.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscipcgroupmap.h -o GeneratedFiles/debug/moc_vscipcgroupmap.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscipcgroupmap.h -o GeneratedFiles/debug/moc_vscipcgroupmap.cpp
 
 GeneratedFiles/debug/moc_vscviewconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -5253,17 +5916,67 @@ GeneratedFiles/debug/moc_vscviewconf.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscviewconf.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QPoint \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/QMouseEvent \
 		../main/vscviewconf.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscviewconf.h -o GeneratedFiles/debug/moc_vscviewconf.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscviewconf.h -o GeneratedFiles/debug/moc_vscviewconf.cpp
 
 GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -5368,10 +6081,63 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscvipcadd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QRadioButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -5380,6 +6146,117 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -5409,7 +6286,6 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -5456,8 +6332,15 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -5469,19 +6352,11 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -5500,6 +6375,7 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -5578,92 +6454,6 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../veuilib/include/vscvwidget.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
@@ -5671,16 +6461,15 @@ GeneratedFiles/debug/moc_vscvipcadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
 		../main/vscvipcadd.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscvipcadd.h -o GeneratedFiles/debug/moc_vscvipcadd.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../main/vscvipcadd.h -o GeneratedFiles/debug/moc_vscvipcadd.cpp
 
 GeneratedFiles/debug/moc_cmnserver.cpp: ../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
@@ -5733,40 +6522,40 @@ GeneratedFiles/debug/moc_cmnserver.cpp: ../../velib/include/utility/utility.hpp 
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
 		../../3rdparty/openssl-linux/include/openssl/ssl.h \
 		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
 		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
@@ -5807,31 +6596,820 @@ GeneratedFiles/debug/moc_cmnserver.cpp: ../../velib/include/utility/utility.hpp 
 		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
 		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
 		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
-		../../devices/include/cmnserver.hpp
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../../devices/include/cmnserver.hpp -o GeneratedFiles/debug/moc_cmnserver.cpp
-
-GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/Webby/ClientSideRequest.h \
+		../../xcmnlib/include/XSDK/XMemory.h \
+		../../xcmnlib/include/Webby/URI.h \
+		../../xcmnlib/include/Webby/SoapArgs.h \
+		../../xcmnlib/include/XSDK/XDomParserNode.h \
+		../../xcmnlib/include/XSDK/XIWeakRef.h \
+		../../xcmnlib/include/Webby/ClientSideResponse.h \
+		../../xcmnlib/include/Webby/ServerSideRequest.h \
+		../../xcmnlib/include/Webby/ServerSideResponse.h \
+		../../xcmnlib/include/Webby/WebbyException.h \
+		../../oapi/oapis.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
 		../../3rdparty/leveldb/include/leveldb/iterator.h \
 		../../3rdparty/leveldb/include/leveldb/slice.h \
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../devices/include/confdbimpl.hpp \
+		../../devices/include/device.hpp \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/deviceimpl.hpp \
+		../../devices/include/sysdb.hpp \
+		../../devices/include/hdddevice.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../../devices/include/factoryimpl.hpp \
+		../../oapi/oapisimpl.hpp \
+		../../devices/include/cmnserverimpl.hpp \
+		../../devices/include/cmnserver.hpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../../devices/include/cmnserver.hpp -o GeneratedFiles/debug/moc_cmnserver.cpp
+
+GeneratedFiles/debug/moc_cmnoapiserver.cpp: ../../velib/include/utility/utility.hpp \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
+		../../velib/include/utility/debug.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
+		../../3rdparty/leveldb/include/leveldb/db.h \
+		../../3rdparty/leveldb/include/leveldb/iterator.h \
+		../../3rdparty/leveldb/include/leveldb/slice.h \
+		../../3rdparty/leveldb/include/leveldb/status.h \
+		../../3rdparty/leveldb/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
+		../../devices/include/confdbimpl.hpp \
+		../../devices/include/device.hpp \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/deviceimpl.hpp \
+		../../devices/include/sysdb.hpp \
+		../../devices/include/hdddevice.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../../devices/include/factoryimpl.hpp \
+		../../oapi/oapis.hpp \
+		../../oapi/oapisimpl.hpp \
+		../../xcmnlib/include/Webby/ClientSideRequest.h \
+		../../xcmnlib/include/XSDK/XMemory.h \
+		../../xcmnlib/include/Webby/URI.h \
+		../../xcmnlib/include/Webby/SoapArgs.h \
+		../../xcmnlib/include/XSDK/XDomParserNode.h \
+		../../xcmnlib/include/XSDK/XIWeakRef.h \
+		../../xcmnlib/include/Webby/ClientSideResponse.h \
+		../../xcmnlib/include/Webby/ServerSideRequest.h \
+		../../xcmnlib/include/Webby/ServerSideResponse.h \
+		../../xcmnlib/include/Webby/WebbyException.h \
+		../../devices/include/cmnoapiserverimpl.hpp \
+		../../devices/include/cmnoapiserver.hpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../../devices/include/cmnoapiserver.hpp -o GeneratedFiles/debug/moc_cmnoapiserver.cpp
+
+GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
+		../../velib/include/utility/utility.hpp \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
+		../../3rdparty/leveldb/include/leveldb/db.h \
+		../../3rdparty/leveldb/include/leveldb/iterator.h \
+		../../3rdparty/leveldb/include/leveldb/slice.h \
+		../../3rdparty/leveldb/include/leveldb/status.h \
+		../../3rdparty/leveldb/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -5979,8 +7557,15 @@ GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -5992,19 +7577,11 @@ GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -6023,6 +7600,7 @@ GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -6103,95 +7681,9 @@ GeneratedFiles/debug/moc_factory.cpp: ../../devices/include/confdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../../devices/include/factory.hpp
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../../devices/include/factory.hpp -o GeneratedFiles/debug/moc_factory.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../../devices/include/factory.hpp -o GeneratedFiles/debug/moc_factory.cpp
 
 GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -6297,10 +7789,52 @@ GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschdddevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
@@ -6311,6 +7845,117 @@ GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
@@ -6320,8 +7965,13 @@ GeneratedFiles/debug/moc_vschdddevice.cpp: ../../../../Qt5.4.0/5.4/gcc_64/includ
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../disk/vschddone.h \
 		GeneratedFiles/ui_vschddone.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../setting/switchbutton.h \
 		../disk/vschdddevice.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschdddevice.h -o GeneratedFiles/debug/moc_vschdddevice.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschdddevice.h -o GeneratedFiles/debug/moc_vschdddevice.cpp
 
 GeneratedFiles/debug/moc_vschddone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -6427,10 +8077,57 @@ GeneratedFiles/debug/moc_vschddone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddone.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../setting/switchbutton.h \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
@@ -6441,6 +8138,117 @@ GeneratedFiles/debug/moc_vschddone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
@@ -6449,7 +8257,7 @@ GeneratedFiles/debug/moc_vschddone.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/Q
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
 		../disk/vschddone.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddone.h -o GeneratedFiles/debug/moc_vschddone.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddone.h -o GeneratedFiles/debug/moc_vschddone.cpp
 
 GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -6554,10 +8362,50 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QScrollArea \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
@@ -6568,6 +8416,117 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
@@ -6579,6 +8538,15 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
 		GeneratedFiles/ui_vschddoneedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
+		../setting/switchbutton.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../devices/include/confdbimpl.hpp \
@@ -6609,7 +8577,6 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -6656,8 +8623,15 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -6669,19 +8643,11 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -6700,6 +8666,7 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -6771,95 +8738,9 @@ GeneratedFiles/debug/moc_vschddedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../disk/vschddedit.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddedit.h -o GeneratedFiles/debug/moc_vschddedit.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddedit.h -o GeneratedFiles/debug/moc_vschddedit.cpp
 
 GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdialog.h \
@@ -6965,10 +8846,57 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vschddoneedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSlider \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTableWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../setting/switchbutton.h \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
@@ -6979,6 +8907,117 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
@@ -7016,7 +9055,6 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
@@ -7063,8 +9101,15 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -7076,19 +9121,11 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -7107,6 +9144,7 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
@@ -7178,507 +9216,9 @@ GeneratedFiles/debug/moc_vschddoneedit.cpp: ../../../../Qt5.4.0/5.4/gcc_64/inclu
 		../../devices/include/sysdb.hpp \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
 		../../devices/include/factoryimpl.hpp \
 		../disk/vschddoneedit.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddoneedit.h -o GeneratedFiles/debug/moc_vschddoneedit.cpp
-
-GeneratedFiles/debug/moc_vscrecorderadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
-		GeneratedFiles/ui_vscrecorderadd.h \
-		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
-		../../devices/include/factory.hpp \
-		../../devices/include/confdb.hpp \
-		../../3rdparty/leveldb/include/leveldb/db.h \
-		../../3rdparty/leveldb/include/leveldb/iterator.h \
-		../../3rdparty/leveldb/include/leveldb/slice.h \
-		../../3rdparty/leveldb/include/leveldb/status.h \
-		../../3rdparty/leveldb/include/leveldb/options.h \
-		../../devices/include/conf.hpp \
-		../../velib/include/utility/debug.hpp \
-		../../devices/include/confdbimpl.hpp \
-		../../devices/include/device.hpp \
-		../../3rdparty/onvifc/include/devicemanagement.h \
-		../../3rdparty/onvifc/include/service.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
-		../../3rdparty/onvifc/include/message.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
-		../../3rdparty/onvifc/include/client.h \
-		../../3rdparty/onvifc/include/QHttp \
-		../../3rdparty/onvifc/include/qhttp.h \
-		../../3rdparty/onvifc/include/messageparser.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
-		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
-		../../3rdparty/onvifc/include/device_management/user.h \
-		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
-		../../3rdparty/onvifc/include/device_management/systemreboot.h \
-		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
-		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
-		../../3rdparty/onvifc/include/device_management/capabilities.h \
-		../../3rdparty/onvifc/include/ptzmanagement.h \
-		../../3rdparty/onvifc/include/ptz_management/configurations.h \
-		../../3rdparty/onvifc/include/ptz_management/presets.h \
-		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
-		../../3rdparty/onvifc/include/ptz_management/preset.h \
-		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
-		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
-		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
-		../../3rdparty/onvifc/include/ptz_management/stop.h \
-		../../3rdparty/onvifc/include/ptz_management/nodes.h \
-		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
-		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
-		../../3rdparty/onvifc/include/ptz_management/configuration.h \
-		../../3rdparty/onvifc/include/ptz_management/node.h \
-		../../3rdparty/onvifc/include/media_management/profiles.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
-		../../3rdparty/onvifc/include/media_management/streamuri.h \
-		../../3rdparty/onvifc/include/mediamanagement.h \
-		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
-		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
-		../../3rdparty/onvifc/include/media_management/profile.h \
-		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
-		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
-		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
-		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
-		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
-		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
-		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
-		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
-		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
-		../../3rdparty/poco/Foundation/include/Poco/Config.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
-		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
-		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
-		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
-		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
-		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
-		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
-		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
-		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
-		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
-		../../3rdparty/poco/Foundation/include/Poco/String.h \
-		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
-		../../3rdparty/poco/Foundation/include/Poco/Format.h \
-		../../3rdparty/poco/Foundation/include/Poco/Any.h \
-		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
-		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
-		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
-		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
-		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
-		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
-		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
-		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
-		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
-		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
-		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
-		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
-		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
-		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
-		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
-		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
-		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
-		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
-		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
-		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
-		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
-		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
-		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
-		../../3rdparty/poco/Foundation/include/Poco/Void.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
-		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
-		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
-		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
-		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
-		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
-		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
-		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
-		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
-		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
-		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
-		../../3rdparty/poco/Foundation/include/Poco/Event.h \
-		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
-		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
-		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
-		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
-		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
-		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
-		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
-		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
-		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
-		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
-		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
-		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
-		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
-		../../velib/include/vdb/vhdfsdb.hpp \
-		../../velib/include/vdb/hdfsrecsession.hpp \
-		../../velib/include/vplay/vplay.hpp \
-		../../devices/include/deviceimpl.hpp \
-		../../devices/include/sysdb.hpp \
-		../../devices/include/hdddevice.hpp \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
-		../../devices/include/cmnserver.hpp \
-		../../velib/include/XSDK/XHash.h \
-		../../velib/include/XSDK/XException.h \
-		../../velib/include/XSDK/XSharedLib.h \
-		../../velib/include/XSDK/Types.h \
-		../../velib/include/XSDK/Assert.h \
-		../../velib/include/XSDK/XLogger.h \
-		../../velib/include/XSDK/XMutex.h \
-		../../velib/include/XSDK/Platform.h \
-		../../velib/include/XSDK/Module.h \
-		../../velib/include/XSDK/XStackTrace.h \
-		../../velib/include/XSDK/IXIterate.h \
-		../../velib/include/XSDK/Errors.h \
-		../../velib/include/XSDK/XString.h \
-		../../velib/include/XSDK/XIRef.h \
-		../../velib/include/XSDK/XGuard.h \
-		../../velib/include/XSDK/XInternalList.h \
-		../../velib/include/XSDK/TimeUtils.h \
-		../../velib/include/XSDK/XDuration.h \
-		../../velib/include/XSDK/XSocket.h \
-		../../velib/include/XSDK/XStreamIO.h \
-		../../velib/include/XSDK/XRef.h \
-		../../velib/include/XSDK/XBaseObject.h \
-		../../velib/include/XSDK/IXUnknown.h \
-		../../velib/include/XSDK/IXInterface.h \
-		../../velib/include/XSDK/UuidUtils.h \
-		../../velib/include/XSDK/XUuid.h \
-		../../velib/include/XSDK/IXWeakReference.h \
-		../../velib/include/XSDK/XInterface.h \
-		../../velib/include/XSDK/XSharedLibImp.h \
-		../../velib/include/XSDK/XSharedLibDef.h \
-		../../velib/include/XSDK/XObjectProxy.h \
-		../../velib/include/XSDK/XObjCount.h \
-		../../velib/include/XSDK/XSocketAddress.h \
-		../../velib/include/XSDK/XSSLSocket.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl.h \
-		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
-		../../3rdparty/openssl-linux/include/openssl/comp.h \
-		../../3rdparty/openssl-linux/include/openssl/crypto.h \
-		../../3rdparty/openssl-linux/include/openssl/stack.h \
-		../../3rdparty/openssl-linux/include/openssl/safestack.h \
-		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
-		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
-		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
-		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
-		../../3rdparty/openssl-linux/include/openssl/bio.h \
-		../../3rdparty/openssl-linux/include/openssl/x509.h \
-		../../3rdparty/openssl-linux/include/openssl/buffer.h \
-		../../3rdparty/openssl-linux/include/openssl/evp.h \
-		../../3rdparty/openssl-linux/include/openssl/objects.h \
-		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
-		../../3rdparty/openssl-linux/include/openssl/asn1.h \
-		../../3rdparty/openssl-linux/include/openssl/bn.h \
-		../../3rdparty/openssl-linux/include/openssl/ec.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
-		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
-		../../3rdparty/openssl-linux/include/openssl/rsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dsa.h \
-		../../3rdparty/openssl-linux/include/openssl/dh.h \
-		../../3rdparty/openssl-linux/include/openssl/sha.h \
-		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
-		../../3rdparty/openssl-linux/include/openssl/lhash.h \
-		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
-		../../3rdparty/openssl-linux/include/openssl/pem.h \
-		../../3rdparty/openssl-linux/include/openssl/pem2.h \
-		../../3rdparty/openssl-linux/include/openssl/hmac.h \
-		../../3rdparty/openssl-linux/include/openssl/kssl.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
-		../../3rdparty/openssl-linux/include/openssl/tls1.h \
-		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
-		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
-		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
-		../../3rdparty/openssl-linux/include/openssl/srtp.h \
-		../../velib/include/Webby/ClientSideRequest.h \
-		../../velib/include/XSDK/XMemory.h \
-		../../velib/include/Webby/URI.h \
-		../../velib/include/Webby/SoapArgs.h \
-		../../velib/include/XSDK/XDomParserNode.h \
-		../../velib/include/XSDK/XIWeakRef.h \
-		../../velib/include/Webby/ClientSideResponse.h \
-		../../velib/include/Webby/ServerSideRequest.h \
-		../../velib/include/Webby/ServerSideResponse.h \
-		../../velib/include/Webby/WebbyException.h \
-		../../devices/include/cmnserverimpl.hpp \
-		../../devices/include/factoryimpl.hpp \
-		../../veuilib/include/vscvwidget.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
-		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
-		../vms/vscrecorderadd.h
-	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../vms/vscrecorderadd.h -o GeneratedFiles/debug/moc_vscrecorderadd.cpp
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../disk/vschddoneedit.h -o GeneratedFiles/debug/moc_vschddoneedit.cpp
 
 GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
@@ -7783,10 +9323,61 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
 		GeneratedFiles/ui_vscsiteadd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../velib/include/utility/utility.hpp \
-		../../velib/include/utility/tinythread.h \
-		../../velib/include/utility/type.hpp \
-		../../velib/include/utility/fast_mutex.h \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
 		../../devices/include/factory.hpp \
 		../../devices/include/confdb.hpp \
 		../../3rdparty/leveldb/include/leveldb/db.h \
@@ -7795,6 +9386,575 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/leveldb/include/leveldb/status.h \
 		../../3rdparty/leveldb/include/leveldb/options.h \
 		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
+		../../velib/include/utility/debug.hpp \
+		../../devices/include/confdbimpl.hpp \
+		../../devices/include/device.hpp \
+		../../3rdparty/onvifc/include/devicemanagement.h \
+		../../3rdparty/onvifc/include/service.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QObject \
+		../../3rdparty/onvifc/include/message.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QHash \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/QDomElement \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qdom.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXml/qtxmlglobal.h \
+		../../3rdparty/onvifc/include/client.h \
+		../../3rdparty/onvifc/include/QHttp \
+		../../3rdparty/onvifc/include/qhttp.h \
+		../../3rdparty/onvifc/include/messageparser.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlQuery \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QUrl \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlNodeModel \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlnodemodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlName \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlname.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMetaType \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qtxmlpatternsglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QSharedData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QAbstractXmlReceiver \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qabstractxmlreceiver.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNodeModelIndex \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlNamePool \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlnamepool.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QBuffer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/QXmlResultItems \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns/qxmlresultitems.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDateTime \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatetime.h \
+		../../3rdparty/onvifc/include/device_management/systemdateandtime.h \
+		../../3rdparty/onvifc/include/device_management/user.h \
+		../../3rdparty/onvifc/include/device_management/systemfactorydefault.h \
+		../../3rdparty/onvifc/include/device_management/systemreboot.h \
+		../../3rdparty/onvifc/include/device_management/networkinterfaces.h \
+		../../3rdparty/onvifc/include/device_management/networkprotocols.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QList \
+		../../3rdparty/onvifc/include/device_management/capabilities.h \
+		../../3rdparty/onvifc/include/ptzmanagement.h \
+		../../3rdparty/onvifc/include/ptz_management/configurations.h \
+		../../3rdparty/onvifc/include/ptz_management/presets.h \
+		../../3rdparty/onvifc/include/ptz_management/removepreset.h \
+		../../3rdparty/onvifc/include/ptz_management/preset.h \
+		../../3rdparty/onvifc/include/ptz_management/continuousmove.h \
+		../../3rdparty/onvifc/include/ptz_management/absolutemove.h \
+		../../3rdparty/onvifc/include/ptz_management/relativemove.h \
+		../../3rdparty/onvifc/include/ptz_management/stop.h \
+		../../3rdparty/onvifc/include/ptz_management/nodes.h \
+		../../3rdparty/onvifc/include/ptz_management/gotopreset.h \
+		../../3rdparty/onvifc/include/ptz_management/gotohomeposition.h \
+		../../3rdparty/onvifc/include/ptz_management/configuration.h \
+		../../3rdparty/onvifc/include/ptz_management/node.h \
+		../../3rdparty/onvifc/include/media_management/profiles.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QRect \
+		../../3rdparty/onvifc/include/media_management/streamuri.h \
+		../../3rdparty/onvifc/include/mediamanagement.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/profile.h \
+		../../3rdparty/onvifc/include/media_management/audiosourceconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurations.h \
+		../../3rdparty/onvifc/include/media_management/videosourceconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfiguration.h \
+		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
+		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
+		../../velib/include/vdb/vdb.hpp \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
+		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
+		../../3rdparty/poco/Foundation/include/Poco/Config.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnWindows.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VMS.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Platform_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
+		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
+		../../3rdparty/poco/Foundation/include/Poco/Types.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
+		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
+		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
+		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Mutex_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/String.h \
+		../../3rdparty/poco/Foundation/include/Poco/Ascii.h \
+		../../3rdparty/poco/Foundation/include/Poco/Format.h \
+		../../3rdparty/poco/Foundation/include/Poco/Any.h \
+		../../3rdparty/poco/Foundation/include/Poco/MetaProgramming.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Statement.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementImpl.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractBinder.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Date.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_SUN.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_C99.h \
+		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/NumberParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timestamp.h \
+		../../3rdparty/poco/Foundation/include/Poco/Timespan.h \
+		../../3rdparty/poco/Foundation/include/Poco/LocalDateTime.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormat.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/DateTimeParser.h \
+		../../3rdparty/poco/Foundation/include/Poco/UnicodeConverter.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTFString.h \
+		../../3rdparty/poco/Foundation/include/Poco/UTF8String.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Time.h \
+		../../3rdparty/poco/Data/include/Poco/Data/LOB.h \
+		../../3rdparty/poco/Foundation/include/Poco/SharedPtr.h \
+		../../3rdparty/poco/Foundation/include/Poco/Nullable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/Var.h \
+		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarIterator.h \
+		../../3rdparty/poco/Foundation/include/Poco/AutoPtr.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractExtractor.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Constants.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/AbstractPreparator.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Limit.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Range.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Bulk.h \
+		../../3rdparty/poco/Foundation/include/Poco/Void.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Column.h \
+		../../3rdparty/poco/Data/include/Poco/Data/MetaColumn.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Extraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Preparation.h \
+		../../3rdparty/poco/Data/include/Poco/Data/TypeHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Tuple.h \
+		../../3rdparty/poco/Foundation/include/Poco/TypeList.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Position.h \
+		../../3rdparty/poco/Data/include/Poco/Data/DataException.h \
+		../../3rdparty/poco/Data/include/Poco/Data/BulkExtraction.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Binding.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Row.h \
+		../../3rdparty/poco/Data/include/Poco/Data/RowFormatter.h \
+		../../3rdparty/poco/Data/include/Poco/Data/SimpleRowFormatter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveMethod.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveResult.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/Event_POSIX.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveRunnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/Runnable.h \
+		../../3rdparty/poco/Foundation/include/Poco/ActiveStarter.h \
+		../../3rdparty/poco/Foundation/include/Poco/ThreadPool.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WINCE.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_WIN32.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_VX.h \
+		../../3rdparty/poco/Foundation/include/Poco/SignalHandler.h \
+		../../3rdparty/poco/Foundation/include/Poco/Thread_POSIX.h \
+		../../3rdparty/poco/Data/include/Poco/Data/StatementCreator.h \
+		../../velib/include/vdb/vhdfsdb.hpp \
+		../../velib/include/vdb/hdfsrecsession.hpp \
+		../../velib/include/vplay/vplay.hpp \
+		../../devices/include/deviceimpl.hpp \
+		../../devices/include/sysdb.hpp \
+		../../devices/include/hdddevice.hpp \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QStorageInfo \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QFileInfoList \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QThread \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qthread.h \
+		../../devices/include/factoryimpl.hpp \
+		../../veuilib/include/vscvwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QMenu \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QMimeData \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmimedata.h \
+		../vms/vscsiteadd.h
+	/home/user/Qt5.4.0/5.4/gcc_64/bin/moc $(DEFINES) -I/home/user/Qt5.4.0/5.4/gcc_64/mkspecs/linux-g++ -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles -I/home/user/work/opencvr/veapp/prj_linux -I/home/user/work/opencvr/veapp/prj_linux/GeneratedFiles/Debug -I/home/user/work/opencvr/veapp/main -I/home/user/work/opencvr/veapp/playback -I/home/user/work/opencvr/veapp/vwidget -I/home/user/work/opencvr/devices/include -I/home/user/work/opencvr/mining/include -I/home/user/work/opencvr/3rdparty/leveldb/include -I/home/user/work/opencvr/utility -I/home/user/work/opencvr/3rdparty/poco/Foundation/include -I/home/user/work/opencvr/3rdparty/poco/Net/include -I/home/user/work/opencvr/3rdparty/poco/Util/include -I/home/user/work/opencvr/3rdparty/onvifc/include -I/home/user/work/opencvr/velib/include -I/home/user/work/opencvr/velib/include/vplay -I/home/user/work/opencvr/velib/include/utility -I/home/user/work/opencvr/velib/include/vdb -I/home/user/work/opencvr/xcmnlib/include -I/home/user/work/opencvr/xcmnlib/include/utility -I/home/user/work/opencvr/veuilib/include -I/home/user/work/opencvr/3rdparty/poco/Data/include -I/home/user/work/opencvr/3rdparty/poco/Data/SQLite/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/include -I/home/user/work/opencvr/3rdparty/autojsoncxx/rapidjson/include -I/home/user/work/opencvr/oapi -I/home/user/work/opencvr/veapp/recorder -I/home/user/work/opencvr/veapp/setting -I/home/user/work/opencvr/veapp/event -I/home/user/work/opencvr/veapp/systeminfo -I/home/user/work/opencvr/veapp/disk -I/home/user/work/opencvr/veapp/vms -I/home/user/work/opencvr/3rdparty/openssl-linux/include -I/home/user/Qt5.4.0/5.4/gcc_64/include -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtPrintSupport -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0 -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp/5.4.0/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtHelp -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtWidgets -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtGui -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtSql -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXmlPatterns -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtQml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtNetwork -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtXml -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtScript -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtDBus -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtConcurrent -I/home/user/Qt5.4.0/5.4/gcc_64/include/QtCore ../vms/vscsiteadd.h -o GeneratedFiles/debug/moc_vscsiteadd.cpp
+
+GeneratedFiles/debug/moc_vscvms.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qline.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/QTimer \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/QTreeWidgetItem \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.4.0/5.4/gcc_64/include/QtWidgets/qtreewidgetitemiterator.h \
+		../../devices/include/factory.hpp \
+		../../devices/include/confdb.hpp \
+		../../velib/include/utility/utility.hpp \
+		../../xcmnlib/include/utility/tinythread.h \
+		../../xcmnlib/include/utility/type.hpp \
+		../../xcmnlib/include/utility/fast_mutex.h \
+		../../3rdparty/leveldb/include/leveldb/db.h \
+		../../3rdparty/leveldb/include/leveldb/iterator.h \
+		../../3rdparty/leveldb/include/leveldb/slice.h \
+		../../3rdparty/leveldb/include/leveldb/status.h \
+		../../3rdparty/leveldb/include/leveldb/options.h \
+		../../devices/include/conf.hpp \
+		../../oapi/oapicmn.hpp \
+		../../oapi/oapiproto.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/autojsoncxx.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/utility.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/base.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/error.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/error.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/error/en.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/array_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/nullable_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/tuple_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/map_types.hpp \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/to_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/writer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/rapidjson.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/stdint.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/msinttypes/inttypes.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/allocators.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/encodings.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/stack.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strfunc.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/dtoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/itoa.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/diyfp.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/stringbuffer.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filewritestream.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/prettywriter.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/from_json.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/reader.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/meta.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/strtod.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/ieee754.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/biginteger.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/internal/pow10.h \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/filereadstream.h \
+		../../3rdparty/autojsoncxx/include/autojsoncxx/dom.hpp \
+		../../3rdparty/autojsoncxx/rapidjson/include/rapidjson/document.h \
+		../../xcmnlib/include/XSDK/XHash.h \
+		../../xcmnlib/include/XSDK/XException.h \
+		../../xcmnlib/include/XSDK/XSharedLib.h \
+		../../xcmnlib/include/XSDK/Types.h \
+		../../xcmnlib/include/XSDK/Assert.h \
+		../../xcmnlib/include/XSDK/XLogger.h \
+		../../xcmnlib/include/XSDK/XMutex.h \
+		../../xcmnlib/include/XSDK/Platform.h \
+		../../xcmnlib/include/XSDK/Module.h \
+		../../xcmnlib/include/XSDK/XStackTrace.h \
+		../../xcmnlib/include/XSDK/IXIterate.h \
+		../../xcmnlib/include/XSDK/Errors.h \
+		../../xcmnlib/include/XSDK/XString.h \
+		../../xcmnlib/include/XSDK/XIRef.h \
+		../../xcmnlib/include/XSDK/XGuard.h \
+		../../xcmnlib/include/XSDK/XInternalList.h \
+		../../xcmnlib/include/XSDK/TimeUtils.h \
+		../../xcmnlib/include/XSDK/XDuration.h \
+		../../xcmnlib/include/XSDK/XSocket.h \
+		../../xcmnlib/include/XSDK/XStreamIO.h \
+		../../xcmnlib/include/XSDK/XRef.h \
+		../../xcmnlib/include/XSDK/XBaseObject.h \
+		../../xcmnlib/include/XSDK/IXUnknown.h \
+		../../xcmnlib/include/XSDK/IXInterface.h \
+		../../xcmnlib/include/XSDK/UuidUtils.h \
+		../../xcmnlib/include/XSDK/XUuid.h \
+		../../xcmnlib/include/XSDK/IXWeakReference.h \
+		../../xcmnlib/include/XSDK/XInterface.h \
+		../../xcmnlib/include/XSDK/XSharedLibImp.h \
+		../../xcmnlib/include/XSDK/XSharedLibDef.h \
+		../../xcmnlib/include/XSDK/XObjectProxy.h \
+		../../xcmnlib/include/XSDK/XObjCount.h \
+		../../xcmnlib/include/XSDK/XSocketAddress.h \
+		../../xcmnlib/include/XSDK/XSSLSocket.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl.h \
+		../../3rdparty/openssl-linux/include/openssl/e_os2.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslconf.h \
+		../../3rdparty/openssl-linux/include/openssl/comp.h \
+		../../3rdparty/openssl-linux/include/openssl/crypto.h \
+		../../3rdparty/openssl-linux/include/openssl/stack.h \
+		../../3rdparty/openssl-linux/include/openssl/safestack.h \
+		../../3rdparty/openssl-linux/include/openssl/opensslv.h \
+		../../3rdparty/openssl-linux/include/openssl/ossl_typ.h \
+		../../3rdparty/openssl-linux/include/openssl/ebcdic.h \
+		../../3rdparty/openssl-linux/include/openssl/symhacks.h \
+		../../3rdparty/openssl-linux/include/openssl/bio.h \
+		../../3rdparty/openssl-linux/include/openssl/x509.h \
+		../../3rdparty/openssl-linux/include/openssl/buffer.h \
+		../../3rdparty/openssl-linux/include/openssl/evp.h \
+		../../3rdparty/openssl-linux/include/openssl/objects.h \
+		../../3rdparty/openssl-linux/include/openssl/obj_mac.h \
+		../../3rdparty/openssl-linux/include/openssl/asn1.h \
+		../../3rdparty/openssl-linux/include/openssl/bn.h \
+		../../3rdparty/openssl-linux/include/openssl/ec.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdsa.h \
+		../../3rdparty/openssl-linux/include/openssl/ecdh.h \
+		../../3rdparty/openssl-linux/include/openssl/rsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dsa.h \
+		../../3rdparty/openssl-linux/include/openssl/dh.h \
+		../../3rdparty/openssl-linux/include/openssl/sha.h \
+		../../3rdparty/openssl-linux/include/openssl/x509_vfy.h \
+		../../3rdparty/openssl-linux/include/openssl/lhash.h \
+		../../3rdparty/openssl-linux/include/openssl/pkcs7.h \
+		../../3rdparty/openssl-linux/include/openssl/pem.h \
+		../../3rdparty/openssl-linux/include/openssl/pem2.h \
+		../../3rdparty/openssl-linux/include/openssl/hmac.h \
+		../../3rdparty/openssl-linux/include/openssl/kssl.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl2.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl3.h \
+		../../3rdparty/openssl-linux/include/openssl/tls1.h \
+		../../3rdparty/openssl-linux/include/openssl/dtls1.h \
+		../../3rdparty/openssl-linux/include/openssl/pqueue.h \
+		../../3rdparty/openssl-linux/include/openssl/ssl23.h \
+		../../3rdparty/openssl-linux/include/openssl/srtp.h \
 		../../velib/include/utility/debug.hpp \
 		../../devices/include/confdbimpl.hpp \
 		../../devices/include/device.hpp \
@@ -7871,8 +10031,15 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/onvifc/include/media_management/audioencoderconfigurationoptions.h \
 		../../3rdparty/onvifc/include/media_management/videoencoderconfigurationoptions.h \
 		../../velib/include/vdb/vdb.hpp \
-		../../velib/include/utility/videotype.hpp \
-		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
+		../../xcmnlib/include/utility/videotype.hpp \
+		../../velib/include/vdb/recordsession.hpp \
+		../../velib/include/vdb/mediafile.hpp \
+		../../velib/include/vdb/vdbfile.hpp \
+		../../velib/include/vdb/vdbtype.hpp \
+		../../velib/include/vdb/pbsession.hpp \
+		../../velib/include/vdb/indexdb.hpp \
+		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
+		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Foundation/include/Poco/Foundation.h \
 		../../3rdparty/poco/Foundation/include/Poco/Config.h \
 		../../3rdparty/poco/Foundation/include/Poco/Platform.h \
@@ -7884,19 +10051,11 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Alignment.h \
 		../../3rdparty/poco/Foundation/include/Poco/Bugcheck.h \
 		../../3rdparty/poco/Foundation/include/Poco/Types.h \
-		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
-		../../velib/include/vdb/recordsession.hpp \
-		../../velib/include/vdb/mediafile.hpp \
-		../../velib/include/vdb/vdbfile.hpp \
-		../../velib/include/vdb/vdbtype.hpp \
-		../../velib/include/vdb/pbsession.hpp \
-		../../velib/include/vdb/indexdb.hpp \
-		../../3rdparty/poco/Data/include/Poco/Data/Session.h \
-		../../3rdparty/poco/Data/include/Poco/Data/Data.h \
 		../../3rdparty/poco/Data/include/Poco/Data/SessionImpl.h \
 		../../3rdparty/poco/Foundation/include/Poco/RefCountedObject.h \
 		../../3rdparty/poco/Foundation/include/Poco/AtomicCounter.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex.h \
+		../../3rdparty/poco/Foundation/include/Poco/Exception.h \
 		../../3rdparty/poco/Foundation/include/Poco/ScopedLock.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WINCE.h \
 		../../3rdparty/poco/Foundation/include/Poco/Mutex_WIN32.h \
@@ -7915,6 +10074,7 @@ GeneratedFiles/debug/moc_vscsiteadd.cpp: ../../../../Qt5.4.0/5.4/gcc_64/include/
 		../../3rdparty/poco/Foundation/include/Poco/Dynamic/VarHolder.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumberFormatter.h \
 		../../3rdparty/poco/Foundation/include/Poco/NumericString.h \
+		../../3rdparty/poco/Foundation/include/Poco/Buffer.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DUMMY.h \
 		../../3rdparty/poco/Foundation/include/Poco/FPEnvironment_DEC.h \

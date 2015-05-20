@@ -27,9 +27,14 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../../velib/include/vplay \
     ./../../velib/include/utility \
     ./../../velib/include/vdb \
+	./../../xcmnlib/include/ \
+	./../../xcmnlib/include/utility \
     ./../../veuilib/include\
     ./../../3rdparty/poco/Data/include \
     ./../../3rdparty/poco/Data/SQLite/include \
+    ./../../3rdparty/autojsoncxx/include\
+    ./../../3rdparty/autojsoncxx/rapidjson/include\
+    ./../../oapi\
     ./../recorder \
     ./../setting \
     ./../event \
@@ -39,12 +44,12 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../../3rdparty/openssl-linux/include
 LIBS +=  \
     -L"./../../3rdparty/leveldb/" \
-    -L"./../../velib/lib/linux/" \
     -L"./Debug" \
     -L"./../../3rdparty/openssl-linux/" \
     -L"./../../3rdparty/onvifc/prj_linux/lib" \
     -L"./../../3rdparty/leveldb/" \
-    -L"../../linux/lib" \
+    -L../../output/$$(VE_INSTALL_DIR)/lib \
+	-lcmnlib\
     -lavcodec \
     -lavformat \
     -lavutil \

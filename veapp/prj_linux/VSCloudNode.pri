@@ -25,6 +25,7 @@ HEADERS += ../main/vscvipc.h \
     ../main/vscipcgroupmap.h \
     ../main/vscviewconf.h \
     ../main/vscvipcadd.h \
+    ../../devices/include/cmnoapiserverimpl.hpp \
     ../../devices/include/cmnserverimpl.hpp \
     ../../devices/include/conf.hpp \
     ../../devices/include/confdb.hpp \
@@ -34,22 +35,17 @@ HEADERS += ../main/vscvipc.h \
     ../../devices/include/hdddevice.hpp \
     ../../devices/include/sysdb.hpp \
     ../../devices/include/cmnserver.hpp \
+    ../../devices/include/cmnoapiserver.hpp \
     ../../devices/include/factory.hpp \
     ../disk/vschdddevice.h \
     ../disk/vschddone.h \
     ../disk/vschddedit.h \
     ../disk/vschddoneedit.h \
-    ../vms/vscrecorderadd.h \
     ../vms/vscsiteadd.h \
     ../vms/vscvms.h \
-    ../vms/vscrecorderone.h \
-    ../vms/vscrecorderpanel.h \
-    ../vms/vscrecorder.h \
-    ../vms/vsczbtreeitem.h \
     ../setting/vscsetting.h \
     ../setting/vsclicense.h \
     ../setting/vscversion.h \
-    ../setting/vscrecorderconf.h \
     ../setting/vscuser.h \
     ../setting/vscuserstatus.h \
     ../setting/vschdfsrecord.h \
@@ -59,6 +55,7 @@ HEADERS += ../main/vscvipc.h \
     ../setting/vscoapi.h \
     ../setting/vscvideosetting.h \
     ../setting/vscminingsetting.h \
+    ../setting/switchbutton.h \
     ../../mining/include/mframeworkimpl.hpp \
     ../../mining/include/minterface.hpp \
     ../../mining/include/minterfacemgr.hpp \
@@ -70,13 +67,8 @@ SOURCES += ../disk/vschdddevice.cpp \
     ../disk/vschddedit.cpp \
     ../disk/vschddone.cpp \
     ../disk/vschddoneedit.cpp \
-    ../vms/vscrecorder.cpp \
-    ../vms/vscrecorderadd.cpp \
-    ../vms/vscrecorderone.cpp \
-    ../vms/vscrecorderpanel.cpp \
     ../vms/vscsiteadd.cpp \
     ../vms/vscvms.cpp \
-    ../vms/vsczbtreeitem.cpp \
     ../main/main.cpp \
     ../main/vsccameraadd.cpp \
     ../main/vscdeviceipc.cpp \
@@ -95,13 +87,13 @@ SOURCES += ../disk/vschdddevice.cpp \
     ../main/vscviewconf.cpp \
     ../main/vscvipc.cpp \
     ../main/vscvipcadd.cpp \
+    ../setting/switchbutton.cpp \
     ../setting/vschdfsrecord.cpp \
     ../setting/vsclanguage.cpp \
     ../setting/vsclicense.cpp \
     ../setting/vsclogin.cpp \
     ../setting/vscminingsetting.cpp \
     ../setting/vscoapi.cpp \
-    ../setting/vscrecorderconf.cpp \
     ../setting/vscrtsprtp.cpp \
     ../setting/vscsetting.cpp \
     ../setting/vscuser.cpp \
@@ -124,13 +116,10 @@ FORMS += ../main/vscview.ui \
     ../disk/vschddone.ui \
     ../disk/vschddedit.ui \
     ../disk/vschddoneedit.ui \
-    ../vms/vscrecorderadd.ui \
     ../vms/vscsiteadd.ui \
-    ../vms/vscrecorderone.ui \
     ../setting/vscsetting.ui \
     ../setting/vsclicense.ui \
     ../setting/vscversion.ui \
-    ../setting/vscrecorderconf.ui \
     ../setting/vscuser.ui \
     ../setting/vscuserstatus.ui \
     ../setting/vschdfsrecord.ui \
