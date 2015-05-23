@@ -26,6 +26,8 @@ public:
 	BOOL Stop();
 	BOOL StartRaw();
 	BOOL StopRaw();
+public:
+	static std::string GetCodecName(CodecType codec);
 
 public:
 	RapidMediaData * m_data;
