@@ -36,8 +36,24 @@ typedef enum __VideoRawType
 	VIDEO_RAW_LAST
 }VideoRawType;
 
+typedef enum __CodecType
+{
+        CODEC_PCMU = 0, 
+        CODEC_PCMA = 8,
+        CODEC_G711A = 19,
+        CODEC_G711U = 20, 
+        CODEC_H264 = 96,
+        CODEC_H265 = 98,
+        CODEC_MPEG4 = 97,
+        CODEC_MJPEG = 26,
+        CODEC_AAC = 100,
+        CODEC_NONE = 254,
+        CODEC_LAST = 1000
+}CodecType;
+
 typedef struct __RawFrame {
 	VideoRawType type;
+	CodecType codec;
  	u32 secs;       /* timestamp in seconds */
 	u32 msecs;      /* timestamp in mseconds */
 #define VE_NUM_POINTERS 8
@@ -56,21 +72,6 @@ typedef enum __VideoStreamType
 	VIDEO_STREAM_END,
 	VIDEO_STREAM_LAST
 }VideoStreamType;
-
-typedef enum __CodecType
-{
-        CODEC_PCMU = 0, 
-        CODEC_PCMA = 8,
-        CODEC_G711A = 19,
-        CODEC_G711U = 20, 
-        CODEC_H264 = 96,
-        CODEC_H265 = 98,
-        CODEC_MPEG4 = 97,
-        CODEC_MJPEG = 26,
-        CODEC_AAC = 100,
-        CODEC_NONE = 254,
-        CODEC_LAST = 1000
-}CodecType;
 
 typedef enum __VideoFrameType
 {
@@ -93,6 +94,14 @@ typedef struct __VideoFrame
 	u8   *dataBuf;
 	u32 bufLen;/* the length of the buffer */
 }VideoFrame;
+
+typedef struct __VideoStreamInfo
+{
+	CodecType codec;
+	int width;
+	int height;
+	int fps;
+}VideoStreamInfo;
 
 typedef struct __VideoFrameHeader
 {
