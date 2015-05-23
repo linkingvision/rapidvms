@@ -157,6 +157,7 @@ public:
 						DeviceDelCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UpdateWidget(s32 nIndex, HWND hWnd, int w, int h);
 	BOOL DetachPlayer(s32 nIndex, HWND hWnd, void * pParam);
+	BOOL GetStreamInfo(s32 nIndex, VideoStreamInfo &pInfo);
 	
 	BOOL EnablePtz(s32 nIndex, HWND hWnd, bool enable);
 	BOOL DrawPtzDirection(s32 nIndex, HWND hWnd, int x1, int y1, int x2,  int y2);

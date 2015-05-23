@@ -434,6 +434,13 @@ DeviceStatus Device::CheckDevice(astring strUrl, astring strUrlSubStream,
     
 }
 
+BOOL Device::GetStreamInfo(VideoStreamInfo &pInfo)
+{
+    m_vPlay.GetStreamInfo(pInfo);
+
+    return TRUE;
+}
+
 BOOL Device::AttachPlayer(HWND hWnd, int w, int h)
 {
     m_vPlay.AttachWidget(hWnd, w, h);

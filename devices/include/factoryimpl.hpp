@@ -879,6 +879,19 @@ inline BOOL Factory::AttachPlayer(s32 nIndex, HWND hWnd, int w, int h,
 	return TRUE;
 }
 
+inline BOOL Factory::GetStreamInfo(s32 nIndex, VideoStreamInfo &pInfo)
+{
+	Lock();
+	if (m_DeviceMap[nIndex] != NULL)
+	{
+	    m_DeviceMap[nIndex]->GetStreamInfo(pInfo);
+	}
+	UnLock();
+
+	return TRUE;
+}
+
+
 inline BOOL Factory::UpdateWidget(s32 nIndex, HWND hWnd, int w, int h)
 {
     Lock();

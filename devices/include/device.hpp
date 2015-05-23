@@ -248,6 +248,7 @@ public:
 	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
+	inline BOOL GetStreamInfo(VideoStreamInfo &pInfo);
 
 	inline BOOL EnablePtz(HWND hWnd, bool enable);
 	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
