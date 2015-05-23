@@ -54,6 +54,7 @@ public:
 	BOOL StopGetRawFrame();
 	BOOL PutRawData(VideoFrame& packet);
 	BOOL ShowAlarm(HWND hWnd);
+	BOOL GetStreamInfo(VideoStreamInfo &pInfo);
 	
 
 public:
