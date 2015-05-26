@@ -17,7 +17,7 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 	DiskTreeUpdated();
 	VmsTreeUpdated();
 	ViewTreeUpdated();
-	VIPCTreeUpdated();
+	//VIPCTreeUpdated();
 
 	SetupConnections();
 	m_Timer = new QTimer(this);
@@ -40,6 +40,8 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 	
 	//ui.pbEmap->hide();
 	//ui.lbEmap->hide();
+	ui.pbVIPC->hide();
+	ui.lbVIPC->hide();
 
 
 }

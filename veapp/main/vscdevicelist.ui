@@ -372,7 +372,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="lbVIPC">
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -527,15 +527,6 @@
         <property name="icon">
          <iconset resource="vscmainwindows.qrc">
           <normaloff>:/device/resources/harddisk.png</normaloff>:/device/resources/harddisk.png</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Virtual IPCs</string>
-        </property>
-        <property name="icon">
-         <iconset resource="vscmainwindows.qrc">
-          <normaloff>:/device/resources/virtualipc.png</normaloff>:/device/resources/virtualipc.png</iconset>
         </property>
        </item>
       </widget>
