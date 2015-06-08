@@ -44,6 +44,7 @@
         <file>resources/radiobutton_unchecked.png</file>
         <file>resources/radiobutton_unchecked_hover.png</file>
         <file>resources/radiobutton_unchecked_pressed.png</file>
+        <file>resources/plan.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
