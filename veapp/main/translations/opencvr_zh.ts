@@ -164,22 +164,22 @@
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="35"/>
+        <location filename="../vsccameraadd.cpp" line="36"/>
         <source>images/open.ico</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="35"/>
+        <location filename="../vsccameraadd.cpp" line="36"/>
         <source>Floating</source>
         <translation type="unfinished">浮动</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="77"/>
+        <location filename="../vsccameraadd.cpp" line="78"/>
         <source>Select File</source>
         <translation type="unfinished">选择文件</translation>
     </message>
     <message>
-        <location filename="../vsccameraadd.cpp" line="79"/>
+        <location filename="../vsccameraadd.cpp" line="80"/>
         <source>Video Files(*.MOV *.mp4 *.avi *.ts *.mpg)</source>
         <translation type="unfinished">视频文件((*.MOV *.mp4 *.avi *.ts *.mpg))</translation>
     </message>
@@ -247,7 +247,12 @@
         <translation type="unfinished">地图</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="380"/>
+        <location filename="../vscdevicelist.ui" line="377"/>
+        <source>Plan</source>
+        <translation type="unfinished">录像计划</translation>
+    </message>
+    <message>
+        <location filename="../vscdevicelist.ui" line="419"/>
         <source>VIPC</source>
         <translation type="unfinished">虚摄像机</translation>
     </message>
@@ -256,131 +261,130 @@
         <translation type="obsolete">虚拟相机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="402"/>
+        <location filename="../vscdevicelist.ui" line="441"/>
         <source>Drop IP Camera to Here</source>
         <translation type="unfinished">拖放到此</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="425"/>
+        <location filename="../vscdevicelist.ui" line="464"/>
         <source>Trush</source>
         <translation type="unfinished">回收站</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="493"/>
+        <location filename="../vscdevicelist.ui" line="532"/>
         <source>VS Cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="498"/>
+        <location filename="../vscdevicelist.ui" line="537"/>
         <source>Cameras</source>
         <translation type="unfinished">摄像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="507"/>
+        <location filename="../vscdevicelist.ui" line="546"/>
         <source>Recorders</source>
         <translation type="unfinished">录像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="516"/>
+        <location filename="../vscdevicelist.ui" line="555"/>
         <source>Views</source>
         <translation type="unfinished">视图</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="525"/>
+        <location filename="../vscdevicelist.ui" line="564"/>
         <source>Disks</source>
         <translation type="unfinished">磁盘</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="534"/>
         <source>Virtual IPCs</source>
-        <translation type="unfinished">虚摄像机</translation>
+        <translation type="obsolete">虚摄像机</translation>
     </message>
 </context>
 <context>
     <name>VSCDeviceTree</name>
     <message>
-        <location filename="../vscdevicetree.cpp" line="22"/>
-        <location filename="../vscdevicetree.cpp" line="66"/>
+        <location filename="../vscdevicetree.cpp" line="23"/>
+        <location filename="../vscdevicetree.cpp" line="67"/>
         <source>&amp;New</source>
         <translation type="unfinished">新建</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="24"/>
-        <location filename="../vscdevicetree.cpp" line="60"/>
-        <location filename="../vscdevicetree.cpp" line="64"/>
+        <location filename="../vscdevicetree.cpp" line="25"/>
+        <location filename="../vscdevicetree.cpp" line="61"/>
+        <location filename="../vscdevicetree.cpp" line="65"/>
         <source>&amp;Edit</source>
         <translation type="unfinished">编辑</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="26"/>
-        <location filename="../vscdevicetree.cpp" line="68"/>
-        <location filename="../vscdevicetree.cpp" line="72"/>
-        <location filename="../vscdevicetree.cpp" line="76"/>
+        <location filename="../vscdevicetree.cpp" line="27"/>
+        <location filename="../vscdevicetree.cpp" line="69"/>
+        <location filename="../vscdevicetree.cpp" line="73"/>
+        <location filename="../vscdevicetree.cpp" line="77"/>
         <source>&amp;Delete</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="28"/>
+        <location filename="../vscdevicetree.cpp" line="29"/>
         <source>&amp;Start Record</source>
         <translation type="unfinished">开启录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="30"/>
+        <location filename="../vscdevicetree.cpp" line="31"/>
         <source>&amp;Stop Record</source>
         <translation type="unfinished">停止录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="32"/>
+        <location filename="../vscdevicetree.cpp" line="33"/>
         <source>&amp;Start HDFS Record</source>
         <translation type="unfinished">开启HDFS录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="34"/>
+        <location filename="../vscdevicetree.cpp" line="35"/>
         <source>&amp;Stop HDFS Record</source>
         <translation type="unfinished">停止HDFS录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="38"/>
+        <location filename="../vscdevicetree.cpp" line="39"/>
         <source>&amp;Start All Record</source>
         <translation type="unfinished">开启所有录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="40"/>
+        <location filename="../vscdevicetree.cpp" line="41"/>
         <source>&amp;Stop All Record</source>
         <translation type="unfinished">停止所有录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="42"/>
+        <location filename="../vscdevicetree.cpp" line="43"/>
         <source>&amp;Start All HDFS Record</source>
         <translation type="unfinished">开启所有HDFS录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="44"/>
+        <location filename="../vscdevicetree.cpp" line="45"/>
         <source>&amp;Stop All HDFS Record</source>
         <translation type="unfinished">停止所有HDFS录像</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="49"/>
+        <location filename="../vscdevicetree.cpp" line="50"/>
         <source>&amp;New Group</source>
         <translation type="unfinished">新建组</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="51"/>
+        <location filename="../vscdevicetree.cpp" line="52"/>
         <source>&amp;Edit Group</source>
         <translation type="unfinished">编辑组</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="53"/>
+        <location filename="../vscdevicetree.cpp" line="54"/>
         <source>&amp;Delete Group</source>
         <translation type="unfinished">删除组</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="56"/>
+        <location filename="../vscdevicetree.cpp" line="57"/>
         <source>&amp;Group</source>
         <translation type="unfinished">组划分</translation>
     </message>
     <message>
-        <location filename="../vscdevicetree.cpp" line="78"/>
+        <location filename="../vscdevicetree.cpp" line="79"/>
         <source>&amp;Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1423,7 +1427,7 @@
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../setting/vscuser.cpp" line="59"/>
+        <location filename="../../setting/vscuser.cpp" line="65"/>
         <source>Password not correct ...</source>
         <translation type="unfinished"></translation>
     </message>
