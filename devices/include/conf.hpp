@@ -25,7 +25,6 @@
 #define CONF_VGROUP_NUM_MAX 128
 /* Max num of user */
 #define CONF_USER_NUM_MAX 16
-
 /* Max num of Tour */
 #define CONF_TOUR_NUM_MAX 16
 
