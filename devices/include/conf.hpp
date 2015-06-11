@@ -26,6 +26,9 @@
 /* Max num of user */
 #define CONF_USER_NUM_MAX 16
 
+/* Max num of Tour */
+#define CONF_TOUR_NUM_MAX 16
+
 
 #define VSC_CONF_KEY "ConfVSCSystem"
 #define VSC_CONF_LIC_KEY "ConfVSCLicense"
@@ -44,6 +47,8 @@
 #define VSC_CONF_VIEW_CH_MAX 256
 /* Max camera in one Group */
 #define VSC_CONF_VGROUP_CH_MAX 256
+/* Max view in one Tour */
+#define VSC_CONF_TOUR_VIEW_MAX 32
 
 
 //------------------------------------------------------------------------------
@@ -312,6 +317,15 @@ typedef struct __VSCEmapDataItem__ {
 	u32 padding4;
 }VSCEmapDataItem;
 
+typedef struct __VSCTourDataItem__ {
+	u32 nId;
+	s8 Name[CONF_NAME_MAX];
+	/* Views */
+	u32 View[VSC_CONF_TOUR_VIEW_MAX];
+	u32 IntervalTime; /* In seconds */
+	u32 Used;/* 1 stand for used, 0 stand for not used */
+}VSCTourDataItem;
+
 
 typedef struct __VSCVmsData__ {
 	VSCVmsDataItem vms[CONF_VMS_NUM_MAX];
@@ -337,6 +351,10 @@ typedef struct __VSCEmapData__ {
 	u32 init;/* 1 stand for has init, 0 stand for not init */
 	VSCEmapDataItem emap[CONF_MAP_MAX];
 }VSCEmapData__;
+
+typedef struct __VSCTourData__ {
+	VSCTourDataItem view[CONF_TOUR_NUM_MAX];
+}VSCTourData__;
 
 
 //------------------------------------------------------------------------------
@@ -411,6 +429,13 @@ typedef struct __VSCEmapData {
     } data;
 }VSCEmapData;
 
+typedef struct __VSCTourData {
+    union {
+        VSCTourData__ conf;
+        u8 whole[1024 * 128];
+    } data;
+}VSCTourData;
+
 //------------------------------------------------------------------------------
 // Conf Data Default function
 //
@@ -474,6 +499,14 @@ inline void VSCEmapDataDefault(VSCEmapData__ &data)
 {
 	memset(&data, 0, sizeof(VSCEmapData__));
 }
+
+inline void VSCTourDataItemDefault(VSCTourDataItem &item)
+{
+    memset(&item, 0, sizeof(VSCTourDataItem));
+    sprintf(item.Name, "Tour");
+}
+
+
 
 #pragma pack(pop)
 
