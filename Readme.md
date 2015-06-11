@@ -28,7 +28,7 @@
 	Emap
 	Data Mining Framework 
 	HDFS Video Recording
-	Intel Media SDK HW accel
+	HW accel Decoding
 	MJPEG/MPEG4/H264/H265 support
 
 ## Install ##
