@@ -40,6 +40,7 @@
 #define VSC_CONF_EMAP_FILE_KEY "ConfVSCEmapFile"
 #define VSC_CONF_EMAP_KEY "ConfVSCEmap"
 #define VSC_CONF_USER_KEY "ConfVSCUserConf"
+#define VSC_CONF_TOUR_KEY "ConfVSCTour"
 #define VSC_CONF_PARAM_MAX 1024
 #define VSC_CONF_PARAM_S_MAX 128
 /* Max camera in one view */
@@ -164,6 +165,16 @@ typedef struct __VSCConfUserKey {
         strcpy(Key, VSC_CONF_USER_KEY);
     }
 }VSCConfUserKey;
+
+/* Tour key */
+typedef struct __VSCConfTourKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfTourKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_USER_KEY);
+    }
+}VSCConfTourKey;
 
 
 //------------------------------------------------------------------------------
