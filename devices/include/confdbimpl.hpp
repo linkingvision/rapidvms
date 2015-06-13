@@ -310,6 +310,44 @@ inline BOOL ConfDB::GetUserConf(VSCUserData &pData)
 
 }
 
+inline BOOL ConfDB::GetTourConf(VSCTourData &pData)
+{
+    VSCConfTourKey sKey;
+
+    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+    it->Seek(key);
+    leveldb::Slice sysValue;
+
+    if (it->Valid())
+    {
+        sysValue = it->value();
+    }
+
+    if (sysValue.size() != sizeof(VSCTourData))
+    {
+        VDC_DEBUG( "Tour Config is not init\n");
+        delete it;
+	memset(&pData, 0, sizeof(VSCTourData));
+	VSCTourDataItemDefault(pData.data.conf);
+	UpdateTourData(pData);
+        /* Call get system again */
+        return TRUE;
+    }
+
+	memcpy(&pData, sysValue.data(), sizeof(VSCTourData));
+
+    // Check for any errors found during the scan
+    assert(it->status().ok());
+    delete it;
+
+    return TRUE;
+
+}
+
 
 inline BOOL ConfDB::GetEmapConf(VSCEmapData &pData)
 {
@@ -566,6 +604,28 @@ inline s32 ConfDB::UpdateUserData(VSCUserData &pData)
 
     leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
     leveldb::Slice sysValue((char *)&pData, sizeof(VSCUserData));
+
+    m_pDb->Put(writeOptions, sysKey, sysValue);
+
+    return TRUE;
+}
+
+/* Tour  */
+inline s32 ConfDB::GetTourData(VSCTourData &pData)
+{
+	GetTourConf(pData);
+	
+	return TRUE;
+}
+
+inline s32 ConfDB::UpdateTourData(VSCTourData &pData)
+{
+    VSCConfTourKey sKey;
+
+    leveldb::WriteOptions writeOptions;
+
+    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+    leveldb::Slice sysValue((char *)&pData, sizeof(VSCTourData));
 
     m_pDb->Put(writeOptions, sysKey, sysValue);
 
