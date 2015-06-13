@@ -67,6 +67,10 @@ public:
 	BOOL GetEmapFile(astring &strFile);
 	BOOL SetEmapFile(astring &strFile);
 
+	/* Tour */
+	s32 GetTourData(VSCTourData &pData);
+	s32 UpdateTourData(VSCTourData &pData);
+
 
 public:
 	BOOL GetSystemConf(VSCConfData &pSys);
@@ -79,6 +83,8 @@ public:
 	BOOL GetUserConf(VSCUserData &pData);
 
 	BOOL GetEmapConf(VSCEmapData &pData);
+
+	BOOL GetTourConf(VSCTourData &pData);
 	
 
 public:
