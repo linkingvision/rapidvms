@@ -332,7 +332,7 @@ inline BOOL ConfDB::GetTourConf(VSCTourData &pData)
         VDC_DEBUG( "Tour Config is not init\n");
         delete it;
 	memset(&pData, 0, sizeof(VSCTourData));
-	VSCTourDataItemDefault(pData.data.conf);
+	VSCTourDataDefault(pData.data.conf);
 	UpdateTourData(pData);
         /* Call get system again */
         return TRUE;

@@ -516,6 +516,11 @@ inline void VSCTourDataItemDefault(VSCTourDataItem &item)
     sprintf(item.Name, "Tour");
 }
 
+inline void VSCTourDataDefault(VSCTourData__ &data)
+{
+	memset(&data, 0, sizeof(VSCTourData__));
+}
+
 
 
 #pragma pack(pop)
