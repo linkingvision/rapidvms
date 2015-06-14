@@ -37,12 +37,20 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 	//m_TimerAlarm->start(300);
 	m_alarm = false;
 
+	m_movie = new QMovie(":/action/resources/processing.gif");
+	ui.lbProcess->setScaledContents(true);
+	ui.lbProcess->setMovie(m_movie);
+	//m_movie->start();
+
+
 	m_cpu = new VSCCalculate(ui.cpu);
 #if 0
 	ui.Tour->addItem("Tour 1");
 	ui.Tour->addItem("Tour 2");
 	ui.Tour->addItem("Tour 3");
 #endif
+
+	ui.pbTourStop->hide();
 }
 
 void VSCToolBar::showcurrentTime()

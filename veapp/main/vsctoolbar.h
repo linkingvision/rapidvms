@@ -5,6 +5,7 @@
 #include "ui_vsctoolbar.h"
 #include "utility.hpp"
 #include <QTimer>
+#include <QMovie>
 #include "vsccalculate.hpp"
 
 class VSCToolBar : public QWidget
@@ -28,6 +29,7 @@ private:
 	bool m_alarm;
 	int m_alarmCnt;
 	VSCCalculate * m_cpu;
+	QMovie * m_movie;
     
 };
 

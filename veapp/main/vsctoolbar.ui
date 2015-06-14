@@ -140,7 +140,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbTourEdit">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -169,7 +169,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pbTourStart">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -187,7 +187,36 @@
        </property>
        <property name="icon">
         <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/playview.png</normaloff>:/action/resources/playview.png</iconset>
+         <normaloff>:/action/resources/tourplay.png</normaloff>:/action/resources/tourplay.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbTourStop">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/tourstop.png</normaloff>:/action/resources/tourstop.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -237,7 +266,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QLabel" name="lbProcess">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -250,18 +279,11 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/action/resources/processing.gif);</string>
+       </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>:/action/resources/processing.gif</normaloff>:/action/resources/processing.gif</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>34</width>
-         <height>34</height>
-        </size>
        </property>
       </widget>
      </item>

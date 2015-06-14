@@ -25,7 +25,6 @@
         <file>resources/refresh.png</file>
         <file>resources/alarm.png</file>
         <file>resources/alarmno.png</file>
-        <file>resources/playview.png</file>
         <file>resources/map.png</file>
         <file>resources/user.png</file>
         <file>resources/mining.png</file>
@@ -47,6 +46,8 @@
         <file>resources/plan.png</file>
         <file>resources/toursetting.png</file>
         <file>resources/processing.gif</file>
+        <file>resources/tourstop.png</file>
+        <file>resources/tourplay.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
