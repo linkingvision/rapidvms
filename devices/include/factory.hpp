@@ -38,6 +38,10 @@ typedef enum
     /* Camera group add and del */
     FACTORY_VGROUP_ADD,
     FACTORY_VGROUP_DEL,
+
+    /* Camera tour add and del */
+    FACTORY_TOUR_ADD,
+    FACTORY_TOUR_DEL,
     FACTORY_DEVICE_LAST
 } FactoryDeviceChangeType;
 
@@ -182,6 +186,12 @@ public:
 	s32 AddVGroup(VSCVGroupDataItem &pParam);
 	BOOL DelVGroup(s32 Id);
 	BOOL GetVGroupById(VSCVGroupDataItem &pParam, int nId);
+
+	/* Tour */
+	BOOL GetTour(VSCTourData &pData);
+	s32 AddTour(VSCTourDataItem &pParam);
+	BOOL DelTour(s32 Id);
+	BOOL GetTourById(VSCTourDataItem &pParam, int nId);
 
 public:
 	BOOL StartRecord(s32 nIndex);

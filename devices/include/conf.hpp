@@ -363,7 +363,7 @@ typedef struct __VSCEmapData__ {
 }VSCEmapData__;
 
 typedef struct __VSCTourData__ {
-	VSCTourDataItem view[CONF_TOUR_NUM_MAX];
+	VSCTourDataItem tour[CONF_TOUR_NUM_MAX];
 }VSCTourData__;
 
 

@@ -1521,6 +1521,92 @@ inline BOOL Factory::DelView(s32 Id)
 }
 
 
+inline BOOL Factory::GetTour(VSCTourData &pData)
+{
+	Lock();
+	m_Conf.GetTourData(pData);
+	UnLock();
+	return TRUE;
+}
+
+inline BOOL Factory::GetTourById(VSCTourDataItem &pParam, int nId)
+{
+	VSCTourData TourData;
+	int id = -1;
+	Lock();
+	m_Conf.GetTourData(TourData);
+	if (nId < CONF_VMS_NUM_MAX && nId > 0)
+	{
+		if (TourData.data.conf.tour[nId].Used == 1)
+		{
+			memcpy(&pParam, &(TourData.data.conf.tour[nId]), 
+				sizeof(VSCTourDataItem));
+		}
+	}else
+	{
+		UnLock();
+		return FALSE;
+	}
+	UnLock();
+	return TRUE;
+	
+}
+
+inline s32 Factory::AddTour(VSCTourDataItem &pParam)
+{
+	VSCTourData TourData;
+	FactoryDeviceChangeData change;
+	int id = -1;
+	Lock();
+	m_Conf.GetTourData(TourData);
+	/* Just use 1 to CONF_TOUR_NUM_MAX */
+	for (s32 i = 1; i < CONF_TOUR_NUM_MAX; i ++)
+	{
+	    	if (TourData.data.conf.tour[i].Used == 1)
+	    	{
+	    		continue;
+	    	}else
+	    	{
+	    		memcpy(&(TourData.data.conf.tour[i]), &pParam, 
+							sizeof(VSCTourDataItem));
+			TourData.data.conf.tour[i].Used = 1;
+			TourData.data.conf.tour[i].nId = i;
+			id = i;
+			break;
+	    	}
+	}	
+	m_Conf.UpdateTourData(TourData);
+	UnLock();
+	change.id = id;
+	change.type = FACTORY_TOUR_ADD;
+	CallDeviceChange(change);
+	return id;
+}
+inline BOOL Factory::DelTour(s32 Id)
+{
+	VSCTourData TourData;
+	FactoryDeviceChangeData change;
+	Lock();
+	m_Conf.GetTourData(TourData);
+	if (Id < CONF_VMS_NUM_MAX && Id > 0)
+	{
+		TourData.data.conf.tour[Id].Used = 0;
+	}else
+	{
+		UnLock();
+		return FALSE;
+	}
+	
+	m_Conf.UpdateTourData(TourData);
+	UnLock();
+	change.id = Id;
+	change.type = FACTORY_TOUR_DEL;
+	CallDeviceChange(change);
+	return TRUE;
+}
+
+
+
 inline BOOL Factory::GetVGroup(VSCVGroupData &pData)
 {
 	Lock();
