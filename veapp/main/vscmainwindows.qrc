@@ -48,6 +48,7 @@
         <file>resources/processing.gif</file>
         <file>resources/tourstop.png</file>
         <file>resources/tourplay.png</file>
+        <file>resources/panel.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>

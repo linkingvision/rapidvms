@@ -50,7 +50,7 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 	ui.Tour->addItem("Tour 3");
 #endif
 
-	ui.pbTourStop->hide();
+	//ui.pbTourStop->hide();
 }
 
 void VSCToolBar::showcurrentTime()

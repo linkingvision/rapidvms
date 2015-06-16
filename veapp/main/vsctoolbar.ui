@@ -118,29 +118,30 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
-       <property name="sizeAdjustPolicy">
-        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      <widget class="QPushButton" name="pushButton">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
        </property>
-       <item>
-        <property name="text">
-         <string>Select a Tour     </string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Tour 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Tour 2</string>
-        </property>
-       </item>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/panel.png</normaloff>:/action/resources/panel.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbTourEdit">
+      <widget class="QLabel" name="lbProcess">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -153,76 +154,11 @@
          <height>30</height>
         </size>
        </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/toursetting.png</normaloff>:/action/resources/toursetting.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbTourStart">
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/action/resources/processing.gif);</string>
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/tourplay.png</normaloff>:/action/resources/tourplay.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbTourStop">
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/tourstop.png</normaloff>:/action/resources/tourstop.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
        </property>
       </widget>
      </item>
@@ -259,28 +195,6 @@
          <width>180</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lbProcess">
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/action/resources/processing.gif);</string>
        </property>
        <property name="text">
         <string/>
