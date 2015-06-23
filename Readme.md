@@ -52,7 +52,6 @@ Download *OpenCVR-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from
 	export  PATH=/home/xxx/Qt5.4.0/5.4/gcc_64/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/:$PATH
 	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4/gcc_64/
 	2.edit the env.sh LD_LIBRARY_PATH for the current dir
-	   ./root.sh
 	   source ./env.sh
 	   ./start.sh
 		
@@ -63,7 +62,6 @@ Download *OpenCVR-Ubuntu(CentOS)-xxx-32bit(64bit)-201xxxxx.tar.gz*  from
 	export  PATH=/home/xxx/Qt5.4.0/5.4/gcc/bin:/home/xxx/Qt5.4.0/Tools/QtCreator/bin/:$PATH
 	export  VE_QTDIR=/home/xxx/Qt5.4.0/5.4/gcc/
 	2.edit the env.sh LD_LIBRARY_PATH for the current dir
-	   ./root.sh
 	   source ./env.sh
 	   ./start.sh
 	
