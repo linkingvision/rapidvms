@@ -40,7 +40,8 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 	m_movie = new QMovie(":/action/resources/processing.gif");
 	ui.lbProcess->setScaledContents(true);
 	ui.lbProcess->setMovie(m_movie);
-	//m_movie->start();
+	m_movie->start();
+	showProcessing(FALSE);
 
 
 	m_cpu = new VSCCalculate(ui.cpu);
@@ -51,6 +52,18 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 #endif
 
 	//ui.pbTourStop->hide();
+}
+
+void VSCToolBar::showProcessing(bool bEnable)
+{
+	if (bEnable == TRUE)
+	{
+		ui.lbProcess->show();
+	}else
+	{
+		ui.lbProcess->hide();
+	}
+		
 }
 
 void VSCToolBar::showcurrentTime()

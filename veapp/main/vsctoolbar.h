@@ -20,6 +20,7 @@ public slots:
     void showcurrentTime();
 	void showAlarm();
     void NewAlarm();
+	void showProcessing(bool bEnable);
 public:
     Ui::VSCToolBar ui;
 	
