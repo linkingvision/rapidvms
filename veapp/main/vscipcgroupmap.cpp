@@ -76,6 +76,7 @@ VSCVGroupWall::VSCVGroupWall(QWidget *parent)
 {
 	m_pArea = new QScrollArea(this);
 	m_pArea->setWidgetResizable(true);
+	m_pArea->setBackgroundRole(QPalette::Light);
 	// Fake up a grid to scroll
 	QWidget *client = new QWidget(this);
 	m_pLayout = new QGridLayout(client);

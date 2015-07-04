@@ -34,6 +34,7 @@ public slots:
 
 	void Search();
 	void Setting();
+	void Panel();
 	void EditCamera(int nId);
 	void DeleteCamera(int nId);
 	void MainCloseTab(int index);

@@ -49,6 +49,7 @@
 #include "vemap.hpp"
 #include "vdmining.hpp"
 #include "vsclogin.h"
+#include "vscpanel.h"
 
 extern Factory *gFactory;
 
@@ -161,6 +162,7 @@ void VSCMainWindows::SetupConnections()
 	connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(AddEvent()));
 	connect(m_pToolBar->ui.pbSetting, SIGNAL(clicked()), this, SLOT(Setting()));
 	connect(m_pToolBar->ui.pbUser, SIGNAL(clicked()), this, SLOT(UserStatus()));
+	connect(m_pToolBar->ui.pbPanel, SIGNAL(clicked()), this, SLOT(Panel()));
 	connect(m_pEventThread, SIGNAL(EventNotifyNoParam()), m_pToolBar, SLOT(NewAlarm()));
 
 }
@@ -236,6 +238,15 @@ void VSCMainWindows::Setting()
     m_pMainArea->addTab(pSetting, QIcon(tr(":/action/resources/setting.png")), tr("Setting"));  
     m_pMainArea->setCurrentWidget(pSetting);
 	ViewHideFocus();
+}
+
+void VSCMainWindows::Panel()
+{
+    VSCPanel *pPanel = new VSCPanel(this);
+
+    m_pMainArea->addTab(pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Panel"));  
+    m_pMainArea->setCurrentWidget(pPanel);
+    ViewHideFocus();
 }
 
 void VSCMainWindows::AddCamera()
