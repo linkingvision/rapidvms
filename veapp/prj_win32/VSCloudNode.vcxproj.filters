@@ -273,6 +273,12 @@
     <CustomBuild Include="..\..\devices\include\cmnoapiserver.hpp">
       <Filter>Device\include</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\main\vscpanel.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscpanel.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -620,6 +626,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\main\vscpanel.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscpanel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscpanel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -759,6 +774,9 @@
     </ClInclude>
     <ClInclude Include="..\..\devices\include\cmnoapiserverimpl.hpp">
       <Filter>Device\include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscpanel.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
