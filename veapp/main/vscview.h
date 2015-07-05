@@ -93,7 +93,8 @@ public slots:
     {
     	m_pVideo->DeviceEvent(deviceId, (VscEventType)type);
     }
-	
+
+    void TourStop();
 public:
     Ui::VSCView ui;
 private:
