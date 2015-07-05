@@ -23,6 +23,7 @@ VSCPanel::VSCPanel(QWidget *parent, Qt::WindowFlags flags)
 	 ui.setupUi(this);
 	setAcceptDrops(true);
 	setMouseTracking(true);
+	ui.scrollArea->setBackgroundRole(QPalette::Light);
 }
 
 VSCPanel::~VSCPanel()
