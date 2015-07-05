@@ -44,6 +44,8 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
     m_Timer = new QTimer(this);
     connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl())); 
     m_Timer->start(1000); 
+
+    TourStop();
 }
 
 void VSCView::UpdateVideoControl()
@@ -102,6 +104,12 @@ VSCView::~VSCView()
 {
     m_pPlayControl->hide();
     delete m_pPlayControl;
+}
+
+void VSCView::TourStop()
+{
+	ui.pbTourPlay->show();
+	ui.pbTourStop->hide();
 }
 
 void VSCView::mouseMoveEvent(QMouseEvent *event)
