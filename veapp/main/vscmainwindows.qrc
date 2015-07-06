@@ -4,6 +4,7 @@
         <file>resources/vscsmall.png</file>
         <file>resources/vsclogoc.png</file>
         <file>resources/vsclogod.png</file>
+        <file>resources/vscsmall2.png</file>
     </qresource>
     <qresource prefix="/action">
         <file>resources/surveillance.png</file>
