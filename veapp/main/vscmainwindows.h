@@ -22,7 +22,7 @@ public:
 	void CreateDockWindows();
 	void SetupConnections();
 	void ViewHideFocus();
-       void closeEvent(QCloseEvent *event); 
+	void closeEvent(QCloseEvent *event); 
 
 
 public slots:

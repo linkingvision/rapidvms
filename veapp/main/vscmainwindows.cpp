@@ -244,8 +244,18 @@ void VSCMainWindows::Panel()
 {
     VSCPanel *pPanel = new VSCPanel(this);
 
-    m_pMainArea->addTab(pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Panel"));  
+    m_pMainArea->addTab(pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Control Panel"));  
     m_pMainArea->setCurrentWidget(pPanel);
+	
+	connect(pPanel, SIGNAL(AddRecorder()), this, SLOT(AddRecorder()));
+	connect(pPanel, SIGNAL(AddCamera()), this, SLOT(AddCamera()));
+	connect(pPanel, SIGNAL(AddSurveillance()), this, SLOT(AddSurveillance()));
+	connect(pPanel, SIGNAL(Search()), this, SLOT(Search()));
+	connect(pPanel, SIGNAL(AddEmap()), this, SLOT(AddEmap()));
+	connect(pPanel, SIGNAL(AddDmining()), this, SLOT(AddDmining()));
+	connect(pPanel, SIGNAL(Setting()), this, SLOT(Setting()));
+	connect(pPanel, SIGNAL(AddEvent()), this, SLOT(AddEvent()));
+	
     ViewHideFocus();
 }
 
