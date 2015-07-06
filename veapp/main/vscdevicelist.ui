@@ -78,7 +78,12 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">selection-background-color: rgb(0, 255, 0);</string>
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
@@ -124,6 +129,14 @@
          </property>
          <property name="toolTip">
           <string>Add IP Camera</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
@@ -176,6 +189,14 @@
          <property name="whatsThis">
           <string>3</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -221,6 +242,14 @@
          <property name="toolTip">
           <string>Search IP Camera</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -265,6 +294,14 @@
          </property>
          <property name="toolTip">
           <string>Playback </string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
@@ -312,7 +349,12 @@
           <enum>Qt::LeftToRight</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
@@ -356,6 +398,14 @@
            <height>40</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -394,6 +444,14 @@
            <width>65</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
@@ -439,6 +497,14 @@
          </property>
          <property name="toolTip">
           <string>Drop IP Camera to Here</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
          </property>
          <property name="text">
           <string/>
