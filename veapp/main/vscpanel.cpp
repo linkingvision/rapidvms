@@ -20,10 +20,23 @@ extern Factory *gFactory;
 VSCPanel::VSCPanel(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
-	 ui.setupUi(this);
+	ui.setupUi(this);
 	setAcceptDrops(true);
 	setMouseTracking(true);
 	ui.scrollArea->setBackgroundRole(QPalette::Light);
+
+	/* Setup connection */
+	connect(ui.pbView, SIGNAL(clicked()), this, SIGNAL(AddSurveillance()));
+	connect(ui.pbSearch, SIGNAL(clicked()), this, SIGNAL(Search()));
+	connect(ui.pbMining, SIGNAL(clicked()), this, SIGNAL(AddDmining()));
+	connect(ui.pbEmap, SIGNAL(clicked()), this, SIGNAL(AddEmap()));
+	//connect(ui.pbPlan, SIGNAL(clicked()), this, SIGNAL(AddSurveillance())); //TODO
+
+	connect(ui.pbRecorder, SIGNAL(clicked()), this, SIGNAL(AddRecorder()));
+	connect(ui.pbCamera, SIGNAL(clicked()), this, SIGNAL(AddCamera()));
+
+	connect(ui.pbSetting, SIGNAL(clicked()), this, SIGNAL(Setting()));
+	connect(ui.pbAlarm, SIGNAL(clicked()), this, SIGNAL(AddEvent()));
 }
 
 VSCPanel::~VSCPanel()
