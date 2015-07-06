@@ -29,6 +29,17 @@ public:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dragMoveEvent(QDragMoveEvent *event);
         void dropEvent(QDropEvent *event);
+signals:
+	void AddRecorder();
+	void AddCamera();
+	
+	void AddSurveillance();
+	void Search();
+	void AddEmap();
+	void AddDmining();
+	
+	void Setting();
+	void AddEvent();
 public:
     Ui::VSCPanel ui;
 private:
