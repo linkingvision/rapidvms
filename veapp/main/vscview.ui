@@ -87,6 +87,14 @@
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -129,6 +137,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -157,6 +173,14 @@
           <width>25</width>
           <height>25</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
         </property>
         <property name="text">
          <string/>
@@ -229,6 +253,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -238,8 +270,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -258,6 +290,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -267,8 +307,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -287,6 +327,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -296,8 +344,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -316,6 +364,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -325,8 +381,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -339,6 +395,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -348,8 +412,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -368,6 +432,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -377,8 +449,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -391,6 +463,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -400,8 +480,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -414,6 +494,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -423,8 +511,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
@@ -443,6 +531,14 @@
           <height>25</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -452,8 +548,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>25</width>
-          <height>25</height>
+          <width>23</width>
+          <height>23</height>
          </size>
         </property>
        </widget>
