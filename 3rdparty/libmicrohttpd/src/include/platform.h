@@ -40,18 +40,18 @@
 #ifdef _MHD_EXTERN
 #undef _MHD_EXTERN
 #endif /* _MHD_EXTERN */
-#if defined(_WIN32) && defined(MHD_W32LIB)
-#define _MHD_EXTERN extern
-#elif defined (_WIN32) && defined(MHD_W32DLL)
+#if defined (_WIN32) && defined(MHD_W32DLL)
 #define _MHD_EXTERN __declspec(dllimport) 
+#elif defined(_WIN32) && defined(MHD_W32LIB)
+#define _MHD_EXTERN extern
 #else
 #define _MHD_EXTERN extern
 #endif
 #elif !defined(_MHD_EXTERN) /* && BUILDING_MHD_LIB */
-#if defined(_WIN32) && defined(MHD_W32LIB)
-#define _MHD_EXTERN extern
-#elif defined (_WIN32) && defined(MHD_W32DLL)
+#if defined (_WIN32) && defined(MHD_W32DLL)
 #define _MHD_EXTERN extern __declspec(dllexport) 
+#elif defined(_WIN32) && defined(MHD_W32LIB)
+#define _MHD_EXTERN extern
 #else
 #define _MHD_EXTERN extern
 #endif
