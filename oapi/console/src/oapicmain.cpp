@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 		XSDK::XString host = "127.0.0.1";
 		pSocket->Connect(host, 9080);
 		
-		oapi::DeviceList list;
 		OAPIClient pClient(pSocket);
 		
 		pClient.Setup("admin", "admin");
@@ -55,13 +54,13 @@ int main(int argc, char *argv[])
 			{
 				switch(header.cmd)
 				{
-				case OAPI_CMD_DEVICE_LIST_RSP:
+					case OAPI_CMD_DEVICE_LIST_RSP:
 					{
-						oapi::DeviceList list;
+						oapi::DeviceListReq list;
 						pClient.ParseDeviceList(pRecv, header.length, list);
 						break;
 					}
-					case OAPI_CMD_FRAME:
+					case OAPI_CMD_FRAME_PUSH:
 					{
 						printf("Go a new frame %d\n", frameCnt++);
 						break;
