@@ -27,10 +27,10 @@
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct OapiID {
- unsigned int nId;
+namespace oapi { struct CmnRetRsp {
+ bool bRet;
 
-explicit OapiID():nId() {  }
+explicit CmnRetRsp():bRet() {  }
 
 
  
@@ -40,13 +40,13 @@ explicit OapiID():nId() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::OapiID > {
+class SAXEventHandler< ::oapi::CmnRetRsp > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
     int depth;
 
-    SAXEventHandler< unsigned int > handler_0;bool has_nId;
+    SAXEventHandler< bool > handler_0;bool has_bRet;
 
     bool check_depth(const char* type)
     {
@@ -61,7 +61,7 @@ private:
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "bRet";
         default:
             break;
         }
@@ -88,14 +88,14 @@ private:
 
     void reset_flags()
     {
-        has_nId = false;
+        has_bRet = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::OapiID * obj)
+    explicit SAXEventHandler( ::oapi::CmnRetRsp * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
+        , handler_0(&obj->bRet)
     {
         reset_flags();
     }
@@ -236,8 +236,8 @@ public:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
+            else if (utility::string_equal(str, length, "\x62\x52\x65\x74", 4))
+                         { state=0; has_bRet = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -319,7 +319,7 @@ public:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
+            if (!has_bRet) set_missing_required("bRet");
         }
         return the_error.empty();
     }
@@ -359,14 +359,14 @@ public:
     }
 };
 
-template < class Writer6cf752b8863726693755b2f60ee4a73793e8f2d1148dfd21417b593560a90597 >
-struct Serializer< Writer6cf752b8863726693755b2f60ee4a73793e8f2d1148dfd21417b593560a90597, ::oapi::OapiID > {
+template < class Writerf123200ab834a9683ebd6c3de616322d858e1a124e699d0f279f0e89ae83a920 >
+struct Serializer< Writerf123200ab834a9683ebd6c3de616322d858e1a124e699d0f279f0e89ae83a920, ::oapi::CmnRetRsp > {
 
-    void operator()( Writer6cf752b8863726693755b2f60ee4a73793e8f2d1148dfd21417b593560a90597& w, const ::oapi::OapiID& value) const
+    void operator()( Writerf123200ab834a9683ebd6c3de616322d858e1a124e699d0f279f0e89ae83a920& w, const ::oapi::CmnRetRsp& value) const
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer6cf752b8863726693755b2f60ee4a73793e8f2d1148dfd21417b593560a90597, unsigned int >()(w, value.nId);
+        w.Key("\x62\x52\x65\x74", 4, false); Serializer< Writerf123200ab834a9683ebd6c3de616322d858e1a124e699d0f279f0e89ae83a920, bool >()(w, value.bRet);
 
         w.EndObject(1);
     }
@@ -402,761 +402,11 @@ struct Serializer< Writer6cf752b8863726693755b2f60ee4a73793e8f2d1148dfd21417b593
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct OapiStatus {
- unsigned int Status;
-
-explicit OapiStatus():Status() {  }
-
-
- 
-}; }
-
-
-namespace autojsoncxx {
-
-template <>
-class SAXEventHandler< ::oapi::OapiStatus > {
-private:
-    utility::scoped_ptr<error::ErrorBase> the_error;
-    int state;
-    int depth;
-
-    SAXEventHandler< unsigned int > handler_0;bool has_Status;
-
-    bool check_depth(const char* type)
-    {
-        if (depth <= 0) {
-            the_error.reset(new error::TypeMismatchError("object", type));
-            return false;
-        }
-        return true;
-    }
-
-    const char* current_member_name() const
-    {
-        switch (state) {
-            case 0:
-    return "Status";
-        default:
-            break;
-        }
-        return "<UNKNOWN>";
-    }
-
-    bool checked_event_forwarding(bool success)
-    {
-        if (!success)
-            the_error.reset(new error::ObjectMemberError(current_member_name()));
-        return success;
-    }
-
-    void set_missing_required(const char* name)
-    {
-        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
-            the_error.reset(new error::RequiredFieldMissingError());
-
-        std::vector<std::string>& missing =
-            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
-
-        missing.push_back(name);
-    }
-
-    void reset_flags()
-    {
-        has_Status = false;
-    }
-
-public:
-    explicit SAXEventHandler( ::oapi::OapiStatus * obj)
-        : state(-1)
-        , depth(0)
-        , handler_0(&obj->Status)
-    {
-        reset_flags();
-    }
-
-    bool Null()
-    {
-        if (!check_depth("null"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Null());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Bool(bool b)
-    {
-        if (!check_depth("bool"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Bool(b));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int(int i)
-    {
-        if (!check_depth("int"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint(unsigned i)
-    {
-        if (!check_depth("unsigned"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int64(utility::int64_t i)
-    {
-        if (!check_depth("int64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint64(utility::uint64_t i)
-    {
-        if (!check_depth("uint64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Double(double d)
-    {
-        if (!check_depth("double"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Double(d));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool String(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("string"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.String(str, length, copy));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Key(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("object"))
-            return false;
-
-        if (depth == 1) {
-            if (0) {
-            }
-            else if (utility::string_equal(str, length, "\x53\x74\x61\x74\x75\x73", 6))
-                         { state=0; has_Status = true; }
-            else {
-                state = -1;
-                the_error.reset(new error::UnknownFieldError(str, length)); return false;
-            }
-
-        } else {
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.Key(str, length, copy));
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool StartArray()
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.StartArray());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool EndArray(SizeType length)
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.EndArray(length));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool StartObject()
-    {
-        ++depth;
-        if (depth > 1) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.StartObject());
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool EndObject(SizeType length)
-    {
-        --depth;
-        if (depth > 0) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.EndObject(length));
-
-            default:
-                break;
-            }
-        } else {
-            if (!has_Status) set_missing_required("Status");
-        }
-        return the_error.empty();
-    }
-
-    bool HasError() const
-    {
-        return !this->the_error.empty();
-    }
-
-    bool ReapError(error::ErrorStack& errs)
-    {
-        if (this->the_error.empty())
-            return false;
-
-        errs.push(this->the_error.release());
-
-        switch (state) {
-
-        case 0:
-     handler_0.ReapError(errs); break;
-
-        default:
-            break;
-        }
-
-        return true;
-    }
-
-    void PrepareForReuse()
-    {
-        depth = 0;
-        state = -1;
-        the_error.reset();
-        reset_flags();
-        handler_0.PrepareForReuse();
-
-    }
-};
-
-template < class Writer78947f028eaa1365e2cdf921b5f81ffe5bc1e54438912f7b4f39106fc1d4fb95 >
-struct Serializer< Writer78947f028eaa1365e2cdf921b5f81ffe5bc1e54438912f7b4f39106fc1d4fb95, ::oapi::OapiStatus > {
-
-    void operator()( Writer78947f028eaa1365e2cdf921b5f81ffe5bc1e54438912f7b4f39106fc1d4fb95& w, const ::oapi::OapiStatus& value) const
-    {
-        w.StartObject();
-
-        w.Key("\x53\x74\x61\x74\x75\x73", 6, false); Serializer< Writer78947f028eaa1365e2cdf921b5f81ffe5bc1e54438912f7b4f39106fc1d4fb95, unsigned int >()(w, value.Status);
-
-        w.EndObject(1);
-    }
-
-};
-}
-
-
-// The MIT License (MIT)
-//
-// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-#include <autojsoncxx/autojsoncxx.hpp>
-
-// The comments are reserved for replacement
-// such syntax is chosen so that the template file looks like valid C++
-
-namespace oapi { struct AuthNonce {
- std::string Nonce;
-
-explicit AuthNonce():Nonce() {  }
-
-
- 
-}; }
-
-
-namespace autojsoncxx {
-
-template <>
-class SAXEventHandler< ::oapi::AuthNonce > {
-private:
-    utility::scoped_ptr<error::ErrorBase> the_error;
-    int state;
-    int depth;
-
-    SAXEventHandler< std::string > handler_0;bool has_Nonce;
-
-    bool check_depth(const char* type)
-    {
-        if (depth <= 0) {
-            the_error.reset(new error::TypeMismatchError("object", type));
-            return false;
-        }
-        return true;
-    }
-
-    const char* current_member_name() const
-    {
-        switch (state) {
-            case 0:
-    return "Nonce";
-        default:
-            break;
-        }
-        return "<UNKNOWN>";
-    }
-
-    bool checked_event_forwarding(bool success)
-    {
-        if (!success)
-            the_error.reset(new error::ObjectMemberError(current_member_name()));
-        return success;
-    }
-
-    void set_missing_required(const char* name)
-    {
-        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
-            the_error.reset(new error::RequiredFieldMissingError());
-
-        std::vector<std::string>& missing =
-            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
-
-        missing.push_back(name);
-    }
-
-    void reset_flags()
-    {
-        has_Nonce = false;
-    }
-
-public:
-    explicit SAXEventHandler( ::oapi::AuthNonce * obj)
-        : state(-1)
-        , depth(0)
-        , handler_0(&obj->Nonce)
-    {
-        reset_flags();
-    }
-
-    bool Null()
-    {
-        if (!check_depth("null"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Null());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Bool(bool b)
-    {
-        if (!check_depth("bool"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Bool(b));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int(int i)
-    {
-        if (!check_depth("int"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint(unsigned i)
-    {
-        if (!check_depth("unsigned"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int64(utility::int64_t i)
-    {
-        if (!check_depth("int64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint64(utility::uint64_t i)
-    {
-        if (!check_depth("uint64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Double(double d)
-    {
-        if (!check_depth("double"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Double(d));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool String(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("string"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.String(str, length, copy));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Key(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("object"))
-            return false;
-
-        if (depth == 1) {
-            if (0) {
-            }
-            else if (utility::string_equal(str, length, "\x4e\x6f\x6e\x63\x65", 5))
-                         { state=0; has_Nonce = true; }
-            else {
-                state = -1;
-                the_error.reset(new error::UnknownFieldError(str, length)); return false;
-            }
-
-        } else {
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.Key(str, length, copy));
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool StartArray()
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.StartArray());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool EndArray(SizeType length)
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.EndArray(length));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool StartObject()
-    {
-        ++depth;
-        if (depth > 1) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.StartObject());
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool EndObject(SizeType length)
-    {
-        --depth;
-        if (depth > 0) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.EndObject(length));
-
-            default:
-                break;
-            }
-        } else {
-            if (!has_Nonce) set_missing_required("Nonce");
-        }
-        return the_error.empty();
-    }
-
-    bool HasError() const
-    {
-        return !this->the_error.empty();
-    }
-
-    bool ReapError(error::ErrorStack& errs)
-    {
-        if (this->the_error.empty())
-            return false;
-
-        errs.push(this->the_error.release());
-
-        switch (state) {
-
-        case 0:
-     handler_0.ReapError(errs); break;
-
-        default:
-            break;
-        }
-
-        return true;
-    }
-
-    void PrepareForReuse()
-    {
-        depth = 0;
-        state = -1;
-        the_error.reset();
-        reset_flags();
-        handler_0.PrepareForReuse();
-
-    }
-};
-
-template < class Writer05ddfc9785c77fe964012b9c852eef7913ed05c4ca1c1f834eca981de3d5a10c >
-struct Serializer< Writer05ddfc9785c77fe964012b9c852eef7913ed05c4ca1c1f834eca981de3d5a10c, ::oapi::AuthNonce > {
-
-    void operator()( Writer05ddfc9785c77fe964012b9c852eef7913ed05c4ca1c1f834eca981de3d5a10c& w, const ::oapi::AuthNonce& value) const
-    {
-        w.StartObject();
-
-        w.Key("\x4e\x6f\x6e\x63\x65", 5, false); Serializer< Writer05ddfc9785c77fe964012b9c852eef7913ed05c4ca1c1f834eca981de3d5a10c, std::string >()(w, value.Nonce);
-
-        w.EndObject(1);
-    }
-
-};
-}
-
-
-// The MIT License (MIT)
-//
-// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-#include <autojsoncxx/autojsoncxx.hpp>
-
-// The comments are reserved for replacement
-// such syntax is chosen so that the template file looks like valid C++
-
-namespace oapi { struct Login {
+namespace oapi { struct LoginReq {
  std::string User;
 std::string Password;
 
-explicit Login():User(), Password() {  }
+explicit LoginReq():User(), Password() {  }
 
 
  
@@ -1166,7 +416,7 @@ explicit Login():User(), Password() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::Login > {
+class SAXEventHandler< ::oapi::LoginReq > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -1223,7 +473,7 @@ has_Password = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::Login * obj)
+    explicit SAXEventHandler( ::oapi::LoginReq * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->User)
@@ -1536,17 +786,873 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writer861c4992def473bcd449640e44383a1f0dc0f0773d6fc9bdd4859a5258d69e9b >
-struct Serializer< Writer861c4992def473bcd449640e44383a1f0dc0f0773d6fc9bdd4859a5258d69e9b, ::oapi::Login > {
+template < class Writer096720ae9e27bde8215be838880bfe91a4c84aef3ce14bad3f1c1f8a49a98fe2 >
+struct Serializer< Writer096720ae9e27bde8215be838880bfe91a4c84aef3ce14bad3f1c1f8a49a98fe2, ::oapi::LoginReq > {
 
-    void operator()( Writer861c4992def473bcd449640e44383a1f0dc0f0773d6fc9bdd4859a5258d69e9b& w, const ::oapi::Login& value) const
+    void operator()( Writer096720ae9e27bde8215be838880bfe91a4c84aef3ce14bad3f1c1f8a49a98fe2& w, const ::oapi::LoginReq& value) const
     {
         w.StartObject();
 
-        w.Key("\x55\x73\x65\x72", 4, false); Serializer< Writer861c4992def473bcd449640e44383a1f0dc0f0773d6fc9bdd4859a5258d69e9b, std::string >()(w, value.User);
-w.Key("\x50\x61\x73\x73\x77\x6f\x72\x64", 8, false); Serializer< Writer861c4992def473bcd449640e44383a1f0dc0f0773d6fc9bdd4859a5258d69e9b, std::string >()(w, value.Password);
+        w.Key("\x55\x73\x65\x72", 4, false); Serializer< Writer096720ae9e27bde8215be838880bfe91a4c84aef3ce14bad3f1c1f8a49a98fe2, std::string >()(w, value.User);
+w.Key("\x50\x61\x73\x73\x77\x6f\x72\x64", 8, false); Serializer< Writer096720ae9e27bde8215be838880bfe91a4c84aef3ce14bad3f1c1f8a49a98fe2, std::string >()(w, value.Password);
 
         w.EndObject(2);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
+namespace oapi { struct LoginRsp {
+ std::string Nonce;
+bool bRetNonce;
+bool bRet;
+
+explicit LoginRsp():Nonce(), bRetNonce(), bRet() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::oapi::LoginRsp > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< bool > handler_1;
+SAXEventHandler< bool > handler_2;bool has_Nonce;
+bool has_bRetNonce;
+bool has_bRet;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "Nonce";
+case 1:
+    return "bRetNonce";
+case 2:
+    return "bRet";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_Nonce = false;
+has_bRetNonce = false;
+has_bRet = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::oapi::LoginRsp * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->Nonce)
+, handler_1(&obj->bRetNonce)
+, handler_2(&obj->bRet)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+case 1:
+    return checked_event_forwarding(handler_1.Null());
+
+case 2:
+    return checked_event_forwarding(handler_2.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+case 1:
+    return checked_event_forwarding(handler_1.Bool(b));
+
+case 2:
+    return checked_event_forwarding(handler_2.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int64(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint64(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+case 1:
+    return checked_event_forwarding(handler_1.Double(d));
+
+case 2:
+    return checked_event_forwarding(handler_2.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.String(str, length, copy));
+
+case 2:
+    return checked_event_forwarding(handler_2.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x4e\x6f\x6e\x63\x65", 5))
+                         { state=0; has_Nonce = true; }
+else if (utility::string_equal(str, length, "\x62\x52\x65\x74\x4e\x6f\x6e\x63\x65", 9))
+                         { state=1; has_bRetNonce = true; }
+else if (utility::string_equal(str, length, "\x62\x52\x65\x74", 4))
+                         { state=2; has_bRet = true; }
+            else {
+                state = -1;
+                the_error.reset(new error::UnknownFieldError(str, length)); return false;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.Key(str, length, copy));
+
+case 2:
+    return checked_event_forwarding(handler_2.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartArray());
+
+case 2:
+    return checked_event_forwarding(handler_2.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndArray(length));
+
+case 2:
+    return checked_event_forwarding(handler_2.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartObject());
+
+case 2:
+    return checked_event_forwarding(handler_2.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndObject(length));
+
+case 2:
+    return checked_event_forwarding(handler_2.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_Nonce) set_missing_required("Nonce");
+if (!has_bRetNonce) set_missing_required("bRetNonce");
+if (!has_bRet) set_missing_required("bRet");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+case 1:
+     handler_1.ReapError(errs); break;
+case 2:
+     handler_2.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+handler_1.PrepareForReuse();
+handler_2.PrepareForReuse();
+
+    }
+};
+
+template < class Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760 >
+struct Serializer< Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760, ::oapi::LoginRsp > {
+
+    void operator()( Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760& w, const ::oapi::LoginRsp& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x4e\x6f\x6e\x63\x65", 5, false); Serializer< Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760, std::string >()(w, value.Nonce);
+w.Key("\x62\x52\x65\x74\x4e\x6f\x6e\x63\x65", 9, false); Serializer< Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760, bool >()(w, value.bRetNonce);
+w.Key("\x62\x52\x65\x74", 4, false); Serializer< Writer6a3e68c6b888bcccbc7072a7e752707e0ac79a3ab45dfddbbc99e33317c8c760, bool >()(w, value.bRet);
+
+        w.EndObject(3);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
+namespace oapi { struct KeepAliveReq {
+ unsigned int nTimeout;
+
+explicit KeepAliveReq():nTimeout() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::oapi::KeepAliveReq > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< unsigned int > handler_0;bool has_nTimeout;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "nTimeout";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_nTimeout = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::oapi::KeepAliveReq * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->nTimeout)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x6e\x54\x69\x6d\x65\x6f\x75\x74", 8))
+                         { state=0; has_nTimeout = true; }
+            else {
+                state = -1;
+                the_error.reset(new error::UnknownFieldError(str, length)); return false;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_nTimeout) set_missing_required("nTimeout");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+
+    }
+};
+
+template < class Writer3584adabd563fed1229ddef7ad7094fe16b6ad7ed22fcd870a9744c81f8da691 >
+struct Serializer< Writer3584adabd563fed1229ddef7ad7094fe16b6ad7ed22fcd870a9744c81f8da691, ::oapi::KeepAliveReq > {
+
+    void operator()( Writer3584adabd563fed1229ddef7ad7094fe16b6ad7ed22fcd870a9744c81f8da691& w, const ::oapi::KeepAliveReq& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x6e\x54\x69\x6d\x65\x6f\x75\x74", 8, false); Serializer< Writer3584adabd563fed1229ddef7ad7094fe16b6ad7ed22fcd870a9744c81f8da691, unsigned int >()(w, value.nTimeout);
+
+        w.EndObject(1);
     }
 
 };
@@ -3174,11 +3280,11 @@ w.Key("\x4f\x6e\x6c\x69\x6e\x65", 6, false); Serializer< Writer81f9667a09efaccfd
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct DeviceList {
- unsigned int Num;
-std::vector<oapi::Device> list;
+namespace oapi { struct DeviceListReq {
+ bool bAll;
+unsigned int nId;
 
-explicit DeviceList():Num(), list() {  }
+explicit DeviceListReq():bAll(), nId() {  }
 
 
  
@@ -3188,7 +3294,435 @@ explicit DeviceList():Num(), list() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::DeviceList > {
+class SAXEventHandler< ::oapi::DeviceListReq > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< bool > handler_0;
+SAXEventHandler< unsigned int > handler_1;bool has_bAll;
+bool has_nId;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "bAll";
+case 1:
+    return "nId";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_bAll = false;
+has_nId = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::oapi::DeviceListReq * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->bAll)
+, handler_1(&obj->nId)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+case 1:
+    return checked_event_forwarding(handler_1.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+case 1:
+    return checked_event_forwarding(handler_1.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+case 1:
+    return checked_event_forwarding(handler_1.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x62\x41\x6c\x6c", 4))
+                         { state=0; has_bAll = true; }
+else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
+                         { state=1; has_nId = true; }
+            else {
+                state = -1;
+                return true;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_bAll) set_missing_required("bAll");
+if (!has_nId) set_missing_required("nId");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+case 1:
+     handler_1.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+handler_1.PrepareForReuse();
+
+    }
+};
+
+template < class Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc >
+struct Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, ::oapi::DeviceListReq > {
+
+    void operator()( Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc& w, const ::oapi::DeviceListReq& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x62\x41\x6c\x6c", 4, false); Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, bool >()(w, value.bAll);
+w.Key("\x6e\x49\x64", 3, false); Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, unsigned int >()(w, value.nId);
+
+        w.EndObject(2);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
+namespace oapi { struct DeviceListRsp {
+ unsigned int Num;
+std::vector<oapi::Device> list;
+
+explicit DeviceListRsp():Num(), list() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::oapi::DeviceListRsp > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -3244,7 +3778,7 @@ case 1:
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::DeviceList * obj)
+    explicit SAXEventHandler( ::oapi::DeviceListRsp * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->Num)
@@ -3556,15 +4090,15 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writer2f45fe8d27bc21dd98aeb3ee45efe9e571b84454b0e47abd731bcf99ee9a64f8 >
-struct Serializer< Writer2f45fe8d27bc21dd98aeb3ee45efe9e571b84454b0e47abd731bcf99ee9a64f8, ::oapi::DeviceList > {
+template < class Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b >
+struct Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, ::oapi::DeviceListRsp > {
 
-    void operator()( Writer2f45fe8d27bc21dd98aeb3ee45efe9e571b84454b0e47abd731bcf99ee9a64f8& w, const ::oapi::DeviceList& value) const
+    void operator()( Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b& w, const ::oapi::DeviceListRsp& value) const
     {
         w.StartObject();
 
-        w.Key("\x4e\x75\x6d", 3, false); Serializer< Writer2f45fe8d27bc21dd98aeb3ee45efe9e571b84454b0e47abd731bcf99ee9a64f8, unsigned int >()(w, value.Num);
-w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer2f45fe8d27bc21dd98aeb3ee45efe9e571b84454b0e47abd731bcf99ee9a64f8, std::vector<oapi::Device> >()(w, value.list);
+        w.Key("\x4e\x75\x6d", 3, false); Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, unsigned int >()(w, value.Num);
+w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, std::vector<oapi::Device> >()(w, value.list);
 
         w.EndObject(2);
     }
@@ -3600,11 +4134,11 @@ w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer2f45fe8d27bc21dd98aeb3ee4
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct LiveView {
+namespace oapi { struct StartLiveViewReq {
  unsigned int nId;
 unsigned int nSubId;
 
-explicit LiveView():nId(), nSubId() {  }
+explicit StartLiveViewReq():nId(), nSubId() {  }
 
 
  
@@ -3614,7 +4148,7 @@ explicit LiveView():nId(), nSubId() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::LiveView > {
+class SAXEventHandler< ::oapi::StartLiveViewReq > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -3671,7 +4205,7 @@ has_nSubId = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::LiveView * obj)
+    explicit SAXEventHandler( ::oapi::StartLiveViewReq * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->nId)
@@ -3984,15 +4518,15 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writerf992e1e3a48ba96ee1c529b108f53497e48d883ce0121249e780c65f32128e3f >
-struct Serializer< Writerf992e1e3a48ba96ee1c529b108f53497e48d883ce0121249e780c65f32128e3f, ::oapi::LiveView > {
+template < class Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423 >
+struct Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, ::oapi::StartLiveViewReq > {
 
-    void operator()( Writerf992e1e3a48ba96ee1c529b108f53497e48d883ce0121249e780c65f32128e3f& w, const ::oapi::LiveView& value) const
+    void operator()( Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423& w, const ::oapi::StartLiveViewReq& value) const
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writerf992e1e3a48ba96ee1c529b108f53497e48d883ce0121249e780c65f32128e3f, unsigned int >()(w, value.nId);
-w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writerf992e1e3a48ba96ee1c529b108f53497e48d883ce0121249e780c65f32128e3f, unsigned int >()(w, value.nSubId);
+        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, unsigned int >()(w, value.nId);
+w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, unsigned int >()(w, value.nSubId);
 
         w.EndObject(2);
     }
@@ -4028,11 +4562,11 @@ w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writerf992e1e3a48ba96ee
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct Playback {
+namespace oapi { struct StopLiveViewReq {
  unsigned int nId;
-unsigned int nPlayTime;
+unsigned int nSubId;
 
-explicit Playback():nId(), nPlayTime() {  }
+explicit StopLiveViewReq():nId(), nSubId() {  }
 
 
  
@@ -4042,7 +4576,435 @@ explicit Playback():nId(), nPlayTime() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::Playback > {
+class SAXEventHandler< ::oapi::StopLiveViewReq > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< unsigned int > handler_0;
+SAXEventHandler< unsigned int > handler_1;bool has_nId;
+bool has_nSubId;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "nId";
+case 1:
+    return "nSubId";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_nId = false;
+has_nSubId = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::oapi::StopLiveViewReq * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->nId)
+, handler_1(&obj->nSubId)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+case 1:
+    return checked_event_forwarding(handler_1.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+case 1:
+    return checked_event_forwarding(handler_1.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+case 1:
+    return checked_event_forwarding(handler_1.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
+                         { state=0; has_nId = true; }
+else if (utility::string_equal(str, length, "\x6e\x53\x75\x62\x49\x64", 6))
+                         { state=1; has_nSubId = true; }
+            else {
+                state = -1;
+                the_error.reset(new error::UnknownFieldError(str, length)); return false;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_nId) set_missing_required("nId");
+if (!has_nSubId) set_missing_required("nSubId");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+case 1:
+     handler_1.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+handler_1.PrepareForReuse();
+
+    }
+};
+
+template < class Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf >
+struct Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, ::oapi::StopLiveViewReq > {
+
+    void operator()( Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf& w, const ::oapi::StopLiveViewReq& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x6e\x49\x64", 3, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, unsigned int >()(w, value.nId);
+w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, unsigned int >()(w, value.nSubId);
+
+        w.EndObject(2);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
+namespace oapi { struct PlaybackReq {
+ unsigned int nId;
+unsigned int nPlayTime;
+
+explicit PlaybackReq():nId(), nPlayTime() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::oapi::PlaybackReq > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -4099,7 +5061,7 @@ has_nPlayTime = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::Playback * obj)
+    explicit SAXEventHandler( ::oapi::PlaybackReq * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->nId)
@@ -4412,15 +5374,15 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writere48e53c639dc478d657891006a3d5f4d0907097c104e17e276f79f219b2c81d2 >
-struct Serializer< Writere48e53c639dc478d657891006a3d5f4d0907097c104e17e276f79f219b2c81d2, ::oapi::Playback > {
+template < class Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2 >
+struct Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, ::oapi::PlaybackReq > {
 
-    void operator()( Writere48e53c639dc478d657891006a3d5f4d0907097c104e17e276f79f219b2c81d2& w, const ::oapi::Playback& value) const
+    void operator()( Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2& w, const ::oapi::PlaybackReq& value) const
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writere48e53c639dc478d657891006a3d5f4d0907097c104e17e276f79f219b2c81d2, unsigned int >()(w, value.nId);
-w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writere48e53c639dc478d657891006a3d5f4d0907097c104e17e276f79f219b2c81d2, unsigned int >()(w, value.nPlayTime);
+        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, unsigned int >()(w, value.nId);
+w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, unsigned int >()(w, value.nPlayTime);
 
         w.EndObject(2);
     }
@@ -4456,10 +5418,10 @@ w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writere48e5
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct PlaybackSeek {
+namespace oapi { struct PlaybackSeekReq {
  unsigned int nPlayTime;
 
-explicit PlaybackSeek():nPlayTime() {  }
+explicit PlaybackSeekReq():nPlayTime() {  }
 
 
  
@@ -4469,7 +5431,7 @@ explicit PlaybackSeek():nPlayTime() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::PlaybackSeek > {
+class SAXEventHandler< ::oapi::PlaybackSeekReq > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -4521,7 +5483,7 @@ private:
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::PlaybackSeek * obj)
+    explicit SAXEventHandler( ::oapi::PlaybackSeekReq * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->nPlayTime)
@@ -4788,14 +5750,14 @@ public:
     }
 };
 
-template < class Writer1d62b0861fc248bb74680eccac9565e7d821e2ad1249ef0c1a872df360bc3fb5 >
-struct Serializer< Writer1d62b0861fc248bb74680eccac9565e7d821e2ad1249ef0c1a872df360bc3fb5, ::oapi::PlaybackSeek > {
+template < class Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e9326742c044 >
+struct Serializer< Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e9326742c044, ::oapi::PlaybackSeekReq > {
 
-    void operator()( Writer1d62b0861fc248bb74680eccac9565e7d821e2ad1249ef0c1a872df360bc3fb5& w, const ::oapi::PlaybackSeek& value) const
+    void operator()( Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e9326742c044& w, const ::oapi::PlaybackSeekReq& value) const
     {
         w.StartObject();
 
-        w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writer1d62b0861fc248bb74680eccac9565e7d821e2ad1249ef0c1a872df360bc3fb5, unsigned int >()(w, value.nPlayTime);
+        w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e9326742c044, unsigned int >()(w, value.nPlayTime);
 
         w.EndObject(1);
     }
