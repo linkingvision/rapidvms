@@ -13,9 +13,11 @@
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XSocket.h"
 #include "XSDK/XSSLSocket.h"
+#include "XSDK/XMD5.h"
 
 using namespace XSDK;
 using namespace std;
+using namespace Poco;
 
 /* a internal thread to process all the request of XSocket */
 class OAPIClient
@@ -25,13 +27,15 @@ public:
 	inline ~OAPIClient();
 /* send request */
 public:
-	inline BOOL Setup(std::string strUser, std::string strPasswd);
+	inline BOOL Setup(std::string strUser, std::string strPasswd, std::string strNonce);
 	inline BOOL SendDeviceListRequest();
 	inline BOOL StartLiveview(int nId);
 	inline BOOL StopLiveview(int nId);
 /* Parse all the list */
 public:
-	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::DeviceList &list);
+	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::DeviceListRsp &list);
+	inline BOOL ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp);
+
 public:
 
 private:
