@@ -1,35 +1,37 @@
 [
 {
-    "name": "OapiID",
+    "name": "CmnRetRsp",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned int", "nId", {"required": true}]
+        ["bool", "bRet", {"required": true}]
     ]
 },
 {
-    "name": "OapiStatus",
-    "parse_mode": "strict",
-	"namespace": "oapi",
-    "members": [
-        ["unsigned int", "Status", {"required": true}]
-    ]
-},
-{
-    "name": "AuthNonce",
-    "parse_mode": "strict",
-	"namespace": "oapi",
-    "members": [
-        ["std::string", "Nonce", {"required": true}]
-    ]
-},
-{
-    "name": "Login",
+    "name": "LoginReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
 		["std::string", "User", {"required": true}],
 		["std::string", "Password", {"required": true}]
+    ]
+},
+{
+    "name": "LoginRsp",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "Nonce", {"required": true}],
+		["bool", "bRetNonce", {"required": true}],
+		["bool", "bRet", {"required": true}]
+    ]
+},
+{
+    "name": "KeepAliveReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["unsigned int", "nTimeout", {"required": true}]
     ]
 },
 {
@@ -72,7 +74,15 @@
     ]
 },
 {
-    "name": "DeviceList",
+    "name": "DeviceListReq",
+	"namespace": "oapi",
+    "members": [
+		["bool", "bAll", {"required": true}],
+        ["unsigned int", "nId", {"required": true}]
+    ]
+},
+{
+    "name": "DeviceListRsp",
 	"namespace": "oapi",
     "members": [
         ["unsigned int", "Num", {"required": true}],
@@ -80,7 +90,7 @@
     ]
 },
 {
-    "name": "LiveView",
+    "name": "StartLiveViewReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
@@ -89,7 +99,16 @@
     ]
 },
 {
-    "name": "Playback",
+    "name": "StopLiveViewReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nSubId", {"required": true}]
+    ]
+},
+{
+    "name": "PlaybackReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
@@ -98,7 +117,7 @@
     ]
 },
 {
-    "name": "PlaybackSeek",
+    "name": "PlaybackSeekReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
