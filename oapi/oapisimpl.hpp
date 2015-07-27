@@ -50,9 +50,12 @@ BOOL OAPIConverter::Converter(oapi::Device &from, VSCDeviceData__ &to)
 }
 
 OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
-:m_pFactory(pFactory), m_pSocket(pSocket), m_nLiveviewId(0), m_cnt(0)
+:m_pFactory(pFactory), m_pSocket(pSocket), m_nLiveviewId(0), m_cnt(0), 
+m_bLogin(FALSE)
 {
-
+	UUIDGenerator uuidCreator;
+	
+	m_seesionId  = uuidCreator.createRandom().toString();
 }
 OAPIServer::~OAPIServer()
 {
@@ -70,7 +73,7 @@ BOOL OAPIServer::ProcessStartLive(s32 len)
 	}
 	char *pRecv = new char[len + 1];
 	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
-	oapi::LiveView liveview;
+	oapi::StartLiveViewReq liveview;
 	if (nRetBody == len)
 	{
 		autojsoncxx::ParsingResult result;
@@ -101,7 +104,7 @@ BOOL OAPIServer::ProcessStopLive(s32 len)
 	}
 	char *pRecv = new char[len + 1];
 	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
-	oapi::LiveView liveview;
+	oapi::StopLiveViewReq liveview;
 	if (nRetBody == len)
 	{
 		autojsoncxx::ParsingResult result;
@@ -122,14 +125,105 @@ BOOL OAPIServer::ProcessStopLive(s32 len)
 	return TRUE;
 }
 
-BOOL OAPIServer::ProcessGetDevice(s32 len)
+inline BOOL OAPIServer::ProcessLogin(s32 len)
 {
-	if (len != 0)
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::LoginReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+		
+	}
+	delete [] pRecv;
+	pRecv = NULL;
+
+	/* current only support admin */
+	std::string UserAdmin = "admin";
+
+	if (req.User != UserAdmin)
 	{
 		return FALSE;
 	}
 
-	oapi::DeviceList dataList;
+	/* Get user data */
+	VSCUserData user;
+	m_pFactory.GetUserData(user);
+	astring realPasswd = user.data.conf.Passwd;
+
+	/* calc the md5 and compare */
+	std::string pass = m_seesionId + realPasswd;
+
+	XMD5 md5Check;
+	md5Check.Update((const uint8_t*)(pass.c_str()), pass.length());
+
+	md5Check.Finalize();
+	std::string md5Output = md5Check.GetAsString().c_str();
+	
+
+	oapi::LoginRsp rsp;
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	if (md5Output == req.Password)
+	{
+		rsp.bRet = true;
+		m_bLogin = TRUE;
+	}else
+	{
+		rsp.bRetNonce = true;
+		rsp.bRet = false;
+	}
+
+	rsp.Nonce = m_seesionId;
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_CMD_LOGIN_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+	
+}
+
+BOOL OAPIServer::ProcessGetDevice(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::DeviceListReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+		
+	}
+
+	oapi::DeviceListRsp dataList;
 	dataList.Num = 0;
 
 	DeviceParamMap pDeviceMap;
@@ -169,18 +263,25 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 	header.version = ntohl(header.version);
 	header.cmd = ntohl(header.cmd);
 	header.length = ntohl(header.length);
+	if (m_bLogin == FALSE && header.cmd != OAPI_CMD_LOGIN_REQ)
+	{
+		return FALSE;
+	}
 
 	switch(header.cmd)
 	{
+		case OAPI_CMD_LOGIN_REQ:
+			return ProcessLogin(header.length);
+			break;
 		case OAPI_CMD_KEEPALIVE_REQ:
 			break;
 		case OAPI_CMD_DEVICE_LIST_REQ:
 			return ProcessGetDevice(header.length);
 			break;
-		case OAPI_CMD_START_LIVE:
+		case OAPI_CMD_START_LIVE_REQ:
 			return ProcessStartLive(header.length);
 			break;
-		case OAPI_CMD_STOP_LIVE:
+		case OAPI_CMD_STOP_LIVE_REQ:
 			return ProcessStopLive(header.length);
 			break;
 		default:
@@ -193,7 +294,7 @@ inline void OAPIServer::DataHandler1(VideoFrame& frame)
 {
 	VideoFrameHeader frameHeader;
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_FRAME);
+	header.cmd = htonl(OAPI_CMD_FRAME_PUSH);
 	header.length = htonl(sizeof(frameHeader) + frame.dataLen);	
 
 	frameHeader.streamType = htonl(frame.streamType);
