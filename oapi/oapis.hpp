@@ -14,10 +14,13 @@
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XSocket.h"
 #include "XSDK/XSSLSocket.h"
+#include "Poco/UUIDGenerator.h"
+#include "XSDK/XMD5.h"
 
 using namespace XSDK;
 using namespace std;
 using namespace oapi;
+using namespace Poco;
 
 class OAPIConverter
 {
@@ -39,6 +42,7 @@ public:
 	inline BOOL ProcessGetDevice(s32 len);	
 	inline BOOL ProcessStartLive(s32 len);
 	inline BOOL ProcessStopLive(s32 len);
+	inline BOOL ProcessLogin(s32 len);
 public:
 	inline void DataHandler1(VideoFrame& frame);
 	inline static void DataHandler(VideoFrame& frame, void * pParam);	
@@ -58,6 +62,8 @@ private:
 	Factory &m_pFactory;
 	int m_nLiveviewId;
 	int m_cnt;
+	BOOL m_bLogin;
+	astring m_seesionId;
 };
 
 #include "oapisimpl.hpp"
