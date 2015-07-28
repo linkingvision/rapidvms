@@ -20,7 +20,7 @@ extern Factory *gFactory;
 VSCVms::VSCVms(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
     : QTreeWidgetItem(parent), m_pParent(parent)
 {
-	qRegisterMetaType<oapi::DeviceList>("oapi::DeviceList");     
+	qRegisterMetaType<oapi::DeviceListRsp>("oapi::DeviceListRsp");     
 	memcpy(&m_Param, &pParam, sizeof(VSCVmsDataItem));
 }
 
@@ -40,8 +40,8 @@ VSCVmsOAPI::VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam)
 : VSCVms(parent, pParam), m_pThread(NULL), m_loading(NULL)
 {
 	m_pThread = new VSCVMSOAPIThread(pParam);
-	connect(m_pThread, SIGNAL(UpdateDeviceList(oapi::DeviceList)), this,
-						SLOT(UpdateDeviceList(oapi::DeviceList)));	
+	connect(m_pThread, SIGNAL(UpdateDeviceListRsp(oapi::DeviceListRsp)), this,
+						SLOT(UpdateDeviceListRsp(oapi::DeviceListRsp)));	
 	m_pThread->start();
 }
 
@@ -63,8 +63,8 @@ BOOL VSCVmsOAPI::Refresh()
 	qDeleteAll(this->takeChildren());
 
 	m_pThread = new VSCVMSOAPIThread(m_Param);
-	connect(m_pThread, SIGNAL(UpdateDeviceList(oapi::DeviceList)), this,
-						SLOT(UpdateDeviceList(oapi::DeviceList)));	
+	connect(m_pThread, SIGNAL(UpdateDeviceListRsp(oapi::DeviceListRsp)), this,
+						SLOT(UpdateDeviceListRsp(oapi::DeviceListRsp)));	
 	m_pThread->start();
 	return TRUE;	
 }
@@ -74,9 +74,9 @@ void VSCVmsOAPI::mousePressEvent(QMouseEvent *event)
 
 }
 
-void VSCVmsOAPI::UpdateDeviceList(oapi::DeviceList plist)
+void VSCVmsOAPI::UpdateDeviceListRsp(oapi::DeviceListRsp plist)
 {
-	printf("UpdateDeviceList ==============\n");
+	printf("UpdateDeviceListRsp ==============\n");
 
 	std::vector<oapi::Device>::iterator iter; 
 	for (iter = plist.list.begin(); iter != plist.list.end(); iter++)
@@ -137,12 +137,12 @@ void VSCVMSOAPIThread::run()
 			XSDK::XString host = m_pParam.IP;
 			pSocket->Connect(host, Port);
 			
-			oapi::DeviceList list;
+			oapi::DeviceListRsp list;
 			OAPIClient pClient(pSocket);
 			
-			pClient.Setup(m_pParam.User, m_pParam.Password);
-			pClient.SendDeviceListRequest();
-			//pClient.StartLiveview(2);
+			pClient.Setup(m_pParam.User, m_pParam.Password, "Nonce");
+			
+	
 			pSocket->SetRecvTimeout(1 * 1000);
 			while(m_Quit != TRUE)
 			{
@@ -180,13 +180,28 @@ void VSCVMSOAPIThread::run()
 					{
 						case OAPI_CMD_DEVICE_LIST_RSP:
 						{
-							oapi::DeviceList list;
+							oapi::DeviceListRsp list;
 							pClient.ParseDeviceList(pRecv, header.length, list);
-							emit UpdateDeviceList(list);
-							printf("UpdateDeviceList ==============\n");
+							emit UpdateDeviceListRsp(list);
 							break;
 						}
-						case OAPI_CMD_FRAME:
+						case OAPI_CMD_LOGIN_RSP:
+						{
+							oapi::LoginRsp rsp;
+							pClient.ParseLogin(pRecv, header.length, rsp);
+							if (rsp.bRetNonce == true)
+							{
+								pClient.Setup(m_pParam.User, 
+										m_pParam.Password, rsp.Nonce);
+							}
+							if (rsp.bRet == true)
+							{
+								/* login ok, send device list */
+								pClient.SendDeviceListRequest();
+							}
+							break;
+						}
+						case OAPI_CMD_FRAME_PUSH:
 						{
 							//printf("Go a new frame %d\n", frameCnt++);
 							break;
