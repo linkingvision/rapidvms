@@ -57,7 +57,7 @@ public:
            return;
 	}
 signals:
-    void UpdateDeviceList(oapi::DeviceList plist);
+    void UpdateDeviceListRsp(oapi::DeviceListRsp plist);
 private:
 	VSCVmsDataItem m_pParam;
 	BOOL m_Quit;
@@ -73,7 +73,7 @@ public:
 	VSCVmsOAPI(QTreeWidgetItem *parent, VSCVmsDataItem &pParam);
 	~VSCVmsOAPI();
 public slots:
-	void UpdateDeviceList(oapi::DeviceList plist);
+	void UpdateDeviceListRsp(oapi::DeviceListRsp plist);
 public:
 	/* Reconnect site to refresh the data */
 	virtual BOOL Refresh();
