@@ -172,12 +172,7 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	
 
 	oapi::LoginRsp rsp;
-	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
-	s32 nJsonLen = strJson.length();
-	if (nJsonLen <= 0)
-	{
-		return FALSE;
-	}
+
 	if (md5Output == req.Password)
 	{
 		rsp.bRet = true;
@@ -190,6 +185,13 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 
 	rsp.Nonce = m_seesionId;
 	
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+
 	OAPIHeader header;
 	header.cmd = htonl(OAPI_CMD_LOGIN_RSP);
 	header.length = htonl(nJsonLen + 1);
