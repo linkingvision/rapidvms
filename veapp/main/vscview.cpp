@@ -12,7 +12,8 @@ extern Factory *gFactory;
 
 VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
     : QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
-    m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE)
+    m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE), 
+	m_TimerTour(NULL)
 {
     ui.setupUi(this);
     m_pParent = parent;
@@ -61,56 +62,148 @@ void VSCView::UpdateVideoControl()
 
 void VSCView::SetupConnections()
 {
-    connect(ui.pushButton2x2, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode2x2()));
-    connect(ui.pushButton3x3, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode3x3()));
-    connect(ui.pushButton4x4, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode4x4()));
-    connect(ui.pushButton6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6()));
-    connect(ui.pushButton1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1()));
-    connect(ui.pushButton12p1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode12p1()));
-    connect(ui.pushButton5x5, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode5x5()));
-    connect(ui.pushButton6x6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6x6()));
-    connect(ui.pushButton8x8, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode8x8()));
+	connect(ui.pushButton2x2, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode2x2()));
+	connect(ui.pushButton3x3, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode3x3()));
+	connect(ui.pushButton4x4, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode4x4()));
+	connect(ui.pushButton6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6()));
+	connect(ui.pushButton1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1()));
+	connect(ui.pushButton12p1, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode12p1()));
+	connect(ui.pushButton5x5, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode5x5()));
+	connect(ui.pushButton6x6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6x6()));
+	connect(ui.pushButton8x8, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode8x8()));
+
+	connect(ui.pushButton2x2, SIGNAL(clicked()), this, SLOT(SetLayoutMode2x2()));
+	connect(ui.pushButton3x3, SIGNAL(clicked()), this, SLOT(SetLayoutMode3x3()));
+	connect(ui.pushButton4x4, SIGNAL(clicked()), this, SLOT(SetLayoutMode4x4()));
+	connect(ui.pushButton6, SIGNAL(clicked()), this, SLOT(SetLayoutMode6()));
+	connect(ui.pushButton1, SIGNAL(clicked()), this, SLOT(SetLayoutMode1()));
+	connect(ui.pushButton12p1, SIGNAL(clicked()), this, SLOT(SetLayoutMode12p1()));
+	connect(ui.pushButton5x5, SIGNAL(clicked()), this, SLOT(SetLayoutMode5x5()));
+	connect(ui.pushButton6x6, SIGNAL(clicked()), this, SLOT(SetLayoutMode6x6()));
+
+	connect(ui.pushButton8x8, SIGNAL(clicked()), this, SLOT(SetLayoutMode8x8()));
+
+	connect(ui.pushButtonView, SIGNAL(clicked()), this, SLOT(ViewClicked()));
+	//connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
+	connect(m_pVideo, SIGNAL(ShowDisplayClicked(int)), this,
+	                                    SLOT(ShowDisplayClicked(int)));
+	connect(m_pVideo, SIGNAL(ShowFloatingClicked()), this,
+	                                    SLOT(floatingClicked()));
+	connect(m_pVideo, SIGNAL(ShowControlPanelClicked()), this,
+	                                    SLOT(ControlPanelClicked()));                             
+	connect(m_pVideo, SIGNAL(ShowTabbedClicked()), this,
+	                                    SLOT(TabbedClicked()));
+	connect(m_pVideo, SIGNAL(ShowFocusClicked(int)), this,
+	                                    SLOT(ShowFocusClicked(int)));
+	connect(m_pVideo, SIGNAL(Layout1Clicked(int)), this,
+	                                    SLOT(ShowLayout1Clicked(int)));
+	connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
+	                                    SLOT(ShowViewClicked(int)));
+
+	connect(ui.pbTourPlay, SIGNAL(clicked()), this, SLOT(TourStart()));
+	connect(ui.pbTourStop, SIGNAL(clicked()), this, SLOT(TourStop()));
 	
-    connect(ui.pushButton2x2, SIGNAL(clicked()), this, SLOT(SetLayoutMode2x2()));
-    connect(ui.pushButton3x3, SIGNAL(clicked()), this, SLOT(SetLayoutMode3x3()));
-    connect(ui.pushButton4x4, SIGNAL(clicked()), this, SLOT(SetLayoutMode4x4()));
-    connect(ui.pushButton6, SIGNAL(clicked()), this, SLOT(SetLayoutMode6()));
-    connect(ui.pushButton1, SIGNAL(clicked()), this, SLOT(SetLayoutMode1()));
-    connect(ui.pushButton12p1, SIGNAL(clicked()), this, SLOT(SetLayoutMode12p1()));
-    connect(ui.pushButton5x5, SIGNAL(clicked()), this, SLOT(SetLayoutMode5x5()));
-    connect(ui.pushButton6x6, SIGNAL(clicked()), this, SLOT(SetLayoutMode6x6()));
-
-    connect(ui.pushButton8x8, SIGNAL(clicked()), this, SLOT(SetLayoutMode8x8()));
-
-    connect(ui.pushButtonView, SIGNAL(clicked()), this, SLOT(ViewClicked()));
-    //connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
-    connect(m_pVideo, SIGNAL(ShowDisplayClicked(int)), this,
-                                        SLOT(ShowDisplayClicked(int)));
-    connect(m_pVideo, SIGNAL(ShowFloatingClicked()), this,
-                                        SLOT(floatingClicked()));
-    connect(m_pVideo, SIGNAL(ShowControlPanelClicked()), this,
-                                        SLOT(ControlPanelClicked()));                             
-    connect(m_pVideo, SIGNAL(ShowTabbedClicked()), this,
-                                        SLOT(TabbedClicked()));
-    connect(m_pVideo, SIGNAL(ShowFocusClicked(int)), this,
-                                        SLOT(ShowFocusClicked(int)));
-    connect(m_pVideo, SIGNAL(Layout1Clicked(int)), this,
-                                        SLOT(ShowLayout1Clicked(int)));
-    connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
-                                        SLOT(ShowViewClicked(int)));
 }
 
 VSCView::~VSCView()
 {
-    m_pPlayControl->hide();
-    delete m_pPlayControl;
+	TourStop();
+	m_pPlayControl->hide();
+	delete m_pPlayControl;
+	
 }
 
 void VSCView::TourStop()
 {
 	ui.pbTourPlay->show();
 	ui.pbTourStop->hide();
+	if (m_TimerTour)
+	{
+
+		m_TimerTour->stop();
+		delete m_TimerTour;
+		m_TimerTour = NULL;
+	}
 }
+
+void VSCView::TourStart()
+{
+	ui.pbTourPlay->hide();
+	ui.pbTourStop->show();
+
+	TourInit();
+	m_TimerTour = new QTimer(this);
+	connect(m_TimerTour,SIGNAL(timeout()), this, SLOT(TourTimerFunction()));
+	TourTimerFunction();
+	m_TimerTour->start(m_TourInterval); 
+}
+
+void VSCView::TourInit()
+{
+	memset(&m_pTourConf, 0, sizeof(m_pTourConf));
+	/* Get the tool configure from db */
+	m_TourInterval = 20 * 1000;
+
+	switch(ui.tourInterval->currentIndex())
+	{
+	    case 0:
+		m_TourInterval = 20 * 1000;
+		break;
+	    case 1:
+		m_TourInterval = 40 * 1000;
+		break;
+	    case 2:
+		m_TourInterval = 60 * 1000;
+		break;
+	    case 3:
+		m_TourInterval = 60 * 1000;
+		break;
+	    case 4:
+		m_TourInterval = 3 * 60 * 1000;
+		break;
+	    case 5:
+		m_TourInterval = 5 * 60 * 1000;
+		break;
+	    default:
+	        break;
+	}	
+
+	gFactory->GetView(m_pTourConf);
+
+	m_TourIdx = 0;
+}
+
+void VSCView::TourTimerFunction()
+{
+	VSCViewDataItem pParam;
+	if (m_TourIdx >= CONF_VIEW_NUM_MAX || m_TourIdx < 0)
+	{
+		m_TourIdx = 0;
+	}
+
+	while (1)
+	{
+		if (m_pTourConf.data.conf.view[m_TourIdx].Used == 1)
+		{
+			memcpy(&pParam, &(m_pTourConf.data.conf.view[m_TourIdx]), 
+				sizeof(VSCViewDataItem));
+			m_pVideo->SetPlayMap(pParam.Map,
+				VSC_CONF_VIEW_CH_MAX, pParam.Mode);
+			m_TourIdx ++;
+			break;
+		}
+		m_TourIdx ++;
+		if (m_TourIdx >= CONF_VIEW_NUM_MAX)
+		{
+			break;
+		}
+
+	}
+
+	return;
+}
+
+
 
 void VSCView::mouseMoveEvent(QMouseEvent *event)
 {
