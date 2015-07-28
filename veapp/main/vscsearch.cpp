@@ -56,9 +56,9 @@ VSCSearch::~VSCSearch()
 
 void VSCSearch::SetupConnections()
 {
-    connect( this->ui.pushButtonStart, SIGNAL( clicked() ), this, SLOT(StartSearch()));
-    connect( this->ui.pushButtonStop, SIGNAL( clicked() ), this, SLOT(StopSearch()));
-    connect( this->ui.pushButtonAdd, SIGNAL( clicked() ), this, SLOT(AddAll()));
+	connect( this->ui.pushButtonStart, SIGNAL( clicked() ), this, SLOT(StartSearch()));
+	connect( this->ui.pushButtonStop, SIGNAL( clicked() ), this, SLOT(StopSearch()));
+	connect( this->ui.pushButtonAdd, SIGNAL( clicked() ), this, SLOT(AddAll()));
 	connect( this->ui.pushButtonSelect, SIGNAL( clicked() ), this, SLOT(SelectAll()));
 	connect( this, SIGNAL(NewSearchedItem(astring, astring, astring, astring, astring, astring) ), this, SLOT(AddItem(astring, astring, astring, astring, astring, astring)), Qt::QueuedConnection);
 	//Qt::QueuedConnection
