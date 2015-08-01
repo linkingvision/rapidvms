@@ -110,6 +110,14 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
     }
 
     memcpy(&pSys, sysValue.data(), sizeof(VSCConfData));
+	if (pSys.data.conf.RTSPServerPort == 0)
+	{
+		pSys.data.conf.RTSPServerPort = 9554;
+	}
+	if (pSys.data.conf.OAPIPort == 0)
+	{
+		pSys.data.conf.OAPIPort = 9080;
+	}
 
     // Check for any errors found during the scan
     assert(it->status().ok());
