@@ -30,7 +30,7 @@ VSCRtspRtp::VSCRtspRtp(QWidget *parent)
 
 	ui.rtspPort->setText(ckPort.c_str());
 
-	ui.multiCastStart->setText(m_pMultiAddr.c_str());
+	//ui.multiCastStart->setText(m_pMultiAddr.c_str());
 
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
@@ -53,7 +53,7 @@ void VSCRtspRtp::applyConfig()
 		m_pAuth  = 0;
 	}
 
-	m_pMultiAddr = ui.multiCastStart->text().toStdString();
+	//m_pMultiAddr = ui.multiCastStart->text().toStdString();
 
 	gFactory->SetRTSPServer(m_pAuth, m_pMultiAddr, m_pPort);
 	return;
