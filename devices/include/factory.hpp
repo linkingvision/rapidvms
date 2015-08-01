@@ -249,6 +249,8 @@ public:
 	BOOL SearchNextItem(s32 deviceId, s64 LastId, VdbRecordItem &pItem);
 	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
 	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
+
+	VDB & GetVdb();
 public:
 	void Lock(){m_Lock.lock();}
 	bool TryLock(){return m_Lock.try_lock();}
