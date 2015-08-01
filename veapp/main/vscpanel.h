@@ -15,20 +15,20 @@
 #include "utility.hpp"
 #include "ui_vscpanel.h"
 #include "factory.hpp"
+#include "vtaskmgr.hpp"
 
 using  namespace tthread;
+
+typedef std::map<std::string, QWidget *> VTaskItemWidgetList;
 
 class VSCPanel : public QWidget
 {
     Q_OBJECT
 
 public:
-    VSCPanel(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~VSCPanel();
-public:
-	void dragEnterEvent(QDragEnterEvent *event);
-	void dragMoveEvent(QDragMoveEvent *event);
-        void dropEvent(QDropEvent *event);
+	VSCPanel(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+	~VSCPanel();
+
 signals:
 	void AddRecorder();
 	void AddCamera();
@@ -40,10 +40,15 @@ signals:
 	
 	void Setting();
 	void AddEvent();
+
+public slots:
+	void UpdateTaskList();
 public:
-    Ui::VSCPanel ui;
+    	Ui::VSCPanel ui;
 private:
-	VSCVGroupDataItem m_pParam;
+	VTaskItemList m_pTaskList;
+	VTaskItemWidgetList m_pTaskWidget;
+
 };
 
 
