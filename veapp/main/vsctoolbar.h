@@ -17,9 +17,10 @@ public:
     ~VSCToolBar(){}
 	
 public slots:
-    void showcurrentTime();
+	void showcurrentTime();
 	void showAlarm();
-    void NewAlarm();
+	void NewAlarm();
+	void showProcessingTimer();
 	void showProcessing(bool bEnable);
 public:
     Ui::VSCToolBar ui;
@@ -27,6 +28,7 @@ public:
 private:
 	QTimer *m_Timer;
 	QTimer *m_TimerAlarm;
+	QTimer *m_TimerPrcessing;
 	bool m_alarm;
 	int m_alarmCnt;
 	VSCCalculate * m_cpu;

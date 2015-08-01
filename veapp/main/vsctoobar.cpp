@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QTime>
 #include <QDate>
+#include "vtaskmgr.hpp"
 
 
 VSCToolBar::VSCToolBar(QWidget *parent)
@@ -30,6 +31,10 @@ VSCToolBar::VSCToolBar(QWidget *parent)
 	m_Timer = new QTimer(this);
 	connect(m_Timer, SIGNAL(timeout()), this, SLOT(showcurrentTime()));
 	m_Timer->start(1000);
+
+	m_TimerPrcessing = new QTimer(this);
+	connect(m_TimerPrcessing, SIGNAL(timeout()), this, SLOT(showProcessingTimer()));
+	m_TimerPrcessing->start(1000);
 	
 	m_TimerAlarm = new QTimer(this);
 	connect(m_TimerAlarm, SIGNAL(timeout()), this, SLOT(showAlarm()));
@@ -72,7 +77,18 @@ void VSCToolBar::showcurrentTime()
 	QDate currentDate = QDate::currentDate();
 	QString strCurrentTime =currentDate.toString("yyyy-MM-dd") + " " + currentTime.toString() + "  ";
 	ui.time->setText(strCurrentTime);
-	
+
+}
+
+void VSCToolBar::showProcessingTimer()
+{
+	if (VTaskMgr::GetTaskCnt() > 0)
+	{
+		showProcessing(TRUE);
+	}else
+	{
+		showProcessing(FALSE);
+	}
 
 }
 
