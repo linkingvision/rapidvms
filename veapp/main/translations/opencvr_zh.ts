@@ -187,72 +187,72 @@
 <context>
     <name>VSCDeviceList</name>
     <message>
-        <location filename="../vscdevicelist.ui" line="104"/>
+        <location filename="../vscdevicelist.ui" line="109"/>
         <source>Recorder</source>
         <translation type="unfinished">录像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="126"/>
+        <location filename="../vscdevicelist.ui" line="131"/>
         <source>Add IP Camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="149"/>
+        <location filename="../vscdevicelist.ui" line="162"/>
         <source>Camera</source>
         <translation type="unfinished">摄像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="171"/>
+        <location filename="../vscdevicelist.ui" line="184"/>
         <source>Add View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="174"/>
+        <location filename="../vscdevicelist.ui" line="187"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="177"/>
+        <location filename="../vscdevicelist.ui" line="190"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="200"/>
+        <location filename="../vscdevicelist.ui" line="221"/>
         <source>View</source>
         <translation type="unfinished">预览</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="222"/>
+        <location filename="../vscdevicelist.ui" line="243"/>
         <source>Search IP Camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="245"/>
+        <location filename="../vscdevicelist.ui" line="274"/>
         <source>Search</source>
         <translation type="unfinished">设备搜索</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="267"/>
+        <location filename="../vscdevicelist.ui" line="296"/>
         <source>Playback </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="290"/>
+        <location filename="../vscdevicelist.ui" line="327"/>
         <source>Mining</source>
         <translation type="unfinished">数据挖掘</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="335"/>
+        <location filename="../vscdevicelist.ui" line="377"/>
         <source>eMap</source>
         <translation type="unfinished">地图</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="377"/>
+        <location filename="../vscdevicelist.ui" line="427"/>
         <source>Plan</source>
         <translation type="unfinished">录像计划</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="419"/>
+        <location filename="../vscdevicelist.ui" line="477"/>
         <source>VIPC</source>
         <translation type="unfinished">虚摄像机</translation>
     </message>
@@ -261,37 +261,37 @@
         <translation type="obsolete">虚拟相机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="441"/>
+        <location filename="../vscdevicelist.ui" line="499"/>
         <source>Drop IP Camera to Here</source>
         <translation type="unfinished">拖放到此</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="464"/>
+        <location filename="../vscdevicelist.ui" line="530"/>
         <source>Trush</source>
         <translation type="unfinished">回收站</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="532"/>
+        <location filename="../vscdevicelist.ui" line="598"/>
         <source>VS Cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="537"/>
+        <location filename="../vscdevicelist.ui" line="603"/>
         <source>Cameras</source>
         <translation type="unfinished">摄像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="546"/>
+        <location filename="../vscdevicelist.ui" line="612"/>
         <source>Recorders</source>
         <translation type="unfinished">录像机</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="555"/>
+        <location filename="../vscdevicelist.ui" line="621"/>
         <source>Views</source>
         <translation type="unfinished">视图</translation>
     </message>
     <message>
-        <location filename="../vscdevicelist.ui" line="564"/>
+        <location filename="../vscdevicelist.ui" line="630"/>
         <source>Disks</source>
         <translation type="unfinished">磁盘</translation>
     </message>
@@ -701,40 +701,40 @@
 <context>
     <name>VSCMainWindows</name>
     <message>
-        <location filename="../vscmainwindows.cpp" line="92"/>
-        <location filename="../vscmainwindows.cpp" line="197"/>
+        <location filename="../vscmainwindows.cpp" line="93"/>
+        <location filename="../vscmainwindows.cpp" line="199"/>
         <source>:/view/resources/3x3.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="90"/>
-        <location filename="../vscmainwindows.cpp" line="92"/>
+        <location filename="../vscmainwindows.cpp" line="91"/>
+        <location filename="../vscmainwindows.cpp" line="93"/>
         <source>Main View</source>
         <translation type="unfinished">主预览</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="99"/>
+        <location filename="../vscmainwindows.cpp" line="100"/>
         <source>VS Cloud Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="172"/>
+        <location filename="../vscmainwindows.cpp" line="174"/>
         <source>:/action/resources/alarmno.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="172"/>
+        <location filename="../vscmainwindows.cpp" line="174"/>
         <source>Alarm</source>
         <translation type="unfinished">报警</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="195"/>
         <location filename="../vscmainwindows.cpp" line="197"/>
+        <location filename="../vscmainwindows.cpp" line="199"/>
         <source>View %1</source>
         <translation type="unfinished">预览 %1</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="216"/>
+        <location filename="../vscmainwindows.cpp" line="218"/>
         <source>:/action/resources/map.png</source>
         <translation type="unfinished"></translation>
     </message>
@@ -743,176 +743,186 @@
         <translation type="obsolete">地图</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="216"/>
+        <location filename="../vscmainwindows.cpp" line="218"/>
         <source>eMap</source>
         <translation type="unfinished">地图</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="226"/>
+        <location filename="../vscmainwindows.cpp" line="228"/>
         <source>:/action/resources/mining.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="226"/>
+        <location filename="../vscmainwindows.cpp" line="228"/>
         <source>Mining</source>
         <translation type="unfinished">数据挖掘</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="236"/>
+        <location filename="../vscmainwindows.cpp" line="238"/>
         <source>:/action/resources/setting.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="236"/>
+        <location filename="../vscmainwindows.cpp" line="238"/>
         <source>Setting</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="246"/>
-        <location filename="../vscmainwindows.cpp" line="314"/>
+        <location filename="../vscmainwindows.cpp" line="258"/>
+        <source>:/action/resources/panel.png</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscmainwindows.cpp" line="258"/>
+        <source>Control Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscmainwindows.cpp" line="269"/>
+        <location filename="../vscmainwindows.cpp" line="337"/>
         <source>:/device/resources/camera.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="246"/>
-        <location filename="../vscmainwindows.cpp" line="314"/>
+        <location filename="../vscmainwindows.cpp" line="269"/>
+        <location filename="../vscmainwindows.cpp" line="337"/>
         <source>Camera</source>
         <translation type="unfinished">摄像机</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="264"/>
+        <location filename="../vscmainwindows.cpp" line="287"/>
         <source>:/action/resources/computer.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="264"/>
+        <location filename="../vscmainwindows.cpp" line="287"/>
         <source>Recorder</source>
         <translation type="unfinished">录像机</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="275"/>
+        <location filename="../vscmainwindows.cpp" line="298"/>
         <source>Search is In Processing ...</source>
         <translation type="unfinished">搜索正在进行中...</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="288"/>
+        <location filename="../vscmainwindows.cpp" line="311"/>
         <source>:/action/resources/search.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="288"/>
+        <location filename="../vscmainwindows.cpp" line="311"/>
         <source>Search</source>
         <translation type="unfinished">设备搜索</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="301"/>
+        <location filename="../vscmainwindows.cpp" line="324"/>
         <source>:/device/resources/harddisk.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="301"/>
+        <location filename="../vscmainwindows.cpp" line="324"/>
         <source>Disk</source>
         <translation type="unfinished">磁盘</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="324"/>
+        <location filename="../vscmainwindows.cpp" line="347"/>
         <source>Delete the Camera ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="352"/>
+        <location filename="../vscmainwindows.cpp" line="375"/>
         <source>OpenCVR Exit ...</source>
         <translation type="unfinished">退出 OpenCVR ...</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="381"/>
-        <location filename="../vscmainwindows.cpp" line="393"/>
+        <location filename="../vscmainwindows.cpp" line="404"/>
+        <location filename="../vscmainwindows.cpp" line="416"/>
         <source>:/device/resources/virtualipc.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="381"/>
-        <location filename="../vscmainwindows.cpp" line="393"/>
+        <location filename="../vscmainwindows.cpp" line="404"/>
+        <location filename="../vscmainwindows.cpp" line="416"/>
         <source>Virutal IPC</source>
         <translation type="unfinished">虚摄像机</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="402"/>
+        <location filename="../vscmainwindows.cpp" line="425"/>
         <source>Delete the Virtual IPC ...</source>
         <translation type="unfinished">删除虚摄像机...</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="480"/>
+        <location filename="../vscmainwindows.cpp" line="503"/>
         <source>Delete the  Group ...</source>
         <translation type="unfinished">删除组...</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="509"/>
+        <location filename="../vscmainwindows.cpp" line="532"/>
         <source>:/device/resources/camgroup.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="509"/>
+        <location filename="../vscmainwindows.cpp" line="532"/>
         <source>Camera Group</source>
         <translation type="unfinished">摄像机组</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="519"/>
+        <location filename="../vscmainwindows.cpp" line="542"/>
         <source>Delete the View ...</source>
         <translation type="unfinished">删除视图</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="547"/>
+        <location filename="../vscmainwindows.cpp" line="570"/>
         <source>Delete the Rcorder ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="573"/>
+        <location filename="../vscmainwindows.cpp" line="596"/>
         <source>&amp;Surveillance</source>
         <translation type="unfinished">视图</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="576"/>
+        <location filename="../vscmainwindows.cpp" line="599"/>
         <source>&amp;Search</source>
         <translation type="unfinished">设备搜索</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="580"/>
+        <location filename="../vscmainwindows.cpp" line="603"/>
         <source>&amp;Devices List</source>
         <translation type="unfinished">设备列表</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="583"/>
+        <location filename="../vscmainwindows.cpp" line="606"/>
         <source>&amp;Add</source>
         <translation type="unfinished">添加</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="586"/>
+        <location filename="../vscmainwindows.cpp" line="609"/>
         <source>&amp;Delete</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="589"/>
+        <location filename="../vscmainwindows.cpp" line="612"/>
         <source>&amp;Configurate</source>
         <translation type="unfinished">配置</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="607"/>
+        <location filename="../vscmainwindows.cpp" line="630"/>
         <source>About OpenCVR</source>
         <translation type="unfinished">关于OpenCVR</translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="608"/>
+        <location filename="../vscmainwindows.cpp" line="631"/>
         <source>&lt;b&gt;OpenCVR&lt;/b&gt;. &lt;br&gt;&lt;a href=&quot;https://github.com/xsmart/opencvr&quot;&gt;https://github.com/xsmart/opencvr&lt;/a&gt;  &lt;br&gt;&lt;a href=&quot;http://veyesys.com/&quot;&gt;http://veyesys.com/&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="659"/>
+        <location filename="../vscmainwindows.cpp" line="682"/>
         <source>Username or Password not correct ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscmainwindows.cpp" line="689"/>
+        <location filename="../vscmainwindows.cpp" line="712"/>
         <source>Devices</source>
         <translation type="unfinished">设备列表</translation>
     </message>
@@ -953,7 +963,7 @@
     <message>
         <location filename="../../setting/vscoapi.ui" line="14"/>
         <source>HDFS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OAPI 服务端口</translation>
     </message>
     <message>
         <location filename="../../setting/vscoapi.ui" line="35"/>
@@ -963,7 +973,7 @@
     <message>
         <location filename="../../setting/vscoapi.ui" line="45"/>
         <source>OAPI Server Port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OAPI 服务端口</translation>
     </message>
     <message>
         <location filename="../../setting/vscoapi.ui" line="105"/>
@@ -974,6 +984,142 @@
         <location filename="../../setting/vscoapi.ui" line="141"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
+    </message>
+</context>
+<context>
+    <name>VSCPanel</name>
+    <message>
+        <location filename="../vscpanel.ui" line="26"/>
+        <source>Form</source>
+        <translation type="unfinished">窗口</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="101"/>
+        <source>Control</source>
+        <translation type="unfinished">控制</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="194"/>
+        <source>View</source>
+        <translation type="unfinished">预览</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="212"/>
+        <source>Live video from camera,  and do PTZ and playback.</source>
+        <translation type="unfinished">摄像机实时视频浏览,PTZ控制,回放视频</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="305"/>
+        <source>Search</source>
+        <translation type="unfinished">设备搜索</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="323"/>
+        <source>Search, Add IP Camera</source>
+        <translation type="unfinished">搜索并添加摄像机</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="433"/>
+        <source>Mining</source>
+        <translation type="unfinished">数据挖掘</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="451"/>
+        <source>Data Mining from video such as smart search</source>
+        <translation type="unfinished">数据挖掘，比如基于运动的智能搜索</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="544"/>
+        <source>Emap</source>
+        <translation type="unfinished">地图</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="562"/>
+        <source>Add, modify, delete and basic operations of Emap.</source>
+        <translation type="unfinished">添加,修改，删除等一些基本的电子地图操作.</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="672"/>
+        <source>Plan</source>
+        <translation type="unfinished">录像计划</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="690"/>
+        <source>Configuring the stroage schedule</source>
+        <translation type="unfinished">配置录像计划</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="754"/>
+        <source>Device</source>
+        <translation type="unfinished">设备</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="844"/>
+        <source>Recorder</source>
+        <translation type="unfinished">录像机</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="862"/>
+        <source>Add a Recorder, an another OpenCVR</source>
+        <translation type="unfinished">添加OpenCVR录像机，可以连接到另外一台OpenCVR.</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="955"/>
+        <source>Camera</source>
+        <translation type="unfinished">摄像机</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="973"/>
+        <source>Add  Camera, IP camera can be RTSP, File and ONVIF</source>
+        <translation type="unfinished">添加摄像机，摄像机可以是ONVIF,RTSP,或者模拟文件.</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1037"/>
+        <source>System</source>
+        <translation type="unfinished">系统</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1127"/>
+        <source>Setting</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1145"/>
+        <source>System setting for OpenCVR.</source>
+        <translation type="unfinished">OpenCVR系统设置</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1238"/>
+        <source>Alarm</source>
+        <translation type="unfinished">报警</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1256"/>
+        <source>Viiew, export and operate on the alarm</source>
+        <translation type="unfinished">报警查看，报警导出等一些基本操作</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1320"/>
+        <source>Task</source>
+        <translation type="unfinished">任务</translation>
+    </message>
+    <message>
+        <location filename="../vscpanel.ui" line="1385"/>
+        <source>Update task list</source>
+        <translation type="unfinished">更新任务列表</translation>
+    </message>
+</context>
+<context>
+    <name>VSCPanelTaskItem</name>
+    <message>
+        <location filename="../vscpaneltaskitem.ui" line="26"/>
+        <source>Form</source>
+        <translation type="unfinished">窗口</translation>
+    </message>
+    <message>
+        <location filename="../vscpaneltaskitem.ui" line="47"/>
+        <source>TaskName</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1072,28 +1218,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="35"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="72"/>
         <source>9554</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="45"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="59"/>
         <source>RTSP Server Port</source>
         <translation type="unfinished">RTSP服务端口</translation>
     </message>
     <message>
         <location filename="../../setting/vscrtsprtp.ui" line="52"/>
         <source>RTSP Auth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="59"/>
-        <source>Multicast Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="72"/>
-        <source>226.0.0.1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1113,12 +1249,12 @@
         <translation type="obsolete">组播</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="158"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="135"/>
         <source>Apply</source>
         <translation type="unfinished">应用</translation>
     </message>
     <message>
-        <location filename="../../setting/vscrtsprtp.ui" line="194"/>
+        <location filename="../../setting/vscrtsprtp.ui" line="171"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
@@ -1327,29 +1463,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="68"/>
+        <location filename="../vsctoolbar.ui" line="99"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="103"/>
+        <location filename="../vsctoolbar.ui" line="142"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="127"/>
         <source>Select a Tour     </source>
-        <translation type="unfinished">选择巡更</translation>
+        <translation type="obsolete">选择巡更</translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="132"/>
         <source>Tour 1</source>
-        <translation type="unfinished">巡更 1</translation>
+        <translation type="obsolete">巡更 1</translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="137"/>
         <source>Tour 2</source>
-        <translation type="unfinished">巡更 2</translation>
+        <translation type="obsolete">巡更 2</translation>
     </message>
     <message>
         <source>View 1</source>
@@ -1360,17 +1493,17 @@
         <translation type="obsolete">视图 2</translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="187"/>
+        <location filename="../vsctoolbar.ui" line="205"/>
         <source>2014-03-08 14:11:00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="254"/>
+        <location filename="../vsctoolbar.ui" line="280"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FullScreen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vsctoolbar.ui" line="286"/>
+        <location filename="../vsctoolbar.ui" line="320"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;About&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1464,7 +1597,7 @@
         <translation type="unfinished">窗口</translation>
     </message>
     <message>
-        <location filename="../vscipcgroupmap.ui" line="117"/>
+        <location filename="../vscipcgroupmap.ui" line="132"/>
         <source>Group</source>
         <translation type="unfinished">组</translation>
     </message>
@@ -1550,7 +1683,7 @@
     <message>
         <location filename="../../setting/vscvideosetting.ui" line="42"/>
         <source>Default HW accel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认开启硬件加速</translation>
     </message>
     <message>
         <location filename="../../setting/vscvideosetting.ui" line="125"/>
@@ -1571,47 +1704,72 @@
         <translation type="unfinished">预览</translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="50"/>
+        <location filename="../vscview.ui" line="204"/>
+        <source>20s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscview.ui" line="209"/>
+        <source>40s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscview.ui" line="214"/>
+        <source>1mins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscview.ui" line="219"/>
+        <source>3mins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscview.ui" line="224"/>
+        <source>5mins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../vscview.h" line="45"/>
         <source>:/view/resources/4x4.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="55"/>
+        <location filename="../vscview.h" line="50"/>
         <source>:/view/resources/3x3.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="60"/>
+        <location filename="../vscview.h" line="55"/>
         <source>:/view/resources/2x2.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="65"/>
+        <location filename="../vscview.h" line="60"/>
         <source>:/view/resources/6.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="70"/>
+        <location filename="../vscview.h" line="65"/>
         <source>:/view/resources/12+1.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="75"/>
+        <location filename="../vscview.h" line="70"/>
         <source>:/view/resources/1x1.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="80"/>
+        <location filename="../vscview.h" line="75"/>
         <source>:/view/resources/5x5.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="85"/>
+        <location filename="../vscview.h" line="80"/>
         <source>:/view/resources/6x6.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../vscview.h" line="90"/>
+        <location filename="../vscview.h" line="85"/>
         <source>:/view/resources/8x8.png</source>
         <translation type="unfinished"></translation>
     </message>
