@@ -613,6 +613,11 @@ inline BOOL Factory::FinishedAMFRead(VdbRecordItem &pItem, astring & strPath)
     return m_pVdb->FinishedAMFRead(pItem, strPath);
 }
 
+inline VDB& Factory::GetVdb()
+{
+	return *m_pVdb;
+}
+
 inline BOOL Factory::GetDeviceParamMap(DeviceParamMap &pMap)
 {
     pMap = m_DeviceParamMap;
