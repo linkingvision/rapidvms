@@ -56,34 +56,34 @@ extern Factory *gFactory;
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
 
 VSCMainWindows::VSCMainWindows(QWidget *parent)
-    : m_pEMap(NULL), QMainWindow(parent)
+    : m_pEMap(NULL), m_pPanel(NULL), QMainWindow(parent)
 {
 
-    ui.setupUi(this);
+	ui.setupUi(this);
 #ifdef WIN32
 	setStyleSheet(QString::fromUtf8("font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
 #endif
 
 
-    QWidget *widget = new QWidget;
-    setCentralWidget(widget);
-    m_pToolBar = new VSCToolBar(this);
-    //m_pEvent->hide();
-    CreateActions();
-    SetupMenuBar();
-    SetupToolBar();
-    CreateDockWindows();
+	QWidget *widget = new QWidget;
+	setCentralWidget(widget);
+	m_pToolBar = new VSCToolBar(this);
+	//m_pEvent->hide();
+	CreateActions();
+	SetupMenuBar();
+	SetupToolBar();
+	CreateDockWindows();
 
-    m_pMainArea = new QTabWidget(this);
+	m_pMainArea = new QTabWidget(this);
 
-    m_pMainArea->setTabsClosable(true);
-    m_pMainArea->setMovable(true);
-    m_pEventThread = VEventThread::CreateObject();
-    m_pEventThread->start();
-	
+	m_pMainArea->setTabsClosable(true);
+	m_pMainArea->setMovable(true);
+	m_pEventThread = VEventThread::CreateObject();
+	m_pEventThread->start();
+
 	VSCLoading *loading = new VSCLoading(NULL);
 	loading->show();
-       QDesktopWidget *desktop = QApplication::desktop();
+	   QDesktopWidget *desktop = QApplication::desktop();
 	QRect rect = desktop->screenGeometry(0);
 	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
 	QCoreApplication::processEvents();
@@ -95,12 +95,12 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 			m_pView, SLOT(DeviceEvent(int, int)));
 #endif
 
-    setCentralWidget(m_pMainArea);
+	setCentralWidget(m_pMainArea);
 
-    QString message = tr("VS Cloud Client");
+	QString message = tr("VS Cloud Client");
 
 	delete loading;
-    SetupConnections();
+	SetupConnections();
 	setWindowTitle(QApplication::translate("VSCMainWindowsClass", VE_INFO, 0));
 }
 
@@ -169,10 +169,10 @@ void VSCMainWindows::SetupConnections()
 
 void VSCMainWindows::AddEvent()
 {
-    VEvent *pEvent = VEvent::CreateObject(m_pMainArea);
-	
-    m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarmno.png")), tr("Alarm"));
-    m_pMainArea->setCurrentWidget(pEvent);
+	VEvent *pEvent = VEvent::CreateObject(m_pMainArea);
+
+	m_pMainArea->addTab(pEvent, QIcon(tr(":/action/resources/alarmno.png")), tr("Alarm"));
+	m_pMainArea->setCurrentWidget(pEvent);
 	ViewHideFocus();
 }
 
@@ -242,21 +242,23 @@ void VSCMainWindows::Setting()
 
 void VSCMainWindows::Panel()
 {
-    VSCPanel *pPanel = new VSCPanel(this);
+	if (m_pPanel == NULL)
+	{
+    		m_pPanel = new VSCPanel(this);
+		connect(m_pPanel, SIGNAL(AddRecorder()), this, SLOT(AddRecorder()));
+		connect(m_pPanel, SIGNAL(AddCamera()), this, SLOT(AddCamera()));
+		connect(m_pPanel, SIGNAL(AddSurveillance()), this, SLOT(AddSurveillance()));
+		connect(m_pPanel, SIGNAL(Search()), this, SLOT(Search()));
+		connect(m_pPanel, SIGNAL(AddEmap()), this, SLOT(AddEmap()));
+		connect(m_pPanel, SIGNAL(AddDmining()), this, SLOT(AddDmining()));
+		connect(m_pPanel, SIGNAL(Setting()), this, SLOT(Setting()));
+		connect(m_pPanel, SIGNAL(AddEvent()), this, SLOT(AddEvent()));
+	}
 
-    m_pMainArea->addTab(pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Control Panel"));  
-    m_pMainArea->setCurrentWidget(pPanel);
-	
-	connect(pPanel, SIGNAL(AddRecorder()), this, SLOT(AddRecorder()));
-	connect(pPanel, SIGNAL(AddCamera()), this, SLOT(AddCamera()));
-	connect(pPanel, SIGNAL(AddSurveillance()), this, SLOT(AddSurveillance()));
-	connect(pPanel, SIGNAL(Search()), this, SLOT(Search()));
-	connect(pPanel, SIGNAL(AddEmap()), this, SLOT(AddEmap()));
-	connect(pPanel, SIGNAL(AddDmining()), this, SLOT(AddDmining()));
-	connect(pPanel, SIGNAL(Setting()), this, SLOT(Setting()));
-	connect(pPanel, SIGNAL(AddEvent()), this, SLOT(AddEvent()));
-	
-    ViewHideFocus();
+	m_pMainArea->addTab(m_pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Control Panel"));  
+	m_pMainArea->setCurrentWidget(m_pPanel);
+
+	ViewHideFocus();
 }
 
 void VSCMainWindows::AddCamera()
@@ -733,6 +735,13 @@ void VSCMainWindows::MainCloseTab(int index)
     {
     	m_pMainArea->removeTab(index);
 	m_pEMap->hide();
+	return;
+    }
+
+    if (wdgt == m_pPanel)	
+    {
+    	m_pMainArea->removeTab(index);
+	m_pPanel->hide();
 	return;
     }
     m_pMainArea->removeTab(index);
