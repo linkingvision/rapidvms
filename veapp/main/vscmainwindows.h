@@ -8,6 +8,7 @@
 #include "vscdockwidget.h"
 #include "vscview.h"
 #include "vemap.hpp"
+#include "vscpanel.h"
 
 class VSCDeviceList;
 class VSCToolBar;
@@ -78,6 +79,7 @@ private:
 	QTabWidget * m_pMainArea;
 	VSCView *m_pView;
 	VEMap *m_pEMap;
+	VSCPanel *m_pPanel;
 
 private:
     QAction *pActSurveillance;

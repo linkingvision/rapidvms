@@ -14,6 +14,8 @@
 #include <QScrollArea>
 #include "vscviewtree.h"
 #include "vscvwidget.h"
+#include "vtaskmgr.hpp"
+#include "vscpaneltaskitem.h"
 
 extern Factory *gFactory;
 
@@ -37,6 +39,11 @@ VSCPanel::VSCPanel(QWidget *parent, Qt::WindowFlags flags)
 
 	connect(ui.pbSetting, SIGNAL(clicked()), this, SIGNAL(Setting()));
 	connect(ui.pbAlarm, SIGNAL(clicked()), this, SIGNAL(AddEvent()));
+
+	connect(ui.pbTasklist, SIGNAL(clicked()), this, SLOT(UpdateTaskList()));
+
+
+	UpdateTaskList();
 }
 
 VSCPanel::~VSCPanel()
@@ -44,42 +51,33 @@ VSCPanel::~VSCPanel()
 
 }
 
-void VSCPanel::dragEnterEvent(QDragEnterEvent *event)
+void VSCPanel::UpdateTaskList()
 {
-    VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_pParam.nId);
-    event->accept();
-}
+	/* Remove old task */
 
-void VSCPanel::dragMoveEvent(QDragMoveEvent *event)
-{
-    VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_pParam.nId);
-    event->accept();
-}
-
-void VSCPanel::dropEvent(QDropEvent *event)
-{
-	QMimeData * pMime = (QMimeData *)event->mimeData();
-	VSCQMimeView *myData =
-	 dynamic_cast<VSCQMimeView * > (pMime);
-	if (myData) 
+	VTaskItemWidgetList::iterator it1 = m_pTaskWidget.begin(); 
+	for(; it1!=m_pTaskWidget.end(); ++it1)
 	{
-		VDC_DEBUG( "%s View in dropEvent id %d\n",__FUNCTION__, myData->nId);
-		return;
-	}
-	VDC_DEBUG( "%s Enter in dropEvent id %d\n",__FUNCTION__, m_pParam.nId);
-	if (event->mimeData()->hasText() == false)
-	{
-		return;
+		ui.TaskLayout->removeWidget((*it1).second);
+		delete (*it1).second;
 	}
 
-	s32 nId = atoi(event->mimeData()->text().toLatin1().data());
-	if (nId < VWIDGET_ID_OFFSET)
-	{
-		//add this id to this group
-		gFactory->UpdateDeviceGroup(nId, m_pParam.nId);
-		return;
-	}
-    	return;
+	m_pTaskWidget.clear();
+
+	/* Update the task list */
+	VTaskMgr::GetTaskList(m_pTaskList);
+
+        VTaskItemList::iterator it = m_pTaskList.begin(); 
+        for(; it!=m_pTaskList.end(); ++it)
+        {
+		VSCPanelTaskItem *pItem = new VSCPanelTaskItem((*it).second, this); 
+		ui.TaskLayout->addWidget(pItem);
+		m_pTaskWidget[(*it).second->GetId()] = pItem;
+		
+		connect(pItem, SIGNAL(TaskDeleted()), this, SLOT(UpdateTaskList()));
+			
+        }
 }
+
 
 
