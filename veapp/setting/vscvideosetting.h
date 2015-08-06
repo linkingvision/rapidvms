@@ -12,11 +12,12 @@ class VSCVideoSetting : public QWidget
     Q_OBJECT
 
 public:
-    VSCVideoSetting(QWidget *parent = 0);
-    ~VSCVideoSetting(){}
+	VSCVideoSetting(QWidget *parent = 0);
+	~VSCVideoSetting(){}
 
 public slots:   
-  void applyConfig();
+	void applyConfig();
+	void dirSelect();
 	
 public:
     Ui::VSCVideoSetting ui;
