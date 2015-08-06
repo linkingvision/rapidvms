@@ -33,6 +33,9 @@ public:
 	BOOL GetLicense(astring &strLicense);
 	BOOL SetLicense(astring &strLicense);
 
+	BOOL GetCmnParam(astring &strKey, astring &strParam);
+	BOOL SetCmnParam(astring &strKey, astring &strParam);
+
 	s32 GetSysData(VSCConfData &pSysData);
 	s32 UpdateSysData(VSCConfData &pSysData);
 
