@@ -300,22 +300,9 @@ QRadioButton::indicator:checked:pressed {
        </item>
        <item row="12" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="fileLoc">
-           <property name="maximumSize">
-            <size>
-             <width>270</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>C:\work\24-video\Outlet\MVI_4397.MOV</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
+         <property name="spacing">
+          <number>20</number>
+         </property>
          <item>
           <widget class="QPushButton" name="pushButtonFile">
            <property name="minimumSize">
@@ -330,6 +317,14 @@ QRadioButton::indicator:checked:pressed {
              <height>25</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -342,6 +337,22 @@ QRadioButton::indicator:checked:pressed {
              <width>28</width>
              <height>23</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="fileLoc">
+           <property name="maximumSize">
+            <size>
+             <width>270</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>C:\work\24-video\Outlet\MVI_4397.MOV</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
