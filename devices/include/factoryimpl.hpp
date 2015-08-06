@@ -95,6 +95,44 @@ inline BOOL Factory::SetSystemPath(astring &strPath)
     return m_SysPath.SetSystemPath(strPath);
 }
 
+inline BOOL Factory::GetExportPath(astring &strPath)
+{
+	astring strKey = "ConfVideoExportKey";
+
+	astring strSysPath;
+	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
+	{
+	    return FALSE;
+	}
+
+#ifdef WIN32
+#ifndef _WIN64
+	astring strPathDefault = strSysPath + "videodb\\export\\";
+#else
+	astring strPathDefault = strSysPath + "videodb64\\export\\";
+#endif
+#else
+	astring strPathDefault = strSysPath + "videodb/export/";
+#endif
+
+	if (m_Conf.GetCmnParam(strKey, strPath) == FALSE)
+	{
+		strPath = strPathDefault;
+		m_Conf.SetCmnParam(strKey, strPath);
+		Poco::File file1(strPath);
+		file1.createDirectories();
+		
+	}
+	return TRUE;
+}
+inline BOOL Factory::SetExportPath(astring &strPath)
+{
+	astring strKey = "ConfVideoExportKey";
+	m_Conf.SetCmnParam(strKey, strPath);
+
+	return TRUE;
+}
+
 inline BOOL Factory::Init()
 {
 
@@ -186,6 +224,10 @@ inline BOOL Factory::Init()
 	}
 	//m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
 	//m_pHttpServer->start();
+
+	/* Init export path */
+	astring strExportPath;
+	GetExportPath();
 	return TRUE;
 }
 
