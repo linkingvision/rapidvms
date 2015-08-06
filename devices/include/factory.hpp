@@ -17,6 +17,8 @@
 #include "hdddevice.hpp"
 #include <QThread>
 #include <qdebug.h>
+#include "Poco/Path.h"
+#include "Poco/File.h"
 
 typedef enum
 {
@@ -99,6 +101,9 @@ public:
 							int &ch, astring &type);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
+
+	BOOL GetExportPath(astring &strPath);
+	BOOL SetExportPath(astring &strPath);
 
 public:
 	BOOL GetAutoLogin();
