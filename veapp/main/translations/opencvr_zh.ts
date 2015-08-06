@@ -775,7 +775,7 @@
     <message>
         <location filename="../vscmainwindows.cpp" line="258"/>
         <source>Control Panel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">控制面板</translation>
     </message>
     <message>
         <location filename="../vscmainwindows.cpp" line="269"/>
