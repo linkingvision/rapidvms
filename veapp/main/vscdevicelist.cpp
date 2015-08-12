@@ -17,7 +17,7 @@ VSCDeviceList::VSCDeviceList(QWidget *parent)
 	DiskTreeUpdated();
 	VmsTreeUpdated();
 	ViewTreeUpdated();
-	//VIPCTreeUpdated();
+	VIPCTreeUpdated();
 
 	SetupConnections();
 	m_Timer = new QTimer(this);

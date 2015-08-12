@@ -634,6 +634,15 @@ background-color: rgb(200, 200, 200);}</string>
           <normaloff>:/device/resources/harddisk.png</normaloff>:/device/resources/harddisk.png</iconset>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>VIPC</string>
+        </property>
+        <property name="icon">
+         <iconset resource="vscmainwindows.qrc">
+          <normaloff>:/device/resources/virtualipc.png</normaloff>:/device/resources/virtualipc.png</iconset>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
