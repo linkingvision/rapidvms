@@ -40,6 +40,7 @@ signals:
 	
 	void Setting();
 	void AddEvent();
+	void AddVIPC();
 
 public slots:
 	void UpdateTaskList();

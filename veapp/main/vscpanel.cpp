@@ -39,6 +39,7 @@ VSCPanel::VSCPanel(QWidget *parent, Qt::WindowFlags flags)
 
 	connect(ui.pbSetting, SIGNAL(clicked()), this, SIGNAL(Setting()));
 	connect(ui.pbAlarm, SIGNAL(clicked()), this, SIGNAL(AddEvent()));
+	connect(ui.pbVIPC, SIGNAL(clicked()), this, SIGNAL(AddVIPC()));
 
 	connect(ui.pbTasklist, SIGNAL(clicked()), this, SLOT(UpdateTaskList()));
 
