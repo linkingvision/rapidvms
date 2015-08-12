@@ -50,6 +50,7 @@
         <file>resources/tourstop.png</file>
         <file>resources/tourplay.png</file>
         <file>resources/panel.png</file>
+        <file>resources/folder.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
@@ -74,5 +75,7 @@
         <file>resources/6x6.png</file>
         <file>resources/8x8.png</file>
         <file>resources/6.png</file>
+        <file>resources/1x3.png</file>
+        <file>resources/1p6.png</file>
     </qresource>
 </RCC>
