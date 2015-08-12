@@ -314,6 +314,43 @@ background-color: rgb(200, 200, 200);}</string>
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton1x3">
+        <property name="minimumSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="vscmainwindows.qrc">
+          <normaloff>:/view/resources/1x3.png</normaloff>:/view/resources/1x3.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>23</width>
+          <height>23</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton6">
         <property name="minimumSize">
          <size>
@@ -341,6 +378,43 @@ background-color: rgb(200, 200, 200);}</string>
         <property name="icon">
          <iconset resource="vscmainwindows.qrc">
           <normaloff>:/view/resources/6.png</normaloff>:/view/resources/6.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>23</width>
+          <height>23</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton1p6">
+        <property name="minimumSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="vscmainwindows.qrc">
+          <normaloff>:/view/resources/1p6.png</normaloff>:/view/resources/1p6.png</iconset>
         </property>
         <property name="iconSize">
          <size>

@@ -71,6 +71,8 @@ void VSCView::SetupConnections()
 	connect(ui.pushButton5x5, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode5x5()));
 	connect(ui.pushButton6x6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode6x6()));
 	connect(ui.pushButton8x8, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode8x8()));
+	connect(ui.pushButton1x3, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1x3()));
+	connect(ui.pushButton1p6, SIGNAL(clicked()), m_pVideo, SLOT(SetLayoutMode1p6()));
 
 	connect(ui.pushButton2x2, SIGNAL(clicked()), this, SLOT(SetLayoutMode2x2()));
 	connect(ui.pushButton3x3, SIGNAL(clicked()), this, SLOT(SetLayoutMode3x3()));
@@ -82,7 +84,9 @@ void VSCView::SetupConnections()
 	connect(ui.pushButton6x6, SIGNAL(clicked()), this, SLOT(SetLayoutMode6x6()));
 
 	connect(ui.pushButton8x8, SIGNAL(clicked()), this, SLOT(SetLayoutMode8x8()));
-
+	connect(ui.pushButton1x3, SIGNAL(clicked()), this, SLOT(SetLayoutMode1x3()));
+	connect(ui.pushButton1p6, SIGNAL(clicked()), this, SLOT(SetLayoutMode1p6()));
+	
 	connect(ui.pushButtonView, SIGNAL(clicked()), this, SLOT(ViewClicked()));
 	//connect(ui.pushButtonPB, SIGNAL(clicked()), this, SLOT(ShowPlayControl()));
 	connect(m_pVideo, SIGNAL(ShowDisplayClicked(int)), this,
@@ -425,6 +429,14 @@ void VSCView::TabbedClicked()
             break;
         case LAYOUT_MODE_8x8:
             icon1.addFile(QStringLiteral(":/view/resources/8x8.png"), 
+                QSize(), QIcon::Normal, QIcon::Off);
+            break;
+        case LAYOUT_MODE_1x3:
+            icon1.addFile(QStringLiteral(":/view/resources/1x3.png"), 
+                QSize(), QIcon::Normal, QIcon::Off);
+            break;
+        case LAYOUT_MODE_1p6:
+            icon1.addFile(QStringLiteral(":/view/resources/1p6.png"), 
                 QSize(), QIcon::Normal, QIcon::Off);
             break;
         case LAYOUT_MODE_ONE:

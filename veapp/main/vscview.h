@@ -84,6 +84,16 @@ public slots:
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/8x8.png")));
 	}
+	void SetLayoutMode1x3()
+	{
+	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
+		QIcon(tr(":/view/resources/1x3.png")));
+	}
+	void SetLayoutMode1p6()
+	{
+	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
+		QIcon(tr(":/view/resources/1p6.png")));
+	}
 	void DeviceEvent(int deviceId, int type)
 	{
 		m_pVideo->DeviceEvent(deviceId, (VscEventType)type);
