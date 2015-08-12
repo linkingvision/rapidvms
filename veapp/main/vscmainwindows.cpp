@@ -253,6 +253,7 @@ void VSCMainWindows::Panel()
 		connect(m_pPanel, SIGNAL(AddDmining()), this, SLOT(AddDmining()));
 		connect(m_pPanel, SIGNAL(Setting()), this, SLOT(Setting()));
 		connect(m_pPanel, SIGNAL(AddEvent()), this, SLOT(AddEvent()));
+		connect(m_pPanel, SIGNAL(AddVIPC()), this, SLOT(AddVIPC()));
 	}
 
 	m_pMainArea->addTab(m_pPanel, QIcon(tr(":/action/resources/panel.png")), tr("Control Panel"));  

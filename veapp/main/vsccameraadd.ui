@@ -304,17 +304,33 @@ QRadioButton::indicator:checked:pressed {
           <number>20</number>
          </property>
          <item>
+          <widget class="QLabel" name="fileLoc">
+           <property name="maximumSize">
+            <size>
+             <width>270</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>C:\work\24-video\Outlet\MVI_4397.MOV</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButtonFile">
            <property name="minimumSize">
             <size>
              <width>30</width>
-             <height>25</height>
+             <height>30</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>30</width>
-             <height>25</height>
+             <height>30</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -330,29 +346,13 @@ background-color: rgb(200, 200, 200);}</string>
            </property>
            <property name="icon">
             <iconset resource="vscmainwindows.qrc">
-             <normaloff>:/action/resources/videosearch.png</normaloff>:/action/resources/videosearch.png</iconset>
+             <normaloff>:/action/resources/folder.png</normaloff>:/action/resources/folder.png</iconset>
            </property>
            <property name="iconSize">
             <size>
              <width>28</width>
-             <height>23</height>
+             <height>28</height>
             </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="fileLoc">
-           <property name="maximumSize">
-            <size>
-             <width>270</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>C:\work\24-video\Outlet\MVI_4397.MOV</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
            </property>
           </widget>
          </item>

@@ -77,7 +77,7 @@ void VSCCameraAdd::fileSelect()
 	QFileDialog *fileDialog = new QFileDialog(this); 
 	fileDialog->setWindowTitle(tr("Select File")); 
 	fileDialog->setDirectory(ui.fileLoc->text()); 
-	fileDialog->setNameFilter(tr("Video Files(*.MOV *.mp4 *.avi *.ts *.mpg)")); 
+	fileDialog->setNameFilter(tr("Video Files(*.mov *.mp4 *.avi *.ts *.mpg)")); 
 	QIcon icon;
 	icon.addFile(QStringLiteral(":/logo/resources/vscsmall.png"), QSize(), QIcon::Normal, QIcon::Off);
 	fileDialog->setWindowIcon(icon);
