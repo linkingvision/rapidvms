@@ -1,0 +1,7 @@
+Name: argtable2
+Description: A library for parsing GNU style command line arguments
+Version: @PACKAGE_VERSION@
+
+Libs: -L${pcfiledir}/src/.libs -largtable2
+Cflags: -I${pcfiledir}/src
+

@@ -1,0 +1,595 @@
+<!-- Creator     : groff version 1.20.1 -->
+<!-- CreationDate: Mon Jan 10 22:29:53 2011 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>ARGTABLE2</title>
+
+</head>
+<body>
+
+<h1 align="center">ARGTABLE2</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#FUNCTION REFERENCE">FUNCTION REFERENCE</a><br>
+<a href="#FILES">FILES</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">argtable2
+&minus; an ANSI C library for parsing GNU style command line
+options</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+<pre style="margin-left:11%; margin-top: 1em">#include &lt;argtable2.h&gt;
+
+struct<b> arg_lit
+</b>struct<b> arg_int
+</b>struct<b> arg_dbl
+</b>struct<b> arg_str
+</b>struct<b> arg_rex
+</b>struct<b> arg_file
+</b>struct<b> arg_date
+</b>struct<b> arg_rem
+</b>struct<b> arg_end
+
+</b>struct<b> arg_lit</b>*<b> arg_lit0</b>(const char *shortopts, const char *longopts, const char *glossary)
+struct<b> arg_lit</b>*<b> arg_lit1</b>(const char *shortopts, const char *longopts, const char *glossary)
+struct<b> arg_lit</b>*<b> arg_litn</b>(const char *shortopts, const char *longopts, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_int</b>*<b> arg_int0</b>(const char* shortopts, const char* longopts, const char* datatype, const char* glossary)
+struct<b> arg_int</b>*<b> arg_int1</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_int</b>*<b> arg_intn</b>(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_dbl</b>*<b> arg_dbl0</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_dbl</b>*<b> arg_dbl1</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_dbl</b>*<b> arg_dbln</b>(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_str</b>*<b> arg_str0</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_str</b>*<b> arg_str1</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_str</b>*<b> arg_strn</b>(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_rex</b>*<b> arg_rex0</b>(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int flags, const char* glossary)
+struct<b> arg_rex</b>*<b> arg_rex1</b>(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int flags, const char* glossary)
+struct<b> arg_rex</b>*<b> arg_rexn</b>(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int mincount, int maxcount, int flags, const char* glossary)
+
+struct<b> arg_file</b>*<b> arg_file0</b>(const char* shortopts, const char* longopts, const char* datatype, const char* glossary)
+struct<b> arg_file</b>*<b> arg_file1</b>(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)
+struct<b> arg_file</b>*<b> arg_filen</b>(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_date</b>*<b> arg_date0</b>const char* shortopts, const char* longopts, const char* format, const char* datatype, const char *glossary)
+struct<b> arg_date</b>*<b> arg_date1</b>const char* shortopts, const char* longopts, const char* format, const char* datatype, const char *glossary)
+struct<b> arg_date</b>*<b> arg_daten</b>const char* shortopts, const char* longopts, const char* format, const char* datatype, int mincount, int maxcount, const char *glossary)
+
+struct<b> arg_rem</b>*<b> arg_rem</b>(const char *datatype, const char *glossary)
+struct<b> arg_end</b>*<b> arg_end</b>(int maxerrors)
+
+
+int<b> arg_nullcheck</b>(void **argtable)
+int<b> arg_parse</b>(int argc, char **argv, void **argtable)
+void<b> arg_print_option</b>(FILE *fp, const char *shortopts, const char *longopts, const char *datatype, const char *suffix)
+void<b> arg_print_syntax</b>(FILE *fp, void **argtable, const char *suffix)
+void<b> arg_print_syntaxv</b>(FILE *fp, void **argtable, const char *suffix)
+void<b> arg_print_glossary</b>(FILE *fp, void **argtable, const char *format)
+void<b> arg_print_glossary_gnu</b>(FILE *fp, void **argtable)
+void<b> arg_print_errors</b>(FILE *fp, struct arg_end *end, const char *progname)
+void<b> arg_freetable</b>(void **argtable, size_t n)</pre>
+
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Argtable is an
+ANSI C library for parsing GNU style command line arguments
+with a minimum of fuss. It enables the programmer to define
+their program&rsquo;s argument syntax directly in the source
+code as an array of structs. The command line is then parsed
+according to that specification and the resulting values
+stored directly into user&minus;defined program variables
+where they are accessible to the main program.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This man page
+is only for reference. Introductory documentation and
+example source code is typically installed under
+<b>/usr/local/share/doc/argtable2/</b> and is also available
+from the argtable homepage at
+http://argtable.sourceforge.net.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>Constructing
+an arg_&lt;xxx&gt; data structure</b> <br>
+Each <b>arg_&lt;xxx&gt;</b> struct has it own unique set of
+constructor functions (defined above) which are typically of
+the form:</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_int* arg_int0</b>(&quot;f&quot;, &quot;foo&quot;,
+&quot;&lt;int&gt;&quot;, &quot;the foo factor&quot;) <br>
+struct <b>arg_int* arg_int1</b>(&quot;f&quot;,
+&quot;foo&quot;, &quot;&lt;int&gt;&quot;, &quot;the foo
+factor&quot;) <br>
+struct <b>arg_int* arg_intn</b>(&quot;f&quot;,
+&quot;foo&quot;, &quot;&lt;int&gt;&quot;, 2, 4, &quot;the
+foo factor&quot;)</p>
+
+<p style="margin-left:11%; margin-top: 1em">where
+arg_int0() and arg_int1() are merely abbreviated forms of
+arg_intn(). They are provided for convenience when defining
+command line options that have either
+zero&minus;or&minus;one occurrences (mincount=0,maxcount=1)
+or exactly one occurrence (mincount=1,maxcount=1)
+respectively.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+shortopts=&quot;f&quot; parameter defines the option&rsquo;s
+short form tag (eg -f). Multiple alternative tags may be
+defined by concatenating them (eg shortopts=&quot;abc&quot;
+defines options &minus;a, &minus;b and &minus;c as
+equivalent). Specify shortopts=NULL when no short option is
+required.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+longopts=&quot;foo&quot; parameter defines the
+option&rsquo;s long form tag (eg &minus;&minus;foo).
+Multiple alternative long form tags may be separated by
+commas (eg longopts=&quot;size,limit&quot; defines
+&minus;&minus;size and &minus;&minus;limit). Do not include
+any whitespace in the longopts string. Specify longopts=NULL
+when no long option is required.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If both
+shortopts and longopts are NULL then the option is an
+untagged argument.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+datatype=&quot;&lt;int&gt;&quot; parameter is a descriptive
+string that denotes the argument data type in error
+messages, as in &minus;&minus;foo=&lt;int&gt;. Specifying
+datatype=NULL indicates the default datatype should be used.
+Specifying datatype=&quot;&quot; effectively disables the
+datatype display.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The mincount=2
+and maxcount=3 parameters specify the minimum and maximum
+number of occurrences of the option on the command line. If
+the command line option does not appear the required number
+of times then the parser reports a syntax error.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+glossary=&quot;the foo factor&quot; parameter is another
+descriptive string. It appears only in the glossary table
+that is generated automatically by the
+<b>arg_print_glossary</b> function (described later).</p>
+
+<p style="margin-left:22%; margin-top: 1em"><tt>&minus;f,
+-&minus;foo=&lt;int&gt; the foo factor</tt></p>
+
+<p style="margin-left:11%; margin-top: 1em">Specifying a
+NULL glossary string causes that option to be omitted from
+the glossary table.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>LITERAL
+COMMAND LINE OPTIONS</b> <br>
+&minus;x, &minus;y, &minus;z, &minus;&minus;help,
+&minus;&minus;verbose</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_lit</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of matching command line options */
+<br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Literal options
+take no argument values. Upon a successful parse,
+<i>count</i> is guaranteed to be within the <i>mincount</i>
+and <i>maxcount</i> limits specified at construction.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>INTEGER
+COMMAND LINE OPTIONS</b> <br>
+&minus;x2, &minus;z&nbsp;32MB, &minus;&minus;size=734kb,
+&minus;&minus;hex 0x7, &minus;&minus;binary 0b10011010,
+&minus;&minus;octal 0o123</p>
+
+<p style="margin-left:11%; margin-top: 1em">Argtable
+accepts command line integers in decimal (eg 123),
+hexadecimal (eg 0xFF12), octal (eg 0o123) and binary (eg
+0b0101110) formats. It also accepts integers that are
+suffixed by &quot;KB&quot; (x1024), &quot;MB&quot;
+(x1048576) or &quot;GB&quot; (x1073741824). All characters
+are case insensitive</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_int</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of values returned in ival[] */ <br>
+int *ival; /* array of parsed integer values */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Upon a
+successful parse, <i>count</i> is guaranteed to be within
+the <i>mincount</i> and <i>maxcount</i> limits set for the
+option at construction with the appropriate values store in
+the <i>ival</i> array. The parser will not accept any values
+beyond that limit.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Hint: It is
+legal to set default values in the <i>ival</i> array prior
+to calling the <b>arg_parse</b> function. Argtable will not
+alter <i>ival</i> entries for which no command line argument
+is received.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Hint:
+<i>Untagged</i> numeric arguments are not recommended
+because GNU getopt mistakes negative values (eg -123) for
+tagged options (eg -1 -2 -3). <i>Tagged</i> arguments (eg -x
+-123, --tag=-123) do not suffer this problem.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>REAL/DOUBLE
+COMMAND LINE OPTIONS</b> <br>
+&minus;x2.234, &minus;y 7e&minus;03, &minus;z&minus;3.3E+6,
+&minus;&minus;pi=3.1415, &minus;&minus;tolerance 1.0E-6</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_dbl</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of values returned in dval[] */ <br>
+double *dval; /* array of parsed double values */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Same as
+<b>arg_int</b> except the parsed values are stored in
+<i>dval</i> as doubles.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>STRING
+COMMAND LINE OPTIONS</b> <br>
+&minus;Dmacro, &minus;t mytitle, &minus;m &quot;my message
+string&quot;, &minus;&minus;title=&quot;hello
+world&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_str</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of strings returned in sval[] */ <br>
+const char **sval; /* array of pointers to parsed argument
+strings */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Same as
+<b>arg_int</b> except pointers to the parsed strings are
+returned in <i>sval</i> rather than a separate copy of the
+string. Indeed, these pointers actually reference the
+original string buffers stored in argv[], so their contents
+should not be altered. However, it is legal to initialise
+the string pointers in the <i>sval</i> array to reference
+user-supplied default strings prior to calling arg_parse.
+Argtable will only alter the contents of <i>sval</i> when
+matching command line arguments are detected.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>REGULAR
+EXPRESSION COMMAND LINE OPTIONS</b> <br>
+commit, update, &minus;&minus;command=commit,
+&minus;&minus;command=update</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_rex</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of strings returned in sval[] */ <br>
+const char **sval; /* array of pointers to parsed argument
+strings */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Similar to
+<b>arg_str</b> except the string argument values are only
+accepted if they match a predefined regular expression.
+Regular expressions are useful for matching command line
+keywords, particularly if case insensitive strings or
+pattern matching is required. The regular expression is
+defined by the <i>pattern</i> parameter passed to the
+<i>arg_rex</i> constructor and evaluated using regex. Its
+behaviour can be controlled via standard regex bit flags.
+These are passed to argtable via the <i>flags</i> parameter
+in the <i>arg_rex</i> constructor. However the only two of
+the standard regex flags are relevant to argtable, namely
+REG_EXTENDED (use extended regular expressions rather than
+basic ones) and REG_ICASE (ignore case). These flags may be
+logically ORed if desired. See <b>regex(3)</b> for more
+details of regular expression matching.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Restrictions:
+Argtable does not support <b>arg_rex</b> functionality under
+Microsoft Windows platforms because the Microsoft compilers
+do include the necessary <b>regex</b> support as
+standard.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>FILENAME
+COMMAND LINE OPTIONS</b> <br>
+&minus;o myfile, &minus;Ihome/foo/bar,
+&minus;&minus;input=~/doc/letter.txt, &minus;&minus;name
+a.out</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_file</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of filename strings returned */ <br>
+const char **filename; /* pointer to full filename string */
+<br>
+const char **basename; /* pointer to filename excluding
+leading path */ <br>
+const char **extension; /* pointer to the filename extension
+*/ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Similar to
+<b>arg_str</b> but the argument strings are presumed to
+refer to filenames hence some additional parsing is done to
+separate out the filename&rsquo;s basename and extension (if
+they exist). The three arrays filename[], basename[],
+extension[] each store up to maxcount entries, and the
+i&rsquo;th entry of each of these arrays refer to different
+components of the same string buffer.</p>
+
+<p style="margin-left:11%; margin-top: 1em">For example,
+<b>&minus;o /home/heitmann/mydir/foo.txt</b> would be parsed
+as:</p>
+
+<p style="margin-left:17%;">filename[i] =
+&quot;/home/heitmann/mydir/foo.txt&quot; <br>
+basename[i] = &quot;foo.txt&quot; <br>
+extension[i] = &quot;.txt&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">If the filename
+has no leading path then the basename is the same as the
+filename. If no extension could be identified then it is
+given as NULL. Extensions are considered as all text from
+the last dot in the filename.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Hint: Argtable
+only ever treats the filenames as strings and never attempts
+to open them as files or perform any directory lookups on
+them.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>DATE/TIME
+COMMAND LINE OPTIONS</b> <br>
+12/31/04, &minus;d 1982&minus;11&minus;28,
+&minus;&minus;time 23:59</p>
+
+<p style="margin-left:11%; margin-top: 1em">struct
+<b>arg_date</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+const char *format; /* user-supplied date format string that
+was passed to constructor */ <br>
+int count; /* number of datestamps returned in tmval[] */
+<br>
+struct tm *tmval; /* array of datestamps */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Accepts a
+timestamp string from the command line and converts it to
+<i>struct tm</i> format using the system <b>strptime</b>
+function. The time format is defined by the <i>format</i>
+string passed to the <i>arg_date</i> constructor, and is
+passed directly to <b>strptime</b>. See <b>strptime(3)</b>
+for more details on the format string.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Restrictions:
+Argtable does not support <b>arg_date</b> functionality
+under Microsoft Windows because the Microsoft compilers do
+include the necessary <b>strptime</b> support as
+standard.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>REMARK
+OPTIONS</b> <br>
+struct <b>arg_rem</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>arg_rem</b> struct is a dummy struct in the sense it does
+not represent a command line option to be parsed. Instead it
+provides a means to include additional <i>datatype</i> and
+<i>glossary</i> strings in the output of the
+<b>arg_print_syntax</b>, <b>arg_print_syntaxv</b>, and
+<b>arg_print_glossary functions</b>. As such, <b>arg_rem</b>
+structs may be used in the argument table to insert
+additional lines of text into the glossary descriptions or
+to insert additional text fields into the syntax
+description.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>END&minus;OF&minus;TABLE
+OPTION</b> <br>
+struct <b>arg_end</b> <br>
+{ <br>
+struct <b>arg_hdr</b> hdr; /* internal argtable header */
+<br>
+int count; /* number of errors returned */ <br>
+int *error; /* array of error codes */ <br>
+void **parent; /* pointers to the erroneous command line
+options */ <br>
+const char **argval; /* pointers to the erroneous command
+line argument values */ <br>
+};</p>
+
+<p style="margin-left:11%; margin-top: 1em">Every argument
+table must have an <b>arg_end</b> structure as its last
+entry. <br>
+It marks the end of an argument table and stores the error
+codes generated <br>
+by the parser as it processed the argument table. <br>
+The <i>maxerrors</i> parameter passed to the <b>arg_end</b>
+constructor <br>
+specifies the maximum number of errors that the structure
+can store. <br>
+Any further errors are discarded and replaced with the
+single error code <br>
+ARG_ELIMIT which is later reported to the user by the
+message &quot;too many errors&quot;. <br>
+A <i>maxerrors</i> limit of 20 is quite reasonable.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>arg_print_errors</b> function will print the errors
+stored <br>
+in the <b>arg_end</b> struct in the same order as they
+occurred, <br>
+so there is no need to understand the internals of the
+<b>arg_end</b> struct.</p>
+
+<h2>FUNCTION REFERENCE
+<a name="FUNCTION REFERENCE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>int
+arg_nullcheck (void **argtable)</b> <br>
+Returns non&minus;zero if the <i>argtable[]</i> array
+contains any NULL entries up until the terminating
+<b>arg_end*</b> entry. Returns zero otherwise.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>int
+arg_parse (int argc, char **argv, void **argtable)</b> <br>
+Parse the command line arguments in <i>argv[]</i> using the
+command line syntax specified in <i>argtable[]</i>,
+returning the number of errors encountered. Error details
+are recorded in the argument table&rsquo;s <b>arg_end</b>
+structure from where they can be displayed later with the
+<b>arg_print_errors</b> function. Upon a successful parse,
+the <b>arg_xxx</b> structures referenced in
+<i>argtable[]</i> will contain the argument values extracted
+from the command line.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_option (FILE *fp, const char *shortopts, const
+char *longopts, const char *datatype, const char
+*suffix)</b> <br>
+This function prints an option&rsquo;s syntax, as in
+<b>&minus;K|&minus;&minus;scalar=&lt;int&gt;</b>, where the
+short options, long options, and datatype are all given as
+parameters of this function. It is primarily used within the
+<b>arg_xxx</b> structures&rsquo; <i>errorfn</i> functions as
+a way of displaying an option&rsquo;s syntax inside of error
+messages. However, it can also be used in user code if
+desired. The <i>suffix</i> string is provided as a
+convenience for appending newlines and so forth to the end
+of the display and can be given as NULL if not required.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_syntax (FILE *fp, void **argtable, const char
+*suffix)</b> <br>
+Prints the GNU style command line syntax for the given
+argument table, as in: [&minus;abcv]
+[&minus;&minus;scalar=&lt;n&gt;] [&minus;o myfile]
+&lt;file&gt; [&lt;file&gt;] <br>
+The <i>suffix</i> string is provided as a convenience for
+appending newlines and so forth to the end of the display
+and can be given as NULL if not required.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_syntaxv (FILE *fp, void **argtable, const char
+*suffix)</b> <br>
+Prints the verbose form of the command line syntax for the
+given argument table, as in: [&minus;a] [&minus;b]
+[&minus;c] [&minus;&minus;scalar=&lt;n&gt;] [&minus;o
+myfile] [&minus;v|&minus;&minus;verbose] &lt;file&gt;
+[&lt;file&gt;] <br>
+The <i>suffix</i> string is provided as a convenience for
+appending newlines and so forth to the end of the display
+and can be given as NULL if not required.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_glossary (FILE *fp, void **argtable, const char
+*format)</b> <br>
+Prints a glossary table describing each option in the given
+argument table. The <i>format</i> string is passed to printf
+to control the formatting of each entry in the the glossary.
+It must have exactly two &quot;%s&quot; format parameters as
+in &quot;%&minus;25s %s\n&quot;, the first is for the
+option&rsquo;s syntax and the second for its glossary
+string. If an option&rsquo;s glossary string is NULL then
+that option in omitted from the glossary display.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_glossary_gnu (FILE *fp, void **argtable)</b> <br>
+An alternate form of <b>arg_print_glossary()</b> that prints
+the glossary using strict GNU formatting conventions wherein
+long options are vertically aligned in a second column, and
+lines are wrapped at 80 characters.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_print_errors (FILE *fp, struct arg_end *end, const char
+*progname)</b> <br>
+Prints the details of all errors stored in the <i>end</i>
+data structure. The <i>progname</i> string is prepended to
+each error message.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>void
+arg_freetable (void ** argtable, size_t n)</b> <br>
+Deallocates the memory used by each <b>arg_xxx</b> struct
+referenced by <i>argtable[]</i>. It does this by calling
+<b>free</b> for each of the <i>n</i> pointers in the
+argtable array and then nulling them for safety.</p>
+
+<h2>FILES
+<a name="FILES"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">/usr/local/include/argtable2.h
+<br>
+/usr/local/lib/libargtable2.a <br>
+/usr/local/lib/libargtable2.so <br>
+/usr/local/man3/argtable2.3 <br>
+/usr/local/share/doc/argtable2/ <br>
+/usr/local/share/doc/argtable2/example/</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Stewart
+Heitmann &lt;sheitmann@users.sourceforge.net&gt;</p>
+<hr>
+</body>
+</html>

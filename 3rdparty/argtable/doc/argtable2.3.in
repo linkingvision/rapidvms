@@ -1,0 +1,366 @@
+.TH ARGTABLE2 3 "Jan 2008" "Argtable2\-@PACKAGE_VERSION@" "Argtable programmer's manual"
+.SH NAME
+argtable2 \- an ANSI C library for parsing GNU style command line options
+.SH SYNOPSIS
+.nf
+\fC#include <argtable2.h>\fP
+
+.RB "struct " arg_lit
+.RB "struct " arg_int
+.RB "struct " arg_dbl
+.RB "struct " arg_str
+.RB "struct " arg_rex
+.RB "struct " arg_file
+.RB "struct " arg_date
+.RB "struct " arg_rem
+.RB "struct " arg_end
+.PP
+.RB "struct " arg_lit "* " arg_lit0 "(const char *shortopts, const char *longopts, const char *glossary)"
+.RB "struct " arg_lit "* " arg_lit1 "(const char *shortopts, const char *longopts, const char *glossary)"
+.RB "struct " arg_lit "* " arg_litn "(const char *shortopts, const char *longopts, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_int "* " arg_int0 "(const char* shortopts, const char* longopts, const char* datatype, const char* glossary)"
+.RB "struct " arg_int "* " arg_int1 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_int "* " arg_intn "(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_dbl "* " arg_dbl0 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_dbl "* " arg_dbl1 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_dbl "* " arg_dbln "(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_str "* " arg_str0 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_str "* " arg_str1 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_str "* " arg_strn "(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_rex "* " arg_rex0 "(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int flags, const char* glossary)"
+.RB "struct " arg_rex "* " arg_rex1 "(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int flags, const char* glossary)"
+.RB "struct " arg_rex "* " arg_rexn "(const char* shortopts, const char* longopts, const char* pattern, const char* datatype, int mincount, int maxcount, int flags, const char* glossary)"
+.PP
+.RB "struct " arg_file "* " arg_file0 "(const char* shortopts, const char* longopts, const char* datatype, const char* glossary)"
+.RB "struct " arg_file "* " arg_file1 "(const char *shortopts, const char *longopts, const char* datatype, const char *glossary)"
+.RB "struct " arg_file "* " arg_filen "(const char *shortopts, const char *longopts, const char* datatype, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_date "* " arg_date0 "const char* shortopts, const char* longopts, const char* format, const char* datatype, const char *glossary)"
+.RB "struct " arg_date "* " arg_date1 "const char* shortopts, const char* longopts, const char* format, const char* datatype, const char *glossary)"
+.RB "struct " arg_date "* " arg_daten "const char* shortopts, const char* longopts, const char* format, const char* datatype, int mincount, int maxcount, const char *glossary)"
+.PP
+.RB "struct " arg_rem "* " arg_rem "(const char *datatype, const char *glossary)"
+.RB "struct " arg_end "* " arg_end "(int maxerrors)"
+.PP
+.RB "int " arg_nullcheck "(void **argtable)"
+.RB "int " arg_parse "(int argc, char **argv, void **argtable)"
+.RB "void " arg_print_option "(FILE *fp, const char *shortopts, const char *longopts, const char *datatype, const char *suffix)"
+.RB "void " arg_print_syntax "(FILE *fp, void **argtable, const char *suffix)"
+.RB "void " arg_print_syntaxv "(FILE *fp, void **argtable, const char *suffix)"
+.RB "void " arg_print_glossary "(FILE *fp, void **argtable, const char *format)"
+.RB "void " arg_print_glossary_gnu "(FILE *fp, void **argtable)"
+.RB "void " arg_print_errors "(FILE *fp, struct arg_end *end, const char *progname)"
+.RB "void " arg_freetable "(void **argtable, size_t n)"
+.SH DESCRIPTION
+Argtable is an ANSI C library for parsing GNU style command line arguments with a minimum of fuss. It enables the programmer to define their program's argument syntax directly in the source code as an array of structs. The command line is then parsed according to that specification and the resulting values stored directly into user\-defined program variables where they are accessible to the main program.
+.PP
+This man page is only for reference.
+Introductory documentation and example source code is typically installed under \fB@prefix@/share/doc/argtable2/\fP
+and is also available from the argtable homepage at http://argtable.sourceforge.net.
+
+.SS Constructing an arg_<xxx> data structure
+Each \fBarg_<xxx>\fP struct has it own unique set of constructor functions (defined above) which are typically of the form:
+.PP
+.nf
+struct \fBarg_int* arg_int0\fP("f", "foo", "<int>", "the foo factor")
+struct \fBarg_int* arg_int1\fP("f", "foo", "<int>", "the foo factor")
+struct \fBarg_int* arg_intn\fP("f", "foo", "<int>", 2, 4, "the foo factor")
+.fi
+.PP
+where arg_int0() and arg_int1() are merely abbreviated forms of arg_intn().
+They are provided for convenience when defining command line options
+that have either zero\-or\-one occurrences (mincount=0,maxcount=1) or exactly one occurrence (mincount=1,maxcount=1) respectively.
+.PP
+The shortopts="f" parameter defines the option's short form tag (eg -f).
+Multiple alternative tags may be defined by concatenating
+them (eg shortopts="abc" defines options \-a, \-b and \-c as equivalent).
+Specify shortopts=NULL when no short option is required.
+.PP
+The longopts="foo" parameter defines the option's long form tag (eg \-\-foo).
+Multiple alternative long form tags may be separated by commas (eg longopts="size,limit" defines \-\-size and \-\-limit).
+Do not include any whitespace in the longopts string.
+Specify longopts=NULL when no long option is required.
+.PP
+If both shortopts and longopts are NULL then the option is an untagged argument.
+.PP
+The datatype="<int>" parameter is a descriptive string that denotes the
+argument data type in error messages, as in \-\-foo=<int>.
+Specifying datatype=NULL indicates the default datatype should be used.
+Specifying datatype="" effectively disables the datatype display.
+.PP
+The mincount=2 and maxcount=3 parameters specify the minimum 
+and maximum number of occurrences of the option on the command line.
+If the command line option does not appear the required number of times then the parser
+reports a syntax error.
+.PP
+The glossary="the foo factor" parameter is another descriptive string. It appears only 
+in the glossary table that is generated automatically by the \fBarg_print_glossary\fP
+function (described later). 
+.IP
+\fC\-f, -\-foo=<int>    the foo factor\fP
+.PP
+Specifying a NULL glossary string causes that option to be omitted from
+the glossary table.
+.SS "LITERAL COMMAND LINE OPTIONS"
+\-x, \-y, \-z, \-\-help, \-\-verbose
+.PP
+.nf
+struct \fBarg_lit\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of matching command line options */
+   };
+.fi
+.PP
+Literal options take no argument values. Upon a successful parse, \fIcount\fP is guaranteed to be within
+the \fImincount\fP and \fImaxcount\fP limits specified at construction.
+.SS "INTEGER COMMAND LINE OPTIONS"
+\-x2, \-z\ 32MB, \-\-size=734kb, \-\-hex 0x7, \-\-binary 0b10011010, \-\-octal 0o123 
+.PP
+Argtable accepts command line integers in decimal (eg 123), hexadecimal (eg 0xFF12),
+octal (eg 0o123) and binary (eg 0b0101110) formats. It also accepts integers that are suffixed by
+"KB" (x1024), "MB" (x1048576) or "GB" (x1073741824). All characters are case insensitive
+.PP
+.nf
+struct \fBarg_int\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of values returned in ival[] */
+   int *ival;           /* array of parsed integer values */
+   };
+.fi
+.PP
+Upon a successful parse, \fIcount\fP is guaranteed to be within
+the \fImincount\fP and \fImaxcount\fP limits set for the option at construction
+with the appropriate values store in the \fIival\fP array.
+The parser will not accept any values beyond that limit.
+.PP
+Hint: It is legal to set default values in the \fIival\fP array prior
+to calling the \fBarg_parse\fP function. Argtable will not alter \fIival\fP entries
+for which no command line argument is received.
+.PP
+Hint: \fIUntagged\fP numeric arguments are not recommended because GNU getopt mistakes
+negative values (eg -123) for tagged options (eg -1 -2 -3).
+\fITagged\fP arguments (eg -x -123, --tag=-123) do not suffer this problem.
+.SS "REAL/DOUBLE COMMAND LINE OPTIONS"
+\-x2.234, \-y 7e\-03, \-z\-3.3E+6, \-\-pi=3.1415, \-\-tolerance 1.0E-6
+.PP
+.nf
+struct \fBarg_dbl\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of values returned in dval[] */
+   double *dval;        /* array of parsed double values */
+   };
+.fi
+.PP
+Same as \fBarg_int\fP except the parsed values are stored in \fIdval\fP as doubles.
+.SS "STRING COMMAND LINE OPTIONS"
+\-Dmacro, \-t mytitle, \-m "my message string", \-\-title="hello world"
+.PP
+.nf
+struct \fBarg_str\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of strings returned in sval[] */
+   const char **sval;   /* array of pointers to parsed argument strings */
+   };
+.fi
+.PP
+Same as \fBarg_int\fP except pointers to the parsed strings are returned in \fIsval\fP rather than a separate copy of the string.
+Indeed, these pointers actually reference the original string buffers stored in argv[], so their contents should not be altered.
+However, it is legal to initialise the string pointers in the \fIsval\fP array to reference user-supplied default strings prior to calling arg_parse.
+Argtable will only alter the contents of \fIsval\fP when matching command line arguments are detected.
+.SS "REGULAR EXPRESSION COMMAND LINE OPTIONS"
+commit, update, \-\-command=commit, \-\-command=update
+.PP
+.nf
+struct \fBarg_rex\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of strings returned in sval[] */
+   const char **sval;   /* array of pointers to parsed argument strings */
+   };
+.fi
+.PP
+Similar to \fBarg_str\fP except the string argument values are only accepted if they match a predefined regular expression.
+Regular expressions are useful for matching command line keywords, particularly if case insensitive strings or pattern matching is required.
+The regular expression is defined by the \fIpattern\fP parameter passed to the \fIarg_rex\fP constructor and evaluated using regex.
+Its behaviour can be controlled via standard regex bit flags. These are passed to argtable via the \fIflags\fP parameter in the
+\fIarg_rex\fP constructor. However the only two of the standard regex flags are relevant to argtable, namely REG_EXTENDED (use extended regular expressions rather than basic ones)
+and REG_ICASE (ignore case). These flags may be logically ORed if desired.
+See \fBregex(3)\fP for more details of regular expression matching.
+.PP
+Restrictions: Argtable does not support \fBarg_rex\fP functionality under Microsoft Windows platforms because the
+Microsoft compilers do include the necessary \fBregex\fP support as standard.
+.SS "FILENAME COMMAND LINE OPTIONS"
+\-o myfile, \-Ihome/foo/bar, \-\-input=~/doc/letter.txt, \-\-name a.out
+.PP
+.nf
+struct \fBarg_file\fP
+   {
+   struct \fBarg_hdr\fP hdr;      /* internal argtable header */
+   int count;               /* number of filename strings returned */
+   const char **filename;   /* pointer to full filename string */
+   const char **basename;   /* pointer to filename excluding leading path */
+   const char **extension;  /* pointer to the filename extension */ 
+   };
+.fi
+.PP
+Similar to \fBarg_str\fP but the argument strings are presumed to
+refer to filenames hence some additional parsing is done to
+separate out the filename's basename and extension (if they exist).
+The three arrays filename[], basename[], extension[] each store up
+to maxcount entries, and the i'th entry of each of these arrays
+refer to different components of the same string buffer.
+.PP
+For example, \fB\-o /home/heitmann/mydir/foo.txt\fP would be parsed as:
+.in +1c
+.nf
+filename[i]  = "/home/heitmann/mydir/foo.txt"
+basename[i]  =                      "foo.txt"
+extension[i] =                         ".txt"
+.fi
+.in
+.PP
+If the filename has no leading path then the basename is the same as the filename.
+If no extension could be identified then it is given as NULL.
+Extensions are considered as all text from the last dot in the filename.
+.PP
+Hint: Argtable only ever treats the filenames as strings and never attempts to open
+them as files or perform any directory lookups on them.
+.SS "DATE/TIME COMMAND LINE OPTIONS"
+12/31/04, \-d 1982\-11\-28, \-\-time 23:59
+.PP
+.nf
+struct \fBarg_date\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   const char *format;  /* user-supplied date format string that was passed to constructor */
+   int count;           /* number of datestamps returned in tmval[] */
+   struct tm *tmval;    /* array of datestamps */
+   };
+.fi
+.PP
+Accepts a timestamp string from the command line and converts it to \fIstruct tm\fP format using the system \fBstrptime\fP
+function. The time format is defined by the \fIformat\fP string passed to the \fIarg_date\fP constructor, and is passed
+directly to \fBstrptime\fP. See \fBstrptime(3)\fP for more details on the format string.
+.PP
+Restrictions: Argtable does not support \fBarg_date\fP functionality under Microsoft Windows because the
+Microsoft compilers do include the necessary \fBstrptime\fP support as standard.
+.SS "REMARK OPTIONS"
+.PP
+.nf
+struct \fBarg_rem\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   };
+.fi
+.PP
+The \fBarg_rem\fP struct is a dummy struct in the sense it does not
+represent a command line option to be parsed.
+Instead it provides a means to include additional \fIdatatype\fP and
+\fIglossary\fP strings in the output of the \fBarg_print_syntax\fP,
+\fBarg_print_syntaxv\fP, and \fBarg_print_glossary functions\fP.
+As such, \fBarg_rem\fP structs may be used in the argument table to
+insert additional lines of text into the glossary descriptions
+or to insert additional text fields into the syntax description.
+.SS "END\-OF\-TABLE OPTION"
+.PP
+.nf
+struct \fBarg_end\fP
+   {
+   struct \fBarg_hdr\fP hdr;  /* internal argtable header */
+   int count;           /* number of errors returned */
+   int *error;          /* array of error codes */
+   void **parent;       /* pointers to the erroneous command line options */
+   const char **argval; /* pointers to the erroneous command line argument values */
+   };
+.PP
+Every argument table must have an \fBarg_end\fP structure as its last entry.
+It marks the end of an argument table and stores the error codes generated
+by the parser as it processed the argument table.
+The \fImaxerrors\fP parameter passed to the \fBarg_end\fP constructor
+specifies the maximum number of errors that the structure can store.
+Any further errors are discarded and replaced with the single error code
+ARG_ELIMIT which is later reported to the user by the message "too many errors".
+A \fImaxerrors\fP limit of 20 is quite reasonable.
+.PP
+The \fBarg_print_errors\fP function will print the errors stored
+in the \fBarg_end\fP struct in the same order as they occurred,
+so there is no need to understand the internals of the \fBarg_end\fP struct.
+
+.SH FUNCTION REFERENCE
+.in +1c
+.SS "int arg_nullcheck (void **argtable)"
+Returns non\-zero if the \fIargtable[]\fP array contains any NULL entries
+up until the terminating \fBarg_end*\fP entry.
+Returns zero otherwise.
+.SS "int arg_parse (int argc, char **argv, void **argtable)"
+Parse the command line arguments in \fIargv[]\fP using the command line syntax
+specified in \fIargtable[]\fP, returning the number of errors encountered.
+Error details are recorded in the argument table's
+\fBarg_end\fP structure from where they can be displayed later with
+the \fBarg_print_errors\fP function.
+Upon a successful parse, the \fBarg_xxx\fP structures referenced in \fIargtable[]\fP
+will contain the argument values extracted from the command line.
+.SS "void arg_print_option (FILE *fp, const char *shortopts, const char *longopts, const char *datatype, const char *suffix)"
+This function prints an option's syntax, as in \fB\-K|\-\-scalar=<int>\fP,
+where the short options, long options, and datatype are all given
+as parameters of this function.
+It is primarily used within the \fBarg_xxx\fP structures' \fIerrorfn\fP
+functions as a way of displaying an option's syntax inside of error
+messages. However, it can also be used in user code if desired.
+The \fIsuffix\fP string is provided as a convenience for appending newlines
+and so forth to the end of the display and can be given as NULL if not required.
+.SS "void arg_print_syntax (FILE *fp, void **argtable, const char *suffix)"
+Prints the GNU style command line syntax for the given argument table,
+as in: [\-abcv] [\-\-scalar=<n>] [\-o myfile] <file> [<file>]
+.br
+The \fIsuffix\fP string is provided as a convenience for appending newlines
+and so forth to the end of the display and can be given as NULL if not required.
+.SS "void arg_print_syntaxv (FILE *fp, void **argtable, const char *suffix)"
+Prints the verbose form of the command line syntax for the given argument table,
+as in: [\-a] [\-b] [\-c] [\-\-scalar=<n>] [\-o myfile] [\-v|\-\-verbose] <file> [<file>]
+.br
+The \fIsuffix\fP string is provided as a convenience for appending newlines
+and so forth to the end of the display and can be given as NULL if not required.
+.SS "void arg_print_glossary (FILE *fp, void **argtable, const char *format)"
+Prints a glossary table describing each option in the given argument table.
+The \fIformat\fP string is passed to printf to control the formatting of
+each entry in the the glossary.
+It must have exactly two "%s" format parameters as in "%\-25s %s\\n",
+the first is for the option's syntax and the second for its glossary string.
+If an option's glossary string is NULL then that option in omitted from
+the glossary display.
+.SS "void arg_print_glossary_gnu (FILE *fp, void **argtable)"
+An alternate form of \fBarg_print_glossary()\fP that prints the glossary
+using strict GNU formatting conventions wherein long options are vertically aligned in
+a second column, and lines are wrapped at 80 characters.
+.SS "void arg_print_errors (FILE *fp, struct \fBarg_end\fP *end, const char *progname)"
+Prints the details of all errors stored in the \fIend\fP data structure.
+The \fIprogname\fP string is prepended to each error message.
+.SS "void arg_freetable (void ** argtable, size_t n)"
+Deallocates the memory used by each \fBarg_xxx\fP struct referenced by \fIargtable[]\fP.
+It does this by calling \fBfree\fP for each of the \fIn\fP pointers in the argtable array
+and then nulling them for safety.
+
+.SH "FILES"
+@prefix@/include/argtable2.h
+.br
+@prefix@/lib/libargtable2.a
+.br
+@prefix@/lib/libargtable2.so
+.br
+@prefix@/man3/argtable2.3
+.br
+@prefix@/share/doc/argtable2/
+.br
+@prefix@/share/doc/argtable2/example/
+
+.SH "AUTHOR"
+Stewart Heitmann <sheitmann@users.sourceforge.net>
