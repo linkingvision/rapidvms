@@ -1,0 +1,17 @@
+﻿Build started 2015/8/8 21:50:30.
+     1>Project "D:\60-ffvideo\svnwork\3rdparty\jsoncpp\makefiles\msvc2013\lib_json.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I../../include /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt ..\..\src\lib_json\json_reader.cpp ..\..\src\lib_json\json_value.cpp ..\..\src\lib_json\json_writer.cpp
+         json_reader.cpp
+         json_value.cpp
+         json_writer.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"D:\60-ffvideo\svnwork\3rdparty\jsoncpp\makefiles\msvc2013\x64\Release\lib_json.lib" /NOLOGO /MACHINE:X64 /LTCG x64\Release\json_reader.obj
+         x64\Release\json_value.obj
+         x64\Release\json_writer.obj
+         lib_json.vcxproj -> D:\60-ffvideo\svnwork\3rdparty\jsoncpp\makefiles\msvc2013\x64\Release\lib_json.lib
+     1>Done Building Project "D:\60-ffvideo\svnwork\3rdparty\jsoncpp\makefiles\msvc2013\lib_json.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.89
