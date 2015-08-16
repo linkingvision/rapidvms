@@ -106,6 +106,8 @@ typedef enum
     LAYOUT_MODE_6x6,
     LAYOUT_MODE_8x8,
     LAYOUT_MODE_ONE,
+    LAYOUT_MODE_1x3,
+    LAYOUT_MODE_1p6,
     LAYOUT_MODE_LAST
 } VideoWallLayoutMode;
 
