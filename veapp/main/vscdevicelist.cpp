@@ -4,8 +4,10 @@
 #include "factory.hpp"
 #include "vscvms.h"
 #include "vscviewtree.h"
+#include "vscdiskdevice.h"
 
 extern Factory *gFactory;
+
 
 VSCDeviceList::VSCDeviceList(QWidget *parent)
     : QWidget(parent)
@@ -572,12 +574,12 @@ void VSCDeviceList::DiskTreeUpdated()
 	{
 		astring strName = (*it).first;
 		VdbDiskStatus diskStatus = (*it).second;
-		s8 DiskTitle[1024];
-		memset(DiskTitle, 0, sizeof(DiskTitle));
-		sprintf(DiskTitle, "  %lld%%",   
-				((diskStatus.totalSize  - diskStatus.freeSize)* 100)/diskStatus.totalSize);
-		strName = diskStatus.path + DiskTitle;
-		AddDisk(strName);
+#ifdef WIN32
+		strName = diskStatus.path;
+#else
+		strName = diskStatus.hdd;
+#endif
+		AddDisk(strName, ((diskStatus.totalSize  - diskStatus.freeSize)* 100)/diskStatus.totalSize);
 	}
 
 	ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_DSIK)->setExpanded(true);
@@ -642,7 +644,7 @@ void VSCDeviceList::VIPCTreeUpdated()
 
 
 
-void VSCDeviceList::AddDisk(astring strTitle)
+void VSCDeviceList::AddDisk(astring strTitle, int usage)
 {
     QTreeWidgetItem *qtreewidgetitem = ui.treeWidget->topLevelItem(VSC_DEVICE_INDEX_DSIK);
     QIcon icon1;
@@ -653,7 +655,9 @@ void VSCDeviceList::AddDisk(astring strTitle)
 
     qtreewidgetitemChild->setIcon(0, icon1);
 
-    qtreewidgetitemChild->setText(0, QApplication::translate("Disk",  strTitle.c_str(), 0));
+    //qtreewidgetitemChild->setText(0, QApplication::translate("Disk",  strTitle.c_str(), 0));
+
+	ui.treeWidget->setItemWidget(qtreewidgetitemChild, 0, new VSCDiskDevice(strTitle, usage, this));
 
     qtreewidgetitem->setExpanded(true);
     qtreewidgetitem->sortChildren(0, Qt::AscendingOrder);
