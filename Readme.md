@@ -9,7 +9,10 @@
 
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20141203.png)
 
+![](https://github.com/xsmart/ve-img/raw/master/snapshot/android/opencvv.jpg)
+
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/20150212.jpg)
+
 
 ![](https://github.com/xsmart/ve-img/raw/master/snapshot/remote%20OpenCVR.jpg)
 
