@@ -55,7 +55,7 @@ public:
 	void AddSite(VSCVmsDataItem &pParam);
 	void AddView(VSCViewDataItem &pParam);
 	void AddVIPC(VIPCDeviceParam &pParam);
-	void AddDisk(astring strTitle);
+	void AddDisk(astring strTitle, int usage);
 	void AddVGroup(VSCVGroupDataItem &pParam);
 	void RemoveAllCamera();
 
