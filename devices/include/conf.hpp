@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapicmn.hpp"
 
-#define VE_VERSION "r1.3.1-20150802"
-#define VE_INFO "OpenCVR r1.3.1 2015"
+#define VE_VERSION "r1.3.2-20150822"
+#define VE_INFO "OpenCVR r1.3.2 2015"
 
 #define CONF_NAME_MAX 128
 /* support Camera num */
@@ -199,6 +199,9 @@ typedef struct __VSCConfData__ {
 	/* API  */
 	u16 OAPIPort;/* OAPI server port */
 	u8 Mining;/* 0 : default disable Mining, 1 default enable Mining */ 
+
+	u16 VHTTPServerPort;
+	u16 VHLSServerPort;
 	
 }VSCConfData__;
 
@@ -230,7 +233,7 @@ typedef struct __VSCDeviceData__ {
 	u32 HdfsRecording;/* 1 stand for recording, 0 stand for do record */
 	/* Second stream, only for VA */
 	s8 OnvifProfileToken2[VSC_CONF_PARAM_MAX];
-	u32 ConnectType;/* 0 UDP, 1 TCP, 2 Multicast, 3 HTTP */
+	u32 ConnectType;/* VSCConnectType */
 	u32 Mining;/* 1 stand for mining, 0 stand for no mining */
 
 	u32 HWAccel;/* 1 stand for HWAccel, 0 soft, this is for Intel media SDK */
