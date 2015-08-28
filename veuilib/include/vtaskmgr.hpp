@@ -14,24 +14,40 @@
 #include <QWidget>
 #include "factory.hpp"
 #include <QThread>
+#include "Poco/UUIDGenerator.h"
 
 using namespace UtilityLib;
 
 class VTaskMgrImpl;
 
-class VE_LIBRARY_API VTaskItem : QThread
+class VE_LIBRARY_API VTaskItem : public QThread
 {
+	Q_OBJECT
 public:
-	VTaskItem(){}
+	VTaskItem()
+	{
+		Poco::UUIDGenerator uuidCreator;
+		m_strId  = uuidCreator.createRandom().toString();
+		/* The task will be auto deleted */
+	}
 	~VTaskItem(){}
 public:
 	/* the result is 0 to 100 */
 	virtual int GetPercentage(){return 0;}
-	virtual bool HasOpenResult(){return false;}
-	virtual bool OpenResult(){return false;}
+	virtual bool HasOpenResult(){return FALSE;}
+	virtual bool OpenResult(){return FALSE;}
+	virtual bool StopTask(){return FALSE;}
+	virtual bool IsEol(){return FALSE;}
+	virtual std::string GetTaskName(){return "none";}
+	std::string GetId()
+	{
+		return m_strId;
+	}
+private:
+	std::string m_strId;
 };
 
-typedef std::list<VTaskItem *> VTaskItemList;
+typedef std::map<std::string, VTaskItem *> VTaskItemList;
 
 class VE_LIBRARY_API VTaskMgr
 {
@@ -42,6 +58,7 @@ public:
 	static bool GetTaskList(VTaskItemList &pList);
 	static bool AddTask(VTaskItem *pTask);
 	static bool DeleteTask(VTaskItem *pTask);
+	static int GetTaskCnt();
 	
 public:
 	VTaskMgrImpl *m_pImpl;
