@@ -41,7 +41,16 @@ VSCSearch::VSCSearch(QWidget *parent)
 		
 		ui.comboBox->addItem((*i).toString());
 	}
-
+	ui.tableWidget->setColumnWidth(0, 20);
+	ui.tableWidget->setColumnWidth(1, 120);
+	ui.tableWidget->setColumnWidth(2, 60);
+	ui.tableWidget->setColumnWidth(3, 100);
+	ui.tableWidget->setColumnWidth(4, 100);
+	ui.tableWidget->setColumnWidth(5, 100);
+	ui.tableWidget->setColumnWidth(6, 150);
+	ui.tableWidget->setColumnWidth(7, 120);
+	ui.tableWidget->setColumnWidth(8, 100);
+	ui.tableWidget->setColumnWidth(9, 100);
 
     SetupConnections();
 }
@@ -121,6 +130,9 @@ void VSCSearch::AddItem(astring IP, astring Port, astring Manufacturer, astring 
     ui.tableWidget->setItem(insertRow, 4, new QTableWidgetItem(Model.c_str()));
     ui.tableWidget->setItem(insertRow, 5, new QTableWidgetItem(FirmwareVersion.c_str()));
     ui.tableWidget->setItem(insertRow, 6, new QTableWidgetItem(ONVIFAddress.c_str()));
+    ui.tableWidget->setItem(insertRow, 7, new QTableWidgetItem(IP.c_str()));
+    ui.tableWidget->setItem(insertRow, 8, new QTableWidgetItem("admin"));
+    ui.tableWidget->setItem(insertRow, 9, new QTableWidgetItem("admin"));
     ui.progressBar->setValue(m_nSearchCnt ++);	
 }
 
@@ -370,12 +382,15 @@ void VSCSearch::AddAll()
 		}
 
 		/* Update  from UI  */
-		updateParamValue(ui.tableWidget->item(i, 1), Param.m_Conf.data.conf.Name);
+
 
 		updateParamValue(ui.tableWidget->item(i, 1), Param.m_Conf.data.conf.IP);
 		updateParamValue(ui.tableWidget->item(i, 2), Param.m_Conf.data.conf.Port);
 
 		updateParamValue(ui.tableWidget->item(i, 6), Param.m_Conf.data.conf.OnvifAddress);
+		updateParamValue(ui.tableWidget->item(i, 7), Param.m_Conf.data.conf.Name);
+		updateParamValue(ui.tableWidget->item(i, 8), Param.m_Conf.data.conf.User);
+		updateParamValue(ui.tableWidget->item(i, 9), Param.m_Conf.data.conf.Password);
 		
 		Param.m_Conf.data.conf.UseProfileToken = 0;
 		
