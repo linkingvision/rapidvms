@@ -1,0 +1,930 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>URIs</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="p11-kit">
+<link rel="up" href="reference.html" title="API Reference">
+<link rel="prev" href="p11-kit-Modules.html" title="Modules">
+<link rel="next" href="p11-kit-PIN-Callbacks.html" title="PIN Callbacks">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="p11-kit-Modules.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">p11-kit</th>
+<td><a accesskey="n" href="p11-kit-PIN-Callbacks.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#p11-kit-URIs.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#p11-kit-URIs.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="p11-kit-URIs"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="p11-kit-URIs.top_of_page"></a>URIs</span></h2>
+<p>URIs — Parsing and formatting PKCS#11 URIs</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="p11-kit-URIs.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">#define             <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-SCHEME:CAPS" title="P11_KIT_URI_SCHEME">P11_KIT_URI_SCHEME</a>
+#define             <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-SCHEME-LEN:CAPS" title="P11_KIT_URI_SCHEME_LEN">P11_KIT_URI_SCHEME_LEN</a>
+enum                <a class="link" href="p11-kit-URIs.html#P11KitUriType" title="enum P11KitUriType">P11KitUriType</a>;
+enum                <a class="link" href="p11-kit-URIs.html#P11KitUriResult" title="enum P11KitUriResult">P11KitUriResult</a>;
+typedef             <a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri">P11KitUri</a>;
+typedef             <a class="link" href="p11-kit-URIs.html#p11-kit-uri" title="p11_kit_uri">p11_kit_uri</a>;
+<a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="returnvalue">P11KitUri</span></a> *         <a class="link" href="p11-kit-URIs.html#p11-kit-uri-new" title="p11_kit_uri_new ()">p11_kit_uri_new</a>                     (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">CK_INFO_PTR</span>         <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-module-info" title="p11_kit_uri_get_module_info ()">p11_kit_uri_get_module_info</a>         (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-match-module-info" title="p11_kit_uri_match_module_info ()">p11_kit_uri_match_module_info</a>       (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_INFO_PTR</span> info</code></em>);
+<span class="returnvalue">CK_TOKEN_INFO_PTR</span>   <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-token-info" title="p11_kit_uri_get_token_info ()">p11_kit_uri_get_token_info</a>          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-match-token-info" title="p11_kit_uri_match_token_info ()">p11_kit_uri_match_token_info</a>        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_TOKEN_INFO_PTR</span> token_info</code></em>);
+<span class="returnvalue">CK_ATTRIBUTE_PTR</span>    <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-attributes" title="p11_kit_uri_get_attributes ()">p11_kit_uri_get_attributes</a>          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> *n_attrs</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-attributes" title="p11_kit_uri_set_attributes ()">p11_kit_uri_set_attributes</a>          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attrs</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> n_attrs</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-URIs.html#p11-kit-uri-clear-attributes" title="p11_kit_uri_clear_attributes ()">p11_kit_uri_clear_attributes</a>        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-match-attributes" title="p11_kit_uri_match_attributes ()">p11_kit_uri_match_attributes</a>        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attrs</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> n_attrs</code></em>);
+<span class="returnvalue">CK_ATTRIBUTE_PTR</span>    <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-attribute" title="p11_kit_uri_get_attribute ()">p11_kit_uri_get_attribute</a>           (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_TYPE</span> attr_type</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-attribute" title="p11_kit_uri_set_attribute ()">p11_kit_uri_set_attribute</a>           (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attr</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-clear-attribute" title="p11_kit_uri_clear_attribute ()">p11_kit_uri_clear_attribute</a>         (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_TYPE</span> attr_type</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-unrecognized" title="p11_kit_uri_set_unrecognized ()">p11_kit_uri_set_unrecognized</a>        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> unrecognized</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-any-unrecognized" title="p11_kit_uri_any_unrecognized ()">p11_kit_uri_any_unrecognized</a>        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-pin-source" title="p11_kit_uri_get_pin_source ()">p11_kit_uri_get_pin_source</a>          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-pin-source" title="p11_kit_uri_set_pin_source ()">p11_kit_uri_set_pin_source</a>          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-pinfile" title="p11_kit_uri_get_pinfile ()">p11_kit_uri_get_pinfile</a>             (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-pinfile" title="p11_kit_uri_set_pinfile ()">p11_kit_uri_set_pinfile</a>             (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pinfile</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-format" title="p11_kit_uri_format ()">p11_kit_uri_format</a>                  (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUriType" title="enum P11KitUriType"><span class="type">P11KitUriType</span></a> uri_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **string</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-URIs.html#p11-kit-uri-parse" title="p11_kit_uri_parse ()">p11_kit_uri_parse</a>                   (<em class="parameter"><code>const <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUriType" title="enum P11KitUriType"><span class="type">P11KitUriType</span></a> uri_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-URIs.html#p11-kit-uri-free" title="p11_kit_uri_free ()">p11_kit_uri_free</a>                    (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="p11-kit-URIs.html#p11-kit-uri-message" title="p11_kit_uri_message ()">p11_kit_uri_message</a>                 (<em class="parameter"><code><span class="type">int</span> code</code></em>);
+#define             <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-NO-MEMORY:CAPS" title="P11_KIT_URI_NO_MEMORY">P11_KIT_URI_NO_MEMORY</a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="p11-kit-URIs.description"></a><h2>Description</h2>
+<p>
+PKCS#11 URIs can be used in configuration files or applications to represent
+PKCS#11 modules, tokens or objects. An example of a URI might be:
+</p>
+<p>
+<code class="code"><div class="literallayout"><p><br>
+     pkcs11:token=The%20Software%20PKCS#11%20softtoken;<br>
+         manufacturer=Snake%20Oil,%20Inc.;serial=;object=my-certificate;<br>
+         model=1.0;object-type=cert;id=%69%95%3e%5c%f4%bd%ec%91<br>
+</p></div></code>
+</p>
+<p>
+You can use <a class="link" href="p11-kit-URIs.html#p11-kit-uri-parse" title="p11_kit_uri_parse ()"><code class="function">p11_kit_uri_parse()</code></a> to parse such a URI, and <a class="link" href="p11-kit-URIs.html#p11-kit-uri-format" title="p11_kit_uri_format ()"><code class="function">p11_kit_uri_format()</code></a>
+to build one. URIs are represented by the <a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> structure. You can match
+a parsed URI against PKCS#11 tokens with <a class="link" href="p11-kit-URIs.html#p11-kit-uri-match-token-info" title="p11_kit_uri_match_token_info ()"><code class="function">p11_kit_uri_match_token_info()</code></a>
+or attributes with <a class="link" href="p11-kit-URIs.html#p11-kit-uri-match-attributes" title="p11_kit_uri_match_attributes ()"><code class="function">p11_kit_uri_match_attributes()</code></a>.
+</p>
+<p>
+Since URIs can represent different sorts of things, when parsing or formatting
+a URI a 'context' can be used to indicate which sort of URI is expected.
+</p>
+<p>
+URIs have an <code class="code">unrecognized</code> flag. This flag is set during parsing
+if any parts of the URI are not recognized. This may be because the part is
+from a newer version of the PKCS#11 spec or because that part was not valid
+inside of the desired context used when parsing.
+</p>
+</div>
+<div class="refsect1">
+<a name="p11-kit-URIs.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="P11-KIT-URI-SCHEME:CAPS"></a><h3>P11_KIT_URI_SCHEME</h3>
+<pre class="programlisting">#define P11_KIT_URI_SCHEME "pkcs11"
+</pre>
+<p>
+String of URI scheme for PKCS#11 URIs.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11-KIT-URI-SCHEME-LEN:CAPS"></a><h3>P11_KIT_URI_SCHEME_LEN</h3>
+<pre class="programlisting">#define P11_KIT_URI_SCHEME_LEN 6
+</pre>
+<p>
+Length of <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-SCHEME:CAPS" title="P11_KIT_URI_SCHEME"><code class="literal">P11_KIT_URI_SCHEME</code></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitUriType"></a><h3>enum P11KitUriType</h3>
+<pre class="programlisting">typedef enum {
+	P11_KIT_URI_FOR_OBJECT =  (1 &lt;&lt; 1),
+	P11_KIT_URI_FOR_TOKEN =   (1 &lt;&lt; 2),
+	P11_KIT_URI_FOR_MODULE =  (1 &lt;&lt; 3),
+
+	P11_KIT_URI_FOR_MODULE_WITH_VERSION =
+		(1 &lt;&lt; 4) | P11_KIT_URI_FOR_MODULE,
+
+	P11_KIT_URI_FOR_OBJECT_ON_TOKEN =
+		P11_KIT_URI_FOR_OBJECT | P11_KIT_URI_FOR_TOKEN,
+
+	P11_KIT_URI_FOR_OBJECT_ON_TOKEN_AND_MODULE =
+		P11_KIT_URI_FOR_OBJECT_ON_TOKEN | P11_KIT_URI_FOR_MODULE,
+
+	P11_KIT_URI_FOR_ANY =     0x0000FFFF,
+} P11KitUriType;
+</pre>
+<p>
+A PKCS#11 URI can represent different kinds of things. This flag is used by
+<a class="link" href="p11-kit-URIs.html#p11-kit-uri-parse" title="p11_kit_uri_parse ()"><code class="function">p11_kit_uri_parse()</code></a> to denote in what context the URI will be used.
+</p>
+<p>
+The various types can be combined.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-OBJECT:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_OBJECT</code></span></p></td>
+<td>The URI represents one or more objects
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-TOKEN:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_TOKEN</code></span></p></td>
+<td>The URI represents one or more tokens
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-MODULE:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_MODULE</code></span></p></td>
+<td>The URI represents one or more modules
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-MODULE-WITH-VERSION:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_MODULE_WITH_VERSION</code></span></p></td>
+<td>The URI represents a module with
+    a specific version.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-OBJECT-ON-TOKEN:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_OBJECT_ON_TOKEN</code></span></p></td>
+<td>The URI represents one or more objects
+    that are present on a specific token.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-OBJECT-ON-TOKEN-AND-MODULE:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_OBJECT_ON_TOKEN_AND_MODULE</code></span></p></td>
+<td>The URI represents one or more
+    objects that are present on a specific token, being used with a certain
+    module.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-FOR-ANY:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_FOR_ANY</code></span></p></td>
+<td>The URI can represent anything
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitUriResult"></a><h3>enum P11KitUriResult</h3>
+<pre class="programlisting">typedef enum {
+	P11_KIT_URI_OK = 0,
+	P11_KIT_URI_UNEXPECTED = -1,
+	P11_KIT_URI_BAD_SCHEME = -2,
+	P11_KIT_URI_BAD_ENCODING = -3,
+	P11_KIT_URI_BAD_SYNTAX = -4,
+	P11_KIT_URI_BAD_VERSION = -5,
+	P11_KIT_URI_NOT_FOUND = -6,
+} P11KitUriResult;
+</pre>
+<p>
+Error codes returned by various functions. The functions each clearly state
+which error codes they are capable of returning.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="P11-KIT-URI-OK:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_OK</code></span></p></td>
+<td>Success
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-UNEXPECTED:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_UNEXPECTED</code></span></p></td>
+<td>Unexpected or internal system error
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-BAD-SCHEME:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_BAD_SCHEME</code></span></p></td>
+<td>The URI had a bad scheme
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-BAD-ENCODING:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_BAD_ENCODING</code></span></p></td>
+<td>The URI had a bad encoding
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-BAD-SYNTAX:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_BAD_SYNTAX</code></span></p></td>
+<td>The URI had a bad syntax
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-BAD-VERSION:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_BAD_VERSION</code></span></p></td>
+<td>The URI contained a bad version number
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-URI-NOT-FOUND:CAPS"></a><span class="term"><code class="literal">P11_KIT_URI_NOT_FOUND</code></span></p></td>
+<td>A requested part of the URI was not found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitUri"></a><h3>P11KitUri</h3>
+<pre class="programlisting">typedef struct p11_kit_uri P11KitUri;
+</pre>
+<p>
+A structure representing a PKCS#11 URI. There are no public fields
+visible in this structure. Use the various accessor functions.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri"></a><h3>p11_kit_uri</h3>
+<pre class="programlisting">typedef struct p11_kit_uri p11_kit_uri;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-new"></a><h3>p11_kit_uri_new ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="returnvalue">P11KitUri</span></a> *         p11_kit_uri_new                     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Create a new blank PKCS#11 URI.
+</p>
+<p>
+The new URI is in the right state to parse a string into. All relevant fields
+are zeroed out. Formatting this URI will produce a valid but empty URI.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A newly allocated URI. This should be freed with <a class="link" href="p11-kit-URIs.html#p11-kit-uri-free" title="p11_kit_uri_free ()"><code class="function">p11_kit_uri_free()</code></a>.</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-module-info"></a><h3>p11_kit_uri_get_module_info ()</h3>
+<pre class="programlisting"><span class="returnvalue">CK_INFO_PTR</span>         p11_kit_uri_get_module_info         (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Get the <code class="code">CK_INFO</code> structure associated with this URI.
+</p>
+<p>
+If this is a parsed URI, then the fields corresponding to library parts of
+the URI will be filled in. Any library URI parts that were missing will have
+their fields filled with zeros.
+</p>
+<p>
+If the caller wishes to setup information for building a URI, then relevant
+fields should be filled in. Fields that should not appear as parts in the
+resulting URI should be filled with zeros.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A pointer to the <code class="code">CK_INFO</code> structure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-match-module-info"></a><h3>p11_kit_uri_match_module_info ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_match_module_info       (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_INFO_PTR</span> info</code></em>);</pre>
+<p>
+Match a <code class="code">CK_INFO</code> structure against the library parts of this URI.
+</p>
+<p>
+Only the fields of the <code class="code">CK_INFO</code> structure that are valid for use
+in a URI will be matched. A URI part that was not specified in the URI will
+match any value in the structure. If during the URI parsing any unrecognized
+parts were encountered then this match will fail.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>info</code></em> :</span></p></td>
+<td>the structure to match against the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>1 if the URI matches, 0 if not.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-token-info"></a><h3>p11_kit_uri_get_token_info ()</h3>
+<pre class="programlisting"><span class="returnvalue">CK_TOKEN_INFO_PTR</span>   p11_kit_uri_get_token_info          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Get the <code class="code">CK_TOKEN_INFO</code> structure associated with this URI.
+</p>
+<p>
+If this is a parsed URI, then the fields corresponding to token parts of
+the URI will be filled in. Any token URI parts that were missing will have
+their fields filled with zeros.
+</p>
+<p>
+If the caller wishes to setup information for building a URI, then relevant
+fields should be filled in. Fields that should not appear as parts in the
+resulting URI should be filled with zeros.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A pointer to the <code class="code">CK_INFO</code> structure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-match-token-info"></a><h3>p11_kit_uri_match_token_info ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_match_token_info        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_TOKEN_INFO_PTR</span> token_info</code></em>);</pre>
+<p>
+Match a <code class="code">CK_TOKEN_INFO</code> structure against the token parts of this
+URI.
+</p>
+<p>
+Only the fields of the <code class="code">CK_TOKEN_INFO</code> structure that are valid
+for use in a URI will be matched. A URI part that was not specified in the
+URI will match any value in the structure. If during the URI parsing any
+unrecognized parts were encountered then this match will fail.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>token_info</code></em> :</span></p></td>
+<td>the structure to match against the URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>1 if the URI matches, 0 if not.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-attributes"></a><h3>p11_kit_uri_get_attributes ()</h3>
+<pre class="programlisting"><span class="returnvalue">CK_ATTRIBUTE_PTR</span>    p11_kit_uri_get_attributes          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> *n_attrs</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-set-attributes"></a><h3>p11_kit_uri_set_attributes ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_set_attributes          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attrs</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> n_attrs</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-clear-attributes"></a><h3>p11_kit_uri_clear_attributes ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_uri_clear_attributes        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-match-attributes"></a><h3>p11_kit_uri_match_attributes ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_match_attributes        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attrs</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> n_attrs</code></em>);</pre>
+<p>
+Match a attributes against the object parts of this URI.
+</p>
+<p>
+Only the attributes that are valid for use in a URI will be matched. A URI
+part that was not specified in the URI will match any attribute value. If
+during the URI parsing any unrecognized parts were encountered then this
+match will fail.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attrs</code></em> :</span></p></td>
+<td>The attributes to match</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_attrs</code></em> :</span></p></td>
+<td>The number of attributes</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>1 if the URI matches, 0 if not.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-attribute"></a><h3>p11_kit_uri_get_attribute ()</h3>
+<pre class="programlisting"><span class="returnvalue">CK_ATTRIBUTE_PTR</span>    p11_kit_uri_get_attribute           (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_TYPE</span> attr_type</code></em>);</pre>
+<p>
+Get a pointer to an attribute present in this URI.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td>The attribute type</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A pointer to the attribute, or <code class="code">NULL</code> if not present.
+The attribute is owned by the URI and should not be freed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-set-attribute"></a><h3>p11_kit_uri_set_attribute ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_set_attribute           (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_PTR</span> attr</code></em>);</pre>
+<p>
+Set an attribute on the URI.
+</p>
+<p>
+Only attributes that map to parts in a PKCS#11 URI will be accepted.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td>The attribute to set</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-OK:CAPS"><code class="literal">P11_KIT_URI_OK</code></a> if the attribute was successfully set.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-NOT-FOUND:CAPS"><code class="literal">P11_KIT_URI_NOT_FOUND</code></a> if the attribute was not valid for a URI.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-clear-attribute"></a><h3>p11_kit_uri_clear_attribute ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_clear_attribute         (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE_TYPE</span> attr_type</code></em>);</pre>
+<p>
+Clear an attribute on the URI.
+</p>
+<p>
+Only attributes that map to parts in a PKCS#11 URI will be accepted.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td>The type of the attribute to clear</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-OK:CAPS"><code class="literal">P11_KIT_URI_OK</code></a> if the attribute was successfully cleared.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-NOT-FOUND:CAPS"><code class="literal">P11_KIT_URI_NOT_FOUND</code></a> if the attribute was not valid for a URI.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-set-unrecognized"></a><h3>p11_kit_uri_set_unrecognized ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_uri_set_unrecognized        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> unrecognized</code></em>);</pre>
+<p>
+Set the unrecognized flag on this URI.
+</p>
+<p>
+The unrecognized flag is automatically set to 1 when during parsing any part
+of the URI is unrecognized. If the unrecognized flag is set to 1, then
+matching against this URI will always fail.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>unrecognized</code></em> :</span></p></td>
+<td>The new unregognized flag value</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-any-unrecognized"></a><h3>p11_kit_uri_any_unrecognized ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_any_unrecognized        (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Get the unrecognized flag for this URI.
+</p>
+<p>
+The unrecognized flag is automatically set to 1 when during parsing any part
+of the URI is unrecognized. If the unrecognized flag is set to 1, then
+matching against this URI will always fail.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>1 if unrecognized flag is set, 0 otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-pin-source"></a><h3>p11_kit_uri_get_pin_source ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        p11_kit_uri_get_pin_source          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Get the 'pin-source' part of the URI. This is used by some applications to
+lookup a PIN for logging into a PKCS#11 token.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The pin-source or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not present.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-set-pin-source"></a><h3>p11_kit_uri_set_pin_source ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_uri_set_pin_source          (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>);</pre>
+<p>
+Set the 'pin-source' part of the URI. This is used by some applications to
+lookup a PIN for logging into a PKCS#11 token.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>The new pin-source</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-get-pinfile"></a><h3>p11_kit_uri_get_pinfile ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        p11_kit_uri_get_pinfile             (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">p11_kit_uri_get_pinfile</code> is deprecated and should not be used in newly-written code. use <a class="link" href="p11-kit-URIs.html#p11-kit-uri-get-pin-source" title="p11_kit_uri_get_pin_source ()"><code class="function">p11_kit_uri_get_pin_source()</code></a>.</p>
+</div>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-set-pinfile"></a><h3>p11_kit_uri_set_pinfile ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_uri_set_pinfile             (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pinfile</code></em>);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">p11_kit_uri_set_pinfile</code> is deprecated and should not be used in newly-written code. use <a class="link" href="p11-kit-URIs.html#p11-kit-uri-set-pin-source" title="p11_kit_uri_set_pin_source ()"><code class="function">p11_kit_uri_set_pin_source()</code></a>.</p>
+</div>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pinfile</code></em> :</span></p></td>
+<td>The pinfile</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-format"></a><h3>p11_kit_uri_format ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_format                  (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUriType" title="enum P11KitUriType"><span class="type">P11KitUriType</span></a> uri_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **string</code></em>);</pre>
+<p>
+Format a PKCS#11 URI into a string.
+</p>
+<p>
+Fields which are zeroed out will not be included in the resulting string.
+Attributes which are not present will also not be included.
+</p>
+<p>
+The uri_type of URI specified limits the different parts of the resulting
+URI. To format a URI containing all possible information use
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-FOR-ANY:CAPS"><code class="literal">P11_KIT_URI_FOR_ANY</code></a>
+</p>
+<p>
+It's up to the caller to guarantee that the attributes set in <em class="parameter"><code>uri</code></em> are
+those appropriate for inclusion in a URI, specifically:
+<code class="literal">CKA_ID</code>, <code class="literal">CKA_LABEL</code>
+and <code class="literal">CKA_CLASS</code>. The class must be one of
+<code class="literal">CKO_DATA</code>, <code class="literal">CKO_SECRET_KEY</code>,
+<code class="literal">CKO_CERTIFICATE</code>, <code class="literal">CKO_PUBLIC_KEY</code>,
+<code class="literal">CKO_PRIVATE_KEY</code>.
+</p>
+<p>
+The resulting string should be freed with <code class="function">free()</code>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri_type</code></em> :</span></p></td>
+<td>The type of URI that should be produced.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>Location to store a newly allocated string.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-OK:CAPS"><code class="literal">P11_KIT_URI_OK</code></a> if the URI was formatted successfully,
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-UNEXPECTED:CAPS"><code class="literal">P11_KIT_URI_UNEXPECTED</code></a> if the data in <em class="parameter"><code>uri</code></em> is invalid for a URI.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-parse"></a><h3>p11_kit_uri_parse ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_uri_parse                   (<em class="parameter"><code>const <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUriType" title="enum P11KitUriType"><span class="type">P11KitUriType</span></a> uri_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Parse a PKCS#11 URI string.
+</p>
+<p>
+PKCS#11 URIs can represent tokens, objects or modules. The uri_type argument
+allows the caller to specify what type of URI is expected and the sorts of
+things the URI should match. <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-FOR-ANY:CAPS"><code class="literal">P11_KIT_URI_FOR_ANY</code></a> can be used to parse a URI
+for any context. It's then up to the caller to make sense of the way that
+it is used.
+</p>
+<p>
+If the PKCS#11 URI contains unrecognized URI parts or parts not applicable
+to the specified context, then the unrecognized flag will be set. This will
+prevent the URI from matching using the various match functions.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>The string to parse</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri_type</code></em> :</span></p></td>
+<td>The type of URI that is expected</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The blank URI to parse the values into</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-OK:CAPS"><code class="literal">P11_KIT_URI_OK</code></a> if the URI was parsed successfully.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-BAD-SCHEME:CAPS"><code class="literal">P11_KIT_URI_BAD_SCHEME</code></a> if this was not a PKCS#11 URI.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-BAD-SYNTAX:CAPS"><code class="literal">P11_KIT_URI_BAD_SYNTAX</code></a> if the URI syntax was bad.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-BAD-VERSION:CAPS"><code class="literal">P11_KIT_URI_BAD_VERSION</code></a> if a version number was bad.
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-BAD-ENCODING:CAPS"><code class="literal">P11_KIT_URI_BAD_ENCODING</code></a> if the URI encoding was invalid.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-free"></a><h3>p11_kit_uri_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_uri_free                    (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Free a PKCS#11 URI.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>The URI</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-uri-message"></a><h3>p11_kit_uri_message ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        p11_kit_uri_message                 (<em class="parameter"><code><span class="type">int</span> code</code></em>);</pre>
+<p>
+Lookup a message for the uri error code. These codes are the P11_KIT_URI_XXX
+error codes that can be returned from <a class="link" href="p11-kit-URIs.html#p11-kit-uri-parse" title="p11_kit_uri_parse ()"><code class="function">p11_kit_uri_parse()</code></a> or
+<a class="link" href="p11-kit-URIs.html#p11-kit-uri-format" title="p11_kit_uri_format ()"><code class="function">p11_kit_uri_format()</code></a>. As a special case <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, will be returned for
+<a class="link" href="p11-kit-URIs.html#P11-KIT-URI-OK:CAPS"><code class="literal">P11_KIT_URI_OK</code></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>code</code></em> :</span></p></td>
+<td>The error code</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The message for the error code. This string is owned by the p11-kit
+library.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11-KIT-URI-NO-MEMORY:CAPS"></a><h3>P11_KIT_URI_NO_MEMORY</h3>
+<pre class="programlisting">#define P11_KIT_URI_NO_MEMORY P11_KIT_URI_UNEXPECTED
+</pre>
+<p>
+Unexpected memory allocation failure result. Same as <a class="link" href="p11-kit-URIs.html#P11-KIT-URI-UNEXPECTED:CAPS"><span class="type">P11_KIT_URI_UNEXPECTED</span></a>.
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19</div>
+</body>
+</html>

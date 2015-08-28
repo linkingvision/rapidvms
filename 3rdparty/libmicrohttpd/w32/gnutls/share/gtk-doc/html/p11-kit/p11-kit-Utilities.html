@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Utilities</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="p11-kit">
+<link rel="up" href="reference.html" title="API Reference">
+<link rel="prev" href="p11-kit-PIN-Callbacks.html" title="PIN Callbacks">
+<link rel="next" href="p11-kit-Future.html" title="Future">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="p11-kit-PIN-Callbacks.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">p11-kit</th>
+<td><a accesskey="n" href="p11-kit-Future.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#p11-kit-Utilities.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#p11-kit-Utilities.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="p11-kit-Utilities"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="p11-kit-Utilities.top_of_page"></a>Utilities</span></h2>
+<p>Utilities — PKCS#11 utilities</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="p11-kit-Utilities.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">const <span class="returnvalue">char</span> *        <a class="link" href="p11-kit-Utilities.html#p11-kit-strerror" title="p11_kit_strerror ()">p11_kit_strerror</a>                    (<em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="type">CK_RV</span></a> rv</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="p11-kit-Utilities.html#p11-kit-message" title="p11_kit_message ()">p11_kit_message</a>                     (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">char</span> *              <a class="link" href="p11-kit-Utilities.html#p11-kit-space-strdup" title="p11_kit_space_strdup ()">p11_kit_space_strdup</a>                (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> max_length</code></em>);
+<span class="returnvalue">size_t</span>              <a class="link" href="p11-kit-Utilities.html#p11-kit-space-strlen" title="p11_kit_space_strlen ()">p11_kit_space_strlen</a>                (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> max_length</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="p11-kit-Utilities.description"></a><h2>Description</h2>
+<p>
+Utility functions for working with PKCS#11.
+</p>
+</div>
+<div class="refsect1">
+<a name="p11-kit-Utilities.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="p11-kit-strerror"></a><h3>p11_kit_strerror ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        p11_kit_strerror                    (<em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="type">CK_RV</span></a> rv</code></em>);</pre>
+<p>
+Get a message for a PKCS#11 return value or error code. Do not
+pass CKR_OK or other such non errors to this function.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rv</code></em> :</span></p></td>
+<td>The code to get a message for.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The user readable and localized message.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-message"></a><h3>p11_kit_message ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        p11_kit_message                     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Gets the failure message for a recently called p11-kit function, which
+returned a failure code on this thread. Not all functions set this message.
+Each function that does so, will note it in its documentation.
+</p>
+<p>
+If the most recent p11-kit function did not fail, then this will return NULL.
+The string is owned by the p11-kit library and is only valid on the same
+thread that the failed function executed on.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The last failure message, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-space-strdup"></a><h3>p11_kit_space_strdup ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              p11_kit_space_strdup                (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> max_length</code></em>);</pre>
+<p>
+In PKCS#11 structures many strings are encoded in a strange way. The string
+is placed in a fixed length buffer and then padded with spaces.
+</p>
+<p>
+This function copies the space padded string into a normal null-terminated
+string. The result is owned by the caller.
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">CK_INFO</span><span class="normal"> info</span><span class="symbol">;</span>
+<span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">description</span><span class="symbol">;</span>
+<span class="normal">   </span><span class="symbol">...</span>
+<span class="normal">description </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="p11-kit-Utilities.html#p11-kit-space-strdup">p11_kit_space_strdup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">-&gt;</span><span class="normal">libraryDescription</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">sizeof</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">-&gt;</span><span class="normal">libraryDescription</span><span class="symbol">));</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>Pointer to string block</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_length</code></em> :</span></p></td>
+<td>Maximum length of string block</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The newly allocated string, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if memory could not be allocated.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-space-strlen"></a><h3>p11_kit_space_strlen ()</h3>
+<pre class="programlisting"><span class="returnvalue">size_t</span>              p11_kit_space_strlen                (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> max_length</code></em>);</pre>
+<p>
+In PKCS#11 structures many strings are encoded in a strange way. The string
+is placed in a fixed length buffer and then padded with spaces.
+</p>
+<p>
+This function determines the actual length of the string. Since the string
+is not null-terminated you need to pass in the size of buffer as max_length.
+The string will never be longer than this buffer.
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">CK_INFO</span><span class="normal"> info</span><span class="symbol">;</span>
+<span class="usertype">size_t</span><span class="normal"> length</span><span class="symbol">;</span>
+<span class="normal">   </span><span class="symbol">...</span>
+<span class="normal">length </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="p11-kit-Utilities.html#p11-kit-space-strlen">p11_kit_space_strlen</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">-&gt;</span><span class="normal">libraryDescription</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">sizeof</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">-&gt;</span><span class="normal">libraryDescription</span><span class="symbol">));</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>Pointer to string block</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_length</code></em> :</span></p></td>
+<td>Maximum length of string block</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The length of the space padded string.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19</div>
+</body>
+</html>

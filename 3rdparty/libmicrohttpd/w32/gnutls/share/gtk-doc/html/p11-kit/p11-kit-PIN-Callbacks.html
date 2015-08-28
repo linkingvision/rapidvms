@@ -1,0 +1,785 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PIN Callbacks</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="p11-kit">
+<link rel="up" href="reference.html" title="API Reference">
+<link rel="prev" href="p11-kit-URIs.html" title="URIs">
+<link rel="next" href="p11-kit-Utilities.html" title="Utilities">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="p11-kit-URIs.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">p11-kit</th>
+<td><a accesskey="n" href="p11-kit-Utilities.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#p11-kit-PIN-Callbacks.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#p11-kit-PIN-Callbacks.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="p11-kit-PIN-Callbacks"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="p11-kit-PIN-Callbacks.top_of_page"></a>PIN Callbacks</span></h2>
+<p>PIN Callbacks — PIN Callbacks</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="p11-kit-PIN-Callbacks.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin">P11KitPin</a>;
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-new" title="p11_kit_pin_new ()">p11_kit_pin_new</a>                     (<em class="parameter"><code>const unsigned <span class="type">char</span> *value</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> length</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-new-for-buffer" title="p11_kit_pin_new_for_buffer ()">p11_kit_pin_new_for_buffer</a>          (<em class="parameter"><code>unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> length</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-destroy-func" title="p11_kit_pin_destroy_func ()"><span class="type">p11_kit_pin_destroy_func</span></a> destroy</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-new-for-string" title="p11_kit_pin_new_for_string ()">p11_kit_pin_new_for_string</a>          (<em class="parameter"><code>const <span class="type">char</span> *value</code></em>);
+const unsigned <span class="returnvalue">char</span> * <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-get-value" title="p11_kit_pin_get_value ()">p11_kit_pin_get_value</a>             (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length</code></em>);
+<span class="returnvalue">size_t</span>              <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-get-length" title="p11_kit_pin_get_length ()">p11_kit_pin_get_length</a>              (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-ref" title="p11_kit_pin_ref ()">p11_kit_pin_ref</a>                     (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()">p11_kit_pin_unref</a>                   (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);
+enum                <a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags">P11KitPinFlags</a>;
+#define             <a class="link" href="p11-kit-PIN-Callbacks.html#P11-KIT-PIN-FALLBACK:CAPS" title="P11_KIT_PIN_FALLBACK">P11_KIT_PIN_FALLBACK</a>
+<span class="returnvalue">int</span>                 <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()">p11_kit_pin_register_callback</a>       (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-callback" title="p11_kit_pin_callback ()"><span class="type">p11_kit_pin_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-destroy-func" title="p11_kit_pin_destroy_func ()"><span class="type">p11_kit_pin_destroy_func</span></a> callback_destroy</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unregister-callback" title="p11_kit_pin_unregister_callback ()">p11_kit_pin_unregister_callback</a>     (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-callback" title="p11_kit_pin_callback ()"><span class="type">p11_kit_pin_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         (<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-callback" title="p11_kit_pin_callback ()">*p11_kit_pin_callback</a>)             (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-request" title="p11_kit_pin_request ()">p11_kit_pin_request</a>                 (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-destroy-func" title="p11_kit_pin_destroy_func ()">*p11_kit_pin_destroy_func</a>)         (<em class="parameter"><code><span class="type">void</span> *data</code></em>);
+<a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-file-callback" title="p11_kit_pin_file_callback ()">p11_kit_pin_file_callback</a>           (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="p11-kit-PIN-Callbacks.description"></a><h2>Description</h2>
+<p>
+Applications can register a callback which will be called to provide a
+password associated with a given pin source.
+</p>
+<p>
+PKCS#11 URIs can contain a 'pin-source' attribute. The value of this attribute
+is application dependent, but often references a file containing a PIN to
+use.
+</p>
+<p>
+Using these functions, an applications or libraries can register a
+callback with <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()"><code class="function">p11_kit_pin_register_callback()</code></a> to be called when a given
+'pin-source' attribute value is requested. The application can then prompt
+the user or retrieve a PIN for the given context. These registered
+callbacks are only relevant and valid within the current process.
+</p>
+<p>
+A fallback callback can be registered by passing the <a class="link" href="p11-kit-PIN-Callbacks.html#P11-KIT-PIN-FALLBACK:CAPS" title="P11_KIT_PIN_FALLBACK"><code class="literal">P11_KIT_PIN_FALLBACK</code></a>
+value to <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()"><code class="function">p11_kit_pin_register_callback()</code></a>. This fallback callback will be
+called for every 'pin-source' attribute request for which no callback has been
+directly registered.
+</p>
+<p>
+To request a PIN for a given 'pin-source' attribute, use the
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-request" title="p11_kit_pin_request ()"><code class="function">p11_kit_pin_request()</code></a> function. If this function returns <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> then either
+no callbacks were registered or none of them could handle the request.
+</p>
+<p>
+If multiple callbacks are registered for the same PIN source, then they are
+called in last-registered-first-called order. They are called in turn until
+one of them can handle the request. Fallback callbacks are not called if
+a callback was registered specifically for a requested 'pin-source' attribute.
+</p>
+<p>
+PINs themselves are handled inside of P11KitPin structures. These are thread
+safe and allow the callback to specify how the PIN is stored in memory
+and freed. A callback can use <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-new-for-string" title="p11_kit_pin_new_for_string ()"><code class="function">p11_kit_pin_new_for_string()</code></a> or related
+functions to create a PIN to be returned.
+</p>
+<p>
+For example in order to handle the following PKCS#11 URI with a 'pin-source'
+attribute
+</p>
+<p>
+<code class="code"><div class="literallayout"><p><br>
+     pkcs11:id=%69%95%3e%5c%f4%bd%ec%91;pin-source=my-application<br>
+</p></div></code>
+</p>
+<p>
+an application could register a callback like this:
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> <a href="p11-kit-PIN-Callbacks.html#P11KitPin">P11KitPin</a></span><span class="symbol">*</span>
+<span class="function">my_application_pin_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pin_source</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">P11KitUri</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pin_uri</span><span class="symbol">,</span>
+<span class="normal">                             </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pin_description</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">P11KitPinFlags</span><span class="normal"> pin_flags</span><span class="symbol">,</span>
+<span class="normal">                             </span><span class="type">void</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">callback_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="normal"> </span><span class="function">p11_kit_pin_new_from_string</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"pin-value"</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
+
+<span class="function"><a href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback">p11_kit_pin_register_callback</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"my-application"</span><span class="symbol">,</span><span class="normal"> my_application_pin_callback</span><span class="symbol">,</span>
+<span class="normal">                               <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+</div>
+<div class="refsect1">
+<a name="p11-kit-PIN-Callbacks.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="P11KitPin"></a><h3>P11KitPin</h3>
+<pre class="programlisting">typedef struct p11_kit_pin P11KitPin;
+</pre>
+<p>
+A structure representing a PKCS#11 PIN. There are no public fields
+visible in this structure. Use the various accessor functions.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-new"></a><h3>p11_kit_pin_new ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_new                     (<em class="parameter"><code>const unsigned <span class="type">char</span> *value</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> length</code></em>);</pre>
+<p>
+Create a new P11KitPin with the given PIN value. This function is
+usually used from within registered PIN callbacks.
+</p>
+<p>
+Exactly <em class="parameter"><code>length</code></em> bytes from <em class="parameter"><code>value</code></em> are used. Null terminated strings,
+or encodings are not considered. A copy of the <em class="parameter"><code>value</code></em> will be made.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>the value of the PIN</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td>the length of <em class="parameter"><code>value</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The newly allocated P11KitPin, which should be freed with
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a> when no longer needed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-new-for-buffer"></a><h3>p11_kit_pin_new_for_buffer ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_new_for_buffer          (<em class="parameter"><code>unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> length</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-destroy-func" title="p11_kit_pin_destroy_func ()"><span class="type">p11_kit_pin_destroy_func</span></a> destroy</code></em>);</pre>
+<p>
+Create a new P11KitPin which will use <em class="parameter"><code>buffer</code></em> for the PIN value.
+This function is usually used from within registered PIN callbacks.
+</p>
+<p>
+The buffer will not be copied. String encodings and null characters
+are not considered.
+</p>
+<p>
+When the last reference to this PIN is lost, then the <em class="parameter"><code>destroy</code></em> callback
+function will be called passing <em class="parameter"><code>buffer</code></em> as an argument. This allows the
+caller to use a buffer as a PIN without copying it.
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">buffer </span><span class="symbol">=</span><span class="normal"> </span><span class="function">malloc</span><span class="normal"> </span><span class="symbol">(</span><span class="number">128</span><span class="symbol">);</span>
+<span class="usertype">P11KitPin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pin</span><span class="symbol">;</span>
+<span class="normal"> </span><span class="symbol">....</span>
+<span class="normal">pin </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="p11-kit-PIN-Callbacks.html#p11-kit-pin-new-for-buffer">p11_kit_pin_new_for_buffer</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">buffer</span><span class="symbol">,</span><span class="normal"> </span><span class="number">128</span><span class="symbol">,</span><span class="normal"> free</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td>the value of the PIN</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td>the length of <em class="parameter"><code>buffer</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destroy</code></em> :</span></p></td>
+<td>if not <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then called when PIN is destroyed.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The newly allocated P11KitPin, which should be freed with
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a> when no longer needed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-new-for-string"></a><h3>p11_kit_pin_new_for_string ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_new_for_string          (<em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
+<p>
+Create a new P11KitPin for the given null-terminated string, such as a
+password. This function is usually used from within registered
+PIN callbacks.
+</p>
+<p>
+The PIN will consist of the string not including the null terminator.
+String encoding is not considered. A copy of the <em class="parameter"><code>value</code></em> will be made.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>the value of the PIN</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The newly allocated P11KitPin, which should be freed with
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a> when no longer needed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-get-value"></a><h3>p11_kit_pin_get_value ()</h3>
+<pre class="programlisting">const unsigned <span class="returnvalue">char</span> * p11_kit_pin_get_value             (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length</code></em>);</pre>
+<p>
+Get the PIN value from a P11KitPin. <em class="parameter"><code>length</code></em> will be set to the
+length of the value.
+</p>
+<p>
+The value returned is owned by the P11KitPin and should not be modified.
+It remains valid as long as a reference to the PIN is held. The PIN value
+will not contain an extra null-terminator character.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td>the P11KitPin</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td>a location to return the value length</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the value for the PIN.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-get-length"></a><h3>p11_kit_pin_get_length ()</h3>
+<pre class="programlisting"><span class="returnvalue">size_t</span>              p11_kit_pin_get_length              (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);</pre>
+<p>
+Get the length of the PIN value from a P11KitPin.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td>the P11KitPin</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the length of the PIN value.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-ref"></a><h3>p11_kit_pin_ref ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_ref                     (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);</pre>
+<p>
+Add a reference to a P11KitPin. This should be matched with a later call
+to <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a>. As long as at least one reference is held, the PIN
+will remain valid and in memory.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td>the P11KitPin</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the <em class="parameter"><code>pin</code></em> pointer, for convenience sake.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-unref"></a><h3>p11_kit_pin_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_pin_unref                   (<em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="type">P11KitPin</span></a> *pin</code></em>);</pre>
+<p>
+Remove a reference from a P11KitPin. When all references have been removed
+then the PIN will be freed and will no longer be in memory.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td>the P11KitPin</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitPinFlags"></a><h3>enum P11KitPinFlags</h3>
+<pre class="programlisting">typedef enum {
+	P11_KIT_PIN_FLAGS_USER_LOGIN = 1&lt;&lt;0,
+	P11_KIT_PIN_FLAGS_SO_LOGIN = 1&lt;&lt;1,
+	P11_KIT_PIN_FLAGS_CONTEXT_LOGIN = 1&lt;&lt;2,
+	P11_KIT_PIN_FLAGS_RETRY = 1&lt;&lt;3,
+	P11_KIT_PIN_FLAGS_MANY_TRIES = 1&lt;&lt;4,
+	P11_KIT_PIN_FLAGS_FINAL_TRY = 1&lt;&lt;5
+} P11KitPinFlags;
+</pre>
+<p>
+Flags that are passed to <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-request" title="p11_kit_pin_request ()"><code class="function">p11_kit_pin_request()</code></a> and registered callbacks.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-USER-LOGIN:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_USER_LOGIN</code></span></p></td>
+<td>The PIN is for a PKCS#11 user type login.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-SO-LOGIN:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_SO_LOGIN</code></span></p></td>
+<td>The PIN is for a PKCS#11 security officer type login.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-CONTEXT-LOGIN:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_CONTEXT_LOGIN</code></span></p></td>
+<td>The PIN is for a PKCS#11 contect specific type login.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-RETRY:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_RETRY</code></span></p></td>
+<td>The PIN is being requested again, due to an invalid previous PIN.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-MANY-TRIES:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_MANY_TRIES</code></span></p></td>
+<td>The PIN has failed too many times, and few tries are left.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-PIN-FLAGS-FINAL-TRY:CAPS"></a><span class="term"><code class="literal">P11_KIT_PIN_FLAGS_FINAL_TRY</code></span></p></td>
+<td>The PIN has failed too many times, and this is the last try.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11-KIT-PIN-FALLBACK:CAPS"></a><h3>P11_KIT_PIN_FALLBACK</h3>
+<pre class="programlisting">#define P11_KIT_PIN_FALLBACK ""
+</pre>
+<p>
+Used with <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()"><code class="function">p11_kit_pin_register_callback()</code></a> to register a fallback callback.
+This callback will be called if no other callback is registered for a 'pin-source'.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-register-callback"></a><h3>p11_kit_pin_register_callback ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 p11_kit_pin_register_callback       (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-callback" title="p11_kit_pin_callback ()"><span class="type">p11_kit_pin_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-destroy-func" title="p11_kit_pin_destroy_func ()"><span class="type">p11_kit_pin_destroy_func</span></a> callback_destroy</code></em>);</pre>
+<p>
+Register a callback to handle PIN requests for a given 'pin-source' attribute.
+If <em class="parameter"><code>pin_source</code></em> is set to P11_KIT_PIN_FALLBACK then this will be a fallback
+callback and will be called for requests for which no other callback has
+been specifically registered.
+</p>
+<p>
+If multiple callbacks are registered for the same <em class="parameter"><code>pin_source</code></em> value, then
+the last registered callback will be the first to be called.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>the 'pin-source' attribute this this callback is for</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>the callback function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_data</code></em> :</span></p></td>
+<td>data that will be passed to the callback</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_destroy</code></em> :</span></p></td>
+<td>a function that will be called with <em class="parameter"><code>callback_data</code></em> when
+the callback is unregistered.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>Returns negative if registering fails.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-unregister-callback"></a><h3>p11_kit_pin_unregister_callback ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_pin_unregister_callback     (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-callback" title="p11_kit_pin_callback ()"><span class="type">p11_kit_pin_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);</pre>
+<p>
+Unregister a callback that was previously registered with the
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()"><code class="function">p11_kit_pin_register_callback()</code></a> function. If more than one registered
+callback matches the given arguments, then only one of those will be
+removed.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>the 'pin-source' attribute the callback was registered for</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>the callback function that was registered</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_data</code></em> :</span></p></td>
+<td>data that was registered for the callback</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-callback"></a><h3>p11_kit_pin_callback ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         (*p11_kit_pin_callback)             (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);</pre>
+<p>
+Represents a PIN callback function.
+</p>
+<p>
+The various arguments are the same as the ones passed to
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-request" title="p11_kit_pin_request ()"><code class="function">p11_kit_pin_request()</code></a>. The <em class="parameter"><code>callback_data</code></em> argument was the one passed to
+<a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback" title="p11_kit_pin_register_callback ()"><code class="function">p11_kit_pin_register_callback()</code></a> when registering this callback.
+</p>
+<p>
+The function should return <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if it could not provide a PIN, either
+because of an error or a user cancellation.
+</p>
+<p>
+If a PIN is returned, it will be unreferenced by the caller. So it should be
+either newly allocated, or referenced before returning.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>a 'pin-source' attribute string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_uri</code></em> :</span></p></td>
+<td>a PKCS#11 URI that the PIN is for, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_description</code></em> :</span></p></td>
+<td>a descrption of what the PIN is for</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_flags</code></em> :</span></p></td>
+<td>flags describing the PIN request</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_data</code></em> :</span></p></td>
+<td>data that was provided when registering this callback</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A PIN or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-request"></a><h3>p11_kit_pin_request ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_request                 (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>);</pre>
+<p>
+Request a PIN for a given 'pin-source' attribute. The result depends on the
+registered callbacks.
+</p>
+<p>
+If not <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, then the <em class="parameter"><code>pin_uri</code></em> attribute should point to the thing that the
+PIN is being requested for. In most use cases this should be a PKCS#11 URI
+pointing to a token.
+</p>
+<p>
+The <em class="parameter"><code>pin_description</code></em> should always be specified. It is a string describing
+what the PIN is for. For example this would be the token label, if the PIN
+is for a token.
+</p>
+<p>
+If more than one callback is registered for the <em class="parameter"><code>pin_source</code></em>, then the latest
+registered one will be called first. If that callback does not return a
+PIN, then the next will be called in turn.
+</p>
+<p>
+If no callback is registered for <em class="parameter"><code>pin_source</code></em>, then the fallback callbacks will
+be invoked in the same way. The fallback callbacks will not be called if any
+callback has been registered specifically for <em class="parameter"><code>pin_source</code></em>.
+</p>
+<p>
+The PIN returned should be released with <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>the 'pin-source' attribute that is being requested</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_uri</code></em> :</span></p></td>
+<td>a PKCS#11 URI that the PIN is being requested for, optionally <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_description</code></em> :</span></p></td>
+<td>a description of what the PIN is for, must not be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_flags</code></em> :</span></p></td>
+<td>various flags for this request</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the PIN which should be released with <a class="link" href="p11-kit-PIN-Callbacks.html#p11-kit-pin-unref" title="p11_kit_pin_unref ()"><code class="function">p11_kit_pin_unref()</code></a>, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+if no callback was registered or could proivde a PIN</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-destroy-func"></a><h3>p11_kit_pin_destroy_func ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*p11_kit_pin_destroy_func)         (<em class="parameter"><code><span class="type">void</span> *data</code></em>);</pre>
+<p>
+A function called to free or cleanup <em class="parameter"><code>data</code></em>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>the data to destroy</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-pin-file-callback"></a><h3>p11_kit_pin_file_callback ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPin" title="P11KitPin"><span class="returnvalue">P11KitPin</span></a> *         p11_kit_pin_file_callback           (<em class="parameter"><code>const <span class="type">char</span> *pin_source</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *pin_uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *pin_description</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-PIN-Callbacks.html#P11KitPinFlags" title="enum P11KitPinFlags"><span class="type">P11KitPinFlags</span></a> pin_flags</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>);</pre>
+<p>
+This is a PIN callback function that looks up the 'pin-source' attribute in
+a file with that name. This can be used to enable the normal PKCS#11 URI
+behavior described in the RFC.
+</p>
+<p>
+If <em class="parameter"><code>pin_flags</code></em> contains the <a class="link" href="p11-kit-PIN-Callbacks.html#P11-KIT-PIN-FLAGS-RETRY:CAPS"><code class="literal">P11_KIT_PIN_FLAGS_RETRY</code></a> flag, then this
+callback will always return <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. This is to prevent endless loops
+where an application is expecting to interact with a prompter, but
+instead is interacting with this callback reading a file over and over.
+</p>
+<p>
+This callback fails on files larger than 4 Kilobytes.
+</p>
+<p>
+This callback is not registered by default. It may have security
+implications depending on the source of the PKCS#11 URI and the PKCS#11
+in use. To register it, use code like the following:
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="p11-kit-PIN-Callbacks.html#p11-kit-pin-register-callback">p11_kit_pin_register_callback</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="p11-kit-PIN-Callbacks.html#P11-KIT-PIN-FALLBACK:CAPS">P11_KIT_PIN_FALLBACK</a></span><span class="symbol">,</span><span class="normal"> <a href="p11-kit-PIN-Callbacks.html#p11-kit-pin-file-callback">p11_kit_pin_file_callback</a></span><span class="symbol">,</span>
+<span class="normal">                               <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_source</code></em> :</span></p></td>
+<td>a 'pin-source' attribute string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_uri</code></em> :</span></p></td>
+<td>a PKCS#11 URI that the PIN is for, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_description</code></em> :</span></p></td>
+<td>a descrption of what the PIN is for</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin_flags</code></em> :</span></p></td>
+<td>flags describing the PIN request</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_data</code></em> :</span></p></td>
+<td>unused, should be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a referenced PIN with the file contents, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the file
+could not be read</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19</div>
+</body>
+</html>

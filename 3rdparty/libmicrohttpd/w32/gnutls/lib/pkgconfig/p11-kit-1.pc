@@ -1,0 +1,22 @@
+prefix=/usr/i686-w64-mingw32/sys-root/mingw
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+datarootdir=${prefix}/share
+datadir=${prefix}/share
+pkgdatadir=${prefix}/share/p11-kit
+sysconfdir=${prefix}/etc
+p11_module_configs=${pkgdatadir}/modules
+p11_module_path=${prefix}/lib/pkcs11
+proxy_module=${prefix}/lib/p11-kit-proxy.dll
+
+# This is for compatibility. Other packages were using this to determine
+# the directory they should install their module configs to, so override
+# this and redirect them to the new location
+p11_system_config_modules=${pkgdatadir}/modules
+
+Name: p11-kit
+Description: Library and proxy module for properly loading and sharing PKCS#11 modules.
+Version: 0.20.1
+Libs: -L${libdir} -lp11-kit
+Cflags: -I${includedir}/p11-kit-1

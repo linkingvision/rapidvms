@@ -70,6 +70,7 @@
     <ClCompile Include="..\..\src\microhttpd\base64.c" />
     <ClCompile Include="..\..\src\microhttpd\basicauth.c" />
     <ClCompile Include="..\..\src\microhttpd\connection.c" />
+    <ClCompile Include="..\..\src\microhttpd\connection_https.c" />
     <ClCompile Include="..\..\src\microhttpd\daemon.c" />
     <ClCompile Include="..\..\src\microhttpd\digestauth.c" />
     <ClCompile Include="..\..\src\microhttpd\internal.c" />
@@ -89,6 +90,7 @@
     <ClInclude Include="..\..\src\include\w32functions.h" />
     <ClInclude Include="..\..\src\microhttpd\base64.h" />
     <ClInclude Include="..\..\src\microhttpd\connection.h" />
+    <ClInclude Include="..\..\src\microhttpd\connection_https.h" />
     <ClInclude Include="..\..\src\microhttpd\internal.h" />
     <ClInclude Include="..\..\src\microhttpd\md5.h" />
     <ClInclude Include="..\..\src\microhttpd\memorypool.h" />
@@ -299,7 +301,7 @@
       <PreprocessorDefinitions>_USRDLL;BUILDING_MHD_LIB;MHD_W32DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Ws2_32.lib;libgnutls-28.lib;libgcrypt-20.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(UseDebugLibraries)'=='true'">
@@ -342,7 +344,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug-dll'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-dll|Win32'">..\gnutls\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-dll|Win32'">..\gnutls\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug-dll-xp'">
     <ClCompile>
@@ -372,7 +378,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release-dll'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release-dll|Win32'">..\gnutls\include\;</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release-dll|Win32'">..\gnutls\bin\;</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release-dll-xp'">
     <ClCompile>

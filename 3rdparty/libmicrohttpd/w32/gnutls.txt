@@ -1,0 +1,4 @@
+Download: https://anonsvn.wireshark.org/viewvc?view=roots
+win32: gnutls-3.2.15-2.7-win32ws 
+win64: gnutls-3.2.15-2.9-win64ws.zip
+	https://anonsvn.wireshark.org/viewvc/trunk/packages/gnutls-3.2.15-2.9-win64ws.zip?view=co&revision=409&root=Wireshark-win64-libs

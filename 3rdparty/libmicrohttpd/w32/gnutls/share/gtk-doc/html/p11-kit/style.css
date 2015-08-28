@@ -1,0 +1,116 @@
+@import url("gtk-doc.css");
+
+TABLE.navigation {
+	background-color: #f9b631 !important;
+	border-width: 0 !important;
+	color: white;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	height: 4em !important;
+}
+
+TABLE.navigation TH {
+	font-size: 30pt !important;
+	font-weight: normal;
+	text-align: left !important;
+	padding-left: 10pt;
+}
+
+TABLE.navigation TH:first-child {
+	padding-left: 40pt;
+}
+
+.shortcuts {
+	color: white !important;
+}
+
+.shortcuts a {
+	color: white !important;
+	font-family: Verdana, Arial, 'Bitstream Vera Sans', Helvetica, sans-serif;
+}
+
+P.title {
+	font-size: 30pt !important;
+}
+
+BODY {
+	padding-top: 5.5em !important;
+}
+
+DIV.book,
+DIV.refentry,
+DIV.chapter,
+DIV.index,
+DIV.footer,
+DIV.section {
+	font-family: Verdana, Arial, 'Bitstream Vera Sans', Helvetica, sans-serif;
+	font-size: 9.5pt;
+	line-height: 150%;
+}
+
+BODY > DIV.book,
+BODY > DIV.footer {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+BODY > DIV.refentry,
+BODY > DIV.chapter,
+BODY > DIV.index,
+BODY > DIV.section {
+	margin-left: 3em;
+	margin-right: 1em;
+}
+
+DIV.variablelist TABLE {
+	font-size: 9.5pt;
+	line-height: 150%;
+}
+
+DIV.refsect1,
+DIV.refsect2,
+DIV.refsynopsisdiv {
+	margin-bottom: 3em !important;
+}
+
+H1 {
+	position: relative;
+	left: -1em;
+	font-weight: normal !important;
+}
+
+H2 {
+	position: relative;
+	left: -1em;
+	font-weight: normal !important;
+}
+
+H3 {
+	position: relative;
+	left: -1em;
+	font-weight: normal !important;
+}
+
+CODE.option {
+	white-space: nowrap;
+}
+
+DIV.toc DL {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+DIV.book > DIV.toc > DL > DT {
+	margin-top: 1em;
+}
+
+DIV.toc DT {
+	margin-bottom: 0.3em;
+}
+
+TABLE.variablelist SPAN.term {
+	padding-right: 1em;
+}
+
+DIV.cmdsynopsis {
+	font-family: monospace;
+}

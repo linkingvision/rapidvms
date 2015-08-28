@@ -150,6 +150,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug-dll'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-dll|Win32'">..\gnutls\include\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmicrohttpd-dll_d.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>

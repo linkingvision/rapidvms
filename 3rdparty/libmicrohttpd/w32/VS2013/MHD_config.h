@@ -25,7 +25,7 @@
 #define HAVE_MESSAGES 1
 
 /* Disable HTTPS support */
-#define HTTPS_SUPPORT 0
+#define HTTPS_SUPPORT 1
 
 
 /* *** OS features *** */

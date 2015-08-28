@@ -61,6 +61,9 @@
     <ClCompile Include="..\..\src\microhttpd\tsearch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\microhttpd\connection_https.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\microhttpd\base64.h">
@@ -103,6 +106,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\include\autoinit_funcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\microhttpd\connection_https.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

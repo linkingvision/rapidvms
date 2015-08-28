@@ -1,0 +1,805 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Future</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="p11-kit">
+<link rel="up" href="reference.html" title="API Reference">
+<link rel="prev" href="p11-kit-Utilities.html" title="Utilities">
+<link rel="next" href="p11-kit-Deprecated.html" title="Deprecated">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="p11-kit-Utilities.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">p11-kit</th>
+<td><a accesskey="n" href="p11-kit-Deprecated.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#p11-kit-Future.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#p11-kit-Future.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="p11-kit-Future"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="p11-kit-Future.top_of_page"></a>Future</span></h2>
+<p>Future — Future Unstable API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="p11-kit-Future.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis"><span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-set-progname" title="p11_kit_set_progname ()">p11_kit_set_progname</a>                (<em class="parameter"><code>const <span class="type">char</span> *progname</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-be-quiet" title="p11_kit_be_quiet ()">p11_kit_be_quiet</a>                    (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-be-loud" title="p11_kit_be_loud ()">p11_kit_be_loud</a>                     (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="p11-kit-Future.html#p11-kit-destroyer" title="p11_kit_destroyer ()">*p11_kit_destroyer</a>)                (<em class="parameter"><code><span class="type">void</span> *data</code></em>);
+typedef             <a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter">P11KitIter</a>;
+typedef             <a class="link" href="p11-kit-Future.html#p11-kit-iter" title="p11_kit_iter">p11_kit_iter</a>;
+<a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="returnvalue">P11KitIter</span></a> *        <a class="link" href="p11-kit-Future.html#p11-kit-iter-new" title="p11_kit_iter_new ()">p11_kit_iter_new</a>                    (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIterBehavior" title="enum P11KitIterBehavior"><span class="type">P11KitIterBehavior</span></a> behavior</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-set-uri" title="p11_kit_iter_set_uri ()">p11_kit_iter_set_uri</a>                (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-add-callback" title="p11_kit_iter_add_callback ()">p11_kit_iter_add_callback</a>           (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#p11-kit-iter-callback" title="p11_kit_iter_callback ()"><span class="type">p11_kit_iter_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#p11-kit-destroyer" title="p11_kit_destroyer ()"><span class="type">p11_kit_destroyer</span></a> callback_destroy</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-add-filter" title="p11_kit_iter_add_filter ()">p11_kit_iter_add_filter</a>             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE</span> *matching</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> count</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               (<a class="link" href="p11-kit-Future.html#p11-kit-iter-callback" title="p11_kit_iter_callback ()">*p11_kit_iter_callback</a>)            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-BBOOL:CAPS"><span class="type">CK_BBOOL</span></a> *matches</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *data</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-begin" title="p11_kit_iter_begin ()">p11_kit_iter_begin</a>                  (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="type">CK_FUNCTION_LIST_PTR</span></a> *modules</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-begin-with" title="p11_kit_iter_begin_with ()">p11_kit_iter_begin_with</a>             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="type">CK_FUNCTION_LIST_PTR</span></a> module</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SLOT-ID:CAPS"><span class="type">CK_SLOT_ID</span></a> slot</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="type">CK_SESSION_HANDLE</span></a> session</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()">p11_kit_iter_next</a>                   (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="returnvalue">CK_FUNCTION_LIST_PTR</span></a> <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-module" title="p11_kit_iter_get_module ()">p11_kit_iter_get_module</a>            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SLOT-ID:CAPS"><span class="returnvalue">CK_SLOT_ID</span></a>          <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-slot" title="p11_kit_iter_get_slot ()">p11_kit_iter_get_slot</a>               (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<span class="returnvalue">CK_TOKEN_INFO</span> *     <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-token" title="p11_kit_iter_get_token ()">p11_kit_iter_get_token</a>              (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="returnvalue">CK_SESSION_HANDLE</span></a>   <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-session" title="p11_kit_iter_get_session ()">p11_kit_iter_get_session</a>            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="returnvalue">CK_SESSION_HANDLE</span></a>   <a class="link" href="p11-kit-Future.html#p11-kit-iter-keep-session" title="p11_kit_iter_keep_session ()">p11_kit_iter_keep_session</a>           (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-OBJECT-HANDLE:CAPS"><span class="returnvalue">CK_OBJECT_HANDLE</span></a>    <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-object" title="p11_kit_iter_get_object ()">p11_kit_iter_get_object</a>             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               <a class="link" href="p11-kit-Future.html#p11-kit-iter-load-attributes" title="p11_kit_iter_load_attributes ()">p11_kit_iter_load_attributes</a>        (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE</span> *template</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> count</code></em>);
+<a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               <a class="link" href="p11-kit-Future.html#p11-kit-iter-destroy-object" title="p11_kit_iter_destroy_object ()">p11_kit_iter_destroy_object</a>         (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="p11-kit-Future.html#p11-kit-iter-free" title="p11_kit_iter_free ()">p11_kit_iter_free</a>                   (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);
+enum                <a class="link" href="p11-kit-Future.html#P11KitIterBehavior" title="enum P11KitIterBehavior">P11KitIterBehavior</a>;
+</pre>
+</div>
+<div class="refsect1">
+<a name="p11-kit-Future.description"></a><h2>Description</h2>
+<p>
+API that is not yet stable enough to be enabled by default. In all likelyhood
+this will be included in the next release. To use this API you must define a
+MACRO. See the p11-kit.h header for more details.
+</p>
+</div>
+<div class="refsect1">
+<a name="p11-kit-Future.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="p11-kit-set-progname"></a><h3>p11_kit_set_progname ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_set_progname                (<em class="parameter"><code>const <span class="type">char</span> *progname</code></em>);</pre>
+<p>
+Set the program base name that is used by the <code class="literal">enable-in</code>
+and <code class="literal">disable-in</code> module configuration options.
+</p>
+<p>
+Normally this is automatically calculated from the program's argument list.
+You would usually call this before initializing p11-kit modules.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>progname</code></em> :</span></p></td>
+<td>the program base name</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-be-quiet"></a><h3>p11_kit_be_quiet ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_be_quiet                    (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Once this function is called, the p11-kit library will no longer print
+failure or warning messages to stderr.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-be-loud"></a><h3>p11_kit_be_loud ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_be_loud                     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Tell the p11-kit library will print failure or warning messages to stderr.
+This is the default behavior, but can be changed using <a class="link" href="p11-kit-Future.html#p11-kit-be-quiet" title="p11_kit_be_quiet ()"><code class="function">p11_kit_be_quiet()</code></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-destroyer"></a><h3>p11_kit_destroyer ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*p11_kit_destroyer)                (<em class="parameter"><code><span class="type">void</span> *data</code></em>);</pre>
+<p>
+A callback called to free a resource.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>data to destroy</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitIter"></a><h3>P11KitIter</h3>
+<pre class="programlisting">typedef struct p11_kit_iter P11KitIter;
+</pre>
+<p>
+Used to iterate over PKCS#11 objects.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter"></a><h3>p11_kit_iter</h3>
+<pre class="programlisting">typedef P11KitIter p11_kit_iter;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-new"></a><h3>p11_kit_iter_new ()</h3>
+<pre class="programlisting"><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="returnvalue">P11KitIter</span></a> *        p11_kit_iter_new                    (<em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIterBehavior" title="enum P11KitIterBehavior"><span class="type">P11KitIterBehavior</span></a> behavior</code></em>);</pre>
+<p>
+Create a new PKCS#11 iterator for iterating over objects. Only
+objects that match the <em class="parameter"><code>uri</code></em> will be returned by the iterator.
+Relevant information in <em class="parameter"><code>uri</code></em> is copied, and you need not keep
+<em class="parameter"><code>uri</code></em> around.
+</p>
+<p>
+If no <em class="parameter"><code>uri</code></em> is specified then the iterator will iterate over all
+objects, unless otherwise filtered.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>a PKCS#11 URI to filter on, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behavior</code></em> :</span></p></td>
+<td>various behavior flags for iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new iterator, which should be freed
+with <a class="link" href="p11-kit-Future.html#p11-kit-iter-free" title="p11_kit_iter_free ()"><code class="function">p11_kit_iter_free()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-set-uri"></a><h3>p11_kit_iter_set_uri ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_set_uri                (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-URIs.html#P11KitUri" title="P11KitUri"><span class="type">P11KitUri</span></a> *uri</code></em>);</pre>
+<p>
+Set the PKCS#11 uri for iterator. Only
+objects that match the <em class="parameter"><code>uri</code></em> will be returned by the iterator.
+Relevant information in <em class="parameter"><code>uri</code></em> is copied, and you need not keep
+<em class="parameter"><code>uri</code></em> around.
+</p>
+<p>
+If no <em class="parameter"><code>uri</code></em> is specified then the iterator will iterate over all
+objects, unless otherwise filtered.
+</p>
+<p>
+This function should be called at most once, and should be
+called before iterating begins.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>a PKCS#11 URI to filter on, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-add-callback"></a><h3>p11_kit_iter_add_callback ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_add_callback           (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#p11-kit-iter-callback" title="p11_kit_iter_callback ()"><span class="type">p11_kit_iter_callback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *callback_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="p11-kit-Future.html#p11-kit-destroyer" title="p11_kit_destroyer ()"><span class="type">p11_kit_destroyer</span></a> callback_destroy</code></em>);</pre>
+<p>
+Adds a callback to the iterator which will be called each time
+that an object is iterated.
+</p>
+<p>
+These callbacks can also perform filtering. If any callback
+indicates through it's <code class="literal">matches</code> argument that
+the object should not match, then that object will not be iterated
+as far as <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> is concerned.
+</p>
+<p>
+The callbacks will be called with the <code class="literal">matches</code>
+set to <code class="literal">CK_TRUE</code> and it's up to filters to change
+it to <code class="literal">CK_FALSE</code> when necessary.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>a function to call for each iteration</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_data</code></em> :</span></p></td>
+<td>data to pass to the function. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback_destroy</code></em> :</span></p></td>
+<td>used to cleanup the data. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-add-filter"></a><h3>p11_kit_iter_add_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_add_filter             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE</span> *matching</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> count</code></em>);</pre>
+<p>
+Add a filter to limit the objects that the iterator iterates over.
+</p>
+<p>
+Only objects matching the passed in attributes will be iterated.
+This function can be called multiple times.
+</p>
+<p>
+The <em class="parameter"><code>matching</code></em> attributes are copied.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>matching</code></em> :</span></p></td>
+<td>the attributes that the objects should match. <span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=count]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td>the number of attributes</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-callback"></a><h3>p11_kit_iter_callback ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               (*p11_kit_iter_callback)            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-BBOOL:CAPS"><span class="type">CK_BBOOL</span></a> *matches</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *data</code></em>);</pre>
+<p>
+A callback setup with <a class="link" href="p11-kit-Future.html#p11-kit-iter-add-callback" title="p11_kit_iter_add_callback ()"><code class="function">p11_kit_iter_add_callback()</code></a>. This callback is
+called for each object iterated.
+</p>
+<p>
+If the callback sets <em class="parameter"><code>matches</code></em> to CK_FALSE, then this object is
+skipped and not matched by <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a>. If you return
+anything but CKR_OK, then the iteration is stopped, and
+<a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> returns the result code.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>matches</code></em> :</span></p></td>
+<td>whether to match the current object. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>callback data</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>CKR_OK to continue iterating, CKR_CANCEL to stop, or
+anything else to fail</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-begin"></a><h3>p11_kit_iter_begin ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_begin                  (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="type">CK_FUNCTION_LIST_PTR</span></a> *modules</code></em>);</pre>
+<p>
+Begin iterating PKCS#11 objects in the given <em class="parameter"><code>modules</code></em>.
+</p>
+<p>
+The <em class="parameter"><code>modules</code></em> arguments should be a null-terminated list of
+pointers to the modules' PKCS#11 function pointers.
+</p>
+<p>
+For each module, all initialized slots will be iterated over,
+having sessions opened for each of them in turn, and searched
+for objects matching the search criteria.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>modules</code></em> :</span></p></td>
+<td>null-terminated list of
+modules to iterate over. <span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-begin-with"></a><h3>p11_kit_iter_begin_with ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_begin_with             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="type">CK_FUNCTION_LIST_PTR</span></a> module</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SLOT-ID:CAPS"><span class="type">CK_SLOT_ID</span></a> slot</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="type">CK_SESSION_HANDLE</span></a> session</code></em>);</pre>
+<p>
+Begin iterating PKCS#11 objects in the given <em class="parameter"><code>module</code></em>.
+</p>
+<p>
+If <em class="parameter"><code>slot</code></em> is non-zero then the iteration will be limited to that
+slot.
+</p>
+<p>
+If <em class="parameter"><code>session</code></em> is non-zero then the iteration will be limited to
+objects visible through that session, which implies that they
+are also limited to the slot which the session was opened for.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>module</code></em> :</span></p></td>
+<td>the module to iterate over</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>slot</code></em> :</span></p></td>
+<td>the slot to iterate objects in, or zero. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>the session to search for objects on, or zero. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-next"></a><h3>p11_kit_iter_next ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               p11_kit_iter_next                   (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Iterate to the next matching object.
+</p>
+<p>
+To access the object, session and so on, use the <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-object" title="p11_kit_iter_get_object ()"><code class="function">p11_kit_iter_get_object()</code></a>,
+<a class="link" href="p11-kit-Future.html#p11-kit-iter-get-session" title="p11_kit_iter_get_session ()"><code class="function">p11_kit_iter_get_session()</code></a>, and <a class="link" href="p11-kit-Future.html#p11-kit-iter-get-module" title="p11_kit_iter_get_module ()"><code class="function">p11_kit_iter_get_module()</code></a> functions.
+</p>
+<p>
+This call must only be called after either <a class="link" href="p11-kit-Future.html#p11-kit-iter-begin" title="p11_kit_iter_begin ()"><code class="function">p11_kit_iter_begin()</code></a>
+or <a class="link" href="p11-kit-Future.html#p11-kit-iter-begin-with" title="p11_kit_iter_begin_with ()"><code class="function">p11_kit_iter_begin_with()</code></a> have been called.
+</p>
+<p>
+Objects which are skipped by callbacks will not be returned here
+as matching objects.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>CKR_OK if an object matched, CKR_CANCEL if no more objects, or another error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-get-module"></a><h3>p11_kit_iter_get_module ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-FUNCTION-LIST-PTR:CAPS"><span class="returnvalue">CK_FUNCTION_LIST_PTR</span></a> p11_kit_iter_get_module            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the module function pointers for the current matching object.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the module which the current matching object is in</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-get-slot"></a><h3>p11_kit_iter_get_slot ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SLOT-ID:CAPS"><span class="returnvalue">CK_SLOT_ID</span></a>          p11_kit_iter_get_slot               (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the slot which the current matching object is on.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the slot of the current matching object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-get-token"></a><h3>p11_kit_iter_get_token ()</h3>
+<pre class="programlisting"><span class="returnvalue">CK_TOKEN_INFO</span> *     p11_kit_iter_get_token              (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the token info for the token which the current matching object is on.
+</p>
+<p>
+This can only be called after p11_kit_iter_next(0 succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the slot of the current matching object.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-get-session"></a><h3>p11_kit_iter_get_session ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="returnvalue">CK_SESSION_HANDLE</span></a>   p11_kit_iter_get_session            (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the session which the current matching object is acessible
+through.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<p>
+The session may be closed after the next <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> call
+unless <a class="link" href="p11-kit-Future.html#p11-kit-iter-keep-session" title="p11_kit_iter_keep_session ()"><code class="function">p11_kit_iter_keep_session()</code></a> is called.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the session used to find the current matching object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-keep-session"></a><h3>p11_kit_iter_keep_session ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-SESSION-HANDLE:CAPS"><span class="returnvalue">CK_SESSION_HANDLE</span></a>   p11_kit_iter_keep_session           (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+After calling this function the session open for iterating
+the current object will not be automatically closed by
+the iterator after later calls to <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> or
+<a class="link" href="p11-kit-Future.html#p11-kit-iter-free" title="p11_kit_iter_free ()"><code class="function">p11_kit_iter_free()</code></a>.
+</p>
+<p>
+It is the callers responsibility to close this session,
+after the iterator has been freed. The session may still be
+used by the iterator if further iterations are performed.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the current session</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-get-object"></a><h3>p11_kit_iter_get_object ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-OBJECT-HANDLE:CAPS"><span class="returnvalue">CK_OBJECT_HANDLE</span></a>    p11_kit_iter_get_object             (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the current matching object.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the current matching object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-load-attributes"></a><h3>p11_kit_iter_load_attributes ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               p11_kit_iter_load_attributes        (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><span class="type">CK_ATTRIBUTE</span> *template</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-ULONG:CAPS"><span class="type">CK_ULONG</span></a> count</code></em>);</pre>
+<p>
+Retrieve attributes for the current matching object.
+</p>
+<p>
+Each attribute in the array will be filled in with the value
+of that attribute retrieved from the object. After use the
+attribute value memory pointed to by the <code class="literal">pValue</code>
+of each attribute should be freed with the <code class="literal">free()</code>
+function.
+</p>
+<p>
+If the <code class="literal">pValue</code> of an attribute is not <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> passed
+to this function, then it will be passed to
+<code class="literal">realloc()</code> to allocate the correct amount
+of space for the attribute value.
+</p>
+<p>
+If any attribute is not present on the object, or is sensitive and
+cannot be retrieved, then the <code class="literal">pValue</code> will be NULL.
+If <code class="literal">pValue</code> was not <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> when passed to this function
+then it will be freed with <code class="literal">free()</code>. In these
+cases <code class="literal">CKR_OK</code> is returned.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>template</code></em> :</span></p></td>
+<td>the attributes to load. <span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=count][<acronym title="Parameter for input and for returning results. Default is transfer full."><span class="acronym">inout</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td>the number of attributes</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>CKR_OK or a failure code</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-destroy-object"></a><h3>p11_kit_iter_destroy_object ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gck/stable/pkcs11-links.html#CK-RV:CAPS"><span class="returnvalue">CK_RV</span></a>               p11_kit_iter_destroy_object         (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Destory the current matching object.
+</p>
+<p>
+This can only be called after <a class="link" href="p11-kit-Future.html#p11-kit-iter-next" title="p11_kit_iter_next ()"><code class="function">p11_kit_iter_next()</code></a> succeeds.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>teh iterator</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>CKR_OK or a failure code</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="p11-kit-iter-free"></a><h3>p11_kit_iter_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                p11_kit_iter_free                   (<em class="parameter"><code><a class="link" href="p11-kit-Future.html#P11KitIter" title="P11KitIter"><span class="type">P11KitIter</span></a> *iter</code></em>);</pre>
+<p>
+Frees the iterator and all resources, such as sessions
+or callbacks held by the iterator.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>the iterator</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="P11KitIterBehavior"></a><h3>enum P11KitIterBehavior</h3>
+<pre class="programlisting">typedef enum {
+	P11_KIT_ITER_BUSY_SESSIONS = 1 &lt;&lt; 1,
+	P11_KIT_ITER_WANT_WRITABLE = 1 &lt;&lt; 2,
+} P11KitIterBehavior;
+</pre>
+<p>
+Various flags controling the behavior of the iterator.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="P11-KIT-ITER-BUSY-SESSIONS:CAPS"></a><span class="term"><code class="literal">P11_KIT_ITER_BUSY_SESSIONS</code></span></p></td>
+<td>Allow the iterator's sessions to be
+  in a busy state when the iterator returns an object.
+</td>
+</tr>
+<tr>
+<td><p><a name="P11-KIT-ITER-WANT-WRITABLE:CAPS"></a><span class="term"><code class="literal">P11_KIT_ITER_WANT_WRITABLE</code></span></p></td>
+<td>Try to open read-write sessions when
+  iterating over obojects.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19</div>
+</body>
+</html>
