@@ -7,11 +7,11 @@
 #ifdef WIN32
 /* pb callback */
 typedef void (__cdecl * PBCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
-typedef void (__cdecl * PBTimeCallbackFunctionPtr)(u32 currTime, void * pParam);
+typedef void (__cdecl * PBTimeCallbackFunctionPtr)(u32 currTime, bool bPause, void * pParam);
 #else
 /* pb callback */
-typedef void ( * PBCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
-typedef void ( * PBTimeCallbackFunctionPtr)(u32 currTime, void * pParam);
+typedef void ( * PBCallbackFunctionPtr)(VideoFrame& frame,  void * pParam);
+typedef void ( * PBTimeCallbackFunctionPtr)(u32 currTime, bool bPause, void * pParam);
 #endif
 
 
@@ -21,12 +21,15 @@ class VE_LIBRARY_API PlaybackWrapper
 {
 public:
     PlaybackWrapper(VDB &pVdb, s32 deviceId, u32 nPlaytime, PBCallbackFunctionPtr callback, 
-				void * pParam);
+				BOOL eolLoop, void * pParam);
     ~PlaybackWrapper();
 public:
 	BOOL SeekToTime(u32 seekTime);
 	BOOL StartPlay();
 	BOOL StopPlay();
+	BOOL QuitPlay();/* End of play */
+	BOOL SetSpeed(float fSpeed);
+	BOOL SetDirection(BOOL bForward);
 	BOOL SetTimeCallback(PBTimeCallbackFunctionPtr callback, void * pParam);
 	
 public:
