@@ -87,7 +87,7 @@
         </property>
         <item>
          <property name="text">
-          <string>OAPI</string>
+          <string>Web Service</string>
          </property>
         </item>
        </item>

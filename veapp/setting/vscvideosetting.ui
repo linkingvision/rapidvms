@@ -83,43 +83,6 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButtonDir">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../main/vscmainwindows.qrc">
-           <normaloff>:/action/resources/videosearch.png</normaloff>:/action/resources/videosearch.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>28</width>
-           <height>23</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="fileLoc">
          <property name="maximumSize">
           <size>
@@ -136,6 +99,46 @@ background-color: rgb(200, 200, 200);}</string>
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonDir">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../main/vscmainwindows.qrc">
+         <normaloff>:/action/resources/folder.png</normaloff>:/action/resources/folder.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>28</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_4">
