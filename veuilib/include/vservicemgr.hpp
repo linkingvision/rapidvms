@@ -18,6 +18,9 @@
 #include "vvipcmgr.hpp"
 #include "vonvifpgmgr.hpp"
 #include "vrtspserver.hpp"
+#include "vtaskmgr.hpp"
+#include "vhttpserver.hpp"
+#include "vhlsserver.hpp"
 
 using namespace UtilityLib;
 
@@ -37,6 +40,17 @@ public:
 	
 	/* RTSP Server */
 	VRTSPServer *m_pVRTSPServer;
+
+	/* HTTP Server */
+	VHTTPServer *m_pVHTTPServer;
+
+	/* HLS Server */
+	VHLSServer *m_pVHLSServer;
+
+	/* task manager */
+	VTaskMgr * m_pVTaskMgr;
+
+	/* factory */
 	Factory & m_pFactory;
 
 };
