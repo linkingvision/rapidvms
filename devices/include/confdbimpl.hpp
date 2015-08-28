@@ -6,6 +6,11 @@
 
 using namespace std;
 
+#define VSC_RTSP_DEFAULT_PORT 9554
+#define VSC_OAPI_DEFAULT_PORT 9080
+#define VSC_VHTTPS_DEFAULT_PORT 9000
+#define VSC_VHLSS_DEFAULT_PORT 9001
+
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
 	pConf.data.conf.DeviceNum = 0;
@@ -18,9 +23,11 @@ inline BOOL SysConfDataDefault(VSCConfData &pConf)
 		pConf.data.conf.VIPCMap[i] = CONF_MAP_INVALID_MIN;
 	}
 
-	pConf.data.conf.RTSPServerPort = 9554;
+	pConf.data.conf.RTSPServerPort = VSC_RTSP_DEFAULT_PORT;
 	strcpy(pConf.data.conf.MulticastStartIPV4, "226.0.0.1");
-	pConf.data.conf.OAPIPort = 9080;
+	pConf.data.conf.OAPIPort = VSC_OAPI_DEFAULT_PORT;
+	pConf.data.conf.VHTTPServerPort = VSC_VHTTPS_DEFAULT_PORT;
+	pConf.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
 
     return TRUE;
 }
@@ -112,11 +119,19 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
     memcpy(&pSys, sysValue.data(), sizeof(VSCConfData));
 	if (pSys.data.conf.RTSPServerPort == 0)
 	{
-		pSys.data.conf.RTSPServerPort = 9554;
+		pSys.data.conf.RTSPServerPort = VSC_RTSP_DEFAULT_PORT;
 	}
 	if (pSys.data.conf.OAPIPort == 0)
 	{
-		pSys.data.conf.OAPIPort = 9080;
+		pSys.data.conf.OAPIPort = VSC_OAPI_DEFAULT_PORT;
+	}
+	if (pSys.data.conf.VHTTPServerPort == 0)
+	{
+		pSys.data.conf.VHTTPServerPort = VSC_VHTTPS_DEFAULT_PORT;
+	}
+	if (pSys.data.conf.VHLSServerPort == 0)
+	{
+		pSys.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
 	}
 
     // Check for any errors found during the scan
