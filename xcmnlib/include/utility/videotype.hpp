@@ -84,6 +84,16 @@ typedef enum __VideoFrameType
     VIDEO_FRM_LAST
 } VideoFrameType;
 
+
+/* Connection Type */
+typedef enum
+{
+    VSC_CONNECT_TCP = 1,
+    VSC_CONNECT_UDP,
+    VSC_CONNECT_LAST
+} VSCConnectType;
+
+
 typedef struct __VideoFrame
 {
 	VideoStreamType streamType;
