@@ -1,7 +1,18 @@
 #include "vsccameraadd.h"
 #include "vscvwidget.h"
 #include <QFileDialog>
+#include <QDesktopWidget>
+#include <QApplication>
+#include <QMessageBox>
 #include "vscloading.hpp"
+#include "utility/videotype.hpp"
+
+#include "devicemanagement.h"
+#include "ptzmanagement.h"
+#include "media_management/profiles.h"
+#include "media_management/streamuri.h"
+#include "device_management/capabilities.h"
+#include "mediamanagement.h"
 
 extern Factory *gFactory;
 
@@ -10,6 +21,7 @@ VSCCameraAdd::VSCCameraAdd(DeviceParam &Param, QWidget *parent)
 {
 	ui.setupUi(this);
 	m_Param = Param;
+	m_bUpdateProfiles = FALSE;
 
 	BOOL bHWAccel;
 	BOOL bMining;
@@ -69,6 +81,173 @@ void VSCCameraAdd::SetupConnections()
 	connect( this->ui.radioButtonOnvif, SIGNAL( clicked() ), this, SLOT(radioButtonClicked()));
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 	connect( this->ui.pushButtonFile, SIGNAL( clicked() ), this, SLOT(fileSelect()));
+	connect( this->ui.pushButtonProfile, SIGNAL( clicked() ), this, SLOT(profileRefresh()));
+
+}
+
+/* H264 1080 x 720 30fps 4000kbps */
+void VSCCameraAdd::profileRefresh()
+{
+	/* Update the param  */
+	updateParamValue(ui.lineEditName, m_Param.m_Conf.data.conf.Name);
+
+	updateParamValue(ui.lineEditIP, m_Param.m_Conf.data.conf.IP);
+	updateParamValue(ui.lineEditPort, m_Param.m_Conf.data.conf.Port);
+	updateParamValue(ui.lineEditUser, m_Param.m_Conf.data.conf.User);
+	updateParamValue(ui.lineEditPassword, m_Param.m_Conf.data.conf.Password);
+
+	updateParamValue(ui.lineOnvifAddr, m_Param.m_Conf.data.conf.OnvifAddress);
+	
+	VSCLoading *loading = new VSCLoading(NULL);
+	loading->show();
+	QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
+	QCoreApplication::processEvents();
+
+	astring IP = m_Param.m_Conf.data.conf.IP;
+	astring Port = m_Param.m_Conf.data.conf.Port;
+	astring User = m_Param.m_Conf.data.conf.User;
+	astring Password = m_Param.m_Conf.data.conf.Password;
+	astring OnvifAddress = m_Param.m_Conf.data.conf.OnvifAddress;
+
+	astring OnvifDeviceService = "http://" + IP + ":" + Port + OnvifAddress;
+	astring url = "rtsp://" + IP + ":" + "554" + "/";
+	astring urlSubStream = "rtsp://" + IP + ":" + "554" + "/";
+
+	DeviceManagement *pDm = new DeviceManagement(OnvifDeviceService.c_str(), 
+	                        User.c_str(), Password.c_str());
+
+	if (pDm  == NULL)
+	{
+	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
+	    goto end;
+	}
+
+	Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
+	if (pMediaCap == NULL)
+	{
+	    VDC_DEBUG( "%s getCapabilitiesMedia error \n",__FUNCTION__);
+	    delete pDm;
+	    goto end;
+	}
+
+	QCoreApplication::processEvents();
+
+	MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
+	                            User.c_str(), Password.c_str());
+	if (pMedia == NULL)
+	{
+	    VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    goto end;
+	}
+
+	QCoreApplication::processEvents();
+	
+	Profiles *pProfileS = pMedia->getProfiles();
+	if (pProfileS == NULL)
+	{
+	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    goto end;
+	}
+
+	QCoreApplication::processEvents();
+
+	if (pProfileS != NULL && pProfileS->m_toKenPro.size() <= 0)
+	{
+	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    goto end;
+	}
+
+	m_bUpdateProfiles = TRUE;
+
+	for ( int i=0; i!=pProfileS->m_toKenPro.size(); ++i )
+	{
+		m_ProfilesMap[i] = pProfileS->m_toKenPro.at(i).toStdString();
+		s8 profileDisplay[1024];
+		sprintf(profileDisplay, "%s %dx%d %dfps %dbps", 
+				pProfileS->m_typeVec.at(i), pProfileS->m_widthVec.at(i), 
+				pProfileS->m_heightVec.at(i), pProfileS->m_frameRateLimitVec.at(i), 
+				pProfileS->m_bitrateLimitVec.at(i));
+
+		m_ProfilesMapDisplay[i] = profileDisplay;
+	}
+
+	QCoreApplication::processEvents();
+
+	delete pDm;
+	delete pMediaCap;
+	delete pMedia;
+	delete pProfileS;
+
+end:
+	delete loading;
+
+	/* update error, show a error message */
+	if (m_bUpdateProfiles == FALSE)
+	{
+		QMessageBox msgBox(this);
+		//Set text
+		msgBox.setWindowTitle(tr("Warning"));
+		msgBox.setText(tr("Update Profiles error ..."));
+		    //Set predefined icon, icon is show on left side of text.
+		msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
+		    //set inforative text
+		//msgBox.setInformativeText("Just show infornation.");
+		    //Add ok and cancel button.
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		    //Set focus of ok button
+		msgBox.setDefaultButton(QMessageBox::Ok);
+
+		    //execute message box. method exec() return the button value of cliecke button
+		int ret = msgBox.exec();
+
+		return;
+	}
+
+	int mainStreamIndex = 0;
+	int subStreamIndex = 0;
+	{
+		ProfilesMap::iterator it = m_ProfilesMap.begin(); 
+		for(; it!=m_ProfilesMap.end(); ++it)
+		{
+			std::string strMainStream = m_Param.m_Conf.data.conf.OnvifProfileToken;
+			std::string strSubStream = m_Param.m_Conf.data.conf.OnvifProfileToken2;
+			if ((*it).second == strMainStream)
+			{
+				mainStreamIndex = (*it).first;
+			}
+
+			if ((*it).second == strSubStream)
+			{
+				subStreamIndex = (*it).first;
+			}
+		}
+	}
+
+	/* update with current profile */
+	ProfilesMap::iterator it = m_ProfilesMapDisplay.begin(); 
+	for(; it!=m_ProfilesMapDisplay.end(); ++it)
+	{
+		ui.comboBoxMain->insertItem((*it).first, (*it).second.c_str());
+		ui.comboBoxSub->insertItem((*it).first, (*it).second.c_str());
+	}
+
+	ui.comboBoxMain->setCurrentIndex(mainStreamIndex);
+	ui.comboBoxSub->setCurrentIndex(subStreamIndex);
+
+	
+
+	
+	return ;
 
 }
 
@@ -121,6 +300,19 @@ void VSCCameraAdd::setupDefaultValue()
 	    return;
 	}
 
+	switch(m_Param.m_Conf.data.conf.ConnectType)
+	{
+	case VSC_CONNECT_TCP:
+	    ui.comboBoxConnect->setCurrentIndex(1);
+	    break;
+	case VSC_CONNECT_UDP:
+	    ui.comboBoxConnect->setCurrentIndex(0);
+	    break;
+	default:
+	    ui.comboBoxConnect->setCurrentIndex(1);
+	    break;
+	}
+
 	ui.lineEditName->setText(m_Param.m_Conf.data.conf.Name);
 	ui.lineEditIP->setText(m_Param.m_Conf.data.conf.IP);
 	ui.lineEditPort->setText(m_Param.m_Conf.data.conf.Port);
@@ -134,17 +326,17 @@ void VSCCameraAdd::setupDefaultValue()
 
 	ui.lineOnvifAddr->setText(m_Param.m_Conf.data.conf.OnvifAddress);
 
-	ui.lineEditProfileToken->setText(m_Param.m_Conf.data.conf.OnvifProfileToken);
-	ui.lineEditProfileToken2->setText(m_Param.m_Conf.data.conf.OnvifProfileToken2);
+	//ui.lineEditProfileToken->setText(m_Param.m_Conf.data.conf.OnvifProfileToken);
+	//ui.lineEditProfileToken2->setText(m_Param.m_Conf.data.conf.OnvifProfileToken2);
 
 	if (m_Param.m_Conf.data.conf.UseProfileToken == 1)
 	{
 	    ui.checkBoxProfileToken->setChecked(true);
-	    ui.lineEditProfileToken->setDisabled(0);
+	    //ui.lineEditProfileToken->setDisabled(0);
 	}else
 	{
 	    ui.checkBoxProfileToken->setChecked(false);
-	    ui.lineEditProfileToken->setDisabled(1);
+	    //ui.lineEditProfileToken->setDisabled(1);
 	}
 
 	if (m_Param.m_Conf.data.conf.HWAccel == 1)
@@ -190,8 +382,8 @@ void VSCCameraAdd::applyConfig()
 	/* Update the File location */
 	strcpy(m_Param.m_Conf.data.conf.FileLocation, ui.fileLoc->text().toStdString().c_str());
 	updateParamValue(ui.lineOnvifAddr, m_Param.m_Conf.data.conf.OnvifAddress);
-	updateParamValue(ui.lineEditProfileToken, m_Param.m_Conf.data.conf.OnvifProfileToken);
-	updateParamValue(ui.lineEditProfileToken2, m_Param.m_Conf.data.conf.OnvifProfileToken2);
+	//updateParamValue(ui.lineEditProfileToken, m_Param.m_Conf.data.conf.OnvifProfileToken);
+	//updateParamValue(ui.lineEditProfileToken2, m_Param.m_Conf.data.conf.OnvifProfileToken2);
 	m_Param.m_Conf.data.conf.nType = VSC_DEVICE_CAM;
 	if (ui.radioButtonRtsp->isChecked() == true)
 	{
@@ -228,6 +420,35 @@ void VSCCameraAdd::applyConfig()
 	}else
 	{
 	    m_Param.m_Conf.data.conf.Mining = 0;
+	}
+
+	switch(ui.comboBoxConnect->currentIndex())
+	{
+		case 1:
+		{
+			m_Param.m_Conf.data.conf.ConnectType = VSC_CONNECT_TCP;
+			break;
+		}
+		case 0:
+		{
+			m_Param.m_Conf.data.conf.ConnectType = VSC_CONNECT_UDP;
+			break;
+		}
+		default:
+		{	
+				m_Param.m_Conf.data.conf.ConnectType = VSC_CONNECT_TCP;
+				break;
+		}
+	}
+
+	/* Check the used set profiles */
+	if (m_bUpdateProfiles == TRUE)
+	{
+		int mainStreamIndex = ui.comboBoxMain->currentIndex();
+		int subStreamIndex = ui.comboBoxSub->currentIndex();
+
+		strcpy(m_Param.m_Conf.data.conf.OnvifProfileToken, m_ProfilesMap[mainStreamIndex].c_str());
+		strcpy(m_Param.m_Conf.data.conf.OnvifProfileToken2, m_ProfilesMap[subStreamIndex].c_str());
 	}
 
 	VSCLoading *loading = new VSCLoading(this);
@@ -312,8 +533,8 @@ void VSCCameraAdd::radioButtonClicked()
     //ui.lineFileLoc->setDisabled(0);
 
     ui.lineOnvifAddr->setDisabled(0);
-    ui.lineEditProfileToken->setDisabled(0);
-    ui.lineEditProfileToken2->setDisabled(0);
+    //ui.lineEditProfileToken->setDisabled(0);
+    //ui.lineEditProfileToken2->setDisabled(0);
     ui.checkBoxProfileToken->setDisabled(0);
 
     if(this->ui.radioButtonFile->isChecked())
@@ -325,9 +546,10 @@ void VSCCameraAdd::radioButtonClicked()
 
         ui.lineEditRtspLoc->setDisabled(1);
         ui.lineOnvifAddr->setDisabled(1);
-        ui.lineEditProfileToken->setDisabled(1);
-	 ui.lineEditProfileToken2->setDisabled(1);
+        //ui.lineEditProfileToken->setDisabled(1);
+		//ui.lineEditProfileToken2->setDisabled(1);
         ui.checkBoxProfileToken->setDisabled(1);
+	 ui.pushButtonProfile->setDisabled(1);
     }
 
 
@@ -336,13 +558,15 @@ void VSCCameraAdd::radioButtonClicked()
         ui.lineOnvifAddr->setDisabled(1);
 
         //ui.lineFileLoc->setDisabled(1);
-        ui.lineEditProfileToken->setDisabled(1);
-        ui.lineEditProfileToken2->setDisabled(1);
-        ui.checkBoxProfileToken->setDisabled(1);
+        //ui.lineEditProfileToken->setDisabled(1);
+        //ui.lineEditProfileToken2->setDisabled(1);
+	ui.checkBoxProfileToken->setDisabled(1);
+	ui.pushButtonProfile->setDisabled(1);
     }
     if(this->ui.radioButtonOnvif->isChecked())
     {
         ui.lineEditRtspLoc->setDisabled(1);
         //ui.lineFileLoc->setDisabled(1);
+        ui.pushButtonProfile->setDisabled(0);
     }
 }

@@ -7,43 +7,54 @@
 #include "factory.hpp"
 #include "vscvwidget.h"
 
+typedef std::map<int, std::string> ProfilesMap;
+
 class VSCCameraAdd : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    VSCCameraAdd(DeviceParam &Param, QWidget *parent);
-    ~VSCCameraAdd();
+	VSCCameraAdd(DeviceParam &Param, QWidget *parent);
+	~VSCCameraAdd();
 public:
-    void mouseDoubleClickEvent(QMouseEvent *e);
-    void createContentMenu();
-    void setupDefaultValue();
-    void updateParamValue(QLineEdit *ld, s8 * pParam);
+	void mouseDoubleClickEvent(QMouseEvent *e);
+	void createContentMenu();
+	void setupDefaultValue();
+	void updateParamValue(QLineEdit *ld, s8 * pParam);
 	
 private slots:
-    void floatingAction();
-    void unFloatingAction();
+	void floatingAction();
+	void unFloatingAction();
 
-    void radioButtonClicked();
-    void applyConfig();
-    void fileSelect();
+	void radioButtonClicked();
+	void applyConfig();
+	void fileSelect();
+	void profileRefresh();
 signals:
     //void CameraTreeUpdated();
 
 public:
-    void SetupConnections();
-    void PreView();
+	void SetupConnections();
+	void PreView();
 	
 public:
-    Ui::VSCCameraAdd ui;
+	Ui::VSCCameraAdd ui;
 private:
-    QWidget *m_pParent;
-    QAction *m_pFloating;
-    QAction *m_pUnFloating;
-    BOOL m_bFloated;
-    DeviceParam m_Param;
-    u32 m_nId;
-    VSCVWidget *m_pVideo;
+	QWidget *m_pParent;
+	QAction *m_pFloating;
+	QAction *m_pUnFloating;
+	BOOL m_bFloated;
+	DeviceParam m_Param;
+	u32 m_nId;
+	VSCVWidget *m_pVideo;
+
+	BOOL m_bUpdateProfiles;
+	
+	ProfilesMap m_ProfilesMap;
+	ProfilesMap m_ProfilesMapDisplay;
+
+
+  
     
 };
 
