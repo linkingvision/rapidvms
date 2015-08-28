@@ -132,6 +132,15 @@ public:
 	BOOL GetOAPIPort(u16 &pPort);
 	BOOL SetOAPIPort(u16 &pPort);
 
+
+	/* OpenCVR HTTP Server  port */
+	BOOL GetVHTTPSPort(u16 &pPort);
+	BOOL SetVHTTPSPort(u16 &pPort);
+
+	/* OpenCVR HLS Server  port */
+	BOOL GetVHLSSPort(u16 &pPort);
+	BOOL SetVHLSSPort(u16 &pPort);
+
 	/* Defualt HW HWAccel enable or disable */
 	BOOL GetDefaultHWAccel(BOOL &pHWAccel);
 	BOOL SetDefaultHWAccel(BOOL &pHWAccel);
