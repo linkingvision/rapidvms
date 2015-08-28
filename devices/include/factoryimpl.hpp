@@ -50,8 +50,8 @@ inline   void FactoryHddTask::run()
 			status.freeSize = info.bytesAvailable()/1024;
 			status.totalSize = info.bytesTotal()/1024;
 			mapStatus[(*it).second.hdd] = status;
-			VDC_DEBUG("HDD %s path %s freeSize %lld\n", ((*it).first).c_str(), 
-							(*it).second.path.c_str(), status.freeSize);
+			//VDC_DEBUG("HDD %s path %s freeSize %lld\n", ((*it).first).c_str(), 
+			//				(*it).second.path.c_str(), status.freeSize);
 			
 		}
 		m_Factory.UpdateDiskStatusMap(mapStatus);
@@ -227,7 +227,7 @@ inline BOOL Factory::Init()
 
 	/* Init export path */
 	astring strExportPath;
-	GetExportPath();
+	GetExportPath(strExportPath);
 	return TRUE;
 }
 
@@ -472,6 +472,46 @@ inline BOOL Factory::SetOAPIPort(u16 &pPort)
 	Lock();
 	m_Conf.GetSysData(sys);
 	sys.data.conf.OAPIPort = pPort;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
+inline BOOL Factory::GetVHTTPSPort(u16 &pPort)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	pPort = sys.data.conf.VHTTPServerPort;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetVHTTPSPort(u16 &pPort)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	sys.data.conf.VHTTPServerPort = pPort;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
+inline BOOL Factory::GetVHLSSPort(u16 &pPort)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	pPort = sys.data.conf.VHLSServerPort;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetVHLSSPort(u16 &pPort)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	sys.data.conf.VHLSServerPort = pPort;
 	m_Conf.UpdateSysData(sys);
 	UnLock();
 	return TRUE;
@@ -1259,6 +1299,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 	}else
 	{
 		m_DeviceMap[nId] = NULL;
+		UnLock();
 		return -1;
 	}
 	m_DeviceParamMap[nId] = pParam;
@@ -1269,7 +1310,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 	change.id = nId;
 	change.type = FACTORY_DEVICE_ADD;
 	CallDeviceChange(change);
-
+#if 0
 	/* Try to online the device and lock */
 	Lock();
 	pDevice->GetDeviceParam(pParam2);
@@ -1299,6 +1340,7 @@ inline s32 Factory::AddDevice(DeviceParam & pParam)
 		Lock();
 	}
 	UnLock();
+#endif
 	
     	return nId;
 }
@@ -1932,6 +1974,12 @@ inline void Factory::run()
 				if ((*it).second.m_OnlineUrl == FALSE)
 				{
 					(*it).second.m_wipOnlineUrl = (*it).second.UpdateUrl();
+			
+					if ((*it).second.m_wipOnlineUrl == FALSE)
+					{
+						(*it).second.m_wipOnline = FALSE;
+					}
+					
 				}
 			}
 		}
@@ -1989,7 +2037,7 @@ inline void Factory::run()
 				UnLock();
 			}
 		}
-		ve_sleep(1000 * 20);
+		ve_sleep(1000 * 3);
 	}
 	
 }
