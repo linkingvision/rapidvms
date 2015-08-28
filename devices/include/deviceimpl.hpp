@@ -62,6 +62,8 @@ DeviceParam::DeviceParam()
 	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
+
+	m_Conf.data.conf.ConnectType = VSC_CONNECT_TCP;/* 0 stand for UDP  */
 	
 	m_Online = FALSE;
 	m_OnlineUrl = FALSE;
@@ -152,6 +154,7 @@ BOOL DeviceParam::CheckOnline()
 
 BOOL DeviceParam::UpdateUrlOnvif()
 {
+	BOOL bGotUrl = FALSE;
 	astring IP = m_Conf.data.conf.IP;
 	astring Port = m_Conf.data.conf.Port;
 	astring User = m_Conf.data.conf.User;
@@ -198,6 +201,16 @@ BOOL DeviceParam::UpdateUrlOnvif()
 	    delete pMedia;
 	    return FALSE;
 	}
+
+	if (pProfileS != NULL && pProfileS->m_toKenPro.size() <= 0)
+	{
+	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    return FALSE;
+	}
+	
 	if (pProfileS->m_toKenPro.size() > 0)
 	{
 	    VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
@@ -205,6 +218,7 @@ BOOL DeviceParam::UpdateUrlOnvif()
 		if (m_Conf.data.conf.UseProfileToken == 1)
 		{
 			strToken = m_Conf.data.conf.OnvifProfileToken;
+			//Find which token is in the OnvifProfileToken, and then use the token
 		}else
 		{
 			strToken = pProfileS->m_toKenPro[0];
@@ -214,6 +228,13 @@ BOOL DeviceParam::UpdateUrlOnvif()
 		if (pUri)
 		{
 			m_strUrl = pUri->uri().toStdString();
+			if (m_strUrl.length() <= 0)
+			{
+				bGotUrl = FALSE;
+			}else
+			{
+				bGotUrl = TRUE;
+			}
 			delete pUri;
 		}
 	}
@@ -233,7 +254,15 @@ BOOL DeviceParam::UpdateUrlOnvif()
 		if (pUri)
 		{
 			m_strUrlSubStream = pUri->uri().toStdString();
-			m_bHasSubStream = TRUE;
+			
+			if (m_strUrl.length() <= 0)
+			{
+				bGotUrl = FALSE;
+			}else
+			{
+				m_bHasSubStream = TRUE;
+				bGotUrl = TRUE;
+			}
 			delete pUri;
 		}
 	}
@@ -243,14 +272,17 @@ BOOL DeviceParam::UpdateUrlOnvif()
 	//astring urlWithUser = "rtsp://" + User + ":" + Password + "@";
 	//Replace(strUrl, "rtsp://", urlWithUser.c_str());
 
-	m_bOnvifUrlGetted = TRUE;
+	if (bGotUrl == TRUE)
+	{
+		m_bOnvifUrlGetted = TRUE;
+	}
 
 	delete pDm;
 	delete pMediaCap;
 	delete pMedia;
 	delete pProfileS;
 	
-	return TRUE;
+	return bGotUrl;
 }
 
 BOOL DeviceParam::UpdateUrl()
@@ -401,12 +433,14 @@ DeviceStatus Device::CheckDevice(astring strUrl, astring strUrlSubStream,
 		}else
 		{
 			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
-				m_param.m_Conf.data.conf.Password, HWAccel);
+				m_param.m_Conf.data.conf.Password, HWAccel, 
+				(VSCConnectType)(m_param.m_Conf.data.conf.ConnectType));
 			VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 			if (m_param.m_bHasSubStream == TRUE)
 			{
 				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.data.conf.User,
-					m_param.m_Conf.data.conf.Password, HWAccel);			
+					m_param.m_Conf.data.conf.Password, HWAccel, 
+					(VSCConnectType)(m_param.m_Conf.data.conf.ConnectType));
 			}
 		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
