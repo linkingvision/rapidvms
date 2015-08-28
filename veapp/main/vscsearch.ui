@@ -114,6 +114,21 @@
        <set>AlignJustify|AlignVCenter</set>
       </property>
      </column>
+     <column>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>User</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Password</string>
+      </property>
+     </column>
     </widget>
    </item>
    <item row="1" column="0">
