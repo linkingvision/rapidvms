@@ -39,6 +39,8 @@ public:
     void SetupVideoLayout5x5();
     void SetupVideoLayout6x6();
     void SetupVideoLayout8x8();
+    void SetupVideoLayout1x3();
+    void SetupVideoLayout1p6();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
 #if 0
@@ -63,6 +65,8 @@ public slots:
     void SetLayoutMode5x5(){SetLayoutMode(LAYOUT_MODE_5x5);}
     void SetLayoutMode6x6(){SetLayoutMode(LAYOUT_MODE_6x6);}
     void SetLayoutMode8x8(){SetLayoutMode(LAYOUT_MODE_8x8);}
+    void SetLayoutMode1x3(){SetLayoutMode(LAYOUT_MODE_1x3);}
+    void SetLayoutMode1p6(){SetLayoutMode(LAYOUT_MODE_1p6);}
     void VideoSwitchWith(int nSrcId, int nDstId);
 
 public:
