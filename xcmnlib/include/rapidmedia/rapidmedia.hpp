@@ -17,7 +17,7 @@ public:
 	~RapidMedia();
 public:
 	BOOL Init(BOOL bRealStream, string strUrl, string strUser, 
-				string strPass, BOOL bHWAccel = FALSE);
+				string strPass, BOOL bHWAccel = FALSE, VSCConnectType connectType = VSC_CONNECT_TCP);
 	BOOL PutData(VideoFrame& packet);
 	void	SetDataHandler(RMDataHandler handle, void *pContext);
 	void	SetRawDataHandler(RMRawVideoHandler handle, void *pContext);

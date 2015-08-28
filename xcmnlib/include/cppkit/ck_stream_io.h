@@ -36,7 +36,8 @@
 
 #ifdef IS_WINDOWS
   #include <BaseTsd.h>
-  #define ssize_t SSIZE_T
+  typedef intptr_t ssize_t;
+  //#define ssize_t SSIZE_T
 #endif
 
 namespace cppkit
