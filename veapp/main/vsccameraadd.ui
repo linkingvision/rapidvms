@@ -30,6 +30,13 @@
        <property name="verticalSpacing">
         <number>3</number>
        </property>
+       <item row="17" column="1">
+        <widget class="QLabel" name="labelOnvifProfileToken_2">
+         <property name="text">
+          <string>MainStream</string>
+         </property>
+        </widget>
+       </item>
        <item row="8" column="0">
         <widget class="QLabel" name="labelPort">
          <property name="text">
@@ -47,27 +54,10 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEditPort">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
        <item row="15" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Data Mining</string>
-         </property>
-        </widget>
-       </item>
-       <item row="16" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Profile</string>
          </property>
         </widget>
        </item>
@@ -81,6 +71,13 @@
          </property>
         </widget>
        </item>
+       <item row="16" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Profile</string>
+         </property>
+        </widget>
+       </item>
        <item row="13" column="0">
         <widget class="QLabel" name="labelOnvifAddr">
          <property name="text">
@@ -88,30 +85,20 @@
          </property>
         </widget>
        </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lineEditPort">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="10" column="0">
         <widget class="QLabel" name="labelPassword">
          <property name="text">
           <string>Password</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEditName">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QLineEdit" name="lineEditUser">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
          </property>
         </widget>
        </item>
@@ -132,10 +119,23 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="labelUser">
-         <property name="text">
-          <string>User</string>
+       <item row="9" column="1">
+        <widget class="QLineEdit" name="lineEditUser">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="lineEditName">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -193,27 +193,10 @@ QRadioButton::indicator:checked:pressed {
          </property>
         </widget>
        </item>
-       <item row="18" column="1">
-        <widget class="QLineEdit" name="lineEditProfileToken">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="18" column="0">
-        <widget class="QLabel" name="labelOnvifProfileToken">
+       <item row="9" column="0">
+        <widget class="QLabel" name="labelUser">
          <property name="text">
-          <string>MainStream</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="labelIP">
-         <property name="text">
-          <string>IP Address</string>
+          <string>User</string>
          </property>
         </widget>
        </item>
@@ -254,6 +237,20 @@ QRadioButton::indicator:checked:pressed {
          </property>
         </widget>
        </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="labelIP">
+         <property name="text">
+          <string>IP Address</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="labelRtspLoc_2">
+         <property name="text">
+          <string>File Location</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QRadioButton" name="radioButtonFile">
          <property name="styleSheet">
@@ -291,10 +288,30 @@ QRadioButton::indicator:checked:pressed {
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="labelRtspLoc_2">
+       <item row="23" column="1">
+        <widget class="QComboBox" name="comboBoxConnect">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <item>
+          <property name="text">
+           <string>UDP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TCP</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="23" column="0">
+        <widget class="QLabel" name="labelOnvifProfileToken_3">
          <property name="text">
-          <string>File Location</string>
+          <string>Connection</string>
          </property>
         </widget>
        </item>
@@ -307,7 +324,7 @@ QRadioButton::indicator:checked:pressed {
           <widget class="QLabel" name="fileLoc">
            <property name="maximumSize">
             <size>
-             <width>270</width>
+             <width>250</width>
              <height>16777215</height>
             </size>
            </property>
@@ -354,85 +371,12 @@ background-color: rgb(200, 200, 200);}</string>
              <height>28</height>
             </size>
            </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="19" column="0">
-        <widget class="QLabel" name="labelOnvifProfileToken_2">
-         <property name="text">
-          <string>SubStream</string>
-         </property>
-        </widget>
-       </item>
-       <item row="19" column="1">
-        <widget class="QLineEdit" name="lineEditProfileToken2">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="20" column="1">
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>UDP</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>TCP</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Multicast</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="20" column="0">
-        <widget class="QLabel" name="labelOnvifProfileToken_3">
-         <property name="text">
-          <string>Connection</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>HW accel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="16" column="1">
-        <widget class="SwitchButton" name="checkBoxProfileToken">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="vscmainwindows.qrc">
-           <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>80</width>
-           <height>25</height>
-          </size>
-         </property>
-        </widget>
        </item>
        <item row="15" column="1">
         <widget class="SwitchButton" name="checkBoxDataMining">
@@ -485,6 +429,125 @@ background-color: rgb(200, 200, 200);}</string>
           </size>
          </property>
         </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>HW accel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="1">
+        <widget class="QLabel" name="labelOnvifProfileToken">
+         <property name="text">
+          <string>SubStream</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="1">
+        <widget class="QComboBox" name="comboBoxMain">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="1">
+        <widget class="QComboBox" name="comboBoxSub">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>20</number>
+         </property>
+         <property name="rightMargin">
+          <number>175</number>
+         </property>
+         <item>
+          <widget class="SwitchButton" name="checkBoxProfileToken">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="vscmainwindows.qrc">
+             <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>80</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonProfile">
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="vscmainwindows.qrc">
+             <normaloff>:/action/resources/refresh.png</normaloff>:/action/resources/refresh.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
