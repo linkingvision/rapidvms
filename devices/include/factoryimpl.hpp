@@ -497,6 +497,26 @@ inline BOOL Factory::SetVHTTPSPort(u16 &pPort)
 	return TRUE;
 }
 
+inline BOOL Factory::GetVHTTPSSSLPort(u16 &pPort)
+{	
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	pPort = sys.data.conf.VHTTPSSLServerPort;
+	UnLock();
+	return TRUE;
+}
+inline BOOL Factory::SetVHTTPSSSLPort(u16 &pPort)
+{
+	VSCConfData sys;
+	Lock();
+	m_Conf.GetSysData(sys);
+	sys.data.conf.VHTTPSSLServerPort = pPort;
+	m_Conf.UpdateSysData(sys);
+	UnLock();
+	return TRUE;
+}
+
 inline BOOL Factory::GetVHLSSPort(u16 &pPort)
 {	
 	VSCConfData sys;
