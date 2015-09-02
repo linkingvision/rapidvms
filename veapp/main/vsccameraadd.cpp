@@ -174,7 +174,7 @@ void VSCCameraAdd::profileRefresh()
 		m_ProfilesMap[i] = pProfileS->m_toKenPro.at(i).toStdString();
 		s8 profileDisplay[1024];
 		sprintf(profileDisplay, "%s %dx%d %dfps %dbps", 
-				pProfileS->m_typeVec.at(i), pProfileS->m_widthVec.at(i), 
+				pProfileS->m_encodingVec.at(i).toStdString().c_str(), pProfileS->m_widthVec.at(i), 
 				pProfileS->m_heightVec.at(i), pProfileS->m_frameRateLimitVec.at(i), 
 				pProfileS->m_bitrateLimitVec.at(i));
 

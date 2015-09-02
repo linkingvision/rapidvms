@@ -61,6 +61,7 @@ void VSCDeviceList::SetupConnections()
 	connect(ui.treeWidget, SIGNAL(CameraAddClicked()), this, SIGNAL(CameraAddClicked()));
 	connect(ui.treeWidget, SIGNAL(CameraEditClicked(int)), this, SIGNAL(CameraEditClicked(int)));
 	connect(ui.treeWidget, SIGNAL(CameraDeleteClicked(int)), this, SIGNAL(CameraDeleteClicked(int)));
+	connect(ui.treeWidget, SIGNAL(CameraDoubleClicked(int)), this, SIGNAL(CameraDoubleClicked(int)));
 
 
 	connect(ui.treeWidget, SIGNAL(StartRecordAllClicked()), this, SLOT(StartRecordAll()));

@@ -380,6 +380,12 @@ background-color: rgb(200, 200, 200);}</string>
        </item>
        <item row="15" column="1">
         <widget class="SwitchButton" name="checkBoxDataMining">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>80</width>
@@ -406,6 +412,12 @@ background-color: rgb(200, 200, 200);}</string>
        </item>
        <item row="14" column="1">
         <widget class="SwitchButton" name="checkBoxHWAccel">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>25</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>80</width>
@@ -445,7 +457,7 @@ background-color: rgb(200, 200, 200);}</string>
         </widget>
        </item>
        <item row="22" column="1">
-        <widget class="QComboBox" name="comboBoxMain">
+        <widget class="QComboBox" name="comboBoxSub">
          <property name="maximumSize">
           <size>
            <width>300</width>
@@ -455,7 +467,7 @@ background-color: rgb(200, 200, 200);}</string>
         </widget>
        </item>
        <item row="18" column="1">
-        <widget class="QComboBox" name="comboBoxSub">
+        <widget class="QComboBox" name="comboBoxMain">
          <property name="maximumSize">
           <size>
            <width>300</width>
@@ -477,6 +489,12 @@ background-color: rgb(200, 200, 200);}</string>
          </property>
          <item>
           <widget class="SwitchButton" name="checkBoxProfileToken">
+           <property name="minimumSize">
+            <size>
+             <width>80</width>
+             <height>25</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>80</width>
