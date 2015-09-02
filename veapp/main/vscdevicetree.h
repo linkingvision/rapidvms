@@ -22,6 +22,7 @@ public:
     VSCDeviceTree(QWidget *parent = 0);
 public:
 	void mousePressEvent(QMouseEvent *event);
+	void mouseDoubleClickEvent(QMouseEvent *event);
 	void contextMenuEvent(QContextMenuEvent * event);
 	void createActions();
 	void SetupConnections();
@@ -57,6 +58,8 @@ signals:
 	void CameraAddClicked();
 	void CameraEditClicked(int nId);
 	void CameraDeleteClicked(int nId);
+	void CameraDoubleClicked(int nId);
+
 
 	void VIPCAddClicked();
 	void VIPCEditClicked(int nId);

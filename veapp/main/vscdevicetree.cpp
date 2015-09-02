@@ -309,6 +309,35 @@ void VSCDeviceTree::mousePressEvent(QMouseEvent *event)
 	QTreeWidget::mousePressEvent(event);
 }
 
+void VSCDeviceTree::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	VDC_DEBUG( "%s \n",__FUNCTION__);
+	QTreeWidgetItem *selectedItem = currentItem();
+
+	if (event->buttons() & Qt::RightButton)
+	{
+		return;
+	}
+
+	if (selectedItem)
+	{
+		VSCDeviceIPC *pIpc = dynamic_cast<VSCDeviceIPC * >(selectedItem);
+
+		if (pIpc)
+		{
+			u32 nId = pIpc->GetDeviceId();
+			VDC_DEBUG( "%s id %d\n",__FUNCTION__, nId);
+
+			emit CameraDoubleClicked(nId);
+
+			//QTreeWidget::mouseDoubleClickEvent(event);
+			return ;
+		}
+	}
+
+	//QTreeWidget::mouseDoubleClickEvent(event);
+}
+
 void VSCDeviceTree::CameraAddClick()
 {
     VDC_DEBUG( "%s \n",__FUNCTION__);

@@ -90,6 +90,8 @@ VSCMainWindows::VSCMainWindows(QWidget *parent)
 #if 1	
 	m_pView = new VSCView(m_pMainArea, *m_pMainArea, tr("Main View"));
 	m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+	connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
+
 	m_pMainArea->addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
 	connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 			m_pView, SLOT(DeviceEvent(int, int)));

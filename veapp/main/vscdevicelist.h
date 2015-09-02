@@ -95,6 +95,9 @@ signals:
 	void CameraEditClicked(int nId);
 	void CameraDeleteClicked(int nId);
 
+	void CameraDoubleClicked(int nId);
+
+
 	/* VIPC */
 	void VIPCAddClicked();
 	void VIPCEditClicked(int nId);
