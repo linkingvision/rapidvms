@@ -5793,9 +5793,649 @@ struct Serializer< Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e93
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
+namespace cloudapi { struct CloudAPIDevice {
+ unsigned int nId;
+std::string Name;
+std::string Param;
+std::string SnapshotUrl;
+std::string HlsUrl;
+unsigned int Online;
+
+explicit CloudAPIDevice():nId(), Name(), Param(), SnapshotUrl(), HlsUrl(), Online() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::cloudapi::CloudAPIDevice > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< unsigned int > handler_0;
+SAXEventHandler< std::string > handler_1;
+SAXEventHandler< std::string > handler_2;
+SAXEventHandler< std::string > handler_3;
+SAXEventHandler< std::string > handler_4;
+SAXEventHandler< unsigned int > handler_5;bool has_nId;
+bool has_Name;
+bool has_Param;
+bool has_SnapshotUrl;
+bool has_HlsUrl;
+bool has_Online;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "nId";
+case 1:
+    return "Name";
+case 2:
+    return "Param";
+case 3:
+    return "SnapshotUrl";
+case 4:
+    return "HlsUrl";
+case 5:
+    return "Online";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_nId = false;
+has_Name = false;
+has_Param = false;
+has_SnapshotUrl = false;
+has_HlsUrl = false;
+has_Online = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::cloudapi::CloudAPIDevice * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->nId)
+, handler_1(&obj->Name)
+, handler_2(&obj->Param)
+, handler_3(&obj->SnapshotUrl)
+, handler_4(&obj->HlsUrl)
+, handler_5(&obj->Online)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+case 1:
+    return checked_event_forwarding(handler_1.Null());
+
+case 2:
+    return checked_event_forwarding(handler_2.Null());
+
+case 3:
+    return checked_event_forwarding(handler_3.Null());
+
+case 4:
+    return checked_event_forwarding(handler_4.Null());
+
+case 5:
+    return checked_event_forwarding(handler_5.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+case 1:
+    return checked_event_forwarding(handler_1.Bool(b));
+
+case 2:
+    return checked_event_forwarding(handler_2.Bool(b));
+
+case 3:
+    return checked_event_forwarding(handler_3.Bool(b));
+
+case 4:
+    return checked_event_forwarding(handler_4.Bool(b));
+
+case 5:
+    return checked_event_forwarding(handler_5.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Int(i));
+
+case 3:
+    return checked_event_forwarding(handler_3.Int(i));
+
+case 4:
+    return checked_event_forwarding(handler_4.Int(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Uint(i));
+
+case 3:
+    return checked_event_forwarding(handler_3.Uint(i));
+
+case 4:
+    return checked_event_forwarding(handler_4.Uint(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Int64(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Int64(i));
+
+case 3:
+    return checked_event_forwarding(handler_3.Int64(i));
+
+case 4:
+    return checked_event_forwarding(handler_4.Int64(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+case 1:
+    return checked_event_forwarding(handler_1.Uint64(i));
+
+case 2:
+    return checked_event_forwarding(handler_2.Uint64(i));
+
+case 3:
+    return checked_event_forwarding(handler_3.Uint64(i));
+
+case 4:
+    return checked_event_forwarding(handler_4.Uint64(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+case 1:
+    return checked_event_forwarding(handler_1.Double(d));
+
+case 2:
+    return checked_event_forwarding(handler_2.Double(d));
+
+case 3:
+    return checked_event_forwarding(handler_3.Double(d));
+
+case 4:
+    return checked_event_forwarding(handler_4.Double(d));
+
+case 5:
+    return checked_event_forwarding(handler_5.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.String(str, length, copy));
+
+case 2:
+    return checked_event_forwarding(handler_2.String(str, length, copy));
+
+case 3:
+    return checked_event_forwarding(handler_3.String(str, length, copy));
+
+case 4:
+    return checked_event_forwarding(handler_4.String(str, length, copy));
+
+case 5:
+    return checked_event_forwarding(handler_5.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
+                         { state=0; has_nId = true; }
+else if (utility::string_equal(str, length, "\x4e\x61\x6d\x65", 4))
+                         { state=1; has_Name = true; }
+else if (utility::string_equal(str, length, "\x50\x61\x72\x61\x6d", 5))
+                         { state=2; has_Param = true; }
+else if (utility::string_equal(str, length, "\x53\x6e\x61\x70\x73\x68\x6f\x74\x55\x72\x6c", 11))
+                         { state=3; has_SnapshotUrl = true; }
+else if (utility::string_equal(str, length, "\x48\x6c\x73\x55\x72\x6c", 6))
+                         { state=4; has_HlsUrl = true; }
+else if (utility::string_equal(str, length, "\x4f\x6e\x6c\x69\x6e\x65", 6))
+                         { state=5; has_Online = true; }
+            else {
+                state = -1;
+                the_error.reset(new error::UnknownFieldError(str, length)); return false;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+case 1:
+    return checked_event_forwarding(handler_1.Key(str, length, copy));
+
+case 2:
+    return checked_event_forwarding(handler_2.Key(str, length, copy));
+
+case 3:
+    return checked_event_forwarding(handler_3.Key(str, length, copy));
+
+case 4:
+    return checked_event_forwarding(handler_4.Key(str, length, copy));
+
+case 5:
+    return checked_event_forwarding(handler_5.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartArray());
+
+case 2:
+    return checked_event_forwarding(handler_2.StartArray());
+
+case 3:
+    return checked_event_forwarding(handler_3.StartArray());
+
+case 4:
+    return checked_event_forwarding(handler_4.StartArray());
+
+case 5:
+    return checked_event_forwarding(handler_5.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndArray(length));
+
+case 2:
+    return checked_event_forwarding(handler_2.EndArray(length));
+
+case 3:
+    return checked_event_forwarding(handler_3.EndArray(length));
+
+case 4:
+    return checked_event_forwarding(handler_4.EndArray(length));
+
+case 5:
+    return checked_event_forwarding(handler_5.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+case 1:
+    return checked_event_forwarding(handler_1.StartObject());
+
+case 2:
+    return checked_event_forwarding(handler_2.StartObject());
+
+case 3:
+    return checked_event_forwarding(handler_3.StartObject());
+
+case 4:
+    return checked_event_forwarding(handler_4.StartObject());
+
+case 5:
+    return checked_event_forwarding(handler_5.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+case 1:
+    return checked_event_forwarding(handler_1.EndObject(length));
+
+case 2:
+    return checked_event_forwarding(handler_2.EndObject(length));
+
+case 3:
+    return checked_event_forwarding(handler_3.EndObject(length));
+
+case 4:
+    return checked_event_forwarding(handler_4.EndObject(length));
+
+case 5:
+    return checked_event_forwarding(handler_5.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_nId) set_missing_required("nId");
+if (!has_Name) set_missing_required("Name");
+if (!has_Param) set_missing_required("Param");
+if (!has_SnapshotUrl) set_missing_required("SnapshotUrl");
+if (!has_HlsUrl) set_missing_required("HlsUrl");
+if (!has_Online) set_missing_required("Online");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+case 1:
+     handler_1.ReapError(errs); break;
+case 2:
+     handler_2.ReapError(errs); break;
+case 3:
+     handler_3.ReapError(errs); break;
+case 4:
+     handler_4.ReapError(errs); break;
+case 5:
+     handler_5.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+handler_1.PrepareForReuse();
+handler_2.PrepareForReuse();
+handler_3.PrepareForReuse();
+handler_4.PrepareForReuse();
+handler_5.PrepareForReuse();
+
+    }
+};
+
+template < class Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7 >
+struct Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, ::cloudapi::CloudAPIDevice > {
+
+    void operator()( Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7& w, const ::cloudapi::CloudAPIDevice& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x6e\x49\x64", 3, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, unsigned int >()(w, value.nId);
+w.Key("\x4e\x61\x6d\x65", 4, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.Name);
+w.Key("\x50\x61\x72\x61\x6d", 5, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.Param);
+w.Key("\x53\x6e\x61\x70\x73\x68\x6f\x74\x55\x72\x6c", 11, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.SnapshotUrl);
+w.Key("\x48\x6c\x73\x55\x72\x6c", 6, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.HlsUrl);
+w.Key("\x4f\x6e\x6c\x69\x6e\x65", 6, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, unsigned int >()(w, value.Online);
+
+        w.EndObject(6);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
 namespace cloudapi { struct CloudAPIGetAllDevicesRet {
  unsigned int Num;
-std::vector<oapi::Device> list;
+std::vector<cloudapi::CloudAPIDevice> list;
 
 explicit CloudAPIGetAllDevicesRet():Num(), list() {  }
 
@@ -5814,7 +6454,7 @@ private:
     int depth;
 
     SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< std::vector<oapi::Device> > handler_1;bool has_Num;
+SAXEventHandler< std::vector<cloudapi::CloudAPIDevice> > handler_1;bool has_Num;
 
     bool check_depth(const char* type)
     {
@@ -6183,7 +6823,7 @@ struct Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497c
         w.StartObject();
 
         w.Key("\x4e\x75\x6d", 3, false); Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, unsigned int >()(w, value.Num);
-w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, std::vector<oapi::Device> >()(w, value.list);
+w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, std::vector<cloudapi::CloudAPIDevice> >()(w, value.list);
 
         w.EndObject(2);
     }

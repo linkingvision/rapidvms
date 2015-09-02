@@ -44,6 +44,19 @@ BOOL OAPIConverter::Converter(VSCDeviceData__ &from, oapi::Device &to)
 	
 	return TRUE;
 }
+
+BOOL OAPIConverter::Converter(VSCDeviceData__ &from, 
+						cloudapi::CloudAPIDevice &to)
+{
+	to.nId = from.nId;
+	
+	to.Name = from.Name;
+	to.Param = from.Param;
+	to.SnapshotUrl = from.Name;
+
+	return TRUE;
+}
+
 BOOL OAPIConverter::Converter(oapi::Device &from, VSCDeviceData__ &to)
 {
 	return TRUE;
