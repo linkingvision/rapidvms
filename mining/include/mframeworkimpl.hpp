@@ -124,7 +124,7 @@ inline void MFramework::run()
 	MiningRet ret;
 	while (m_bExit != TRUE)
 	{
-		VDC_DEBUG("MFramework runing\n");
+		//VDC_DEBUG("MFramework runing\n");
 		if (m_RetQueue.size() > 0)
 		{
 			ret = m_RetQueue.pop();
