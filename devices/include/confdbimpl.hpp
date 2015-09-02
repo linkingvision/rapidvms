@@ -135,7 +135,7 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
 	{
 		pSys.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
 	}
-	if (pSys.data.conf.VHLSServerPort == 0)
+	if (pSys.data.conf.VHTTPSSLServerPort == 0)
 	{
 		pSys.data.conf.VHTTPSSLServerPort = VSC_VHTTPS_SSL_DEFAULT_PORT;
 	}
