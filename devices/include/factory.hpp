@@ -137,6 +137,10 @@ public:
 	BOOL GetVHTTPSPort(u16 &pPort);
 	BOOL SetVHTTPSPort(u16 &pPort);
 
+	/* OpenCVR HTTP Server  port */
+	BOOL GetVHTTPSSSLPort(u16 &pPort);
+	BOOL SetVHTTPSSSLPort(u16 &pPort);
+
 	/* OpenCVR HLS Server  port */
 	BOOL GetVHLSSPort(u16 &pPort);
 	BOOL SetVHLSSPort(u16 &pPort);
