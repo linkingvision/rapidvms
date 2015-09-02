@@ -103,6 +103,8 @@ public slots:
 	void TourStart();
 	void TourInit();
 	void TourTimerFunction();
+
+	void CameraDoubleClicked(int DeviceId);
 public:
 	Ui::VSCView ui;
 private:
