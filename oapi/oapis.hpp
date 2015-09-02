@@ -26,6 +26,8 @@ class OAPIConverter
 {
 public:
 	inline static BOOL Converter(VSCDeviceData__ &from, oapi::Device &to);
+	inline static BOOL Converter(VSCDeviceData__ &from, 
+						cloudapi::CloudAPIDevice &to);
 	inline static BOOL Converter(oapi::Device &from, VSCDeviceData__ &to);
 };
 
