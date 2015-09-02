@@ -207,6 +207,14 @@ void VSCView::TourTimerFunction()
 	return;
 }
 
+void VSCView::CameraDoubleClicked(int DeviceId)
+{
+
+	m_pVideo->PlayVideoByWindow(m_currentFocus, DeviceId);
+
+	return;
+}
+
 
 
 void VSCView::mouseMoveEvent(QMouseEvent *event)
