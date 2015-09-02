@@ -9,6 +9,7 @@ using namespace std;
 #define VSC_RTSP_DEFAULT_PORT 9554
 #define VSC_OAPI_DEFAULT_PORT 9080
 #define VSC_VHTTPS_DEFAULT_PORT 9000
+#define VSC_VHTTPS_SSL_DEFAULT_PORT 9443
 #define VSC_VHLSS_DEFAULT_PORT 9001
 
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
@@ -28,6 +29,7 @@ inline BOOL SysConfDataDefault(VSCConfData &pConf)
 	pConf.data.conf.OAPIPort = VSC_OAPI_DEFAULT_PORT;
 	pConf.data.conf.VHTTPServerPort = VSC_VHTTPS_DEFAULT_PORT;
 	pConf.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
+	pConf.data.conf.VHTTPSSLServerPort = VSC_VHTTPS_SSL_DEFAULT_PORT;
 
     return TRUE;
 }
@@ -132,6 +134,10 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
 	if (pSys.data.conf.VHLSServerPort == 0)
 	{
 		pSys.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
+	}
+	if (pSys.data.conf.VHLSServerPort == 0)
+	{
+		pSys.data.conf.VHTTPSSLServerPort = VSC_VHTTPS_SSL_DEFAULT_PORT;
 	}
 
     // Check for any errors found during the scan
