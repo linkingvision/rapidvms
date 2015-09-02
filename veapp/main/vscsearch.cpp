@@ -45,7 +45,7 @@ VSCSearch::VSCSearch(QWidget *parent)
 	ui.tableWidget->setColumnWidth(1, 120);
 	ui.tableWidget->setColumnWidth(2, 60);
 	ui.tableWidget->setColumnWidth(3, 100);
-	ui.tableWidget->setColumnWidth(4, 100);
+	ui.tableWidget->setColumnWidth(4, 150);
 	ui.tableWidget->setColumnWidth(5, 100);
 	ui.tableWidget->setColumnWidth(6, 150);
 	ui.tableWidget->setColumnWidth(7, 120);
