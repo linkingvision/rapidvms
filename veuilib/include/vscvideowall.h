@@ -70,25 +70,28 @@ public slots:
     void VideoSwitchWith(int nSrcId, int nDstId);
 
 public:
-    void UpdateVideoWallLayout();
-    void UpdateVideoWallLayout2();
-    void SetLayoutMode(VideoWallLayoutMode nMode);
-    void GetLayoutMode(VideoWallLayoutMode &nMode)
-    {
-        nMode = m_VideoWallMode;
-    }
-    void GetPlayMap(u32 *Map, int length);
-    void SetPlayMap(u32 *Map, int length, VideoWallLayoutMode nMode);
-    void SetLayout1Mode(int nId);
+	void UpdateVideoWallLayout();
+	void UpdateVideoWallLayout2();
+	void SetLayoutMode(VideoWallLayoutMode nMode);
+	void GetLayoutMode(VideoWallLayoutMode &nMode)
+	{
+	    nMode = m_VideoWallMode;
+	}
+	void GetPlayMap(u32 *Map, int length);
+	void SetPlayMap(u32 *Map, int length, VideoWallLayoutMode nMode);
+	void SetLayout1Mode(int nId);
+
+	void PlayVideoByWindow(u32 nWindow, u32 nDevice);
+   
 
 signals:
-    void ShowDisplayClicked(int nId);
-    void ShowFloatingClicked();
-    void ShowTabbedClicked();
-    void ShowControlPanelClicked();
-    void ShowFocusClicked(int nId);
-    void Layout1Clicked(int nId);
-    void ShowViewClicked(int nId);
+	void ShowDisplayClicked(int nId);
+	void ShowFloatingClicked();
+	void ShowTabbedClicked();
+	void ShowControlPanelClicked();
+	void ShowFocusClicked(int nId);
+	void Layout1Clicked(int nId);
+	void ShowViewClicked(int nId);
 
 public:
     bool Start();
