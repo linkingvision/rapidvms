@@ -285,6 +285,12 @@
     <CustomBuild Include="..\main\vscpaneltaskitem.h">
       <Filter>Include</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\main\vscdiskdevice.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\main\vscdiskdevice.h">
+      <Filter>Include</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -650,6 +656,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscpaneltaskitem.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\main\vscdiskdevice.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdiskdevice.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdiskdevice.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -794,6 +809,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscpaneltaskitem.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscdiskdevice.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
