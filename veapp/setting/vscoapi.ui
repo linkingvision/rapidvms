@@ -23,10 +23,10 @@
      <property name="horizontalSpacing">
       <number>40</number>
      </property>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>OAPI Server Port</string>
+        <string>HTTP Server Port</string>
        </property>
       </widget>
      </item>
@@ -46,30 +46,21 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>HTTP Server Port</string>
+        <string>OAPI Server Port</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="HLSPort">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>9001</string>
-       </property>
-       <property name="readOnly">
-        <bool>false</bool>
+        <string>HLS Server Port</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="2">
+     <item row="5" column="2">
       <widget class="QLineEdit" name="OAPIPort">
        <property name="maximumSize">
         <size>
@@ -85,10 +76,42 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_4">
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="HLSPort">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
-        <string>HLS Server Port</string>
+        <string>9001</string>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>HTTPS Server Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="HTTPSSLPort">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>9443</string>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

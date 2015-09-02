@@ -24,6 +24,7 @@ public:
 private:
 	u16 m_port;
 	u16 m_HTTPPort;
+	u16 m_HTTPSSLPort;
 	u16 m_HLSPort;
 
     
