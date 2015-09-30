@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapicmn.hpp"
 
-#define VE_VERSION "r1.3.2-20150903"
-#define VE_INFO "OpenCVR r1.3.2 2015"
+#define VE_VERSION "r1.3.3-20150909"
+#define VE_INFO "OpenCVR r1.3.3 2015"
 
 #define CONF_NAME_MAX 128
 /* support Camera num */
