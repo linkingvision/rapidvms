@@ -30,6 +30,7 @@ public slots:
 	void AddSurveillance();
 	void AddCamera();
 	void AddEmap();
+	void AddRecordPlan();
 	void AddDmining();
 	void AddRecorder();
 

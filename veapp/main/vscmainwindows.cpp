@@ -50,6 +50,7 @@
 #include "vdmining.hpp"
 #include "vsclogin.h"
 #include "vscpanel.h"
+#include "vscrecordplan.h"
 
 extern Factory *gFactory;
 
@@ -128,6 +129,7 @@ void VSCMainWindows::SetupConnections()
 	connect(m_pDeviceList, SIGNAL(SurveillanceClicked()), this, SLOT(AddSurveillance()));
 	connect(m_pDeviceList, SIGNAL(CameraAddClicked()), this, SLOT(AddCamera()));
 	connect(m_pDeviceList, SIGNAL(EmapClicked()), this, SLOT(AddEmap()));
+	connect(m_pDeviceList, SIGNAL(RecordPlanClicked()), this, SLOT(AddRecordPlan()));
 	connect(m_pDeviceList, SIGNAL(DminingClicked()), this, SLOT(AddDmining()));
 	connect(m_pDeviceList, SIGNAL(SearchClicked()), this, SLOT(Search()));
 	connect(m_pDeviceList, SIGNAL(RecorderClicked()), this, SLOT(AddRecorder()));
@@ -252,6 +254,7 @@ void VSCMainWindows::Panel()
 		connect(m_pPanel, SIGNAL(AddSurveillance()), this, SLOT(AddSurveillance()));
 		connect(m_pPanel, SIGNAL(Search()), this, SLOT(Search()));
 		connect(m_pPanel, SIGNAL(AddEmap()), this, SLOT(AddEmap()));
+		connect(m_pPanel, SIGNAL(AddRecordPlan()), this, SLOT(AddRecordPlan()));
 		connect(m_pPanel, SIGNAL(AddDmining()), this, SLOT(AddDmining()));
 		connect(m_pPanel, SIGNAL(Setting()), this, SLOT(Setting()));
 		connect(m_pPanel, SIGNAL(AddEvent()), this, SLOT(AddEvent()));
@@ -274,6 +277,18 @@ void VSCMainWindows::AddCamera()
 	ViewHideFocus();
     //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
 }
+
+void VSCMainWindows::AddRecordPlan()
+{
+    DeviceParam mParam;
+    VSCRecordPlan *pPlan = new VSCRecordPlan(this);
+
+    m_pMainArea->addTab(pPlan, QIcon(tr(":/action/resources/plan.png")), tr("Record Plan"));  
+    m_pMainArea->setCurrentWidget(pPlan);
+	ViewHideFocus();
+    //connect(pCameraadd, SIGNAL(CameraTreeUpdated()), m_pDeviceList, SLOT(CameraTreeUpdated()));
+}
+
 
 void VSCMainWindows::AddRecorder()
 {
