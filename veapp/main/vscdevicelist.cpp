@@ -53,6 +53,7 @@ void VSCDeviceList::SetupConnections()
 	connect(ui.pbSurveillance, SIGNAL(clicked()), this, SLOT(SurveillanceClick()));
 	connect(ui.pbCamera, SIGNAL(clicked()), this, SLOT(CameraAddClick()));
 	connect(ui.pbEmap, SIGNAL(clicked()), this, SLOT(EmapClick()));
+	connect(ui.pbRecordPlan, SIGNAL(clicked()), this, SLOT(RecordPlanClick()));
 	connect(ui.pbDmining, SIGNAL(clicked()), this, SLOT(DminingClick()));
 	connect(ui.pbSearch, SIGNAL(clicked()), this, SLOT(SearchClick()));
 	connect(ui.pbRecorder, SIGNAL(clicked()), this, SLOT(RecorderClick()));
@@ -934,6 +935,12 @@ void VSCDeviceList::CameraAddClick()
 void VSCDeviceList::EmapClick()
 {
     emit EmapClicked();
+    return;
+}
+
+void VSCDeviceList::RecordPlanClick()
+{
+    emit RecordPlanClicked();
     return;
 }
 
