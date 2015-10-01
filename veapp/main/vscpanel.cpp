@@ -32,7 +32,7 @@ VSCPanel::VSCPanel(QWidget *parent, Qt::WindowFlags flags)
 	connect(ui.pbSearch, SIGNAL(clicked()), this, SIGNAL(Search()));
 	connect(ui.pbMining, SIGNAL(clicked()), this, SIGNAL(AddDmining()));
 	connect(ui.pbEmap, SIGNAL(clicked()), this, SIGNAL(AddEmap()));
-	//connect(ui.pbPlan, SIGNAL(clicked()), this, SIGNAL(AddSurveillance())); //TODO
+	connect(ui.pbRecordPlan, SIGNAL(clicked()), this, SIGNAL(AddRecordPlan())); 
 
 	connect(ui.pbRecorder, SIGNAL(clicked()), this, SIGNAL(AddRecorder()));
 	connect(ui.pbCamera, SIGNAL(clicked()), this, SIGNAL(AddCamera()));

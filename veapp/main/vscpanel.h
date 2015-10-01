@@ -34,6 +34,7 @@ signals:
 	void AddCamera();
 	
 	void AddSurveillance();
+	void AddRecordPlan();
 	void Search();
 	void AddEmap();
 	void AddDmining();
