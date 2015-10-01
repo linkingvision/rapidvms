@@ -385,7 +385,7 @@ background-color: rgb(200, 200, 200);}</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pbRecordPlan">
          <property name="minimumSize">
           <size>
            <width>65</width>
