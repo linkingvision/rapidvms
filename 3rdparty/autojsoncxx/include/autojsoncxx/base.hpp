@@ -28,6 +28,7 @@
 
 #include <string>
 #include <cstring>
+#include <limits>
 
 namespace autojsoncxx {
 
