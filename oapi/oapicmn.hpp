@@ -7,14 +7,18 @@
 //------------------------------------------------------------------------------
 #ifndef __VSC_OAPI_CMN_H_
 #define __VSC_OAPI_CMN_H_
+
+#ifndef NOMINMAX
+#ifdef WIN32
+#undef max
+#undef min
+#define NOMINMAX
+#define NOMINMAX 
+#endif
+#endif
 #include "oapiproto.hpp"
 #include "utility/type.hpp"
-#include "XSDK/XHash.h"
-#include "XSDK/TimeUtils.h"
-#include "XSDK/XSocket.h"
-#include "XSDK/XSSLSocket.h"
 
-using namespace XSDK;
 using namespace std;
 
 typedef enum
