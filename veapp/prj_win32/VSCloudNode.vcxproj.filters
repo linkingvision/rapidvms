@@ -61,6 +61,9 @@
     <Filter Include="mining\include">
       <UniqueIdentifier>{b327a677-6e9b-4b69-a790-93b044e56a29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="recordplan">
+      <UniqueIdentifier>{74dbb07f-888d-48ae-8c12-8f111f39d9f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
@@ -290,6 +293,21 @@
     </CustomBuild>
     <CustomBuild Include="..\main\vscdiskdevice.h">
       <Filter>Include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\recordplan\vsclineedit.h">
+      <Filter>recordplan</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\recordplan\vscplaneditline.h">
+      <Filter>recordplan</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\recordplan\vscplaneditline.ui">
+      <Filter>recordplan</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\recordplan\vscrecordplan.h">
+      <Filter>recordplan</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\recordplan\vscrecordplan.ui">
+      <Filter>recordplan</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -665,6 +683,33 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscdiskdevice.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\recordplan\vsclineedit.cpp">
+      <Filter>recordplan</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclineedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclineedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\recordplan\vscplaneditline.cpp">
+      <Filter>recordplan</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscplaneditline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscplaneditline.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\recordplan\vscrecordplan.cpp">
+      <Filter>recordplan</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscrecordplan.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscrecordplan.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
@@ -812,6 +857,15 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscdiskdevice.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\recordplan\plantmpl.h">
+      <Filter>recordplan</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscplaneditline.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscrecordplan.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

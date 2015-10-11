@@ -7,7 +7,7 @@
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QTDIR>C:\Qt\Qt5.4.0_x64\5.4\msvc2013_64</QTDIR>
+    <QTDIR>C:\Qt\Qt5.4.2-x64\5.4\msvc2013_64</QTDIR>
     <LocalDebuggerCommand>$(OutDir)\OpenCVR x64.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
@@ -21,7 +21,7 @@
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QTDIR>C:\Qt\Qt5.4.0_x64\5.4\msvc2013_64</QTDIR>
+    <QTDIR>C:\Qt\Qt5.4.2-x64\5.4\msvc2013_64</QTDIR>
     <LocalDebuggerCommand>$(OutDir)\OpenCVR x64.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
