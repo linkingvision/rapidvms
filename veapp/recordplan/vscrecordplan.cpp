@@ -12,9 +12,6 @@ VSCRecordPlan::VSCRecordPlan(QWidget *parent /* = 0 */)
 {
 	ui.setupUi(this);
 
-	/* Update template */
-	updatePlanTmplList();
-
 	updateUi();
 	SetupConnection();
 
@@ -83,20 +80,14 @@ void VSCRecordPlan::SetupConnection()
 		connect(m_LineEditMap[i], SIGNAL(focusIn(int)), this, SLOT(FocusInLineEdit(int)));
 
 		for (int j=0; j<7; j++)
-		{
+		{	
+			//TODO load the plan
 			connect(m_LineEditMap[i], SIGNAL(focusIn(int)), m_PlanEditLineMap[j], SLOT(InitPlanLine(int)));
 		}
 	}
 
 	/*保存按钮被按下*/
 	connect( ui.SaveButton, SIGNAL(clicked()), this, SLOT(SaveButtonClick()) );
-
-
-	for (i=0; i<7; i++)
-	{
-		connect( this, SIGNAL(SendModInfo(QList<zexabox::PlanMod>*)), m_PlanEditLineMap[i], SLOT(RecieveModInfo(QList<zexabox::PlanMod>*)) );
-	}
-
 
 	connect(ui.OkPb, SIGNAL(clicked()), this, SLOT(OkButtonClick()));
 }
@@ -141,22 +132,4 @@ void VSCRecordPlan::applyPlanTmpl(int IpcIndex)
 	
 }
 
-void VSCRecordPlan::ListPlanButtonClick()
-{
 
-}
-
-void VSCRecordPlan::UndoButtonClick()
-{
-	if(m_currentPlanLineId >= 0)
-	{
-		m_PlanEditLineMap[m_currentPlanLineId]->UndoLastStep(m_currentTmplId);
-	}
-	return;
-}
-
-void VSCRecordPlan::updatePlanTmplList()
-{
-
-	return;
-}

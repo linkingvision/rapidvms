@@ -19,17 +19,12 @@ public:
 public slots:
 	void SaveButtonClick();
 
-	void UndoButtonClick();
-
 	void FocusInLineEdit(int Id);//lineedit被选中
 	void FocusOutLineEdit(bool radiostate);//lineedit没有被选中
 
 	void FocusInPlanLine(int LineId);
 
-	void ListPlanButtonClick();
-
 private:
-	void updatePlanTmplList();
 	void applyPlanTmpl(int IpcIndex);
 
 private:
