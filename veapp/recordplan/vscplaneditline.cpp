@@ -6,8 +6,7 @@
 #include <QMouseEvent>
 
 VSCPlanEditLine::VSCPlanEditLine(QWidget *parent /* = 0 */)
-	: QWidget(parent), moving(false), m_Editable(false), 
-		mouseX_0(0), mouseX_1(0), begin_mouseX(0), movingX(0)
+	: QWidget(parent),  m_Editable(false), m_LineId(0)
 {
 	ui.setupUi(this);
 	QPalette palette;
@@ -25,46 +24,11 @@ VSCPlanEditLine::VSCPlanEditLine(QWidget *parent /* = 0 */)
 
 	m_pClear = new QAction(QIcon(tr(":/action/resources/user-trash-2.png")), tr("Clear"), this);
 	connect(m_pClear, SIGNAL(triggered()), this, SLOT(on_Clear()));
-
-	//m_PlanModList = new QList<zexabox::PlanMod>();
-	TimeofPlan = new QList<int>();
-
-	m_Width = width();
-	m_Height = height();
 }
 
 VSCPlanEditLine::~VSCPlanEditLine()
 {
 
-}
-
-void VSCPlanEditLine::InitTimeofPlan(int pos)
-{
-	/*
-	if (m_PlanModList != NULL)
-	{
-		int i, TimePoint;
-		TimeofPlan->clear();
-		for (i=0; i<24; i++)
-		{
-			TimePoint = m_PlanModList->at(pos).Week[m_LineId][i];
-			if ( TimePoint != -1 )
-			{
-				TimeofPlan->append(TimePoint);
-			}
-			else
-			{
-				m_Tnum = i - 1;
-				break;
-			}	
-		}
-	}
-	else
-	{
-		TimeofPlan->clear();
-	}
-	*/
-	return;
 }
 
 void VSCPlanEditLine::on_Clear()
@@ -81,10 +45,9 @@ void VSCPlanEditLine::SetAlldayMod(bool fal)
 	m_Editable = false;
 	if (fal)
 	{
-		TimeofPlan->clear();
-		for (int i=0; i<24; i++)
+		for (int i = 0; i < VSC_PLAN_UNIT_LEN; i ++)
 		{
-			TimeofPlan->append(i);
+			m_planList[i] = 1;
 		}
 		update();
 	}
@@ -95,52 +58,16 @@ void VSCPlanEditLine::SetWeekDayMod(bool fal)
 	m_Editable = false;
 	if (fal)
 	{
-		TimeofPlan->clear();
 		if (m_LineId<5)
 		{
-			for (int i=0; i<24; i++)
+			for (int i = 0; i < VSC_PLAN_UNIT_LEN; i ++)
 			{
-				TimeofPlan->append(i);
+				m_planList[i] = 1;
 			}
 		}
 		update();
 	}
 }
-
-void VSCPlanEditLine::InitPlanLine(int ModId)
-{
-	m_Editable = true;
-
-	InitTimeofPlan(ModId - 1);
-	
-	update();
-}
-
-void VSCPlanEditLine::UndoLastStep(int ModId)
-{
-	if (TimeofPlan->isEmpty())
-	{
-		return;
-	}
-	else
-	{
-		TimeofPlan->removeLast();
-		update();
-	}
-
-	return;
-}
-
-void* VSCPlanEditLine::GetPlan()
-{
-	return TimeofPlan;
-}
-/*
-void VSCPlanEditLine::RecieveModInfo(QList<zexabox::PlanMod>* PlanModlist)
-{
-	m_PlanModList = PlanModlist;
-}
-*/
 
 void VSCPlanEditLine::ShowPlan()
 {
@@ -180,21 +107,21 @@ void VSCPlanEditLine::paintEvent(QPaintEvent *event)
 
 	/* --------------------- */
 	painter.setPen(QPen(Qt::white, 30));
-	painter.drawLine(0, 0, m_Width, 0);
+	painter.drawLine(0, 0, width(), 0);
 
 	int j=0;
 	for (int i = 0; i<24; i++)
 	{
 		painter.setPen(QPen(QColor(100, 100, 100), 1));
 
-		painter.drawLine(i*m_Width/24, 12, i*m_Width/24, 30);
+		painter.drawLine(i*width()/24, 12, i*width()/24, 30);
 		if (j%2 == 0)
 		{
 			painter.setPen(QPen(Qt::black, 1));
 			if (i>9)
-				painter.drawText(i*m_Width/24-4, 10, QString("%1").arg(i));
+				painter.drawText(i*width()/24-4, 10, QString("%1").arg(i));
 			else
-				painter.drawText(i*m_Width/24, 10, QString("%1").arg(i));
+				painter.drawText(i*width()/24, 10, QString("%1").arg(i));
 		}
 		j++;
 	}
@@ -211,6 +138,8 @@ void VSCPlanEditLine::mousePressEvent(QMouseEvent *event)
 	{
 		return ;
 	}
+	emit focusIn(m_LineId);
+	
 	if (m_Editable)
 	{
 		int x = event->x();
