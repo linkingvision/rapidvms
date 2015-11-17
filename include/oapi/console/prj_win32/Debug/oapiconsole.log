@@ -1,0 +1,15 @@
+﻿Build started 2015-04-21 0:16:49.
+     1>Project "C:\work\60-video\ve\opencvr\oapi\console\prj_win32\oapiconsole.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\ /I..\..\..\3rdparty\autojsoncxx\include\ /I..\..\..\3rdparty\autojsoncxx\rapidjson\include /I..\..\..\cmnlib\include\ /I"..\..\..\3rdparty\openssl-1.0.1g\include\\" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\oapicmain.cpp
+         oapicmain.cpp
+     1>c:\work\60-video\ve\opencvr\oapi\console\src\oapicmain.cpp(35): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\work\60-video\ve\opencvr\oapi\console\src\oapicmain.cpp(84): warning C4101: 'ex' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\work\60-video\ve\opencvr\oapi\console\prj_win32\Debug\oapiconsole.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\cmnlib\lib\win32\Debug\ /LIBPATH:"..\..\..\3rdparty\openssl-1.0.1g\lib\\" libeay32MTd.lib ssleay32MTd.lib cmnlib.lib Dbghelp.lib Rpcrt4.lib ws2_32.lib ole32.lib comsupp.lib winmm.lib imm32.lib oleaut32.lib IPHLPAPI.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\work\60-video\ve\opencvr\oapi\console\prj_win32\Debug\oapiconsole.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\work\60-video\ve\opencvr\oapi\console\prj_win32\Debug\oapiconsole.lib" /MACHINE:X86 Debug\oapicmain.obj
+         oapiconsole.vcxproj -> C:\work\60-video\ve\opencvr\oapi\console\prj_win32\Debug\oapiconsole.exe
+     1>Done Building Project "C:\work\60-video\ve\opencvr\oapi\console\prj_win32\oapiconsole.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.28

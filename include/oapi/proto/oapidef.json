@@ -1,0 +1,152 @@
+[
+{
+    "name": "CmnRetRsp",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["bool", "bRet", {"required": true}]
+    ]
+},
+{
+    "name": "LoginReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "User", {"required": true}],
+		["std::string", "Password", {"required": true}]
+    ]
+},
+{
+    "name": "LoginRsp",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "Nonce", {"required": true}],
+		["bool", "bRetNonce", {"required": true}],
+		["bool", "bRet", {"required": true}]
+    ]
+},
+{
+    "name": "KeepAliveReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["unsigned int", "nTimeout", {"required": true}]
+    ]
+},
+{
+    "name": "Device",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nType", {"required": true}],
+		["unsigned int", "nSubType", {"required": true}],
+		
+        ["std::string", "Name", {"required": true}],
+        ["std::string", "Param", {"required": true}],
+		
+		["std::string", "IP", {"required": true}],
+		["std::string", "Port", {"required": true}],
+		["std::string", "User", {"required": true}],
+		["std::string", "Password", {"required": true}],
+		
+		["std::string", "RtspLocation", {"required": true}],
+		["std::string", "FileLocation", {"required": true}],
+		["std::string", "OnvifAddress", {"required": true}],
+		["std::string", "CameraIndex", {"required": true}],
+		
+		
+        ["unsigned int", "UseProfileToken", {"required": true}],
+		["std::string", "OnvifProfileToken", {"required": true}],
+		
+        ["unsigned int", "Recording", {"required": true}],
+		["unsigned int", "GroupId", {"required": true}],
+		["unsigned int", "HdfsRecording", {"required": true}],	
+
+		["std::string", "OnvifProfileToken2", {"required": true}],
+		
+        ["unsigned int", "ConnectType", {"required": true}],
+		["unsigned int", "Mining", {"required": true}],
+		["unsigned int", "HWAccel", {"required": true}],	
+		["unsigned int", "IPV6", {"required": true}],
+		["unsigned int", "Online", {"required": true}]		
+    ]
+},
+{
+    "name": "DeviceListReq",
+	"namespace": "oapi",
+    "members": [
+		["bool", "bAll", {"required": true}],
+        ["unsigned int", "nId", {"required": true}]
+    ]
+},
+{
+    "name": "DeviceListRsp",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::Device>", "list"]
+    ]
+},
+{
+    "name": "StartLiveViewReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nSubId", {"required": true}]
+    ]
+},
+{
+    "name": "StopLiveViewReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nSubId", {"required": true}]
+    ]
+},
+{
+    "name": "PlaybackReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		["unsigned int", "nPlayTime", {"required": true}]
+    ]
+},
+{
+    "name": "PlaybackSeekReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["unsigned int", "nPlayTime", {"required": true}]
+    ]
+},
+{
+    "name": "CloudAPIDevice",
+    "parse_mode": "strict",
+	"namespace": "cloudapi",
+    "members": [
+        ["unsigned int", "nId", {"required": true}],
+		
+        ["std::string", "Name", {"required": true}],
+        ["std::string", "Param", {"required": true}],
+		["std::string", "SnapshotUrl", {"required": true}],
+		["std::string", "HlsUrl", {"required": true}],
+		
+		["unsigned int", "Online", {"required": true}]		
+    ]
+},
+{
+    "name": "CloudAPIGetAllDevicesRet",
+    "parse_mode": "strict",
+	"namespace": "cloudapi",
+    "members": [
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<cloudapi::CloudAPIDevice>", "list"]
+    ]
+}
+
+]

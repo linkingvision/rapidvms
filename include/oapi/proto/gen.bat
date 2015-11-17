@@ -1,0 +1,1 @@
+python autojsoncxx.py --input=oapidef.json --output=..\oapiproto.hpp

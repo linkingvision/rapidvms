@@ -1,0 +1,191 @@
+
+syntax = "proto3";
+
+package VidConf;
+//=========================video server client common
+message VidUser {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	string strPasswd = 3;
+	
+	string strRoleId = 4; //Role id for role
+}
+
+message VidUserList {
+	repeated VidUser cVidUser = 1;
+}
+
+
+//=========================video stor
+
+//Service Stor configure
+message VidStorServerConf {
+	int32 nOapiPort = 1;
+}
+
+//Camera config
+enum CameraType {
+	USB = 0;
+	FILE = 1;
+	RTSP = 2;
+	ONVIF_S = 3;
+	GB28181 = 4;
+}
+
+message VidCamera {
+	//use uuid for id of the camera
+	string strId = 1;
+	string strName = 2;
+	CameraType nType = 3;
+	
+	//ONVIF
+	string strIP = 4;
+	int32 nPort = 5;
+	string strUser = 6;
+	string strPasswd = 7;
+
+	string strONVIFAddress = 8;
+	bool bProfileToken = 9;
+	string strProfileToken1 = 10;
+	string strProfileToken2 = 11;
+	
+	//File
+	string strFile = 12;
+	
+	//RTSP
+	string strRTSPUrl = 13;
+	
+	//Motion and if use HW accel for motion
+	bool bHWaccel = 14;
+	bool bServerMotion = 15;
+}
+
+message VidCameraList {
+	repeated VidCamera cVidCamera = 1;
+}
+
+//Recording schedule?
+
+//HDFS config
+message VidHDFSConf {
+	string strNameNode = 1;
+	int32 nPort = 2;
+	
+	string strUser = 3;
+	string strPasswd = 4;
+	int32 nFileInterval = 5;
+}
+
+//=========================client
+
+//Vid Client configure
+
+//Language
+enum VidLanguage {
+	LANG_AUTO = 0;
+	EN = 1;
+	ZH_CN = 2;
+}
+
+
+enum VidLayout {
+	VID_LAYOUT_MODE_0 = 0;
+    VID_LAYOUT_MODE_1 = 1;
+    VID_LAYOUT_MODE_2X2 = 2;
+    VID_LAYOUT_MODE_3X3 = 3;
+    VID_LAYOUT_MODE_4X4 = 4;
+    VID_LAYOUT_MODE_6 = 5;
+    VID_LAYOUT_MODE_8 = 6;
+    VID_LAYOUT_MODE_12p1 = 7;
+    VID_LAYOUT_MODE_5x5 = 8;
+    VID_LAYOUT_MODE_6x6 = 9;
+    VID_LAYOUT_MODE_8x8 = 10;
+    VID_LAYOUT_MODE_ONE = 11;
+    VID_LAYOUT_MODE_1x3 = 12;
+    VID_LAYOUT_MODE_1p6 = 13;
+}
+
+
+
+message VidCameraId {
+	string strStorId = 1;//ID of the VidStor
+	string strCameraId = 2;
+}
+
+
+message VidClientConf {
+	VidLanguage nLang = 1;
+}
+
+//Video Storage
+message VidStor {
+	//use uuid for id of VidStor
+	string strId = 1;
+	string strName = 2;
+	
+	string strIP = 3;
+	int32 nPort = 4;
+	string strUser = 5;
+	string strPasswd = 6;
+}
+
+message VidStorList {
+	repeated VidStor cVidStor = 1;
+}
+
+//View Window
+message VidViewWindow {
+	VidCameraId cId = 1;
+	int32 nWindowsId = 2;
+}
+
+//View 
+message VidView {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidViewWindow cView = 3;
+	VidLayout cLayout = 4;
+}
+
+message VidViewList {
+	repeated VidView cVidView = 1;
+}
+
+//Group 
+message VidGroup {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidCameraId cGroup = 3;
+}
+
+message VidGroupList {
+	repeated VidGroup cVidGroup = 1;
+}
+
+
+//Emap 
+//Emap Camera
+message VidEmapCamera {
+	VidCameraId cId = 1;
+	int32 x = 2;
+	int32 y = 3;
+	int32 w = 4;
+	int32 h = 5;
+}
+
+//View 
+message VidEmap {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidEmapCamera cCamera = 3;
+	string strMapFile = 4;
+}
+
+message VidEmapList {
+	repeated VidEmap cVidEmap = 1;
+}
+
+
+
+
+
