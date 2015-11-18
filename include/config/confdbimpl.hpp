@@ -11,7 +11,7 @@ using namespace std;
 #define VSC_VHTTPS_DEFAULT_PORT 9000
 #define VSC_VHTTPS_SSL_DEFAULT_PORT 9443
 #define VSC_VHLSS_DEFAULT_PORT 9001
-
+#if 0
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
 	pConf.data.conf.DeviceNum = 0;
@@ -72,7 +72,7 @@ inline BOOL VGroupConfDataDefault(VSCVGroupData &pConf)
 
     return TRUE;
 }
-
+#endif
 inline s32 ConfDB::Open(astring & pPath)
 {
     m_Options.create_if_missing = true;
@@ -87,6 +87,90 @@ inline s32 ConfDB::Open(astring & pPath)
     }
     return TRUE;
 }
+
+inline   BOOL ConfDB::GetLicense(astring &strLicense)
+{
+	VSCConfLicenseKey sLicKey;
+	
+
+	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue;
+
+	if (it->Valid())
+	{
+		sysValue = it->value();
+		strLicense = sysValue.ToString();
+	}
+	if (strLicense.length() < 10)
+	{
+		strLicense = "";
+	}
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return TRUE;
+
+}
+inline   BOOL ConfDB::SetLicense(astring &strLicense)
+{
+	VSCConfLicenseKey sLic;
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice licKey((char *)&sLic, sizeof(sLic));
+	leveldb::Slice licValue(strLicense);
+	m_pDb->Put(writeOptions, licKey, licValue);
+	return TRUE;
+    
+}
+
+#if 0
+inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
+{
+    VSCConfHdfsRecordKey sKey;
+
+	//pData.ParseFromString();
+	//pData.SerializeToString();
+
+    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+    it->Seek(key);
+    leveldb::Slice sysValue;
+
+    if (it->Valid())
+    {
+        sysValue = it->value();
+    }
+
+    if (sysValue.size() != sizeof(VSCHdfsRecordData))
+    {
+        VDC_DEBUG( "Hdfs Record Config is not init\n");
+        delete it;
+		memset(&pData, 0, sizeof(VSCHdfsRecordData));
+		VSCHdfsRecordDataItemDefault(pData.data.conf);
+		UpdateHdfsRecordData(pData);
+        /* Call get system again */
+        return TRUE;
+    }
+
+	memcpy(&pData, sysValue.data(), sizeof(VSCHdfsRecordData));
+
+    // Check for any errors found during the scan
+    assert(it->status().ok());
+    delete it;
+
+    return TRUE;
+
+}
+
 
 inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
 {
@@ -254,44 +338,6 @@ inline BOOL ConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
     }
 
 	memcpy(&pVGroup, sysValue.data(), sizeof(VSCVGroupData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-inline BOOL ConfDB::GetHdfsRecordConf(VSCHdfsRecordData &pData)
-{
-    VSCConfHdfsRecordKey sKey;
-
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCHdfsRecordData))
-    {
-        VDC_DEBUG( "Hdfs Record Config is not init\n");
-        delete it;
-		memset(&pData, 0, sizeof(VSCHdfsRecordData));
-		VSCHdfsRecordDataItemDefault(pData.data.conf);
-		UpdateHdfsRecordData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
-
-	memcpy(&pData, sysValue.data(), sizeof(VSCHdfsRecordData));
 
     // Check for any errors found during the scan
     assert(it->status().ok());
@@ -725,46 +771,6 @@ inline   BOOL ConfDB::SetEmapFile(astring &strFile)
     
 }
 
-inline   BOOL ConfDB::GetLicense(astring &strLicense)
-{
-	VSCConfLicenseKey sLicKey;
-	
-
-	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
-
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
-	{
-		sysValue = it->value();
-		strLicense = sysValue.ToString();
-	}
-	if (strLicense.length() < 10)
-	{
-		strLicense = "";
-	}
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
-
-	return TRUE;
-
-}
-inline   BOOL ConfDB::SetLicense(astring &strLicense)
-{
-	VSCConfLicenseKey sLic;
-	leveldb::WriteOptions writeOptions;
-
-	leveldb::Slice licKey((char *)&sLic, sizeof(sLic));
-	leveldb::Slice licValue(strLicense);
-	m_pDb->Put(writeOptions, licKey, licValue);
-	return TRUE;
-    
-}
 
 inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
 {
@@ -879,7 +885,7 @@ inline s32 ConfDB::DelVIPC(u32 nId)
     return TRUE;
 }
 
-
+#endif
 
 
 #endif /* _CONF_DB_H_ */

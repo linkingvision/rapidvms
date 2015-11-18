@@ -25,13 +25,15 @@ public:
     s32 Open(astring & pPath);
 public:
 
-	BOOL GetDeviceData(u32 nId, VSCDeviceData &pData);
-	BOOL UpdateDeviceData(u32 nId, VSCDeviceData &pData);
-	BOOL GetVIPCData(u32 nId, VSCVIPCData &pData);
-	BOOL UpdateVIPCData(u32 nId, VSCVIPCData &pData);
+	BOOL GetHdfsRecordConf(VidHDFSConf &pData);
+
+	BOOL GetCameraConf(VidCameraList &pData);
+	BOOL UpdateCameraConf(VidCameraList &pData);
 
 	BOOL GetLicense(astring &strLicense);
 	BOOL SetLicense(astring &strLicense);
+
+#if 0
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
@@ -81,14 +83,14 @@ public:
 	BOOL GetViewConf(VSCViewData &pView);
 	
 	BOOL GetVGroupConf(VSCVGroupData &pGroup);
-	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
+
 
 	BOOL GetUserConf(VSCUserData &pData);
 
 	BOOL GetEmapConf(VSCEmapData &pData);
 
 	BOOL GetTourConf(VSCTourData &pData);
-	
+#endif	
 
 public:
     void Lock()
