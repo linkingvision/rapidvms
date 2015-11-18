@@ -30,8 +30,7 @@
 #include "debug.hpp"
 #include "vidconf.pb.h"
 
-
-
+using namespace VidConf;
 using namespace UtilityLib;
 using namespace std;
 using namespace ONVIF;
@@ -88,12 +87,11 @@ class CameraParam
 public:
 	inline CameraParam();
 	inline CameraParam(const CameraParam &pParam);
-	inline CameraParam(VSCCameraData &pData);
+	inline CameraParam(VidCamera &pData);
 	inline ~CameraParam();
 	CameraParam & operator=(const CameraParam &pParam)
 	{
-		memset(&m_Conf, 0, sizeof(m_Conf));
-		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
+		m_Conf = pParam.m_Conf;
 		if (pParam.m_strUrl.length() > 0)
 		{
 			m_strUrl = pParam.m_strUrl;
@@ -112,7 +110,7 @@ public:
 	inline BOOL UpdateDefaultUrl();
 
 public:
-	VSCCameraData m_Conf;
+	VidCamera m_Conf;
 	BOOL m_bOnvifUrlGetted;
 	astring m_strUrl;
 	astring m_strUrlSubStream;
@@ -124,38 +122,6 @@ public:
 	/* backend status  */
 	BOOL m_wipOnline;
 	BOOL m_wipOnlineUrl;
-};
-
-
-class VIPCCameraParam
-{
-public:
-	inline VIPCCameraParam()
-	{
-		memset(&m_Conf, 0, sizeof(m_Conf));
-		VSCVIPCDataItemDefault(m_Conf.data.conf);
-	}
-	inline VIPCCameraParam(const VIPCCameraParam &pParam)
-	{
-		memset(&m_Conf, 0, sizeof(m_Conf));
-		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-	}
-	inline VIPCCameraParam(VSCVIPCData &pData)
-	{
-		memset(&m_Conf, 0, sizeof(m_Conf));
-		memcpy(&m_Conf, &(pData), sizeof(m_Conf));
-	}
-	inline ~VIPCCameraParam(){}
-	VIPCCameraParam & operator=(const VIPCCameraParam &pParam)
-	{
-		memset(&m_Conf, 0, sizeof(m_Conf));
-
-		memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
-		return *this;
-	}
-
-public:
-	VSCVIPCData m_Conf;
 };
 
 class Camera

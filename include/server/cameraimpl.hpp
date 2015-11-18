@@ -31,40 +31,35 @@ inline string GetProgramDir()
 
 CameraParam::CameraParam()
 {
-	static int CameraNum = 0;
-	memset(&m_Conf, 0, sizeof(m_Conf));
-	m_Conf.data.conf.nId = 0;
-	m_Conf.data.conf.nType = VSC_CAMERA_CAM;
-	m_Conf.data.conf.nSubType = VSC_SUB_CAMERA_ONVIF;
+	m_Conf.set_ntype(VID_ONVIF_S);
+	m_Conf.set_strid("id");//TODO set ID for NVR
 
-	sprintf(m_Conf.data.conf.Name, "Camera");
-	//strcpy(m_Conf.data.conf.Name, "CAMERA ");
+	m_Conf.set_strname("Camera");
 
-	strcpy(m_Conf.data.conf.IP, "192.168.0.1");
-	strcpy(m_Conf.data.conf.Port, "80");
-	strcpy(m_Conf.data.conf.User, "admin");
-	strcpy(m_Conf.data.conf.Password, "admin");
+	m_Conf.set_strip("192.168.0.1");
+	m_Conf.set_strport("80");
+	m_Conf.set_struser("admin");
+	m_Conf.set_strpasswd("admin");
 
-	strcpy(m_Conf.data.conf.RtspLocation, "/");
+	m_Conf.set_strrtspurl("rtsp://192.168.0.1/stream")
+
 	string filePath = GetProgramDir() +  "/camera.mov";
-	strcpy(m_Conf.data.conf.FileLocation, filePath.c_str());
-	strcpy(m_Conf.data.conf.OnvifAddress, "/onvif/camera_service");
-	strcpy(m_Conf.data.conf.CameraIndex, "1");
 
-	m_Conf.data.conf.UseProfileToken = 0;
+	m_Conf.set_strfile(filePath.c_str());
 
-	m_Conf.data.conf.Recording = 0;
+	m_Conf.set_stronvifaddress("/onvif/camera_service");
 
-	//TODO add default 
-	m_Conf.data.conf.Mining = 0;
-	m_Conf.data.conf.HWAccel = 0;
-	strcpy(m_Conf.data.conf.OnvifProfileToken, "quality_h264");
-	strcpy(m_Conf.data.conf.OnvifProfileToken2, "second_h264");
+	m_Conf.set_bprofiletoken(FALSE);
+	m_Conf.set_bhwaccel(FALSE);
+
+	m_Conf.set_strprofiletoken1("quality_h264");
+	m_Conf.set_strprofiletoken1("second_h264");
+	
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
 
-	m_Conf.data.conf.ConnectType = VSC_CONNECT_TCP;/* 0 stand for UDP  */
-	
+	m_Conf.set_nconnecttype(VID_CONNECT_TCP);
+
 	m_Online = FALSE;
 	m_OnlineUrl = FALSE;
 
@@ -83,11 +78,9 @@ BOOL CameraParam::UpdateDefaultUrl()
 	return TRUE;
 }
 
-CameraParam::CameraParam(VSCCameraData &pData)
+CameraParam::CameraParam(VidCamera &pData)
 {
-	memset(&m_Conf, 0, sizeof(m_Conf));
-
-	memcpy(&m_Conf, &(pData), sizeof(m_Conf));
+	m_Conf = pData;
 	
 	m_bOnvifUrlGetted = FALSE;
 	m_bHasSubStream = FALSE;
@@ -112,32 +105,32 @@ inline std::string Replace(std::string &str, const char *string_to_replace, cons
 
 BOOL CameraParam::CheckOnline()
 {
-    if (m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_FILE 
-		|| m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_RTSP)
+    if (m_Conf.ntype()== VID_FILE 
+		|| m_Conf.ntype() == VID_RTSP)
     {
     	return TRUE;
     }
-    astring IP = m_Conf.data.conf.IP;
-    astring Port = m_Conf.data.conf.Port;
-    astring User = m_Conf.data.conf.User;
-    astring Password = m_Conf.data.conf.Password;
-    astring OnvifAddress = m_Conf.data.conf.OnvifAddress;
+    astring IP = m_Conf.strip();
+    astring Port = m_Conf.strport();
+    astring User = m_Conf.struser();
+    astring Password = m_Conf.strpasswd();
+    astring OnvifAddress = m_Conf.stronvifaddress();
 
     astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
-     VDC_DEBUG( "%s  tryCheckCamera Begin \n",__FUNCTION__);
-     if (TryCheckCamera(IP, Port) == false)
+     VDC_DEBUG( "%s  TryCheckDevice Begin \n",__FUNCTION__);
+     if (TryCheckDevice(IP, Port) == false)
      {
-       VDC_DEBUG( "%s tryCheckCamera False \n",__FUNCTION__);    
+       VDC_DEBUG( "%s TryCheckDevice False \n",__FUNCTION__);    
 	return false;
      }
-     VDC_DEBUG( "%s  tryCheckCamera End \n",__FUNCTION__);
-    CameraManagement *pDm = new CameraManagement(OnvifCameraService.c_str(), 
+     VDC_DEBUG( "%s  TryCheckDevice End \n",__FUNCTION__);
+    DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
                             User.c_str(), Password.c_str());
     
     if (pDm  == NULL)
     {
-        VDC_DEBUG( "%s new CameraManagement error \n",__FUNCTION__);
+        VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
         return FALSE;
     }
     
@@ -155,22 +148,22 @@ BOOL CameraParam::CheckOnline()
 BOOL CameraParam::UpdateUrlOnvif()
 {
 	BOOL bGotUrl = FALSE;
-	astring IP = m_Conf.data.conf.IP;
-	astring Port = m_Conf.data.conf.Port;
-	astring User = m_Conf.data.conf.User;
-	astring Password = m_Conf.data.conf.Password;
-	astring OnvifAddress = m_Conf.data.conf.OnvifAddress;
+	astring IP = m_Conf.strip();
+	astring Port = m_Conf.strport();
+	astring User = m_Conf.struser();
+	astring Password = m_Conf.strpasswd();
+	astring OnvifAddress = m_Conf.stronvifaddress();
 
 	astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
 	astring urlSubStream = "rtsp://" + IP + ":" + "554" + "/";
 
-	CameraManagement *pDm = new CameraManagement(OnvifCameraService.c_str(), 
+	DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
 	                        User.c_str(), Password.c_str());
 
 	if (pDm  == NULL)
 	{
-	    VDC_DEBUG( "%s new CameraManagement error \n",__FUNCTION__);
+	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
 	    return FALSE;
 	}
 
@@ -217,12 +210,12 @@ BOOL CameraParam::UpdateUrlOnvif()
 		QString strToken;
 		if (m_Conf.data.conf.UseProfileToken == 1)
 		{
-			strToken = m_Conf.data.conf.OnvifProfileToken;
+			strToken = m_Conf.strprofiletoken1().c_str();
 			//Find which token is in the OnvifProfileToken, and then use the token
 		}else
 		{
 			strToken = pProfileS->m_toKenPro[0];
-			strcpy(m_Conf.data.conf.OnvifProfileToken, pProfileS->m_toKenPro[0].toStdString().c_str());
+			m_Conf.set_strprofiletoken1(pProfileS->m_toKenPro[0].toStdString().c_str());
 		}
 		StreamUri *pUri = pMedia->getStreamUri(strToken);
 		if (pUri)
@@ -244,11 +237,11 @@ BOOL CameraParam::UpdateUrlOnvif()
 		QString strToken;
 		if (m_Conf.data.conf.UseProfileToken == 1)
 		{
-			strToken = m_Conf.data.conf.OnvifProfileToken2;
+			strToken = m_Conf.strprofiletoken2().c_str();
 		}else
 		{
 			strToken = pProfileS->m_toKenPro[1];
-			strcpy(m_Conf.data.conf.OnvifProfileToken2, pProfileS->m_toKenPro[1].toStdString().c_str());
+			m_Conf.set_strprofiletoken2(pProfileS->m_toKenPro[1].toStdString().c_str());
 		}
 		StreamUri *pUri = pMedia->getStreamUri(strToken);
 		if (pUri)
@@ -288,24 +281,27 @@ BOOL CameraParam::UpdateUrlOnvif()
 BOOL CameraParam::UpdateUrl()
 {
     //TODO RTSP ONVIF call onvif sdk to get a Stream URL
-    if (m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_FILE)
+    if (m_Conf.ntype()== VID_FILE )
     {
-        m_strUrl = m_Conf.data.conf.FileLocation;
+        m_strUrl = m_Conf.strfile();
 	 m_bHasSubStream = FALSE;
     }
 
-    if (m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_RTSP)
+    if (m_Conf.ntype()== VID_RTSP)
     {
+#if 0
         char url[512];
         sprintf(url, "rtsp://%s:%s%s",
                 m_Conf.data.conf.IP,
                 m_Conf.data.conf.Port, m_Conf.data.conf.RtspLocation);
-        m_strUrl = url;
-	 m_bHasSubStream = FALSE;
+#endif
+	
+	m_strUrl = m_Conf.strrtspurl();
+	m_bHasSubStream = FALSE;
 
     }
 
-    if (m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_ONVIF)
+    if (m_Conf.ntype()== VID_ONVIF_S)
     {
         return UpdateUrlOnvif();
     }
@@ -315,9 +311,8 @@ BOOL CameraParam::UpdateUrl()
 
 CameraParam::CameraParam(const CameraParam &pParam)
 {
-	memset(&m_Conf, 0, sizeof(m_Conf));
+	m_Conf = pParam.m_Conf;
 
-	memcpy(&m_Conf, &(pParam.m_Conf), sizeof(m_Conf));
 	m_bOnvifUrlGetted = pParam.m_bOnvifUrlGetted;
 	m_bHasSubStream = pParam.m_bHasSubStream;
 	m_Online = pParam.m_Online;
@@ -339,10 +334,12 @@ m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay),
 m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream)
 
 {
+#if 0//TODO
 	if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
 	{
 	  	sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
 	}
+#endif
 	
 	m_param = pParam;
 	m_param.UpdateDefaultUrl();
@@ -416,7 +413,7 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
         if (m_param.m_OnlineUrl == FALSE)
         {
         	BOOL HWAccel = FALSE;
-		if (m_param.m_Conf.data.conf.HWAccel == 1)
+		if (m_param.m_Conf.bhwaccel()== TRUE)
 		{
 			HWAccel = TRUE;
 		}
@@ -427,7 +424,7 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		m_param.m_strUrl = strUrl;
 		m_param.m_strUrlSubStream = strUrlSubStream;
 		m_param.m_bHasSubStream = bHasSubStream;
-		if (m_param.m_Conf.data.conf.nSubType == VSC_SUB_CAMERA_FILE)
+		if (m_param.m_Conf.ntype()== VID_FILE)
 		{
 			m_vPlay.Init(m_param.m_strUrl, HWAccel);
 		}else
@@ -520,25 +517,26 @@ BOOL Camera::ShowAlarm(HWND hWnd)
 
  BOOL Camera::UpdatePTZConf()
 {
-    if (m_param.m_Conf.data.conf.nSubType != VSC_SUB_CAMERA_ONVIF)
+    if (m_param.m_Conf.ntype()!= VID_ONVIF_S)
     {
     	return TRUE;
     }
     QString strToken;
-    astring IP = m_param.m_Conf.data.conf.IP;
-    astring Port = m_param.m_Conf.data.conf.Port;
-    astring User = m_param.m_Conf.data.conf.User;
-    astring Password = m_param.m_Conf.data.conf.Password;
-    astring OnvifAddress = m_param.m_Conf.data.conf.OnvifAddress;
+
+	astring IP = m_param.m_Conf.strip();
+	astring Port = m_param.m_Conf.strport();
+	astring User = m_param.m_Conf.struser();
+	astring Password = m_param.m_Conf.strpasswd();
+	astring OnvifAddress = m_param.m_Conf.stronvifaddress();
 
     astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 
-    CameraManagement *pDm = new CameraManagement(OnvifCameraService.c_str(), 
+    DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
                             User.c_str(), Password.c_str());
     
     if (pDm  == NULL)
     {
-        VDC_DEBUG( "%s new CameraManagement error \n",__FUNCTION__);
+        VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
         return FALSE;
     }
 
@@ -602,11 +600,11 @@ BOOL Camera::ShowAlarm(HWND hWnd)
     if (m_ptz == NULL)
     {
         VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        delete pMedia;
-		delete pPtz;
-        return FALSE;
+	delete pDm;
+	delete pMediaCap;
+	delete pMedia;
+	delete pPtz;
+	return FALSE;
     }
 
     m_continuousMove.setProfileToken(strToken);
