@@ -190,9 +190,9 @@ inline BOOL Factory::Init()
 	m_HddTask = new FactoryHddTask(*this);
 	m_HddTask->start();
 
-	if (sysData.data.conf.OAPIPort == 0)
+	//if (sysData.data.conf.OAPIPort == 0)
 	{
-		sysData.data.conf.OAPIPort = 9080;
+		//sysData.data.conf.OAPIPort = 9080;
 	}
 	//m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
 	//m_pHttpServer->start();
@@ -660,10 +660,10 @@ inline BOOL Factory::GetRecordStatus(astring nIndex,BOOL &nStatus)
     {
         return FALSE;
     }
-    if (pParam.m_Conf.data.conf.Recording == 1)
+    //if (pParam.m_Conf.data.conf.Recording == 1)
     {
         nStatus = TRUE;
-    }else
+    }//else
     {
         nStatus = FALSE;
     }
@@ -672,6 +672,7 @@ inline BOOL Factory::GetRecordStatus(astring nIndex,BOOL &nStatus)
 
 inline BOOL Factory::StartRecord(astring nIndex)
 {
+#if 0
     CameraParam pParam;
     FactoryCameraChangeData change;
 
@@ -694,10 +695,12 @@ inline BOOL Factory::StartRecord(astring nIndex)
     change.id = nIndex;
     change.type = FACTORY_CAMERA_RECORDING_ON;
     CallCameraChange(change);
+#endif
     return TRUE;
 }
 inline BOOL Factory::StopRecord(astring nIndex)
 {
+#if 0
     CameraParam pParam;
     FactoryCameraChangeData change;
 
@@ -720,12 +723,14 @@ inline BOOL Factory::StopRecord(astring nIndex)
     change.id = nIndex;
     change.type = FACTORY_CAMERA_RECORDING_OFF;
     CallCameraChange(change);
+#endif
     return TRUE;
 }
 
 
 inline BOOL Factory::StartHdfsRecord(astring nIndex)
 {
+#if 0
     CameraParam pParam;
     FactoryCameraChangeData change;
 
@@ -748,10 +753,12 @@ inline BOOL Factory::StartHdfsRecord(astring nIndex)
     change.id = nIndex;
     change.type = FACTORY_CAMERA_RECORDING_ON;
     CallCameraChange(change);
+#endif
     return TRUE;
 }
 inline BOOL Factory::StopHdfsRecord(astring nIndex)
 {
+#if 0
     CameraParam pParam;
     FactoryCameraChangeData change;
 
@@ -774,11 +781,13 @@ inline BOOL Factory::StopHdfsRecord(astring nIndex)
     change.id = nIndex;
     change.type = FACTORY_CAMERA_RECORDING_OFF;
     CallCameraChange(change);
+#endif
     return TRUE;
 }
 
 inline BOOL Factory::StartRecordAll()
 {
+#if 0
 	Lock();
 	CameraParamMap CameraMap = m_CameraParamMap;
 	UnLock();
@@ -788,10 +797,12 @@ inline BOOL Factory::StartRecordAll()
 	    StartRecord((*it).second.m_Conf.data.conf.nId);
 	}
 
+#endif
 	return TRUE;
 }
 inline BOOL Factory::StopRecordAll()
 {
+#if 0
 	Lock();
 	CameraParamMap CameraMap = m_CameraParamMap;
 	UnLock();
@@ -800,11 +811,13 @@ inline BOOL Factory::StopRecordAll()
 	{
 	    StopRecord((*it).second.m_Conf.data.conf.nId);
 	}
+#endif
 
 	return TRUE;
 }
 inline BOOL Factory::StartHdfsRecordAll()
 {
+#if 0
 	Lock();
 	CameraParamMap CameraMap = m_CameraParamMap;
 	UnLock();
@@ -813,11 +826,13 @@ inline BOOL Factory::StartHdfsRecordAll()
 	{
 	    StartHdfsRecord((*it).second.m_Conf.data.conf.nId);
 	}
+#endif
 
 	return TRUE;
 }
 inline BOOL Factory::StopHdfsRecordAll()
 {
+#if 0
 	Lock();
 	CameraParamMap CameraMap = m_CameraParamMap;
 	UnLock();
@@ -827,18 +842,21 @@ inline BOOL Factory::StopHdfsRecordAll()
 	    StopHdfsRecord((*it).second.m_Conf.data.conf.nId);
 	}	
 
+#endif
 	return TRUE;
 }
 
-inline s32 Factory::AddCamera(CameraParam & pParam)
+inline astring Factory::AddCamera(CameraParam & pParam)
 {
-	s32 nId = GetCameraID();
+#if 0
+	//s32 nId = GetCameraID();
+	astring nId = "sdfsdf";//TODO
 	FactoryCameraChangeData change;
 	Camera *pCamera = NULL;
 	CameraParam pParam2;
 
 	Lock();
-	pParam.m_Conf.data.conf.nId = nId;
+	//pParam.m_Conf.data.conf.nId = nId;
 
 	m_CameraMap[nId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
 	pCamera = m_CameraMap[nId]; 
@@ -852,12 +870,13 @@ inline s32 Factory::AddCamera(CameraParam & pParam)
 	change.type = FACTORY_CAMERA_ADD;
 	CallCameraChange(change);
 
-	
-    	return nId;
+#endif
+    	return "adf";
 }
 
 inline BOOL Factory::DelCamera(astring nIndex)
 {
+#if 0
     FactoryCameraChangeData change;
 
     change.id = nIndex;
@@ -878,7 +897,7 @@ inline BOOL Factory::DelCamera(astring nIndex)
     m_Conf.DelCamera(nIndex);
     UnLock();
     ReleaseCameraID(nIndex);
-	
+#endif	
     return TRUE;
 }
 
@@ -946,7 +965,7 @@ inline void Factory::run()
 			CameraMap::iterator it = m_CameraMap.begin(); 
 			for(; it!=m_CameraMap.end(); ++it)
 			{	
-				s32 nIndex = (*it).first;
+				astring nIndex = (*it).first;
 				CameraParam pParam;
 				Camera *pCamera = m_CameraMap[nIndex];
 				if (pCamera == NULL)

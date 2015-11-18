@@ -8,18 +8,18 @@
 
 #ifndef __VSC_FACTORY_H_
 #define __VSC_FACTORY_H_
-#include "confdb.hpp"
-#include "camera.hpp"
+#include "config/confdb.hpp"
+#include "server/camera.hpp"
 #include "vdb.hpp"
 #include "vhdfsdb.hpp"
 #include "vplay.hpp"
-#include "sysdb.hpp"
-#include "hddcamera.hpp"
+#include "config/sysdb.hpp"
+#include "server/hdddevice.hpp"
 #include <QThread>
 #include <qdebug.h>
 #include "Poco/Path.h"
 #include "Poco/File.h"
-#include "vidconf.pb.h"
+#include "config/vidconf.pb.h"
 
 using namespace VidConf;
 
@@ -112,7 +112,7 @@ public:
 	BOOL GetCameraOnlineMap(CameraOnlineMap &pMap);
 
        /* Camera function */
-	s32 AddCamera(CameraParam & pParam);
+	astring AddCamera(CameraParam & pParam);
 	s32 GetCameraParamById(CameraParam & pParam, astring strCamId);
 	BOOL GetCameraRtspUrl(astring & strUrl, astring strCamId);
 	s32 GetCameraParamByIdTryLock(CameraParam & pParam, astring strCamId);
@@ -194,8 +194,6 @@ private:
 	CameraParamMap m_CameraParamMap;
 	CameraOnlineMap m_CameraOnlineMap;
 
-	/* Virtual IP camera param */
-	VIPCCameraParamMap m_VIPCCameraParamMap;
 	fast_mutex m_Lock;
 	tthread::thread *m_pThread;
 
