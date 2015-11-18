@@ -21,6 +21,8 @@
 #include "Poco/File.h"
 #include "vidconf.pb.h"
 
+using namespace VidConf;
+
 typedef enum
 {
     FACTORY_CAMERA_ADD = 1,
@@ -38,7 +40,7 @@ class FactoryCameraChangeData
 {
 public:
 	FactoryCameraChangeType type;
-	int id;
+	astring id;
 };
 
 typedef BOOL (*FactoryCameraChangeNotify)(void* pParam, 
@@ -90,6 +92,7 @@ public:
 	BOOL SetExportPath(astring &strPath);
 
 public:
+#if 0
 	BOOL GetAutoLogin();
 	BOOL AuthUser(astring &strUser, astring &strPasswd);
 	BOOL GetUserData(VSCUserData &pData);
@@ -102,7 +105,7 @@ public:
 	/* OpenCVR API port */
 	BOOL GetOAPIPort(u16 &pPort);
 	BOOL SetOAPIPort(u16 &pPort);
-
+#endif
 public:
 	/* UI can use this for display camera tree */
 	BOOL GetCameraParamMap(CameraParamMap &pMap);
@@ -127,7 +130,7 @@ public:
 	BOOL StartHdfsRecordAll();
 	BOOL StopHdfsRecordAll();
 public:
-	BOOL GetRecordStatus(s32 nIndex, BOOL &bStatus);
+	BOOL GetRecordStatus(astring strCamId, BOOL &bStatus);
 
 public:
 	/* Disk function */

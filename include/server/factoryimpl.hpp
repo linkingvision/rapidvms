@@ -159,13 +159,13 @@ inline BOOL Factory::Init()
 #endif
 	m_pVdb = new VDB(strPathDb);
 
-	VSCHdfsRecordData HdfsConf;
+	VidHDFSConf HdfsConf;
 	m_Conf.GetHdfsRecordConf(HdfsConf);
-	astring strNameNode = HdfsConf.data.conf.NameNode;
-	astring strPort = HdfsConf.data.conf.Port;
-	astring strUser = HdfsConf.data.conf.User;
+	astring strNameNode = HdfsConf.strnamenode();
+	astring strPort = HdfsConf.strport();
+	astring strUser = HdfsConf.struser();
 	m_pVHdfsdb = new VHdfsDB(strNameNode, strPort, strUser);
-
+#if 0
 	VSCConfData sysData;
 	m_Conf.GetSysData(sysData);
 	for (s32 i = 1; i < CONF_MAP_MAX; i ++)
@@ -182,6 +182,7 @@ inline BOOL Factory::Init()
 	        VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
 	    }
 	}
+#endif
 
 	InitLicense();
 	//m_pThread = new thread(Factory::Run, (void *)this);
@@ -231,7 +232,7 @@ inline BOOL Factory::SetLicense(astring &strLicense)
 	VPlay::SetLicense(strLicense);
 	return m_Conf.SetLicense(strLicense);
 }
-
+#if 0
 inline BOOL Factory::AuthUser(astring &strUser, astring &strPasswd)
 {
 	VSCUserData pData;
@@ -286,6 +287,7 @@ inline BOOL Factory::SetHdfsRecordConf(VSCHdfsRecordData &pData)
 	return ret;
 }
 
+
 inline BOOL Factory::GetOAPIPort(u16 &pPort)
 {	
 	VSCConfData sys;
@@ -305,7 +307,7 @@ inline BOOL Factory::SetOAPIPort(u16 &pPort)
 	UnLock();
 	return TRUE;
 }
-
+#endif
 inline BOOL Factory::InitLicense()
 {
 	astring strLicense;
@@ -346,27 +348,27 @@ inline BOOL Factory::UpdateDiskStatusMap(VDBDiskStatus &pStatus)
 }
 
 
-inline BOOL Factory::SearchItems(s32 cameraId, u32 startTime, u32 endTime, u32 recordType, 
+inline BOOL Factory::SearchItems(astring cameraId, u32 startTime, u32 endTime, u32 recordType, 
 				RecordItemMap &map)
 {
     return m_pVdb->SearchItems(cameraId, startTime, endTime, recordType, 
                         map);
 }
 
-inline BOOL Factory::SearchHasItems(s32 cameraId, u32 startTime, u32 endTime, u32 recordType)
+inline BOOL Factory::SearchHasItems(astring cameraId, u32 startTime, u32 endTime, u32 recordType)
 {
     return m_pVdb->SearchHasItems(cameraId, startTime, endTime, recordType);
 }
-inline BOOL Factory::SearchAItem(s32 cameraId, u32 Time, VdbRecordItem &pItem)
+inline BOOL Factory::SearchAItem(astring cameraId, u32 Time, VdbRecordItem &pItem)
 {
     return m_pVdb->SearchAItem(cameraId, Time, pItem);
 }
 
-inline BOOL Factory::SearchAItemNear(s32 cameraId, u32 Time, VdbRecordItem &pItem)
+inline BOOL Factory::SearchAItemNear(astring cameraId, u32 Time, VdbRecordItem &pItem)
 {
     return m_pVdb->SearchAItemNear(cameraId, Time, pItem);
 }
-inline BOOL Factory::SearchNextItem(s32 cameraId, s64 LastId, VdbRecordItem &pItem)
+inline BOOL Factory::SearchNextItem(astring cameraId, s64 LastId, VdbRecordItem &pItem)
 {
     return m_pVdb->SearchNextItem(cameraId, LastId, pItem);
 }
@@ -409,7 +411,7 @@ inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
     return TRUE;
 }
 
-inline BOOL Factory::RegDataCallback(s32 nIndex, CameraDataCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegDataCallback(astring nIndex, CameraDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
@@ -423,7 +425,7 @@ inline BOOL Factory::RegDataCallback(s32 nIndex, CameraDataCallbackFunctionPtr p
     return TRUE;
 }
 
-inline BOOL Factory::UnRegDataCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegDataCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -437,7 +439,7 @@ inline BOOL Factory::UnRegDataCallback(s32 nIndex, void * pParam)
 }
 
 
-inline BOOL Factory::GetInfoFrame(s32 nIndex, InfoFrame &pFrame)
+inline BOOL Factory::GetInfoFrame(astring nIndex, InfoFrame &pFrame)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -450,7 +452,7 @@ inline BOOL Factory::GetInfoFrame(s32 nIndex, InfoFrame &pFrame)
     return TRUE;
 }
 
-inline BOOL Factory::RegSubDataCallback(s32 nIndex, CameraDataCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegSubDataCallback(astring nIndex, CameraDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
@@ -464,7 +466,7 @@ inline BOOL Factory::RegSubDataCallback(s32 nIndex, CameraDataCallbackFunctionPt
     return TRUE;
 }
 
-inline BOOL Factory::UnRegSubDataCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegSubDataCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -478,7 +480,7 @@ inline BOOL Factory::UnRegSubDataCallback(s32 nIndex, void * pParam)
 }
 
 
-inline BOOL Factory::GetSubInfoFrame(s32 nIndex, InfoFrame &pFrame)
+inline BOOL Factory::GetSubInfoFrame(astring nIndex, InfoFrame &pFrame)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -491,7 +493,7 @@ inline BOOL Factory::GetSubInfoFrame(s32 nIndex, InfoFrame &pFrame)
     return TRUE;
 }
 
-inline BOOL Factory::RegRawCallback(s32 nIndex, CameraRawCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegRawCallback(astring nIndex, CameraRawCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
@@ -505,7 +507,7 @@ inline BOOL Factory::RegRawCallback(s32 nIndex, CameraRawCallbackFunctionPtr pCa
     return TRUE;
 }
 
-inline BOOL Factory::UnRegRawCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegRawCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -518,7 +520,7 @@ inline BOOL Factory::UnRegRawCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
-inline BOOL Factory::RegSeqCallback(s32 nIndex, CameraSeqCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegSeqCallback(astring nIndex, CameraSeqCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
@@ -532,7 +534,7 @@ inline BOOL Factory::RegSeqCallback(s32 nIndex, CameraSeqCallbackFunctionPtr pCa
     return TRUE;
 }
 
-inline BOOL Factory::UnRegSeqCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegSeqCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -545,7 +547,7 @@ inline BOOL Factory::UnRegSeqCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
-inline BOOL Factory::RegSubRawCallback(s32 nIndex, CameraRawCallbackFunctionPtr pCallback,
+inline BOOL Factory::RegSubRawCallback(astring nIndex, CameraRawCallbackFunctionPtr pCallback,
         void * pParam)
 {
     Lock();
@@ -559,7 +561,7 @@ inline BOOL Factory::RegSubRawCallback(s32 nIndex, CameraRawCallbackFunctionPtr 
     return TRUE;
 }
 
-inline BOOL Factory::UnRegSubRawCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegSubRawCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -572,7 +574,7 @@ inline BOOL Factory::UnRegSubRawCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
-inline BOOL Factory::RegDelCallback(s32 nIndex, CameraDelCallbackFunctionPtr pCallback, void * pParam)
+inline BOOL Factory::RegDelCallback(astring nIndex, CameraDelCallbackFunctionPtr pCallback, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -584,7 +586,7 @@ inline BOOL Factory::RegDelCallback(s32 nIndex, CameraDelCallbackFunctionPtr pCa
 
     return TRUE;
 }
-inline BOOL Factory::UnRegDelCallback(s32 nIndex, void * pParam)
+inline BOOL Factory::UnRegDelCallback(astring nIndex, void * pParam)
 {
     Lock();
     if (m_CameraMap[nIndex] != NULL)
@@ -597,7 +599,7 @@ inline BOOL Factory::UnRegDelCallback(s32 nIndex, void * pParam)
     return TRUE;
 }
 
-inline BOOL Factory::GetCameraOnline(s32 nIndex, BOOL &bStatus)
+inline BOOL Factory::GetCameraOnline(astring nIndex, BOOL &bStatus)
 {
     Lock();
 
@@ -611,7 +613,7 @@ inline BOOL Factory::GetCameraOnline(s32 nIndex, BOOL &bStatus)
     return TRUE;
 }
 
-inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
+inline   BOOL Factory::GetUrl(astring nIndex, std::string &url)
 {
     BOOL ret = FALSE;
 
@@ -625,7 +627,7 @@ inline   BOOL Factory::GetUrl(s32 nIndex, std::string &url)
     return ret;
 }
 
-inline BOOL Factory::GetStreamInfo(s32 nIndex, VideoStreamInfo &pInfo)
+inline BOOL Factory::GetStreamInfo(astring nIndex, VideoStreamInfo &pInfo)
 {
 	Lock();
 	if (m_CameraMap[nIndex] != NULL)
@@ -637,7 +639,7 @@ inline BOOL Factory::GetStreamInfo(s32 nIndex, VideoStreamInfo &pInfo)
 	return TRUE;
 }
 
-inline BOOL Factory::PtzAction(s32 nIndex, FPtzAction action, float speed)
+inline BOOL Factory::PtzAction(astring nIndex, FPtzAction action, float speed)
 {
 	Lock();
 	if (m_CameraMap[nIndex] != NULL)
@@ -650,13 +652,10 @@ inline BOOL Factory::PtzAction(s32 nIndex, FPtzAction action, float speed)
 }
 
 
-inline BOOL Factory::GetRecordStatus(s32 nIndex,BOOL &nStatus)
+inline BOOL Factory::GetRecordStatus(astring nIndex,BOOL &nStatus)
 {
     CameraParam pParam;
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     if (GetCameraParamByIdTryLock(pParam, nIndex) == FALSE)
     {
         return FALSE;
@@ -671,14 +670,11 @@ inline BOOL Factory::GetRecordStatus(s32 nIndex,BOOL &nStatus)
     return TRUE;
 }
 
-inline BOOL Factory::StartRecord(s32 nIndex)
+inline BOOL Factory::StartRecord(astring nIndex)
 {
     CameraParam pParam;
     FactoryCameraChangeData change;
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     GetCameraParamById(pParam, nIndex);
     if (pParam.m_Conf.data.conf.Recording == 1)
     {
@@ -700,14 +696,11 @@ inline BOOL Factory::StartRecord(s32 nIndex)
     CallCameraChange(change);
     return TRUE;
 }
-inline BOOL Factory::StopRecord(s32 nIndex)
+inline BOOL Factory::StopRecord(astring nIndex)
 {
     CameraParam pParam;
     FactoryCameraChangeData change;
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     GetCameraParamById(pParam, nIndex);
     if (pParam.m_Conf.data.conf.Recording == 0)
     {
@@ -731,14 +724,11 @@ inline BOOL Factory::StopRecord(s32 nIndex)
 }
 
 
-inline BOOL Factory::StartHdfsRecord(s32 nIndex)
+inline BOOL Factory::StartHdfsRecord(astring nIndex)
 {
     CameraParam pParam;
     FactoryCameraChangeData change;
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     GetCameraParamById(pParam, nIndex);
     if (pParam.m_Conf.data.conf.HdfsRecording == 1)
     {
@@ -760,14 +750,11 @@ inline BOOL Factory::StartHdfsRecord(s32 nIndex)
     CallCameraChange(change);
     return TRUE;
 }
-inline BOOL Factory::StopHdfsRecord(s32 nIndex)
+inline BOOL Factory::StopHdfsRecord(astring nIndex)
 {
     CameraParam pParam;
     FactoryCameraChangeData change;
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     GetCameraParamById(pParam, nIndex);
     if (pParam.m_Conf.data.conf.HdfsRecording == 0)
     {
@@ -852,16 +839,10 @@ inline s32 Factory::AddCamera(CameraParam & pParam)
 
 	Lock();
 	pParam.m_Conf.data.conf.nId = nId;
-	if (pParam.m_Conf.data.conf.nType == VSC_CAMERA_CAM)
-	{
-		m_CameraMap[nId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
-		pCamera = m_CameraMap[nId]; 
-	}else
-	{
-		m_CameraMap[nId] = NULL;
-		UnLock();
-		return -1;
-	}
+
+	m_CameraMap[nId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
+	pCamera = m_CameraMap[nId]; 
+
 	m_CameraParamMap[nId] = pParam;
 	m_CameraOnlineMap[nId] = 0;
 	m_Conf.AddCamera(pParam.m_Conf, nId);
@@ -870,49 +851,15 @@ inline s32 Factory::AddCamera(CameraParam & pParam)
 	change.id = nId;
 	change.type = FACTORY_CAMERA_ADD;
 	CallCameraChange(change);
-#if 0
-	/* Try to online the camera and lock */
-	Lock();
-	pCamera->GetCameraParam(pParam2);
-	UnLock();
 
-	pParam2.m_wipOnline = pParam2.CheckOnline();
-	if (pParam2.m_OnlineUrl == FALSE)
-	{
-		pParam2.m_wipOnlineUrl = pParam2.UpdateUrl();
-	}
-
-	/* Try to make the camera online */
-	Lock();
-	CameraStatus bCheck = pCamera->CheckCamera(pParam2.m_strUrl, 
-			pParam2.m_strUrlSubStream, pParam2.m_bHasSubStream, 
-			pParam2.m_wipOnline, pParam2.m_wipOnlineUrl);
-
-	FactoryCameraChangeData change2;
-	change2.id = nId;
-	
-	if (bCheck == DEV_OFF2ON)
-	{
-		change.type = FACTORY_CAMERA_ONLINE;
-		m_CameraOnlineMap[nId] = 1;
-		UnLock(); 
-		CallCameraChange(change);
-		Lock();
-	}
-	UnLock();
-#endif
 	
     	return nId;
 }
 
-inline BOOL Factory::DelCamera(s32 nIndex)
+inline BOOL Factory::DelCamera(astring nIndex)
 {
     FactoryCameraChangeData change;
-    VDC_DEBUG( "%s DelCamera %d\n",__FUNCTION__, nIndex);
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
+
     change.id = nIndex;
     change.type = FACTORY_CAMERA_DEL;
     CallCameraChange(change);
@@ -935,7 +882,7 @@ inline BOOL Factory::DelCamera(s32 nIndex)
     return TRUE;
 }
 
-inline BOOL Factory::GetCameraRtspUrl(astring & strUrl, s32 nIndex)
+inline BOOL Factory::GetCameraRtspUrl(astring & strUrl, astring nIndex)
 {
 	BOOL ret = FALSE;
 	Lock();
@@ -948,14 +895,8 @@ inline BOOL Factory::GetCameraRtspUrl(astring & strUrl, s32 nIndex)
 	return ret;
 }
 
-inline s32 Factory::GetCameraParamById(CameraParam & pParam, s32 nIndex)
+inline s32 Factory::GetCameraParamById(CameraParam & pParam, astring nIndex)
 {
-    //VDC_DEBUG( "%s GetCameraParamById %d\n",__FUNCTION__, nIndex);
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-
     Lock();
     pParam = m_CameraParamMap[nIndex];
     UnLock();
@@ -963,14 +904,8 @@ inline s32 Factory::GetCameraParamById(CameraParam & pParam, s32 nIndex)
     return TRUE;
 }
 
-inline s32 Factory::GetCameraParamByIdTryLock(CameraParam & pParam, s32 nIndex)
+inline s32 Factory::GetCameraParamByIdTryLock(CameraParam & pParam, astring nIndex)
 {
-    //VDC_DEBUG( "%s GetCameraParamById %d\n",__FUNCTION__, nIndex);
-    if (nIndex <=0 || nIndex >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-
 #if 1
     if (TryLock() == false)
     {
@@ -985,99 +920,6 @@ inline s32 Factory::GetCameraParamByIdTryLock(CameraParam & pParam, s32 nIndex)
     return TRUE;
 }
 
-inline s32 Factory::GetCameraID(void)
-{
-    s32 id  = -1;
-    s32 i = -1;
-
-    Lock();
-    for (i = 1; i < FACTORY_CAMERA_ID_MAX; i ++)
-    {
-        if (m_strCameraMap[i] == 'n')
-        {
-            id = i;
-            m_strCameraMap[i] = 'y';
-            UnLock();
-            return id;
-        }
-    }
-
-    UnLock();
-    return id;
-}
-
-inline BOOL Factory::ReleaseCameraID(s32 nID)
-{
-    if (nID <=0 || nID >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-    Lock();
-    m_strCameraMap[nID] = 'n';
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::LockCameraID(s32 nID)
-{
-    if (nID <=0 || nID >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-    Lock();
-    m_strCameraMap[nID] = 'y';
-    UnLock();
-
-    return TRUE;
-}
-
-inline s32 Factory::GetVIPCID(void)
-{
-    s32 id  = -1;
-    s32 i = -1;
-
-    Lock();
-    for (i = 1; i < FACTORY_CAMERA_ID_MAX; i ++)
-    {
-        if (m_strVIPCMap[i] == 'n')
-        {
-            id = i;
-            m_strVIPCMap[i] = 'y';
-            UnLock();
-            return id;
-        }
-    }
-
-    UnLock();
-    return id;
-}
-
-inline BOOL Factory::ReleaseVIPCID(s32 nID)
-{
-    if (nID <=0 || nID >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-    Lock();
-    m_strVIPCMap[nID] = 'n';
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::LockVIPCID(s32 nID)
-{
-    if (nID <=0 || nID >= FACTORY_CAMERA_ID_MAX)
-    {
-        return FALSE;
-    }
-    Lock();
-    m_strVIPCMap[nID] = 'y';
-    UnLock();
-
-    return TRUE;
-}
 
 
 inline void Factory::Run(void * pParam)
