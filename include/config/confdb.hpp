@@ -8,6 +8,10 @@
 #include "conf.hpp"
 #include "debug.hpp"
 
+#include "config/vidconf.pb.h"
+
+using namespace VidConf;
+
 using namespace UtilityLib;
 
 class ConfDB
@@ -33,10 +37,12 @@ public:
 	BOOL GetLicense(astring &strLicense);
 	BOOL SetLicense(astring &strLicense);
 
-#if 0
+
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
+
+#if 0
 
 	s32 GetSysData(VSCConfData &pSysData);
 	s32 UpdateSysData(VSCConfData &pSysData);
