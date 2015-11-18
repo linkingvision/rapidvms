@@ -60,7 +60,7 @@ typedef struct __VSCConfCameraKey {
 
 typedef struct __VSCConfVidStorKey {
     s8 Key[CONF_KEY_STR_MAX];
-    __VSCConfVmsKey()
+	__VSCConfVidStorKey()
     {
         memset(Key, 0, CONF_KEY_STR_MAX);
         strcpy(Key, VSC_CONF_VIDSTOR_KEY);
