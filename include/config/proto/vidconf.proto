@@ -25,11 +25,18 @@ message VidStorServerConf {
 
 //Camera config
 enum CameraType {
-	USB = 0;
-	FILE = 1;
-	RTSP = 2;
-	ONVIF_S = 3;
-	GB28181 = 4;
+	VID_USB = 0;
+	VID_FILE = 1;
+	VID_RTSP = 2;
+	VID_ONVIF_S = 3;
+	VID_GB28181 = 4;
+}
+
+//Camera config
+enum CameraConnectType {
+	VID_CONNECT_0 = 0;
+	VID_CONNECT_TCP = 1;
+	VID_CONNECT_UDP = 2;
 }
 
 message VidCamera {
@@ -40,7 +47,7 @@ message VidCamera {
 	
 	//ONVIF
 	string strIP = 4;
-	int32 nPort = 5;
+	string strPort = 5;
 	string strUser = 6;
 	string strPasswd = 7;
 
@@ -58,6 +65,8 @@ message VidCamera {
 	//Motion and if use HW accel for motion
 	bool bHWaccel = 14;
 	bool bServerMotion = 15;
+	
+	CameraConnectType nConnectType = 16;
 }
 
 message VidCameraList {
@@ -69,7 +78,7 @@ message VidCameraList {
 //HDFS config
 message VidHDFSConf {
 	string strNameNode = 1;
-	int32 nPort = 2;
+	string strPort = 2;
 	
 	string strUser = 3;
 	string strPasswd = 4;
@@ -86,7 +95,6 @@ enum VidLanguage {
 	EN = 1;
 	ZH_CN = 2;
 }
-
 
 enum VidLayout {
 	VID_LAYOUT_MODE_0 = 0;
