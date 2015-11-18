@@ -129,6 +129,44 @@ inline   BOOL ConfDB::SetLicense(astring &strLicense)
     
 }
 
+inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
+{
+	leveldb::Slice key(strKey);
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue;
+
+	if (it->Valid())
+	{
+		sysValue = it->value();
+		strParam = sysValue.ToString();
+	}else
+	{
+		delete it;
+		return FALSE;
+	}
+
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return TRUE;
+}
+
+inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
+{
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice licKey(strKey);
+	leveldb::Slice licValue(strParam);
+	m_pDb->Put(writeOptions, licKey, licValue);
+	return TRUE;
+}
+
+
 #if 0
 inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
 {
@@ -769,44 +807,6 @@ inline   BOOL ConfDB::SetEmapFile(astring &strFile)
 	m_pDb->Put(writeOptions, Key, Value);
 	return TRUE;
     
-}
-
-
-inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
-{
-	leveldb::Slice key(strKey);
-
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
-	{
-		sysValue = it->value();
-		strParam = sysValue.ToString();
-	}else
-	{
-		delete it;
-		return FALSE;
-	}
-	
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
-
-	return TRUE;
-}
-
-inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
-{
-	leveldb::WriteOptions writeOptions;
-
-	leveldb::Slice licKey(strKey);
-	leveldb::Slice licValue(strParam);
-	m_pDb->Put(writeOptions, licKey, licValue);
-	return TRUE;
 }
 
 inline s32 ConfDB::AddDevice(VSCDeviceData &pData, u32 nId)
