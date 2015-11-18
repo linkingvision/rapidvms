@@ -3,7 +3,7 @@
 
 #include "utility.hpp"
 #include "leveldb/db.h"
-#include "conf.hpp"
+#include "config/conf.hpp"
 #include "debug.hpp"
 #include <QtCore/QStorageInfo>
 #include <QtCore/QFileInfoList>
