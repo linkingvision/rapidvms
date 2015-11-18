@@ -41,9 +41,9 @@ CameraParam::CameraParam()
 	m_Conf.set_struser("admin");
 	m_Conf.set_strpasswd("admin");
 
-	m_Conf.set_strrtspurl("rtsp://192.168.0.1/stream")
+	m_Conf.set_strrtspurl("rtsp://192.168.0.1/stream");
 
-	string filePath = GetProgramDir() +  "/camera.mov";
+	astring filePath = GetProgramDir() +  "/camera.mov";
 
 	m_Conf.set_strfile(filePath.c_str());
 
@@ -63,7 +63,7 @@ CameraParam::CameraParam()
 	m_Online = FALSE;
 	m_OnlineUrl = FALSE;
 
-	astring IP = m_Conf.data.conf.IP;
+	astring IP = m_Conf.strip();
 	m_strUrl = "rtsp://" + IP + ":" + "554" + "/Streaming";
 	m_strUrlSubStream = "rtsp://" + IP + ":" + "554" + "/Streaming";
 
@@ -71,7 +71,7 @@ CameraParam::CameraParam()
 
 BOOL CameraParam::UpdateDefaultUrl()
 {
-	astring IP = m_Conf.data.conf.IP;
+	astring IP = m_Conf.strip();
 	m_strUrl = "rtsp://" + IP + ":" + "554" + "/Streaming";
 	m_strUrlSubStream = "rtsp://" + IP + ":" + "554" + "/Streaming";
 
@@ -208,7 +208,7 @@ BOOL CameraParam::UpdateUrlOnvif()
 	{
 	    VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		QString strToken;
-		if (m_Conf.data.conf.UseProfileToken == 1)
+		if (m_Conf.bprofiletoken == true)
 		{
 			strToken = m_Conf.strprofiletoken1().c_str();
 			//Find which token is in the OnvifProfileToken, and then use the token
@@ -235,7 +235,7 @@ BOOL CameraParam::UpdateUrlOnvif()
 	{
 		VDC_DEBUG( "%s m_toKenPro SubStream size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		QString strToken;
-		if (m_Conf.data.conf.UseProfileToken == 1)
+		if (m_Conf.bprofiletoken() == true)
 		{
 			strToken = m_Conf.strprofiletoken2().c_str();
 		}else
@@ -429,15 +429,15 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 			m_vPlay.Init(m_param.m_strUrl, HWAccel);
 		}else
 		{
-			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.data.conf.User,
-				m_param.m_Conf.data.conf.Password, HWAccel, 
-				(VSCConnectType)(m_param.m_Conf.data.conf.ConnectType));
+			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.struser(),
+				m_param.m_Conf.strpasswd(), HWAccel, 
+				(VSCConnectType)(m_param.m_Conf.nconnecttype()));
 			VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
 			if (m_param.m_bHasSubStream == TRUE)
 			{
-				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.data.conf.User,
-					m_param.m_Conf.data.conf.Password, HWAccel, 
-					(VSCConnectType)(m_param.m_Conf.data.conf.ConnectType));
+				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.struser(),
+					m_param.m_Conf.strpasswd(), HWAccel,
+					(VSCConnectType)(m_param.m_Conf.nconnecttype()));
 			}
 		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
@@ -571,9 +571,9 @@ BOOL Camera::ShowAlarm(HWND hWnd)
     {
         	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		
-		if (m_param.m_Conf.data.conf.UseProfileToken == 1)
+		if (m_param.m_Conf.bprofiletoken() == true)
 		{
-			strToken = m_param.m_Conf.data.conf.OnvifProfileToken;
+			strToken = m_param.m_Conf.strprofiletoken1().c_str();
 		}else
 		{
 			strToken = pProfileS->m_toKenPro[0];		
@@ -966,10 +966,10 @@ BOOL Camera::StartRaw()
 {
     if (bRecording == TRUE)
     {
-        m_param.m_Conf.data.conf.Recording = 1;
+        //m_param.m_Conf.data.conf.Recording = 1;
     }else
     {
-        m_param.m_Conf.data.conf.Recording = 0;
+        //m_param.m_Conf.data.conf.Recording = 0;
     }
 
     return TRUE;
@@ -979,10 +979,10 @@ BOOL Camera::StartRaw()
 {
     if (bRecording == TRUE)
     {
-        m_param.m_Conf.data.conf.HdfsRecording = 1;
+        //m_param.m_Conf.data.conf.HdfsRecording = 1;
     }else
     {
-        m_param.m_Conf.data.conf.HdfsRecording = 0;
+        //m_param.m_Conf.data.conf.HdfsRecording = 0;
     }
 
     return TRUE;
@@ -991,7 +991,7 @@ BOOL Camera::StartRaw()
 
  BOOL Camera::StartRecord()
 {
-	if (m_param.m_Conf.data.conf.Recording == 0)
+	//if (m_param.m_Conf.data.conf.Recording == 0)
 	{
 	    return FALSE;
 	}
@@ -1003,7 +1003,7 @@ BOOL Camera::StartRaw()
 }
  BOOL Camera::StopRecord()
 {
-	if (m_param.m_Conf.data.conf.Recording == 1)
+	//if (m_param.m_Conf.data.conf.Recording == 1)
 	{
 	    return FALSE;
 	}
@@ -1027,7 +1027,7 @@ BOOL Camera::StartRaw()
 
   BOOL Camera::StartHdfsRecord()
 {
-	if (m_param.m_Conf.data.conf.HdfsRecording == 0)
+	//if (m_param.m_Conf.data.conf.HdfsRecording == 0)
 	{
 	    return FALSE;
 	}
@@ -1037,8 +1037,8 @@ BOOL Camera::StartRaw()
 	Lock();
 	if (m_pHdfsRecord == NULL)
 	{
-		m_pHdfsRecord = m_pVHdfsdb.StartRecord(
-			m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
+		//m_pHdfsRecord = m_pVHdfsdb.StartRecord(
+		//	m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
 		m_pHdfsRecord->RegSeqCallback((HDFSDataHandler)Camera::SeqHandler, (void *)this);
 
 	}
@@ -1050,7 +1050,7 @@ BOOL Camera::StartRaw()
 }
  BOOL Camera::StopHdfsRecord()
 {
-	if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+	//if (m_param.m_Conf.data.conf.HdfsRecording == 1)
 	{
 	    return FALSE;
 	}
@@ -1104,11 +1104,11 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 	}
 
 	/* 2. Send to Record */
-	if (m_param.m_Conf.data.conf.Recording == 1)
+	//if (m_param.m_Conf.data.conf.Recording == 1)
 	{
 		if (m_pRecord == NULL)
 		{
-		    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
+		    //m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
 		}
 		
 		//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
@@ -1124,7 +1124,7 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 				m_pVdb.FinishRecord(m_pRecord);
 			}
 		    	delete m_pRecord;
-		    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
+		    	//m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
 			if (m_pRecord != NULL)
 			{
 			       m_pRecord->PushAFrame(&frame);	 
@@ -1133,12 +1133,12 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 	}
 	
 	/* 2. Send to Hdfs Record */
-	if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+	//if (m_param.m_Conf.data.conf.HdfsRecording == 1)
 	{
 		if (m_pHdfsRecord == NULL)
 		{
-			m_pHdfsRecord = m_pVHdfsdb.StartRecord(
-				m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
+			//m_pHdfsRecord = m_pVHdfsdb.StartRecord(
+			//	m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
 		}
 		if (m_pHdfsRecord != NULL)
 		{

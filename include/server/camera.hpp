@@ -16,19 +16,19 @@
 #endif 
 
 #include "utility.hpp"
-#include "conf.hpp"
-#include "cameramanagement.h"
+#include "config/conf.hpp"
+#include "devicemanagement.h"
 #include "ptzmanagement.h"
 #include "media_management/profiles.h"
 #include "media_management/streamuri.h"
-#include "camera_management/capabilities.h"
+#include "device_management/capabilities.h"
 #include "mediamanagement.h"
 #include "vdb.hpp"
 #include "vhdfsdb.hpp"
 #include "hdfsrecsession.hpp"
 #include "vplay.hpp"
 #include "debug.hpp"
-#include "vidconf.pb.h"
+#include "config/vidconf.pb.h"
 
 using namespace VidConf;
 using namespace UtilityLib;
