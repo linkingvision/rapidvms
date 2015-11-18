@@ -57,17 +57,17 @@ class VidViewList;
 class VidViewWindow;
 
 enum CameraType {
-  USB = 0,
-  FILE = 1,
-  RTSP = 2,
-  ONVIF_S = 3,
-  GB28181 = 4,
+  VID_USB = 0,
+  VID_FILE = 1,
+  VID_RTSP = 2,
+  VID_ONVIF_S = 3,
+  VID_GB28181 = 4,
   CameraType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CameraType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool CameraType_IsValid(int value);
-const CameraType CameraType_MIN = USB;
-const CameraType CameraType_MAX = GB28181;
+const CameraType CameraType_MIN = VID_USB;
+const CameraType CameraType_MAX = VID_GB28181;
 const int CameraType_ARRAYSIZE = CameraType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* CameraType_descriptor();
@@ -79,6 +79,28 @@ inline bool CameraType_Parse(
     const ::std::string& name, CameraType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<CameraType>(
     CameraType_descriptor(), name, value);
+}
+enum CameraConnectType {
+  VID_CONNECT_0 = 0,
+  VID_CONNECT_TCP = 1,
+  VID_CONNECT_UDP = 2,
+  CameraConnectType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  CameraConnectType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool CameraConnectType_IsValid(int value);
+const CameraConnectType CameraConnectType_MIN = VID_CONNECT_0;
+const CameraConnectType CameraConnectType_MAX = VID_CONNECT_UDP;
+const int CameraConnectType_ARRAYSIZE = CameraConnectType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor();
+inline const ::std::string& CameraConnectType_Name(CameraConnectType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    CameraConnectType_descriptor(), value);
+}
+inline bool CameraConnectType_Parse(
+    const ::std::string& name, CameraConnectType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<CameraConnectType>(
+    CameraConnectType_descriptor(), name, value);
 }
 enum VidLanguage {
   LANG_AUTO = 0,
@@ -513,11 +535,16 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strip();
   void set_allocated_strip(::std::string* strip);
 
-  // optional int32 nPort = 5;
-  void clear_nport();
-  static const int kNPortFieldNumber = 5;
-  ::google::protobuf::int32 nport() const;
-  void set_nport(::google::protobuf::int32 value);
+  // optional string strPort = 5;
+  void clear_strport();
+  static const int kStrPortFieldNumber = 5;
+  const ::std::string& strport() const;
+  void set_strport(const ::std::string& value);
+  void set_strport(const char* value);
+  void set_strport(const char* value, size_t size);
+  ::std::string* mutable_strport();
+  ::std::string* release_strport();
+  void set_allocated_strport(::std::string* strport);
 
   // optional string strUser = 6;
   void clear_struser();
@@ -614,6 +641,12 @@ class VidCamera : public ::google::protobuf::Message {
   bool bservermotion() const;
   void set_bservermotion(bool value);
 
+  // optional .VidConf.CameraConnectType nConnectType = 16;
+  void clear_nconnecttype();
+  static const int kNConnectTypeFieldNumber = 16;
+  ::VidConf::CameraConnectType nconnecttype() const;
+  void set_nconnecttype(::VidConf::CameraConnectType value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -622,18 +655,19 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   ::google::protobuf::internal::ArenaStringPtr strip_;
-  int ntype_;
-  ::google::protobuf::int32 nport_;
+  ::google::protobuf::internal::ArenaStringPtr strport_;
   ::google::protobuf::internal::ArenaStringPtr struser_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   ::google::protobuf::internal::ArenaStringPtr stronvifaddress_;
   ::google::protobuf::internal::ArenaStringPtr strprofiletoken1_;
-  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
-  ::google::protobuf::internal::ArenaStringPtr strfile_;
-  ::google::protobuf::internal::ArenaStringPtr strrtspurl_;
+  int ntype_;
   bool bprofiletoken_;
   bool bhwaccel_;
   bool bservermotion_;
+  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
+  ::google::protobuf::internal::ArenaStringPtr strfile_;
+  ::google::protobuf::internal::ArenaStringPtr strrtspurl_;
+  int nconnecttype_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -795,11 +829,16 @@ class VidHDFSConf : public ::google::protobuf::Message {
   ::std::string* release_strnamenode();
   void set_allocated_strnamenode(::std::string* strnamenode);
 
-  // optional int32 nPort = 2;
-  void clear_nport();
-  static const int kNPortFieldNumber = 2;
-  ::google::protobuf::int32 nport() const;
-  void set_nport(::google::protobuf::int32 value);
+  // optional string strPort = 2;
+  void clear_strport();
+  static const int kStrPortFieldNumber = 2;
+  const ::std::string& strport() const;
+  void set_strport(const ::std::string& value);
+  void set_strport(const char* value);
+  void set_strport(const char* value, size_t size);
+  ::std::string* mutable_strport();
+  ::std::string* release_strport();
+  void set_allocated_strport(::std::string* strport);
 
   // optional string strUser = 3;
   void clear_struser();
@@ -835,10 +874,10 @@ class VidHDFSConf : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr strnamenode_;
+  ::google::protobuf::internal::ArenaStringPtr strport_;
   ::google::protobuf::internal::ArenaStringPtr struser_;
-  ::google::protobuf::int32 nport_;
-  ::google::protobuf::int32 nfileinterval_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
+  ::google::protobuf::int32 nfileinterval_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -2413,18 +2452,47 @@ inline void VidCamera::set_allocated_strip(::std::string* strip) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strIP)
 }
 
-// optional int32 nPort = 5;
-inline void VidCamera::clear_nport() {
-  nport_ = 0;
+// optional string strPort = 5;
+inline void VidCamera::clear_strport() {
+  strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::google::protobuf::int32 VidCamera::nport() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPort)
-  return nport_;
+inline const ::std::string& VidCamera::strport() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strPort)
+  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void VidCamera::set_nport(::google::protobuf::int32 value) {
+inline void VidCamera::set_strport(const ::std::string& value) {
   
-  nport_ = value;
-  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPort)
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strPort)
+}
+inline void VidCamera::set_strport(const char* value) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strPort)
+}
+inline void VidCamera::set_strport(const char* value, size_t size) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strPort)
+}
+inline ::std::string* VidCamera::mutable_strport() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strPort)
+  return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidCamera::release_strport() {
+  
+  return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_allocated_strport(::std::string* strport) {
+  if (strport != NULL) {
+    
+  } else {
+    
+  }
+  strport_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strport);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPort)
 }
 
 // optional string strUser = 6;
@@ -2770,6 +2838,20 @@ inline void VidCamera::set_bservermotion(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bServerMotion)
 }
 
+// optional .VidConf.CameraConnectType nConnectType = 16;
+inline void VidCamera::clear_nconnecttype() {
+  nconnecttype_ = 0;
+}
+inline ::VidConf::CameraConnectType VidCamera::nconnecttype() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nConnectType)
+  return static_cast< ::VidConf::CameraConnectType >(nconnecttype_);
+}
+inline void VidCamera::set_nconnecttype(::VidConf::CameraConnectType value) {
+  
+  nconnecttype_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nConnectType)
+}
+
 // -------------------------------------------------------------------
 
 // VidCameraList
@@ -2851,18 +2933,47 @@ inline void VidHDFSConf::set_allocated_strnamenode(::std::string* strnamenode) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strNameNode)
 }
 
-// optional int32 nPort = 2;
-inline void VidHDFSConf::clear_nport() {
-  nport_ = 0;
+// optional string strPort = 2;
+inline void VidHDFSConf::clear_strport() {
+  strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::google::protobuf::int32 VidHDFSConf::nport() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.nPort)
-  return nport_;
+inline const ::std::string& VidHDFSConf::strport() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.strPort)
+  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void VidHDFSConf::set_nport(::google::protobuf::int32 value) {
+inline void VidHDFSConf::set_strport(const ::std::string& value) {
   
-  nport_ = value;
-  // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.nPort)
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.strPort)
+}
+inline void VidHDFSConf::set_strport(const char* value) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidHDFSConf.strPort)
+}
+inline void VidHDFSConf::set_strport(const char* value, size_t size) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidHDFSConf.strPort)
+}
+inline ::std::string* VidHDFSConf::mutable_strport() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidHDFSConf.strPort)
+  return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidHDFSConf::release_strport() {
+  
+  return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidHDFSConf::set_allocated_strport(::std::string* strport) {
+  if (strport != NULL) {
+    
+  } else {
+    
+  }
+  strport_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strport);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strPort)
 }
 
 // optional string strUser = 3;
@@ -4059,6 +4170,11 @@ template <> struct is_proto_enum< ::VidConf::CameraType> : ::google::protobuf::i
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::CameraType>() {
   return ::VidConf::CameraType_descriptor();
+}
+template <> struct is_proto_enum< ::VidConf::CameraConnectType> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::CameraConnectType>() {
+  return ::VidConf::CameraConnectType_descriptor();
 }
 template <> struct is_proto_enum< ::VidConf::VidLanguage> : ::google::protobuf::internal::true_type {};
 template <>
