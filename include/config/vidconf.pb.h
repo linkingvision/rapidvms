@@ -57,16 +57,17 @@ class VidViewList;
 class VidViewWindow;
 
 enum CameraType {
-  VID_USB = 0,
-  VID_FILE = 1,
-  VID_RTSP = 2,
-  VID_ONVIF_S = 3,
-  VID_GB28181 = 4,
+  VID_0 = 0,
+  VID_USB = 1,
+  VID_FILE = 2,
+  VID_RTSP = 3,
+  VID_ONVIF_S = 4,
+  VID_GB28181 = 5,
   CameraType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CameraType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool CameraType_IsValid(int value);
-const CameraType CameraType_MIN = VID_USB;
+const CameraType CameraType_MIN = VID_0;
 const CameraType CameraType_MAX = VID_GB28181;
 const int CameraType_ARRAYSIZE = CameraType_MAX + 1;
 

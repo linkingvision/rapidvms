@@ -6,11 +6,17 @@
 
 using namespace std;
 
-#define VSC_RTSP_DEFAULT_PORT 9554
 #define VSC_OAPI_DEFAULT_PORT 9080
-#define VSC_VHTTPS_DEFAULT_PORT 9000
-#define VSC_VHTTPS_SSL_DEFAULT_PORT 9443
-#define VSC_VHLSS_DEFAULT_PORT 9001
+
+inline void VSCHdfsRecordDefault(VidHDFSConf &pData)
+{
+	pData.set_strnamenode("localhost");
+	pData.set_strport("8020");
+	pData.set_struser("admin");
+	pData.set_strpasswd("admin");
+	pData.set_nfileinterval(30);
+}
+
 #if 0
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
@@ -75,16 +81,20 @@ inline BOOL VGroupConfDataDefault(VSCVGroupData &pConf)
 #endif
 inline s32 ConfDB::Open(astring & pPath)
 {
-    m_Options.create_if_missing = true;
-    leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
-    if (false == status.ok())
-    {
-        //cerr << "Unable to open/create test database "<< pPath << endl;
-        //cerr << status.ToString() << endl;
-        VDC_DEBUG( "Unable to open/create test database %s\n", pPath.c_str());
+	m_Options.create_if_missing = true;
+	leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
+	if (false == status.ok())
+	{
+	    //cerr << "Unable to open/create test database "<< pPath << endl;
+	    //cerr << status.ToString() << endl;
+	    VDC_DEBUG( "Unable to open/create test database %s\n", pPath.c_str());
 
-        return FALSE;
-    }
+	    return FALSE;
+	}
+
+	astring fakeKey = "fakeKey";
+	astring fakeValue = "fakeValue";
+	SetCmnParam(fakeKey, fakeValue);
     return TRUE;
 }
 
@@ -167,49 +177,121 @@ inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
 }
 
 
-#if 0
+
 inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
 {
-    VSCConfHdfsRecordKey sKey;
+	VSCConfHdfsRecordKey sKey;
 
 	//pData.ParseFromString();
 	//pData.SerializeToString();
 
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
 
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
 
-    it->Seek(key);
-    leveldb::Slice sysValue;
+	it->Seek(key);
+	leveldb::Slice sysValue("fake");
 
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
+	if (it->Valid())
+	{
+	    sysValue = it->value();
+	}
 
-    if (sysValue.size() != sizeof(VSCHdfsRecordData))
-    {
-        VDC_DEBUG( "Hdfs Record Config is not init\n");
-        delete it;
-		memset(&pData, 0, sizeof(VSCHdfsRecordData));
-		VSCHdfsRecordDataItemDefault(pData.data.conf);
-		UpdateHdfsRecordData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
+	if (pData.ParseFromString(sysValue.ToString()) == false)
+	{
+		VDC_DEBUG( "Hdfs Record Config is not init\n");
+		delete it;
+		VSCHdfsRecordDefault(pData);
+		UpdateHdfsRecordConf(pData);
+		return TRUE;
+	}
 
-	memcpy(&pData, sysValue.data(), sizeof(VSCHdfsRecordData));
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
 
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
+	return TRUE;
 
 }
 
+/* HDFS record  */
+inline BOOL ConfDB::UpdateHdfsRecordConf(VidHDFSConf &pData)
+{
+	VSCConfHdfsRecordKey sKey;
 
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return TRUE;
+}
+
+inline BOOL ConfDB::GetCameraListConf(VidCameraList &pData)
+{
+	VSCConfCameraKey sKey;
+
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue("fake");
+	
+
+	if (it->status().IsNotFound() != true)
+	{
+	    sysValue = it->value();
+	}
+
+	if (pData.ParseFromString(sysValue.ToString()) == false)
+	{
+		VidCameraList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "Camera List Config is not init\n");
+		delete it;
+		return TRUE;
+	}
+
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return TRUE;
+
+}
+inline BOOL ConfDB::UpdateCameraListConf(VidCameraList &pData)
+{
+	VSCConfCameraKey sKey;
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return TRUE;
+}
+
+
+#if 0
 inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
 {
     VSCConfSystemKey sSysKey;
@@ -684,21 +766,6 @@ inline s32 ConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
 	GetHdfsRecordConf(pData);
 	
 	return TRUE;
-}
-
-/* HDFS record  */
-inline s32 ConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
-{
-    VSCConfHdfsRecordKey sKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
-    leveldb::Slice sysValue((char *)&pData, sizeof(VSCHdfsRecordData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
 }
 
 /* User  */
