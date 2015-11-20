@@ -178,6 +178,7 @@ inline BOOL Factory::Init()
 		*pAddCam = Param.m_Conf;
 		m_Conf.UpdateCameraListConf(cameraList);
 		
+		
 	}
 #endif
 
