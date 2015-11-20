@@ -165,6 +165,33 @@ inline BOOL Factory::Init()
 	astring strPort = HdfsConf.strport();
 	astring strUser = HdfsConf.struser();
 	m_pVHdfsdb = new VHdfsDB(strNameNode, strPort, strUser);
+
+#if 0 //add camera for test
+	{	
+		VidCameraList cameraList;
+		CameraParam Param;
+		Param.m_Conf.set_strip("192.168.1.1");
+		Param.m_Conf.set_strport("80");
+		Param.m_Conf.set_struser("admin");
+		Param.m_Conf.set_strpasswd("admin");
+		VidCamera *pAddCam = cameraList.add_cvidcamera();
+		*pAddCam = Param.m_Conf;
+		m_Conf.UpdateCameraListConf(cameraList);
+		
+	}
+#endif
+
+	VidCameraList cameraList;
+	m_Conf.GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera cam = cameraList.cvidcamera(i);
+		CameraParam pParam(cam);
+		InitAddCamera(pParam, cam.strid());
+	}
+
 #if 0
 	VSCConfData sysData;
 	m_Conf.GetSysData(sysData);
@@ -983,7 +1010,7 @@ inline void Factory::run()
 			for(; it!=paramMap.end(); ++it)
 			{	
 				/* Loop to check the camera and update the url */
-				s32 nIndex = (*it).first;
+				astring nIndex = (*it).first;
 				(*it).second.m_wipOnline = (*it).second.CheckOnline();
 				if ((*it).second.m_OnlineUrl == FALSE)
 				{
@@ -1003,7 +1030,7 @@ inline void Factory::run()
 			for(; it!=paramMap.end(); ++it)
 			{	
 				/* Loop to check the camera and update the url */
-				s32 nIndex = (*it).first;
+				astring nIndex = (*it).first;
 				Lock();
 				CameraMap::iterator it1 = m_CameraMap.find(nIndex), 
 							ite1 = m_CameraMap.end();
