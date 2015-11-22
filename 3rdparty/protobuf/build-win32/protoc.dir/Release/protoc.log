@@ -1,0 +1,16 @@
+﻿Build started 11/12/2015 11:33:13 PM.
+     1>Project "C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\protoc.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt
+         CMake does not need to re-run because C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\work\20-video\ffvid\3rdparty\protobuf\build-win32" /I"C:\work\20-video\ffvid\3rdparty\protobuf\src" /nologo /W3 /WX- /O2 /Ob2 /Oy- /D WIN32 /D _WINDOWS /D NDEBUG /D GOOGLE_PROTOBUF_CMAKE_BUILD /D "CMAKE_INTDIR=\"Release\"" /D _MBCS /Gm- /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"protoc.dir\Release\\" /Fd"protoc.dir\Release\vc120.pdb" /Gd /TP /wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305 /analyze- /errorReport:prompt "C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\compiler\main.cc"
+         main.cc
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\Release\protoc.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib Release\libprotobuf.lib Release\libprotoc.lib Release\libprotobuf.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/Release/protoc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/Release/protoc.lib" /MACHINE:X86 /SAFESEH  /machine:X86 protoc.dir\Release\main.obj
+         protoc.vcxproj -> C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\Release\protoc.exe
+     1>Done Building Project "C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\protoc.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.03

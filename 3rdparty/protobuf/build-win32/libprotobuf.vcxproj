@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{4E12DEF1-6C80-3F56-9C4B-C91B7527292C}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>libprotobuf</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libprotobuf.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libprotobufd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libprotobuf.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libprotobuf</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">libprotobuf.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">libprotobuf</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">libprotobuf.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">libprotobuf</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4018;4355;4800;4251;4996;4146;4305</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267;4018;4355;4800;4251;4996;4146;4305</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267;4018;4355;4800;4251;4996;4146;4305</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4018;4355;4800;4251;4996;4146;4305</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\20-video\ffvid\3rdparty\protobuf\build-win32;C:\work\20-video\ffvid\3rdparty\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/work/20-video/ffvid/3rdparty/protobuf/cmake -BC:/work/20-video/ffvid/3rdparty/protobuf/build-win32 --check-stamp-file C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCCompiler.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\extract_includes.bat.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf-lite.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\install.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\GNUInstallDirs.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config-version.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-module.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/work/20-video/ffvid/3rdparty/protobuf/cmake -BC:/work/20-video/ffvid/3rdparty/protobuf/build-win32 --check-stamp-file C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCCompiler.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\extract_includes.bat.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf-lite.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\install.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\GNUInstallDirs.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config-version.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-module.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/work/20-video/ffvid/3rdparty/protobuf/cmake -BC:/work/20-video/ffvid/3rdparty/protobuf/build-win32 --check-stamp-file C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCCompiler.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\extract_includes.bat.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf-lite.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\install.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\GNUInstallDirs.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config-version.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-module.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/work/20-video/ffvid/3rdparty/protobuf/cmake -BC:/work/20-video/ffvid/3rdparty/protobuf/build-win32 --check-stamp-file C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/work/20-video/ffvid/3rdparty/protobuf/cmake/CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCCompiler.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\3.4.0-rc3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CheckIncludeFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\extract_includes.bat.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf-lite.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotobuf.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\libprotoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protoc.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\install.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\GNUInstallDirs.cmake;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-config-version.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\protobuf-module.cmake.in;C:\work\20-video\ffvid\3rdparty\protobuf\cmake\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\work\20-video\ffvid\3rdparty\protobuf\build-win32\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\arena.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\arenastring.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\extension_set.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\generated_message_util.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\coded_stream.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\zero_copy_stream.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\zero_copy_stream_impl_lite.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\message_lite.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\repeated_field.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\atomicops_internals_x86_gcc.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\atomicops_internals_x86_msvc.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\bytestream.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\common.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\int128.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\once.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\status.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\statusor.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\stringpiece.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\stringprintf.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\structurally_valid.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\strutil.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\time.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\wire_format_lite.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\any.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\any.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\api.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\compiler\importer.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\compiler\parser.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\descriptor.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\descriptor.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\descriptor_database.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\duration.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\dynamic_message.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\empty.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\extension_set_heavy.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\field_mask.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\generated_message_reflection.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\gzip_stream.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\printer.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\strtod.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\tokenizer.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\io\zero_copy_stream_impl.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\map_field.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\message.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\reflection_ops.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\service.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\source_context.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\struct.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\mathlimits.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\stubs\substitute.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\text_format.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\timestamp.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\type.pb.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\unknown_field_set.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\field_comparator.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\field_mask_util.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\datapiece.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\default_value_objectwriter.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\error_listener.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\field_mask_utility.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\json_escaping.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\json_objectwriter.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\json_stream_parser.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\object_writer.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\protostream_objectsource.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\protostream_objectwriter.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\type_info.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\type_info_test_helper.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\internal\utility.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\json_util.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\message_differencer.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\time_util.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\util\type_resolver_util.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\wire_format.cc" />
+    <ClCompile Include="C:\work\20-video\ffvid\3rdparty\protobuf\src\google\protobuf\wrappers.pb.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/ZERO_CHECK.vcxproj">
+      <Project>7F390545-4E6F-37B7-86D0-B96362B51014</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
