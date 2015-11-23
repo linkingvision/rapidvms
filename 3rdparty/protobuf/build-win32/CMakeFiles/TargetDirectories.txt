@@ -1,6 +1,0 @@
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/libprotoc.dir
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/ALL_BUILD.dir
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/libprotobuf.dir
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/libprotobuf-lite.dir
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/ZERO_CHECK.dir
-C:/work/20-video/ffvid/3rdparty/protobuf/build-win32/CMakeFiles/protoc.dir
