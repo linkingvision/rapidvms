@@ -1,16 +1,9 @@
-
-
-#ifndef _CONF_DB_IMPL_H_
-#define _CONF_DB_IMPL_H_
+#ifndef _CLIENT_CONF_DB_IMPL_H_
+#define _CLIENT_CONF_DB_IMPL_H_
 
 
 using namespace std;
 
-#define VSC_RTSP_DEFAULT_PORT 9554
-#define VSC_OAPI_DEFAULT_PORT 9080
-#define VSC_VHTTPS_DEFAULT_PORT 9000
-#define VSC_VHTTPS_SSL_DEFAULT_PORT 9443
-#define VSC_VHLSS_DEFAULT_PORT 9001
 #if 0
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
@@ -73,7 +66,7 @@ inline BOOL VGroupConfDataDefault(VSCVGroupData &pConf)
     return TRUE;
 }
 #endif
-inline s32 ConfDB::Open(astring & pPath)
+inline s32 ClientConfDB::Open(astring & pPath)
 {
     m_Options.create_if_missing = true;
     leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
@@ -88,49 +81,65 @@ inline s32 ConfDB::Open(astring & pPath)
     return TRUE;
 }
 
-inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
+
+inline BOOL ClientConfDB::GetStorListConf(VidStorList &pData)
 {
-    VSCConfHdfsRecordKey sKey;
+	VSCConfVidStorKey sKey;
 
-	//pData.ParseFromString();
-	//pData.SerializeToString();
-
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
 
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
 
-    it->Seek(key);
-    leveldb::Slice sysValue;
+	it->Seek(key);
+	leveldb::Slice sysValue("fake");
+	
 
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
+	if (it->status().IsNotFound() != true)
+	{
+	    sysValue = it->value();
+	}
 
-    if (sysValue.size() != sizeof(VSCHdfsRecordData))
-    {
-        VDC_DEBUG( "Hdfs Record Config is not init\n");
-        delete it;
-		memset(&pData, 0, sizeof(VSCHdfsRecordData));
-		VSCHdfsRecordDataItemDefault(pData.data.conf);
-		UpdateHdfsRecordData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
+	if (pData.ParseFromString(sysValue.ToString()) == false)
+	{
+		VidStorList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "Stor List Config is not init\n");
+		delete it;
+		return TRUE;
+	}
 
-	memcpy(&pData, sysValue.data(), sizeof(VSCHdfsRecordData));
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
 
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
+	return TRUE;
 
 }
+inline BOOL ClientConfDB::UpdateStorListConf(VidStorList &pData)
+{
+	VSCConfVidStorKey sKey;
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return TRUE;
+}
+
+
 
 #if 0
-inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
+inline BOOL ClientConfDB::GetSystemConf(VSCConfData &pSys)
 {
     VSCConfSystemKey sSysKey;
 
@@ -190,7 +199,7 @@ inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)
 
 }
 
-inline BOOL ConfDB::GetVmsConf(VSCVmsData &pVms)
+inline BOOL ClientConfDB::GetVmsConf(VSCVmsData &pVms)
 {
     VSCConfVmsKey sVmsKey;
 
@@ -228,7 +237,7 @@ inline BOOL ConfDB::GetVmsConf(VSCVmsData &pVms)
 
 }
 
-inline BOOL ConfDB::GetViewConf(VSCViewData &pView)
+inline BOOL ClientConfDB::GetViewConf(VSCViewData &pView)
 {
     VSCConfViewKey sViewKey;
 
@@ -267,7 +276,7 @@ inline BOOL ConfDB::GetViewConf(VSCViewData &pView)
 }
 
 
-inline BOOL ConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
+inline BOOL ClientConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
 {
     VSCConfVGroupKey sVGroupKey;
 
@@ -305,7 +314,7 @@ inline BOOL ConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
 
 }
 
-inline BOOL ConfDB::GetUserConf(VSCUserData &pData)
+inline BOOL ClientConfDB::GetUserConf(VSCUserData &pData)
 {
     VSCConfUserKey sKey;
 
@@ -343,7 +352,7 @@ inline BOOL ConfDB::GetUserConf(VSCUserData &pData)
 
 }
 
-inline BOOL ConfDB::GetTourConf(VSCTourData &pData)
+inline BOOL ClientConfDB::GetTourConf(VSCTourData &pData)
 {
     VSCConfTourKey sKey;
 
@@ -382,7 +391,7 @@ inline BOOL ConfDB::GetTourConf(VSCTourData &pData)
 }
 
 
-inline BOOL ConfDB::GetEmapConf(VSCEmapData &pData)
+inline BOOL ClientConfDB::GetEmapConf(VSCEmapData &pData)
 {
     VSCConfEmapKey sKey;
 
@@ -421,7 +430,7 @@ inline BOOL ConfDB::GetEmapConf(VSCEmapData &pData)
 }
 
 
-inline s32 ConfDB::UpdateSysData(VSCConfData &pSysData)
+inline s32 ClientConfDB::UpdateSysData(VSCConfData &pSysData)
 {
     VSCConfSystemKey sSysKey;
 
@@ -435,14 +444,14 @@ inline s32 ConfDB::UpdateSysData(VSCConfData &pSysData)
     return TRUE;
 }
 
-inline s32 ConfDB::GetSysData(VSCConfData &pSysData)
+inline s32 ClientConfDB::GetSysData(VSCConfData &pSysData)
 {
     GetSystemConf(pSysData);
 
     return TRUE;
 }
 
-inline BOOL ConfDB::UpdateDeviceData(u32 nId, VSCDeviceData &pData)
+inline BOOL ClientConfDB::UpdateDeviceData(u32 nId, VSCDeviceData &pData)
 {
     VSCConfDeviceKey sChKey(nId);
     leveldb::WriteOptions writeOptions;
@@ -454,7 +463,7 @@ inline BOOL ConfDB::UpdateDeviceData(u32 nId, VSCDeviceData &pData)
     return TRUE;
 }
 
-inline BOOL ConfDB::GetDeviceData(u32 nId, VSCDeviceData &pData)
+inline BOOL ClientConfDB::GetDeviceData(u32 nId, VSCDeviceData &pData)
 {
     VSCConfDeviceKey sChKey(nId);
 
@@ -488,7 +497,7 @@ inline BOOL ConfDB::GetDeviceData(u32 nId, VSCDeviceData &pData)
     return TRUE;
 }
 
-inline BOOL ConfDB::UpdateVIPCData(u32 nId, VSCVIPCData &pData)
+inline BOOL ClientConfDB::UpdateVIPCData(u32 nId, VSCVIPCData &pData)
 {
     VSCConfVIPCKey sChKey(nId);
     leveldb::WriteOptions writeOptions;
@@ -500,7 +509,7 @@ inline BOOL ConfDB::UpdateVIPCData(u32 nId, VSCVIPCData &pData)
     return TRUE;
 }
 
-inline BOOL ConfDB::GetVIPCData(u32 nId, VSCVIPCData &pData)
+inline BOOL ClientConfDB::GetVIPCData(u32 nId, VSCVIPCData &pData)
 {
     VSCConfVIPCKey sChKey(nId);
 
@@ -536,13 +545,13 @@ inline BOOL ConfDB::GetVIPCData(u32 nId, VSCVIPCData &pData)
 
 
 
-inline s32 ConfDB::GetVmsData(VSCVmsData &pVmsData)
+inline s32 ClientConfDB::GetVmsData(VSCVmsData &pVmsData)
 {
 	GetVmsConf(pVmsData);
 	
 	return TRUE;
 }
-inline s32 ConfDB::UpdateVmsData(VSCVmsData &pVmsData)
+inline s32 ClientConfDB::UpdateVmsData(VSCVmsData &pVmsData)
 {
     VSCConfVmsKey sVmsKey;
 
@@ -556,13 +565,13 @@ inline s32 ConfDB::UpdateVmsData(VSCVmsData &pVmsData)
     return TRUE;
 }
 
-inline s32 ConfDB::GetViewData(VSCViewData &pViewData)
+inline s32 ClientConfDB::GetViewData(VSCViewData &pViewData)
 {
 	GetViewConf(pViewData);
 	
 	return TRUE;
 }
-inline s32 ConfDB::UpdateViewData(VSCViewData &pViewData)
+inline s32 ClientConfDB::UpdateViewData(VSCViewData &pViewData)
 {
     VSCConfViewKey sViewKey;
 
@@ -577,14 +586,14 @@ inline s32 ConfDB::UpdateViewData(VSCViewData &pViewData)
 }
 
 /* Camera Group  */
-inline s32 ConfDB::GetVGroupData(VSCVGroupData &pGroupData)
+inline s32 ClientConfDB::GetVGroupData(VSCVGroupData &pGroupData)
 {
 	GetVGroupConf(pGroupData);
 	
 	return TRUE;
 }
 /* Camera Group  */
-inline s32 ConfDB::UpdateVGroupData(VSCVGroupData &pVGroupData)
+inline s32 ClientConfDB::UpdateVGroupData(VSCVGroupData &pVGroupData)
 {
     VSCConfVGroupKey sVGroupKey;
 
@@ -599,7 +608,7 @@ inline s32 ConfDB::UpdateVGroupData(VSCVGroupData &pVGroupData)
 }
 
 /* HDFS record  */
-inline s32 ConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
+inline s32 ClientConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
 {
 	GetHdfsRecordConf(pData);
 	
@@ -607,7 +616,7 @@ inline s32 ConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
 }
 
 /* HDFS record  */
-inline s32 ConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
+inline s32 ClientConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
 {
     VSCConfHdfsRecordKey sKey;
 
@@ -622,14 +631,14 @@ inline s32 ConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
 }
 
 /* User  */
-inline s32 ConfDB::GetUserData(VSCUserData &pData)
+inline s32 ClientConfDB::GetUserData(VSCUserData &pData)
 {
 	GetUserConf(pData);
 	
 	return TRUE;
 }
 
-inline s32 ConfDB::UpdateUserData(VSCUserData &pData)
+inline s32 ClientConfDB::UpdateUserData(VSCUserData &pData)
 {
     VSCConfUserKey sKey;
 
@@ -644,14 +653,14 @@ inline s32 ConfDB::UpdateUserData(VSCUserData &pData)
 }
 
 /* Tour  */
-inline s32 ConfDB::GetTourData(VSCTourData &pData)
+inline s32 ClientConfDB::GetTourData(VSCTourData &pData)
 {
 	GetTourConf(pData);
 	
 	return TRUE;
 }
 
-inline s32 ConfDB::UpdateTourData(VSCTourData &pData)
+inline s32 ClientConfDB::UpdateTourData(VSCTourData &pData)
 {
     VSCConfTourKey sKey;
 
@@ -667,13 +676,13 @@ inline s32 ConfDB::UpdateTourData(VSCTourData &pData)
 
 
 /* Emap */
-inline s32 ConfDB::GetEmapData(VSCEmapData &pData)
+inline s32 ClientConfDB::GetEmapData(VSCEmapData &pData)
 {
 	GetEmapConf(pData);
 	
 	return TRUE;
 }
-inline s32 ConfDB::UpdateEmapData(VSCEmapData &pData)
+inline s32 ClientConfDB::UpdateEmapData(VSCEmapData &pData)
 {
     VSCConfEmapKey sKey;
 
@@ -688,7 +697,7 @@ inline s32 ConfDB::UpdateEmapData(VSCEmapData &pData)
 }
 
 /* Emap file Get & Set */
-inline   BOOL ConfDB::GetEmapFile(astring &strFile)
+inline   BOOL ClientConfDB::GetEmapFile(astring &strFile)
 {
 	BOOL ret = FALSE;
 	VSCConfEmapFileKey sMapKey;
@@ -717,7 +726,7 @@ inline   BOOL ConfDB::GetEmapFile(astring &strFile)
 
 }
 
-inline   BOOL ConfDB::SetEmapFile(astring &strFile)
+inline   BOOL ClientConfDB::SetEmapFile(astring &strFile)
 {
 	VSCConfEmapFileKey sMapKey;
 	leveldb::WriteOptions writeOptions;
@@ -729,7 +738,7 @@ inline   BOOL ConfDB::SetEmapFile(astring &strFile)
     
 }
 
-inline   BOOL ConfDB::GetLicense(astring &strLicense)
+inline   BOOL ClientConfDB::GetLicense(astring &strLicense)
 {
 	VSCConfLicenseKey sLicKey;
 	
@@ -758,7 +767,7 @@ inline   BOOL ConfDB::GetLicense(astring &strLicense)
 	return TRUE;
 
 }
-inline   BOOL ConfDB::SetLicense(astring &strLicense)
+inline   BOOL ClientConfDB::SetLicense(astring &strLicense)
 {
 	VSCConfLicenseKey sLic;
 	leveldb::WriteOptions writeOptions;
@@ -770,7 +779,7 @@ inline   BOOL ConfDB::SetLicense(astring &strLicense)
     
 }
 
-inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
+inline BOOL ClientConfDB::GetCmnParam(astring &strKey, astring &strParam)
 {
 	leveldb::Slice key(strKey);
 
@@ -797,7 +806,7 @@ inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
 	return TRUE;
 }
 
-inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
+inline BOOL ClientConfDB::SetCmnParam(astring &strKey, astring &strParam)
 {
 	leveldb::WriteOptions writeOptions;
 
@@ -807,7 +816,7 @@ inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
 	return TRUE;
 }
 
-inline s32 ConfDB::AddDevice(VSCDeviceData &pData, u32 nId)
+inline s32 ClientConfDB::AddDevice(VSCDeviceData &pData, u32 nId)
 {
     if (nId > CONF_MAP_MAX)
     {
@@ -828,7 +837,7 @@ inline s32 ConfDB::AddDevice(VSCDeviceData &pData, u32 nId)
     return TRUE;
 }
 
-inline s32 ConfDB::DelDevice(u32 nId)
+inline s32 ClientConfDB::DelDevice(u32 nId)
 {
     if (nId > CONF_MAP_MAX)
     {
@@ -845,7 +854,7 @@ inline s32 ConfDB::DelDevice(u32 nId)
     return TRUE;
 }
 
-inline s32 ConfDB::AddVIPC(VSCVIPCData &pData, u32 nId)
+inline s32 ClientConfDB::AddVIPC(VSCVIPCData &pData, u32 nId)
 {
     if (nId > CONF_MAP_MAX)
     {
@@ -866,7 +875,7 @@ inline s32 ConfDB::AddVIPC(VSCVIPCData &pData, u32 nId)
     return TRUE;
 }
 
-inline s32 ConfDB::DelVIPC(u32 nId)
+inline s32 ClientConfDB::DelVIPC(u32 nId)
 {
     if (nId > CONF_MAP_MAX)
     {

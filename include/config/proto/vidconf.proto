@@ -25,11 +25,12 @@ message VidStorServerConf {
 
 //Camera config
 enum CameraType {
-	VID_USB = 0;
-	VID_FILE = 1;
-	VID_RTSP = 2;
-	VID_ONVIF_S = 3;
-	VID_GB28181 = 4;
+	VID_0 = 0;
+	VID_USB = 1;
+	VID_FILE = 2;
+	VID_RTSP = 3;
+	VID_ONVIF_S = 4;
+	VID_GB28181 =5;
 }
 
 //Camera config
@@ -132,7 +133,7 @@ message VidStor {
 	string strName = 2;
 	
 	string strIP = 3;
-	int32 nPort = 4;
+	string strPort = 4;
 	string strUser = 5;
 	string strPasswd = 6;
 }

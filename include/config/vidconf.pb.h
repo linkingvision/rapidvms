@@ -1151,11 +1151,16 @@ class VidStor : public ::google::protobuf::Message {
   ::std::string* release_strip();
   void set_allocated_strip(::std::string* strip);
 
-  // optional int32 nPort = 4;
-  void clear_nport();
-  static const int kNPortFieldNumber = 4;
-  ::google::protobuf::int32 nport() const;
-  void set_nport(::google::protobuf::int32 value);
+  // optional string strPort = 4;
+  void clear_strport();
+  static const int kStrPortFieldNumber = 4;
+  const ::std::string& strport() const;
+  void set_strport(const ::std::string& value);
+  void set_strport(const char* value);
+  void set_strport(const char* value, size_t size);
+  ::std::string* mutable_strport();
+  ::std::string* release_strport();
+  void set_allocated_strport(::std::string* strport);
 
   // optional string strUser = 5;
   void clear_struser();
@@ -1187,9 +1192,9 @@ class VidStor : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   ::google::protobuf::internal::ArenaStringPtr strip_;
+  ::google::protobuf::internal::ArenaStringPtr strport_;
   ::google::protobuf::internal::ArenaStringPtr struser_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
-  ::google::protobuf::int32 nport_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -3318,18 +3323,47 @@ inline void VidStor::set_allocated_strip(::std::string* strip) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strIP)
 }
 
-// optional int32 nPort = 4;
-inline void VidStor::clear_nport() {
-  nport_ = 0;
+// optional string strPort = 4;
+inline void VidStor::clear_strport() {
+  strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::google::protobuf::int32 VidStor::nport() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidStor.nPort)
-  return nport_;
+inline const ::std::string& VidStor::strport() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidStor.strPort)
+  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void VidStor::set_nport(::google::protobuf::int32 value) {
+inline void VidStor::set_strport(const ::std::string& value) {
   
-  nport_ = value;
-  // @@protoc_insertion_point(field_set:VidConf.VidStor.nPort)
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidStor.strPort)
+}
+inline void VidStor::set_strport(const char* value) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strPort)
+}
+inline void VidStor::set_strport(const char* value, size_t size) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strPort)
+}
+inline ::std::string* VidStor::mutable_strport() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strPort)
+  return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStor::release_strport() {
+  
+  return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStor::set_allocated_strport(::std::string* strport) {
+  if (strport != NULL) {
+    
+  } else {
+    
+  }
+  strport_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strport);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strPort)
 }
 
 // optional string strUser = 5;

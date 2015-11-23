@@ -30,9 +30,10 @@ public:
 public:
 
 	BOOL GetHdfsRecordConf(VidHDFSConf &pData);
+	BOOL UpdateHdfsRecordConf(VidHDFSConf &pData);
 
-	BOOL GetCameraConf(VidCameraList &pData);
-	BOOL UpdateCameraConf(VidCameraList &pData);
+	BOOL GetCameraListConf(VidCameraList &pData);
+	BOOL UpdateCameraListConf(VidCameraList &pData);
 
 	BOOL GetLicense(astring &strLicense);
 	BOOL SetLicense(astring &strLicense);

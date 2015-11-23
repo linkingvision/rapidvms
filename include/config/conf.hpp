@@ -4,7 +4,7 @@
 #define _CONF_H_
 
 #include "utility.hpp"
-#include "oapicmn.hpp"
+#include "oapi/oapicmn.hpp"
 
 #define VE_VERSION "r2.0.1-20151201"
 #define VE_INFO "OpenCVR r2.0.1 2015"
@@ -48,15 +48,23 @@ typedef struct __VSCConfLicenseKey {
 }VSCConfLicenseKey;
 
 typedef struct __VSCConfCameraKey {
-    u32 nId;
     s8 Key[CONF_KEY_STR_MAX];
-    __VSCConfCameraKey(u32 id)
+	__VSCConfCameraKey()
     {
         memset(Key, 0, CONF_KEY_STR_MAX);
         strcpy(Key, VSC_CONF_CAMERA_KEY);
-        nId = id;
     }
 }VSCConfCameraKey;
+
+/* HDFS Reocrd key */
+typedef struct __VSCConfHdfsRecordKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfHdfsRecordKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_HDFS_RECORD_KEY);
+    }
+}VSCConfHdfsRecordKey;
 
 typedef struct __VSCConfVidStorKey {
     s8 Key[CONF_KEY_STR_MAX];
@@ -65,7 +73,7 @@ typedef struct __VSCConfVidStorKey {
         memset(Key, 0, CONF_KEY_STR_MAX);
         strcpy(Key, VSC_CONF_VIDSTOR_KEY);
     }
-}VSCConfVmsKey;
+}VSCConfVidStorKey;
 
 typedef struct __VSCConfViewKey {
     s8 Key[CONF_KEY_STR_MAX];
@@ -85,16 +93,6 @@ typedef struct __VSCConfGroupKey {
         strcpy(Key, VSC_CONF_VGROUP_KEY);
     }
 }VSCConfVGroupKey;
-
-/* HDFS Reocrd key */
-typedef struct __VSCConfHdfsRecordKey {
-    s8 Key[CONF_KEY_STR_MAX];
-    __VSCConfHdfsRecordKey()
-    {
-        memset(Key, 0, CONF_KEY_STR_MAX);
-        strcpy(Key, VSC_CONF_HDFS_RECORD_KEY);
-    }
-}VSCConfHdfsRecordKey;
 
 /* Emap configuration, storage the emap conf, such as the camera location*/
 typedef struct __VSCConfEmapKey {
@@ -159,14 +157,7 @@ inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
     item.nStreamId = 1;
 }
 
-inline void VSCHdfsRecordDataItemDefault(VSCConfHdfsRecordData__ &item)
-{
-    strcpy(item.NameNode, "localhost");//default for hdd
-    strcpy(item.Port, "8020");//0 for hdd
-    strcpy(item.User, "admin");
-    strcpy(item.Password, "admin");
-    item.FileInterval = 30;/* 30s */
-}
+
 
 inline void VSCUserDataItemDefault(VSCUserData__ &item)
 {

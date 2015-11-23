@@ -1,7 +1,5 @@
-
-
-#ifndef _CONF_DB_H_
-#define _CONF_DB_H_
+#ifndef __CLIENT_CONF_DB_H__
+#define __CLIENT_CONF_DB_H__
 
 #include "utility.hpp"
 #include "leveldb/db.h"
@@ -10,34 +8,29 @@
 
 using namespace UtilityLib;
 
-class ConfDB
+class ClientConfDB
 {
 public:
-    ConfDB()
+    ClientConfDB()
     {
 
     }
-    ~ConfDB()
+    ~ClientConfDB()
     {
 
     }
 
-    s32 Open(astring & pPath);
+    s32 Open(astringastring & pPath);
 public:
-
-	BOOL GetHdfsRecordConf(VidHDFSConf &pData);
-
-	BOOL GetCameraConf(VidCameraList &pData);
-	BOOL UpdateCameraConf(VidCameraList &pData);
-
-	BOOL GetLicense(astring &strLicense);
-	BOOL SetLicense(astring &strLicense);
-
-#if 0
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
-
+	
+	BOOL GetStorListConf(VidStorList &pData);
+	BOOL UpdateStorListConf(VidStorList &pData);
+	
+	
+#if 0
 	s32 GetSysData(VSCConfData &pSysData);
 	s32 UpdateSysData(VSCConfData &pSysData);
 
@@ -111,10 +104,10 @@ private:
     leveldb::Options m_Options;
 };
 
-typedef ConfDB* LPConfDB;
+typedef ClientConfDB* LPClientConfDB;
 
 
-#include "confdbimpl.hpp"
+#include "clientconfdbimpl.hpp"
 
 
-#endif /* _CONF_DB_H_ */
+#endif /* __CLIENT_CONF_DB_H__ */

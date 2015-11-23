@@ -1,5 +1,3 @@
-
-
 #ifndef _SYS_DB_H_
 #define _SYS_DB_H_
 
