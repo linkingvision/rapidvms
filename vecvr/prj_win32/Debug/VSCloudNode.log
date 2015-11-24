@@ -1,0 +1,271 @@
+﻿Build started 2015/10/28 21:57:57.
+     1>Project "D:\60-ffvideo\svnwork\veapp\prj_win32\VSCloudNode.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Moc'ing vscplaneditline.h...
+         Moc'ing vscrecordplan.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.4.0\5.4\msvc2013\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtCore /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtGui /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimedia /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtMultimediaWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtNetwork /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtQuick /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSql /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebKit /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\ActiveQt /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtConcurrent /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtHelp /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtOpenGL /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtPrintSupport /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtScript /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtSvg /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWebkitWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtWidgets /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXml /IC:\Qt\Qt5.4.0\5.4\msvc2013\include\QtXmlPatterns /I..\main /I..\playback /I..\recordplan /I..\disk /I..\vwidget /I..\..\devices\include /I..\..\3rdparty\leveldb\include /I..\..\utility\ /I..\..\3rdparty\poco\Foundation\include\ /I..\..\3rdparty\poco\Net\include\ /I..\..\3rdparty\poco\Util\include /I..\..\3rdparty\onvifc\include\ /I..\..\velib\include\vplay /I..\..\velib\include\utility /I..\..\velib\include\vdb /I..\..\velib\include\ /I..\..\3rdparty\poco\Data\include\ /I..\..\3rdparty\poco\Data\SQLite\include\ /I..\vms /I..\systeminfo\windows\ /I..\setting /I..\systeminfo\ /I..\event\ /I..\..\onvifcpplib\include /I..\..\onvifcpplib\onvifgen /I..\..\onvifcpplib\gsoap\gsoap\runtime /I"..\..\3rdparty\openssl-1.0.1g\include" /I..\..\veuilib\include\ /I..\..\mining\include\ /I..\..\oapi\ /I..\..\3rdparty\autojsoncxx\include /I..\..\3rdparty\autojsoncxx\rapidjson\include /I..\..\xcmnlib\include\utility /I..\..\xcmnlib\include\ /ZI /nologo /W1 /WX- /Od /Oy- /D WIN32 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /D QT_NETWORK_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_SQL_LIB /D QT_CONCURRENT_LIB /D QT_HELP_LIB /D QT_OPENGL_LIB /D QT_PRINTSUPPORT_LIB /D QT_SCRIPT_LIB /D QT_SVG_LIB /D QT_WEBKITWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_XMLPATTERNS_LIB /D WITH_OPENSSL /D WITH_DOM /D WITH_PURE_VIRTUAL /D QT_BUILD_SYSTEMINFO_LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main\vscmainwindows.cpp ..\recordplan\vscplaneditline.cpp ..\recordplan\vscrecordplan.cpp GeneratedFiles\Debug\moc_vscplaneditline.cpp GeneratedFiles\Debug\moc_vscrecordplan.cpp
+         vscmainwindows.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2798): warning C4996: 'std::_Equal1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2783) : see declaration of 'std::_Equal1'
+                 d:\60-ffvideo\svnwork\3rdparty\autojsoncxx\include\autojsoncxx\utility.hpp(198) : see reference to function template instantiation 'bool std::equal<const char*,const char*>(_InIt1,_InIt1,_InIt2)' being compiled
+                 with
+                 [
+                     _InIt1=const char *
+         ,            _InIt2=const char *
+                 ]
+         vscplaneditline.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2798): warning C4996: 'std::_Equal1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2783) : see declaration of 'std::_Equal1'
+                 d:\60-ffvideo\svnwork\3rdparty\autojsoncxx\include\autojsoncxx\utility.hpp(198) : see reference to function template instantiation 'bool std::equal<const char*,const char*>(_InIt1,_InIt1,_InIt2)' being compiled
+                 with
+                 [
+                     _InIt1=const char *
+         ,            _InIt2=const char *
+                 ]
+         vscrecordplan.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2798): warning C4996: 'std::_Equal1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2783) : see declaration of 'std::_Equal1'
+                 d:\60-ffvideo\svnwork\3rdparty\autojsoncxx\include\autojsoncxx\utility.hpp(198) : see reference to function template instantiation 'bool std::equal<const char*,const char*>(_InIt1,_InIt1,_InIt2)' being compiled
+                 with
+                 [
+                     _InIt1=const char *
+         ,            _InIt2=const char *
+                 ]
+         moc_vscplaneditline.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2798): warning C4996: 'std::_Equal1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2783) : see declaration of 'std::_Equal1'
+                 d:\60-ffvideo\svnwork\3rdparty\autojsoncxx\include\autojsoncxx\utility.hpp(198) : see reference to function template instantiation 'bool std::equal<const char*,const char*>(_InIt1,_InIt1,_InIt2)' being compiled
+                 with
+                 [
+                     _InIt1=const char *
+         ,            _InIt2=const char *
+                 ]
+         moc_vscrecordplan.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2798): warning C4996: 'std::_Equal1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2783) : see declaration of 'std::_Equal1'
+                 d:\60-ffvideo\svnwork\3rdparty\autojsoncxx\include\autojsoncxx\utility.hpp(198) : see reference to function template instantiation 'bool std::equal<const char*,const char*>(_InIt1,_InIt1,_InIt2)' being compiled
+                 with
+                 [
+                     _InIt1=const char *
+         ,            _InIt2=const char *
+                 ]
+         Generating Code...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.exe) does not match the Linker's OutputFile property value (D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\OpenCVR.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1195,5): warning MSB8012: TargetName(VSCloudNode) does not match the Linker's OutputFile property value (OpenCVR). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\\OpenCVR.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.4.0\5.4\msvc2013\lib /LIBPATH:"..\..\3rdparty\ffmpeg-54\lib" /LIBPATH:..\..\3rdparty\leveldb\win32_proj\Debug /LIBPATH:..\..\3rdparty\poco\lib\ /LIBPATH:..\..\3rdparty\libcli\Debug\ /LIBPATH:..\..\3rdparty\onvifc\lib\Debug\ /LIBPATH:..\..\velib\lib\win32\Debug /LIBPATH:.\Debug\ /LIBPATH:"..\..\3rdparty\openssl-1.0.1g\lib" /LIBPATH:..\..\veuilib\lib\win32\Debug\ /LIBPATH:..\..\xcmnlib\lib\win32\Debug qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Multimediad.lib Qt5MultimediaWidgetsd.lib Qt5Networkd.lib Qt5Qmld.lib Qt5Quickd.lib Qt5Sqld.lib Qt5WebKitd.lib Qt5AxContainerd.lib Qt5AxBased.lib Qt5Concurrentd.lib Qt5Helpd.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5PrintSupportd.lib Qt5Scriptd.lib Qt5Svgd.lib Qt5WebkitWidgetsd.lib Qt5Widgetsd.lib Qt5Xmld.lib Qt5XmlPatternsd.lib wsock32.lib leveldb.lib memenv.lib onvifc.lib Qt5AxBase.lib ws2_32.lib dsound.lib ole32.lib comsupp.lib velib.lib veuilib.lib cmnlib.lib winmm.lib libeay32MTd.lib IPHLPAPI.lib ssleay32MTd.lib Dbghelp.lib Rpcrt4.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.lib" /MACHINE:X86 /SAFESEH Debug\VSCloudNode.res
+         Debug\vschdddevice.obj
+         Debug\vschddedit.obj
+         Debug\vschddone.obj
+         Debug\vschddoneedit.obj
+         Debug\main.obj
+         Debug\vsccameraadd.obj
+         Debug\vscdeviceipc.obj
+         Debug\vscdevicelist.obj
+         Debug\vscdevicetrash.obj
+         Debug\vscdevicetree.obj
+         Debug\vscdiskdevice.obj
+         Debug\vscdockwidget.obj
+         Debug\vscipcgroupconf.obj
+         Debug\vscipcgroupmap.obj
+         Debug\vscmainwindows.obj
+         Debug\vscpanel.obj
+         Debug\vscpaneltaskitem.obj
+         Debug\vscplayback.obj
+         Debug\vscplaycontrol.obj
+         Debug\vscsearch.obj
+         Debug\vsctoobar.obj
+         Debug\vscview.obj
+         Debug\vscviewconf.obj
+         Debug\vscvipc.obj
+         Debug\vscvipcadd.obj
+         Debug\vsclineedit.obj
+         Debug\vscplaneditline.obj
+         Debug\vscrecordplan.obj
+         Debug\switchbutton.obj
+         Debug\vschdfsrecord.obj
+         Debug\vsclanguage.obj
+         Debug\vsclicense.obj
+         Debug\vsclogin.obj
+         Debug\vscminingsetting.obj
+         Debug\vscoapi.obj
+         Debug\vscrtsprtp.obj
+         Debug\vscsetting.obj
+         Debug\vscuser.obj
+         Debug\vscuserstatus.obj
+         Debug\vscversion.obj
+         Debug\vscvideosetting.obj
+         Debug\vscsiteadd.obj
+         Debug\vscvms.obj
+         Debug\moc_cmnoapiserver.obj
+         Debug\moc_cmnserver.obj
+         Debug\moc_factory.obj
+         Debug\moc_mframework.obj
+         Debug\moc_switchbutton.obj
+         Debug\moc_vsccameraadd.obj
+         Debug\moc_vscdevicelist.obj
+         Debug\moc_vscdevicetrash.obj
+         Debug\moc_vscdevicetree.obj
+         Debug\moc_vscdiskdevice.obj
+         Debug\moc_vscdockwidget.obj
+         Debug\moc_vschdddevice.obj
+         Debug\moc_vschddedit.obj
+         Debug\moc_vschddone.obj
+         Debug\moc_vschddoneedit.obj
+         Debug\moc_vschdfsrecord.obj
+         Debug\moc_vscipcgroupconf.obj
+         Debug\moc_vscipcgroupmap.obj
+         Debug\moc_vsclanguage.obj
+         Debug\moc_vsclicense.obj
+         Debug\moc_vsclineedit.obj
+         Debug\moc_vsclogin.obj
+         Debug\moc_vscmainwindows.obj
+         Debug\moc_vscminingsetting.obj
+         Debug\moc_vscoapi.obj
+         Debug\moc_vscpanel.obj
+         Debug\moc_vscpaneltaskitem.obj
+         Debug\moc_vscplaneditline.obj
+         Debug\moc_vscplayback.obj
+         Debug\moc_vscplaycontrol.obj
+         Debug\moc_vscrecordplan.obj
+         Debug\moc_vscrtsprtp.obj
+         Debug\moc_vscsearch.obj
+         Debug\moc_vscsetting.obj
+         Debug\moc_vscsiteadd.obj
+         Debug\moc_vsctoolbar.obj
+         Debug\moc_vscuser.obj
+         Debug\moc_vscuserstatus.obj
+         Debug\moc_vscversion.obj
+         Debug\moc_vscvideosetting.obj
+         Debug\moc_vscview.obj
+         Debug\moc_vscviewconf.obj
+         Debug\moc_vscvipcadd.obj
+         Debug\moc_vscvms.obj
+         Debug\qrc_style.obj
+         Debug\qrc_vscmainwindows.obj
+     1>vschdddevice.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.lib and object D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.exp
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>leveldb.lib(builder.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(builder.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(db_impl.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(db_impl.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(db_iter.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(db_iter.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(dbformat.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(dbformat.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(filename.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(filename.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(log_reader.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(log_reader.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(log_writer.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(log_writer.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(memtable.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(memtable.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(table_cache.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(table_cache.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(version_edit.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(version_edit.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(version_set.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(version_set.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(write_batch.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(write_batch.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(block.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(block.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(block_builder.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(block_builder.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(filter_block.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(filter_block.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(format.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(format.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(iterator.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(iterator.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(merger.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(merger.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(table.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(table.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(table_builder.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(table_builder.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(two_level_iterator.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(two_level_iterator.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(arena.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(arena.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(cache.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(cache.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(coding.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(coding.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(comparator.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(comparator.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(crc32c.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(crc32c.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(env.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(env.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(env_win.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(env_win.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(filter_policy.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(filter_policy.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(hash.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(hash.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(logging.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(logging.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(options.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(options.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(status.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(status.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>leveldb.lib(port_win.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'leveldb.lib(port_win.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(client.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(client.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(devicemanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(devicemanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(devicesearcher.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(devicesearcher.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(capabilities.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(capabilities.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(networkinterfaces.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(networkinterfaces.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(networkprotocols.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(networkprotocols.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(systemdateandtime.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(systemdateandtime.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(systemfactorydefault.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(systemfactorydefault.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(systemreboot.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(systemreboot.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(user.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(user.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(mediamanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(mediamanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(audioencoderconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(audioencoderconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(audioencoderconfigurationoptions.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(audioencoderconfigurationoptions.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(audioencoderconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(audioencoderconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(audiosourceconfiigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(audiosourceconfiigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(profile.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(profile.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(profiles.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(profiles.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(streamuri.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(streamuri.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(videoencoderconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(videoencoderconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(videoencoderconfigurationoptions.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(videoencoderconfigurationoptions.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(videoencoderconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(videoencoderconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(videosourceconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(videosourceconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(videosourceconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(videosourceconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(message.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(message.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(messageparser.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(messageparser.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(ptzmanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(ptzmanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(absolutemove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(absolutemove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(configuration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(configuration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(configurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(configurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(continuousmove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(continuousmove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(gotohomeposition.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(gotohomeposition.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(gotopreset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(gotopreset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(node.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(node.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(nodes.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(nodes.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(preset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(preset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(presets.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(presets.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(relativemove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(relativemove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(removepreset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(removepreset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(stop.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(stop.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(qhttp.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(qhttp.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(qhttpauthenticator.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(qhttpauthenticator.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(service.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(service.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_absolutemove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_absolutemove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_audioencoderconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_audioencoderconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_audioencoderconfigurationoptions.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_audioencoderconfigurationoptions.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_audioencoderconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_audioencoderconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_audiosourceconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_audiosourceconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_capabilities.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_capabilities.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_client.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_client.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_configuration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_configuration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_configurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_configurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_continuousmove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_continuousmove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_devicemanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_devicemanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_devicesearcher.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_devicesearcher.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_gotohomeposition.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_gotohomeposition.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_gotopreset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_gotopreset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_mediamanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_mediamanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_message.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_message.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_messageparser.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_messageparser.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_networkinterfaces.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_networkinterfaces.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_networkprotocols.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_networkprotocols.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_node.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_node.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_nodes.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_nodes.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_preset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_preset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_presets.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_presets.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_profile.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_profile.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_profiles.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_profiles.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_ptzmanagement.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_ptzmanagement.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_relativemove.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_relativemove.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_removepreset.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_removepreset.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_service.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_service.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_stop.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_stop.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_streamuri.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_streamuri.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_systemdateandtime.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_systemdateandtime.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_systemfactorydefault.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_systemfactorydefault.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_systemreboot.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_systemreboot.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_user.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_user.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_videoencoderconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_videoencoderconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_videoencoderconfigurationoptions.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_videoencoderconfigurationoptions.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_videoencoderconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_videoencoderconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_videosourceconfiguration.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_videosourceconfiguration.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+     1>onvifc.lib(moc_videosourceconfigurations.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'onvifc.lib(moc_videosourceconfigurations.obj)' or at 'D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\vc120.pdb'; linking object as if no debug info
+         VSCloudNode.vcxproj -> D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Debug\VSCloudNode.exe
+     1>Done Building Project "D:\60-ffvideo\svnwork\veapp\prj_win32\VSCloudNode.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:01.13

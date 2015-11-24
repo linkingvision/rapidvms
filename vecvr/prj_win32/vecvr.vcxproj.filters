@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{838bf31f-34f2-4683-b929-f476f336df5f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{70841eca-b9a9-4fdf-8302-e1a9d76e462f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{fd16c105-62a2-4dae-842d-eb204e0c2c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{99559c38-1438-4a46-8052-fd8837ab6044}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\config">
+      <UniqueIdentifier>{41a06082-e8ce-4892-98d3-8ac0c4210795}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\server">
+      <UniqueIdentifier>{b9619231-b501-4e05-a8cc-e8c8a7ac192a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\oapi">
+      <UniqueIdentifier>{516ed3a6-db5e-4a3a-a7f5-099188efced0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\main\vscmainwindows.qrc">
+      <Filter>Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\server\cmnoapiserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\server\cmnserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\server\factory.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\conf.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\confdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\confdbimpl.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\sysdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\vidconf.pb.h">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\camera.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\cameraimpl.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\cmnoapiserverimpl.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\cmnserverimpl.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\factoryimpl.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\hdddevice.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapic.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapis.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vecvr.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <None Include="..\darkstyle\rc\up_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Hmovetoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-branch-end.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_closed-on.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-vline.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_closed.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_open-on.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\transparent.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\right_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\sizegrip.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\close.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\down_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Vmovetoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\left_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\stylesheet-branch-more.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\up_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\right_arrow.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\left_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Hsepartoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\checkbox.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\branch_open.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\Vsepartoolbar.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\down_arrow_disabled.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\rc\undock.png">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\darkstyle\style.qss">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\main\translations\opencvr_zh.ts">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

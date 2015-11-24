@@ -1,0 +1,99 @@
+﻿Build started 2015/8/22 0:20:04.
+     1>Project "D:\60-ffvideo\svnwork\veapp\prj_win32\VSCloudNode.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.exe) does not match the Linker's OutputFile property value (D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\OpenCVR.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1195,5): warning MSB8012: TargetName(VSCloudNode) does not match the Linker's OutputFile property value (OpenCVR). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\\OpenCVR.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.4.0\5.4\msvc2013\lib /LIBPATH:"..\..\3rdparty\ffmpeg-54\lib" /LIBPATH:..\..\3rdparty\leveldb\win32_proj\Release /LIBPATH:..\..\3rdparty\poco\lib\ /LIBPATH:..\..\3rdparty\libcli\Release\ /LIBPATH:..\..\3rdparty\onvifc\lib\Release\ /LIBPATH:..\..\velib\lib\win32\Release /LIBPATH:"..\..\3rdparty\openssl-1.0.1g\lib" /LIBPATH:.\Release /LIBPATH:..\..\veuilib\lib\win32\Release /LIBPATH:..\..\xcmnlib\lib\win32\Release qtmain.lib Qt5Core.lib Qt5Gui.lib Qt5Multimedia.lib Qt5MultimediaWidgets.lib Qt5Network.lib Qt5Qml.lib Qt5Quick.lib Qt5Sql.lib Qt5WebKit.lib Qt5AxContainer.lib Qt5AxBase.lib Qt5Concurrent.lib Qt5Help.lib Qt5OpenGL.lib opengl32.lib glu32.lib Qt5PrintSupport.lib Qt5Script.lib Qt5Svg.lib Qt5WebkitWidgets.lib Qt5Widgets.lib Qt5Xml.lib Qt5XmlPatterns.lib wsock32.lib leveldb.lib memenv.lib onvifc.lib ws2_32.lib dsound.lib ole32.lib comsupp.lib velib.lib veuilib.lib libeay32MT.lib ssleay32MT.lib IPHLPAPI.lib Dbghelp.lib Rpcrt4.lib cmnlib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.pdb" /SUBSYSTEM:WINDOWS /STACK:"10485760" /OPT:NOREF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.lib" /MACHINE:X86 /SAFESEH Release\VSCloudNode.res
+         Release\vschdddevice.obj
+         Release\vschddedit.obj
+         Release\vschddone.obj
+         Release\vschddoneedit.obj
+         Release\main.obj
+         Release\vsccameraadd.obj
+         Release\vscdeviceipc.obj
+         Release\vscdevicelist.obj
+         Release\vscdevicetrash.obj
+         Release\vscdevicetree.obj
+         Release\vscdiskdevice.obj
+         Release\vscdockwidget.obj
+         Release\vscipcgroupconf.obj
+         Release\vscipcgroupmap.obj
+         Release\vscmainwindows.obj
+         Release\vscpanel.obj
+         Release\vscpaneltaskitem.obj
+         Release\vscplayback.obj
+         Release\vscplaycontrol.obj
+         Release\vscsearch.obj
+         Release\vsctoobar.obj
+         Release\vscview.obj
+         Release\vscviewconf.obj
+         Release\vscvipc.obj
+         Release\vscvipcadd.obj
+         Release\switchbutton.obj
+         Release\vschdfsrecord.obj
+         Release\vsclanguage.obj
+         Release\vsclicense.obj
+         Release\vsclogin.obj
+         Release\vscminingsetting.obj
+         Release\vscoapi.obj
+         Release\vscrtsprtp.obj
+         Release\vscsetting.obj
+         Release\vscuser.obj
+         Release\vscuserstatus.obj
+         Release\vscversion.obj
+         Release\vscvideosetting.obj
+         Release\vscsiteadd.obj
+         Release\vscvms.obj
+         Release\qrc_style.obj
+         Release\qrc_vscmainwindows.obj
+         Release\moc_cmnoapiserver.obj
+         Release\moc_cmnserver.obj
+         Release\moc_factory.obj
+         Release\moc_mframework.obj
+         Release\moc_switchbutton.obj
+         Release\moc_vsccameraadd.obj
+         Release\moc_vscdevicelist.obj
+         Release\moc_vscdevicetrash.obj
+         Release\moc_vscdevicetree.obj
+         Release\moc_vscdiskdevice.obj
+         Release\moc_vscdockwidget.obj
+         Release\moc_vschdddevice.obj
+         Release\moc_vschddedit.obj
+         Release\moc_vschddone.obj
+         Release\moc_vschddoneedit.obj
+         Release\moc_vschdfsrecord.obj
+         Release\moc_vscipcgroupconf.obj
+         Release\moc_vscipcgroupmap.obj
+         Release\moc_vsclanguage.obj
+         Release\moc_vsclicense.obj
+         Release\moc_vsclogin.obj
+         Release\moc_vscmainwindows.obj
+         Release\moc_vscminingsetting.obj
+         Release\moc_vscoapi.obj
+         Release\moc_vscpanel.obj
+         Release\moc_vscpaneltaskitem.obj
+         Release\moc_vscplayback.obj
+         Release\moc_vscplaycontrol.obj
+         Release\moc_vscrtsprtp.obj
+         Release\moc_vscsearch.obj
+         Release\moc_vscsetting.obj
+         Release\moc_vscsiteadd.obj
+         Release\moc_vsctoolbar.obj
+         Release\moc_vscuser.obj
+         Release\moc_vscuserstatus.obj
+         Release\moc_vscversion.obj
+         Release\moc_vscvideosetting.obj
+         Release\moc_vscview.obj
+         Release\moc_vscviewconf.obj
+         Release\moc_vscvipcadd.obj
+         Release\moc_vscvms.obj
+         leveldb.lib(options.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+            Creating library D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.lib and object D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.exp
+         Generating code
+         Finished generating code
+         VSCloudNode.vcxproj -> D:\60-ffvideo\svnwork\veapp\prj_win32\Win32\Release\VSCloudNode.exe
+     1>Done Building Project "D:\60-ffvideo\svnwork\veapp\prj_win32\VSCloudNode.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.66
