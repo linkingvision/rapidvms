@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="veclient.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\main\translations\opencvr_zh.ts" />
+    <CustomBuild Include="..\src\main\vscmainwindows.qrc">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);..\src\main\resources\splash.png;..\src\main\resources\vscsmall.png;..\src\main\resources\vsclogoc.png;..\src\main\resources\vsclogod.png;..\src\main\resources\vscsmall2.png;..\src\main\resources\surveillance.png;..\src\main\resources\search.png;..\src\main\resources\user-trash-2.png;..\src\main\resources\videosearch.png;..\src\main\resources\computer.png;..\src\main\resources\display.png;..\src\main\resources\view-fullscreen.png;..\src\main\resources\setting.png;..\src\main\resources\recordstart.png;..\src\main\resources\recordstop.png;..\src\main\resources\edit.png;..\src\main\resources\new.png;..\src\main\resources\float.png;..\src\main\resources\tabbed.png;..\src\main\resources\stop.png;..\src\main\resources\control_panel.png;..\src\main\resources\refresh.png;..\src\main\resources\alarm.png;..\src\main\resources\alarmno.png;..\src\main\resources\map.png;..\src\main\resources\user.png;..\src\main\resources\mining.png;..\src\main\resources\syncpb.png;..\src\main\resources\button.png;..\src\main\resources\buttonpress.png;..\src\main\resources\buttonhover.png;..\src\main\resources\hdfsstartrecord.png;..\src\main\resources\hdfsstoprecord.png;..\src\main\resources\hadoop.png;..\src\main\resources\dome-recordhdfs.png;..\src\main\resources\switchputton.png;..\src\main\resources\radiobutton_checked.png;..\src\main\resources\radiobutton_checked_hover.png;..\src\main\resources\radiobutton_checked_pressed.png;..\src\main\resources\radiobutton_unchecked.png;..\src\main\resources\radiobutton_unchecked_hover.png;..\src\main\resources\radiobutton_unchecked_pressed.png;..\src\main\resources\plan.png;..\src\main\resources\toursetting.png;..\src\main\resources\processing.gif;..\src\main\resources\tourstop.png;..\src\main\resources\tourplay.png;..\src\main\resources\panel.png;..\src\main\resources\folder.png;..\src\main\resources\searchplayback.png;..\src\main\resources\cancel.png;..\src\main\resources\computer.png;..\src\main\resources\camera.png;..\src\main\resources\camera1.png;..\src\main\resources\view.png;..\src\main\resources\harddisk.png;..\src\main\resources\camera-record.png;..\src\main\resources\dome.png;..\src\main\resources\dome-record.png;..\src\main\resources\virtualipc.png;..\src\main\resources\view1.png;..\src\main\resources\camgroup.png;..\src\main\resources\1x1.png;..\src\main\resources\2x2.png;..\src\main\resources\3x3.png;..\src\main\resources\4x4.png;..\src\main\resources\12+1.png;..\src\main\resources\5x5.png;..\src\main\resources\6x6.png;..\src\main\resources\8x8.png;..\src\main\resources\6.png;..\src\main\resources\1x3.png;..\src\main\resources\1p6.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(FullPath);..\src\main\resources\splash.png;..\src\main\resources\vscsmall.png;..\src\main\resources\vsclogoc.png;..\src\main\resources\vsclogod.png;..\src\main\resources\vscsmall2.png;..\src\main\resources\surveillance.png;..\src\main\resources\search.png;..\src\main\resources\user-trash-2.png;..\src\main\resources\videosearch.png;..\src\main\resources\computer.png;..\src\main\resources\display.png;..\src\main\resources\view-fullscreen.png;..\src\main\resources\setting.png;..\src\main\resources\recordstart.png;..\src\main\resources\recordstop.png;..\src\main\resources\edit.png;..\src\main\resources\new.png;..\src\main\resources\float.png;..\src\main\resources\tabbed.png;..\src\main\resources\stop.png;..\src\main\resources\control_panel.png;..\src\main\resources\refresh.png;..\src\main\resources\alarm.png;..\src\main\resources\alarmno.png;..\src\main\resources\map.png;..\src\main\resources\user.png;..\src\main\resources\mining.png;..\src\main\resources\syncpb.png;..\src\main\resources\button.png;..\src\main\resources\buttonpress.png;..\src\main\resources\buttonhover.png;..\src\main\resources\hdfsstartrecord.png;..\src\main\resources\hdfsstoprecord.png;..\src\main\resources\hadoop.png;..\src\main\resources\dome-recordhdfs.png;..\src\main\resources\switchputton.png;..\src\main\resources\radiobutton_checked.png;..\src\main\resources\radiobutton_checked_hover.png;..\src\main\resources\radiobutton_checked_pressed.png;..\src\main\resources\radiobutton_unchecked.png;..\src\main\resources\radiobutton_unchecked_hover.png;..\src\main\resources\radiobutton_unchecked_pressed.png;..\src\main\resources\plan.png;..\src\main\resources\toursetting.png;..\src\main\resources\processing.gif;..\src\main\resources\tourstop.png;..\src\main\resources\tourplay.png;..\src\main\resources\panel.png;..\src\main\resources\folder.png;..\src\main\resources\searchplayback.png;..\src\main\resources\cancel.png;..\src\main\resources\computer.png;..\src\main\resources\camera.png;..\src\main\resources\camera1.png;..\src\main\resources\view.png;..\src\main\resources\harddisk.png;..\src\main\resources\camera-record.png;..\src\main\resources\dome.png;..\src\main\resources\dome-record.png;..\src\main\resources\virtualipc.png;..\src\main\resources\view1.png;..\src\main\resources\camgroup.png;..\src\main\resources\1x1.png;..\src\main\resources\2x2.png;..\src\main\resources\3x3.png;..\src\main\resources\4x4.png;..\src\main\resources\12+1.png;..\src\main\resources\5x5.png;..\src\main\resources\6x6.png;..\src\main\resources\8x8.png;..\src\main\resources\6.png;..\src\main\resources\1x3.png;..\src\main\resources\1p6.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);..\src\main\resources\splash.png;..\src\main\resources\vscsmall.png;..\src\main\resources\vsclogoc.png;..\src\main\resources\vsclogod.png;..\src\main\resources\vscsmall2.png;..\src\main\resources\surveillance.png;..\src\main\resources\search.png;..\src\main\resources\user-trash-2.png;..\src\main\resources\videosearch.png;..\src\main\resources\computer.png;..\src\main\resources\display.png;..\src\main\resources\view-fullscreen.png;..\src\main\resources\setting.png;..\src\main\resources\recordstart.png;..\src\main\resources\recordstop.png;..\src\main\resources\edit.png;..\src\main\resources\new.png;..\src\main\resources\float.png;..\src\main\resources\tabbed.png;..\src\main\resources\stop.png;..\src\main\resources\control_panel.png;..\src\main\resources\refresh.png;..\src\main\resources\alarm.png;..\src\main\resources\alarmno.png;..\src\main\resources\map.png;..\src\main\resources\user.png;..\src\main\resources\mining.png;..\src\main\resources\syncpb.png;..\src\main\resources\button.png;..\src\main\resources\buttonpress.png;..\src\main\resources\buttonhover.png;..\src\main\resources\hdfsstartrecord.png;..\src\main\resources\hdfsstoprecord.png;..\src\main\resources\hadoop.png;..\src\main\resources\dome-recordhdfs.png;..\src\main\resources\switchputton.png;..\src\main\resources\radiobutton_checked.png;..\src\main\resources\radiobutton_checked_hover.png;..\src\main\resources\radiobutton_checked_pressed.png;..\src\main\resources\radiobutton_unchecked.png;..\src\main\resources\radiobutton_unchecked_hover.png;..\src\main\resources\radiobutton_unchecked_pressed.png;..\src\main\resources\plan.png;..\src\main\resources\toursetting.png;..\src\main\resources\processing.gif;..\src\main\resources\tourstop.png;..\src\main\resources\tourplay.png;..\src\main\resources\panel.png;..\src\main\resources\folder.png;..\src\main\resources\searchplayback.png;..\src\main\resources\cancel.png;..\src\main\resources\computer.png;..\src\main\resources\camera.png;..\src\main\resources\camera1.png;..\src\main\resources\view.png;..\src\main\resources\harddisk.png;..\src\main\resources\camera-record.png;..\src\main\resources\dome.png;..\src\main\resources\dome-record.png;..\src\main\resources\virtualipc.png;..\src\main\resources\view1.png;..\src\main\resources\camgroup.png;..\src\main\resources\1x1.png;..\src\main\resources\2x2.png;..\src\main\resources\3x3.png;..\src\main\resources\4x4.png;..\src\main\resources\12+1.png;..\src\main\resources\5x5.png;..\src\main\resources\6x6.png;..\src\main\resources\8x8.png;..\src\main\resources\6.png;..\src\main\resources\1x3.png;..\src\main\resources\1p6.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(FullPath);..\src\main\resources\splash.png;..\src\main\resources\vscsmall.png;..\src\main\resources\vsclogoc.png;..\src\main\resources\vsclogod.png;..\src\main\resources\vscsmall2.png;..\src\main\resources\surveillance.png;..\src\main\resources\search.png;..\src\main\resources\user-trash-2.png;..\src\main\resources\videosearch.png;..\src\main\resources\computer.png;..\src\main\resources\display.png;..\src\main\resources\view-fullscreen.png;..\src\main\resources\setting.png;..\src\main\resources\recordstart.png;..\src\main\resources\recordstop.png;..\src\main\resources\edit.png;..\src\main\resources\new.png;..\src\main\resources\float.png;..\src\main\resources\tabbed.png;..\src\main\resources\stop.png;..\src\main\resources\control_panel.png;..\src\main\resources\refresh.png;..\src\main\resources\alarm.png;..\src\main\resources\alarmno.png;..\src\main\resources\map.png;..\src\main\resources\user.png;..\src\main\resources\mining.png;..\src\main\resources\syncpb.png;..\src\main\resources\button.png;..\src\main\resources\buttonpress.png;..\src\main\resources\buttonhover.png;..\src\main\resources\hdfsstartrecord.png;..\src\main\resources\hdfsstoprecord.png;..\src\main\resources\hadoop.png;..\src\main\resources\dome-recordhdfs.png;..\src\main\resources\switchputton.png;..\src\main\resources\radiobutton_checked.png;..\src\main\resources\radiobutton_checked_hover.png;..\src\main\resources\radiobutton_checked_pressed.png;..\src\main\resources\radiobutton_unchecked.png;..\src\main\resources\radiobutton_unchecked_hover.png;..\src\main\resources\radiobutton_unchecked_pressed.png;..\src\main\resources\plan.png;..\src\main\resources\toursetting.png;..\src\main\resources\processing.gif;..\src\main\resources\tourstop.png;..\src\main\resources\tourplay.png;..\src\main\resources\panel.png;..\src\main\resources\folder.png;..\src\main\resources\searchplayback.png;..\src\main\resources\cancel.png;..\src\main\resources\computer.png;..\src\main\resources\camera.png;..\src\main\resources\camera1.png;..\src\main\resources\view.png;..\src\main\resources\harddisk.png;..\src\main\resources\camera-record.png;..\src\main\resources\dome.png;..\src\main\resources\dome-record.png;..\src\main\resources\virtualipc.png;..\src\main\resources\view1.png;..\src\main\resources\camgroup.png;..\src\main\resources\1x1.png;..\src\main\resources\2x2.png;..\src\main\resources\3x3.png;..\src\main\resources\4x4.png;..\src\main\resources\12+1.png;..\src\main\resources\5x5.png;..\src\main\resources\6x6.png;..\src\main\resources\8x8.png;..\src\main\resources\6.png;..\src\main\resources\1x3.png;..\src\main\resources\1p6.png;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscdevicelist.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscmainwindows.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsctoolbar.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscview.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <None Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main\main.cpp" />
+    <ClCompile Include="..\src\main\vscdeviceipc.cpp" />
+    <ClCompile Include="..\src\main\vscdevicelist.cpp" />
+    <ClCompile Include="..\src\main\vscdevicetree.cpp" />
+    <ClCompile Include="..\src\main\vscmainwindows.cpp" />
+    <ClCompile Include="..\src\main\vsctoobar.cpp" />
+    <ClCompile Include="..\src\main\vscview.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicelist.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicetree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmainwindows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsctoolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicelist.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicetree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmainwindows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsctoolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\src\main\resources\12+1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\1p6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\1x1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\1x3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\2x2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\3x3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\4x4.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\5x5.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\6x6.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\8x8.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\alarm.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\alarmno.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\button.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\buttonhover.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\buttonpress.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\camera-record.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\camera.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\camera1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\camgroup.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\cancel.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\computer.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\control_panel.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\display.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\dome-record.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\dome-recordhdfs.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\dome.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\edit.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\float.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\folder.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\hadoop.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\harddisk.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\hdfsstartrecord.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\hdfsstoprecord.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\map.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\mining.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\new.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\panel.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\plan.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\processing.gif">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked_hover.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked_pressed.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked_hover.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked_pressed.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\recordstart.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\recordstop.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\refresh.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\search.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\searchplayback.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\setting.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\splash.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\stop.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\surveillance.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\switchputton.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\syncpb.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\tabbed.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\tourplay.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\toursetting.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\tourstop.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\user-trash-2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\user.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\videosearch.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\view-fullscreen.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\view.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\view1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\virtualipc.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\vsclogoc.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\vsclogod.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\vscsmall.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\src\main\resources\vscsmall2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\main\vscdeviceipc.h" />
+    <ClInclude Include="GeneratedFiles\ui_vscview.h" />
+    <CustomBuild Include="..\src\main\vscview.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vscview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\recordplan" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win\openssl-win32\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\include" "-I.\..\..\3rdparty\protobuf\src"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing vscview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing vscview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10" "-I$(GSTREAMER_SDK_ROOT_X86)\include\libxml2" "-I$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0" "-I$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-1.0.1g\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\velib\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\3rdparty\autojsoncxx\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing vscview.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_vsctoolbar.h" />
+    <CustomBuild Include="..\src\main\vsctoolbar.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vsctoolbar.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\recordplan" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win\openssl-win32\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\include" "-I.\..\..\3rdparty\protobuf\src"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing vsctoolbar.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing vsctoolbar.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10" "-I$(GSTREAMER_SDK_ROOT_X86)\include\libxml2" "-I$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0" "-I$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-1.0.1g\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\velib\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\3rdparty\autojsoncxx\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing vsctoolbar.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_vscmainwindows.h" />
+    <CustomBuild Include="..\src\main\vscmainwindows.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vscmainwindows.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\recordplan" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win\openssl-win32\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\include" "-I.\..\..\3rdparty\protobuf\src"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing vscmainwindows.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing vscmainwindows.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10" "-I$(GSTREAMER_SDK_ROOT_X86)\include\libxml2" "-I$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0" "-I$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-1.0.1g\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\velib\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\3rdparty\autojsoncxx\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing vscmainwindows.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscdevicetree.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vscdevicetree.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\recordplan" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win\openssl-win32\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\include" "-I.\..\..\3rdparty\protobuf\src"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing vscdevicetree.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing vscdevicetree.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10" "-I$(GSTREAMER_SDK_ROOT_X86)\include\libxml2" "-I$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0" "-I$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-1.0.1g\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\velib\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\3rdparty\autojsoncxx\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing vscdevicetree.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_vscdevicelist.h" />
+    <CustomBuild Include="..\src\main\vscdevicelist.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing vscdevicelist.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\recordplan" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win\openssl-win32\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\include" "-I.\..\..\3rdparty\protobuf\src"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing vscdevicelist.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE -DUNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\vms" "-I.\..\systeminfo\windows" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\event" "-I.\..\..\onvifcpplib\include" "-I.\..\..\onvifcpplib\onvifgen" "-I.\..\..\onvifcpplib\gsoap\gsoap\runtime" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\..\mining\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing vscdevicelist.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10" "-I$(GSTREAMER_SDK_ROOT_X86)\include\libxml2" "-I$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0" "-I$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include" "-I$(GSTREAMER_SDK_ROOT_X86)\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-1.0.1g\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\velib\include" "-I.\..\..\oapi" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I.\..\..\3rdparty\autojsoncxx\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing vscdevicelist.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -D_UNICODE "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\3rdparty\SDL-2.0.0-6940\include" "-I.\..\..\devices\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\oapi" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B174A790-305F-4097-9536-439C2B39527E}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>false</UseOfAtl>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>false</UseOfAtl>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    </LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(Configuration)_x64\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(Configuration)_x64\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CONCURRENT_LIB;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;QT_BUILD_SYSTEMINFO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtPrintSupport;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;..\main;..\playback;..\recordplan;..\disk;..\vwidget;..\..\devices\include;..\..\3rdparty\leveldb\include;..\..\utility\;..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\onvifc\include\;..\..\velib\include\vplay;..\..\velib\include\utility;..\..\velib\include\vdb;..\..\velib\include\;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\vms;..\systeminfo\windows\;..\setting;..\systeminfo\;..\event\;..\..\onvifcpplib\include;..\..\onvifcpplib\onvifgen;..\..\onvifcpplib\gsoap\gsoap\runtime;..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\veuilib\include\;..\..\mining\include\;..\..\oapi\;..\..\3rdparty\autojsoncxx\include;..\..\3rdparty\autojsoncxx\rapidjson\include;..\..\xcmnlib\include\utility;..\..\xcmnlib\include\;..\..\include\;..\..\3rdparty\protobuf\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\OpenCVR.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Debug;..\..\3rdparty\poco\lib\;..\..\3rdparty\libcli\Debug\;..\..\3rdparty\onvifc\lib\Debug\;..\..\velib\lib\win32\Debug;.\Debug\;..\..\3rdparty\openssl-win\openssl-win32\lib\;..\..\veuilib\lib\win32\Debug\;..\..\xcmnlib\lib\win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Concurrentd.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5PrintSupportd.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;Qt5AxBase.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;veuilib.lib;cmnlib.lib;winmm.lib;libeay32MTd.lib;IPHLPAPI.lib;ssleay32MTd.lib;Dbghelp.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <StackReserveSize>
+      </StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CONCURRENT_LIB;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;QT_BUILD_SYSTEMINFO_LIB;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtPrintSupport;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;..\main;..\playback;..\disk;..\vwidget;..\..\devices\include;..\..\3rdparty\leveldb\include;..\..\utility\;..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\onvifc\include\;..\..\velib\include\vplay;..\..\velib\include\utility;..\..\velib\include\vdb;..\..\velib\include\;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\vms;..\systeminfo\windows\;..\setting;..\systeminfo\;..\event\;..\..\onvifcpplib\include;..\..\onvifcpplib\onvifgen;..\..\onvifcpplib\gsoap\gsoap\runtime;..\..\3rdparty\openssl-win64\include\;..\..\veuilib\include\;..\..\mining\include\;..\..\oapi\;..\..\xcmnlib\include\;..\..\xcmnlib\include\utility;..\..\3rdparty\autojsoncxx\include;..\..\3rdparty\autojsoncxx\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\OpenCVR x64.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Debug\;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Debug\;..\..\velib\lib\x64\Debug\;.\x64\Debug\;..\..\3rdparty\openssl-win64\lib\;..\..\veuilib\lib\x64\Debug\;..\..\xcmnlib\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Concurrentd.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5PrintSupportd.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;Qt5AxBase.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;veuilib.lib;cmnlib.lib;winmm.lib;libeay32MTd.lib;IPHLPAPI.lib;ssleay32MTd.lib;Dbghelp.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <StackReserveSize>
+      </StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CONCURRENT_LIB;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;QT_BUILD_SYSTEMINFO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtPrintSupport;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;..\main;..\playback;..\disk;..\vwidget;..\..\3rdparty\ffmpeg-54\include;..\..\3rdparty\SDL-2.0.0-6940\include;..\..\devices\include;..\..\3rdparty\gperftools-2.0\src\windows\gperftools;..\..\3rdparty\leveldb\include;..\..\utility\;..\..\3rdparty\libcli\libcli\src\;..\..\3rdparty\libcli\libcli\src\libcli;..\..\3rdparty\libcli\libcli\src\plib\;..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\SDL2_ttf-2.0.12\;..\..\3rdparty\onvifc\include\;$(GSTREAMER_SDK_ROOT_X86)\include\gstreamer-0.10;$(GSTREAMER_SDK_ROOT_X86)\include\libxml2;$(GSTREAMER_SDK_ROOT_X86)\include\glib-2.0;$(GSTREAMER_SDK_ROOT_X86)\lib\glib-2.0\include;$(GSTREAMER_SDK_ROOT_X86)\include;..\..\velib\include\vplay;..\..\velib\include\utility;..\..\velib\include\vdb;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\recorder;..\setting;..\systeminfo\;..\systeminfo\windows\;..\event\;..\..\3rdparty\openssl-1.0.1g\include;..\..\veuilib\include\;..\vms\;..\..\mining\include;..\..\velib\include;..\..\oapi\;..\..\xcmnlib\include\utility;..\..\xcmnlib\include\;..\..\3rdparty\autojsoncxx\rapidjson\include;..\..\3rdparty\autojsoncxx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\OpenCVR.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Release;..\..\3rdparty\poco\lib\;..\..\3rdparty\libcli\Release\;..\..\3rdparty\onvifc\lib\Release\;..\..\velib\lib\win32\Release;..\..\3rdparty\openssl-1.0.1g\lib;.\Release;..\..\veuilib\lib\win32\Release;..\..\xcmnlib\lib\win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Concurrent.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5PrintSupport.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5XmlPatterns.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;veuilib.lib;libeay32MT.lib;ssleay32MT.lib;IPHLPAPI.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <OptimizeReferences>false</OptimizeReferences>
+      <StackReserveSize>10485760</StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CONCURRENT_LIB;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;QT_BUILD_SYSTEMINFO_LIB;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtPrintSupport;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;..\main;..\playback;..\disk;..\vwidget;..\..\3rdparty\ffmpeg-54\include;..\..\3rdparty\SDL-2.0.0-6940\include;..\..\devices\include;..\..\3rdparty\gperftools-2.0\src\windows\gperftools;..\..\3rdparty\leveldb\include;..\..\utility\;..\..\3rdparty\libcli\libcli\src\;..\..\3rdparty\libcli\libcli\src\libcli;..\..\3rdparty\libcli\libcli\src\plib\;..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\SDL2_ttf-2.0.12\;..\..\3rdparty\onvifc\include\;..\..\velib\include\vplay;..\..\velib\include\utility;..\..\velib\include\vdb;..\..\velib\include\;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\recorder;..\setting;..\systeminfo\;..\systeminfo\windows\;..\event\;..\..\3rdparty\openssl-win64\include;..\..\veuilib\include\;..\vms\;..\..\mining\include\;..\..\xcmnlib\include\utility;..\..\xcmnlib\include\;..\..\oapi\;..\..\3rdparty\autojsoncxx\include;..\..\3rdparty\autojsoncxx\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\OpenCVR x64.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Release\;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Release\;..\..\velib\lib\x64\Release;..\..\3rdparty\openssl-win64\lib\;.\x64\Release;..\..\veuilib\lib\x64\Release;..\..\xcmnlib\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Concurrent.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5PrintSupport.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5XmlPatterns.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;veuilib.lib;libeay32MT.lib;ssleay32MT.lib;IPHLPAPI.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <OptimizeReferences>false</OptimizeReferences>
+      <StackReserveSize>
+      </StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="Qt5.4.0" Qt5Version_x0020_x64="Qt5.4-x64" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

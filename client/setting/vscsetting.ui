@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VSCSetting</class>
+ <widget class="QWidget" name="VSCSetting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>614</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QTreeWidget" name="treeWidget">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="headerHidden">
+        <bool>true</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </column>
+       <item>
+        <property name="text">
+         <string>System</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Version</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>License</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>User</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Language</string>
+         </property>
+        </item>
+       </item>
+       <item>
+        <property name="text">
+         <string>Network</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Web Service</string>
+         </property>
+        </item>
+       </item>
+       <item>
+        <property name="text">
+         <string>Media</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>RTSP/RTP</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Video</string>
+         </property>
+        </item>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hadoop</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>HDFS</string>
+         </property>
+        </item>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mining</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Mining</string>
+         </property>
+        </item>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget" native="true"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../main/vscmainwindows.qrc"/>
+ </resources>
+ <connections/>
+</ui>

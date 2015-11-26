@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{838bf31f-34f2-4683-b929-f476f336df5f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{70841eca-b9a9-4fdf-8302-e1a9d76e462f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2d9ce154-c22f-4e68-a111-32f6d3f6cb14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\main">
+      <UniqueIdentifier>{7e293dab-352c-4c00-9e3c-ddedda26b011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{a14e4529-2b38-4f1d-b00d-a86329b0da0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\live">
+      <UniqueIdentifier>{6125d782-1b19-40cb-80d2-b21ebc10b8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config">
+      <UniqueIdentifier>{1a94dfbc-7aa6-4e8e-baf3-048e9428c29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\playback">
+      <UniqueIdentifier>{e5ade071-3a0b-428c-9653-8c08fa3497e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="veclient.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <None Include="..\main\translations\opencvr_zh.ts">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main\main.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscdeviceipc.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscdevicelist.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicelist.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicelist.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscdevicetree.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicetree.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicetree.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscmainwindows.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmainwindows.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmainwindows.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vsctoobar.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsctoolbar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsctoolbar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscview.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscview.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\main\vscmainwindows.qrc">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscdevicelist.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscdevicelist.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscdevicetree.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscmainwindows.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscmainwindows.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsctoolbar.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsctoolbar.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscview.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscview.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\src\main\resources\splash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\vscsmall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\vsclogoc.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\vsclogod.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\vscsmall2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\surveillance.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\search.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\user-trash-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\videosearch.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\computer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\display.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\view-fullscreen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\setting.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\recordstart.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\recordstop.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\edit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\new.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\float.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\tabbed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\stop.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\control_panel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\refresh.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\alarm.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\alarmno.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\map.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\user.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\mining.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\syncpb.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\buttonpress.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\buttonhover.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\hdfsstartrecord.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\hdfsstoprecord.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\hadoop.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\dome-recordhdfs.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\switchputton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked_hover.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_checked_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked_hover.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\radiobutton_unchecked_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\plan.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\toursetting.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\processing.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\tourstop.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\tourplay.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\panel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\folder.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\searchplayback.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\cancel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\camera.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\camera1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\view.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\harddisk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\camera-record.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\dome.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\dome-record.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\virtualipc.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\view1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\camgroup.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\1x1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\2x2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\3x3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\4x4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\12+1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\5x5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\6x6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\8x8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\1x3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\src\main\resources\1p6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\main\vscdeviceipc.h">
+      <Filter>src\main</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscdevicelist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscmainwindows.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsctoolbar.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscview.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
