@@ -58,6 +58,9 @@ del  client\prj_win32\Win32\Release\*Designer*.dll /f /s /q
 del  client\prj_win32\Win32\Release\*Nfc*.dll /f /s /q
 del  client\prj_win32\Win32\Release\*Qml*.dll /f /s /q
 
+xcopy /y /e velib\lib\win32\Release\cover.dll  client\prj_win32\Win32\Release
+xcopy /y /e velib\lib\win32\Debug\cover.dll  client\prj_win32\Win32\Debug
+
 REM x64
 
 REM =============================

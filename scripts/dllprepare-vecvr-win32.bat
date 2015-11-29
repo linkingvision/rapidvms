@@ -58,6 +58,11 @@ del  vecvr\prj_win32\Win32\Release\*Designer*.dll /f /s /q
 del  vecvr\prj_win32\Win32\Release\*Nfc*.dll /f /s /q
 del  vecvr\prj_win32\Win32\Release\*Qml*.dll /f /s /q
 
+xcopy /y /e velib\lib\win32\Release\cover.dll  vecvr\prj_win32\Win32\Release
+xcopy /y /e velib\lib\win32\Debug\cover.dll  vecvr\prj_win32\Win32\Debug
+
+
+
 REM =============================
 REM ============================================VECVR
 
