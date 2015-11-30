@@ -648,6 +648,29 @@ class VidCamera : public ::google::protobuf::Message {
   ::VidConf::CameraConnectType nconnecttype() const;
   void set_nconnecttype(::VidConf::CameraConnectType value);
 
+  // optional bool bHDFSRecord = 17;
+  void clear_bhdfsrecord();
+  static const int kBHDFSRecordFieldNumber = 17;
+  bool bhdfsrecord() const;
+  void set_bhdfsrecord(bool value);
+
+  // optional bool bRecord = 18;
+  void clear_brecord();
+  static const int kBRecordFieldNumber = 18;
+  bool brecord() const;
+  void set_brecord(bool value);
+
+  // optional string strRecordTemplId = 19;
+  void clear_strrecordtemplid();
+  static const int kStrRecordTemplIdFieldNumber = 19;
+  const ::std::string& strrecordtemplid() const;
+  void set_strrecordtemplid(const ::std::string& value);
+  void set_strrecordtemplid(const char* value);
+  void set_strrecordtemplid(const char* value, size_t size);
+  ::std::string* mutable_strrecordtemplid();
+  ::std::string* release_strrecordtemplid();
+  void set_allocated_strrecordtemplid(::std::string* strrecordtemplid);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -661,14 +684,17 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   ::google::protobuf::internal::ArenaStringPtr stronvifaddress_;
   ::google::protobuf::internal::ArenaStringPtr strprofiletoken1_;
+  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
   int ntype_;
   bool bprofiletoken_;
   bool bhwaccel_;
   bool bservermotion_;
-  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
+  bool bhdfsrecord_;
   ::google::protobuf::internal::ArenaStringPtr strfile_;
   ::google::protobuf::internal::ArenaStringPtr strrtspurl_;
   int nconnecttype_;
+  bool brecord_;
+  ::google::protobuf::internal::ArenaStringPtr strrecordtemplid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -2856,6 +2882,77 @@ inline void VidCamera::set_nconnecttype(::VidConf::CameraConnectType value) {
   
   nconnecttype_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nConnectType)
+}
+
+// optional bool bHDFSRecord = 17;
+inline void VidCamera::clear_bhdfsrecord() {
+  bhdfsrecord_ = false;
+}
+inline bool VidCamera::bhdfsrecord() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bHDFSRecord)
+  return bhdfsrecord_;
+}
+inline void VidCamera::set_bhdfsrecord(bool value) {
+  
+  bhdfsrecord_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHDFSRecord)
+}
+
+// optional bool bRecord = 18;
+inline void VidCamera::clear_brecord() {
+  brecord_ = false;
+}
+inline bool VidCamera::brecord() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bRecord)
+  return brecord_;
+}
+inline void VidCamera::set_brecord(bool value) {
+  
+  brecord_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bRecord)
+}
+
+// optional string strRecordTemplId = 19;
+inline void VidCamera::clear_strrecordtemplid() {
+  strrecordtemplid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidCamera::strrecordtemplid() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strRecordTemplId)
+  return strrecordtemplid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_strrecordtemplid(const ::std::string& value) {
+  
+  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strRecordTemplId)
+}
+inline void VidCamera::set_strrecordtemplid(const char* value) {
+  
+  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strRecordTemplId)
+}
+inline void VidCamera::set_strrecordtemplid(const char* value, size_t size) {
+  
+  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strRecordTemplId)
+}
+inline ::std::string* VidCamera::mutable_strrecordtemplid() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strRecordTemplId)
+  return strrecordtemplid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidCamera::release_strrecordtemplid() {
+  
+  return strrecordtemplid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_allocated_strrecordtemplid(::std::string* strrecordtemplid) {
+  if (strrecordtemplid != NULL) {
+    
+  } else {
+    
+  }
+  strrecordtemplid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strrecordtemplid);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRecordTemplId)
 }
 
 // -------------------------------------------------------------------
