@@ -178,7 +178,6 @@ inline BOOL Factory::Init()
 		*pAddCam = Param.m_Conf;
 		m_Conf.UpdateCameraListConf(cameraList);
 		
-		
 	}
 #endif
 
@@ -680,7 +679,7 @@ inline BOOL Factory::PtzAction(astring nIndex, FPtzAction action, float speed)
 }
 
 
-inline BOOL Factory::GetRecordStatus(astring nIndex,BOOL &nStatus)
+inline BOOL Factory::GetRecordStatus(astring nIndex,bool &nStatus)
 {
     CameraParam pParam;
 
@@ -813,66 +812,6 @@ inline BOOL Factory::StopHdfsRecord(astring nIndex)
     return TRUE;
 }
 
-inline BOOL Factory::StartRecordAll()
-{
-#if 0
-	Lock();
-	CameraParamMap CameraMap = m_CameraParamMap;
-	UnLock();
-	CameraParamMap::iterator it = CameraMap.begin(); 
-	for(; it!=CameraMap.end(); ++it)
-	{
-	    StartRecord((*it).second.m_Conf.data.conf.nId);
-	}
-
-#endif
-	return TRUE;
-}
-inline BOOL Factory::StopRecordAll()
-{
-#if 0
-	Lock();
-	CameraParamMap CameraMap = m_CameraParamMap;
-	UnLock();
-	CameraParamMap::iterator it = CameraMap.begin(); 
-	for(; it!=CameraMap.end(); ++it)
-	{
-	    StopRecord((*it).second.m_Conf.data.conf.nId);
-	}
-#endif
-
-	return TRUE;
-}
-inline BOOL Factory::StartHdfsRecordAll()
-{
-#if 0
-	Lock();
-	CameraParamMap CameraMap = m_CameraParamMap;
-	UnLock();
-	CameraParamMap::iterator it = CameraMap.begin(); 
-	for(; it!=CameraMap.end(); ++it)
-	{
-	    StartHdfsRecord((*it).second.m_Conf.data.conf.nId);
-	}
-#endif
-
-	return TRUE;
-}
-inline BOOL Factory::StopHdfsRecordAll()
-{
-#if 0
-	Lock();
-	CameraParamMap CameraMap = m_CameraParamMap;
-	UnLock();
-	CameraParamMap::iterator it = m_CameraParamMap.begin(); 
-	for(; it!=m_CameraParamMap.end(); ++it)
-	{
-	    StopHdfsRecord((*it).second.m_Conf.data.conf.nId);
-	}	
-
-#endif
-	return TRUE;
-}
 
 inline astring Factory::AddCamera(CameraParam & pParam)
 {

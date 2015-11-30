@@ -77,6 +77,7 @@ public:
 	/* Init function */
 	BOOL Init();
 	s32 InitAddCamera(CameraParam & pParam, astring strCamId);
+	ConfDB &GetConfDB(){return m_Conf;};
 	
 public:
 	BOOL RegCameraChangeNotify(void * pData, FactoryCameraChangeNotify callback);
@@ -125,12 +126,8 @@ public:
 	BOOL StopRecord(astring strCamId);
 	BOOL StartHdfsRecord(astring strCamId);
 	BOOL StopHdfsRecord(astring strCamId);
-	BOOL StartRecordAll();
-	BOOL StopRecordAll();
-	BOOL StartHdfsRecordAll();
-	BOOL StopHdfsRecordAll();
 public:
-	BOOL GetRecordStatus(astring strCamId, BOOL &bStatus);
+	BOOL GetRecordStatus(astring strCamId, bool &bStatus);
 
 public:
 	/* Disk function */
@@ -191,7 +188,7 @@ public:
 
 private:
 	CameraMap m_CameraMap;
-	CameraParamMap m_CameraParamMap;
+	//CameraParamMap m_CameraParamMap;//force read from the confdb
 	CameraOnlineMap m_CameraOnlineMap;
 
 	fast_mutex m_Lock;
