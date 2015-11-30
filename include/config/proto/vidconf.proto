@@ -68,6 +68,13 @@ message VidCamera {
 	bool bServerMotion = 15;
 	
 	CameraConnectType nConnectType = 16;
+	
+	//Enable HDFS Record on x64 CPU
+	bool bHDFSRecord = 17;
+	
+	//Recording
+	bool bRecord = 18;
+	string strRecordTemplId = 19;
 }
 
 message VidCameraList {
