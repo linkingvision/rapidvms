@@ -47,21 +47,23 @@ CameraParam::CameraParam()
 
 	m_Conf.set_strfile(filePath.c_str());
 
-	m_Conf.set_stronvifaddress("/onvif/camera_service");
+	m_Conf.set_stronvifaddress("/onvif/device_service");
 
-	m_Conf.set_bprofiletoken(FALSE);
-	m_Conf.set_bhwaccel(FALSE);
+	m_Conf.set_bprofiletoken(false);
+	m_Conf.set_bhwaccel(false);
 
 	m_Conf.set_strprofiletoken1("quality_h264");
 	m_Conf.set_strprofiletoken1("second_h264");
+	m_Conf.set_brecord(true);//TODO current use the manual on sched
+	m_Conf.set_bhdfsrecord(false);
 	
-	m_bOnvifUrlGetted = FALSE;
-	m_bHasSubStream = FALSE;
+	m_bOnvifUrlGetted = false;
+	m_bHasSubStream = false;
 
 	m_Conf.set_nconnecttype(VID_CONNECT_TCP);
 
-	m_Online = FALSE;
-	m_OnlineUrl = FALSE;
+	m_Online = false;
+	m_OnlineUrl = false;
 
 	astring IP = m_Conf.strip();
 	m_strUrl = "rtsp://" + IP + ":" + "554" + "/Streaming";
@@ -208,7 +210,7 @@ BOOL CameraParam::UpdateUrlOnvif()
 	{
 	    VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		QString strToken;
-		if (m_Conf.bprofiletoken == true)
+		if (m_Conf.bprofiletoken() == true)
 		{
 			strToken = m_Conf.strprofiletoken1().c_str();
 			//Find which token is in the OnvifProfileToken, and then use the token
@@ -438,6 +440,7 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 				m_vPlaySubStream.Init(TRUE, m_param.m_strUrlSubStream, m_param.m_Conf.struser(),
 					m_param.m_Conf.strpasswd(), HWAccel,
 					(VSCConnectType)(m_param.m_Conf.nconnecttype()));
+				VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrlSubStream.c_str());
 			}
 		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
