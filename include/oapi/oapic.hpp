@@ -34,7 +34,7 @@ public:
 	inline BOOL StopLiveview(int nId);
 /* Parse all the list */
 public:
-	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::DeviceListRsp &list);
+	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
 	inline BOOL ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp);
 
 public:

@@ -35,46 +35,36 @@
     ]
 },
 {
-    "name": "Device",
+    "name": "OAPICamera",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned int", "nId", {"required": true}],
+        ["std::string", "strId", {"required": true}],
+		["std::string", "strName", {"required": true}],
 		["unsigned int", "nType", {"required": true}],
-		["unsigned int", "nSubType", {"required": true}],
 		
-        ["std::string", "Name", {"required": true}],
-        ["std::string", "Param", {"required": true}],
+		["std::string", "strIP", {"required": true}],
+		["std::string", "strPort", {"required": true}],
+		["std::string", "strUser", {"required": true}],
+		["std::string", "strPasswd", {"required": true}],
 		
-		["std::string", "IP", {"required": true}],
-		["std::string", "Port", {"required": true}],
-		["std::string", "User", {"required": true}],
-		["std::string", "Password", {"required": true}],
-		
-		["std::string", "RtspLocation", {"required": true}],
-		["std::string", "FileLocation", {"required": true}],
-		["std::string", "OnvifAddress", {"required": true}],
-		["std::string", "CameraIndex", {"required": true}],
+		["std::string", "strONVIFAddress", {"required": true}],
+        ["unsigned int", "bProfileToken", {"required": true}],
+		["std::string", "strProfileToken1", {"required": true}],
+		["std::string", "strProfileToken2", {"required": true}],
 		
 		
-        ["unsigned int", "UseProfileToken", {"required": true}],
-		["std::string", "OnvifProfileToken", {"required": true}],
-		
-        ["unsigned int", "Recording", {"required": true}],
-		["unsigned int", "GroupId", {"required": true}],
-		["unsigned int", "HdfsRecording", {"required": true}],	
 
-		["std::string", "OnvifProfileToken2", {"required": true}],
+		["std::string", "strFile", {"required": true}],
+		["std::string", "strRTSPUrl", {"required": true}],
 		
-        ["unsigned int", "ConnectType", {"required": true}],
-		["unsigned int", "Mining", {"required": true}],
-		["unsigned int", "HWAccel", {"required": true}],	
-		["unsigned int", "IPV6", {"required": true}],
-		["unsigned int", "Online", {"required": true}]		
+		["unsigned int", "bHWaccel", {"required": true}],
+		["unsigned int", "bServerMotion", {"required": true}],
+		["unsigned int", "nConnectType", {"required": true}]
     ]
 },
 {
-    "name": "DeviceListReq",
+    "name": "OAPICameraListReq",
 	"namespace": "oapi",
     "members": [
 		["bool", "bAll", {"required": true}],
@@ -82,11 +72,11 @@
     ]
 },
 {
-    "name": "DeviceListRsp",
+    "name": "OAPICameraListRsp",
 	"namespace": "oapi",
     "members": [
         ["unsigned int", "Num", {"required": true}],
-        ["std::vector<oapi::Device>", "list"]
+        ["std::vector<oapi::OAPICamera>", "list"]
     ]
 },
 {
@@ -94,8 +84,8 @@
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned int", "nId", {"required": true}],
-		["unsigned int", "nSubId", {"required": true}]
+        ["std::string", "strId", {"required": true}],
+		["unsigned int", "nStream", {"required": true}]
     ]
 },
 {
@@ -103,8 +93,8 @@
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned int", "nId", {"required": true}],
-		["unsigned int", "nSubId", {"required": true}]
+        ["std::string", "strId", {"required": true}],
+		["unsigned int", "nStream", {"required": true}]
     ]
 },
 {
@@ -112,7 +102,7 @@
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned int", "nId", {"required": true}],
+        ["std::string", "strId", {"required": true}],
 		["unsigned int", "nPlayTime", {"required": true}]
     ]
 },
@@ -122,30 +112,6 @@
 	"namespace": "oapi",
     "members": [
 		["unsigned int", "nPlayTime", {"required": true}]
-    ]
-},
-{
-    "name": "CloudAPIDevice",
-    "parse_mode": "strict",
-	"namespace": "cloudapi",
-    "members": [
-        ["unsigned int", "nId", {"required": true}],
-		
-        ["std::string", "Name", {"required": true}],
-        ["std::string", "Param", {"required": true}],
-		["std::string", "SnapshotUrl", {"required": true}],
-		["std::string", "HlsUrl", {"required": true}],
-		
-		["unsigned int", "Online", {"required": true}]		
-    ]
-},
-{
-    "name": "CloudAPIGetAllDevicesRet",
-    "parse_mode": "strict",
-	"namespace": "cloudapi",
-    "members": [
-        ["unsigned int", "Num", {"required": true}],
-        ["std::vector<cloudapi::CloudAPIDevice>", "list"]
     ]
 }
 

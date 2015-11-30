@@ -60,7 +60,7 @@ BOOL OAPIClient::SendDeviceListRequest()
 {
 	OAPIHeader header;
 
-	oapi::DeviceListReq req;
+	oapi::OAPICameraListReq req;
 	req.bAll = true;
 	
 	std::string strJson = autojsoncxx::to_pretty_json_string(req);
@@ -85,7 +85,7 @@ BOOL OAPIClient::StartLiveview(int nId)
 	OAPIHeader header;
 
 	oapi::StartLiveViewReq liveview;
-	liveview.nId = nId;
+	liveview.strId = "111";
 	
 	std::string strJson = autojsoncxx::to_pretty_json_string(liveview);
 	s32 nJsonLen = strJson.length();
@@ -107,7 +107,7 @@ BOOL OAPIClient::StopLiveview(int nId)
 	OAPIHeader header;
 
 	oapi::StopLiveViewReq liveview;
-	liveview.nId = nId;
+	liveview.strId = "111";
 	
 	std::string strJson = autojsoncxx::to_pretty_json_string(liveview);
 	s32 nJsonLen = strJson.length();
@@ -123,7 +123,7 @@ BOOL OAPIClient::StopLiveview(int nId)
 	return TRUE;
 
 }
-BOOL OAPIClient::ParseDeviceList(char *pRecv, int len, oapi::DeviceListRsp &rsp)
+BOOL OAPIClient::ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &rsp)
 {
 	autojsoncxx::ParsingResult result;
 	if (!autojsoncxx::from_json_string(pRecv, rsp, result)) 
