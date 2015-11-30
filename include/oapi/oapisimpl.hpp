@@ -8,62 +8,41 @@
 #ifndef __VSC_OAPIS_IMPL_H_
 #define __VSC_OAPIS_IMPL_H_
 
-BOOL OAPIConverter::Converter(VSCDeviceData__ &from, oapi::Device &to)
+BOOL OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 {
-	to.nId = from.nId;
-	to.nType = from.nType;
-	to.nSubType = from.nSubType;
+	to.strId = from.strid();
+	to.strName = from.strname();
+	to.nType = from.ntype();
 	
-	to.Name = from.Name;
-	to.Param = from.Param;
+	to.strIP = from.strip();
+	to.strPort = from.strport();
+	to.strUser = from.struser();
+	to.strPasswd = from.strpasswd();
 	
-	to.IP = from.IP;
-	to.Port = from.Port;
-	to.User = from.User;
-	to.Password = from.Password;
+	to.strONVIFAddress = from.stronvifaddress();
+	to.bProfileToken = from.bprofiletoken();
+	to.strProfileToken1 = from.strprofiletoken1();
+	to.strProfileToken2 = from.strprofiletoken2();
 
 	
-	to.RtspLocation = from.RtspLocation;
-	to.FileLocation = from.FileLocation;
-	to.OnvifAddress = from.OnvifAddress;
-	to.CameraIndex = from.CameraIndex;
+	to.strFile = from.strfile();
+	to.strRTSPUrl = from.strrtspurl();
 
-	to.UseProfileToken = from.UseProfileToken;
-	to.OnvifProfileToken = from.OnvifProfileToken;
+	to.bHWaccel = from.bhwaccel();
+	to.bServerMotion = from.bservermotion();
 
-	to.Recording = from.Recording;
-	to.GroupId = from.GroupId;
-	to.HdfsRecording = from.HdfsRecording;
-
-	to.OnvifProfileToken2 = from.OnvifProfileToken2;
-
-	to.ConnectType = from.ConnectType;
-	to.Mining = from.Mining;
-	to.HWAccel = from.HWAccel;
-	to.IPV6 = from.IPV6;
+	to.nConnectType = from.nconnecttype();
 	
 	return TRUE;
 }
 
-BOOL OAPIConverter::Converter(VSCDeviceData__ &from, 
-						cloudapi::CloudAPIDevice &to)
-{
-	to.nId = from.nId;
-	
-	to.Name = from.Name;
-	to.Param = from.Param;
-	to.SnapshotUrl = from.Name;
-
-	return TRUE;
-}
-
-BOOL OAPIConverter::Converter(oapi::Device &from, VSCDeviceData__ &to)
+BOOL OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 {
 	return TRUE;
 }
 
 OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
-:m_pFactory(pFactory), m_pSocket(pSocket), m_nLiveviewId(0), m_cnt(0), 
+:m_pFactory(pFactory), m_pSocket(pSocket), m_cnt(0), 
 m_bLogin(FALSE)
 {
 	UUIDGenerator uuidCreator;
@@ -72,9 +51,9 @@ m_bLogin(FALSE)
 }
 OAPIServer::~OAPIServer()
 {
-	if (m_nLiveviewId > 0)
+	//if (m_nLiveviewId > 0)
 	{
-		m_pFactory.UnRegDataCallback(m_nLiveviewId, (void *)this);
+		//m_pFactory.UnRegDataCallback(m_nLiveviewId, (void *)this);
 	}
 }
 
@@ -99,10 +78,10 @@ BOOL OAPIServer::ProcessStartLive(s32 len)
 		
 	}
 
-	m_pFactory.RegDataCallback(liveview.nId,
-		(DeviceDataCallbackFunctionPtr)OAPIServer::DataHandler, 
+	m_pFactory.RegDataCallback(liveview.strId,
+		(CameraDataCallbackFunctionPtr)OAPIServer::DataHandler, 
 			(void *)this);
-	m_nLiveviewId = liveview.nId;
+	m_strLiveviewId = liveview.strId;
 
 	delete [] pRecv;
 
@@ -130,8 +109,8 @@ BOOL OAPIServer::ProcessStopLive(s32 len)
 		
 	}
 
-	m_pFactory.UnRegDataCallback(liveview.nId, (void *)this);
-	m_nLiveviewId = 0;
+	m_pFactory.UnRegDataCallback(liveview.strId, (void *)this);
+	m_strLiveviewId = "";
 
 	delete [] pRecv;
 
@@ -168,7 +147,7 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	{
 		return FALSE;
 	}
-
+#if 0
 	/* Get user data */
 	VSCUserData user;
 	m_pFactory.GetUserData(user);
@@ -212,20 +191,21 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
-
+#endif
 	return TRUE;
 	
 }
 
 BOOL OAPIServer::ProcessGetDevice(s32 len)
 {
+#if 0
 	if (len == 0)
 	{
 		return FALSE;
 	}
 	char *pRecv = new char[len + 1];
 	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
-	oapi::DeviceListReq req;
+	oapi::OAPICameraListReq req;
 	if (nRetBody == len)
 	{
 		autojsoncxx::ParsingResult result;
@@ -269,7 +249,7 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
-
+#endif
 	return TRUE;
 }
 

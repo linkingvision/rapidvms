@@ -66,35 +66,17 @@ typedef enum
 	OAPI_CMD_LAST
 } OAPICmd;
 
-/* Device Type */
+/* Same with CameraType in protobuf */
 typedef enum
 {
-    VSC_DEVICE_CAM = 1,
-    VSC_DEVICE_LAST
-} VSCDeviceType;
+    VSC_CAM_USB = 1,
+    VSC_CAM_FILE = 2,
+    VSC_CAM_RTSP = 3,
+    VSC_CAM_ONVIF_S = 4,
+    VSC_CAM_GB28181 = 5,
 
-typedef enum
-{
-    VSC_SUB_DEVICE_USB_CAM = 1,
-    VSC_SUB_DEVICE_FILE,
-    VSC_SUB_DEVICE_RTSP,
-    VSC_SUB_DEVICE_ONVIF,
-    VSC_SUB_DEVICE_GB28181,
-
-    VSC_SUB_DEVICE_LAST
-} VSCDeviceSubType;
-
-typedef enum
-{
-    VSC_VMS_SITE = 1,
-    VSC_VMS_LAST
-} VSCVmsType;
-
-typedef enum
-{
-    VSC_SUB_VMS_OAPI = 1,
-    VSC_SUB_VMS_LAST
-} VSCVmsSubType;
+    VSC_CAM_LAST
+} VSCCameraType;
 
 /* Control command */
 typedef enum

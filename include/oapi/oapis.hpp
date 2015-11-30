@@ -17,6 +17,10 @@
 #include "Poco/UUIDGenerator.h"
 #include "XSDK/XMD5.h"
 
+#include "config/vidconf.pb.h"
+
+using namespace VidConf;
+
 using namespace XSDK;
 using namespace std;
 using namespace oapi;
@@ -25,10 +29,8 @@ using namespace Poco;
 class OAPIConverter
 {
 public:
-	inline static BOOL Converter(VSCDeviceData__ &from, oapi::Device &to);
-	inline static BOOL Converter(VSCDeviceData__ &from, 
-						cloudapi::CloudAPIDevice &to);
-	inline static BOOL Converter(oapi::Device &from, VSCDeviceData__ &to);
+	inline static BOOL Converter(VidCamera &from, oapi::OAPICamera &to);
+	inline static BOOL Converter(oapi::OAPICamera &from, VidCamera &toVid);
 };
 
 /* a internal thread to process all the request of XSocket */
@@ -62,7 +64,7 @@ private:
 	fast_mutex m_Lock;
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
-	int m_nLiveviewId;
+	astring m_strLiveviewId;
 	int m_cnt;
 	BOOL m_bLogin;
 	astring m_seesionId;

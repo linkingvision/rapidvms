@@ -1686,33 +1686,25 @@ struct Serializer< Writer3584adabd563fed1229ddef7ad7094fe16b6ad7ed22fcd870a9744c
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct Device {
- unsigned int nId;
+namespace oapi { struct OAPICamera {
+ std::string strId;
+std::string strName;
 unsigned int nType;
-unsigned int nSubType;
-std::string Name;
-std::string Param;
-std::string IP;
-std::string Port;
-std::string User;
-std::string Password;
-std::string RtspLocation;
-std::string FileLocation;
-std::string OnvifAddress;
-std::string CameraIndex;
-unsigned int UseProfileToken;
-std::string OnvifProfileToken;
-unsigned int Recording;
-unsigned int GroupId;
-unsigned int HdfsRecording;
-std::string OnvifProfileToken2;
-unsigned int ConnectType;
-unsigned int Mining;
-unsigned int HWAccel;
-unsigned int IPV6;
-unsigned int Online;
+std::string strIP;
+std::string strPort;
+std::string strUser;
+std::string strPasswd;
+std::string strONVIFAddress;
+unsigned int bProfileToken;
+std::string strProfileToken1;
+std::string strProfileToken2;
+std::string strFile;
+std::string strRTSPUrl;
+unsigned int bHWaccel;
+unsigned int bServerMotion;
+unsigned int nConnectType;
 
-explicit Device():nId(), nType(), nSubType(), Name(), Param(), IP(), Port(), User(), Password(), RtspLocation(), FileLocation(), OnvifAddress(), CameraIndex(), UseProfileToken(), OnvifProfileToken(), Recording(), GroupId(), HdfsRecording(), OnvifProfileToken2(), ConnectType(), Mining(), HWAccel(), IPV6(), Online() {  }
+explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType() {  }
 
 
  
@@ -1722,59 +1714,43 @@ explicit Device():nId(), nType(), nSubType(), Name(), Param(), IP(), Port(), Use
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::Device > {
+class SAXEventHandler< ::oapi::OAPICamera > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
     int depth;
 
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< unsigned int > handler_1;
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< std::string > handler_1;
 SAXEventHandler< unsigned int > handler_2;
 SAXEventHandler< std::string > handler_3;
 SAXEventHandler< std::string > handler_4;
 SAXEventHandler< std::string > handler_5;
 SAXEventHandler< std::string > handler_6;
 SAXEventHandler< std::string > handler_7;
-SAXEventHandler< std::string > handler_8;
+SAXEventHandler< unsigned int > handler_8;
 SAXEventHandler< std::string > handler_9;
 SAXEventHandler< std::string > handler_10;
 SAXEventHandler< std::string > handler_11;
 SAXEventHandler< std::string > handler_12;
 SAXEventHandler< unsigned int > handler_13;
-SAXEventHandler< std::string > handler_14;
-SAXEventHandler< unsigned int > handler_15;
-SAXEventHandler< unsigned int > handler_16;
-SAXEventHandler< unsigned int > handler_17;
-SAXEventHandler< std::string > handler_18;
-SAXEventHandler< unsigned int > handler_19;
-SAXEventHandler< unsigned int > handler_20;
-SAXEventHandler< unsigned int > handler_21;
-SAXEventHandler< unsigned int > handler_22;
-SAXEventHandler< unsigned int > handler_23;bool has_nId;
+SAXEventHandler< unsigned int > handler_14;
+SAXEventHandler< unsigned int > handler_15;bool has_strId;
+bool has_strName;
 bool has_nType;
-bool has_nSubType;
-bool has_Name;
-bool has_Param;
-bool has_IP;
-bool has_Port;
-bool has_User;
-bool has_Password;
-bool has_RtspLocation;
-bool has_FileLocation;
-bool has_OnvifAddress;
-bool has_CameraIndex;
-bool has_UseProfileToken;
-bool has_OnvifProfileToken;
-bool has_Recording;
-bool has_GroupId;
-bool has_HdfsRecording;
-bool has_OnvifProfileToken2;
-bool has_ConnectType;
-bool has_Mining;
-bool has_HWAccel;
-bool has_IPV6;
-bool has_Online;
+bool has_strIP;
+bool has_strPort;
+bool has_strUser;
+bool has_strPasswd;
+bool has_strONVIFAddress;
+bool has_bProfileToken;
+bool has_strProfileToken1;
+bool has_strProfileToken2;
+bool has_strFile;
+bool has_strRTSPUrl;
+bool has_bHWaccel;
+bool has_bServerMotion;
+bool has_nConnectType;
 
     bool check_depth(const char* type)
     {
@@ -1789,53 +1765,37 @@ bool has_Online;
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "strId";
 case 1:
-    return "nType";
+    return "strName";
 case 2:
-    return "nSubType";
+    return "nType";
 case 3:
-    return "Name";
+    return "strIP";
 case 4:
-    return "Param";
+    return "strPort";
 case 5:
-    return "IP";
+    return "strUser";
 case 6:
-    return "Port";
+    return "strPasswd";
 case 7:
-    return "User";
+    return "strONVIFAddress";
 case 8:
-    return "Password";
+    return "bProfileToken";
 case 9:
-    return "RtspLocation";
+    return "strProfileToken1";
 case 10:
-    return "FileLocation";
+    return "strProfileToken2";
 case 11:
-    return "OnvifAddress";
+    return "strFile";
 case 12:
-    return "CameraIndex";
+    return "strRTSPUrl";
 case 13:
-    return "UseProfileToken";
+    return "bHWaccel";
 case 14:
-    return "OnvifProfileToken";
+    return "bServerMotion";
 case 15:
-    return "Recording";
-case 16:
-    return "GroupId";
-case 17:
-    return "HdfsRecording";
-case 18:
-    return "OnvifProfileToken2";
-case 19:
-    return "ConnectType";
-case 20:
-    return "Mining";
-case 21:
-    return "HWAccel";
-case 22:
-    return "IPV6";
-case 23:
-    return "Online";
+    return "nConnectType";
         default:
             break;
         }
@@ -1862,60 +1822,44 @@ case 23:
 
     void reset_flags()
     {
-        has_nId = false;
+        has_strId = false;
+has_strName = false;
 has_nType = false;
-has_nSubType = false;
-has_Name = false;
-has_Param = false;
-has_IP = false;
-has_Port = false;
-has_User = false;
-has_Password = false;
-has_RtspLocation = false;
-has_FileLocation = false;
-has_OnvifAddress = false;
-has_CameraIndex = false;
-has_UseProfileToken = false;
-has_OnvifProfileToken = false;
-has_Recording = false;
-has_GroupId = false;
-has_HdfsRecording = false;
-has_OnvifProfileToken2 = false;
-has_ConnectType = false;
-has_Mining = false;
-has_HWAccel = false;
-has_IPV6 = false;
-has_Online = false;
+has_strIP = false;
+has_strPort = false;
+has_strUser = false;
+has_strPasswd = false;
+has_strONVIFAddress = false;
+has_bProfileToken = false;
+has_strProfileToken1 = false;
+has_strProfileToken2 = false;
+has_strFile = false;
+has_strRTSPUrl = false;
+has_bHWaccel = false;
+has_bServerMotion = false;
+has_nConnectType = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::Device * obj)
+    explicit SAXEventHandler( ::oapi::OAPICamera * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
-, handler_1(&obj->nType)
-, handler_2(&obj->nSubType)
-, handler_3(&obj->Name)
-, handler_4(&obj->Param)
-, handler_5(&obj->IP)
-, handler_6(&obj->Port)
-, handler_7(&obj->User)
-, handler_8(&obj->Password)
-, handler_9(&obj->RtspLocation)
-, handler_10(&obj->FileLocation)
-, handler_11(&obj->OnvifAddress)
-, handler_12(&obj->CameraIndex)
-, handler_13(&obj->UseProfileToken)
-, handler_14(&obj->OnvifProfileToken)
-, handler_15(&obj->Recording)
-, handler_16(&obj->GroupId)
-, handler_17(&obj->HdfsRecording)
-, handler_18(&obj->OnvifProfileToken2)
-, handler_19(&obj->ConnectType)
-, handler_20(&obj->Mining)
-, handler_21(&obj->HWAccel)
-, handler_22(&obj->IPV6)
-, handler_23(&obj->Online)
+        , handler_0(&obj->strId)
+, handler_1(&obj->strName)
+, handler_2(&obj->nType)
+, handler_3(&obj->strIP)
+, handler_4(&obj->strPort)
+, handler_5(&obj->strUser)
+, handler_6(&obj->strPasswd)
+, handler_7(&obj->strONVIFAddress)
+, handler_8(&obj->bProfileToken)
+, handler_9(&obj->strProfileToken1)
+, handler_10(&obj->strProfileToken2)
+, handler_11(&obj->strFile)
+, handler_12(&obj->strRTSPUrl)
+, handler_13(&obj->bHWaccel)
+, handler_14(&obj->bServerMotion)
+, handler_15(&obj->nConnectType)
     {
         reset_flags();
     }
@@ -1974,30 +1918,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Null());
-
-case 16:
-    return checked_event_forwarding(handler_16.Null());
-
-case 17:
-    return checked_event_forwarding(handler_17.Null());
-
-case 18:
-    return checked_event_forwarding(handler_18.Null());
-
-case 19:
-    return checked_event_forwarding(handler_19.Null());
-
-case 20:
-    return checked_event_forwarding(handler_20.Null());
-
-case 21:
-    return checked_event_forwarding(handler_21.Null());
-
-case 22:
-    return checked_event_forwarding(handler_22.Null());
-
-case 23:
-    return checked_event_forwarding(handler_23.Null());
 
         default:
             break;
@@ -2060,30 +1980,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Bool(b));
 
-case 16:
-    return checked_event_forwarding(handler_16.Bool(b));
-
-case 17:
-    return checked_event_forwarding(handler_17.Bool(b));
-
-case 18:
-    return checked_event_forwarding(handler_18.Bool(b));
-
-case 19:
-    return checked_event_forwarding(handler_19.Bool(b));
-
-case 20:
-    return checked_event_forwarding(handler_20.Bool(b));
-
-case 21:
-    return checked_event_forwarding(handler_21.Bool(b));
-
-case 22:
-    return checked_event_forwarding(handler_22.Bool(b));
-
-case 23:
-    return checked_event_forwarding(handler_23.Bool(b));
-
         default:
             break;
         }
@@ -2144,30 +2040,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Int(i));
-
-case 16:
-    return checked_event_forwarding(handler_16.Int(i));
-
-case 17:
-    return checked_event_forwarding(handler_17.Int(i));
-
-case 18:
-    return checked_event_forwarding(handler_18.Int(i));
-
-case 19:
-    return checked_event_forwarding(handler_19.Int(i));
-
-case 20:
-    return checked_event_forwarding(handler_20.Int(i));
-
-case 21:
-    return checked_event_forwarding(handler_21.Int(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Int(i));
-
-case 23:
-    return checked_event_forwarding(handler_23.Int(i));
 
         default:
             break;
@@ -2230,30 +2102,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Uint(i));
 
-case 16:
-    return checked_event_forwarding(handler_16.Uint(i));
-
-case 17:
-    return checked_event_forwarding(handler_17.Uint(i));
-
-case 18:
-    return checked_event_forwarding(handler_18.Uint(i));
-
-case 19:
-    return checked_event_forwarding(handler_19.Uint(i));
-
-case 20:
-    return checked_event_forwarding(handler_20.Uint(i));
-
-case 21:
-    return checked_event_forwarding(handler_21.Uint(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Uint(i));
-
-case 23:
-    return checked_event_forwarding(handler_23.Uint(i));
-
         default:
             break;
         }
@@ -2314,30 +2162,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Int64(i));
-
-case 16:
-    return checked_event_forwarding(handler_16.Int64(i));
-
-case 17:
-    return checked_event_forwarding(handler_17.Int64(i));
-
-case 18:
-    return checked_event_forwarding(handler_18.Int64(i));
-
-case 19:
-    return checked_event_forwarding(handler_19.Int64(i));
-
-case 20:
-    return checked_event_forwarding(handler_20.Int64(i));
-
-case 21:
-    return checked_event_forwarding(handler_21.Int64(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Int64(i));
-
-case 23:
-    return checked_event_forwarding(handler_23.Int64(i));
 
         default:
             break;
@@ -2400,30 +2224,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Uint64(i));
 
-case 16:
-    return checked_event_forwarding(handler_16.Uint64(i));
-
-case 17:
-    return checked_event_forwarding(handler_17.Uint64(i));
-
-case 18:
-    return checked_event_forwarding(handler_18.Uint64(i));
-
-case 19:
-    return checked_event_forwarding(handler_19.Uint64(i));
-
-case 20:
-    return checked_event_forwarding(handler_20.Uint64(i));
-
-case 21:
-    return checked_event_forwarding(handler_21.Uint64(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Uint64(i));
-
-case 23:
-    return checked_event_forwarding(handler_23.Uint64(i));
-
         default:
             break;
         }
@@ -2484,30 +2284,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Double(d));
-
-case 16:
-    return checked_event_forwarding(handler_16.Double(d));
-
-case 17:
-    return checked_event_forwarding(handler_17.Double(d));
-
-case 18:
-    return checked_event_forwarding(handler_18.Double(d));
-
-case 19:
-    return checked_event_forwarding(handler_19.Double(d));
-
-case 20:
-    return checked_event_forwarding(handler_20.Double(d));
-
-case 21:
-    return checked_event_forwarding(handler_21.Double(d));
-
-case 22:
-    return checked_event_forwarding(handler_22.Double(d));
-
-case 23:
-    return checked_event_forwarding(handler_23.Double(d));
 
         default:
             break;
@@ -2570,30 +2346,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.String(str, length, copy));
 
-case 16:
-    return checked_event_forwarding(handler_16.String(str, length, copy));
-
-case 17:
-    return checked_event_forwarding(handler_17.String(str, length, copy));
-
-case 18:
-    return checked_event_forwarding(handler_18.String(str, length, copy));
-
-case 19:
-    return checked_event_forwarding(handler_19.String(str, length, copy));
-
-case 20:
-    return checked_event_forwarding(handler_20.String(str, length, copy));
-
-case 21:
-    return checked_event_forwarding(handler_21.String(str, length, copy));
-
-case 22:
-    return checked_event_forwarding(handler_22.String(str, length, copy));
-
-case 23:
-    return checked_event_forwarding(handler_23.String(str, length, copy));
-
         default:
             break;
         }
@@ -2608,54 +2360,38 @@ case 23:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x4e\x61\x6d\x65", 7))
+                         { state=1; has_strName = true; }
 else if (utility::string_equal(str, length, "\x6e\x54\x79\x70\x65", 5))
-                         { state=1; has_nType = true; }
-else if (utility::string_equal(str, length, "\x6e\x53\x75\x62\x54\x79\x70\x65", 8))
-                         { state=2; has_nSubType = true; }
-else if (utility::string_equal(str, length, "\x4e\x61\x6d\x65", 4))
-                         { state=3; has_Name = true; }
-else if (utility::string_equal(str, length, "\x50\x61\x72\x61\x6d", 5))
-                         { state=4; has_Param = true; }
-else if (utility::string_equal(str, length, "\x49\x50", 2))
-                         { state=5; has_IP = true; }
-else if (utility::string_equal(str, length, "\x50\x6f\x72\x74", 4))
-                         { state=6; has_Port = true; }
-else if (utility::string_equal(str, length, "\x55\x73\x65\x72", 4))
-                         { state=7; has_User = true; }
-else if (utility::string_equal(str, length, "\x50\x61\x73\x73\x77\x6f\x72\x64", 8))
-                         { state=8; has_Password = true; }
-else if (utility::string_equal(str, length, "\x52\x74\x73\x70\x4c\x6f\x63\x61\x74\x69\x6f\x6e", 12))
-                         { state=9; has_RtspLocation = true; }
-else if (utility::string_equal(str, length, "\x46\x69\x6c\x65\x4c\x6f\x63\x61\x74\x69\x6f\x6e", 12))
-                         { state=10; has_FileLocation = true; }
-else if (utility::string_equal(str, length, "\x4f\x6e\x76\x69\x66\x41\x64\x64\x72\x65\x73\x73", 12))
-                         { state=11; has_OnvifAddress = true; }
-else if (utility::string_equal(str, length, "\x43\x61\x6d\x65\x72\x61\x49\x6e\x64\x65\x78", 11))
-                         { state=12; has_CameraIndex = true; }
-else if (utility::string_equal(str, length, "\x55\x73\x65\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 15))
-                         { state=13; has_UseProfileToken = true; }
-else if (utility::string_equal(str, length, "\x4f\x6e\x76\x69\x66\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 17))
-                         { state=14; has_OnvifProfileToken = true; }
-else if (utility::string_equal(str, length, "\x52\x65\x63\x6f\x72\x64\x69\x6e\x67", 9))
-                         { state=15; has_Recording = true; }
-else if (utility::string_equal(str, length, "\x47\x72\x6f\x75\x70\x49\x64", 7))
-                         { state=16; has_GroupId = true; }
-else if (utility::string_equal(str, length, "\x48\x64\x66\x73\x52\x65\x63\x6f\x72\x64\x69\x6e\x67", 13))
-                         { state=17; has_HdfsRecording = true; }
-else if (utility::string_equal(str, length, "\x4f\x6e\x76\x69\x66\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x32", 18))
-                         { state=18; has_OnvifProfileToken2 = true; }
-else if (utility::string_equal(str, length, "\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 11))
-                         { state=19; has_ConnectType = true; }
-else if (utility::string_equal(str, length, "\x4d\x69\x6e\x69\x6e\x67", 6))
-                         { state=20; has_Mining = true; }
-else if (utility::string_equal(str, length, "\x48\x57\x41\x63\x63\x65\x6c", 7))
-                         { state=21; has_HWAccel = true; }
-else if (utility::string_equal(str, length, "\x49\x50\x56\x36", 4))
-                         { state=22; has_IPV6 = true; }
-else if (utility::string_equal(str, length, "\x4f\x6e\x6c\x69\x6e\x65", 6))
-                         { state=23; has_Online = true; }
+                         { state=2; has_nType = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x50", 5))
+                         { state=3; has_strIP = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x50\x6f\x72\x74", 7))
+                         { state=4; has_strPort = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x55\x73\x65\x72", 7))
+                         { state=5; has_strUser = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x50\x61\x73\x73\x77\x64", 9))
+                         { state=6; has_strPasswd = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x4f\x4e\x56\x49\x46\x41\x64\x64\x72\x65\x73\x73", 15))
+                         { state=7; has_strONVIFAddress = true; }
+else if (utility::string_equal(str, length, "\x62\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 13))
+                         { state=8; has_bProfileToken = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x31", 16))
+                         { state=9; has_strProfileToken1 = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x32", 16))
+                         { state=10; has_strProfileToken2 = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x46\x69\x6c\x65", 7))
+                         { state=11; has_strFile = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x52\x54\x53\x50\x55\x72\x6c", 10))
+                         { state=12; has_strRTSPUrl = true; }
+else if (utility::string_equal(str, length, "\x62\x48\x57\x61\x63\x63\x65\x6c", 8))
+                         { state=13; has_bHWaccel = true; }
+else if (utility::string_equal(str, length, "\x62\x53\x65\x72\x76\x65\x72\x4d\x6f\x74\x69\x6f\x6e", 13))
+                         { state=14; has_bServerMotion = true; }
+else if (utility::string_equal(str, length, "\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 12))
+                         { state=15; has_nConnectType = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -2711,30 +2447,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Key(str, length, copy));
-
-case 16:
-    return checked_event_forwarding(handler_16.Key(str, length, copy));
-
-case 17:
-    return checked_event_forwarding(handler_17.Key(str, length, copy));
-
-case 18:
-    return checked_event_forwarding(handler_18.Key(str, length, copy));
-
-case 19:
-    return checked_event_forwarding(handler_19.Key(str, length, copy));
-
-case 20:
-    return checked_event_forwarding(handler_20.Key(str, length, copy));
-
-case 21:
-    return checked_event_forwarding(handler_21.Key(str, length, copy));
-
-case 22:
-    return checked_event_forwarding(handler_22.Key(str, length, copy));
-
-case 23:
-    return checked_event_forwarding(handler_23.Key(str, length, copy));
 
             default:
                 break;
@@ -2798,30 +2510,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.StartArray());
 
-case 16:
-    return checked_event_forwarding(handler_16.StartArray());
-
-case 17:
-    return checked_event_forwarding(handler_17.StartArray());
-
-case 18:
-    return checked_event_forwarding(handler_18.StartArray());
-
-case 19:
-    return checked_event_forwarding(handler_19.StartArray());
-
-case 20:
-    return checked_event_forwarding(handler_20.StartArray());
-
-case 21:
-    return checked_event_forwarding(handler_21.StartArray());
-
-case 22:
-    return checked_event_forwarding(handler_22.StartArray());
-
-case 23:
-    return checked_event_forwarding(handler_23.StartArray());
-
         default:
             break;
         }
@@ -2883,30 +2571,6 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.EndArray(length));
 
-case 16:
-    return checked_event_forwarding(handler_16.EndArray(length));
-
-case 17:
-    return checked_event_forwarding(handler_17.EndArray(length));
-
-case 18:
-    return checked_event_forwarding(handler_18.EndArray(length));
-
-case 19:
-    return checked_event_forwarding(handler_19.EndArray(length));
-
-case 20:
-    return checked_event_forwarding(handler_20.EndArray(length));
-
-case 21:
-    return checked_event_forwarding(handler_21.EndArray(length));
-
-case 22:
-    return checked_event_forwarding(handler_22.EndArray(length));
-
-case 23:
-    return checked_event_forwarding(handler_23.EndArray(length));
-
         default:
             break;
         }
@@ -2967,30 +2631,6 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.StartObject());
-
-case 16:
-    return checked_event_forwarding(handler_16.StartObject());
-
-case 17:
-    return checked_event_forwarding(handler_17.StartObject());
-
-case 18:
-    return checked_event_forwarding(handler_18.StartObject());
-
-case 19:
-    return checked_event_forwarding(handler_19.StartObject());
-
-case 20:
-    return checked_event_forwarding(handler_20.StartObject());
-
-case 21:
-    return checked_event_forwarding(handler_21.StartObject());
-
-case 22:
-    return checked_event_forwarding(handler_22.StartObject());
-
-case 23:
-    return checked_event_forwarding(handler_23.StartObject());
 
             default:
                 break;
@@ -3054,58 +2694,26 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.EndObject(length));
 
-case 16:
-    return checked_event_forwarding(handler_16.EndObject(length));
-
-case 17:
-    return checked_event_forwarding(handler_17.EndObject(length));
-
-case 18:
-    return checked_event_forwarding(handler_18.EndObject(length));
-
-case 19:
-    return checked_event_forwarding(handler_19.EndObject(length));
-
-case 20:
-    return checked_event_forwarding(handler_20.EndObject(length));
-
-case 21:
-    return checked_event_forwarding(handler_21.EndObject(length));
-
-case 22:
-    return checked_event_forwarding(handler_22.EndObject(length));
-
-case 23:
-    return checked_event_forwarding(handler_23.EndObject(length));
-
             default:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
+            if (!has_strId) set_missing_required("strId");
+if (!has_strName) set_missing_required("strName");
 if (!has_nType) set_missing_required("nType");
-if (!has_nSubType) set_missing_required("nSubType");
-if (!has_Name) set_missing_required("Name");
-if (!has_Param) set_missing_required("Param");
-if (!has_IP) set_missing_required("IP");
-if (!has_Port) set_missing_required("Port");
-if (!has_User) set_missing_required("User");
-if (!has_Password) set_missing_required("Password");
-if (!has_RtspLocation) set_missing_required("RtspLocation");
-if (!has_FileLocation) set_missing_required("FileLocation");
-if (!has_OnvifAddress) set_missing_required("OnvifAddress");
-if (!has_CameraIndex) set_missing_required("CameraIndex");
-if (!has_UseProfileToken) set_missing_required("UseProfileToken");
-if (!has_OnvifProfileToken) set_missing_required("OnvifProfileToken");
-if (!has_Recording) set_missing_required("Recording");
-if (!has_GroupId) set_missing_required("GroupId");
-if (!has_HdfsRecording) set_missing_required("HdfsRecording");
-if (!has_OnvifProfileToken2) set_missing_required("OnvifProfileToken2");
-if (!has_ConnectType) set_missing_required("ConnectType");
-if (!has_Mining) set_missing_required("Mining");
-if (!has_HWAccel) set_missing_required("HWAccel");
-if (!has_IPV6) set_missing_required("IPV6");
-if (!has_Online) set_missing_required("Online");
+if (!has_strIP) set_missing_required("strIP");
+if (!has_strPort) set_missing_required("strPort");
+if (!has_strUser) set_missing_required("strUser");
+if (!has_strPasswd) set_missing_required("strPasswd");
+if (!has_strONVIFAddress) set_missing_required("strONVIFAddress");
+if (!has_bProfileToken) set_missing_required("bProfileToken");
+if (!has_strProfileToken1) set_missing_required("strProfileToken1");
+if (!has_strProfileToken2) set_missing_required("strProfileToken2");
+if (!has_strFile) set_missing_required("strFile");
+if (!has_strRTSPUrl) set_missing_required("strRTSPUrl");
+if (!has_bHWaccel) set_missing_required("bHWaccel");
+if (!has_bServerMotion) set_missing_required("bServerMotion");
+if (!has_nConnectType) set_missing_required("nConnectType");
         }
         return the_error.empty();
     }
@@ -3156,22 +2764,6 @@ case 14:
      handler_14.ReapError(errs); break;
 case 15:
      handler_15.ReapError(errs); break;
-case 16:
-     handler_16.ReapError(errs); break;
-case 17:
-     handler_17.ReapError(errs); break;
-case 18:
-     handler_18.ReapError(errs); break;
-case 19:
-     handler_19.ReapError(errs); break;
-case 20:
-     handler_20.ReapError(errs); break;
-case 21:
-     handler_21.ReapError(errs); break;
-case 22:
-     handler_22.ReapError(errs); break;
-case 23:
-     handler_23.ReapError(errs); break;
 
         default:
             break;
@@ -3202,51 +2794,35 @@ handler_12.PrepareForReuse();
 handler_13.PrepareForReuse();
 handler_14.PrepareForReuse();
 handler_15.PrepareForReuse();
-handler_16.PrepareForReuse();
-handler_17.PrepareForReuse();
-handler_18.PrepareForReuse();
-handler_19.PrepareForReuse();
-handler_20.PrepareForReuse();
-handler_21.PrepareForReuse();
-handler_22.PrepareForReuse();
-handler_23.PrepareForReuse();
 
     }
 };
 
-template < class Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8 >
-struct Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, ::oapi::Device > {
+template < class Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879 >
+struct Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, ::oapi::OAPICamera > {
 
-    void operator()( Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8& w, const ::oapi::Device& value) const
+    void operator()( Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879& w, const ::oapi::OAPICamera& value) const
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.nId);
-w.Key("\x6e\x54\x79\x70\x65", 5, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.nType);
-w.Key("\x6e\x53\x75\x62\x54\x79\x70\x65", 8, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.nSubType);
-w.Key("\x4e\x61\x6d\x65", 4, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.Name);
-w.Key("\x50\x61\x72\x61\x6d", 5, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.Param);
-w.Key("\x49\x50", 2, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.IP);
-w.Key("\x50\x6f\x72\x74", 4, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.Port);
-w.Key("\x55\x73\x65\x72", 4, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.User);
-w.Key("\x50\x61\x73\x73\x77\x6f\x72\x64", 8, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.Password);
-w.Key("\x52\x74\x73\x70\x4c\x6f\x63\x61\x74\x69\x6f\x6e", 12, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.RtspLocation);
-w.Key("\x46\x69\x6c\x65\x4c\x6f\x63\x61\x74\x69\x6f\x6e", 12, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.FileLocation);
-w.Key("\x4f\x6e\x76\x69\x66\x41\x64\x64\x72\x65\x73\x73", 12, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.OnvifAddress);
-w.Key("\x43\x61\x6d\x65\x72\x61\x49\x6e\x64\x65\x78", 11, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.CameraIndex);
-w.Key("\x55\x73\x65\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 15, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.UseProfileToken);
-w.Key("\x4f\x6e\x76\x69\x66\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 17, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.OnvifProfileToken);
-w.Key("\x52\x65\x63\x6f\x72\x64\x69\x6e\x67", 9, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.Recording);
-w.Key("\x47\x72\x6f\x75\x70\x49\x64", 7, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.GroupId);
-w.Key("\x48\x64\x66\x73\x52\x65\x63\x6f\x72\x64\x69\x6e\x67", 13, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.HdfsRecording);
-w.Key("\x4f\x6e\x76\x69\x66\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x32", 18, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, std::string >()(w, value.OnvifProfileToken2);
-w.Key("\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 11, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.ConnectType);
-w.Key("\x4d\x69\x6e\x69\x6e\x67", 6, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.Mining);
-w.Key("\x48\x57\x41\x63\x63\x65\x6c", 7, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.HWAccel);
-w.Key("\x49\x50\x56\x36", 4, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.IPV6);
-w.Key("\x4f\x6e\x6c\x69\x6e\x65", 6, false); Serializer< Writer81f9667a09efaccfd42bab9c4422f49db45bc06881e43cbce9906ee37c0091d8, unsigned int >()(w, value.Online);
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strId);
+w.Key("\x73\x74\x72\x4e\x61\x6d\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strName);
+w.Key("\x6e\x54\x79\x70\x65", 5, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nType);
+w.Key("\x73\x74\x72\x49\x50", 5, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strIP);
+w.Key("\x73\x74\x72\x50\x6f\x72\x74", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strPort);
+w.Key("\x73\x74\x72\x55\x73\x65\x72", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strUser);
+w.Key("\x73\x74\x72\x50\x61\x73\x73\x77\x64", 9, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strPasswd);
+w.Key("\x73\x74\x72\x4f\x4e\x56\x49\x46\x41\x64\x64\x72\x65\x73\x73", 15, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strONVIFAddress);
+w.Key("\x62\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bProfileToken);
+w.Key("\x73\x74\x72\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x31", 16, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strProfileToken1);
+w.Key("\x73\x74\x72\x50\x72\x6f\x66\x69\x6c\x65\x54\x6f\x6b\x65\x6e\x32", 16, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strProfileToken2);
+w.Key("\x73\x74\x72\x46\x69\x6c\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strFile);
+w.Key("\x73\x74\x72\x52\x54\x53\x50\x55\x72\x6c", 10, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strRTSPUrl);
+w.Key("\x62\x48\x57\x61\x63\x63\x65\x6c", 8, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bHWaccel);
+w.Key("\x62\x53\x65\x72\x76\x65\x72\x4d\x6f\x74\x69\x6f\x6e", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bServerMotion);
+w.Key("\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 12, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nConnectType);
 
-        w.EndObject(24);
+        w.EndObject(16);
     }
 
 };
@@ -3280,11 +2856,11 @@ w.Key("\x4f\x6e\x6c\x69\x6e\x65", 6, false); Serializer< Writer81f9667a09efaccfd
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct DeviceListReq {
+namespace oapi { struct OAPICameraListReq {
  bool bAll;
 unsigned int nId;
 
-explicit DeviceListReq():bAll(), nId() {  }
+explicit OAPICameraListReq():bAll(), nId() {  }
 
 
  
@@ -3294,7 +2870,7 @@ explicit DeviceListReq():bAll(), nId() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::DeviceListReq > {
+class SAXEventHandler< ::oapi::OAPICameraListReq > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
@@ -3351,7 +2927,7 @@ has_nId = false;
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::DeviceListReq * obj)
+    explicit SAXEventHandler( ::oapi::OAPICameraListReq * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->bAll)
@@ -3664,15 +3240,15 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc >
-struct Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, ::oapi::DeviceListReq > {
+template < class Writer4fac81d98ce31b481a6452b58ca8d6da0dfa7f18992a2edf71fb62990e0c075b >
+struct Serializer< Writer4fac81d98ce31b481a6452b58ca8d6da0dfa7f18992a2edf71fb62990e0c075b, ::oapi::OAPICameraListReq > {
 
-    void operator()( Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc& w, const ::oapi::DeviceListReq& value) const
+    void operator()( Writer4fac81d98ce31b481a6452b58ca8d6da0dfa7f18992a2edf71fb62990e0c075b& w, const ::oapi::OAPICameraListReq& value) const
     {
         w.StartObject();
 
-        w.Key("\x62\x41\x6c\x6c", 4, false); Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, bool >()(w, value.bAll);
-w.Key("\x6e\x49\x64", 3, false); Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f17439f13ffdb8863381d43f0c33540114fc, unsigned int >()(w, value.nId);
+        w.Key("\x62\x41\x6c\x6c", 4, false); Serializer< Writer4fac81d98ce31b481a6452b58ca8d6da0dfa7f18992a2edf71fb62990e0c075b, bool >()(w, value.bAll);
+w.Key("\x6e\x49\x64", 3, false); Serializer< Writer4fac81d98ce31b481a6452b58ca8d6da0dfa7f18992a2edf71fb62990e0c075b, unsigned int >()(w, value.nId);
 
         w.EndObject(2);
     }
@@ -3708,11 +3284,11 @@ w.Key("\x6e\x49\x64", 3, false); Serializer< Writeraaef4dac2f9fe0e3f6f6f2533f12f
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
-namespace oapi { struct DeviceListRsp {
+namespace oapi { struct OAPICameraListRsp {
  unsigned int Num;
-std::vector<oapi::Device> list;
+std::vector<oapi::OAPICamera> list;
 
-explicit DeviceListRsp():Num(), list() {  }
+explicit OAPICameraListRsp():Num(), list() {  }
 
 
  
@@ -3722,14 +3298,14 @@ explicit DeviceListRsp():Num(), list() {  }
 namespace autojsoncxx {
 
 template <>
-class SAXEventHandler< ::oapi::DeviceListRsp > {
+class SAXEventHandler< ::oapi::OAPICameraListRsp > {
 private:
     utility::scoped_ptr<error::ErrorBase> the_error;
     int state;
     int depth;
 
     SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< std::vector<oapi::Device> > handler_1;bool has_Num;
+SAXEventHandler< std::vector<oapi::OAPICamera> > handler_1;bool has_Num;
 
     bool check_depth(const char* type)
     {
@@ -3778,7 +3354,7 @@ case 1:
     }
 
 public:
-    explicit SAXEventHandler( ::oapi::DeviceListRsp * obj)
+    explicit SAXEventHandler( ::oapi::OAPICameraListRsp * obj)
         : state(-1)
         , depth(0)
         , handler_0(&obj->Num)
@@ -4090,15 +3666,15 @@ handler_1.PrepareForReuse();
     }
 };
 
-template < class Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b >
-struct Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, ::oapi::DeviceListRsp > {
+template < class Writer6b6a8f09ce8d82cc3f600098ecbbf38b2b32076e787975f49e27159cb502621c >
+struct Serializer< Writer6b6a8f09ce8d82cc3f600098ecbbf38b2b32076e787975f49e27159cb502621c, ::oapi::OAPICameraListRsp > {
 
-    void operator()( Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b& w, const ::oapi::DeviceListRsp& value) const
+    void operator()( Writer6b6a8f09ce8d82cc3f600098ecbbf38b2b32076e787975f49e27159cb502621c& w, const ::oapi::OAPICameraListRsp& value) const
     {
         w.StartObject();
 
-        w.Key("\x4e\x75\x6d", 3, false); Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, unsigned int >()(w, value.Num);
-w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writera95a56be7e4ac687a74b648c5b51eaeac3d2f46f254ead7c20d3805ad112f55b, std::vector<oapi::Device> >()(w, value.list);
+        w.Key("\x4e\x75\x6d", 3, false); Serializer< Writer6b6a8f09ce8d82cc3f600098ecbbf38b2b32076e787975f49e27159cb502621c, unsigned int >()(w, value.Num);
+w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer6b6a8f09ce8d82cc3f600098ecbbf38b2b32076e787975f49e27159cb502621c, std::vector<oapi::OAPICamera> >()(w, value.list);
 
         w.EndObject(2);
     }
@@ -4135,10 +3711,10 @@ w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writera95a56be7e4ac687a74b648c5
 // such syntax is chosen so that the template file looks like valid C++
 
 namespace oapi { struct StartLiveViewReq {
- unsigned int nId;
-unsigned int nSubId;
+ std::string strId;
+unsigned int nStream;
 
-explicit StartLiveViewReq():nId(), nSubId() {  }
+explicit StartLiveViewReq():strId(), nStream() {  }
 
 
  
@@ -4154,9 +3730,9 @@ private:
     int state;
     int depth;
 
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< unsigned int > handler_1;bool has_nId;
-bool has_nSubId;
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< unsigned int > handler_1;bool has_strId;
+bool has_nStream;
 
     bool check_depth(const char* type)
     {
@@ -4171,9 +3747,9 @@ bool has_nSubId;
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "strId";
 case 1:
-    return "nSubId";
+    return "nStream";
         default:
             break;
         }
@@ -4200,16 +3776,16 @@ case 1:
 
     void reset_flags()
     {
-        has_nId = false;
-has_nSubId = false;
+        has_strId = false;
+has_nStream = false;
     }
 
 public:
     explicit SAXEventHandler( ::oapi::StartLiveViewReq * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
-, handler_1(&obj->nSubId)
+        , handler_0(&obj->strId)
+, handler_1(&obj->nStream)
     {
         reset_flags();
     }
@@ -4374,10 +3950,10 @@ case 1:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
-else if (utility::string_equal(str, length, "\x6e\x53\x75\x62\x49\x64", 6))
-                         { state=1; has_nSubId = true; }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
+else if (utility::string_equal(str, length, "\x6e\x53\x74\x72\x65\x61\x6d", 7))
+                         { state=1; has_nStream = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -4474,8 +4050,8 @@ case 1:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
-if (!has_nSubId) set_missing_required("nSubId");
+            if (!has_strId) set_missing_required("strId");
+if (!has_nStream) set_missing_required("nStream");
         }
         return the_error.empty();
     }
@@ -4525,8 +4101,8 @@ struct Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, unsigned int >()(w, value.nId);
-w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, unsigned int >()(w, value.nSubId);
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, std::string >()(w, value.strId);
+w.Key("\x6e\x53\x74\x72\x65\x61\x6d", 7, false); Serializer< Writer3c3fe15275c9834cb49fcb6e4ea9f041c8fd676134b48328fb6e36e8eee45423, unsigned int >()(w, value.nStream);
 
         w.EndObject(2);
     }
@@ -4563,10 +4139,10 @@ w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writer3c3fe15275c9834cb
 // such syntax is chosen so that the template file looks like valid C++
 
 namespace oapi { struct StopLiveViewReq {
- unsigned int nId;
-unsigned int nSubId;
+ std::string strId;
+unsigned int nStream;
 
-explicit StopLiveViewReq():nId(), nSubId() {  }
+explicit StopLiveViewReq():strId(), nStream() {  }
 
 
  
@@ -4582,9 +4158,9 @@ private:
     int state;
     int depth;
 
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< unsigned int > handler_1;bool has_nId;
-bool has_nSubId;
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< unsigned int > handler_1;bool has_strId;
+bool has_nStream;
 
     bool check_depth(const char* type)
     {
@@ -4599,9 +4175,9 @@ bool has_nSubId;
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "strId";
 case 1:
-    return "nSubId";
+    return "nStream";
         default:
             break;
         }
@@ -4628,16 +4204,16 @@ case 1:
 
     void reset_flags()
     {
-        has_nId = false;
-has_nSubId = false;
+        has_strId = false;
+has_nStream = false;
     }
 
 public:
     explicit SAXEventHandler( ::oapi::StopLiveViewReq * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
-, handler_1(&obj->nSubId)
+        , handler_0(&obj->strId)
+, handler_1(&obj->nStream)
     {
         reset_flags();
     }
@@ -4802,10 +4378,10 @@ case 1:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
-else if (utility::string_equal(str, length, "\x6e\x53\x75\x62\x49\x64", 6))
-                         { state=1; has_nSubId = true; }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
+else if (utility::string_equal(str, length, "\x6e\x53\x74\x72\x65\x61\x6d", 7))
+                         { state=1; has_nStream = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -4902,8 +4478,8 @@ case 1:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
-if (!has_nSubId) set_missing_required("nSubId");
+            if (!has_strId) set_missing_required("strId");
+if (!has_nStream) set_missing_required("nStream");
         }
         return the_error.empty();
     }
@@ -4953,8 +4529,8 @@ struct Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, unsigned int >()(w, value.nId);
-w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, unsigned int >()(w, value.nSubId);
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, std::string >()(w, value.strId);
+w.Key("\x6e\x53\x74\x72\x65\x61\x6d", 7, false); Serializer< Writera67fc43c979b39f04c8d3de13a7465d2e2c058d8047e4f0843dfe6a9c31eccdf, unsigned int >()(w, value.nStream);
 
         w.EndObject(2);
     }
@@ -4991,10 +4567,10 @@ w.Key("\x6e\x53\x75\x62\x49\x64", 6, false); Serializer< Writera67fc43c979b39f04
 // such syntax is chosen so that the template file looks like valid C++
 
 namespace oapi { struct PlaybackReq {
- unsigned int nId;
+ std::string strId;
 unsigned int nPlayTime;
 
-explicit PlaybackReq():nId(), nPlayTime() {  }
+explicit PlaybackReq():strId(), nPlayTime() {  }
 
 
  
@@ -5010,8 +4586,8 @@ private:
     int state;
     int depth;
 
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< unsigned int > handler_1;bool has_nId;
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< unsigned int > handler_1;bool has_strId;
 bool has_nPlayTime;
 
     bool check_depth(const char* type)
@@ -5027,7 +4603,7 @@ bool has_nPlayTime;
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "strId";
 case 1:
     return "nPlayTime";
         default:
@@ -5056,7 +4632,7 @@ case 1:
 
     void reset_flags()
     {
-        has_nId = false;
+        has_strId = false;
 has_nPlayTime = false;
     }
 
@@ -5064,7 +4640,7 @@ public:
     explicit SAXEventHandler( ::oapi::PlaybackReq * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
+        , handler_0(&obj->strId)
 , handler_1(&obj->nPlayTime)
     {
         reset_flags();
@@ -5230,8 +4806,8 @@ case 1:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
 else if (utility::string_equal(str, length, "\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9))
                          { state=1; has_nPlayTime = true; }
             else {
@@ -5330,7 +4906,7 @@ case 1:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
+            if (!has_strId) set_missing_required("strId");
 if (!has_nPlayTime) set_missing_required("nPlayTime");
         }
         return the_error.empty();
@@ -5381,7 +4957,7 @@ struct Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, unsigned int >()(w, value.nId);
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, std::string >()(w, value.strId);
 w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writer507d18937c354bd3b0ce5600968c7938e819382bb4fb3f18119cb78980c31ad2, unsigned int >()(w, value.nPlayTime);
 
         w.EndObject(2);
@@ -5760,1072 +5336,6 @@ struct Serializer< Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e93
         w.Key("\x6e\x50\x6c\x61\x79\x54\x69\x6d\x65", 9, false); Serializer< Writer95e9854e91469639b60cc7f92de9dc1e244cc7407de8d1b66fe8e9326742c044, unsigned int >()(w, value.nPlayTime);
 
         w.EndObject(1);
-    }
-
-};
-}
-
-
-// The MIT License (MIT)
-//
-// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-#include <autojsoncxx/autojsoncxx.hpp>
-
-// The comments are reserved for replacement
-// such syntax is chosen so that the template file looks like valid C++
-
-namespace cloudapi { struct CloudAPIDevice {
- unsigned int nId;
-std::string Name;
-std::string Param;
-std::string SnapshotUrl;
-std::string HlsUrl;
-unsigned int Online;
-
-explicit CloudAPIDevice():nId(), Name(), Param(), SnapshotUrl(), HlsUrl(), Online() {  }
-
-
- 
-}; }
-
-
-namespace autojsoncxx {
-
-template <>
-class SAXEventHandler< ::cloudapi::CloudAPIDevice > {
-private:
-    utility::scoped_ptr<error::ErrorBase> the_error;
-    int state;
-    int depth;
-
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< std::string > handler_1;
-SAXEventHandler< std::string > handler_2;
-SAXEventHandler< std::string > handler_3;
-SAXEventHandler< std::string > handler_4;
-SAXEventHandler< unsigned int > handler_5;bool has_nId;
-bool has_Name;
-bool has_Param;
-bool has_SnapshotUrl;
-bool has_HlsUrl;
-bool has_Online;
-
-    bool check_depth(const char* type)
-    {
-        if (depth <= 0) {
-            the_error.reset(new error::TypeMismatchError("object", type));
-            return false;
-        }
-        return true;
-    }
-
-    const char* current_member_name() const
-    {
-        switch (state) {
-            case 0:
-    return "nId";
-case 1:
-    return "Name";
-case 2:
-    return "Param";
-case 3:
-    return "SnapshotUrl";
-case 4:
-    return "HlsUrl";
-case 5:
-    return "Online";
-        default:
-            break;
-        }
-        return "<UNKNOWN>";
-    }
-
-    bool checked_event_forwarding(bool success)
-    {
-        if (!success)
-            the_error.reset(new error::ObjectMemberError(current_member_name()));
-        return success;
-    }
-
-    void set_missing_required(const char* name)
-    {
-        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
-            the_error.reset(new error::RequiredFieldMissingError());
-
-        std::vector<std::string>& missing =
-            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
-
-        missing.push_back(name);
-    }
-
-    void reset_flags()
-    {
-        has_nId = false;
-has_Name = false;
-has_Param = false;
-has_SnapshotUrl = false;
-has_HlsUrl = false;
-has_Online = false;
-    }
-
-public:
-    explicit SAXEventHandler( ::cloudapi::CloudAPIDevice * obj)
-        : state(-1)
-        , depth(0)
-        , handler_0(&obj->nId)
-, handler_1(&obj->Name)
-, handler_2(&obj->Param)
-, handler_3(&obj->SnapshotUrl)
-, handler_4(&obj->HlsUrl)
-, handler_5(&obj->Online)
-    {
-        reset_flags();
-    }
-
-    bool Null()
-    {
-        if (!check_depth("null"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Null());
-
-case 1:
-    return checked_event_forwarding(handler_1.Null());
-
-case 2:
-    return checked_event_forwarding(handler_2.Null());
-
-case 3:
-    return checked_event_forwarding(handler_3.Null());
-
-case 4:
-    return checked_event_forwarding(handler_4.Null());
-
-case 5:
-    return checked_event_forwarding(handler_5.Null());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Bool(bool b)
-    {
-        if (!check_depth("bool"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Bool(b));
-
-case 1:
-    return checked_event_forwarding(handler_1.Bool(b));
-
-case 2:
-    return checked_event_forwarding(handler_2.Bool(b));
-
-case 3:
-    return checked_event_forwarding(handler_3.Bool(b));
-
-case 4:
-    return checked_event_forwarding(handler_4.Bool(b));
-
-case 5:
-    return checked_event_forwarding(handler_5.Bool(b));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int(int i)
-    {
-        if (!check_depth("int"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Int(i));
-
-case 2:
-    return checked_event_forwarding(handler_2.Int(i));
-
-case 3:
-    return checked_event_forwarding(handler_3.Int(i));
-
-case 4:
-    return checked_event_forwarding(handler_4.Int(i));
-
-case 5:
-    return checked_event_forwarding(handler_5.Int(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint(unsigned i)
-    {
-        if (!check_depth("unsigned"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Uint(i));
-
-case 2:
-    return checked_event_forwarding(handler_2.Uint(i));
-
-case 3:
-    return checked_event_forwarding(handler_3.Uint(i));
-
-case 4:
-    return checked_event_forwarding(handler_4.Uint(i));
-
-case 5:
-    return checked_event_forwarding(handler_5.Uint(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int64(utility::int64_t i)
-    {
-        if (!check_depth("int64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int64(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Int64(i));
-
-case 2:
-    return checked_event_forwarding(handler_2.Int64(i));
-
-case 3:
-    return checked_event_forwarding(handler_3.Int64(i));
-
-case 4:
-    return checked_event_forwarding(handler_4.Int64(i));
-
-case 5:
-    return checked_event_forwarding(handler_5.Int64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint64(utility::uint64_t i)
-    {
-        if (!check_depth("uint64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint64(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Uint64(i));
-
-case 2:
-    return checked_event_forwarding(handler_2.Uint64(i));
-
-case 3:
-    return checked_event_forwarding(handler_3.Uint64(i));
-
-case 4:
-    return checked_event_forwarding(handler_4.Uint64(i));
-
-case 5:
-    return checked_event_forwarding(handler_5.Uint64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Double(double d)
-    {
-        if (!check_depth("double"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Double(d));
-
-case 1:
-    return checked_event_forwarding(handler_1.Double(d));
-
-case 2:
-    return checked_event_forwarding(handler_2.Double(d));
-
-case 3:
-    return checked_event_forwarding(handler_3.Double(d));
-
-case 4:
-    return checked_event_forwarding(handler_4.Double(d));
-
-case 5:
-    return checked_event_forwarding(handler_5.Double(d));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool String(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("string"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.String(str, length, copy));
-
-case 1:
-    return checked_event_forwarding(handler_1.String(str, length, copy));
-
-case 2:
-    return checked_event_forwarding(handler_2.String(str, length, copy));
-
-case 3:
-    return checked_event_forwarding(handler_3.String(str, length, copy));
-
-case 4:
-    return checked_event_forwarding(handler_4.String(str, length, copy));
-
-case 5:
-    return checked_event_forwarding(handler_5.String(str, length, copy));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Key(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("object"))
-            return false;
-
-        if (depth == 1) {
-            if (0) {
-            }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
-else if (utility::string_equal(str, length, "\x4e\x61\x6d\x65", 4))
-                         { state=1; has_Name = true; }
-else if (utility::string_equal(str, length, "\x50\x61\x72\x61\x6d", 5))
-                         { state=2; has_Param = true; }
-else if (utility::string_equal(str, length, "\x53\x6e\x61\x70\x73\x68\x6f\x74\x55\x72\x6c", 11))
-                         { state=3; has_SnapshotUrl = true; }
-else if (utility::string_equal(str, length, "\x48\x6c\x73\x55\x72\x6c", 6))
-                         { state=4; has_HlsUrl = true; }
-else if (utility::string_equal(str, length, "\x4f\x6e\x6c\x69\x6e\x65", 6))
-                         { state=5; has_Online = true; }
-            else {
-                state = -1;
-                the_error.reset(new error::UnknownFieldError(str, length)); return false;
-            }
-
-        } else {
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.Key(str, length, copy));
-
-case 1:
-    return checked_event_forwarding(handler_1.Key(str, length, copy));
-
-case 2:
-    return checked_event_forwarding(handler_2.Key(str, length, copy));
-
-case 3:
-    return checked_event_forwarding(handler_3.Key(str, length, copy));
-
-case 4:
-    return checked_event_forwarding(handler_4.Key(str, length, copy));
-
-case 5:
-    return checked_event_forwarding(handler_5.Key(str, length, copy));
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool StartArray()
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.StartArray());
-
-case 1:
-    return checked_event_forwarding(handler_1.StartArray());
-
-case 2:
-    return checked_event_forwarding(handler_2.StartArray());
-
-case 3:
-    return checked_event_forwarding(handler_3.StartArray());
-
-case 4:
-    return checked_event_forwarding(handler_4.StartArray());
-
-case 5:
-    return checked_event_forwarding(handler_5.StartArray());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool EndArray(SizeType length)
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.EndArray(length));
-
-case 1:
-    return checked_event_forwarding(handler_1.EndArray(length));
-
-case 2:
-    return checked_event_forwarding(handler_2.EndArray(length));
-
-case 3:
-    return checked_event_forwarding(handler_3.EndArray(length));
-
-case 4:
-    return checked_event_forwarding(handler_4.EndArray(length));
-
-case 5:
-    return checked_event_forwarding(handler_5.EndArray(length));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool StartObject()
-    {
-        ++depth;
-        if (depth > 1) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.StartObject());
-
-case 1:
-    return checked_event_forwarding(handler_1.StartObject());
-
-case 2:
-    return checked_event_forwarding(handler_2.StartObject());
-
-case 3:
-    return checked_event_forwarding(handler_3.StartObject());
-
-case 4:
-    return checked_event_forwarding(handler_4.StartObject());
-
-case 5:
-    return checked_event_forwarding(handler_5.StartObject());
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool EndObject(SizeType length)
-    {
-        --depth;
-        if (depth > 0) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.EndObject(length));
-
-case 1:
-    return checked_event_forwarding(handler_1.EndObject(length));
-
-case 2:
-    return checked_event_forwarding(handler_2.EndObject(length));
-
-case 3:
-    return checked_event_forwarding(handler_3.EndObject(length));
-
-case 4:
-    return checked_event_forwarding(handler_4.EndObject(length));
-
-case 5:
-    return checked_event_forwarding(handler_5.EndObject(length));
-
-            default:
-                break;
-            }
-        } else {
-            if (!has_nId) set_missing_required("nId");
-if (!has_Name) set_missing_required("Name");
-if (!has_Param) set_missing_required("Param");
-if (!has_SnapshotUrl) set_missing_required("SnapshotUrl");
-if (!has_HlsUrl) set_missing_required("HlsUrl");
-if (!has_Online) set_missing_required("Online");
-        }
-        return the_error.empty();
-    }
-
-    bool HasError() const
-    {
-        return !this->the_error.empty();
-    }
-
-    bool ReapError(error::ErrorStack& errs)
-    {
-        if (this->the_error.empty())
-            return false;
-
-        errs.push(this->the_error.release());
-
-        switch (state) {
-
-        case 0:
-     handler_0.ReapError(errs); break;
-case 1:
-     handler_1.ReapError(errs); break;
-case 2:
-     handler_2.ReapError(errs); break;
-case 3:
-     handler_3.ReapError(errs); break;
-case 4:
-     handler_4.ReapError(errs); break;
-case 5:
-     handler_5.ReapError(errs); break;
-
-        default:
-            break;
-        }
-
-        return true;
-    }
-
-    void PrepareForReuse()
-    {
-        depth = 0;
-        state = -1;
-        the_error.reset();
-        reset_flags();
-        handler_0.PrepareForReuse();
-handler_1.PrepareForReuse();
-handler_2.PrepareForReuse();
-handler_3.PrepareForReuse();
-handler_4.PrepareForReuse();
-handler_5.PrepareForReuse();
-
-    }
-};
-
-template < class Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7 >
-struct Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, ::cloudapi::CloudAPIDevice > {
-
-    void operator()( Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7& w, const ::cloudapi::CloudAPIDevice& value) const
-    {
-        w.StartObject();
-
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, unsigned int >()(w, value.nId);
-w.Key("\x4e\x61\x6d\x65", 4, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.Name);
-w.Key("\x50\x61\x72\x61\x6d", 5, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.Param);
-w.Key("\x53\x6e\x61\x70\x73\x68\x6f\x74\x55\x72\x6c", 11, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.SnapshotUrl);
-w.Key("\x48\x6c\x73\x55\x72\x6c", 6, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, std::string >()(w, value.HlsUrl);
-w.Key("\x4f\x6e\x6c\x69\x6e\x65", 6, false); Serializer< Writerd046cf2dc9c0667d085d8a120f7f2108a108af8a6b3ad541c413e31c0e4970b7, unsigned int >()(w, value.Online);
-
-        w.EndObject(6);
-    }
-
-};
-}
-
-
-// The MIT License (MIT)
-//
-// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-#include <autojsoncxx/autojsoncxx.hpp>
-
-// The comments are reserved for replacement
-// such syntax is chosen so that the template file looks like valid C++
-
-namespace cloudapi { struct CloudAPIGetAllDevicesRet {
- unsigned int Num;
-std::vector<cloudapi::CloudAPIDevice> list;
-
-explicit CloudAPIGetAllDevicesRet():Num(), list() {  }
-
-
- 
-}; }
-
-
-namespace autojsoncxx {
-
-template <>
-class SAXEventHandler< ::cloudapi::CloudAPIGetAllDevicesRet > {
-private:
-    utility::scoped_ptr<error::ErrorBase> the_error;
-    int state;
-    int depth;
-
-    SAXEventHandler< unsigned int > handler_0;
-SAXEventHandler< std::vector<cloudapi::CloudAPIDevice> > handler_1;bool has_Num;
-
-    bool check_depth(const char* type)
-    {
-        if (depth <= 0) {
-            the_error.reset(new error::TypeMismatchError("object", type));
-            return false;
-        }
-        return true;
-    }
-
-    const char* current_member_name() const
-    {
-        switch (state) {
-            case 0:
-    return "Num";
-case 1:
-    return "list";
-        default:
-            break;
-        }
-        return "<UNKNOWN>";
-    }
-
-    bool checked_event_forwarding(bool success)
-    {
-        if (!success)
-            the_error.reset(new error::ObjectMemberError(current_member_name()));
-        return success;
-    }
-
-    void set_missing_required(const char* name)
-    {
-        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
-            the_error.reset(new error::RequiredFieldMissingError());
-
-        std::vector<std::string>& missing =
-            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
-
-        missing.push_back(name);
-    }
-
-    void reset_flags()
-    {
-        has_Num = false;
-
-    }
-
-public:
-    explicit SAXEventHandler( ::cloudapi::CloudAPIGetAllDevicesRet * obj)
-        : state(-1)
-        , depth(0)
-        , handler_0(&obj->Num)
-, handler_1(&obj->list)
-    {
-        reset_flags();
-    }
-
-    bool Null()
-    {
-        if (!check_depth("null"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Null());
-
-case 1:
-    return checked_event_forwarding(handler_1.Null());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Bool(bool b)
-    {
-        if (!check_depth("bool"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Bool(b));
-
-case 1:
-    return checked_event_forwarding(handler_1.Bool(b));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int(int i)
-    {
-        if (!check_depth("int"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Int(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint(unsigned i)
-    {
-        if (!check_depth("unsigned"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Uint(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Int64(utility::int64_t i)
-    {
-        if (!check_depth("int64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Int64(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Int64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Uint64(utility::uint64_t i)
-    {
-        if (!check_depth("uint64_t"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Uint64(i));
-
-case 1:
-    return checked_event_forwarding(handler_1.Uint64(i));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Double(double d)
-    {
-        if (!check_depth("double"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.Double(d));
-
-case 1:
-    return checked_event_forwarding(handler_1.Double(d));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool String(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("string"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.String(str, length, copy));
-
-case 1:
-    return checked_event_forwarding(handler_1.String(str, length, copy));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool Key(const char* str, SizeType length, bool copy)
-    {
-        if (!check_depth("object"))
-            return false;
-
-        if (depth == 1) {
-            if (0) {
-            }
-            else if (utility::string_equal(str, length, "\x4e\x75\x6d", 3))
-                         { state=0; has_Num = true; }
-else if (utility::string_equal(str, length, "\x6c\x69\x73\x74", 4))
-                         { state=1;  }
-            else {
-                state = -1;
-                the_error.reset(new error::UnknownFieldError(str, length)); return false;
-            }
-
-        } else {
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.Key(str, length, copy));
-
-case 1:
-    return checked_event_forwarding(handler_1.Key(str, length, copy));
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool StartArray()
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.StartArray());
-
-case 1:
-    return checked_event_forwarding(handler_1.StartArray());
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool EndArray(SizeType length)
-    {
-        if (!check_depth("array"))
-            return false;
-
-        switch (state) {
-
-        case 0:
-    return checked_event_forwarding(handler_0.EndArray(length));
-
-case 1:
-    return checked_event_forwarding(handler_1.EndArray(length));
-
-        default:
-            break;
-        }
-        return true;
-    }
-
-    bool StartObject()
-    {
-        ++depth;
-        if (depth > 1) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.StartObject());
-
-case 1:
-    return checked_event_forwarding(handler_1.StartObject());
-
-            default:
-                break;
-            }
-        }
-        return true;
-    }
-
-    bool EndObject(SizeType length)
-    {
-        --depth;
-        if (depth > 0) {
-
-            switch (state) {
-
-            case 0:
-    return checked_event_forwarding(handler_0.EndObject(length));
-
-case 1:
-    return checked_event_forwarding(handler_1.EndObject(length));
-
-            default:
-                break;
-            }
-        } else {
-            if (!has_Num) set_missing_required("Num");
-        }
-        return the_error.empty();
-    }
-
-    bool HasError() const
-    {
-        return !this->the_error.empty();
-    }
-
-    bool ReapError(error::ErrorStack& errs)
-    {
-        if (this->the_error.empty())
-            return false;
-
-        errs.push(this->the_error.release());
-
-        switch (state) {
-
-        case 0:
-     handler_0.ReapError(errs); break;
-case 1:
-     handler_1.ReapError(errs); break;
-
-        default:
-            break;
-        }
-
-        return true;
-    }
-
-    void PrepareForReuse()
-    {
-        depth = 0;
-        state = -1;
-        the_error.reset();
-        reset_flags();
-        handler_0.PrepareForReuse();
-handler_1.PrepareForReuse();
-
-    }
-};
-
-template < class Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798 >
-struct Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, ::cloudapi::CloudAPIGetAllDevicesRet > {
-
-    void operator()( Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798& w, const ::cloudapi::CloudAPIGetAllDevicesRet& value) const
-    {
-        w.StartObject();
-
-        w.Key("\x4e\x75\x6d", 3, false); Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, unsigned int >()(w, value.Num);
-w.Key("\x6c\x69\x73\x74", 4, false); Serializer< Writer5893d2042c70b1115b33c35cb8ff41a548b244c120d3053f7af497cfd405e798, std::vector<cloudapi::CloudAPIDevice> >()(w, value.list);
-
-        w.EndObject(2);
     }
 
 };
