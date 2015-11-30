@@ -98,6 +98,47 @@ inline s32 ConfDB::Open(astring & pPath)
     return TRUE;
 }
 
+inline bool ConfDB::CameraRecordSet(astring strCameraId, bool bOn)
+{
+	VidCameraList cameraList;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = cameraList.cvidcamera(i);
+		if (cam.strid() == strCameraId)
+		{
+			cam.set_brecord(bOn);
+		}
+	}
+
+	UpdateCameraListConf(cameraList);
+	return true;
+}
+inline bool ConfDB::CameraHDFSRecordSet(astring strCameraId, bool bOn)
+{
+	VidCameraList cameraList;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = cameraList.cvidcamera(i);
+		if (cam.strid() == strCameraId)
+		{
+			cam.set_bhdfsrecord(bOn)
+		}
+	}
+
+	UpdateCameraListConf(cameraList);
+	return true;
+}
+inline bool ConfDB::CameraRecordTemplSet(astring strCameraId, astring strTempl)
+{
+	return true;
+}
+
 inline   BOOL ConfDB::GetLicense(astring &strLicense)
 {
 	VSCConfLicenseKey sLicKey;

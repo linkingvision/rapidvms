@@ -28,6 +28,10 @@ public:
 
     s32 Open(astring & pPath);
 public:
+	bool CameraRecordSet(astring strCameraId, bool bOn);
+	bool CameraHDFSRecordSet(astring strCameraId, bool bOn);
+	bool CameraRecordTemplSet(astring strCameraId, astring strTempl);
+public:
 
 	BOOL GetHdfsRecordConf(VidHDFSConf &pData);
 	BOOL UpdateHdfsRecordConf(VidHDFSConf &pData);
