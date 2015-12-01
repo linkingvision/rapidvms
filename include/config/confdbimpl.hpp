@@ -97,7 +97,7 @@ inline s32 ConfDB::Open(astring & pPath)
 	SetCmnParam(fakeKey, fakeValue);
     return TRUE;
 }
-
+#if 0
 inline bool ConfDB::CameraRecordSet(astring strCameraId, bool bOn)
 {
 	VidCameraList cameraList;
@@ -134,6 +134,77 @@ inline bool ConfDB::CameraHDFSRecordSet(astring strCameraId, bool bOn)
 	UpdateCameraListConf(cameraList);
 	return true;
 }
+#endif
+
+inline bool ConfDB::FindCamera(astring strCameraId)
+{
+	VidCameraList cameraList;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = cameraList.cvidcamera(i);
+		if (cam.strid() == strCameraId)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+inline bool ConfDB::DeleteCamera(astring strCameraId)
+{
+	VidCameraList cameraList;
+	VidCameraList cameraListNew;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = cameraList.cvidcamera(i);
+		if (cam.strid() != strCameraId)
+		{
+			VidCamera *pCam = cameraListNew.add_cvidcamera();
+			*pCam = cam;
+		}
+	}
+	UpdateCameraListConf(cameraListNew);
+	return true;
+}
+	
+inline bool ConfDB::AddCamera(VidCamera &pAddCam)
+{
+	VidCameraList cameraList;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	VidCamera *pCam = cameraList.add_cvidcamera();
+	*pCam = pAddCam;
+	UpdateCameraListConf(cameraList);
+	return true;
+}
+
+inline bool ConfDB::GetCameraConf(astring strCameraId, VidCamera &pCam)
+{
+	VidCameraList cameraList;
+	GetCameraListConf(cameraList);
+	int cameraSize = cameraList.cvidcamera_size();
+
+	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = cameraList.cvidcamera(i);
+		if (cam.strid() == strCameraId)
+		{
+			pCam = cam;
+			return true;
+		}
+	}
+
+	return false;
+}
+
 inline bool ConfDB::CameraRecordTemplSet(astring strCameraId, astring strTempl)
 {
 	return true;
