@@ -174,10 +174,7 @@ inline BOOL Factory::Init()
 		Param.m_Conf.set_strport("80");
 		Param.m_Conf.set_struser("admin");
 		Param.m_Conf.set_strpasswd("admin");
-		VidCamera *pAddCam = cameraList.add_cvidcamera();
-		*pAddCam = Param.m_Conf;
-		m_Conf.UpdateCameraListConf(cameraList);
-		
+		m_Conf.AddCamera(Param.m_Conf);		
 	}
 #endif
 
@@ -191,25 +188,6 @@ inline BOOL Factory::Init()
 		CameraParam pParam(cam);
 		InitAddCamera(pParam, cam.strid());
 	}
-
-#if 0
-	VSCConfData sysData;
-	m_Conf.GetSysData(sysData);
-	for (s32 i = 1; i < CONF_MAP_MAX; i ++)
-	{
-	    if (sysData.data.conf.CameraMap[i] != CONF_MAP_INVALID_MIN 
-			&& sysData.data.conf.CameraMap[i] != 0)
-	    {
-	        VDC_DEBUG( "%s Init Camera %d\n",__FUNCTION__, i);
-	        VSCCameraData Data;
-	        m_Conf.GetCameraData(i, Data);
-	        CameraParam mParam(Data);
-	        LockCameraID(Data.data.conf.nId);
-	        InitAddCamera(mParam, Data.data.conf.nId);
-	        VDC_DEBUG( "%s Id %d\n",__FUNCTION__, Data.data.conf.nId);
-	    }
-	}
-#endif
 
 	InitLicense();
 	//m_pThread = new thread(Factory::Run, (void *)this);
@@ -413,13 +391,6 @@ inline VDB& Factory::GetVdb()
 	return *m_pVdb;
 }
 
-inline BOOL Factory::GetCameraParamMap(CameraParamMap &pMap)
-{
-    pMap = m_CameraParamMap;
-
-    return TRUE;
-}
-
 inline BOOL Factory::GetCameraOnlineMap(CameraOnlineMap &pMap)
 {
     pMap = m_CameraOnlineMap;
@@ -430,10 +401,14 @@ inline BOOL Factory::GetCameraOnlineMap(CameraOnlineMap &pMap)
 inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
 {
 
-    m_CameraMap[strCamId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
+	m_CameraMap[strCamId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
 
-    m_CameraParamMap[strCamId] = pParam;
-    m_CameraOnlineMap[strCamId] = FALSE;
+	m_CameraOnlineMap[strCamId] = FALSE;
+
+	if (pParam.m_Conf.strname() = "Camera")
+	{
+		pParam.m_Conf.set_strname(pParam.m_Conf.strid());
+	}
 
     return TRUE;
 }
@@ -642,16 +617,16 @@ inline BOOL Factory::GetCameraOnline(astring nIndex, BOOL &bStatus)
 
 inline   BOOL Factory::GetUrl(astring nIndex, std::string &url)
 {
-    BOOL ret = FALSE;
+	BOOL ret = FALSE;
 
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        ret =  m_CameraMap[nIndex]->GetUrl(url);
-    }
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    ret =  m_CameraMap[nIndex]->GetUrl(url);
+	}
 
-    UnLock();
+	UnLock();
 
-    return ret;
+	return ret;
 }
 
 inline BOOL Factory::GetStreamInfo(astring nIndex, VideoStreamInfo &pInfo)
@@ -678,172 +653,154 @@ inline BOOL Factory::PtzAction(astring nIndex, FPtzAction action, float speed)
 	return TRUE;
 }
 
-
+#if 0
 inline BOOL Factory::GetRecordStatus(astring nIndex,bool &nStatus)
 {
-    CameraParam pParam;
+	VidCamera pParam;
 
-    if (GetCameraParamByIdTryLock(pParam, nIndex) == FALSE)
-    {
-        return FALSE;
-    }
-    //if (pParam.m_Conf.data.conf.Recording == 1)
-    {
-        nStatus = TRUE;
-    }//else
-    {
-        nStatus = FALSE;
-    }
-    return TRUE;
+	Lock();
+	
+	m_Conf.GetCameraConf(nIndex, pParam);
+	nStatus = pParam.brecord();
+	
+	UnLock();
+
+	return true;
 }
 
 inline BOOL Factory::StartRecord(astring nIndex)
 {
-#if 0
-    CameraParam pParam;
-    FactoryCameraChangeData change;
+	VidCamera pParam;
+	FactoryCameraChangeData change;
 
-    GetCameraParamById(pParam, nIndex);
-    if (pParam.m_Conf.data.conf.Recording == 1)
-    {
-        return TRUE;
-    }
+	Lock();
+	
+	m_Conf.GetCameraConf(nIndex, pParam);
+	if (pParam.brecord() == true)
+	{
+		UnLock();
+		return true;
+	}
 
-    Lock();
-    pParam.m_Conf.data.conf.Recording = 1;
-    m_Conf.UpdateCameraData(nIndex, pParam.m_Conf);
-    m_CameraParamMap[nIndex] = pParam;
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->SetRecord(TRUE);
-        m_CameraMap[nIndex]->StartRecord();
-    }
-    UnLock();
-    change.id = nIndex;
-    change.type = FACTORY_CAMERA_RECORDING_ON;
-    CallCameraChange(change);
-#endif
-    return TRUE;
+	m_Conf.CameraRecordSet(nIndex, true);
+
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->StartRecord();
+	}
+	UnLock();
+	change.id = nIndex;
+	change.type = FACTORY_CAMERA_RECORD_ON;
+	CallCameraChange(change);
+
+	return TRUE;
 }
 inline BOOL Factory::StopRecord(astring nIndex)
 {
-#if 0
-    CameraParam pParam;
-    FactoryCameraChangeData change;
+	VidCamera pParam;
+	FactoryCameraChangeData change;
 
-    GetCameraParamById(pParam, nIndex);
-    if (pParam.m_Conf.data.conf.Recording == 0)
-    {
-        return TRUE;
-    }
+	Lock();
+	
+	m_Conf.GetCameraConf(nIndex, pParam);
+	if (pParam.brecord() == false)
+	{
+		UnLock();
+		return true;
+	}
 
-    Lock();
-    pParam.m_Conf.data.conf.Recording = 0;
-    m_CameraParamMap[nIndex] = pParam;
-    m_Conf.UpdateCameraData(nIndex, pParam.m_Conf);
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->SetRecord(FALSE);
-        m_CameraMap[nIndex]->StopRecord();
-    }
-    UnLock();
-    change.id = nIndex;
-    change.type = FACTORY_CAMERA_RECORDING_OFF;
-    CallCameraChange(change);
-#endif
+	m_Conf.CameraRecordSet(nIndex, false);
+
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->StopRecord();
+	}
+	UnLock();
+	change.id = nIndex;
+	change.type = FACTORY_CAMERA_RECORD_OFF;
+	CallCameraChange(change);
+
     return TRUE;
 }
 
 
 inline BOOL Factory::StartHdfsRecord(astring nIndex)
 {
-#if 0
-    CameraParam pParam;
-    FactoryCameraChangeData change;
+	VidCamera pParam;
+	FactoryCameraChangeData change;
 
-    GetCameraParamById(pParam, nIndex);
-    if (pParam.m_Conf.data.conf.HdfsRecording == 1)
-    {
-        return TRUE;
-    }
+	Lock();
+	
+	m_Conf.GetCameraConf(nIndex, pParam);
+	if (pParam.bhdfsrecord() == true)
+	{
+		UnLock();
+		return true;
+	}
 
-    Lock();
-    pParam.m_Conf.data.conf.HdfsRecording = 1;
-    m_Conf.UpdateCameraData(nIndex, pParam.m_Conf);
-    m_CameraParamMap[nIndex] = pParam;
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->SetHdfsRecord(TRUE);
-        m_CameraMap[nIndex]->StartHdfsRecord();
-    }
-    UnLock();
-    change.id = nIndex;
-    change.type = FACTORY_CAMERA_RECORDING_ON;
-    CallCameraChange(change);
-#endif
-    return TRUE;
+	m_Conf.CameraHDFSRecordSet(nIndex, true);
+
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->StartHdfsRecord();
+	}
+	UnLock();
+	change.id = nIndex;
+	change.type = FACTORY_CAMERA_HDFS_RECORD_ON;
+	CallCameraChange(change);
+
+	return TRUE;
 }
 inline BOOL Factory::StopHdfsRecord(astring nIndex)
 {
-#if 0
-    CameraParam pParam;
-    FactoryCameraChangeData change;
+	VidCamera pParam;
+	FactoryCameraChangeData change;
 
-    GetCameraParamById(pParam, nIndex);
-    if (pParam.m_Conf.data.conf.HdfsRecording == 0)
-    {
-        return TRUE;
-    }
+	Lock();
+	
+	m_Conf.GetCameraConf(nIndex, pParam);
+	if (pParam.bhdfsrecord() == false)
+	{
+		UnLock();
+		return true;
+	}
 
-    Lock();
-    pParam.m_Conf.data.conf.HdfsRecording = 0;
-    m_CameraParamMap[nIndex] = pParam;
-    m_Conf.UpdateCameraData(nIndex, pParam.m_Conf);
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->SetHdfsRecord(FALSE);
-        m_CameraMap[nIndex]->StopHdfsRecord();
-    }
-    UnLock();
-    change.id = nIndex;
-    change.type = FACTORY_CAMERA_RECORDING_OFF;
-    CallCameraChange(change);
-#endif
-    return TRUE;
+	m_Conf.CameraHDFSRecordSet(nIndex, true);
+
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->StopHdfsRecord();
+	}
+	UnLock();
+	change.id = nIndex;
+	change.type = FACTORY_CAMERA_HDFS_RECORD_OFF;
+	CallCameraChange(change);
+
+	return TRUE;
 }
+#endif
 
 
 inline astring Factory::AddCamera(CameraParam & pParam)
 {
-#if 0
-	//s32 nId = GetCameraID();
-	astring nId = "sdfsdf";//TODO
 	FactoryCameraChangeData change;
-	Camera *pCamera = NULL;
-	CameraParam pParam2;
 
 	Lock();
-	//pParam.m_Conf.data.conf.nId = nId;
 
-	m_CameraMap[nId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
-	pCamera = m_CameraMap[nId]; 
+	InitAddCamera(pParam, pParam.m_Conf.strid());
 
-	m_CameraParamMap[nId] = pParam;
-	m_CameraOnlineMap[nId] = 0;
-	m_Conf.AddCamera(pParam.m_Conf, nId);
+	m_Conf.AddCamera(pParam.m_Conf);
 
 	UnLock();
-	change.id = nId;
+	change.id = pParam.m_Conf.strid();
 	change.type = FACTORY_CAMERA_ADD;
 	CallCameraChange(change);
 
-#endif
-    	return "adf";
+    	return pParam.m_Conf.strid();
 }
 
 inline BOOL Factory::DelCamera(astring nIndex)
 {
-#if 0
     FactoryCameraChangeData change;
 
     change.id = nIndex;
@@ -856,15 +813,13 @@ inline BOOL Factory::DelCamera(astring nIndex)
     VDC_DEBUG( "%s Cleanup End\n",__FUNCTION__);
     delete m_CameraMap[nIndex];
     m_CameraMap[nIndex] = NULL;
-    m_CameraParamMap.erase(nIndex);
     m_CameraOnlineMap.erase(nIndex);
     int size1 = m_CameraMap.size();
     m_CameraMap.erase(nIndex);
     int size2 = m_CameraMap.size();
-    m_Conf.DelCamera(nIndex);
+    m_Conf.DeleteCamera(nIndex);
     UnLock();
-    ReleaseCameraID(nIndex);
-#endif	
+
     return TRUE;
 }
 
@@ -880,33 +835,6 @@ inline BOOL Factory::GetCameraRtspUrl(astring & strUrl, astring nIndex)
 
 	return ret;
 }
-
-inline s32 Factory::GetCameraParamById(CameraParam & pParam, astring nIndex)
-{
-    Lock();
-    pParam = m_CameraParamMap[nIndex];
-    UnLock();
-
-    return TRUE;
-}
-
-inline s32 Factory::GetCameraParamByIdTryLock(CameraParam & pParam, astring nIndex)
-{
-#if 1
-    if (TryLock() == false)
-    {
-        return FALSE;
-    }
-#else
-    Lock();
-#endif
-    pParam = m_CameraParamMap[nIndex];
-    UnLock();
-
-    return TRUE;
-}
-
-
 
 inline void Factory::Run(void * pParam)
 {

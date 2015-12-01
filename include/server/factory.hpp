@@ -29,8 +29,10 @@ typedef enum
     FACTORY_CAMERA_DEL,
     FACTORY_CAMERA_ONLINE,
     FACTORY_CAMERA_OFFLINE,
-    FACTORY_CAMERA_RECORDING_ON,
-    FACTORY_CAMERA_RECORDING_OFF,
+    FACTORY_CAMERA_RECORD_ON,
+    FACTORY_CAMERA_RECORD_OFF,
+    FACTORY_CAMERA_HDFS_RECORD_ON,
+    FACTORY_CAMERA_HDFS_RECORD_OFF,
 
     FACTORY_CAMERA_LAST
 } FactoryCameraChangeType;
@@ -114,9 +116,7 @@ public:
 
        /* Camera function */
 	astring AddCamera(CameraParam & pParam);
-	s32 GetCameraParamById(CameraParam & pParam, astring strCamId);
 	BOOL GetCameraRtspUrl(astring & strUrl, astring strCamId);
-	s32 GetCameraParamByIdTryLock(CameraParam & pParam, astring strCamId);
 	BOOL DelCamera(astring strCamId);
 	
 	BOOL PtzAction(astring strCamId, FPtzAction action, float speed);
