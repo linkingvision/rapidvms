@@ -148,12 +148,10 @@ public:
 	inline BOOL StopSubRaw();
 	
 	inline BOOL StartRecord();
-	inline BOOL StopRecord();
+	//inline BOOL StopRecord();//NO Stop interface, stop will readd the camera
 	inline BOOL StartHdfsRecord();
-	inline BOOL StopHdfsRecord();
+	//inline BOOL StopHdfsRecord();
 	
-	inline BOOL SetRecord(BOOL bRecording);
-	inline BOOL SetHdfsRecord(BOOL bRecording);
 	inline CameraStatus CheckCamera(astring strUrl, astring strUrlSubStream, 
 		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl);
 
@@ -217,9 +215,6 @@ public:
 	inline BOOL DetachPlayer(HWND hWnd);
 	inline BOOL GetStreamInfo(VideoStreamInfo &pInfo);
 
-	inline BOOL EnablePtz(HWND hWnd, bool enable);
-	inline BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
-	inline BOOL ClearPtzDirection(HWND hWnd);
 	inline BOOL ShowAlarm(HWND hWnd);
 	inline BOOL PtzAction(FPtzAction action, float speed);
 	inline BOOL UpdatePTZConf();
@@ -242,8 +237,6 @@ private:
 	CameraDelCallbackMap m_DelMap;
 
 private:
-	s32 m_nCameraType;
-	s32 m_nCameraSubType;
 	CameraParam m_param;
 	tthread::thread *m_pThread;
 	fast_mutex m_Lock;
@@ -254,6 +247,8 @@ private:
 	VHdfsDB &m_pVHdfsdb;
 	RecordSession *m_pRecord;
 	HdfsRecSession *m_pHdfsRecord;
+	bool m_bRecord;
+	bool m_bHdfsRecord;
 
 private:
 	ContinuousMove m_continuousMove;
