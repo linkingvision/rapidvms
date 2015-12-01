@@ -333,16 +333,10 @@ m_pHdfsRecord(NULL),  m_ptzInited(FALSE),
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
 m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0),
 m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay), 
-m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream)
+m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream), 
+m_bRecord(false), m_bHdfsRecord(false)
 
-{
-#if 0//TODO
-	if (strcmp(pParam.m_Conf.data.conf.Name, "Camera") == 0)
-	{
-	  	sprintf((char *)pParam.m_Conf.data.conf.Name, "Camera %d", pParam.m_Conf.data.conf.nId);
-	}
-#endif
-	
+{	
 	m_param = pParam;
 	m_param.UpdateDefaultUrl();
 	return ;
@@ -444,11 +438,17 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 			}
 		}
 		VDC_DEBUG( "%s url %s\n",__FUNCTION__, m_param.m_strUrl.c_str());
-
-		StartRecord();
-		StartHdfsRecord();
+		
 		m_param.m_OnlineUrl = TRUE;
 		UpdatePTZConf();
+		if (m_param.m_Conf().bhdfsrecord() == true)
+		{
+			StartRecord();
+		}
+		if (m_param.m_Conf().brecord() == true)
+		{
+			StartHdfsRecord();
+		}
         }
         if (m_param.m_Online == FALSE)
         {
@@ -494,22 +494,6 @@ BOOL Camera::DetachPlayer(HWND hWnd)
     m_vPlay.DetachWidget(hWnd);
     
     return TRUE;
-}
-
-inline BOOL Camera::EnablePtz(HWND hWnd, bool enable)
-{
-	m_vPlay.EnablePtz(hWnd, enable);
-	return TRUE;
-}
-BOOL Camera::DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2)
-{
-	m_vPlay.DrawPtzDirection(hWnd, x1, y1, x2, y2);
-	return TRUE;
-}
-BOOL Camera::ClearPtzDirection(HWND hWnd)
-{
-	m_vPlay.ClearPtzDirection(hWnd);
-	return TRUE;
 }
 
 BOOL Camera::ShowAlarm(HWND hWnd)
@@ -964,75 +948,50 @@ BOOL Camera::StartRaw()
 	return TRUE;
 }
 
-
- BOOL Camera::SetRecord(BOOL bRecording)
-{
-    if (bRecording == TRUE)
-    {
-        //m_param.m_Conf.data.conf.Recording = 1;
-    }else
-    {
-        //m_param.m_Conf.data.conf.Recording = 0;
-    }
-
-    return TRUE;
-}
-
- BOOL Camera::SetHdfsRecord(BOOL bRecording)
-{
-    if (bRecording == TRUE)
-    {
-        //m_param.m_Conf.data.conf.HdfsRecording = 1;
-    }else
-    {
-        //m_param.m_Conf.data.conf.HdfsRecording = 0;
-    }
-
-    return TRUE;
-}
-
-
  BOOL Camera::StartRecord()
 {
-	//if (m_param.m_Conf.data.conf.Recording == 0)
+	if (m_bRecord == false)
 	{
-	    return FALSE;
+		VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
+		StartData();
+		m_bRecord = true;
 	}
-	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-	StartData();
-	//StartRaw();
+	
 
     return TRUE;
 }
+#if 0
  BOOL Camera::StopRecord()
 {
-	//if (m_param.m_Conf.data.conf.Recording == 1)
+	if (m_bRecord == true)
 	{
-	    return FALSE;
+		VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
+
+		m_bRecord = false;
+		StopData();
+		Lock();
+		if (m_pRecord)
+		{
+		    u32 endTime = m_pRecord->GetEndTime();
+		    if (endTime != 0)
+		    {
+		    	 m_pVdb.FinishRecord(m_pRecord);
+		    }
+		    delete m_pRecord;
+		    m_pRecord = NULL;
+		}
+		UnLock();
+		m_bRecord = false;
 	}
-	VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
-	StopData();
-	Lock();
-	if (m_pRecord)
-	{
-	    u32 endTime = m_pRecord->GetEndTime();
-	    if (endTime != 0)
-	    {
-	    	 m_pVdb.FinishRecord(m_pRecord);
-	    }
-	    delete m_pRecord;
-	    m_pRecord = NULL;
-	}
-	UnLock();
 
     return TRUE;
 }
-
+#endif
   BOOL Camera::StartHdfsRecord()
 {
-	//if (m_param.m_Conf.data.conf.HdfsRecording == 0)
+	if (m_bHdfsRecord == true)
 	{
-	    return FALSE;
+	    return true;
 	}
 	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
 	StartData();
@@ -1040,22 +999,23 @@ BOOL Camera::StartRaw()
 	Lock();
 	if (m_pHdfsRecord == NULL)
 	{
-		//m_pHdfsRecord = m_pVHdfsdb.StartRecord(
-		//	m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
+		//TODO
+		m_pHdfsRecord = m_pVHdfsdb.StartRecord(
+			1, m_param.m_Conf.strname());
 		m_pHdfsRecord->RegSeqCallback((HDFSDataHandler)Camera::SeqHandler, (void *)this);
 
 	}
-
-	
+	m_bHdfsRecord = true;
 
 	UnLock();
     	return TRUE;
 }
+#if 0
  BOOL Camera::StopHdfsRecord()
 {
-	//if (m_param.m_Conf.data.conf.HdfsRecording == 1)
+	if (m_bHdfsRecord == false)
 	{
-	    return FALSE;
+	    return true;
 	}
 
 	VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
@@ -1071,6 +1031,7 @@ BOOL Camera::StartRaw()
 	UnLock();
 	return TRUE;
 }
+#endif
 
 BOOL Camera::DataHandler(void* pData, VideoFrame& frame)
 {
