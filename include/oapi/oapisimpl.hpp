@@ -198,7 +198,6 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 
 BOOL OAPIServer::ProcessGetDevice(s32 len)
 {
-#if 0
 	if (len == 0)
 	{
 		return FALSE;
@@ -218,23 +217,26 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 		
 	}
 
-	oapi::DeviceListRsp dataList;
+	oapi::OAPICameraListRsp dataList;
 	dataList.Num = 0;
 
-	DeviceParamMap pDeviceMap;
-	DeviceOnlineMap pDeviceOnlineMap;
-	m_pFactory.GetDeviceParamMap(pDeviceMap);
-	m_pFactory.GetDeviceOnlineMap(pDeviceOnlineMap);
+	CameraOnlineMap pCameraOnlineMap;
 
-	DeviceParamMap::iterator it = pDeviceMap.begin(); 
-	for(; it!=pDeviceMap.end(); ++it)
+	m_pFactory.GetCameraOnlineMap(pCameraOnlineMap);
+
+	VidCameraList pCameraList;
+	m_pFactory.GetCameraList(pCameraList);
+
+	for (s32 i = 0; i < pCameraList.cvidcamera_size(); i ++)
 	{
-		oapi::Device data;
-		OAPIConverter::Converter(((*it).second).m_Conf.data.conf, data);
-		data.Online = pDeviceOnlineMap[(*it).first];
+		const VidCamera &cam = pCameraList.cvidcamera(i);
+		oapi::OAPICamera data;
+		OAPIConverter::Converter((VidCamera &)cam, data);
+		data.bOnline = pCameraOnlineMap[cam.strid()];
 		dataList.list.push_back(data);
 		dataList.Num ++;
 	}
+
 	//autojsoncxx::to_json_string
 
 	std::string strJson = autojsoncxx::to_pretty_json_string(dataList);
@@ -249,7 +251,7 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
-#endif
+
 	return TRUE;
 }
 
