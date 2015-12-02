@@ -110,9 +110,8 @@ public:
 	BOOL SetOAPIPort(u16 &pPort);
 #endif
 public:
-	/* UI can use this for display camera tree */
-	BOOL GetCameraParamMap(CameraParamMap &pMap);
 	BOOL GetCameraOnlineMap(CameraOnlineMap &pMap);
+	bool GetCameraList(VidCameraList & pCameraList);
 
        /* Camera function */
 	astring AddCamera(CameraParam & pParam);

@@ -174,7 +174,10 @@ inline BOOL Factory::Init()
 		Param.m_Conf.set_strport("80");
 		Param.m_Conf.set_struser("admin");
 		Param.m_Conf.set_strpasswd("admin");
-		m_Conf.AddCamera(Param.m_Conf);		
+		m_Conf.AddCamera(Param.m_Conf);
+		astring strhdd = "cccccc";
+		astring strPath = "c:\\";
+		AddHdd(strhdd, strPath, 10 * 1024 );
 	}
 #endif
 
@@ -206,6 +209,21 @@ inline BOOL Factory::Init()
 	astring strExportPath;
 	GetExportPath(strExportPath);
 	return TRUE;
+}
+
+inline BOOL Factory::GetCameraOnlineMap(CameraOnlineMap &pMap)
+{
+    pMap = m_CameraOnlineMap;
+
+    return TRUE;
+}
+
+inline bool Factory::GetCameraList(VidCameraList & pCameraList)
+{
+	Lock();
+	m_Conf.GetCameraListConf(pCameraList);
+	UnLock();
+	return true;
 }
 
 inline BOOL Factory::RegCameraChangeNotify(void * pData, FactoryCameraChangeNotify callback)
@@ -391,12 +409,6 @@ inline VDB& Factory::GetVdb()
 	return *m_pVdb;
 }
 
-inline BOOL Factory::GetCameraOnlineMap(CameraOnlineMap &pMap)
-{
-    pMap = m_CameraOnlineMap;
-
-    return TRUE;
-}
 
 inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
 {
@@ -405,7 +417,7 @@ inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
 
 	m_CameraOnlineMap[strCamId] = FALSE;
 
-	if (pParam.m_Conf.strname() = "Camera")
+	if (pParam.m_Conf.strname() == "Camera")
 	{
 		pParam.m_Conf.set_strname(pParam.m_Conf.strid());
 	}
