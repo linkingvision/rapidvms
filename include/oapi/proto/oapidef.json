@@ -60,7 +60,9 @@
 		
 		["unsigned int", "bHWaccel", {"required": true}],
 		["unsigned int", "bServerMotion", {"required": true}],
-		["unsigned int", "nConnectType", {"required": true}]
+		["unsigned int", "nConnectType", {"required": true}],
+		
+		["unsigned int", "bOnline", {"required": true}]
     ]
 },
 {

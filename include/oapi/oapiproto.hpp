@@ -1703,8 +1703,9 @@ std::string strRTSPUrl;
 unsigned int bHWaccel;
 unsigned int bServerMotion;
 unsigned int nConnectType;
+unsigned int bOnline;
 
-explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType() {  }
+explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bOnline() {  }
 
 
  
@@ -1735,7 +1736,8 @@ SAXEventHandler< std::string > handler_11;
 SAXEventHandler< std::string > handler_12;
 SAXEventHandler< unsigned int > handler_13;
 SAXEventHandler< unsigned int > handler_14;
-SAXEventHandler< unsigned int > handler_15;bool has_strId;
+SAXEventHandler< unsigned int > handler_15;
+SAXEventHandler< unsigned int > handler_16;bool has_strId;
 bool has_strName;
 bool has_nType;
 bool has_strIP;
@@ -1751,6 +1753,7 @@ bool has_strRTSPUrl;
 bool has_bHWaccel;
 bool has_bServerMotion;
 bool has_nConnectType;
+bool has_bOnline;
 
     bool check_depth(const char* type)
     {
@@ -1796,6 +1799,8 @@ case 14:
     return "bServerMotion";
 case 15:
     return "nConnectType";
+case 16:
+    return "bOnline";
         default:
             break;
         }
@@ -1838,6 +1843,7 @@ has_strRTSPUrl = false;
 has_bHWaccel = false;
 has_bServerMotion = false;
 has_nConnectType = false;
+has_bOnline = false;
     }
 
 public:
@@ -1860,6 +1866,7 @@ public:
 , handler_13(&obj->bHWaccel)
 , handler_14(&obj->bServerMotion)
 , handler_15(&obj->nConnectType)
+, handler_16(&obj->bOnline)
     {
         reset_flags();
     }
@@ -1918,6 +1925,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Null());
+
+case 16:
+    return checked_event_forwarding(handler_16.Null());
 
         default:
             break;
@@ -1980,6 +1990,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Bool(b));
 
+case 16:
+    return checked_event_forwarding(handler_16.Bool(b));
+
         default:
             break;
         }
@@ -2040,6 +2053,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Int(i));
+
+case 16:
+    return checked_event_forwarding(handler_16.Int(i));
 
         default:
             break;
@@ -2102,6 +2118,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Uint(i));
 
+case 16:
+    return checked_event_forwarding(handler_16.Uint(i));
+
         default:
             break;
         }
@@ -2162,6 +2181,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Int64(i));
+
+case 16:
+    return checked_event_forwarding(handler_16.Int64(i));
 
         default:
             break;
@@ -2224,6 +2246,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.Uint64(i));
 
+case 16:
+    return checked_event_forwarding(handler_16.Uint64(i));
+
         default:
             break;
         }
@@ -2284,6 +2309,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Double(d));
+
+case 16:
+    return checked_event_forwarding(handler_16.Double(d));
 
         default:
             break;
@@ -2346,6 +2374,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.String(str, length, copy));
 
+case 16:
+    return checked_event_forwarding(handler_16.String(str, length, copy));
+
         default:
             break;
         }
@@ -2392,6 +2423,8 @@ else if (utility::string_equal(str, length, "\x62\x53\x65\x72\x76\x65\x72\x4d\x6
                          { state=14; has_bServerMotion = true; }
 else if (utility::string_equal(str, length, "\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 12))
                          { state=15; has_nConnectType = true; }
+else if (utility::string_equal(str, length, "\x62\x4f\x6e\x6c\x69\x6e\x65", 7))
+                         { state=16; has_bOnline = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -2447,6 +2480,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.Key(str, length, copy));
+
+case 16:
+    return checked_event_forwarding(handler_16.Key(str, length, copy));
 
             default:
                 break;
@@ -2510,6 +2546,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.StartArray());
 
+case 16:
+    return checked_event_forwarding(handler_16.StartArray());
+
         default:
             break;
         }
@@ -2571,6 +2610,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.EndArray(length));
 
+case 16:
+    return checked_event_forwarding(handler_16.EndArray(length));
+
         default:
             break;
         }
@@ -2631,6 +2673,9 @@ case 14:
 
 case 15:
     return checked_event_forwarding(handler_15.StartObject());
+
+case 16:
+    return checked_event_forwarding(handler_16.StartObject());
 
             default:
                 break;
@@ -2694,6 +2739,9 @@ case 14:
 case 15:
     return checked_event_forwarding(handler_15.EndObject(length));
 
+case 16:
+    return checked_event_forwarding(handler_16.EndObject(length));
+
             default:
                 break;
             }
@@ -2714,6 +2762,7 @@ if (!has_strRTSPUrl) set_missing_required("strRTSPUrl");
 if (!has_bHWaccel) set_missing_required("bHWaccel");
 if (!has_bServerMotion) set_missing_required("bServerMotion");
 if (!has_nConnectType) set_missing_required("nConnectType");
+if (!has_bOnline) set_missing_required("bOnline");
         }
         return the_error.empty();
     }
@@ -2764,6 +2813,8 @@ case 14:
      handler_14.ReapError(errs); break;
 case 15:
      handler_15.ReapError(errs); break;
+case 16:
+     handler_16.ReapError(errs); break;
 
         default:
             break;
@@ -2794,6 +2845,7 @@ handler_12.PrepareForReuse();
 handler_13.PrepareForReuse();
 handler_14.PrepareForReuse();
 handler_15.PrepareForReuse();
+handler_16.PrepareForReuse();
 
     }
 };
@@ -2821,8 +2873,9 @@ w.Key("\x73\x74\x72\x52\x54\x53\x50\x55\x72\x6c", 10, false); Serializer< Writer
 w.Key("\x62\x48\x57\x61\x63\x63\x65\x6c", 8, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bHWaccel);
 w.Key("\x62\x53\x65\x72\x76\x65\x72\x4d\x6f\x74\x69\x6f\x6e", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bServerMotion);
 w.Key("\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 12, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nConnectType);
+w.Key("\x62\x4f\x6e\x6c\x69\x6e\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bOnline);
 
-        w.EndObject(16);
+        w.EndObject(17);
     }
 
 };
