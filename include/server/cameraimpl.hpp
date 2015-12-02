@@ -441,13 +441,13 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		
 		m_param.m_OnlineUrl = TRUE;
 		UpdatePTZConf();
-		if (m_param.m_Conf().bhdfsrecord() == true)
-		{
-			StartRecord();
-		}
-		if (m_param.m_Conf().brecord() == true)
+		if (m_param.m_Conf.bhdfsrecord() == true)
 		{
 			StartHdfsRecord();
+		}
+		if (m_param.m_Conf.brecord() == true)
+		{
+			StartRecord();
 		}
         }
         if (m_param.m_Online == FALSE)
@@ -1046,6 +1046,7 @@ BOOL Camera::DataHandler(void* pData, VideoFrame& frame)
 
 BOOL Camera::DataHandler1(VideoFrame& frame)
 {
+	//VDC_DEBUG( "%s  %d\n",__FUNCTION__, frame.dataLen);
 	Lock();
 	/* Frist cache the info frame */
 	if (frame.streamType == VIDEO_STREAM_INFO)
@@ -1068,11 +1069,11 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 	}
 
 	/* 2. Send to Record */
-	//if (m_param.m_Conf.data.conf.Recording == 1)
+	if (m_bRecord == true)
 	{
 		if (m_pRecord == NULL)
 		{
-		    //m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), R_MANUAL);
+		    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.strid(), (int)(frame.secs), R_ALARM);
 		}
 		
 		//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
@@ -1088,14 +1089,14 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 				m_pVdb.FinishRecord(m_pRecord);
 			}
 		    	delete m_pRecord;
-		    	//m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.data.conf.nId, (int)(frame.secs), 1);
+		    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.strid(), (int)(frame.secs), 1);
 			if (m_pRecord != NULL)
 			{
 			       m_pRecord->PushAFrame(&frame);	 
 			}
 		}
 	}
-	
+#if 0
 	/* 2. Send to Hdfs Record */
 	//if (m_param.m_Conf.data.conf.HdfsRecording == 1)
 	{
@@ -1109,6 +1110,7 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 			m_pHdfsRecord->PushAFrame(&frame);
 		}
 	}
+#endif
 	/* Call the Sub DataHandler if there has no sub stream */
 	if (m_param.m_bHasSubStream == FALSE)
 	{
