@@ -9,7 +9,7 @@
 #include <QtWidgets/QApplication>
 #include <QStyleFactory>
 #include "server/factory.hpp"
-//#include "client/clientfactory.hpp"
+#include "client/clientfactory.hpp"
 #include <QPixmap>
 #include <QSplashScreen>
 #include <QtWidgets/QMainWindow>
@@ -43,9 +43,26 @@ void LoadLangZH(QApplication &a)
 int main(int argc, char *argv[])
 {
 	int dummy = errno;
+	ClientFactory *pFactory = NULL;
 
 	QApplication a(argc, argv);
-	Debug::init(0);
+#ifdef WIN32
+#ifndef _WIN64
+	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "\\vidstor\\logs\\";
+#else
+	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "\\vidstor64\\logs\\";
+#endif
+#else
+	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "/vidstor/logs/";
+#endif
+	Poco::File file1(strLoggerPath);
+	file1.createDirectories();
+	astring strLoggerFile = strLoggerPath + "opencvrclient";
+	Debug::init(9200, strLoggerFile);
+
+	Debug::logger().info("opencvrclient started");
+	Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
+	Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
 
 #ifdef WIN32
 	QFont font;
@@ -66,31 +83,20 @@ int main(int argc, char *argv[])
 	QPixmap pixmap(":/logo/resources/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
 
-    	splash->setStyleSheet(QStringLiteral("color : white;"));    
-    	splash->show();
-#if 0
-    	gFactory = new Factory;
+	splash->setStyleSheet(QStringLiteral("color : white;"));    
+	splash->show();
+	
+    pFactory = new ClientFactory;
 
-	if (gFactory->Init() == FALSE)
+	if (pFactory->Init() == FALSE)
 	{
-#ifdef WIN32
-		astring strPath = "C:\\";//TODO get the hdd from hdd
-		VSCHddDevice hdd;
-		hdd.show();
-		hdd.exec();
-		s32 size = hdd.GetDiskSize();
-		hdd.GetDiskPath(strPath);
-#else
-
-		astring strPath = "ve/";//TODO get the hdd from hdd
-		s32 size = 2;
-#endif
-		gFactory->SetSystemPath(strPath);
-		//splash->showMessage(QObject::tr("Create Video Database ..."));
-		gFactory->Init();
+		astring strPath = VSC_DEFAULT_SYSPATH;
+		pFactory->SetSystemPath(strPath);
+		pFactory->Init();
 	}
+#if 0
 	VSCLangType m_lang;
-	gFactory->GetLang(m_lang);
+	pFactory->GetLang(m_lang);
 	if (m_lang == VSC_LANG_AUTO)
 	{
 		if (QLocale::system().name() == "zh_CN")
@@ -104,11 +110,8 @@ int main(int argc, char *argv[])
 	}//else if add more language to here
 #endif
 	splash->showMessage(QObject::tr("Starting ..."));
-	//VEvent::Init(*gFactory);
-	//VEMap::Init(*gFactory);
-	//VServiceMgr *pServiceMgr = VServiceMgr::CreateObject(*gFactory);
-	
-	VSCMainWindows w;
+
+	VSCMainWindows w(*pFactory);
 
 	//w.showMaximized();
 	w.hide();
@@ -125,18 +128,5 @@ int main(int argc, char *argv[])
 	}
 
 	delete splash;
-	/* Every thread is ready, start the factory thread */
-#if 0
-	gFactory->start();
-	/* Init Mining framework */
-	gMFramework = new MFramework(*gFactory);
-	gMFramework->Init();
-
-	gMFramework->start();
-
-	/* Start the OpenCVR api server */
-	gOAPIServer = new OAPIServerWrapper(*gFactory);
-	gOAPIServer->start();
-#endif
 	return a.exec();
 }
