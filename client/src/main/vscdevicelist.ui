@@ -135,7 +135,19 @@ background-color: rgb(200, 200, 200);}</string>
       <item>
        <widget class="QLineEdit" name="lineEdit">
         <property name="text">
+         <string/>
+        </property>
+        <property name="frame">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
          <string>Filter</string>
+        </property>
+        <property name="cursorMoveStyle">
+         <enum>Qt::LogicalMoveStyle</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

@@ -4,104 +4,56 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_vscmainwindows.h"
-#include "vevent.hpp"
-#include "vscdockwidget.h"
-#include "vscview.h"
-#include "vemap.hpp"
-#include "vscpanel.h"
+#include "client/clientfactory.hpp"
+#include "live/vscvidlive.h"
 
-class VSCDeviceList;
+typedef enum
+{
+    VSC_VID_IDX_LIVE = 1,
+    VSC_VID_IDX_CONF,
+    VSC_VID_IDX_PB,
+    VSC_VID_IDX_LAST
+} VSCVidIdx;
+
 class VSCToolBar;
 class VSCMainWindows : public QMainWindow
 {
-    Q_OBJECT
-
+	Q_OBJECT
+public:
+	VSCMainWindows(ClientFactory &pFactory, QWidget *parent = 0);
+	~VSCMainWindows();
+	
 public:
 	void SetupToolBar();
-	void SetupMenuBar();
-	void CreateActions();
-	void CreateDockWindows();
-	void SetupConnections();
 	void ViewHideFocus();
 	void closeEvent(QCloseEvent *event); 
 
 
 public slots:
-	void AddSurveillance();
-	void AddCamera();
-	void AddEmap();
-	void AddRecordPlan();
-	void AddDmining();
-	void AddRecorder();
-
-	void Search();
-	void Setting();
-	void Panel();
-	void EditCamera(int nId);
-	void DeleteCamera(int nId);
-	void MainCloseTab(int index);
+	void ShowVidLive();
+	void ShowVidConf();
+	void ShowVidPb();
 	void about();
 	void UserStatus();
 	void SetFullScreen();
-	void AddEvent();
-	void EditDisk();
 
-	/* Site */
-	void AddSite();
-
-
-	/* VIPC */
-	void AddVIPC();
-	void EditVIPC(int nId);
-	void DeleteVIPC(int nId);
-
-	/* View */
-	void DeleteView(int nId);
-
-	/* VMS */
-	void DeleteVMS(int nId);
-
-	/* VIPC */
-	void AddVGroup();
-	void EditVGroup(int nId);
-	void DeleteVGroup(int nId);
-	void MapVGroup();
 	/* Show Login */
 	void ShowLogin();
 	void ExitOpenCVR();
-
-signals:
-    void CameraDeleted();
-
-public:
-    VSCMainWindows(QWidget *parent = 0);
-    ~VSCMainWindows();
 private:
-	QTabWidget * m_pMainArea;
-	VSCView *m_pView;
-	VEMap *m_pEMap;
-	VSCPanel *m_pPanel;
+	QAction *aboutAct;
+private:
+	VSCToolBar * m_pToolBar;
+	VSCVidInf *m_pVidLive;
+	VSCVidInf *m_pVidConf;
+	VSCVidInf *m_pVidPb;
+	VSCVidIdx m_VidIdx;
 
 private:
-    QAction *pActSurveillance;
-    QAction *pActSearch;
-
-
-
-    QAction *pActDeviceList;
-    QAction *pActDeviceAdd;
-    QAction *pActDeviceDel;
-    QAction *pActDeviceConf;
-    QAction *aboutAct;
-    QAction *aboutQtAct;
-
+	Ui::VSCMainWindowsClass ui;
+	
 private:
-    VSCDeviceList * m_pDeviceList;
-    VSCToolBar * m_pToolBar;
-    VEventThread * m_pEventThread;
-
-private:
-    Ui::VSCMainWindowsClass ui;
+	ClientFactory &m_pFactory;
 };
 
 #endif // VSCMAINWINDOWS_H
