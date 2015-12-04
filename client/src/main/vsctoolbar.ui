@@ -51,7 +51,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pbVidLive">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -80,7 +80,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbSetting_2">
+      <widget class="QPushButton" name="pbVidPb">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -120,7 +120,7 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbSetting">
+      <widget class="QPushButton" name="pbVidConf">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -160,7 +160,7 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbPanel">
+      <widget class="QPushButton" name="pbVidLiveView">
        <property name="maximumSize">
         <size>
          <width>30</width>
@@ -191,7 +191,7 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbVidEmap">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -210,52 +210,6 @@ background-color: rgb(200, 200, 200);}</string>
        <property name="icon">
         <iconset resource="vscmainwindows.qrc">
          <normaloff>:/action/resources/map.png</normaloff>:/action/resources/map.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbAlarm">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/alarm.png</normaloff>:/action/resources/alarm.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -330,6 +284,46 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbFullScreen">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FullScreen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/view-fullscreen.png</normaloff>:/action/resources/view-fullscreen.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbUser">
        <property name="minimumSize">
         <size>
@@ -367,7 +361,10 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbFullScreen">
+      <widget class="QPushButton" name="pbAlarm">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -381,7 +378,7 @@ background-color: rgb(200, 200, 200);}</string>
         </size>
        </property>
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FullScreen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {
@@ -396,13 +393,16 @@ background-color: rgb(200, 200, 200);}</string>
        </property>
        <property name="icon">
         <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/view-fullscreen.png</normaloff>:/action/resources/view-fullscreen.png</iconset>
+         <normaloff>:/action/resources/alarm.png</normaloff>:/action/resources/alarm.png</iconset>
        </property>
        <property name="iconSize">
         <size>
          <width>30</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

@@ -6,6 +6,7 @@
 #include "ui_vscmainwindows.h"
 #include "client/clientfactory.hpp"
 #include "live/vscvidlive.h"
+#include "main/vscvidlist.h"
 
 typedef enum
 {
@@ -44,6 +45,8 @@ private:
 	QAction *aboutAct;
 private:
 	VSCToolBar * m_pToolBar;
+	VSCVidList * m_pVidList;
+	QDockWidget *m_pDockDevicelist;
 	VSCVidInf *m_pVidLive;
 	VSCVidInf *m_pVidConf;
 	VSCVidInf *m_pVidPb;
