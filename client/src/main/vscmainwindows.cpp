@@ -54,6 +54,18 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
 	QCoreApplication::processEvents();
 
+	//QDockWidget *m_pDockDevicelist = new QDockWidget(tr("Devices"), this);
+	m_pDockDevicelist = new QDockWidget(m_parent);
+	m_pDockDevicelist->setFeatures(QDockWidget::DockWidgetMovable);
+
+	//m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
+	m_pDockDevicelist->setTitleBarWidget(new QWidget(m_parent));
+
+	m_pVidList = new VSCVidList(m_pDockDevicelist);
+	m_pDockDevicelist->setWidget(m_pVidList);
+	
+
 	/* Show the Live default */
 	m_pVidLive = new VSCVidLive(m_pFactory, this);
 	m_pVidConf = new VSCVidInf(m_pFactory, this);//TODO
@@ -61,8 +73,20 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	ShowVidLive();
 
 	delete loading;
-	SetupConnections();
+
 	setWindowTitle(QApplication::translate("VSCMainWindowsClass", VE_INFO, 0));
+
+	connect(m_pToolBar->ui.pbFullScreen, SIGNAL(clicked()), this, SLOT(SetFullScreen()));
+	connect(m_pToolBar->ui.pbAbout, SIGNAL(clicked()), this, SLOT(about()));
+	connect(m_pToolBar->ui.pbUser, SIGNAL(clicked()), this, SLOT(UserStatus()));
+
+	connect(m_pToolBar->ui.pbVidLive, SIGNAL(clicked()), this, SLOT(ShowVidLive()));
+	connect(m_pToolBar->ui.pbVidLiveView, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLiveView()));
+	connect(m_pToolBar->ui.pbEmap, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewEmap()));
+
+	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
+	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
+
 }
 
 VSCMainWindows::~VSCMainWindows()
@@ -96,7 +120,10 @@ void VSCMainWindows::ShowVidLive()
 	}
 
 	m_pVidLive->VidShow();
+	m_pToolBar->ui.pbVidLiveView->show();
+	m_pToolBar->ui.pbEmap->show();
 	m_VidIdx = VSC_VID_IDX_LIVE;
+	m_pVidList->SetCurrVidInf(m_pVidLive);
 }
 void VSCMainWindows::ShowVidConf()
 {
@@ -105,6 +132,8 @@ void VSCMainWindows::ShowVidConf()
 		case VSC_VID_IDX_LIVE:
 		{
 			m_pVidLive->VidHide();
+			m_pToolBar->ui.pbVidLiveView->hide();
+			m_pToolBar->ui.pbEmap->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:
@@ -125,6 +154,7 @@ void VSCMainWindows::ShowVidConf()
 
 	m_pVidConf->VidShow();
 	m_VidIdx = VSC_VID_IDX_CONF;
+	m_pVidList->SetCurrVidInf(m_pVidConf);
 }
 void VSCMainWindows::ShowVidPb()
 {
@@ -133,6 +163,8 @@ void VSCMainWindows::ShowVidPb()
 		case VSC_VID_IDX_LIVE:
 		{
 			m_pVidLive->VidHide();
+			m_pToolBar->ui.pbVidLiveView->hide();
+			m_pToolBar->ui.pbEmap->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:
@@ -153,6 +185,7 @@ void VSCMainWindows::ShowVidPb()
 
 	m_pVidPb->VidShow();
 	m_VidIdx = VSC_VID_IDX_PB;
+	m_pVidList->SetCurrVidInf(m_pVidPb);
 
 }
 
