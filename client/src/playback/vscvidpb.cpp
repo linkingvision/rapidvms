@@ -1,11 +1,11 @@
-#include "live/vscvidlive.h"
+#include "live/vscvidpb.h"
 
-VSCVidLive::VSCVidLive(ClientFactory &pFactory, QMainWindow *parent)
+VSCVidPb::VSCVidPb(ClientFactory &pFactory, QMainWindow *parent)
 : VSCVidInf(pFactory, parent)
 {
 	
 }
-VSCVidLive::~VSCVidLive()
+VSCVidPb::~VSCVidPb()
 {
 	
 }
