@@ -15,6 +15,13 @@ public:
 public:
 	virtual void VidShow();
 	virtual void VidHide();
+	virtual void VidNewLiveView();
+	virtual void VidNewEmap();
+
+	virtual QTreeWidget *GetCameraTree ();
+	virtual QTreeWidget *GetGroupTree ();
+	virtual QTreeWidget *GetEmapTree ();
+	virtual QTreeWidget *GetViewTree ();
 	
 public slots:
 	void MainCloseTab(int index);
@@ -22,7 +29,5 @@ public slots:
 private:
 	QTabWidget * m_pMainArea;
 	VSCView *m_pView;
-	VSCDeviceList * m_pDeviceList;
-	QDockWidget *m_pDockDevicelist;
 };
 	

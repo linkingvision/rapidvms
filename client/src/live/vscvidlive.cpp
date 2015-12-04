@@ -23,18 +23,6 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QMainWindow *parent)
 	//connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 		//	m_pView, SLOT(DeviceEvent(int, int)));
 #endif
-
-    //QDockWidget *m_pDockDevicelist = new QDockWidget(tr("Devices"), this);
-	m_pDockDevicelist = new QDockWidget(m_parent);
-    m_pDockDevicelist->setFeatures(QDockWidget::DockWidgetMovable);
-
-    //m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
-	m_pDockDevicelist->setTitleBarWidget(new QWidget(m_parent));
-
-    m_pDeviceList = new VSCDeviceList(m_pDockDevicelist);
-    m_pDockDevicelist->setWidget(m_pDeviceList);
-	
 	connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
 	
 }
@@ -87,4 +75,25 @@ void VSCVidLive::VidShow()
 void VSCVidLive::VidHide()
 {
 	m_parent->removeDockWidget(m_pDockDevicelist);
+}
+
+void VSCVidLive::VidNewLiveView()
+{
+}
+
+void VSCVidLive::VidNewEmap()
+{
+}
+
+QTreeWidget *VSCVidLive::GetCameraTree()
+{
+}
+QTreeWidget *VSCVidLive::GetGroupTree()
+{
+}
+QTreeWidget *VSCVidLive::GetEmapTree()
+{
+}
+QTreeWidget *VSCVidLive::GetViewTree()
+{
 }

@@ -7,6 +7,8 @@
 #include <QMovie>
 #include <QtWidgets/QMainWindow>
 #include "client/clientfactory.hpp"
+#include <QTreeWidgetItem>
+#include <QTreeWidget>
 
 class VSCVidInf : public QObject
 {
@@ -16,12 +18,18 @@ public:
     ~VSCVidInf();
 	
 public slots:
-	void SlotShow(){return VidShow();}
-	void SlotHide(){return VidHide();}
+	void SlotNewLiveView(){return VidNewLiveView();}
+	void SlotNewEmap(){return VidNewEmap();}
 	
 public:
 	virtual void VidShow(){}
 	virtual void VidHide(){}
+	virtual void VidNewLiveView(){}
+	virtual void VidNewEmap(){}
+	virtual QTreeWidget *GetCameraTree (){return NULL;}
+	virtual QTreeWidget *GetGroupTree (){return NULL;}
+	virtual QTreeWidget *GetEmapTree (){return NULL;}
+	virtual QTreeWidget *GetViewTree (){return NULL;}
 
 protected:
 	ClientFactory &m_pFactory;
