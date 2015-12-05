@@ -20,7 +20,7 @@ public:
 
     }
 
-    s32 Open(astringastring & pPath);
+    s32 Open(astring & pPath);
 public:
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);

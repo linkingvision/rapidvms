@@ -19,7 +19,7 @@ class StorStream: public QThread
 public:
 	inline StorStream(VidStor &stor, astring strStream);
 	inline ~StorStream();
-}
+};
 
 typedef StorStream* LPStorStream;
 
