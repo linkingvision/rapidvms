@@ -13,12 +13,12 @@ inline ClientFactory::ClientFactory()
 {
 #ifdef WIN32
 #ifndef _WIN64
-    astring strSysPath = "C:\\vidstor\\client";
+    astring strSysPath = "C:\\vidstor\\clientsystem";
 #else
-    astring strSysPath = "C:\\vidstor64\\client";
+    astring strSysPath = "C:\\vidstor64\\clientsystem";
 #endif
 #else
-    astring strSysPath = "ve/vidstor/client/";
+    astring strSysPath = "ve/vidstor/clientsystem/";
 #endif
     m_SysPath.Open(strSysPath);
 	/* Create the stor factory */
@@ -101,7 +101,7 @@ inline BOOL ClientFactory::Init()
 inline BOOL ClientFactory::RegChangeNotify(void * pData, ClientFactoryChangeNotify callback)
 {
 	Lock();
-	m_CameraChange[pData] = callback;
+	m_Change[pData] = callback;
 	UnLock();
 	return TRUE;
 }

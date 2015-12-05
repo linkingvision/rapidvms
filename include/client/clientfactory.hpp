@@ -20,7 +20,7 @@
 #include "Poco/Path.h"
 #include "Poco/File.h"
 #include "config/vidconf.pb.h"
-#include "client/clientconfdb.hpp"
+#include "config/clientconfdb.hpp"
 #include "client/storfactory.hpp"
 
 using namespace VidConf;
@@ -63,10 +63,11 @@ public:
 	/* Init function */
 	BOOL Init();
 	s32 InitAddVidStor(VidStor & pParam);
+	BOOL SetSystemPath(astring &strPath);
 	
 public:
 	BOOL RegChangeNotify(void * pData, ClientFactoryChangeNotify callback);
-	BOOL CallChange(ClientFactoryCameraChangeData data);
+	BOOL CallChange(ClientFactoryChangeData data);
 	
 public:
 
@@ -74,7 +75,7 @@ public:
 	BOOL SetExportPath(astring &strPath);
 	
 public:
-	StorFactory & GetStorFactory(){return m_StorFactory;}
+	StorFactory & GetStorFactory(){return *m_StorFactory;}
 #if 0
 public:
 	BOOL GetAutoLogin();
@@ -142,6 +143,7 @@ private:
 
 private:
 	ClientConfDB m_Conf;
+	SysDB m_SysPath;
 };
 
 typedef ClientFactory* LPClientFactory;
