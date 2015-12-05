@@ -18,7 +18,7 @@ class StorClient : public QThread
 public:
 	inline StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
 	inline ~StorClient();
-}
+};
 
 typedef StorClient* LPStorClient;
 
