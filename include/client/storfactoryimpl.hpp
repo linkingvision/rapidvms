@@ -41,7 +41,7 @@ inline BOOL StorFactory::Init()
 		
 	}
 #endif
-
+#if 0
 	VidCameraList cameraList;
 	m_Conf.GetCameraListConf(cameraList);
 	int cameraSize = cameraList.cvidcamera_size();
@@ -52,15 +52,16 @@ inline BOOL StorFactory::Init()
 		CameraParam pParam(cam);
 		InitAddCamera(pParam, cam.strid());
 	}
+#endif
 	return TRUE;
 }
 
 inline s32 StorFactory::InitAddStor(VidStor &pStor)
 {
 	StorFactoryNotifyInterface &pNotify = *this;
-    m_CameraMap[strCamId] = new StorClient(pStor, pNotify);
+	//m_StorClientMap[strCamId] = new StorClient(pStor, pNotify);
 
-    m_CameraOnlineMap[strCamId] = FALSE;
+    //m_CameraOnlineMap[strCamId] = FALSE;
 
     return TRUE;
 }
@@ -69,7 +70,7 @@ inline s32 StorFactory::InitAddStor(VidStor &pStor)
 inline BOOL StorFactory::RegChangeNotify(void * pData, StorFactoryChangeNotify callback)
 {
 	Lock();
-	m_CameraChange[pData] = callback;
+	m_Change[pData] = callback;
 	UnLock();
 	return TRUE;
 }

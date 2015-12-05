@@ -21,6 +21,8 @@
 #include "Poco/File.h"
 #include "config/vidconf.pb.h"
 #include "client/storcmn.hpp"
+#include "client/storclient.hpp"
+#include "config/clientconfdb.hpp"
 
 using namespace VidConf;
 
