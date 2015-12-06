@@ -44,6 +44,24 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{4ffbf49b-e4ab-461f-96b6-90ed8e4acb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\oapi">
+      <UniqueIdentifier>{d60c978b-3b5c-4ad6-8b47-67885fa2ec3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\config">
+      <UniqueIdentifier>{067dbd58-f674-4d2a-b8d4-7f95fe49e688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\client">
+      <UniqueIdentifier>{e9cd0b9f-14dd-4559-98e4-61467e2e6064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common\viditem">
+      <UniqueIdentifier>{bd7c3705-c5a6-47e0-a77b-300ec207eaf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common\vidtree">
+      <UniqueIdentifier>{9d6a84c8-6f27-42d6-8529-c1ba2c78e759}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="veclient.rc" />
@@ -60,27 +78,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\vscdeviceipc.cpp">
-      <Filter>src\main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\vscdevicelist.cpp">
-      <Filter>src\main</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicelist.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicelist.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\vscdevicetree.cpp">
-      <Filter>src\main</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_vscdevicetree.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_vscdevicetree.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main\vscmainwindows.cpp">
       <Filter>src\main</Filter>
@@ -100,8 +97,53 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vsctoolbar.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\vscview.cpp">
+    <ClCompile Include="..\src\common\vscvidinf.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidinf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidinf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vscvidconfig.cpp">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidconfig.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidconfig.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\live\vscvidlive.cpp">
+      <Filter>src\live</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidlive.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidlive.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscvidlist.cpp">
       <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidlist.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidlist.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\playback\vscvidpb.cpp">
+      <Filter>src\playback</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidpb.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidpb.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\live\vscview.cpp">
+      <Filter>src\live</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vscview.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -109,18 +151,72 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_clientfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storclient.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storclient.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storstream.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storstream.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscvidlistframe.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidlistframe.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidlistframe.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\vscvidtreeinf.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidtreeinf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidtreeinf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\vscviditeminf.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\vidtree\vscvidtreecam.cpp">
+      <Filter>src\common\vidtree</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidtreecam.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidtreecam.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\viditem\vscviditemcam.cpp">
+      <Filter>src\common\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\viditem\vscviditemvidstor.cpp">
+      <Filter>src\common\viditem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\main\vscmainwindows.qrc">
-      <Filter>src\main</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\src\main\vscdevicelist.h">
-      <Filter>src\main</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\src\main\vscdevicelist.ui">
-      <Filter>src\main</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\src\main\vscdevicetree.h">
       <Filter>src\main</Filter>
     </CustomBuild>
     <CustomBuild Include="..\src\main\vscmainwindows.h">
@@ -135,11 +231,50 @@
     <CustomBuild Include="..\src\main\vsctoolbar.ui">
       <Filter>src\main</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\src\main\vscview.h">
+    <CustomBuild Include="..\src\common\vscvidinf.h">
+      <Filter>src\common</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vscvidconfig.h">
+      <Filter>src\config</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\live\vscvidlive.h">
+      <Filter>src\live</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscvidlist.h">
       <Filter>src\main</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\src\main\vscview.ui">
+    <CustomBuild Include="..\src\main\vscvidlist.ui">
       <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\playback\vscvidpb.h">
+      <Filter>src\playback</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\live\vscview.ui">
+      <Filter>src\live</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\live\vscview.h">
+      <Filter>src\live</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\clientfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storclient.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storstream.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscvidlistframe.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\vscvidtreeinf.h">
+      <Filter>src\common</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\vidtree\vscvidtreecam.h">
+      <Filter>src\common\vidtree</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -361,20 +496,80 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\main\vscdeviceipc.h">
-      <Filter>src\main</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_vscdevicelist.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscmainwindows.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsctoolbar.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvidlist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\clientconfdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\clientconfdbimpl.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\conf.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\confdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\confdbimpl.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\sysdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\vidconf.pb.h">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\clientfactoryimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storclientimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storcmn.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storfactoryimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storstreamimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapic.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapis.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\vscviditeminf.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\viditem\vscviditemcam.h">
+      <Filter>src\common\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\viditem\vscviditemvidstor.h">
+      <Filter>src\common\viditem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

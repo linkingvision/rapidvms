@@ -9,6 +9,7 @@
 #include "client/clientfactory.hpp"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
+#include "common/vscvidtreeinf.h"
 
 class VSCVidInf : public QObject
 {
@@ -26,13 +27,14 @@ public:
 	virtual void VidHide(){}
 	virtual void VidNewLiveView(){}
 	virtual void VidNewEmap(){}
-	virtual QTreeWidget *GetCameraTree (){return NULL;}
-	virtual QTreeWidget *GetGroupTree (){return NULL;}
-	virtual QTreeWidget *GetEmapTree (){return NULL;}
-	virtual QTreeWidget *GetViewTree (){return NULL;}
+	virtual VSCVidTreeInf *GetCameraTree (){return NULL;}
+	virtual VSCVidTreeInf *GetGroupTree (){return NULL;}
+	virtual VSCVidTreeInf *GetEmapTree (){return NULL;}
+	virtual VSCVidTreeInf *GetViewTree (){return NULL;}
 
 protected:
 	ClientFactory &m_pFactory;
 	QMainWindow *m_parent;
 };
-	
+
+#endif
