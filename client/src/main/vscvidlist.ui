@@ -24,7 +24,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
+    <width>16777215</width>
     <height>16777215</height>
    </size>
   </property>
@@ -36,22 +36,22 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>0</number>
+    <number>3</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>3</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item>
-    <widget class="QFrame" name="frame_5">
+    <widget class="QFrame" name="FrameFilter">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -93,7 +93,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QWidget" name="widget_2" native="true">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -107,33 +107,12 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="vscmainwindows.qrc">
-          <normaloff>:/action/resources/search.png</normaloff>:/action/resources/search.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
+         <string notr="true">image: url(:/action/resources/search.png);</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="filterText">
         <property name="text">
          <string/>
         </property>
@@ -146,7 +125,7 @@ background-color: rgb(200, 200, 200);}</string>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pbFilterCancel">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -192,7 +171,7 @@ background-color: rgb(200, 200, 200);}</string>
     <widget class="QWidget" name="ListWidget" native="true"/>
    </item>
    <item>
-    <widget class="QFrame" name="frame_6">
+    <widget class="VSCVidListFrame" name="pbCamera">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -285,7 +264,7 @@ background-color: rgb(200, 200, 200);}</string>
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="VSCVidListFrame" name="pbGroup">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -378,7 +357,7 @@ background-color: rgb(200, 200, 200);}</string>
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_2">
+    <widget class="VSCVidListFrame" name="pbView">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -465,7 +444,7 @@ background-color: rgb(200, 200, 200);}</string>
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_3">
+    <widget class="VSCVidListFrame" name="pbEmap">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -560,6 +539,14 @@ background-color: rgb(200, 200, 200);}</string>
   </layout>
  </widget>
  <layoutdefault spacing="0" margin="0"/>
+ <customwidgets>
+  <customwidget>
+   <class>VSCVidListFrame</class>
+   <extends>QFrame</extends>
+   <header>vscvidlistframe.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="vscmainwindows.qrc"/>
  </resources>
