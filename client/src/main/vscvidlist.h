@@ -17,12 +17,22 @@ public:
 public:
 	/* set the live conf or Pb Vid interface */
 	void SetCurrVidInf(VSCVidInf *pVidInf);
+	
+public slots:
+	void SlotShowCameraTree();
+	void SlotShowGroupTree();
+	void SlotShowViewTree();
+	void SlotShowEmapTree();
 
 private:
 	Ui::VSCVidList ui;
 private:
 	VSCVidInf * m_pVidInf;
 	QVBoxLayout* m_treeLayout;
+	VSCVidTreeInf *m_pCameraTree;
+	VSCVidTreeInf *m_pGroupTree;
+	VSCVidTreeInf *m_pViewTree;
+	VSCVidTreeInf *m_pEmapTree;
     
 };
 
