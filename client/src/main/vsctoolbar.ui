@@ -204,6 +204,14 @@ background-color: rgb(200, 200, 200);}</string>
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -317,9 +325,12 @@ background-color: rgb(200, 200, 200);}</string>
        </property>
        <property name="iconSize">
         <size>
-         <width>30</width>
-         <height>30</height>
+         <width>27</width>
+         <height>27</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -357,6 +368,9 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
