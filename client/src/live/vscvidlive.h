@@ -18,10 +18,10 @@ public:
 	virtual void VidNewLiveView();
 	virtual void VidNewEmap();
 
-	virtual QTreeWidget *GetCameraTree ();
-	virtual QTreeWidget *GetGroupTree ();
-	virtual QTreeWidget *GetEmapTree ();
-	virtual QTreeWidget *GetViewTree ();
+	virtual VSCVidTreeInf *GetCameraTree();
+	virtual VSCVidTreeInf *GetGroupTree();
+	virtual VSCVidTreeInf *GetEmapTree();
+	virtual VSCVidTreeInf *GetViewTree();
 	
 public slots:
 	void MainCloseTab(int index);
@@ -29,5 +29,11 @@ public slots:
 private:
 	QTabWidget * m_pMainArea;
 	VSCView *m_pView;
+	VSCVidTreeInf *m_pCameraTree;
+	VSCVidTreeInf *m_pGroupTree;
+	VSCVidTreeInf *m_pViewTree;
+	VSCVidTreeInf *m_pEmapTree;
+	
 };
 	
+#endif
