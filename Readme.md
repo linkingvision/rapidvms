@@ -1,4 +1,5 @@
-# We are split OpenCVR to StorServer(server) and OpenCVR(client) in 2.0 version !!! #
+# We are spliting OpenCVR to StorServer(server) and OpenCVR(client) in 2.0 version !!! #
+# First 2.0 version maybe ready Jan of 2016 #
 # Current master code maybe can not be build #
 # OpenCVR #
 #### open source ONVIF Video Recorder ####
