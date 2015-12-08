@@ -1,4 +1,4 @@
-#include "live/vscvidconf.h"
+#include "config/vscvidconfig.h"
 
 VSCVidConf::VSCVidConf(ClientFactory &pFactory, QMainWindow *parent)
 : VSCVidInf(pFactory, parent)
