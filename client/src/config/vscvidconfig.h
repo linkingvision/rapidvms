@@ -2,7 +2,6 @@
 #define __VSC_VID_CONF_H__
 
 #include "common/vscvidinf.h"
-#include 
 
 class VSCVidConf : public VSCVidInf
 {
@@ -12,12 +11,11 @@ public:
     ~VSCVidConf();
 	
 public:
-	virtual void VidShow();
-	virtual void VidHide();
+	virtual void VidShow(){}
+	virtual void VidHide(){}
 
 private:
 	QTabWidget * m_pMainArea;
-	VSCView *m_pView;
 };
 
 #endif
