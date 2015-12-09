@@ -6,8 +6,10 @@
 class VSCVidItemVidStor : public VSCVidItemInf
 {
 public:
-    VSCVidItemVidStor(QTreeWidgetItem *parent);
-    ~VSCVidItemVidStor();
+	VSCVidItemVidStor(VidStor cStor, QTreeWidgetItem *parent);
+	~VSCVidItemVidStor();
+private:
+	VidStor m_cStor;
 
 };
 

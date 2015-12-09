@@ -1,7 +1,7 @@
 #include "common/viditem/vscviditemvidstor.h"
 
-VSCVidItemVidStor::VSCVidItemVidStor(QTreeWidgetItem *parent)
-: VSCVidItemInf(parent)
+VSCVidItemVidStor::VSCVidItemVidStor(VidStor cStor, QTreeWidgetItem *parent)
+: m_cStor(cStor), VSCVidItemInf(parent)
 {
 	
 }
