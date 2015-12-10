@@ -39,7 +39,8 @@ void VSCVidTreeCam::TreeUpdate()
 	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
 	{
 		VidStor pStor = storList.cvidstor(i);
-		VSCVidItemVidStor *pItemStor = new  VSCVidItemVidStor(pStor, m_pRoot);
+		VSCVidItemVidStor *pItemStor = new  VSCVidItemVidStor(pStor, 
+								m_pFactory, m_pRoot);
 		
 		QIcon icon1;
 		icon1.addFile(QStringLiteral(":/device/resources/computer.png"), QSize(), QIcon::Normal, QIcon::Off);
