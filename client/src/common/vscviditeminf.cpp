@@ -1,7 +1,7 @@
 #include "common/vscviditeminf.h"
 
-VSCVidItemInf::VSCVidItemInf(QTreeWidgetItem *parent)
-: QTreeWidgetItem(parent)
+VSCVidItemInf::VSCVidItemInf(ClientFactory &pFactory, QTreeWidgetItem *parent)
+: QTreeWidgetItem(parent), m_pFactory(pFactory)
 {
 	
 }
