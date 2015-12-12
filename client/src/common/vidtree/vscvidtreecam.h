@@ -12,6 +12,10 @@ public:
 	
 public:
 	virtual void VidFilter(astring strFilter){}
+public:
+	/* Take care all the vid Stor state change */
+	static bool CallChange(void* pParam, StorFactoryChangeData data);
+	bool CallChange1(StorFactoryChangeData data);
 	
 public:
 	void TreeUpdate();

@@ -14,8 +14,10 @@
 class VSCVidItemInf : public QTreeWidgetItem
 {
 public:
-    VSCVidItemInf(QTreeWidgetItem *parent);
-    ~VSCVidItemInf();
+	VSCVidItemInf(ClientFactory &pFactory, QTreeWidgetItem *parent);
+	~VSCVidItemInf();
+protected:
+	ClientFactory &m_pFactory;
 
 };
 
