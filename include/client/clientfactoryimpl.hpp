@@ -95,26 +95,29 @@ inline BOOL ClientFactory::Init()
 	/* Init export path */
 	astring strExportPath;
 	GetExportPath(strExportPath);
+
+	m_StorFactory->Init();
 	return TRUE;
 }
 
 inline BOOL ClientFactory::RegChangeNotify(void * pData, ClientFactoryChangeNotify callback)
 {
-	Lock();
+	XGuard guard(m_cMutex);
 	m_Change[pData] = callback;
-	UnLock();
+
 	return TRUE;
 }
 inline BOOL ClientFactory::CallChange(ClientFactoryChangeData data)
 {
-        ChangeNofityMap::iterator it = m_Change.begin(); 
-        for(; it!=m_Change.end(); ++it)
-        {
+	//XGuard guard(m_cMutex);
+	ChangeNofityMap::iterator it = m_Change.begin(); 
+	for(; it!=m_Change.end(); ++it)
+	{
 		if ((*it).second)
 		{
 			(*it).second((*it).first, data);
 		}
-        }	
+	}	
 	 return TRUE;
 }
 

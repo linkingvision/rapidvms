@@ -18,6 +18,19 @@ class StorClient : public QThread
 public:
 	inline StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
 	inline ~StorClient();
+public:
+	VidCameraList GetVidCameraList();
+public:
+	/* Start Stop Refresh the Stor client Thread */
+	bool StartStorClient();
+	bool StopStorClient();
+public:
+	void run();
+private:
+	XMutex m_cMutex;
+	VidStor m_stor;
+	bool m_Quit;
+	VidCameraList m_cCamList;
 };
 
 typedef StorClient* LPStorClient;
