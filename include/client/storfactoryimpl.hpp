@@ -27,41 +27,46 @@ inline BOOL StorFactory::Init()
 
 	/* Loop add the stor */
 	
-#if 0 //add camera for test
+#if 1 //add stor to test
 	{	
-		VidCameraList cameraList;
-		CameraParam Param;
-		Param.m_Conf.set_strip("192.168.1.1");
-		Param.m_Conf.set_strport("80");
-		Param.m_Conf.set_struser("admin");
-		Param.m_Conf.set_strpasswd("admin");
-		VidCamera *pAddCam = cameraList.add_cvidcamera();
-		*pAddCam = Param.m_Conf;
-		m_Conf.UpdateCameraListConf(cameraList);
+		VidStorList sotrList;
+		VidStor stor;
+		UUIDGenerator uuidCreator;
+		m_pConf.GetStorListConf(sotrList);
+		
+		astring strId  = uuidCreator.createRandom().toString();
+		stor.set_strid(strId);
+		stor.set_strname(strId);
+		stor.set_strip("192.168.1.1");
+		stor.set_strport("80");
+		stor.set_struser("admin");
+		stor.set_strpasswd("admin");
+		VidStor *pAddStor = sotrList.add_cvidstor();
+		*pAddStor = stor;
+		m_pConf.UpdateStorListConf(sotrList);
 		
 	}
 #endif
-#if 0
-	VidCameraList cameraList;
-	m_Conf.GetCameraListConf(cameraList);
-	int cameraSize = cameraList.cvidcamera_size();
 
-	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
+	VidStorList storList;
+	m_pConf.GetStorListConf(storList);
+	int storSize = storList.cvidstor_size();
+
+	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
 	{
-		VidCamera cam = cameraList.cvidcamera(i);
-		CameraParam pParam(cam);
-		InitAddCamera(pParam, cam.strid());
+		VidStor pStor = storList.cvidstor(i);
+		InitAddStor(pStor);
 	}
-#endif
+
 	return TRUE;
 }
 
 inline s32 StorFactory::InitAddStor(VidStor &pStor)
 {
 	StorFactoryNotifyInterface &pNotify = *this;
-	//m_StorClientMap[strCamId] = new StorClient(pStor, pNotify);
+	m_StorClientMap[pStor.strid()] = new StorClient(pStor, pNotify);
 
-    //m_CameraOnlineMap[strCamId] = FALSE;
+       m_StorClientOnlineMap[pStor.strid()] = false;
 
     return TRUE;
 }
@@ -69,23 +74,37 @@ inline s32 StorFactory::InitAddStor(VidStor &pStor)
 
 inline BOOL StorFactory::RegChangeNotify(void * pData, StorFactoryChangeNotify callback)
 {
-	Lock();
+	XGuard guard(m_cMutex);
 	m_Change[pData] = callback;
-	UnLock();
+
 	return TRUE;
 }
-inline BOOL StorFactory::CallChange(StorFactoryChangeData data)
+
+
+inline bool StorFactory::CallChange(StorFactoryChangeData data)
 {
-        StorChangeNofityMap::iterator it = m_Change.begin(); 
-        for(; it!=m_Change.end(); ++it)
-        {
+	//XGuard guard(m_cMutex);
+	StorChangeNofityMap::iterator it = m_Change.begin(); 
+	for(; it!=m_Change.end(); ++it)
+	{
 		if ((*it).second)
 		{
 			(*it).second((*it).first, data);
 		}
-        }	
-	 return TRUE;
+	}	
+	return true;
 }
+
+
+inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
+{	
+	if (m_StorClientMap[strStor])
+	{
+		return m_StorClientMap[strStor]->GetVidCameraList();
+	}
+	
+}
+
 #if 0
 inline BOOL StorFactory::SearchItems(s32 cameraId, u32 startTime, u32 endTime, u32 recordType, 
 				RecordItemMap &map)

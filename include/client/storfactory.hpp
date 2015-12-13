@@ -24,6 +24,9 @@
 #include "client/storclient.hpp"
 #include "config/clientconfdb.hpp"
 
+#include "Poco/UUIDGenerator.h"
+
+using namespace Poco;
 using namespace VidConf;
 
 typedef std::list<LPStorClient> StorClientList;
@@ -42,9 +45,12 @@ public:
 	s32 InitAddStor(VidStor & pParam);
 	
 public:
-	//TODO set the call callback to StorClient
 	BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);
-	virtual BOOL CallChange(StorFactoryChangeData data);
+	virtual bool CallChange(StorFactoryChangeData data);
+
+	
+public:
+	VidCameraList GetVidCameraList(astring strStor);
 #if 0
 public:
 	/* UI can use this for display camera tree */
@@ -126,10 +132,6 @@ public:
 	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
 	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
 #endif
-public:
-	void Lock(){m_Lock.lock();}
-	bool TryLock(){return m_Lock.try_lock();}
-	void UnLock(){m_Lock.unlock();}
 
 public:
 	void run();
@@ -138,7 +140,7 @@ private:
 	StorClientMap m_StorClientMap;
 	StorClientOnlineMap m_StorClientOnlineMap;
 
-	fast_mutex m_Lock;
+	XMutex m_cMutex;
 private:
 	StorChangeNofityMap m_Change;
 	
