@@ -47,7 +47,7 @@ public:
 	int id;
 };
 
-typedef BOOL (*ClientFactoryChangeNotify)(void* pParam, 
+typedef bool (*ClientFactoryChangeNotify)(void* pParam, 
 		ClientFactoryChangeData data);
 
 typedef std::map<void *, ClientFactoryChangeNotify> ChangeNofityMap;
@@ -64,6 +64,7 @@ public:
 	BOOL Init();
 	s32 InitAddVidStor(VidStor & pParam);
 	BOOL SetSystemPath(astring &strPath);
+	ClientConfDB &GetConfDB(){return m_Conf;};
 	
 public:
 	BOOL RegChangeNotify(void * pData, ClientFactoryChangeNotify callback);
@@ -122,11 +123,7 @@ public:
 	s32 AddTour(VSCTourDataItem &pParam);
 	BOOL DelTour(s32 Id);
 	BOOL GetTourById(VSCTourDataItem &pParam, int nId);
-#endif	
-public:
-	void Lock(){m_Lock.lock();}
-	bool TryLock(){return m_Lock.try_lock();}
-	void UnLock(){m_Lock.unlock();}
+#endif
 
 public:
 	void run();
@@ -135,8 +132,7 @@ private:
 	StorFactory *m_StorFactory;
 
 private:
-	fast_mutex m_Lock;
-	//tthread::thread *m_pThread;
+	XMutex m_cMutex;
 
 private:
 	ChangeNofityMap m_Change;
