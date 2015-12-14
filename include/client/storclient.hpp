@@ -9,6 +9,14 @@
 #include "config/vidconf.pb.h"
 #include "client/storcmn.hpp"
 
+#include "cppkit/ck_string.h"
+#include "cppkit/os/ck_sprintf.h"
+#include "oapi/oapic.hpp"
+#include "oapi/oapis.hpp"
+
+using namespace cppkit;
+using namespace std;
+
 
 /* Stor Client is the manager of the OAPI,  the thread will loop 
 	for all the command from Stor */
@@ -16,10 +24,12 @@ class StorClient : public QThread
 {
 	Q_OBJECT
 public:
-	inline StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
-	inline ~StorClient();
+	StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
+	~StorClient();
 public:
 	VidCameraList GetVidCameraList();
+	void UpdateVidCameraList(oapi::OAPICameraListRsp list);
+	bool GetOnline(){return m_bOnline;}
 public:
 	/* Start Stop Refresh the Stor client Thread */
 	bool StartStorClient();
@@ -31,6 +41,8 @@ private:
 	VidStor m_stor;
 	bool m_Quit;
 	VidCameraList m_cCamList;
+	StorFactoryNotifyInterface &m_pNotify;
+	bool m_bOnline;
 };
 
 typedef StorClient* LPStorClient;
