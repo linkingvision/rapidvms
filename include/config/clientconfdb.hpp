@@ -5,8 +5,11 @@
 #include "leveldb/db.h"
 #include "conf.hpp"
 #include "debug.hpp"
+#include "XSDK/XMutex.h"
+#include "XSDK/XGuard.h"
 
 using namespace UtilityLib;
+using namespace XSDK;
 
 class ClientConfDB
 {
@@ -28,6 +31,8 @@ public:
 	
 	BOOL GetStorListConf(VidStorList &pData);
 	BOOL UpdateStorListConf(VidStorList &pData);
+
+	bool GetStorConf(astring strId, VidStor &pStor);
 	
 	
 #if 0
@@ -85,19 +90,8 @@ public:
 	BOOL GetTourConf(VSCTourData &pData);
 #endif	
 
-public:
-    void Lock()
-    {
-        m_Lock.lock();
-    }
-    void UnLock()
-    {
-        m_Lock.unlock();
-    }
-
-
 private:
-    fast_mutex m_Lock;
+    XMutex m_cMutex;
 
 private:
     leveldb::DB* m_pDb;

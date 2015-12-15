@@ -51,6 +51,7 @@ public:
 	
 public:
 	VidCameraList GetVidCameraList(astring strStor);
+	bool GetOnline(astring strStor);
 #if 0
 public:
 	/* UI can use this for display camera tree */

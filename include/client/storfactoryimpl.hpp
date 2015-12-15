@@ -27,7 +27,7 @@ inline BOOL StorFactory::Init()
 
 	/* Loop add the stor */
 	
-#if 1 //add stor to test
+#if 0 //add stor to test
 	{	
 		VidStorList sotrList;
 		VidStor stor;
@@ -37,8 +37,8 @@ inline BOOL StorFactory::Init()
 		astring strId  = uuidCreator.createRandom().toString();
 		stor.set_strid(strId);
 		stor.set_strname(strId);
-		stor.set_strip("192.168.1.1");
-		stor.set_strport("80");
+		stor.set_strip("127.0.0.1");
+		stor.set_strport("9080");
 		stor.set_struser("admin");
 		stor.set_strpasswd("admin");
 		VidStor *pAddStor = sotrList.add_cvidstor();
@@ -96,13 +96,26 @@ inline bool StorFactory::CallChange(StorFactoryChangeData data)
 }
 
 
+
 inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
 {	
+	VidCameraList empty;
+	
 	if (m_StorClientMap[strStor])
 	{
 		return m_StorClientMap[strStor]->GetVidCameraList();
 	}
-	
+
+	return empty;
+}
+
+inline bool StorFactory::GetOnline(astring strStor)
+{
+	if (m_StorClientMap[strStor])
+	{
+		return m_StorClientMap[strStor]->GetOnline();
+	}
+	return false;
 }
 
 #if 0
