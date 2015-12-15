@@ -15,7 +15,9 @@
 
 typedef enum
 {
-    STOR_FACTORY_STOR_ONLINE = 1,
+    STOR_FACTORY_STOR_ADD = 1,
+    STOR_FACTORY_STOR_DEL,
+    STOR_FACTORY_STOR_ONLINE,
     STOR_FACTORY_STOR_OFFLINE,
     STOR_FACTORY_CAMERA_ADD,
     STOR_FACTORY_CAMERA_DEL,
@@ -34,7 +36,7 @@ public:
 	VidCameraId cId;
 };
 
-typedef BOOL (*StorFactoryChangeNotify)(void* pParam, 
+typedef bool (*StorFactoryChangeNotify)(void* pParam, 
 		StorFactoryChangeData data);
 		
 typedef std::map<void *, StorFactoryChangeNotify> StorChangeNofityMap;
@@ -42,7 +44,7 @@ typedef std::map<void *, StorFactoryChangeNotify> StorChangeNofityMap;
 class StorFactoryNotifyInterface
 {
 public:
-virtual BOOL CallChange(StorFactoryChangeData data){return FALSE;}
+virtual bool CallChange(StorFactoryChangeData data){return FALSE;}
 };
 
 

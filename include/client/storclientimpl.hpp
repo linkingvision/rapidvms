@@ -3,7 +3,7 @@
 #define __VSC_STOR_CLIENT_IMPL_H_
 
 inline StorClient::StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify)
-:m_stor(stor)
+:m_stor(stor), m_pNotify(pNotify), m_bOnline(false)
 {
 	StartStorClient();
 }
@@ -17,15 +17,35 @@ inline StorClient::~StorClient()
 inline bool StorClient::StartStorClient()
 {
 	start();
+	return true;
 }
 inline bool StorClient::StopStorClient()
 {
 	m_Quit = true;
+	return true;
 }
 
-VidCameraList StorClient::GetVidCameraList()
+inline VidCameraList StorClient::GetVidCameraList()
 {
 	return m_cCamList;
+}
+
+inline void StorClient::UpdateVidCameraList(oapi::OAPICameraListRsp list)
+{
+	XGuard guard(m_cMutex);
+	/* Clean the list */
+	VidCameraList empty;
+	m_cCamList = empty;
+	
+	//list push_back
+	std::vector<oapi::OAPICamera>::iterator it;
+	for (it = list.list.begin(); it != list.list.end(); it ++)
+	{
+		VidCamera *pCam = m_cCamList.add_cvidcamera();
+		OAPIConverter::Converter(*it, *pCam);
+	}
+
+	return;
 }
 
 inline void StorClient::run()
@@ -48,7 +68,7 @@ inline void StorClient::run()
 			XSDK::XString host = m_stor.strip();
 			pSocket->Connect(host, Port);
 			
-			oapi::DeviceListRsp list;
+			oapi::OAPICameraListRsp list;
 			OAPIClient pClient(pSocket);
 			
 			pClient.Setup(m_stor.struser(), m_stor.strpasswd(), "Nonce");
@@ -93,7 +113,7 @@ inline void StorClient::run()
 						{
 							oapi::OAPICameraListRsp list;
 							pClient.ParseDeviceList(pRecv, header.length, list);
-							emit UpdateDeviceListRsp(list);
+							UpdateVidCameraList(list);
 							break;
 						}
 						case OAPI_CMD_LOGIN_RSP:
@@ -109,6 +129,11 @@ inline void StorClient::run()
 							{
 								/* login ok, send device list */
 								pClient.SendDeviceListRequest();
+								StorFactoryChangeData data;
+								data.cId.set_strstorid(m_stor.strid());
+								data.type = STOR_FACTORY_STOR_ONLINE;
+								m_pNotify.CallChange(data);
+								m_bOnline = true;
 							}
 							break;
 						}
@@ -147,5 +172,6 @@ inline void StorClient::run()
 	}
 
 }
+
 
 #endif /* __VSC_STOR_CLIENT_IMPL_H_ */
