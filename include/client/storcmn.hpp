@@ -23,8 +23,8 @@ typedef enum
     STOR_FACTORY_CAMERA_DEL,
     STOR_FACTORY_CAMERA_ONLINE,
     STOR_FACTORY_CAMERA_OFFLINE,
-    STOR_FACTORY_CAMERA_RECORDING_ON,
-    STOR_FACTORY_CAMERA_RECORDING_OFF,
+    STOR_FACTORY_CAMERA_REC_ON,
+    STOR_FACTORY_CAMERA_REC_OFF,
     STOR_FACTORY_LAST
 } StorFactoryChangeType;
 
@@ -34,6 +34,7 @@ class StorFactoryChangeData
 public:
 	StorFactoryChangeType type;
 	VidCameraId cId;
+	VidCamera cCam;
 };
 
 typedef bool (*StorFactoryChangeNotify)(void* pParam, 

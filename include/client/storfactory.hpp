@@ -31,7 +31,6 @@ using namespace VidConf;
 
 typedef std::list<LPStorClient> StorClientList;
 typedef std::map<astring, LPStorClient> StorClientMap;
-typedef std::map<astring, bool> StorClientOnlineMap;
 
 class StorFactory: public QObject , public StorFactoryNotifyInterface
 {
@@ -42,7 +41,14 @@ public:
 public:
 	/* Init function */
 	BOOL Init();
-	s32 InitAddStor(VidStor & pParam);
+	bool InitAddStor(VidStor & pParam);
+public:
+	bool AddStor(VidStor & pParam);
+	bool DeleteStor(astring strId);
+
+public:
+	bool AddCam(astring strStorId, VidCamera &pParam);
+	bool DeleteCam(astring strStorId, astring strId);
 	
 public:
 	BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);

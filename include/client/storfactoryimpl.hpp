@@ -26,28 +26,6 @@ inline BOOL StorFactory::Init()
 {
 
 	/* Loop add the stor */
-	
-#if 0 //add stor to test
-	{	
-		VidStorList sotrList;
-		VidStor stor;
-		UUIDGenerator uuidCreator;
-		m_pConf.GetStorListConf(sotrList);
-		
-		astring strId  = uuidCreator.createRandom().toString();
-		stor.set_strid(strId);
-		stor.set_strname(strId);
-		stor.set_strip("127.0.0.1");
-		stor.set_strport("9080");
-		stor.set_struser("admin");
-		stor.set_strpasswd("admin");
-		VidStor *pAddStor = sotrList.add_cvidstor();
-		*pAddStor = stor;
-		m_pConf.UpdateStorListConf(sotrList);
-		
-	}
-#endif
-
 	VidStorList storList;
 	m_pConf.GetStorListConf(storList);
 	int storSize = storList.cvidstor_size();
@@ -61,14 +39,76 @@ inline BOOL StorFactory::Init()
 	return TRUE;
 }
 
-inline s32 StorFactory::InitAddStor(VidStor &pStor)
+inline bool StorFactory::InitAddStor(VidStor &pStor)
 {
 	StorFactoryNotifyInterface &pNotify = *this;
 	m_StorClientMap[pStor.strid()] = new StorClient(pStor, pNotify);
 
        m_StorClientOnlineMap[pStor.strid()] = false;
 
-    return TRUE;
+    	return true;
+}
+
+inline bool StorFactory::AddStor(VidStor & pParam)
+{
+	XGuard guard(m_cMutex);
+	StorFactoryChangeData change;
+	
+	if (m_pConf.FindStor(pParam.strid()))
+	{
+
+		m_pConf.DeleteStor(pParam.strid());
+
+		/* Call Change */
+		change.cId.set_strstorid(pParam.strid());
+		change.type = STOR_FACTORY_STOR_DEL;
+		guard.Release();
+		CallChange(change);
+		guard.Acquire();
+		
+		delete m_StorClientMap[pParam.strid()];
+		m_StorClientMap[pParam.strid()] = NULL;
+		m_StorClientMap.erase(pParam.strid());
+		m_StorClientOnlineMap.erase(pParam.strid());
+	}
+
+	/* Add */
+	m_pConf.AddStor(pParam);
+	InitAddStor(pParam);
+
+	/* Call Change */
+	change.cId.set_strstorid(pParam.strid());
+	change.type = STOR_FACTORY_STOR_ADD;
+	guard.Release();
+	CallChange(change);
+	guard.Acquire();
+
+	return true;
+}
+inline bool StorFactory::DeleteStor(astring strId)
+{
+	XGuard guard(m_cMutex);
+	StorFactoryChangeData change;
+
+	if (m_pConf.FindStor(strId))
+	{
+		m_pConf.DeleteStor(strId);
+		/* Call Change */
+		change.cId.set_strstorid(strId);
+		change.type = STOR_FACTORY_STOR_DEL;
+		guard.Release();
+		CallChange(change);
+		guard.Acquire();
+		
+		//delete m_StorClientMap[strId];
+		/* the StorClient will be delete itself */
+		m_StorClientMap[strId] = NULL;
+		m_StorClientMap.erase(strId);
+		m_StorClientOnlineMap.erase(strId);
+		
+	}
+
+	return true;
 }
 
 
@@ -95,13 +135,28 @@ inline bool StorFactory::CallChange(StorFactoryChangeData data)
 	return true;
 }
 
-
+inline bool StorFactory::AddCam(astring strStorId, VidCamera &pParam)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->AddCam(pParam);
+	}
+	return false;
+}
+inline bool StorFactory::DeleteCam(astring strStorId, astring strId)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->DeleteCam(strId);
+	}
+	return false;
+}
 
 inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
 {	
 	VidCameraList empty;
 	
-	if (m_StorClientMap[strStor])
+	if (m_pConf.FindStor(strStor) && m_StorClientMap[strStor])
 	{
 		return m_StorClientMap[strStor]->GetVidCameraList();
 	}
@@ -111,7 +166,7 @@ inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
 
 inline bool StorFactory::GetOnline(astring strStor)
 {
-	if (m_StorClientMap[strStor])
+	if (m_pConf.FindStor(strStor) &&  m_StorClientMap[strStor])
 	{
 		return m_StorClientMap[strStor]->GetOnline();
 	}
