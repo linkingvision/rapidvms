@@ -17,6 +17,8 @@
 using namespace cppkit;
 using namespace std;
 
+typedef std::map<astring, bool> StorClientOnlineMap;
+
 
 /* Stor Client is the manager of the OAPI,  the thread will loop 
 	for all the command from Stor */
@@ -29,7 +31,11 @@ public:
 public:
 	VidCameraList GetVidCameraList();
 	void UpdateVidCameraList(oapi::OAPICameraListRsp list);
-	bool GetOnline(){return m_bOnline;}
+	StorClientOnlineMap GetVidCameraOnlineList(){return m_CamOnlineList;}
+	bool GetOnline();
+public:
+	bool AddCam(VidCamera &pParam);
+	bool DeleteCam(astring strId);
 public:
 	/* Start Stop Refresh the Stor client Thread */
 	bool StartStorClient();
@@ -40,9 +46,13 @@ private:
 	XMutex m_cMutex;
 	VidStor m_stor;
 	bool m_Quit;
+	/* The list is only for startup usage, if any change, it not update */
 	VidCameraList m_cCamList;
+	StorClientOnlineMap m_CamOnlineList;
 	StorFactoryNotifyInterface &m_pNotify;
 	bool m_bOnline;
+
+	XRef<XSocket> m_pSocket;
 };
 
 typedef StorClient* LPStorClient;

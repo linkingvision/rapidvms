@@ -62,7 +62,6 @@ public:
 public:
 	/* Init function */
 	BOOL Init();
-	s32 InitAddVidStor(VidStor & pParam);
 	BOOL SetSystemPath(astring &strPath);
 	ClientConfDB &GetConfDB(){return m_Conf;};
 	
