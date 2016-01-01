@@ -23,6 +23,13 @@
 #define VSC_CONF_EMAP_KEY "ConfVSCEmap"
 #define VSC_CONF_USER_KEY "ConfVSCUserConf"
 
+#ifdef WIN32
+#define VSC_DEFAULT_SYSPATH  "C:\\"
+#else
+#define VSC_DEFAULT_SYSPATH  "ve/"
+#endif
+
+
 //------------------------------------------------------------------------------
 // Conf keys, for leveldb
 //

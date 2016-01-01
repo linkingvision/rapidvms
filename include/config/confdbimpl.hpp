@@ -138,13 +138,14 @@ inline bool ConfDB::CameraHDFSRecordSet(astring strCameraId, bool bOn)
 
 inline bool ConfDB::FindCamera(astring strCameraId)
 {
+	XGuard guard(m_cMutex);
 	VidCameraList cameraList;
 	GetCameraListConf(cameraList);
 	int cameraSize = cameraList.cvidcamera_size();
 
 	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
 	{
-		VidCamera &cam = cameraList.cvidcamera(i);
+		const VidCamera &cam = cameraList.cvidcamera(i);
 		if (cam.strid() == strCameraId)
 		{
 			return true;
@@ -156,6 +157,7 @@ inline bool ConfDB::FindCamera(astring strCameraId)
 
 inline bool ConfDB::DeleteCamera(astring strCameraId)
 {
+	XGuard guard(m_cMutex);
 	VidCameraList cameraList;
 	VidCameraList cameraListNew;
 	GetCameraListConf(cameraList);
@@ -163,7 +165,7 @@ inline bool ConfDB::DeleteCamera(astring strCameraId)
 
 	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
 	{
-		VidCamera &cam = cameraList.cvidcamera(i);
+		const VidCamera &cam = cameraList.cvidcamera(i);
 		if (cam.strid() != strCameraId)
 		{
 			VidCamera *pCam = cameraListNew.add_cvidcamera();
@@ -176,6 +178,8 @@ inline bool ConfDB::DeleteCamera(astring strCameraId)
 	
 inline bool ConfDB::AddCamera(VidCamera &pAddCam)
 {
+	XGuard guard(m_cMutex);
+	
 	VidCameraList cameraList;
 	GetCameraListConf(cameraList);
 	int cameraSize = cameraList.cvidcamera_size();
@@ -188,13 +192,15 @@ inline bool ConfDB::AddCamera(VidCamera &pAddCam)
 
 inline bool ConfDB::GetCameraConf(astring strCameraId, VidCamera &pCam)
 {
+	XGuard guard(m_cMutex);
+	
 	VidCameraList cameraList;
 	GetCameraListConf(cameraList);
 	int cameraSize = cameraList.cvidcamera_size();
 
 	for (s32 i = 0; i < cameraList.cvidcamera_size(); i ++)
 	{
-		VidCamera &cam = cameraList.cvidcamera(i);
+		const VidCamera &cam = cameraList.cvidcamera(i);
 		if (cam.strid() == strCameraId)
 		{
 			pCam = cam;
@@ -207,11 +213,15 @@ inline bool ConfDB::GetCameraConf(astring strCameraId, VidCamera &pCam)
 
 inline bool ConfDB::CameraRecordTemplSet(astring strCameraId, astring strTempl)
 {
+	XGuard guard(m_cMutex);
+	
 	return true;
 }
 
 inline   BOOL ConfDB::GetLicense(astring &strLicense)
 {
+	XGuard guard(m_cMutex);
+
 	VSCConfLicenseKey sLicKey;
 	
 
@@ -241,6 +251,8 @@ inline   BOOL ConfDB::GetLicense(astring &strLicense)
 }
 inline   BOOL ConfDB::SetLicense(astring &strLicense)
 {
+	XGuard guard(m_cMutex);
+	
 	VSCConfLicenseKey sLic;
 	leveldb::WriteOptions writeOptions;
 
@@ -253,8 +265,9 @@ inline   BOOL ConfDB::SetLicense(astring &strLicense)
 
 inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
 {
+	XGuard guard(m_cMutex);
+	
 	leveldb::Slice key(strKey);
-
 
 	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
 
@@ -280,6 +293,8 @@ inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
 
 inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
 {
+	XGuard guard(m_cMutex);
+	
 	leveldb::WriteOptions writeOptions;
 
 	leveldb::Slice licKey(strKey);
@@ -292,6 +307,8 @@ inline BOOL ConfDB::SetCmnParam(astring &strKey, astring &strParam)
 
 inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
 {
+	XGuard guard(m_cMutex);
+	
 	VSCConfHdfsRecordKey sKey;
 
 	//pData.ParseFromString();
@@ -330,6 +347,8 @@ inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
 /* HDFS record  */
 inline BOOL ConfDB::UpdateHdfsRecordConf(VidHDFSConf &pData)
 {
+	XGuard guard(m_cMutex);
+	
 	VSCConfHdfsRecordKey sKey;
 
 	leveldb::WriteOptions writeOptions;
@@ -350,6 +369,8 @@ inline BOOL ConfDB::UpdateHdfsRecordConf(VidHDFSConf &pData)
 
 inline BOOL ConfDB::GetCameraListConf(VidCameraList &pData)
 {
+	XGuard guard(m_cMutex);
+	
 	VSCConfCameraKey sKey;
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
@@ -384,6 +405,8 @@ inline BOOL ConfDB::GetCameraListConf(VidCameraList &pData)
 }
 inline BOOL ConfDB::UpdateCameraListConf(VidCameraList &pData)
 {
+	XGuard guard(m_cMutex);
+	
 	VSCConfCameraKey sKey;
 
 	leveldb::WriteOptions writeOptions;

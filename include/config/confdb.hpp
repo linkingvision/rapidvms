@@ -10,9 +10,14 @@
 
 #include "config/vidconf.pb.h"
 
-using namespace VidConf;
+#include "XSDK/XMutex.h"
+#include "XSDK/XGuard.h"
 
 using namespace UtilityLib;
+using namespace XSDK;
+
+using namespace VidConf;
+
 
 class ConfDB
 {
@@ -107,21 +112,10 @@ public:
 	BOOL GetEmapConf(VSCEmapData &pData);
 
 	BOOL GetTourConf(VSCTourData &pData);
-#endif	
-
-public:
-    void Lock()
-    {
-        m_Lock.lock();
-    }
-    void UnLock()
-    {
-        m_Lock.unlock();
-    }
-
+#endif
 
 private:
-    fast_mutex m_Lock;
+    XMutex m_cMutex;
 
 private:
     leveldb::DB* m_pDb;

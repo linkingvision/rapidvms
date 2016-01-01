@@ -81,10 +81,108 @@ inline s32 ClientConfDB::Open(astring & pPath)
     return TRUE;
 }
 
+inline BOOL ClientConfDB::GetCmnParam(astring &strKey, astring &strParam)
+{
+	leveldb::Slice key(strKey);
+	XGuard guard(m_cMutex);
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue;
+
+	if (it->Valid())
+	{
+		sysValue = it->value();
+		strParam = sysValue.ToString();
+	}else
+	{
+		delete it;
+		return FALSE;
+	}
+	
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return TRUE;
+}
+
+inline BOOL ClientConfDB::SetCmnParam(astring &strKey, astring &strParam)
+{
+	leveldb::WriteOptions writeOptions;
+	XGuard guard(m_cMutex);
+
+	leveldb::Slice licKey(strKey);
+	leveldb::Slice licValue(strParam);
+	m_pDb->Put(writeOptions, licKey, licValue);
+	return TRUE;
+}
+
+inline bool ClientConfDB::FindStor(astring strStorId)
+{
+	XGuard guard(m_cMutex);
+	
+	VidStorList storList;
+	GetStorListConf(storList);
+	int storSize = storList.cvidstor_size();
+
+	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
+	{
+		const VidStor &stor = storList.cvidstor(i);
+		if (stor.strid() == strStorId)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+inline bool ClientConfDB::DeleteStor(astring strStorId)
+{
+	XGuard guard(m_cMutex);
+
+	VidStorList storList;
+	VidStorList storListNew;
+	GetStorListConf(storList);
+	int storSize = storList.cvidstor_size();
+
+	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
+	{
+		const VidStor &stor = storList.cvidstor(i);
+		if (stor.strid() == strStorId)
+		{
+			VidStor *pAddStor = storListNew.add_cvidstor();
+			*pAddStor = stor;
+		}
+	}
+
+	UpdateStorListConf(storListNew);
+	return true;
+}
+inline bool ClientConfDB::AddStor(VidStor &pStor)
+{
+	XGuard guard(m_cMutex);
+	
+	VidStorList storList;
+
+	GetStorListConf(storList);
+	
+	VidStor *pAddStor = storList.add_cvidstor();
+	*pAddStor = pStor;
+	UpdateStorListConf(storList);
+
+	return true;
+}
+
+
 
 inline BOOL ClientConfDB::GetStorListConf(VidStorList &pData)
 {
 	VSCConfVidStorKey sKey;
+	
+	XGuard guard(m_cMutex);
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
@@ -120,6 +218,8 @@ inline BOOL ClientConfDB::UpdateStorListConf(VidStorList &pData)
 {
 	VSCConfVidStorKey sKey;
 
+	XGuard guard(m_cMutex);
+
 	leveldb::WriteOptions writeOptions;
 
 	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
@@ -134,6 +234,27 @@ inline BOOL ClientConfDB::UpdateStorListConf(VidStorList &pData)
 	m_pDb->Put(writeOptions, sysKey, sysValue);
 
 	return TRUE;
+}
+
+inline bool ClientConfDB::GetStorConf(astring strId, VidStor &pStor)
+{
+	XGuard guard(m_cMutex);
+	
+	VidStorList storList;
+	GetStorListConf(storList);
+	int storSize = storList.cvidstor_size();
+
+	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
+	{
+		const VidStor &stor = storList.cvidstor(i);
+		if (stor.strid() == strId)
+		{
+			pStor = stor;
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

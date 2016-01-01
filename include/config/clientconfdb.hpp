@@ -29,10 +29,14 @@ public:
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
 	
-	BOOL GetStorListConf(VidStorList &pData);
-	BOOL UpdateStorListConf(VidStorList &pData);
+	bool FindStor(astring strStorId);
+	bool DeleteStor(astring strStorId);
+	bool AddStor(VidStor &pStor);
 
 	bool GetStorConf(astring strId, VidStor &pStor);
+public:
+	BOOL GetStorListConf(VidStorList &pData);
+	BOOL UpdateStorListConf(VidStorList &pData);
 	
 	
 #if 0
