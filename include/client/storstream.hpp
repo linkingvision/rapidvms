@@ -14,6 +14,14 @@
 #include "config/vidconf.pb.h"
 #include "server/camera.hpp"
 
+#include "cppkit/ck_string.h"
+#include "cppkit/os/ck_sprintf.h"
+#include "oapi/oapic.hpp"
+#include "oapi/oapis.hpp"
+
+using namespace cppkit;
+using namespace std;
+
 class StorStream: public QThread
 {
 	Q_OBJECT

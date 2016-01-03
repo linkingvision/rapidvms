@@ -29,6 +29,12 @@ inline bool StorClient::StopStorClient()
 
 inline VidCameraList StorClient::GetVidCameraList()
 {
+	if (m_bOnline == false)
+	{
+		VidCameraList empty;
+		return empty;
+	}
+
 	XGuard guard(m_cMutex);
 	return m_cCamList;
 }
@@ -63,7 +69,7 @@ inline bool StorClient::AddCam(VidCamera &pParam)
 	OAPIClient pClient(m_pSocket);
 
 	oapi::OAPIAddCameraReq sCam;
-	OAPIConverter::Converter(pParam, sCam);
+	OAPIConverter::Converter(pParam, sCam.cam);
 
 	XGuard guard(m_cMutex);
 	/* Send add cam command  */
@@ -81,7 +87,6 @@ inline bool StorClient::DeleteCam(astring strId)
 	/* Send del cam command */
 	OAPIClient pClient(m_pSocket);
 
-	XGuard guard(m_cMutex);
 	/* Send add cam command  */
 	return pClient.DeleteCam(strId);
 }
@@ -131,7 +136,9 @@ inline void StorClient::run()
 					if (m_pSocket->Valid() == true)
 					{
 						/* Have not recevice any data */
+						guard.Release();
 						ve_sleep(200);
+						guard.Acquire();
 						continue;
 					}else
 					{
@@ -203,7 +210,7 @@ inline void StorClient::run()
 							StorFactoryChangeData data;
 							data.cId.set_strstorid(m_stor.strid());
 							data.type = STOR_FACTORY_CAMERA_ADD;
-							OAPIConverter::Converter(cam, data.cCam);
+							OAPIConverter::Converter(cam.cam, data.cCam);
 							data.cId.set_strcameraid(data.cCam.strid());
 							guard.Release();
 							m_pNotify.CallChange(data);
