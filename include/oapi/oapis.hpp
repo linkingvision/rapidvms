@@ -8,7 +8,7 @@
 #ifndef __VSC_OAPIS_H_
 #define __VSC_OAPIS_H_
 #include "oapicmn.hpp"
-#include "factory.hpp"
+#include "server/factory.hpp"
 #include "oapiproto.hpp"
 #include "XSDK/XHash.h"
 #include "XSDK/TimeUtils.h"
@@ -29,8 +29,10 @@ using namespace Poco;
 class OAPIConverter
 {
 public:
-	inline static BOOL Converter(VidCamera &from, oapi::OAPICamera &to);
-	inline static BOOL Converter(oapi::OAPICamera &from, VidCamera &toVid);
+	inline static bool Converter(VidCamera &from, oapi::OAPICamera &to);
+	inline static bool Converter(oapi::OAPICamera &from, VidCamera &toVid);
+	inline static bool Converter(oapi::OAPIDisk &from, VidDisk &to);
+	inline static bool Converter(VidDisk &from, oapi::OAPIDisk &to);
 };
 
 /* a internal thread to process all the request of XSocket */
@@ -47,6 +49,19 @@ public:
 	inline BOOL ProcessStartLive(s32 len);
 	inline BOOL ProcessStopLive(s32 len);
 	inline BOOL ProcessLogin(s32 len);
+	inline bool ProcessAddCam(s32 len);
+	inline bool ProcessDeleteCam(s32 len);
+	inline bool ProcessRegNotify(s32 len);
+	inline bool NotifyCamAdd(FactoryCameraChangeData data);
+	inline bool NotifyCamDel(FactoryCameraChangeData data);
+	inline bool NotifyCamOnline(FactoryCameraChangeData data);
+	inline bool NotifyCamOffline(FactoryCameraChangeData data);
+	inline bool NotifyCamRecOn(FactoryCameraChangeData data);
+	inline bool NotifyCamRecOff(FactoryCameraChangeData data);
+
+public:
+	inline static bool CallChange(void* pParam, FactoryCameraChangeData data);
+	inline bool CallChange1(FactoryCameraChangeData data);
 public:
 	inline void DataHandler1(VideoFrame& frame);
 	inline static void DataHandler(VideoFrame& frame, void * pParam);	
@@ -59,12 +74,16 @@ public:
 	{
 		m_Lock.unlock();
 	}
+	inline bool SendCmnRetRsp(OAPICmd nCmd, bool bRet);
 
 private:
 	fast_mutex m_Lock;
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
 	astring m_strLiveviewId;
+	unsigned int m_nStream;
+	bool m_bStreaming;
+	bool m_bRegNotify;
 	int m_cnt;
 	BOOL m_bLogin;
 	astring m_seesionId;
