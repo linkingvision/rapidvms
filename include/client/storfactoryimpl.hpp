@@ -152,6 +152,18 @@ inline bool StorFactory::DeleteCam(astring strStorId, astring strId)
 	return false;
 }
 
+inline StorClientOnlineMap StorFactory::GetVidCameraOnlineList(astring strStor)
+{
+	StorClientOnlineMap empty;
+
+	if (m_pConf.FindStor(strStor) && m_StorClientMap[strStor])
+	{
+		return m_StorClientMap[strStor]->GetVidCameraOnlineList();
+	}
+
+	return empty;
+}
+
 inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
 {	
 	VidCameraList empty;

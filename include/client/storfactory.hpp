@@ -57,6 +57,7 @@ public:
 	
 public:
 	VidCameraList GetVidCameraList(astring strStor);
+	StorClientOnlineMap GetVidCameraOnlineList(astring strStor);
 	bool GetOnline(astring strStor);
 #if 0
 public:

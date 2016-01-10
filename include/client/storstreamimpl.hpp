@@ -42,21 +42,26 @@ inline bool StorStream::UnRegDataCallback(void * pParam)
 	
 }
 
-bool StorStream::AttachWidget(HWND hWnd, int w, int h)
+inline bool StorStream::AttachWidget(HWND hWnd, int w, int h)
 {
 	m_play.AttachWidget(hWnd, w, h);
 
 	return true;
 }
-bool StorStream::UpdateWidget(HWND hWnd, int w, int h)
+inline bool StorStream::UpdateWidget(HWND hWnd, int w, int h)
 {
 	m_play.UpdateWidget(hWnd, w, h);
 	return true;
 }
-bool StorStream::DetachWidget(HWND hWnd)
+inline bool StorStream::DetachWidget(HWND hWnd)
 {
 	m_play.DetachWidget(hWnd);
 	return true;
+}
+
+inline bool StorStream::GetStreamInfo(VideoStreamInfo &pInfo)
+{
+	return m_play.GetStreamInfo(pInfo);
 }
 
 

@@ -27,6 +27,18 @@ inline bool StorClient::StopStorClient()
 	return true;
 }
 
+inline StorClientOnlineMap StorClient::GetVidCameraOnlineList()
+{
+	if (m_bOnline == false)
+	{
+		StorClientOnlineMap empty;
+		return empty;
+	}
+
+	XGuard guard(m_cMutex);
+	return m_CamOnlineList;
+}
+
 inline VidCameraList StorClient::GetVidCameraList()
 {
 	if (m_bOnline == false)
@@ -195,6 +207,7 @@ inline void StorClient::run()
 							{
 								/* login ok, send device list */
 								pClient.SendDeviceListRequest();
+								pClient.SendRegNotifyRequest();
 							}
 							break;
 						}

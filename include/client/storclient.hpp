@@ -31,7 +31,7 @@ public:
 public:
 	VidCameraList GetVidCameraList();
 	void UpdateVidCameraList(oapi::OAPICameraListRsp list);
-	StorClientOnlineMap GetVidCameraOnlineList(){return m_CamOnlineList;}
+	StorClientOnlineMap GetVidCameraOnlineList();
 	bool GetOnline();
 public:
 	bool AddCam(VidCamera &pParam);

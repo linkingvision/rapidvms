@@ -31,6 +31,7 @@ public:
 	bool AttachWidget(HWND hWnd, int w, int h);
 	bool UpdateWidget(HWND hWnd, int w, int h);
 	bool DetachWidget(HWND hWnd);
+	bool GetStreamInfo(VideoStreamInfo &pInfo);
 
 	bool RegDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	bool UnRegDataCallback(void * pParam);
