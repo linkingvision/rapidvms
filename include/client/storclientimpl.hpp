@@ -160,7 +160,6 @@ inline void StorClient::run()
 				}
 				//printf("%s---%d\n", __FILE__, __LINE__);
 
-				header.version = ntohl(header.version);
 				header.cmd = ntohl(header.cmd);
 				header.length = ntohl(header.length);
 				if (header.length > nRecvLen)
@@ -188,10 +187,11 @@ inline void StorClient::run()
 							StorFactoryChangeData data;
 							data.cId.set_strstorid(m_stor.strid());
 							data.type = STOR_FACTORY_STOR_ONLINE;
+							m_bOnline = true;
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							m_bOnline = true;
+							
 							break;
 						}
 						case OAPI_CMD_LOGIN_RSP:
@@ -325,6 +325,11 @@ inline void StorClient::run()
 
 		guard.Release();
 
+	}
+	if (pRecv)
+	{
+		delete[] pRecv;
+		pRecv = NULL;
 	}
 
 }

@@ -97,6 +97,8 @@ inline BOOL ClientFactory::Init()
 	GetExportPath(strExportPath);
 
 	m_StorFactory->Init();
+
+	InitLicense();
 	return TRUE;
 }
 
@@ -121,62 +123,82 @@ inline BOOL ClientFactory::CallChange(ClientFactoryChangeData data)
 	 return TRUE;
 }
 
-#if 0
-/* Get if auto login the opencvr */
-inline BOOL ClientFactory::GetAutoLogin()
+inline BOOL ClientFactory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type, astring &expireTime)
 {
-	VSCUserData pData;
-
-	Lock();
-	BOOL ret = FALSE;
-	m_Conf.GetUserData(pData);
-	if (pData.data.conf.AutoLogin == 1)
-	{
-		ret = TRUE;
-	}
-	
-	UnLock();
-	return ret;
+	XGuard guard(m_cMutex);
+	VPlay::GetLicenseInfo(strHostId, ch, type, expireTime);
+	return m_Conf.GetLicense(strLicense);
 }
-inline BOOL ClientFactory::AuthUser(astring &strUser, astring &strPasswd)
+inline BOOL ClientFactory::SetLicense(astring &strLicense)
 {
-	VSCUserData pData;
-	BOOL ret = FALSE;
-	
-	Lock();
-	m_Conf.GetUserData(pData);
+	XGuard guard(m_cMutex);
+	VPlay::SetLicense(strLicense);
+	return m_Conf.SetLicense(strLicense);
+}
+
+inline BOOL ClientFactory::InitLicense()
+{
+	astring strLicense;
+	m_Conf.GetLicense(strLicense);
+	VPlay::SetLicense(strLicense);
+	return TRUE;
+}
+
+inline bool ClientFactory::GetAutoLogin()
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+
+	return cData.bautologin();	
+}
+inline bool ClientFactory::SetAutoLogin(bool bAutoLogin)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	cData.set_bautologin(bAutoLogin);
+	m_Conf.SetClientConf(cData);
+
+	return true;	
+}
+inline bool ClientFactory::AuthUser(astring &strUser, astring &strPasswd)
+{
+	/* Admin is a Super User */
 	if (strUser == "admin")
 	{
-		astring realPasswd = pData.data.conf.Passwd;
-		if (realPasswd == strPasswd)
+		VidClientConf  cData;
+		m_Conf.GetClientConf(cData);
+		SimpleCrypt crypt;
+		QString strDePasswd = cData.stradminpasswd().c_str();
+		if (crypt.decryptToString(strDePasswd).toStdString() == strPasswd)
 		{
-			ret = TRUE;
+			return true;
+		}else
+		{
+			return false;
 		}
-	}else
-	{
-		//TODO add support other users
 	}
+
+	return false;
+}
+inline bool ClientFactory::GetAdminPasswd(astring &strPasswd)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	strPasswd = cData.stradminpasswd();
 	
-	
-	UnLock();
-	return ret;
+	return true;
+}
+inline bool ClientFactory::SetAdminPasswd(astring strPasswd)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	cData.set_stradminpasswd(strPasswd);
+	m_Conf.SetClientConf(cData);
+
+	return true;	
 }
 
-inline BOOL ClientFactory::GetUserData(VSCUserData &pData)
-{
-	Lock();
-	m_Conf.GetUserData(pData);	
-	UnLock();
-	return TRUE;
-}
-inline BOOL ClientFactory::SetUserData(VSCUserData &pData)
-{
-	Lock();
-	m_Conf.UpdateUserData(pData);	
-	UnLock();
-	return TRUE;
-}
-
+#if 0
 inline BOOL ClientFactory::GetEmapData(VSCEmapData &pData)
 {
 	Lock();

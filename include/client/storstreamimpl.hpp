@@ -111,7 +111,6 @@ inline void StorStream::run()
 				}
 				//printf("%s---%d\n", __FILE__, __LINE__);
 
-				header.version = ntohl(header.version);
 				header.cmd = ntohl(header.cmd);
 				header.length = ntohl(header.length);
 				if (header.length > nRecvLen)

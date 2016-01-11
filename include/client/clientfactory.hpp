@@ -22,6 +22,7 @@
 #include "config/vidconf.pb.h"
 #include "config/clientconfdb.hpp"
 #include "client/storfactory.hpp"
+#include "simplecrypt.hpp"
 
 using namespace VidConf;
 
@@ -70,18 +71,25 @@ public:
 	BOOL CallChange(ClientFactoryChangeData data);
 	
 public:
-
+	BOOL GetLicense(astring &strLicense, astring &strHostId, 
+							int &ch, astring &type, astring &expireTime);
+	BOOL SetLicense(astring &strLicense);
+	BOOL InitLicense();
+	
 	BOOL GetExportPath(astring &strPath);
 	BOOL SetExportPath(astring &strPath);
 	
 public:
 	StorFactory & GetStorFactory(){return *m_StorFactory;}
-#if 0
+
 public:
-	BOOL GetAutoLogin();
-	BOOL AuthUser(astring &strUser, astring &strPasswd);
-	BOOL GetUserData(VSCUserData &pData);
-	BOOL SetUserData(VSCUserData &pData);
+	bool GetAutoLogin();
+	bool SetAutoLogin(bool bAutoLogin);
+	bool AuthUser(astring &strUser, astring &strPasswd);
+	bool GetAdminPasswd(astring &strPasswd);
+	bool SetAdminPasswd(astring strPasswd);
+
+#if 0
 
 /* Emap function */
 public:

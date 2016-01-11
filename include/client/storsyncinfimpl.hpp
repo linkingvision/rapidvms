@@ -100,6 +100,42 @@ inline VidDiskList StorSyncInf::GetVidDiskList()
 
 	return empty;	
 }
+
+inline VidDiskList StorSyncInf::GetSysVidDiskList()
+{
+	VidDiskList empty;
+
+	if (m_bConnected == false)
+	{
+		return empty;
+	}
+
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send add cam command  */
+	pClient.SendDeviceListRequest();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CMD_SYS_DISK_LIST_RSP)
+	{
+		oapi::OAPISysDiskListRsp list;
+		VidDiskList diskList;
+		pClient.ParseSysDiskList(m_pRecv, header.length, list);
+		std::vector<oapi::OAPIDisk>::iterator it;
+		for (it = list.list.begin(); it != list.list.end(); it ++)
+		{
+			VidDisk *pDisk = diskList.add_cviddisk();
+			OAPIConverter::Converter(*it, *pDisk);
+		}
+		return diskList;
+	}
+
+	return empty;	
+}
+
 inline bool StorSyncInf::AddVidDisk(VidDisk &pDisk)
 {
 	if (m_bConnected == false)
@@ -166,7 +202,8 @@ inline bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPas
 
 	return false;		
 }
-inline bool StorSyncInf::GetLic(astring &pLic)
+inline bool StorSyncInf::GetLic(astring &pLic, astring &strHostId, 
+							int &ch, astring &type, astring &expireTime)
 {
 	if (m_bConnected == false)
 	{
@@ -185,7 +222,7 @@ inline bool StorSyncInf::GetLic(astring &pLic)
 			&& header.cmd == OAPI_CMD_GET_LIC_RSP)
 	{
 
-		pClient.ParseLic(m_pRecv, header.length, pLic);
+		pClient.ParseLic(m_pRecv, header.length, pLic, strHostId, ch, type, expireTime);
 
 		return true;
 	}
@@ -281,7 +318,6 @@ inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 		}
 	}
 
-	header.version = ntohl(header.version);
 	header.cmd = ntohl(header.cmd);
 	header.length = ntohl(header.length);
 	if (header.length > m_nRecvLen)
@@ -347,7 +383,6 @@ inline bool StorSyncInf::Connect()
 				}
 			}
 
-			header.version = ntohl(header.version);
 			header.cmd = ntohl(header.cmd);
 			header.length = ntohl(header.length);
 			if (header.length > m_nRecvLen)
