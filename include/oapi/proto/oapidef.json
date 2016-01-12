@@ -82,7 +82,21 @@
     ]
 },
 {
-    "name": "StartLiveViewReq",
+    "name": "OAPIAddCameraReq",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPICamera", "cam", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIDeleteCameraReq",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIStartLiveViewReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
@@ -91,7 +105,7 @@
     ]
 },
 {
-    "name": "StopLiveViewReq",
+    "name": "OAPIStopLiveViewReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
@@ -100,7 +114,7 @@
     ]
 },
 {
-    "name": "PlaybackReq",
+    "name": "OAPIPlaybackReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
@@ -109,12 +123,159 @@
     ]
 },
 {
-    "name": "PlaybackSeekReq",
+    "name": "OAPIPlaybackSeekReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
 		["unsigned int", "nPlayTime", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIDisk",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}],
+		["std::string", "strPath", {"required": true}],
+		["int64_t ", "nTotalSize", {"required": true}],
+		["int64_t ", "nFreeSize", {"required": true}],
+		["int64_t ", "nStorSize", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIDiskListReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIDiskListRsp",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIDisk>", "list"]
+    ]
+},
+{
+    "name": "OAPISysDiskListReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPISysDiskListRsp",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIDisk>", "list"]
+    ]
+},
+{
+    "name": "OAPIAddDiskReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPIDisk", "disk", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIDelDiskReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIGetLicReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIGetLicRsp",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strLic", {"required": true}],
+		["std::string", "strHostId", {"required": true}],
+		["int", "nCh", {"required": true}],
+		["std::string", "strType", {"required": true}],
+		["std::string", "strExpireTime", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIConfLicReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strLic", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIConfAdminReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strOldPasswd", {"required": true}],
+		["std::string", "strNewPasswd", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIRegNotifyReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPISearchCamStartReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPISearchCamStopReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPICamSearchedNotify",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strIP", {"required": true}],
+		["std::string", "strPort", {"required": true}],
+		["std::string", "strModel", {"required": true}],
+		["std::string", "strONVIFAddress", {"required": true}]
+    ]
+},
+{
+    "name": "OAPICamAddNotify",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPICamera", "cam", {"required": true}]
+    ]
+},
+{
+    "name": "OAPICamNotifyId",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "strId", {"required": true}]
     ]
 }
-
 ]

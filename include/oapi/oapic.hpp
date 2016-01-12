@@ -28,17 +28,34 @@ public:
 	inline ~OAPIClient();
 /* send request */
 public:
-	inline BOOL Setup(std::string strUser, std::string strPasswd, std::string strNonce);
-	inline BOOL SendDeviceListRequest();
-	inline BOOL StartLiveview(int nId);
-	inline BOOL StopLiveview(int nId);
-/* Parse all the list */
-public:
-	inline BOOL ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
-	inline BOOL ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp);
+	inline bool Setup(std::string strUser, std::string strPasswd, std::string strNonce);
+	inline bool SendDeviceListRequest();
+	inline bool SendRegNotifyRequest();
+	inline bool SendDiskListRequest();
+	inline bool SendSysDiskListRequest();
+	inline bool StartLiveview(astring strId, unsigned int nStream);
+	inline bool StopLiveview(astring strId, unsigned int nStream);
 
+	inline bool AddCam(oapi::OAPIAddCameraReq sCam);
+	inline bool DeleteCam(astring strId);
+	inline bool AddDisk(oapi::OAPIAddDiskReq sDisk);
+	inline bool DelDisk(astring strId);
+	inline bool ConfAdminPasswd(astring strOld, astring strNew);
+	inline bool GetLic();
+	inline bool ConfLic(astring strLic);
+	inline bool CamSearchStart();
+	inline bool CamSearchStop();
+	/* Parse all the list */
 public:
-
+	inline bool ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
+	inline bool ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp);
+	inline bool ParseDevice(char *pRecv, int len, oapi::OAPICamAddNotify &pCam);
+	inline bool ParseDeviceStrId(char *pRecv, int len, astring &pStrId);
+	inline bool ParseDiskList(char *pRecv, int len, oapi::OAPIDiskListRsp &list);
+	inline bool ParseSysDiskList(char *pRecv, int len, oapi::OAPISysDiskListRsp &list);
+	inline bool ParseLic(char *pRecv, int len, astring &strLic, astring &strHostId, 
+							int &ch, astring &type, astring &expireTime);
+	
 private:
 	XRef<XSocket> m_pSocket;
 };

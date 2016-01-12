@@ -43,23 +43,53 @@ typedef enum
 	OAPI_CMD_DEL_DEVICE_REQ,
 	OAPI_CMD_DEL_DEVICE_RSP, /* CmnRetRsp */
 
-	/* One way command */
-	OAPI_CMD_START_LIVE_REQ = 10000,
+	/* Disk */
+	OAPI_CMD_SYS_DISK_LIST_REQ,
+	OAPI_CMD_SYS_DISK_LIST_RSP, 
+	OAPI_CMD_DISK_LIST_REQ,
+	OAPI_CMD_DISK_LIST_RSP, 
+	OAPI_CMD_ADD_DISK_REQ,
+	OAPI_CMD_ADD_DISK_RSP,  /* CmnRetRsp */
+	OAPI_CMD_DEL_DISK_REQ,
+	OAPI_CMD_DEL_DISK_RSP,  /* CmnRetRsp */
+
+	/* User */
+	OAPI_CMD_CONF_ADMIN_REQ,
+	OAPI_CMD_CONF_ADMIN_RSP,  /* CmnRetRsp */
+
+	/* Lic */
+	OAPI_CMD_GET_LIC_REQ,
+	OAPI_CMD_GET_LIC_RSP,
+
+	/* Search  */
+	OAPI_CMD_CAM_SEARCH_START_REQ,
+	OAPI_CMD_CAM_SEARCH_START_RSP,
+
+	OAPI_CMD_CAM_SEARCH_STOP_REQ,
+	OAPI_CMD_CAM_SEARCH_STOP_RSP,
+
+	OAPI_CMD_CONF_LIC_REQ,
+	OAPI_CMD_CONF_LIC_RSP,  /* CmnRetRsp */	
+
+	OAPI_CMD_START_LIVE_REQ,
 	OAPI_CMD_START_LIVE_RSP, /* CmnRetRsp */
 	OAPI_CMD_STOP_LIVE_REQ,
 	OAPI_CMD_STOP_LIVE_RSP, /* CmnRetRsp */
-	OAPI_CMD_FRAME_PUSH,/* a binrary data */
-	
 
+	OAPI_REG_NOTIFY_REQ,
+	OAPI_REG_NOTIFY_RSP,
+
+	/* One way command */
+	OAPI_CMD_FRAME_PUSH  = 10000,/* a binrary data */
+	OAPI_CMD_CAM_SAERCH_PUSH,
 
 	/* All the deivce notify */
 	OAPI_NOTIFY_DEVICE_ADD = 20000,
 	OAPI_NOTIFY_DEVICE_DEL,
 	OAPI_NOTIFY_DEVICE_ONLINE,
 	OAPI_NOTIFY_DEVICE_OFFLINE,
-	OAPI_NOTIFY_DEVICE_RECORDING_ON,
-	OAPI_NOTIFY_DEVICE_RECORDING_OFF,
-	OAPI_NOTIFY_DEVICE_GROUP_CHANGE,
+	OAPI_NOTIFY_DEVICE_REC_ON,
+	OAPI_NOTIFY_DEVICE_REC_OFF,
 
 	/* Alarm notify */
 	
@@ -110,10 +140,24 @@ typedef enum
 #pragma   pack(1)
 #endif
 typedef struct __OAPIHeader{
-	u32 version;/* version */
+	u8 s1;/* Start */
+	u8 s2;
+	u8 v1;/* Version */
+	u8 v2;
 	u32 cmd;
 	u32 length;
-	u32 magic;/* magic */
+	u16 padding;
+	u8 e1;/* End */
+	u8 e2;
+	__OAPIHeader()
+	{	
+		s1 = '\n';
+		s2 = '$';
+		v1 = 1;
+		v2 = 0;
+		e1 = '\r';
+		e2 = '\n';
+	}
 } OAPIHeader;
 #ifdef WIN32
 #pragma   pack()
