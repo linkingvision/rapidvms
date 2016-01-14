@@ -6,14 +6,16 @@
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
 
-#define VE_VERSION "r2.0.1-20151201"
-#define VE_INFO "OpenCVR r2.0.1 2015"
+#define VE_VERSION "r2.0.1-20160101"
+#define VE_INFO "OpenCVR r2.0.1 2016"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
 #define CONF_KEY_STR_MAX 16
 
 #define VSC_CONF_KEY "ConfVSCSystem"
+#define VSC_CONF_STOR_SERVER_KEY "ConfVSCStorServer" /* server */
+#define VSC_CONF_CLIENT_KEY "ConfVSCClient" /* Client */
 #define VSC_CONF_LIC_KEY "ConfVSCLicense"
 #define VSC_CONF_CAMERA_KEY "ConfVSCCAMERA"
 #define VSC_CONF_VIDSTOR_KEY "ConfVSCVidStor"
@@ -44,6 +46,24 @@ typedef struct __VSCConfSystemKey {
         strcpy(Key, VSC_CONF_KEY);
     }
 }VSCConfSystemKey;
+
+typedef struct __VSCConfStorServerKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfStorServerKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_STOR_SERVER_KEY);
+    }
+}VSCConfStorServerKey;
+
+typedef struct __VSCConfClientKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfClientKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_CLIENT_KEY);
+    }
+}VSCConfClientKey;
 
 typedef struct __VSCConfLicenseKey {
     s8 Key[CONF_KEY_STR_MAX];

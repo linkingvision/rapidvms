@@ -43,7 +43,14 @@ public:
 	bool ConfLic(astring &pLic);
 	bool AddCam(VidCamera &pParam);
 	bool DeleteCam(astring strId);
-	/* Search */
+	/* Cam Search */
+	bool CamSearchStart();
+	bool CamSearchStop();
+	bool CamSearchGet(astring &strIP, astring &strPort, astring &strModel, 
+					astring &strOnvifAddr);
+	
+
+	/* Video Search */
 
 private:
 	bool SyncRecv(OAPIHeader &header);

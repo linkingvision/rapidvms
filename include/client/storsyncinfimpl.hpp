@@ -299,6 +299,58 @@ inline bool StorSyncInf::DeleteCam(astring strId)
 	return false;
 }
 
+inline bool StorSyncInf::CamSearchStart()
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	XGuard guard(m_cMutex);
+
+	/* Send del cam command */
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send add cam command  */
+	pClient.CamSearchStart();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CMD_CAM_SEARCH_START_RSP)
+	{
+		return true;
+	}
+
+	return false;
+}
+inline bool StorSyncInf::CamSearchStop()
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	XGuard guard(m_cMutex);
+
+	/* Send del cam command */
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send add cam command  */
+	pClient.CamSearchStop();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CMD_CAM_SEARCH_STOP_RSP)
+	{
+		return true;
+	}
+
+	return false;
+}
+inline bool StorSyncInf::CamSearchGet(astring &strIP, astring &strPort, astring &strModel, 
+				astring &strOnvifAddr)
+{
+	OAPIHeader header;
+}
+
 inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 {
 	s32 nRet = 0;

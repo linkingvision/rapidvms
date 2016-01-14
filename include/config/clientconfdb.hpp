@@ -7,6 +7,7 @@
 #include "debug.hpp"
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
+#include "simplecrypt.hpp"
 
 using namespace UtilityLib;
 using namespace XSDK;
@@ -28,6 +29,8 @@ public:
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
+	bool GetLicense(astring &strLicense);
+	bool SetLicense(astring &strLicense);
 	
 	bool FindStor(astring strStorId);
 	bool DeleteStor(astring strStorId);
@@ -37,6 +40,9 @@ public:
 public:
 	BOOL GetStorListConf(VidStorList &pData);
 	BOOL UpdateStorListConf(VidStorList &pData);
+
+	bool GetClientConf(VidClientConf &pData);
+	bool SetClientConf(VidClientConf &pData);
 	
 	
 #if 0
