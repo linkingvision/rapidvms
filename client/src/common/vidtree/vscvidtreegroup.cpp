@@ -1,11 +1,11 @@
-#include "common/vscvidtreeinf.h"
+#include "common/vscvidtreegroup.h"
 
-VSCVidTreeInf::VSCVidTreeInf(QWidget *parent)
-: QTreeWidget(parent)
+VSCVidTreeGroup::VSCVidTreeGroup(QWidget *parent)
+: VSCVidTreeInf(parent)
 {
 	
 }
-VSCVidTreeInf::~VSCVidTreeInf()
+VSCVidTreeGroup::~VSCVidTreeGroup()
 {
 	
 }

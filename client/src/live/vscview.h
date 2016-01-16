@@ -16,7 +16,7 @@ class VSCView : public QWidget
     Q_OBJECT
 
 public:
-    VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName);
+    VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName);
     ~VSCView();
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
@@ -104,7 +104,7 @@ public slots:
 	void TourInit();
 	void TourTimerFunction();
 
-	void CameraDoubleClicked(int DeviceId);
+	void CameraDoubleClicked(std::string strStor, std::string strCam, std::string strCamName);
 public:
 	Ui::VSCView ui;
 private:
@@ -130,6 +130,8 @@ private:
 	s32 m_TourInterval;
 	//VSCViewData m_pTourConf;
 	s32 m_TourIdx;
+
+	ClientFactory &m_pFactory;
     
 };
 

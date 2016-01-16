@@ -6,7 +6,9 @@
 #include "ui_vscmainwindows.h"
 #include "client/clientfactory.hpp"
 #include "live/vscvidlive.h"
+#include "config/vscvidconfig.h"
 #include "main/vscvidlist.h"
+#include "playback/vscvidpb.h"
 
 typedef enum
 {
@@ -51,6 +53,8 @@ private:
 	VSCVidInf *m_pVidConf;
 	VSCVidInf *m_pVidPb;
 	VSCVidIdx m_VidIdx;
+
+	QTabWidget * m_pMainArea;
 
 private:
 	Ui::VSCMainWindowsClass ui;

@@ -6,8 +6,14 @@
 class VSCVidItemCam : public VSCVidItemInf
 {
 public:
-    VSCVidItemCam(QTreeWidgetItem *parent);
+    VSCVidItemCam(VidCamera cCam, ClientFactory &pFactory, QTreeWidgetItem *parent);
     ~VSCVidItemCam();
+public:
+	virtual astring GetId(){return m_cCam.strid();}
+	virtual astring GetName(){return m_cCam.strname();}
+	virtual void VidFilter(astring strFilter);
+private:
+	VidCamera m_cCam;
 
 };
 

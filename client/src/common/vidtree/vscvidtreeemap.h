@@ -1,5 +1,5 @@
-#ifndef __VSC_VID_TREE_INF_H__
-#define __VSC_VID_TREE_INF_H__
+#ifndef __VSC_VID_TREE_EMAP_H__
+#define __VSC_VID_TREE_EMAP_H__
 
 #include <QWidget>
 #include "utility.hpp"
@@ -10,12 +10,12 @@
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 
-class VSCVidTreeInf : public QTreeWidget
+class VSCVidTreeEmap : public VSCVidTreeInf
 {
     Q_OBJECT
 public:
-    VSCVidTreeInf(QWidget *parent = 0);
-    ~VSCVidTreeInf();
+    VSCVidTreeEmap(QWidget *parent = 0);
+    ~VSCVidTreeEmap();
 	
 public:
 	virtual void VidFilter(astring strFilter){}

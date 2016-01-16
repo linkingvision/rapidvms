@@ -16,6 +16,8 @@
 #include <QTranslator>
 #include <QTextCodec>
 #include "server/cmnoapiserver.hpp"
+#include "vstyle.hpp"
+#include "vsclogin.h"
 
 void LoadLangZH(QApplication &a)
 {
@@ -46,14 +48,17 @@ int main(int argc, char *argv[])
 	ClientFactory *pFactory = NULL;
 
 	QApplication a(argc, argv);
+
+	a.setStyle(new VStyle); 
+	astring strVSCDefaultPath = VSC_DEFAULT_SYSPATH;
 #ifdef WIN32
 #ifndef _WIN64
-	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "\\vidstor\\logs\\";
+	astring strLoggerPath = strVSCDefaultPath + "\\vidstor\\logs\\";
 #else
-	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "\\vidstor64\\logs\\";
+	astring strLoggerPath = strVSCDefaultPath + "\\vidstor64\\logs\\";
 #endif
 #else
-	astring strLoggerPath = VSC_DEFAULT_SYSPATH + "/vidstor/logs/";
+	astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 #endif
 	Poco::File file1(strLoggerPath);
 	file1.createDirectories();
@@ -94,21 +99,22 @@ int main(int argc, char *argv[])
 		pFactory->SetSystemPath(strPath);
 		pFactory->Init();
 	}
-#if 0
-	VSCLangType m_lang;
+
+	VidLanguage m_lang;
 	pFactory->GetLang(m_lang);
-	if (m_lang == VSC_LANG_AUTO)
+	if (m_lang == VID_LANG_AUTO)
 	{
 		if (QLocale::system().name() == "zh_CN")
 		{
 			LoadLangZH(a);
 		}
 	}
-	else if (m_lang == VSC_LANG_ZH)
+	else if (m_lang == VID_ZH_CN)
 	{
 		LoadLangZH(a);
 	}//else if add more language to here
-#endif
+
+	
 	splash->showMessage(QObject::tr("Starting ..."));
 
 	VSCMainWindows w(*pFactory);
@@ -118,8 +124,7 @@ int main(int argc, char *argv[])
 	//w.showFullScreen();
 	splash->finish(&w);
 	/* Auto  */
-	//if (gFactory->GetAutoLogin() == FALSE)
-	if (0)
+	if (pFactory->GetAutoLogin() == false)
 	{
 		w.ShowLogin();
 	}else

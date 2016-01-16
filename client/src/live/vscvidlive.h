@@ -9,7 +9,7 @@ class VSCVidLive : public VSCVidInf
 {
     Q_OBJECT
 public:
-    VSCVidLive(ClientFactory &pFactory, QMainWindow *parent);
+    VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent);
     ~VSCVidLive();
 	
 public:
@@ -27,7 +27,6 @@ public slots:
 	void MainCloseTab(int index);
 
 private:
-	QTabWidget * m_pMainArea;
 	VSCView *m_pView;
 	VSCVidTreeInf *m_pCameraTree;
 	VSCVidTreeInf *m_pGroupTree;

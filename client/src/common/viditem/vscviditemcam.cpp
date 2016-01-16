@@ -8,7 +8,7 @@ VSCVidItemCam::VSCVidItemCam(VidCamera cCam, ClientFactory &pFactory, QTreeWidge
 	
 	setIcon(0, icon1);
 
-	setText(0, QApplication::translate(" ", m_cCam.strname().c_str(), 0));	
+	setText(0, QApplication::translate(" ", m_cCam.strname().c_str(), 0));
 	//setHidden(true);
 }
 VSCVidItemCam::~VSCVidItemCam()

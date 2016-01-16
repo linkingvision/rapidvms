@@ -8,10 +8,8 @@
 #include <QApplication>
 //#include "vscviewconf.h"
 
-extern Factory *gFactory;
-
-VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
-    : QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
+VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName)
+    : m_pFactory(pFactory), QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
     m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE), 
 	m_TimerTour(NULL)
 {
@@ -21,7 +19,7 @@ VSCView::VSCView(QWidget *parent, QTabWidget &pTabbed, QString strName)
 
     this->setAttribute(Qt::WA_Hover,true);
     QVBoxLayout* layout = new QVBoxLayout();
-    m_pVideo = new VSCVideoWall(this->ui.widget);
+    m_pVideo = new VSCVideoWall(m_pFactory, this->ui.widget);
     m_pVideo->hide();
     //layout->setSpacing(10);
 
@@ -209,10 +207,11 @@ void VSCView::TourTimerFunction()
 	return;
 }
 
-void VSCView::CameraDoubleClicked(int DeviceId)
+void VSCView::CameraDoubleClicked(astring strStor, astring strCam, 
+						astring strCamName)
 {
 
-	m_pVideo->PlayVideoByWindow(m_currentFocus, DeviceId);
+	m_pVideo->PlayVideoByWindow(m_currentFocus, strStor, strCam, strCamName);
 
 	return;
 }

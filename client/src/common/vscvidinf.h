@@ -15,7 +15,7 @@ class VSCVidInf : public QObject
 {
     Q_OBJECT
 public:
-    VSCVidInf(ClientFactory &pFactory, QMainWindow *parent);
+    VSCVidInf(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent);
     ~VSCVidInf();
 	
 public slots:
@@ -31,10 +31,12 @@ public:
 	virtual VSCVidTreeInf *GetGroupTree (){return NULL;}
 	virtual VSCVidTreeInf *GetEmapTree (){return NULL;}
 	virtual VSCVidTreeInf *GetViewTree (){return NULL;}
+	virtual VSCVidTreeInf *GetConfTree (){return NULL;}
 
 protected:
 	ClientFactory &m_pFactory;
 	QMainWindow *m_parent;
+	QTabWidget & m_pMainArea;
 };
 
 #endif

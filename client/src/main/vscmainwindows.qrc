@@ -7,17 +7,13 @@
         <file>resources/vscsmall2.png</file>
     </qresource>
     <qresource prefix="/action">
-        <file>resources/surveillance.png</file>
         <file>resources/search.png</file>
-        <file>resources/user-trash-2.png</file>
         <file>resources/videosearch.png</file>
         <file>resources/computer.png</file>
-        <file>resources/display.png</file>
         <file>resources/view-fullscreen.png</file>
         <file>resources/setting.png</file>
         <file>resources/recordstart.png</file>
         <file>resources/recordstop.png</file>
-        <file>resources/edit.png</file>
         <file>resources/new.png</file>
         <file>resources/float.png</file>
         <file>resources/tabbed.png</file>
@@ -50,9 +46,10 @@
         <file>resources/tourstop.png</file>
         <file>resources/tourplay.png</file>
         <file>resources/panel.png</file>
-        <file>resources/folder.png</file>
         <file>resources/searchplayback.png</file>
         <file>resources/cancel.png</file>
+        <file>resources/disksetting.png</file>
+        <file>resources/surveillance.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>
@@ -63,9 +60,11 @@
         <file>resources/camera-record.png</file>
         <file>resources/dome.png</file>
         <file>resources/dome-record.png</file>
-        <file>resources/virtualipc.png</file>
         <file>resources/view1.png</file>
         <file>resources/camgroup.png</file>
+        <file>resources/stor.png</file>
+        <file>resources/addstor.png</file>
+        <file>resources/addcam.png</file>
     </qresource>
     <qresource prefix="/view">
         <file>resources/1x1.png</file>

@@ -77,6 +77,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -116,6 +119,9 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -157,6 +163,9 @@ background-color: rgb(200, 200, 200);}</string>
          <height>30</height>
         </size>
        </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -187,6 +196,9 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

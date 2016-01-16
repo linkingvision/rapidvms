@@ -14,6 +14,10 @@ class VSCVidList : public QWidget
 public:
 	VSCVidList(QWidget *parent);
 	~VSCVidList();
+	void HideAll();
+	void dragEnterEvent(QDragEnterEvent *event);
+	void dragMoveEvent(QDragMoveEvent *event);
+
 public:
 	/* set the live conf or Pb Vid interface */
 	void SetCurrVidInf(VSCVidInf *pVidInf);
@@ -23,6 +27,8 @@ public slots:
 	void SlotShowGroupTree();
 	void SlotShowViewTree();
 	void SlotShowEmapTree();
+	void FilterChanged(const QString & text);
+	void FilterCancel();
 
 private:
 	Ui::VSCVidList ui;
@@ -33,6 +39,7 @@ private:
 	VSCVidTreeInf *m_pGroupTree;
 	VSCVidTreeInf *m_pViewTree;
 	VSCVidTreeInf *m_pEmapTree;
+	VSCVidTreeInf *m_pConfTree;
     
 };
 

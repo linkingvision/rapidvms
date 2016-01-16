@@ -9,6 +9,7 @@
 #include "client/clientfactory.hpp"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
+#include <QApplication>
 
 class VSCVidTreeInf : public QTreeWidget
 {

@@ -32,6 +32,8 @@
 #include "server/factory.hpp"
 #include "vsctoolbar.h"
 #include "vscloading.hpp"
+#include "vscuserstatus.h"
+#include "vsclogin.h"
 
 
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
@@ -55,21 +57,36 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	QCoreApplication::processEvents();
 
 	//QDockWidget *m_pDockDevicelist = new QDockWidget(tr("Devices"), this);
-	m_pDockDevicelist = new QDockWidget(m_parent);
+	m_pDockDevicelist = new QDockWidget(this);
 	m_pDockDevicelist->setFeatures(QDockWidget::DockWidgetMovable);
 
-	//m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
-	m_pDockDevicelist->setTitleBarWidget(new QWidget(m_parent));
+	m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	//m_pDockDevicelist->setAllowedAreas(Qt::LeftDockWidgetArea);
+	m_pDockDevicelist->setTitleBarWidget(new QWidget(this));
 
 	m_pVidList = new VSCVidList(m_pDockDevicelist);
 	m_pDockDevicelist->setWidget(m_pVidList);
+
+	addDockWidget(Qt::LeftDockWidgetArea, m_pDockDevicelist);
+	//addDockWidget(Qt::RightDockWidgetArea, m_pDockDevicelist);
+
+	m_pMainArea = new QTabWidget(this);
+
+	m_pMainArea->setTabsClosable(true);
+	m_pMainArea->setMovable(true);
+
+	setCentralWidget(m_pMainArea);
 	
 
 	/* Show the Live default */
-	m_pVidLive = new VSCVidLive(m_pFactory, this);
-	m_pVidConf = new VSCVidInf(m_pFactory, this);//TODO
-	m_pVidPb = new VSCVidInf(m_pFactory, this);//TODO
+	m_pVidLive = new VSCVidLive(m_pFactory, *m_pMainArea, this);
+	m_pVidConf = new VSCVidConf(m_pFactory, *m_pMainArea, this);
+	m_pVidPb = new VSCVidPb(m_pFactory, *m_pMainArea, this);
+
+	/* First hide all */
+	m_pVidLive->VidHide();
+	m_pVidConf->VidHide();
+	m_pVidPb->VidHide();
 	ShowVidLive();
 
 	delete loading;
@@ -82,7 +99,7 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 
 	connect(m_pToolBar->ui.pbVidLive, SIGNAL(clicked()), this, SLOT(ShowVidLive()));
 	connect(m_pToolBar->ui.pbVidLiveView, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLiveView()));
-	connect(m_pToolBar->ui.pbEmap, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewEmap()));
+	connect(m_pToolBar->ui.pbVidEmap, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewEmap()));
 
 	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
 	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
@@ -121,7 +138,7 @@ void VSCMainWindows::ShowVidLive()
 
 	m_pVidLive->VidShow();
 	m_pToolBar->ui.pbVidLiveView->show();
-	m_pToolBar->ui.pbEmap->show();
+	m_pToolBar->ui.pbVidEmap->show();
 	m_VidIdx = VSC_VID_IDX_LIVE;
 	m_pVidList->SetCurrVidInf(m_pVidLive);
 }
@@ -133,7 +150,7 @@ void VSCMainWindows::ShowVidConf()
 		{
 			m_pVidLive->VidHide();
 			m_pToolBar->ui.pbVidLiveView->hide();
-			m_pToolBar->ui.pbEmap->hide();
+			m_pToolBar->ui.pbVidEmap->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:
@@ -164,7 +181,7 @@ void VSCMainWindows::ShowVidPb()
 		{
 			m_pVidLive->VidHide();
 			m_pToolBar->ui.pbVidLiveView->hide();
-			m_pToolBar->ui.pbEmap->hide();
+			m_pToolBar->ui.pbVidEmap->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:
@@ -247,7 +264,6 @@ void VSCMainWindows::about()
 
 void VSCMainWindows::UserStatus()
 {
-#if 0
 	VSCUserStatus userStatus;
 
 	userStatus.show();
@@ -262,12 +278,10 @@ void VSCMainWindows::UserStatus()
 	{
 		ShowLogin();
 	}
-#endif
 }
 
 void VSCMainWindows::ShowLogin()
 {
-#if 0
 	VSCLogin login;
 
 	hide();
@@ -277,9 +291,6 @@ again:
 
     QDesktopWidget *desktop = QApplication::desktop();
 	QRect rect = desktop->screenGeometry(0);
-	userStatus.setGeometry(rect.width()/2 -userStatus.width()/2 , 
-					rect.height()/2 - userStatus.height()/2, 
-					userStatus.width(), userStatus.height());
 
 	login.exec();
 	if (login.GetIsLogin() == TRUE)
@@ -287,7 +298,7 @@ again:
 		astring strUser;
 		astring strPasswd;
 		login.GetUserPasswd(strUser, strPasswd);
-		//if (gFactory->AuthUser(strUser, strPasswd) == TRUE)
+		//if (m_pFactory.AuthUser(strUser, strPasswd) == TRUE)
 		{
 			showMaximized();
 			return;
@@ -309,9 +320,7 @@ again:
 		ExitOpenCVR();
 	}
 
-	goto again;
-#endif
-	
+	goto again;	
 }
 
 void VSCMainWindows::SetFullScreen()
