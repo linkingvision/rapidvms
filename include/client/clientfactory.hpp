@@ -88,6 +88,8 @@ public:
 	bool AuthUser(astring &strUser, astring &strPasswd);
 	bool GetAdminPasswd(astring &strPasswd);
 	bool SetAdminPasswd(astring strPasswd);
+	bool GetLang(VidLanguage &nLang);
+	bool SetLang(VidLanguage &nLang);
 
 #if 0
 

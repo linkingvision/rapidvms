@@ -160,6 +160,25 @@ inline bool ClientFactory::SetAutoLogin(bool bAutoLogin)
 
 	return true;	
 }
+
+inline bool ClientFactory::GetLang(VidLanguage &nLang)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	nLang = cData.nlang();
+
+	return true;
+}
+inline bool ClientFactory::SetLang(VidLanguage &nLang)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	cData.set_nlang(nLang);
+	m_Conf.SetClientConf(cData);
+
+	return true;	
+}
+
 inline bool ClientFactory::AuthUser(astring &strUser, astring &strPasswd)
 {
 	/* Admin is a Super User */
