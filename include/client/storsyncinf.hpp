@@ -27,7 +27,7 @@ class StorSyncInf: public QObject
 {
 	Q_OBJECT
 public:
-	StorSyncInf(VidStor &stor, int nTimeoutMillis);
+	StorSyncInf(VidStor &stor, int nTimeoutMillis = 5000);
 	~StorSyncInf();
 
 public:
@@ -37,9 +37,11 @@ public:
 	VidDiskList GetSysVidDiskList();
 	bool AddVidDisk(VidDisk &pDisk);
 	bool DeleteVidDisk(astring strId);
+	bool UpdateVidDiskLimit(astring strId, s64 nLimit);
 	bool ConfAdminPasswd(astring strOldPasswd, astring strNewPasswd);
 	bool GetLic(astring &pLic, astring &strHostId, 
 							int &ch, astring &type, astring &expireTime);
+	bool GetVer(astring &pVer, astring &strInfo);
 	bool ConfLic(astring &pLic);
 	bool AddCam(VidCamera &pParam);
 	bool DeleteCam(astring strId);

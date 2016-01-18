@@ -181,6 +181,30 @@ inline bool StorSyncInf::DeleteVidDisk(astring strId)
 
 	return false;		
 }
+
+
+inline bool StorSyncInf::UpdateVidDiskLimit(astring strId, s64 nLimit)
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	XGuard guard(m_cMutex);
+	/* Send add disk command  */
+	pClient.UpdateDiskLimit(strId, nLimit);
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CMD_UPDATE_DISK_LIMIT_RSP)
+	{
+		return true;
+	}
+
+	return false;		
+}
+
 inline bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPasswd)
 {
 	if (m_bConnected == false)
@@ -229,6 +253,34 @@ inline bool StorSyncInf::GetLic(astring &pLic, astring &strHostId,
 
 	return false;	
 }
+
+inline bool StorSyncInf::GetVer(astring &pVer, astring &strInfo)
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	VidDiskList empty;
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send Get lic command  */
+	pClient.GetVer();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CMD_GET_VER_RSP)
+	{
+
+		pClient.ParseVer(m_pRecv, header.length, pVer, strInfo);
+
+		return true;
+	}
+
+	return false;
+}
+
 inline bool StorSyncInf::ConfLic(astring &pLic)
 {
 	if (m_bConnected == false)
