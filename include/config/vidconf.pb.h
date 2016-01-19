@@ -41,6 +41,8 @@ class VidCamera;
 class VidCameraId;
 class VidCameraList;
 class VidClientConf;
+class VidDisk;
+class VidDiskList;
 class VidEmap;
 class VidEmapCamera;
 class VidEmapList;
@@ -104,15 +106,15 @@ inline bool CameraConnectType_Parse(
     CameraConnectType_descriptor(), name, value);
 }
 enum VidLanguage {
-  LANG_AUTO = 0,
-  EN = 1,
-  ZH_CN = 2,
+  VID_LANG_AUTO = 0,
+  VID_EN = 1,
+  VID_ZH_CN = 2,
   VidLanguage_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidLanguage_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool VidLanguage_IsValid(int value);
-const VidLanguage VidLanguage_MIN = LANG_AUTO;
-const VidLanguage VidLanguage_MAX = ZH_CN;
+const VidLanguage VidLanguage_MIN = VID_LANG_AUTO;
+const VidLanguage VidLanguage_MAX = VID_ZH_CN;
 const int VidLanguage_ARRAYSIZE = VidLanguage_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor();
@@ -425,11 +427,23 @@ class VidStorServerConf : public ::google::protobuf::Message {
   ::google::protobuf::int32 noapiport() const;
   void set_noapiport(::google::protobuf::int32 value);
 
+  // optional string strAdminPasswd = 2;
+  void clear_stradminpasswd();
+  static const int kStrAdminPasswdFieldNumber = 2;
+  const ::std::string& stradminpasswd() const;
+  void set_stradminpasswd(const ::std::string& value);
+  void set_stradminpasswd(const char* value);
+  void set_stradminpasswd(const char* value, size_t size);
+  ::std::string* mutable_stradminpasswd();
+  ::std::string* release_stradminpasswd();
+  void set_allocated_stradminpasswd(::std::string* stradminpasswd);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidStorServerConf)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr stradminpasswd_;
   ::google::protobuf::int32 noapiport_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
@@ -789,6 +803,213 @@ class VidCameraList : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class VidDisk : public ::google::protobuf::Message {
+ public:
+  VidDisk();
+  virtual ~VidDisk();
+
+  VidDisk(const VidDisk& from);
+
+  inline VidDisk& operator=(const VidDisk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidDisk& default_instance();
+
+  void Swap(VidDisk* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidDisk* New() const { return New(NULL); }
+
+  VidDisk* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidDisk& from);
+  void MergeFrom(const VidDisk& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidDisk* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // optional string strPath = 2;
+  void clear_strpath();
+  static const int kStrPathFieldNumber = 2;
+  const ::std::string& strpath() const;
+  void set_strpath(const ::std::string& value);
+  void set_strpath(const char* value);
+  void set_strpath(const char* value, size_t size);
+  ::std::string* mutable_strpath();
+  ::std::string* release_strpath();
+  void set_allocated_strpath(::std::string* strpath);
+
+  // optional int64 nTotalSize = 3;
+  void clear_ntotalsize();
+  static const int kNTotalSizeFieldNumber = 3;
+  ::google::protobuf::int64 ntotalsize() const;
+  void set_ntotalsize(::google::protobuf::int64 value);
+
+  // optional int64 nFreeSize = 4;
+  void clear_nfreesize();
+  static const int kNFreeSizeFieldNumber = 4;
+  ::google::protobuf::int64 nfreesize() const;
+  void set_nfreesize(::google::protobuf::int64 value);
+
+  // optional int64 nStorLimit = 5;
+  void clear_nstorlimit();
+  static const int kNStorLimitFieldNumber = 5;
+  ::google::protobuf::int64 nstorlimit() const;
+  void set_nstorlimit(::google::protobuf::int64 value);
+
+  // optional int64 nStorUsed = 6;
+  void clear_nstorused();
+  static const int kNStorUsedFieldNumber = 6;
+  ::google::protobuf::int64 nstorused() const;
+  void set_nstorused(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidDisk)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::internal::ArenaStringPtr strpath_;
+  ::google::protobuf::int64 ntotalsize_;
+  ::google::protobuf::int64 nfreesize_;
+  ::google::protobuf::int64 nstorlimit_;
+  ::google::protobuf::int64 nstorused_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidDisk* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VidDiskList : public ::google::protobuf::Message {
+ public:
+  VidDiskList();
+  virtual ~VidDiskList();
+
+  VidDiskList(const VidDiskList& from);
+
+  inline VidDiskList& operator=(const VidDiskList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidDiskList& default_instance();
+
+  void Swap(VidDiskList* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidDiskList* New() const { return New(NULL); }
+
+  VidDiskList* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidDiskList& from);
+  void MergeFrom(const VidDiskList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidDiskList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .VidConf.VidDisk cVidDisk = 1;
+  int cviddisk_size() const;
+  void clear_cviddisk();
+  static const int kCVidDiskFieldNumber = 1;
+  const ::VidConf::VidDisk& cviddisk(int index) const;
+  ::VidConf::VidDisk* mutable_cviddisk(int index);
+  ::VidConf::VidDisk* add_cviddisk();
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidDisk >*
+      mutable_cviddisk();
+  const ::google::protobuf::RepeatedPtrField< ::VidConf::VidDisk >&
+      cviddisk() const;
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidDiskList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidDisk > cviddisk_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidDiskList* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class VidHDFSConf : public ::google::protobuf::Message {
  public:
   VidHDFSConf();
@@ -1072,12 +1293,31 @@ class VidClientConf : public ::google::protobuf::Message {
   ::VidConf::VidLanguage nlang() const;
   void set_nlang(::VidConf::VidLanguage value);
 
+  // optional string strAdminPasswd = 2;
+  void clear_stradminpasswd();
+  static const int kStrAdminPasswdFieldNumber = 2;
+  const ::std::string& stradminpasswd() const;
+  void set_stradminpasswd(const ::std::string& value);
+  void set_stradminpasswd(const char* value);
+  void set_stradminpasswd(const char* value, size_t size);
+  ::std::string* mutable_stradminpasswd();
+  ::std::string* release_stradminpasswd();
+  void set_allocated_stradminpasswd(::std::string* stradminpasswd);
+
+  // optional bool bAutoLogin = 3;
+  void clear_bautologin();
+  static const int kBAutoLoginFieldNumber = 3;
+  bool bautologin() const;
+  void set_bautologin(bool value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidClientConf)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr stradminpasswd_;
   int nlang_;
+  bool bautologin_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -2337,6 +2577,49 @@ inline void VidStorServerConf::set_noapiport(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:VidConf.VidStorServerConf.nOapiPort)
 }
 
+// optional string strAdminPasswd = 2;
+inline void VidStorServerConf::clear_stradminpasswd() {
+  stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidStorServerConf::stradminpasswd() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidStorServerConf.strAdminPasswd)
+  return stradminpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStorServerConf::set_stradminpasswd(const ::std::string& value) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidStorServerConf.strAdminPasswd)
+}
+inline void VidStorServerConf::set_stradminpasswd(const char* value) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidStorServerConf.strAdminPasswd)
+}
+inline void VidStorServerConf::set_stradminpasswd(const char* value, size_t size) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidStorServerConf.strAdminPasswd)
+}
+inline ::std::string* VidStorServerConf::mutable_stradminpasswd() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidStorServerConf.strAdminPasswd)
+  return stradminpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStorServerConf::release_stradminpasswd() {
+  
+  return stradminpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStorServerConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
+  if (stradminpasswd != NULL) {
+    
+  } else {
+    
+  }
+  stradminpasswd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stradminpasswd);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidStorServerConf.strAdminPasswd)
+}
+
 // -------------------------------------------------------------------
 
 // VidCamera
@@ -2991,6 +3274,186 @@ VidCameraList::cvidcamera() const {
 
 // -------------------------------------------------------------------
 
+// VidDisk
+
+// optional string strId = 1;
+inline void VidDisk::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidDisk::strid() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.strId)
+  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidDisk::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.strId)
+}
+inline void VidDisk::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidDisk.strId)
+}
+inline void VidDisk::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidDisk.strId)
+}
+inline ::std::string* VidDisk::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidDisk.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidDisk::release_strid() {
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidDisk::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidDisk.strId)
+}
+
+// optional string strPath = 2;
+inline void VidDisk::clear_strpath() {
+  strpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidDisk::strpath() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.strPath)
+  return strpath_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidDisk::set_strpath(const ::std::string& value) {
+  
+  strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.strPath)
+}
+inline void VidDisk::set_strpath(const char* value) {
+  
+  strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidDisk.strPath)
+}
+inline void VidDisk::set_strpath(const char* value, size_t size) {
+  
+  strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidDisk.strPath)
+}
+inline ::std::string* VidDisk::mutable_strpath() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidDisk.strPath)
+  return strpath_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidDisk::release_strpath() {
+  
+  return strpath_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidDisk::set_allocated_strpath(::std::string* strpath) {
+  if (strpath != NULL) {
+    
+  } else {
+    
+  }
+  strpath_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strpath);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidDisk.strPath)
+}
+
+// optional int64 nTotalSize = 3;
+inline void VidDisk::clear_ntotalsize() {
+  ntotalsize_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidDisk::ntotalsize() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.nTotalSize)
+  return ntotalsize_;
+}
+inline void VidDisk::set_ntotalsize(::google::protobuf::int64 value) {
+  
+  ntotalsize_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.nTotalSize)
+}
+
+// optional int64 nFreeSize = 4;
+inline void VidDisk::clear_nfreesize() {
+  nfreesize_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidDisk::nfreesize() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.nFreeSize)
+  return nfreesize_;
+}
+inline void VidDisk::set_nfreesize(::google::protobuf::int64 value) {
+  
+  nfreesize_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.nFreeSize)
+}
+
+// optional int64 nStorLimit = 5;
+inline void VidDisk::clear_nstorlimit() {
+  nstorlimit_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidDisk::nstorlimit() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.nStorLimit)
+  return nstorlimit_;
+}
+inline void VidDisk::set_nstorlimit(::google::protobuf::int64 value) {
+  
+  nstorlimit_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.nStorLimit)
+}
+
+// optional int64 nStorUsed = 6;
+inline void VidDisk::clear_nstorused() {
+  nstorused_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidDisk::nstorused() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDisk.nStorUsed)
+  return nstorused_;
+}
+inline void VidDisk::set_nstorused(::google::protobuf::int64 value) {
+  
+  nstorused_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidDisk.nStorUsed)
+}
+
+// -------------------------------------------------------------------
+
+// VidDiskList
+
+// repeated .VidConf.VidDisk cVidDisk = 1;
+inline int VidDiskList::cviddisk_size() const {
+  return cviddisk_.size();
+}
+inline void VidDiskList::clear_cviddisk() {
+  cviddisk_.Clear();
+}
+inline const ::VidConf::VidDisk& VidDiskList::cviddisk(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidDiskList.cVidDisk)
+  return cviddisk_.Get(index);
+}
+inline ::VidConf::VidDisk* VidDiskList::mutable_cviddisk(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidDiskList.cVidDisk)
+  return cviddisk_.Mutable(index);
+}
+inline ::VidConf::VidDisk* VidDiskList::add_cviddisk() {
+  // @@protoc_insertion_point(field_add:VidConf.VidDiskList.cVidDisk)
+  return cviddisk_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::VidConf::VidDisk >*
+VidDiskList::mutable_cviddisk() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidDiskList.cVidDisk)
+  return &cviddisk_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::VidConf::VidDisk >&
+VidDiskList::cviddisk() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidDiskList.cVidDisk)
+  return cviddisk_;
+}
+
+// -------------------------------------------------------------------
+
 // VidHDFSConf
 
 // optional string strNameNode = 1;
@@ -3285,6 +3748,63 @@ inline void VidClientConf::set_nlang(::VidConf::VidLanguage value) {
   
   nlang_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidClientConf.nLang)
+}
+
+// optional string strAdminPasswd = 2;
+inline void VidClientConf::clear_stradminpasswd() {
+  stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidClientConf::stradminpasswd() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidClientConf.strAdminPasswd)
+  return stradminpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidClientConf::set_stradminpasswd(const ::std::string& value) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidClientConf.strAdminPasswd)
+}
+inline void VidClientConf::set_stradminpasswd(const char* value) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidClientConf.strAdminPasswd)
+}
+inline void VidClientConf::set_stradminpasswd(const char* value, size_t size) {
+  
+  stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidClientConf.strAdminPasswd)
+}
+inline ::std::string* VidClientConf::mutable_stradminpasswd() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidClientConf.strAdminPasswd)
+  return stradminpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidClientConf::release_stradminpasswd() {
+  
+  return stradminpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidClientConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
+  if (stradminpasswd != NULL) {
+    
+  } else {
+    
+  }
+  stradminpasswd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stradminpasswd);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidClientConf.strAdminPasswd)
+}
+
+// optional bool bAutoLogin = 3;
+inline void VidClientConf::clear_bautologin() {
+  bautologin_ = false;
+}
+inline bool VidClientConf::bautologin() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidClientConf.bAutoLogin)
+  return bautologin_;
+}
+inline void VidClientConf::set_bautologin(bool value) {
+  
+  bautologin_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidClientConf.bAutoLogin)
 }
 
 // -------------------------------------------------------------------
@@ -4255,6 +4775,10 @@ VidEmapList::cvidemap() const {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

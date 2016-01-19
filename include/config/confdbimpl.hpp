@@ -17,6 +17,17 @@ inline void VSCHdfsRecordDefault(VidHDFSConf &pData)
 	pData.set_nfileinterval(30);
 }
 
+inline void VSCStorServerConfDefault(VidStorServerConf &pData)
+{
+	SimpleCrypt crypt;
+	pData.set_noapiport(VSC_OAPI_DEFAULT_PORT);
+	/* Default passwd is admin */
+	QString strPass = "admin";
+	pData.set_stradminpasswd(crypt.encryptToString(strPass).toStdString());
+
+	return;
+}
+
 #if 0
 inline BOOL SysConfDataDefault(VSCConfData &pConf)
 {
@@ -425,6 +436,61 @@ inline BOOL ConfDB::UpdateCameraListConf(VidCameraList &pData)
 	return TRUE;
 }
 
+inline bool ConfDB::GetStorServerConf(VidStorServerConf &pData)
+{
+	VSCConfStorServerKey sKey;
+	
+	XGuard guard(m_cMutex);
+
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue("fake");
+	
+
+	if (it->status().IsNotFound() != true)
+	{
+	    sysValue = it->value();
+	}
+
+	if (pData.ParseFromString(sysValue.ToString()) == false)
+	{
+		VSCStorServerConfDefault(pData);
+		VDC_DEBUG( "Stor Server Config is not init\n");
+		delete it;
+		return true;
+	}
+
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return true;
+}
+inline bool ConfDB::SetStorServerConf(VidStorServerConf &pData)
+{
+	VSCConfStorServerKey sKey;
+
+	XGuard guard(m_cMutex);
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return true;
+}
 
 #if 0
 inline BOOL ConfDB::GetSystemConf(VSCConfData &pSys)

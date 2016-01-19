@@ -66,6 +66,19 @@ inline BOOL VGroupConfDataDefault(VSCVGroupData &pConf)
     return TRUE;
 }
 #endif
+
+inline void VSCClientConfDefault(VidClientConf &pData)
+{
+	SimpleCrypt crypt;
+	pData.set_nlang(VID_LANG_AUTO);
+	pData.set_bautologin(false);
+	/* Default passwd is admin */
+	QString strPass = "admin";
+	pData.set_stradminpasswd(crypt.encryptToString(strPass).toStdString());
+
+	return;
+}
+
 inline s32 ClientConfDB::Open(astring & pPath)
 {
     m_Options.create_if_missing = true;
@@ -120,6 +133,51 @@ inline BOOL ClientConfDB::SetCmnParam(astring &strKey, astring &strParam)
 	return TRUE;
 }
 
+inline   bool ClientConfDB::GetLicense(astring &strLicense)
+{
+	XGuard guard(m_cMutex);
+
+	VSCConfLicenseKey sLicKey;
+	
+
+	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue;
+
+	if (it->Valid())
+	{
+		sysValue = it->value();
+		strLicense = sysValue.ToString();
+	}
+	if (strLicense.length() < 10)
+	{
+		strLicense = "";
+	}
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return true;
+
+}
+inline   bool ClientConfDB::SetLicense(astring &strLicense)
+{
+	XGuard guard(m_cMutex);
+	
+	VSCConfLicenseKey sLic;
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice licKey((char *)&sLic, sizeof(sLic));
+	leveldb::Slice licValue(strLicense);
+	m_pDb->Put(writeOptions, licKey, licValue);
+	return true;
+    
+}
+
 inline bool ClientConfDB::FindStor(astring strStorId)
 {
 	XGuard guard(m_cMutex);
@@ -151,7 +209,7 @@ inline bool ClientConfDB::DeleteStor(astring strStorId)
 	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
 	{
 		const VidStor &stor = storList.cvidstor(i);
-		if (stor.strid() == strStorId)
+		if (stor.strid() != strStorId)
 		{
 			VidStor *pAddStor = storListNew.add_cvidstor();
 			*pAddStor = stor;
@@ -255,6 +313,62 @@ inline bool ClientConfDB::GetStorConf(astring strId, VidStor &pStor)
 	}
 
 	return false;
+}
+
+inline bool ClientConfDB::GetClientConf(VidClientConf &pData)
+{
+	VSCConfClientKey sKey;
+	
+	XGuard guard(m_cMutex);
+
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+
+	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
+
+	it->Seek(key);
+	leveldb::Slice sysValue("fake");
+	
+
+	if (it->status().IsNotFound() != true)
+	{
+	    sysValue = it->value();
+	}
+
+	if (pData.ParseFromString(sysValue.ToString()) == false)
+	{
+		VSCClientConfDefault(pData);
+		VDC_DEBUG( "Client Config is not init\n");
+		delete it;
+		return true;
+	}
+
+	// Check for any errors found during the scan
+	assert(it->status().ok());
+	delete it;
+
+	return true;
+}
+inline bool ClientConfDB::SetClientConf(VidClientConf &pData)
+{
+	VSCConfClientKey sKey;
+
+	XGuard guard(m_cMutex);
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return true;
 }
 
 

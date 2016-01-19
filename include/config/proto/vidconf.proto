@@ -21,6 +21,7 @@ message VidUserList {
 //Service Stor configure
 message VidStorServerConf {
 	int32 nOapiPort = 1;
+	string strAdminPasswd = 2;
 }
 
 //Camera config
@@ -81,6 +82,19 @@ message VidCameraList {
 	repeated VidCamera cVidCamera = 1;
 }
 
+message VidDisk {
+	string strId = 1;
+	string strPath = 2;
+	int64 nTotalSize = 3;
+	int64 nFreeSize = 4;
+	int64 nStorLimit = 5;
+	int64 nStorUsed = 6;
+}
+
+message VidDiskList {
+	repeated VidDisk cVidDisk = 1;
+}
+
 //Recording schedule?
 
 //HDFS config
@@ -99,9 +113,9 @@ message VidHDFSConf {
 
 //Language
 enum VidLanguage {
-	LANG_AUTO = 0;
-	EN = 1;
-	ZH_CN = 2;
+	VID_LANG_AUTO = 0;
+	VID_EN = 1;
+	VID_ZH_CN = 2;
 }
 
 enum VidLayout {
@@ -121,8 +135,6 @@ enum VidLayout {
     VID_LAYOUT_MODE_1p6 = 13;
 }
 
-
-
 message VidCameraId {
 	string strStorId = 1;//ID of the VidStor
 	string strCameraId = 2;
@@ -131,6 +143,8 @@ message VidCameraId {
 
 message VidClientConf {
 	VidLanguage nLang = 1;
+	string strAdminPasswd = 2;
+	bool bAutoLogin = 3;
 }
 
 //Video Storage

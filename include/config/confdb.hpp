@@ -12,6 +12,7 @@
 
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
+#include "simplecrypt.hpp"
 
 using namespace UtilityLib;
 using namespace XSDK;
@@ -57,6 +58,9 @@ public:
 
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
+
+	bool GetStorServerConf(VidStorServerConf &pData);
+	bool SetStorServerConf(VidStorServerConf &pData);
 
 #if 0
 
