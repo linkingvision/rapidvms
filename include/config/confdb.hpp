@@ -13,6 +13,7 @@
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
 #include "simplecrypt.hpp"
+#include "recordwrapper.hpp"
 
 using namespace UtilityLib;
 using namespace XSDK;
@@ -23,21 +24,17 @@ using namespace VidConf;
 class ConfDB
 {
 public:
-    ConfDB()
-    {
+	ConfDB()
+	{
 
-    }
-    ~ConfDB()
-    {
+	}
+	~ConfDB()
+	{
 
-    }
+	}
 
-    s32 Open(astring & pPath);
+	s32 Open(astring & pPath);
 public:
-#if 0
-	bool CameraRecordSet(astring strCameraId, bool bOn);
-	bool CameraHDFSRecordSet(astring strCameraId, bool bOn);
-#endif
 	bool CameraRecordTemplSet(astring strCameraId, astring strTempl);
 	bool FindCamera(astring strCameraId);
 	bool DeleteCamera(astring strCameraId);
@@ -61,6 +58,8 @@ public:
 
 	bool GetStorServerConf(VidStorServerConf &pData);
 	bool SetStorServerConf(VidStorServerConf &pData);
+public:
+	bool GetRecSched(astring strId, RecordSchedWeek &pSched);
 
 #if 0
 

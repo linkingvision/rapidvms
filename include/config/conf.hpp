@@ -31,6 +31,9 @@
 #define VSC_DEFAULT_SYSPATH  "ve/"
 #endif
 
+#define REC_SCHED_OFF "0e4adca1-a2d6-499c-84fc-68c450e46d8f"
+#define REC_SCHED_ALL_DAY "44241a90-8927-4907-a3d1-f32f29c2266e"
+#define REC_SCHED_WORK_DAY "2010e075-f937-461f-a1a0-be39b385e0a5"
 
 //------------------------------------------------------------------------------
 // Conf keys, for leveldb
