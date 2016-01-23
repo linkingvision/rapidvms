@@ -81,7 +81,7 @@ inline VidDiskList StorSyncInf::GetVidDiskList()
 	OAPIHeader header;
 
 	/* Send add cam command  */
-	pClient.SendDeviceListRequest();
+	pClient.SendDiskListRequest();
 
 	if (SyncRecv(header) == true 
 			&& header.cmd == OAPI_CMD_DISK_LIST_RSP)
@@ -116,7 +116,7 @@ inline VidDiskList StorSyncInf::GetSysVidDiskList()
 	OAPIHeader header;
 
 	/* Send add cam command  */
-	pClient.SendDeviceListRequest();
+	pClient.SendSysDiskListRequest();
 
 	if (SyncRecv(header) == true 
 			&& header.cmd == OAPI_CMD_SYS_DISK_LIST_RSP)
