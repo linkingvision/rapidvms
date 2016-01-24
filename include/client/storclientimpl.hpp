@@ -179,7 +179,7 @@ inline void StorClient::run()
 					
 					switch(header.cmd)
 					{
-						case OAPI_CMD_DEVICE_LIST_RSP:
+						case OAPI_CAM_LIST_RSP:
 						{
 							oapi::OAPICameraListRsp list;
 							pClient.ParseDeviceList(pRecv, header.length, list);
@@ -194,7 +194,7 @@ inline void StorClient::run()
 							
 							break;
 						}
-						case OAPI_CMD_LOGIN_RSP:
+						case OAPI_LOGIN_RSP:
 						{
 							oapi::LoginRsp rsp;
 							pClient.ParseLogin(pRecv, header.length, rsp);
@@ -211,7 +211,7 @@ inline void StorClient::run()
 							}
 							break;
 						}
-						case OAPI_CMD_FRAME_PUSH:
+						case OAPI_FRAME_PUSH:
 						{
 							//printf("Go a new frame %d\n", frameCnt++);
 							break;

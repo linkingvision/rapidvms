@@ -36,7 +36,7 @@ inline VidCameraList StorSyncInf::GetVidCameraList()
 	pClient.SendDeviceListRequest();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_DEVICE_LIST_RSP)
+			&& header.cmd == OAPI_CAM_LIST_RSP)
 	{
 		oapi::OAPICameraListRsp list;
 		pClient.ParseDeviceList(m_pRecv, header.length, list);
@@ -84,7 +84,7 @@ inline VidDiskList StorSyncInf::GetVidDiskList()
 	pClient.SendDiskListRequest();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_DISK_LIST_RSP)
+			&& header.cmd == OAPI_DISK_LIST_RSP)
 	{
 		oapi::OAPIDiskListRsp list;
 		VidDiskList diskList;
@@ -119,7 +119,7 @@ inline VidDiskList StorSyncInf::GetSysVidDiskList()
 	pClient.SendSysDiskListRequest();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_SYS_DISK_LIST_RSP)
+			&& header.cmd == OAPI_SYS_DISK_LIST_RSP)
 	{
 		oapi::OAPISysDiskListRsp list;
 		VidDiskList diskList;
@@ -153,7 +153,7 @@ inline bool StorSyncInf::AddVidDisk(VidDisk &pDisk)
 	pClient.AddDisk(sDisk);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_ADD_DISK_RSP)
+			&& header.cmd == OAPI_ADD_DISK_RSP)
 	{
 		return true;
 	}
@@ -174,7 +174,7 @@ inline bool StorSyncInf::DeleteVidDisk(astring strId)
 	pClient.DelDisk(strId);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_DEL_DISK_RSP)
+			&& header.cmd == OAPI_DEL_DISK_RSP)
 	{
 		return true;
 	}
@@ -197,7 +197,7 @@ inline bool StorSyncInf::UpdateVidDiskLimit(astring strId, s64 nLimit)
 	pClient.UpdateDiskLimit(strId, nLimit);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_UPDATE_DISK_LIMIT_RSP)
+			&& header.cmd == OAPI_UPDATE_DISK_LIMIT_RSP)
 	{
 		return true;
 	}
@@ -219,7 +219,7 @@ inline bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPas
 	pClient.ConfAdminPasswd(strOldPasswd, strNewPasswd);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_CONF_ADMIN_RSP)
+			&& header.cmd == OAPI_CONF_ADMIN_RSP)
 	{
 		return true;
 	}
@@ -243,7 +243,7 @@ inline bool StorSyncInf::GetLic(astring &pLic, astring &strHostId,
 	pClient.GetLic();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_GET_LIC_RSP)
+			&& header.cmd == OAPI_GET_LIC_RSP)
 	{
 
 		pClient.ParseLic(m_pRecv, header.length, pLic, strHostId, ch, type, expireTime);
@@ -270,7 +270,7 @@ inline bool StorSyncInf::GetVer(astring &pVer, astring &strInfo)
 	pClient.GetVer();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_GET_VER_RSP)
+			&& header.cmd == OAPI_GET_VER_RSP)
 	{
 
 		pClient.ParseVer(m_pRecv, header.length, pVer, strInfo);
@@ -295,7 +295,7 @@ inline bool StorSyncInf::ConfLic(astring &pLic)
 	pClient.ConfLic(pLic);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_CONF_LIC_RSP)
+			&& header.cmd == OAPI_CONF_LIC_RSP)
 	{
 		return true;
 	}
@@ -320,7 +320,7 @@ inline bool StorSyncInf::AddCam(VidCamera &pParam)
 	pClient.AddCam(sCam);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_ADD_DEVICE_RSP)
+			&& header.cmd == OAPI_ADD_CAM_RSP)
 	{
 		return true;
 	}
@@ -343,7 +343,7 @@ inline bool StorSyncInf::DeleteCam(astring strId)
 	pClient.DeleteCam(strId);
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_DEL_DEVICE_RSP)
+			&& header.cmd == OAPI_DEL_CAM_RSP)
 	{
 		return true;
 	}
@@ -367,7 +367,7 @@ inline bool StorSyncInf::CamSearchStart()
 	pClient.CamSearchStart();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_CAM_SEARCH_START_RSP)
+			&& header.cmd == OAPI_CAM_SEARCH_START_RSP)
 	{
 		return true;
 	}
@@ -390,7 +390,7 @@ inline bool StorSyncInf::CamSearchStop()
 	pClient.CamSearchStop();
 
 	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CMD_CAM_SEARCH_STOP_RSP)
+			&& header.cmd == OAPI_CAM_SEARCH_STOP_RSP)
 	{
 		return true;
 	}
@@ -506,7 +506,7 @@ inline bool StorSyncInf::Connect()
 				
 				switch(header.cmd)
 				{
-					case OAPI_CMD_LOGIN_RSP:
+					case OAPI_LOGIN_RSP:
 					{
 						oapi::LoginRsp rsp;
 						pClient.ParseLogin(m_pRecv, header.length, rsp);

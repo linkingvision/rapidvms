@@ -130,7 +130,7 @@ inline void StorStream::run()
 					
 					switch(header.cmd)
 					{
-						case OAPI_CMD_LOGIN_RSP:
+						case OAPI_LOGIN_RSP:
 						{
 							oapi::LoginRsp rsp;
 							pClient.ParseLogin(pRecv, header.length, rsp);
@@ -146,7 +146,7 @@ inline void StorStream::run()
 							}
 							break;
 						}
-						case OAPI_CMD_FRAME_PUSH:
+						case OAPI_FRAME_PUSH:
 						{
 							//printf("Go a new frame %d\n", frameCnt++);
 							VideoFrameHeader * frameHeader = (VideoFrameHeader *)pRecv;
