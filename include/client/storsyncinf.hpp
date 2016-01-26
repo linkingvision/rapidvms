@@ -33,6 +33,7 @@ public:
 public:
 	bool Connect();
 	VidCameraList GetVidCameraList();
+	bool StorSyncInf::GetVidCamera(astring strId, VidCamera &pCam);
 	VidDiskList GetVidDiskList();
 	VidDiskList GetSysVidDiskList();
 	bool AddVidDisk(VidDisk &pDisk);
@@ -44,6 +45,7 @@ public:
 	bool GetVer(astring &pVer, astring &strInfo);
 	bool ConfLic(astring &pLic);
 	bool AddCam(VidCamera &pParam);
+	bool SetCamSched(VidCamera &pParam);
 	bool DeleteCam(astring strId);
 	/* Cam Search */
 	bool CamSearchStart();

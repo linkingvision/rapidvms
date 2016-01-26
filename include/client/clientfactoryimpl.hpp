@@ -187,6 +187,7 @@ inline bool ClientFactory::AuthUser(astring &strUser, astring &strPasswd)
 		VidClientConf  cData;
 		m_Conf.GetClientConf(cData);
 		SimpleCrypt crypt;
+		astring strDummy = cData.stradminpasswd().c_str();
 		QString strDePasswd = cData.stradminpasswd().c_str();
 		if (crypt.decryptToString(strDePasswd).toStdString() == strPasswd)
 		{

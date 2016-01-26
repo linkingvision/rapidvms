@@ -47,6 +47,35 @@ inline VidCameraList StorSyncInf::GetVidCameraList()
 	
 }
 
+inline bool StorSyncInf::GetVidCamera(astring strId, VidCamera &pCam)
+{
+
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send add cam command  */
+	pClient.GetCam(strId);
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_GET_CAM_RSP)
+	{
+		oapi::OAPICameraGetRsp cam;
+		pClient.ParseGetCam(m_pRecv, header.length, cam);
+		OAPIConverter::Converter(cam.cam, pCam);
+		return true;
+	}
+
+	return false;
+	
+}
+
 inline VidCameraList StorSyncInf::UpdateVidCameraList(oapi::OAPICameraListRsp list)
 {
 	
@@ -321,6 +350,31 @@ inline bool StorSyncInf::AddCam(VidCamera &pParam)
 
 	if (SyncRecv(header) == true 
 			&& header.cmd == OAPI_ADD_CAM_RSP)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+inline bool StorSyncInf::SetCamSched(VidCamera &pParam)
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	oapi::OAPICameraUpdateSchedReq sCam;
+	OAPIConverter::Converter(pParam, sCam.cam);
+
+	XGuard guard(m_cMutex);
+	/* Send add cam command  */
+	pClient.SetCamSched(sCam);
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_SET_CAM_SCHED_RSP)
 	{
 		return true;
 	}
