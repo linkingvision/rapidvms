@@ -1,25 +1,18 @@
-# We are spliting OpenCVR to StorServer(server) and OpenCVR(client) in 2.0 version !!! #
-# First 2.0 version maybe ready Jan of 2016 #
-# Current master code maybe can not be build #
-# OpenCVR #
-#### open source ONVIF Video Recorder ####
+# OpenCVR include OpenCVRStor(server) and OpenCVRClient(client) #
 
 # Wiki #
 [https://github.com/xsmart/opencvr/wiki](https://github.com/xsmart/opencvr/wiki)
 
 ----------
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/arch/arch.png)
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrclient.png)
 
-![](https://github.com/xsmart/ve-img/raw/master/snapshot/20141203.png)
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/configure.png)
 
-![](https://github.com/xsmart/ve-img/raw/master/snapshot/android/opencvv.jpg)
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstoradd.png)
 
-![](https://github.com/xsmart/ve-img/raw/master/snapshot/20150212.jpg)
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstor.png)
 
 
-![](https://github.com/xsmart/ve-img/raw/master/snapshot/remote%20OpenCVR.jpg)
-
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/snapshot/emap.jpg)
 #### Release Version ####
 [https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
 
