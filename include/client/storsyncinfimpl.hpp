@@ -454,7 +454,25 @@ inline bool StorSyncInf::CamSearchStop()
 inline bool StorSyncInf::CamSearchGet(astring &strIP, astring &strPort, astring &strModel, 
 				astring &strOnvifAddr)
 {
+	XGuard guard(m_cMutex);
+
+	/* Send del cam command */
+	OAPIClient pClient(m_pSocket);
+	
 	OAPIHeader header;
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_CAM_SAERCH_PUSH)
+	{	
+		oapi::OAPICamSearchedNotify pCam;
+		pClient.ParseSearchNotify(m_pRecv, header.length, pCam);
+		strIP = pCam.strIP;
+		strPort = pCam.strPort;
+		strModel = pCam.strModel;
+		strOnvifAddr = pCam.strONVIFAddress;
+		return true;
+	}
+
+	return false;
 }
 
 inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
@@ -500,6 +518,12 @@ inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 	}
 	m_bConnected = false;
 	return false;
+}
+
+inline void StorSyncInf::SetRecvTimeout(int nTimeoutMillis)
+{
+	m_pSocket->SetRecvTimeout(nTimeoutMillis);
+	m_nTimeoutMillis = nTimeoutMillis;
 }
 
 inline bool StorSyncInf::Connect()

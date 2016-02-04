@@ -49,6 +49,7 @@ public:
 public:
 	bool AddCam(astring strStorId, VidCamera &pParam);
 	bool DeleteCam(astring strStorId, astring strId);
+	bool PtzCmd(astring strStorId, astring strId, u32 action, double param);
 	
 public:
 	BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);
@@ -58,6 +59,7 @@ public:
 public:
 	VidCameraList GetVidCameraList(astring strStor);
 	StorClientOnlineMap GetVidCameraOnlineList(astring strStor);
+	StorClientRecMap GetVidCameraRecList(astring strStor);
 	bool GetOnline(astring strStor);
 #if 0
 public:

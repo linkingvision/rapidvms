@@ -32,8 +32,9 @@ public:
 
 public:
 	bool Connect();
+	void SetRecvTimeout(int nTimeoutMillis);
 	VidCameraList GetVidCameraList();
-	bool StorSyncInf::GetVidCamera(astring strId, VidCamera &pCam);
+	bool GetVidCamera(astring strId, VidCamera &pCam);
 	VidDiskList GetVidDiskList();
 	VidDiskList GetSysVidDiskList();
 	bool AddVidDisk(VidDisk &pDisk);

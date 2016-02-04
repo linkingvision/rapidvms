@@ -7,6 +7,7 @@ inline StorStream::StorStream(VidStor &stor, astring strId, unsigned int nStream
 m_Quit(false), m_pSocket(new XSocket), m_stor(stor)
 {
 	m_play.Init(FALSE, " ", " ", " ");
+	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 inline StorStream::~StorStream()
 {

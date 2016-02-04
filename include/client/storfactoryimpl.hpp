@@ -143,6 +143,16 @@ inline bool StorFactory::AddCam(astring strStorId, VidCamera &pParam)
 	}
 	return false;
 }
+
+inline bool StorFactory::PtzCmd(astring strStorId, astring strId, u32 action, double param)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->PtzCmd(strId, action, param);
+	}
+	return false;
+}
+
 inline bool StorFactory::DeleteCam(astring strStorId, astring strId)
 {
 	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
@@ -159,6 +169,18 @@ inline StorClientOnlineMap StorFactory::GetVidCameraOnlineList(astring strStor)
 	if (m_pConf.FindStor(strStor) && m_StorClientMap[strStor])
 	{
 		return m_StorClientMap[strStor]->GetVidCameraOnlineList();
+	}
+
+	return empty;
+}
+
+inline StorClientRecMap StorFactory::GetVidCameraRecList(astring strStor)
+{
+	StorClientOnlineMap empty;
+
+	if (m_pConf.FindStor(strStor) && m_StorClientMap[strStor])
+	{
+		return m_StorClientMap[strStor]->GetVidCameraRecList();
 	}
 
 	return empty;
