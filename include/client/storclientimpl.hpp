@@ -39,6 +39,18 @@ inline StorClientOnlineMap StorClient::GetVidCameraOnlineList()
 	return m_CamOnlineList;
 }
 
+inline StorClientRecMap StorClient::GetVidCameraRecList()
+{
+	if (m_bOnline == false)
+	{
+		StorClientRecMap empty;
+		return empty;
+	}
+
+	XGuard guard(m_cMutex);
+	return m_CamRecList;
+}
+
 inline VidCameraList StorClient::GetVidCameraList()
 {
 	if (m_bOnline == false)
@@ -66,6 +78,7 @@ inline void StorClient::UpdateVidCameraList(oapi::OAPICameraListRsp list)
 		VidCamera *pCam = m_cCamList.add_cvidcamera();
 		OAPIConverter::Converter(*it, *pCam);
 		m_CamOnlineList[(*it).strId] = (*it).bOnline;
+		m_CamRecList[(*it).strId] = (*it).bRec;
 	}
 
 	return;
@@ -103,6 +116,22 @@ inline bool StorClient::DeleteCam(astring strId)
 	return pClient.DeleteCam(strId);
 }
 
+inline bool StorClient::PtzCmd(astring strId, u32 action, double param)
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	XGuard guard(m_cMutex);
+
+	/* Send del cam command */
+	OAPIClient pClient(m_pSocket);
+
+	/* Send add cam command  */
+	return pClient.PtzCmd(strId, action, param);
+}
+
 inline bool StorClient::GetOnline()
 {
 	return m_bOnline;
@@ -126,6 +155,12 @@ inline void StorClient::run()
 		ve_sleep(500);
 		guard.Acquire();
 		m_bOnline = false;
+		StorFactoryChangeData data;
+		data.cId.set_strstorid(m_stor.strid());
+		data.type = STOR_FACTORY_STOR_OFFLINE;
+		guard.Release();
+		m_pNotify.CallChange(data);
+		guard.Acquire();
 		
 		try
 		{
@@ -275,7 +310,6 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							//pClient.SendDeviceListRequest();
 							break;
 						}
 						case OAPI_NOTIFY_DEVICE_REC_ON:
@@ -290,7 +324,7 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							//pClient.SendDeviceListRequest();
+							VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_ON \n");
 							break;
 						}
 						case OAPI_NOTIFY_DEVICE_REC_OFF:
@@ -306,6 +340,7 @@ inline void StorClient::run()
 							m_pNotify.CallChange(data);
 							guard.Acquire();
 							//pClient.SendDeviceListRequest();
+							VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_OFF \n");
 							break;
 						}
 						default:
