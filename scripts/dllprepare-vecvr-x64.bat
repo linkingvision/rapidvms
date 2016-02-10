@@ -1,6 +1,6 @@
 REM ============================================VECVR
 REM =============================
-set QT_WIN64=C:\Qt\Qt5.5.1\5.5\msvc2013-x64\
+set QT_WIN64=C:\Qt\Qt5.5.1-64\5.5\msvc2013_64\
 REM x64 Debug
 xcopy /y /e 3rdparty\ffmpeg-win\ffmpeg-x64\bin  vecvr\prj_win32\x64\Debug
 
@@ -48,6 +48,7 @@ xcopy /y /e %QT_WIN64%\plugins\platforms\*.dll  vecvr\prj_win32\x64\Release\plat
 REM Only copy to Release version
 xcopy /y /e %QT_WIN64%\bin\*.dll  vecvr\prj_win32\x64\Release\
 
+
 del  vecvr\prj_win32\x64\Release\*d.dll /f /s /q
 del  vecvr\prj_win32\x64\Release\*Web*.dll /f /s /q
 del  vecvr\prj_win32\x64\Release\*Test.dll /f /s /q
@@ -57,6 +58,10 @@ del  vecvr\prj_win32\x64\Release\*DBus*.dll /f /s /q
 del  vecvr\prj_win32\x64\Release\*Designer*.dll /f /s /q
 del  vecvr\prj_win32\x64\Release\*Nfc*.dll /f /s /q
 del  vecvr\prj_win32\x64\Release\*Qml*.dll /f /s /q
+
+xcopy /y /e velib\lib\x64\Release\cover64.dll  vecvr\prj_win32\x64\Release
+xcopy /y /e velib\lib\x64\Debug\cover64.dll  vecvr\prj_win32\x64\Debug
+xcopy /y /e output\windows\vs2013\x64\*.dll  vecvr\prj_win32\x64\Release\
 
 
 REM =============================

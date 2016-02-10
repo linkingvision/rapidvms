@@ -35,7 +35,7 @@ xcopy /y /e 3rdparty\poco\bin\PocoZip.dll  client\prj_win32\Win32\Release
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  client\prj_win32\Win32\Release
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  client\prj_win32\Win32\Release
 
-xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  client\prj_win32\Win32\Release
+REM xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  client\prj_win32\Win32\Release
 
 REM QT_WIN32
 xcopy /y /e %QT_WIN32%\plugins\imageformats\*.dll  client\prj_win32\Win32\Debug\imageformats\
@@ -60,6 +60,8 @@ del  client\prj_win32\Win32\Release\*Qml*.dll /f /s /q
 
 xcopy /y /e velib\lib\win32\Release\cover.dll  client\prj_win32\Win32\Release
 xcopy /y /e velib\lib\win32\Debug\cover.dll  client\prj_win32\Win32\Debug
+
+xcopy /y /e output\windows\vs2013\x86\*.dll  client\prj_win32\Win32\Release
 
 REM x64
 
