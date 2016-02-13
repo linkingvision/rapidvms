@@ -146,16 +146,45 @@ void VSCVidItemVidStor::CameraOffline(astring strId)
 }
 void VSCVidItemVidStor::CameraRecOn(astring strId)
 {
+	int cnt = this->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = this->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem && pItem->GetId() == strId)
+		{
+			/* already in the list */
+			pItem->UpdateRec(true);
+		}
+	}
 }
 void VSCVidItemVidStor::CameraRecOff(astring strId)
 {
+	int cnt = this->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = this->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem && pItem->GetId() == strId)
+		{
+			/* already in the list */
+			pItem->UpdateRec(false);
+		}
+	}
 }
 
-void VSCVidItemVidStor::TreeUpdated()
+void VSCVidItemVidStor::TreeUpdated(bool bClear)
 {
 	qDeleteAll(takeChildren());
+	if (bClear == true)
+	{
+		return;
+	}
 	VidCameraList cCamList = m_pFactory.GetStorFactory().GetVidCameraList(m_cStor.strid());
 	StorClientOnlineMap bOnline = m_pFactory.GetStorFactory().GetVidCameraOnlineList(m_cStor.strid());
+	StorClientRecMap bRec = m_pFactory.GetStorFactory().GetVidCameraRecList(m_cStor.strid());
 
 	int camSize = cCamList.cvidcamera_size();
 	
@@ -168,6 +197,7 @@ void VSCVidItemVidStor::TreeUpdated()
 		if (it != ite)
 		{
 			pItemCam->UpdateOnline(bOnline[pCam.strid()]);
+			pItemCam->UpdateRec(bRec[pCam.strid()]);
 		}
 	}
 
@@ -176,6 +206,7 @@ void VSCVidItemVidStor::TreeUpdated()
 void VSCVidItemVidStor::VidFilter(astring strFilter)
 {
 	int cnt = childCount();
+	setExpanded(true);
 
 	for (int i = 0; i < cnt; i ++)
 	{
@@ -184,7 +215,6 @@ void VSCVidItemVidStor::VidFilter(astring strFilter)
 		if (pItem)
 		{
 			pItem->VidFilter(strFilter);
-			return;
 		}
 	}
 }

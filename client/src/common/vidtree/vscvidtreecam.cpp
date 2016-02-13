@@ -9,10 +9,19 @@
 
 
 VSCVidTreeCam::VSCVidTreeCam(ClientFactory &pFactory, QWidget *parent)
-: VSCVidTreeInf(pFactory, parent)
-{
-	m_pRoot = new  QTreeWidgetItem((QTreeWidgetItem *)this);
+: VSCVidTreeInf(pFactory, parent), m_pRoot(NULL), m_bInit(false)
+{	
+
 	
+}
+
+void VSCVidTreeCam::Init()
+{
+	if (m_bInit == true)
+	{
+		return;
+	}
+	m_pRoot = new  QTreeWidgetItem(this);
 	QIcon icon1;
 	icon1.addFile(QStringLiteral(":/device/resources/camera.png"), QSize(), QIcon::Normal, QIcon::Off);
 	
@@ -28,8 +37,9 @@ VSCVidTreeCam::VSCVidTreeCam(ClientFactory &pFactory, QWidget *parent)
 	
 	/* Register the device callback */
 	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeCam::CallChange);
-	
+	m_bInit = true;
 }
+
 VSCVidTreeCam::~VSCVidTreeCam()
 {
 	//TODO UnReg change Notify
@@ -59,8 +69,11 @@ void VSCVidTreeCam::mousePressEvent(QMouseEvent *event)
 					pCam->GetId(), pCam->GetName());
 
 				// Create drag
-				QPixmap pixmap(":/device/resources/camera1.png");
-				QPainter painter(&pixmap);
+				QPixmap pixmap(":/action/resources/buttonhover.png");
+				//QPainter painter(&pixmap);
+
+				//mimeData->setText(pStor->GetName().c_str());
+				//this->setCursor(QCursor(Qt::ClosedHandCursor));
 
 				QDrag *drag = new QDrag(this);
 				drag->setMimeData(mimeData);
@@ -160,6 +173,7 @@ void VSCVidTreeCam::TreeUpdate()
 {
 	/* Delete all the child */
 	qDeleteAll(m_pRoot->takeChildren());
+
 	VidStorList storList;
 	m_pFactory.GetConfDB().GetStorListConf(storList);
 	int storSize = storList.cvidstor_size();
@@ -221,7 +235,7 @@ void VSCVidTreeCam::StorOnline(VidCameraId cId, bool bOnline)
 		if (pItem && pItem->GetId() == cId.strstorid())
 		{
 			pItem->UpdateOnline(bOnline);
-			pItem->TreeUpdated();
+			pItem->TreeUpdated(!bOnline);
 			return;
 		}
 	}
@@ -230,6 +244,7 @@ void VSCVidTreeCam::StorOnline(VidCameraId cId, bool bOnline)
 void VSCVidTreeCam::VidFilter(astring strFilter)
 {
 	int cnt = m_pRoot->childCount();
+	m_pRoot->setExpanded(true);
 
 	for (int i = 0; i < cnt; i ++)
 	{
@@ -238,7 +253,6 @@ void VSCVidTreeCam::VidFilter(astring strFilter)
 		if (pItem)
 		{
 			pItem->VidFilter(strFilter);
-			return;
 		}
 	}
 }

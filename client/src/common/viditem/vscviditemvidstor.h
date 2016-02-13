@@ -15,7 +15,7 @@ public:
 	bool CallChange1(StorFactoryChangeData data);
 public:
 	/* Get all the child of this VidStor */
-	void TreeUpdated();
+	void TreeUpdated(bool bClear = false);
 	void CameraAdd(VidCamera cCam);
 	void CameraDelete(astring strId);
 	void CameraOnline(astring strId);

@@ -18,6 +18,8 @@ VSCVidItemCam::~VSCVidItemCam()
 
 void VSCVidItemCam::VidFilter(astring strFilter)
 {
+	VDC_DEBUG( "%s %d Filter %s name %s\n",__FUNCTION__, __LINE__, 
+		strFilter.c_str(), m_cCam.strname().c_str());
 	if (strFilter.size() == 0)
 	{
 		setHidden(false);
