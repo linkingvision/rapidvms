@@ -1,5 +1,3 @@
-argtable 2-13
 curl 7.43.0
-jsoncpp master
 openssl 1.0.1p
-libmicrohttpd 0.9.42
+protobuf protobuf-3.0.0-beta-1-bzl-fix
