@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <QTDIR>C:\Qt\Qt5.5.1\5.5\msvc2013</QTDIR>
-    <LocalDebuggerCommand>$(OutDir)\OpenCVR.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>$(OutDir)\OpenCVRClient.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QTDIR>C:\Qt\Qt5.4.2-x64\5.4\msvc2013_64</QTDIR>
-    <LocalDebuggerCommand>$(OutDir)\OpenCVR x64.exe</LocalDebuggerCommand>
+    <QTDIR>C:\Qt\Qt5.5.1-64\5.5\msvc2013_64</QTDIR>
+    <LocalDebuggerCommand>$(OutDir)\OpenCVRClient64.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
     <LocalDebuggerCommandArguments>
@@ -16,13 +16,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <QTDIR>C:\Qt\Qt5.5.1\5.5\msvc2013</QTDIR>
-    <LocalDebuggerCommand>$(OutDir)\OpenCVR.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>$(OutDir)\OpenCVRClient.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QTDIR>C:\Qt\Qt5.4.2-x64\5.4\msvc2013_64</QTDIR>
-    <LocalDebuggerCommand>$(OutDir)\OpenCVR x64.exe</LocalDebuggerCommand>
+    <QTDIR>C:\Qt\Qt5.5.1-64\5.5\msvc2013_64</QTDIR>
+    <LocalDebuggerCommand>$(OutDir)\OpenCVRClient64.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>

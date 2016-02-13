@@ -62,6 +62,27 @@
     <Filter Include="src\common\vidtree">
       <UniqueIdentifier>{9d6a84c8-6f27-42d6-8529-c1ba2c78e759}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\config\viditem">
+      <UniqueIdentifier>{94531e73-aab8-4d04-808b-7fa68731dcfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\vidstor">
+      <UniqueIdentifier>{61d026e1-16ee-4e34-8fd4-f542f086ea4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\vidstorconf">
+      <UniqueIdentifier>{ed72cc8f-f402-4d16-bead-1ee57fdb5a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\clientsetting">
+      <UniqueIdentifier>{27678c33-e916-44cb-974e-54caf65bebb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\vidstor\storsetting">
+      <UniqueIdentifier>{87390c7e-83e5-46c1-8ca1-143798dde4ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\vidstor\disksetting">
+      <UniqueIdentifier>{0f1935d4-a005-4884-8bcf-deba58108424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config\vidstor\camsetting">
+      <UniqueIdentifier>{c306bffe-8724-4d72-8241-4fde1f201e79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="veclient.rc" />
@@ -151,9 +172,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
-      <Filter>include\config</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -213,6 +231,219 @@
     </ClCompile>
     <ClCompile Include="..\src\common\viditem\vscviditemvidstor.cpp">
       <Filter>src\common\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vscvidtreeconf.cpp">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidtreeconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidtreeconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemaddstor.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\vidstoradd.cpp">
+      <Filter>src\config\vidstor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vidstoradd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vidstoradd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemaddcam.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemcamconf.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemstorconf.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\vidcamadd.cpp">
+      <Filter>src\config\vidstor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vidcamadd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vidcamadd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storsyncinf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storsyncinf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vsclogin.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclogin.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclogin.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscuserstatus.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscuserstatus.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscuserstatus.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidclientsetting.cpp">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vidclientsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vidclientsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\clientsetting\vscversion.cpp">
+      <Filter>src\config\clientsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscversion.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscversion.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\vidstorsetting.cpp">
+      <Filter>src\config\vidstor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vidstorsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vidstorsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemclientconf.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\viditem\vscviditemdiskconf.cpp">
+      <Filter>src\config\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\switchbutton.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_switchbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_switchbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\clientsetting\vsclanguage.cpp">
+      <Filter>src\config\clientsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclanguage.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclanguage.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\clientsetting\vsclicense.cpp">
+      <Filter>src\config\clientsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsclicense.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsclicense.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\clientsetting\vscuser.cpp">
+      <Filter>src\config\clientsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscuser.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscuser.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\storsetting\vscstorversion.cpp">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscstorversion.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscstorversion.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\storsetting\vscstorlicense.cpp">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscstorlicense.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscstorlicense.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\storsetting\vscstoruser.cpp">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscstoruser.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscstoruser.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\disksetting\vschddedit.cpp">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschddedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschddedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\disksetting\vschddoneedit.cpp">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschddoneedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschddoneedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vsccaminfo.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsccaminfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsccaminfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vsccamrec.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsccamrec.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsccamrec.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\vidcamsetting.cpp">
+      <Filter>src\config\vidstor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vidcamsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vidcamsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +506,126 @@
     </CustomBuild>
     <CustomBuild Include="..\src\common\vidtree\vscvidtreecam.h">
       <Filter>src\common\vidtree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vscvidtreeconf.h">
+      <Filter>src\config</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidstoradd.h">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidstoradd.ui">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidcamadd.h">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidcamadd.ui">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storsyncinf.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\oapi\oapis.hpp">
+      <Filter>include\oapi</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsclogin.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsclogin.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscuserstatus.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscuserstatus.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidclientsetting.h">
+      <Filter>src\config</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidclientsetting.ui">
+      <Filter>src\config</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vscversion.h">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vscversion.ui">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidstorsetting.h">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidstorsetting.ui">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\switchbutton.h">
+      <Filter>src\common</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vsclanguage.h">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vsclanguage.ui">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vsclicense.h">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vsclicense.ui">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vscuser.h">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\clientsetting\vscuser.ui">
+      <Filter>src\config\clientsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstorversion.h">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstorversion.ui">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstorlicense.h">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstorlicense.ui">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstoruser.h">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\storsetting\vscstoruser.ui">
+      <Filter>src\config\vidstor\storsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\disksetting\vschddedit.h">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\disksetting\vschddedit.ui">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\disksetting\vschddoneedit.h">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\disksetting\vschddoneedit.ui">
+      <Filter>src\config\vidstor\disksetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vsccaminfo.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vsccaminfo.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vsccamrec.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vsccamrec.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidcamsetting.h">
+      <Filter>src\config\vidstor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\vidcamsetting.ui">
+      <Filter>src\config\vidstor</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -556,9 +907,6 @@
     <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
       <Filter>include\oapi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapis.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
       <Filter>include\oapi</Filter>
     </ClInclude>
@@ -570,6 +918,81 @@
     </ClInclude>
     <ClInclude Include="..\src\common\viditem\vscviditemvidstor.h">
       <Filter>src\common\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemaddstor.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vidstoradd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemaddcam.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemcamconf.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemstorconf.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vidcamadd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storsyncinfimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclogin.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscuserstatus.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vidclientsetting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscversion.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vidstorsetting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemclientconf.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\config\viditem\vscviditemdiskconf.h">
+      <Filter>src\config\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclanguage.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsclicense.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscuser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscstorversion.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscstorlicense.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscstoruser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschddedit.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschddoneedit.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsccaminfo.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsccamrec.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vidcamsetting.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
