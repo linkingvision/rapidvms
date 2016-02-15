@@ -20,6 +20,7 @@ public:
 	
 public:
 	virtual void VidFilter(astring strFilter){}
+	virtual void Init(){}
 	
 protected:
 	ClientFactory &m_pFactory;

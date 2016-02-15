@@ -18,6 +18,7 @@ public:
 	~VSCVidItemInf();
 public:
 	void UpdateOnline(bool bOnline);
+	void UpdateRec(bool bRec);
 public:
 	virtual astring GetId(){return __FUNCTION__;}
 	virtual astring GetName(){return __FUNCTION__;}
@@ -25,6 +26,8 @@ public:
 
 protected:
 	ClientFactory &m_pFactory;
+	bool m_bOnline;
+	bool m_bRec;
 
 };
 

@@ -19,6 +19,7 @@ VSCUser::VSCUser(ClientFactory &pFactory, QWidget *parent)
 
 void VSCUser::applyConfig()
 {
+	astring strCurUser = "admin";
 	astring strCurPasswd;
 	astring strPasswd;
 	astring strPasswd2;
@@ -30,13 +31,16 @@ void VSCUser::applyConfig()
 	strPasswd = ui.newPasswd->text().toStdString();
 	strPasswd2 = ui.repeatPasswd->text().toStdString();
 
-	if (strCurPasswd == oldPasswd)
+	if (m_pFactory.AuthUser(strCurUser, strCurPasswd) == true
+		&& strPasswd == strPasswd2)
 	{
 		m_pFactory.SetAutoLogin(ui.autoLogin->isChecked());
 
 		VSCLoading *loading = new VSCLoading(this);
 		loading->Processing(3);
-		m_pFactory.SetAdminPasswd(strPasswd);
+		SimpleCrypt crypt;
+		QString strPassCrypt = strPasswd.c_str();
+		m_pFactory.SetAdminPasswd(crypt.encryptToString(strPassCrypt).toStdString());
 		
 		delete loading;
 		return;

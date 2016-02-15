@@ -19,6 +19,7 @@ public:
 	
 public:
 	virtual void VidFilter(astring strFilter);
+	virtual void Init();
 public:
 	/* Take care all the vid Stor state change */
 	static bool CallChange(void* pParam, StorFactoryChangeData data);
@@ -31,6 +32,7 @@ public:
 	void StorOnline(VidCameraId cId, bool bOnline);
 private:
 	QTreeWidgetItem * m_pRoot;
+	bool m_bInit;
 };
 
 #endif
