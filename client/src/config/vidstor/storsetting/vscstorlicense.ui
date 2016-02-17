@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VSCLicense</class>
- <widget class="QWidget" name="VSCLicense">
+ <class>VSCStorLicense</class>
+ <widget class="QWidget" name="VSCStorLicense">
   <property name="geometry">
    <rect>
     <x>0</x>

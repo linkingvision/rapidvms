@@ -235,7 +235,7 @@ QPushButton:pressed {
   </layout>
  </widget>
  <resources>
-  <include location="../main/vscmainwindows.qrc"/>
+  <include location="../../../main/vscmainwindows.qrc"/>
  </resources>
  <connections/>
 </ui>

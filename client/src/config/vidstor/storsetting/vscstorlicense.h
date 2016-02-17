@@ -1,19 +1,20 @@
-#ifndef VSC_LICENSE_H
-#define VSC_LICENSE_H
+#ifndef VSC_STOR_LICENSE_H
+#define VSC_STOR_LICENSE_H
 
 #include <QWidget>
-#include "ui_vsclicense.h"
+#include "ui_vscstorlicense.h"
 #include "utility.hpp"
 #include <QTimer>
+#include "client/clientfactory.hpp"
 
 
-class VSCLicense : public QWidget
+class VSCStorLicense : public QWidget
 {
     Q_OBJECT
 
 public:
-    VSCLicense(QWidget *parent = 0);
-    ~VSCLicense(){}
+    VSCStorLicense(ClientFactory &pFactory, VidStor &stor, QWidget *parent = 0);
+    ~VSCStorLicense(){}
 public:
 	void UpdateUI();
 
@@ -21,9 +22,11 @@ public slots:
   void applyConfig();
 	
 public:
-    Ui::VSCLicense ui;
+    Ui::VSCStorLicense ui;
 	
 private:
+	ClientFactory &m_pFactory;
+	VidStor m_pStor;
 
     
 };
