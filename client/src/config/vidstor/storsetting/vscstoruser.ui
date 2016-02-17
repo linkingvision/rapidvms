@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VSCUser</class>
- <widget class="QWidget" name="VSCUser">
+ <class>VSCStorUser</class>
+ <widget class="QWidget" name="VSCStorUser">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -36,13 +36,6 @@
        </property>
        <property name="readOnly">
         <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Auto login</string>
        </property>
       </widget>
      </item>
@@ -113,29 +106,6 @@
        </property>
        <property name="readOnly">
         <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="SwitchButton" name="autoLogin">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="../main/vscmainwindows.qrc">
-         <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>80</width>
-         <height>25</height>
-        </size>
        </property>
       </widget>
      </item>
@@ -258,15 +228,8 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>SwitchButton</class>
-   <extends>QPushButton</extends>
-   <header>switchbutton.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
-  <include location="../main/vscmainwindows.qrc"/>
+  <include location="../../../main/vscmainwindows.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,68 +1,52 @@
 #include <QMessageBox>
-#include "vscuser.h"
-#include "hdddevice.hpp"
+#include "config/vidstor/storsetting/vscstoruser.h"
 #include "debug.hpp"
-#include "vschddone.h"
-#include "factory.hpp"
 #include "vscloading.hpp"
+#include "client/storsyncinf.hpp"
 
-
-extern Factory *gFactory;
-
-VSCUser::VSCUser(QWidget *parent)
-    : QWidget(parent)
+VSCStorUser::VSCStorUser(ClientFactory &pFactory, VidStor &stor, QWidget *parent)
+	: QWidget(parent), m_pFactory(pFactory), m_pStor(stor)
 {
 	ui.setupUi(this);
 	ui.user->setText("admin");
-	ui.autoLogin->setChecked(false);
-	gFactory->GetUserData(m_Param);
-	/* Setup the default value */
-	if (m_Param.data.conf.AutoLogin  == 1)
-	{
-	        ui.autoLogin->setChecked(true);
-	}
+	
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
 
-
-
-
-void VSCUser::applyConfig()
+void VSCStorUser::applyConfig()
 {
 	astring strCurPasswd;
 	astring strPasswd;
 	astring strPasswd2;
 
-	astring oldPasswd = m_Param.data.conf.Passwd;
-
 	strCurPasswd = ui.curPasswd->text().toStdString();
 	strPasswd = ui.newPasswd->text().toStdString();
 	strPasswd2 = ui.repeatPasswd->text().toStdString();
+	
+	
+	VSCLoading * pLoading = VSCLoading::Create();
+	StorSyncInf syncInf(m_pStor);
+	astring pVer;
+	astring strInfo;
+	syncInf.Connect();
 
-	if (strCurPasswd == oldPasswd)
+	SimpleCrypt crypt;
+	QString strPassCrypt = strPasswd.c_str();
+	QString strCurrPassCrypt = strCurPasswd.c_str();
+	m_pFactory.SetAdminPasswd(crypt.encryptToString(strPassCrypt).toStdString());
+	
+
+	if (strPasswd == strPasswd2 && syncInf.ConfAdminPasswd(
+		crypt.encryptToString(strCurrPassCrypt).toStdString(), 
+		crypt.encryptToString(strPassCrypt).toStdString()) == true)
 	{
-		if (ui.autoLogin->isChecked() == true)
-		{
-			m_Param.data.conf.AutoLogin  = 1;
-		}else
-		{
-			m_Param.data.conf.AutoLogin  = 0;
-		}
-		if (strPasswd.length() > 0 && strPasswd == strPasswd2)
-		{
-			strcpy(m_Param.data.conf.Passwd, strPasswd.c_str());
-		}
-		VSCLoading *loading = new VSCLoading(this);
-		loading->Processing(3);
-		gFactory->SetUserData(m_Param);
-		
-		delete loading;
+		delete pLoading;
 		return;
 	}
-
+	delete pLoading;
 	QMessageBox msgBox(this);
 	//Set text
-	msgBox.setText(tr("Password not correct ..."));
+	msgBox.setText(tr("Change Password Failed ..."));
 	    //Set predefined icon, icon is show on left side of text.
 	msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
 
@@ -72,6 +56,8 @@ void VSCUser::applyConfig()
 
 	    //execute message box. method exec() return the button value of cliecke button
 	int ret = msgBox.exec();	
+
+	delete pLoading;
 	return;
 
 }

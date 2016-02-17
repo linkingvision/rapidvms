@@ -1,29 +1,30 @@
-#ifndef __VSC_USER_H__
-#define __VSC_USER_H__
+#ifndef __VSC_STOR_USER_H__
+#define __VSC_STOR_USER_H__
 
 #include <QWidget>
-#include "ui_vscuser.h"
+#include "ui_vscstoruser.h"
 #include "utility.hpp"
 #include <QTimer>
-#include "factory.hpp"
+#include "client/clientfactory.hpp"
 
 
-class VSCUser : public QWidget
+class VSCStorUser : public QWidget
 {
 	Q_OBJECT
 
 public:
-	VSCUser(QWidget *parent = 0);
-	~VSCUser(){}
+	VSCStorUser(ClientFactory &pFactory, VidStor &stor, QWidget *parent = 0);
+	~VSCStorUser(){}
 
 public slots:   
 	void applyConfig();
 	
 public:
-	Ui::VSCUser ui;
+	Ui::VSCStorUser ui;
 	
 private:
-	VSCUserData m_Param;
+	ClientFactory &m_pFactory;
+	VidStor m_pStor;
 
     
 };

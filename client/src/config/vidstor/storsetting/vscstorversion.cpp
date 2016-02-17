@@ -1,23 +1,32 @@
-#include "vscversion.h"
-#include "hdddevice.hpp"
+#include "config/vidstor/storsetting/vscstorversion.h"
 #include "debug.hpp"
-#include "vschddone.h"
-#include "factory.hpp"
+#include "vscloading.hpp"
+#include <QDesktopWidget>
+#include "client/storsyncinf.hpp"
 
-extern Factory *gFactory;
 
-VSCVersion::VSCVersion(QWidget *parent)
-    : QWidget(parent)
+
+VSCStorVersion::VSCStorVersion(ClientFactory &pFactory, VidStor &stor, QWidget *parent)
+    : m_pFactory(pFactory), m_pStor(stor), QWidget(parent)
 {
+	VSCLoading * pLoading = VSCLoading::Create();
+	StorSyncInf syncInf(m_pStor);
+	astring pVer;
+	astring strInfo;
+	syncInf.Connect();
+	syncInf.GetVer(pVer, strInfo);
+	
 	ui.setupUi(this);
-	ui.ver->setText(VE_VERSION);
-	ui.info->setText(VE_INFO);
+	ui.ver->setText(pVer.c_str());
+	ui.info->setText(strInfo.c_str());
+
+	delete pLoading;
 }
 
 
 
 
-void VSCVersion::applyConfig()
+void VSCStorVersion::applyConfig()
 {
 
 	return;
