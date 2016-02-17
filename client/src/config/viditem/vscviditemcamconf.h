@@ -12,6 +12,7 @@ public:
 	virtual astring GetId(){return m_cCam.strid();}
 	virtual void VidFilter(astring strFilter);
 	astring GetStorId(){return m_cStor.strid();}
+	
 private:
 	VidCamera m_cCam;
 	VidStor m_cStor;

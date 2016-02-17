@@ -15,3 +15,19 @@ VSCVidItemAddCam::~VSCVidItemAddCam()
 {
 	
 }
+
+void VSCVidItemAddCam::VidFilter(astring strFilter)
+{
+	int cnt = childCount();
+	setExpanded(true);
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem)
+		{
+			pItem->VidFilter(strFilter);
+		}
+	}
+}

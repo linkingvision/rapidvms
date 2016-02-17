@@ -16,7 +16,7 @@ public:
 	
 public:
 	/* Get all the child of this VidStor */
-	void TreeUpdated();	
+	void TreeUpdated(bool bClear = false);	
 	void CameraAdd(VidCamera cCam);
 	void CameraDelete(astring strId);
 	void CameraOnline(astring strId);
@@ -24,6 +24,7 @@ public:
 	void CameraRecOn(astring strId);
 	void CameraRecOff(astring strId);
 	virtual astring GetId(){return m_cStor.strid();}
+	virtual void VidFilter(astring strFilter);
 private:
 	VidStor m_cStor;
 	VSCVidItemAddCam *m_pItemAddCam;

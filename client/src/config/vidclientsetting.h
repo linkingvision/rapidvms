@@ -16,7 +16,7 @@
 #include <QMovie>
 #include <QtWidgets/QMainWindow>
 #include "client/clientfactory.hpp"
-#include "ui_VidClientSetting.h"
+#include "ui_vidclientsetting.h"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QApplication>

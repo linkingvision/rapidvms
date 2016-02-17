@@ -11,6 +11,7 @@ public:
 public:
 	VidStor GetStor(){return m_cStor;}
 	virtual astring GetId(){return m_cStor.strid();}
+	virtual void VidFilter(astring strFilter);
 private:
 	VidStor m_cStor;
 };

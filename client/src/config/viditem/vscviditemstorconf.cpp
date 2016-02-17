@@ -171,20 +171,58 @@ void VSCVidItemStorConf::CameraOffline(astring strId)
 
 void VSCVidItemStorConf::CameraRecOn(astring strId)
 {
+	if (m_pItemAddCam == NULL)
+	{
+		return;
+	}
+	int cnt = m_pItemAddCam->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = m_pItemAddCam->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem && pItem->GetId() == strId)
+		{
+			/* already in the list */
+			pItem->UpdateRec(true);
+		}
+	}
 }
 void VSCVidItemStorConf::CameraRecOff(astring strId)
 {
+	if (m_pItemAddCam == NULL)
+	{
+		return;
+	}
+	int cnt = m_pItemAddCam->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = m_pItemAddCam->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem && pItem->GetId() == strId)
+		{
+			/* already in the list */
+			pItem->UpdateRec(false);
+		}
+	}
 }
 
-void VSCVidItemStorConf::TreeUpdated()
+void VSCVidItemStorConf::TreeUpdated(bool bClear)
 {
 	qDeleteAll(takeChildren());
+	if (bClear == true)
+	{
+		return;
+	}
+		
 	/* Add fixed items */
 	m_pItemAddCam = new VSCVidItemAddCam(m_cStor, m_pFactory, this);
 	VSCVidItemDiskConf *pDiskConf = new VSCVidItemDiskConf(m_cStor, m_pFactory, this);
 	
 	VidCameraList cCamList = m_pFactory.GetStorFactory().GetVidCameraList(m_cStor.strid());
 	StorClientOnlineMap bOnline = m_pFactory.GetStorFactory().GetVidCameraOnlineList(m_cStor.strid());
+	StorClientRecMap bRec = m_pFactory.GetStorFactory().GetVidCameraRecList(m_cStor.strid());
 
 	int camSize = cCamList.cvidcamera_size();
 	
@@ -197,9 +235,27 @@ void VSCVidItemStorConf::TreeUpdated()
 		if (it != ite)
 		{
 			pItemCam->UpdateOnline(bOnline[pCam.strid()]);
+			pItemCam->UpdateRec(bRec[pCam.strid()]);
 		}
 	}
 	
 	return;
 
+}
+
+
+void VSCVidItemStorConf::VidFilter(astring strFilter)
+{
+	int cnt = childCount();
+	setExpanded(true);
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		if (pItem)
+		{
+			pItem->VidFilter(strFilter);
+		}
+	}
 }
