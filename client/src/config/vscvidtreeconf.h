@@ -14,6 +14,7 @@ public:
 signals:
 	void SignalStorAddSelectd();
 	void SignalStorConfSelectd(std::string strStor);
+	void SignalDiskConfSelectd(std::string strStor);
 	void SignalClientConfSelectd();
 	void SignalCamAddSelectd(std::string strStor);
 	void SignalCamConfSelectd(std::string strStor, std::string strCam);
@@ -24,6 +25,7 @@ public:
 	
 public:
 	virtual void VidFilter(astring strFilter);
+	virtual void Init();
 public:
 	/* Take care all the vid Stor state change */
 	static bool CallChange(void* pParam, StorFactoryChangeData data);
@@ -36,6 +38,7 @@ public:
 	void StorOnline(VidCameraId cId, bool bOnline);
 private:
 	QTreeWidgetItem * m_pRoot;
+	bool m_bInit;
 };
 
 #endif

@@ -8,12 +8,23 @@
 #include "config/viditem/vscviditemaddcam.h"
 #include "config/viditem/vscviditemcamconf.h"
 #include "config/viditem/vscviditemclientconf.h"
+#include "config/viditem/vscviditemdiskconf.h"
 
 
 VSCVidTreeConf::VSCVidTreeConf(ClientFactory &pFactory, QWidget *parent)
-: VSCVidTreeInf(pFactory, parent)
+: VSCVidTreeInf(pFactory, parent), m_bInit(false), m_pRoot(NULL)
 {
-	m_pRoot = new  QTreeWidgetItem((QTreeWidgetItem *)this);
+
+
+}
+
+void VSCVidTreeConf::Init()
+{
+	if (m_bInit == true)
+	{
+		return;
+	}
+	m_pRoot = new  QTreeWidgetItem(this);
 	
 	QIcon icon1;
 	icon1.addFile(QStringLiteral(":/action/resources/control_panel.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -29,7 +40,9 @@ VSCVidTreeConf::VSCVidTreeConf(ClientFactory &pFactory, QWidget *parent)
 	TreeUpdate();
 	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeConf::CallChange);
 
+	m_bInit = true;
 }
+
 VSCVidTreeConf::~VSCVidTreeConf()
 {
 
@@ -92,6 +105,13 @@ void VSCVidTreeConf::mouseDoubleClickEvent(QMouseEvent *event)
 		{
 			/* Vid Stor add clicked */
 			emit SignalStorConfSelectd(pStorConf->GetId());
+		}
+		
+		VSCVidItemDiskConf *pDiskConf = dynamic_cast<VSCVidItemDiskConf * >(selectedItem);
+		if (pDiskConf)
+		{
+			/* Vid disk conf clicked */
+			emit SignalDiskConfSelectd(pDiskConf->GetId());
 		}
 	}
 	
@@ -214,7 +234,7 @@ void VSCVidTreeConf::StorOnline(VidCameraId cId, bool bOnline)
 		if (pItem && pItem->GetId() == cId.strstorid())
 		{
 			pItem->UpdateOnline(bOnline);
-			pItem->TreeUpdated();
+			pItem->TreeUpdated(!bOnline);
 			return;
 		}
 	}
@@ -223,6 +243,7 @@ void VSCVidTreeConf::StorOnline(VidCameraId cId, bool bOnline)
 void VSCVidTreeConf::VidFilter(astring strFilter)
 {
 	int cnt = m_pRoot->childCount();
+	m_pRoot->setExpanded(true);
 
 	for (int i = 0; i < cnt; i ++)
 	{
@@ -231,7 +252,6 @@ void VSCVidTreeConf::VidFilter(astring strFilter)
 		if (pItem)
 		{
 			pItem->VidFilter(strFilter);
-			return;
 		}
 	}
 }
