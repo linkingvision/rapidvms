@@ -27,7 +27,6 @@ QWidget *parent, Qt::WindowFlags flags)
 	
 	ui.tabWidget->addTab(new VSCCamInfo(pFactory, m_pStor, m_strCam, this), tr("Information"));
 	ui.tabWidget->addTab(new VSCCamRec(pFactory, m_pStor, m_strCam, this), tr("Recording"));
-	//ui.tabWidget->addTab(new VSCStorLicense(pFactory, m_pStor, this), tr("License"));
 
 	//connect(this, SIGNAL(SignalSectionClicked(int, int)), ui.tableWidget, SIGNAL(cellClicked(int, int)));
 	ui.storName->setText(m_pStor.strname().c_str());

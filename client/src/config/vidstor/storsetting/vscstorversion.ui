@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VSCVersion</class>
- <widget class="QWidget" name="VSCVersion">
+ <class>VSCStorVersion</class>
+ <widget class="QWidget" name="VSCStorVersion">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>Master Hard Disk Selecting</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../main/vscmainwindows.qrc">
+   <iconset>
     <normaloff>:/logo/resources/vscsmall.jpg</normaloff>:/logo/resources/vscsmall.jpg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -72,7 +72,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../main/vscmainwindows.qrc"/>
+  <include location="../../../main/vscmainwindows.qrc"/>
  </resources>
  <connections/>
 </ui>

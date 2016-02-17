@@ -22,6 +22,8 @@ public slots:
 	void SlotVidCamAdd(std::string strStorId);
 	void SlotVidClientConf();
 	void SlotVidStorConf(std::string strStorId);
+	void SlotVidDiskConf(std::string strStorId);
+	void SlotVidCamConf(std::string strStor, std::string strCam);
 
 private:
 	VSCVidTreeInf *m_pConfTree;

@@ -13,6 +13,8 @@
 #include <QScrollArea>
 #include "Poco/UUIDGenerator.h"
 #include "config/vidstor/storsetting/vscstorversion.h"
+#include "config/vidstor/storsetting/vscstoruser.h"
+#include "config/vidstor/storsetting/vscstorlicense.h"
 
 using namespace Poco;
 
@@ -23,9 +25,12 @@ VidStorSetting::VidStorSetting(VidStor pStor, ClientFactory &pFactory, QWidget *
 	setAcceptDrops(true);
 	setMouseTracking(true);
 	
-	//ui.tabWidget->addTab(new VSCVersion(pFactory, this), tr("Version"));
+	ui.tabWidget->addTab(new VSCStorVersion(pFactory, m_pStor, this), tr("Version"));
+	ui.tabWidget->addTab(new VSCStorUser(pFactory, m_pStor, this), tr("User"));
+	ui.tabWidget->addTab(new VSCStorLicense(pFactory, m_pStor, this), tr("License"));
 
 	//connect(this, SIGNAL(SignalSectionClicked(int, int)), ui.tableWidget, SIGNAL(cellClicked(int, int)));
+	ui.storName->setText(m_pStor.strname().c_str());
 }
 
 VidStorSetting::~VidStorSetting()

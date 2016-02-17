@@ -91,6 +91,7 @@ void VidStorAdd::SlotApplyStor()
 		GetStorUI(sStorConf);
 		m_pFactory.GetStorFactory().AddStor(sStorConf);
 	}
+	TreeWidgetUpdate();
 }
 void VidStorAdd::SlotCancelStor()
 {
@@ -142,18 +143,21 @@ void VidStorAdd::TreeWidgetUpdate()
 	VidStorList storList;
 	m_pFactory.GetConfDB().GetStorListConf(storList);
 	int storSize = storList.cvidstor_size();
-	ui.tableWidget->clearContents();
+	
+	int nRowCnt = ui.tableWidget->rowCount();
 
-	for (s32 j = 0; j < ui.tableWidget->rowCount(); j ++)
+	for (s32 j = 0; j < nRowCnt; j ++)
 	{
 		ui.tableWidget->removeRow(j);
 	}
+	ui.tableWidget->clear();
 
 	
 	for (s32 i = 0; i < storList.cvidstor_size(); i ++)
 	{
 		VidStor pStor = storList.cvidstor(i);
-		int insertRow = ui.tableWidget->rowCount();
+		//int insertRow = ui.tableWidget->rowCount();
+		int insertRow = i;
     		ui.tableWidget->insertRow(insertRow);
     		QTableWidgetItem *firstCheck = new VidStorTableItem(pStor, false);
     		firstCheck->setCheckState(Qt::Checked);

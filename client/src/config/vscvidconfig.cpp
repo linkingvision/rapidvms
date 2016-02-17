@@ -2,19 +2,28 @@
 #include "config/vidstor/vidstoradd.h"
 #include "config/vidstor/vidcamadd.h"
 #include "config/vidstor/vidstorsetting.h"
+#include "config/vidstor/vidcamsetting.h"
 #include "config/vidclientsetting.h"
+#include "config/vidstor/disksetting/vschddedit.h"
 
 VSCVidConf::VSCVidConf(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent)
 : VSCVidInf(pFactory, pTab, parent)
 {
-	m_pConfTree = new VSCVidTreeConf(m_pFactory);
+	m_pConfTree = new VSCVidTreeConf(m_pFactory, parent);
+	m_pConfTree->Init();
+	m_pConfTree->hide();
 
 	connect(m_pConfTree, SIGNAL(SignalStorAddSelectd()), this, SLOT(SlotVidStorAdd()));
 	connect(m_pConfTree, SIGNAL(SignalCamAddSelectd(std::string)), this, 
 								SLOT(SlotVidCamAdd(std::string)));
+						
 	connect(m_pConfTree, SIGNAL(SignalClientConfSelectd()), this, SLOT(SlotVidClientConf()));
 	connect(m_pConfTree, SIGNAL(SignalStorConfSelectd(std::string)), this, 
 								SLOT(SlotVidStorConf(std::string)));
+	connect(m_pConfTree, SIGNAL(SignalDiskConfSelectd(std::string)), this, 
+								SLOT(SlotVidDiskConf(std::string)));
+	connect(m_pConfTree, SIGNAL(SignalCamConfSelectd(std::string, std::string)), this, 
+								SLOT(SlotVidCamConf(std::string, std::string)));
 }
 VSCVidConf::~VSCVidConf()
 {
@@ -71,5 +80,23 @@ void VSCVidConf::SlotVidStorConf(std::string strStorId)
 	m_pFactory.GetConfDB().GetStorConf(strStorId, pStor);
 	VidStorSetting *pConf = new VidStorSetting(pStor, m_pFactory, &m_pMainArea);
 	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/control_panel.png")), tr("Stor"));
+	m_pMainArea.setCurrentWidget(pConf);	
+}
+
+void VSCVidConf::SlotVidDiskConf(std::string strStorId)
+{
+	VidStor pStor;
+	m_pFactory.GetConfDB().GetStorConf(strStorId, pStor);
+	VSCHddEdit *pConf = new VSCHddEdit(pStor, &m_pMainArea);
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/disksetting.png")), tr("Disk"));
+	m_pMainArea.setCurrentWidget(pConf);	
+}
+
+void VSCVidConf::SlotVidCamConf(std::string strStor, std::string strCam)
+{
+	VidStor pStor;
+	m_pFactory.GetConfDB().GetStorConf(strStor, pStor);
+	VidCamSetting *pConf = new VidCamSetting(pStor, strCam, m_pFactory, &m_pMainArea);
+	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/camera.png")), tr("Camera"));
 	m_pMainArea.setCurrentWidget(pConf);	
 }

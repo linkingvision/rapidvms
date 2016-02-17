@@ -20,6 +20,9 @@
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QApplication>
+#include "client/storsyncinf.hpp"
+#include "XSDK/XMutex.h"
+#include "XSDK/XGuard.h"
 
 class VidCamTableItem : public QTableWidgetItem
 {
@@ -37,6 +40,7 @@ private:
 	bool m_bNew;
 };
 
+
 class VidCamAdd : public QWidget
 {
     Q_OBJECT
@@ -49,6 +53,8 @@ public:
 	void TreeWidgetUpdate();
 	void SetCamUI(VidCamera pCam);
 	void GetCamUI(VidCamera &pCam);
+	void updateParamValue(QTableWidgetItem *item, s8 * pParam);	
+	bool CheckIPPort(s8 * ipAddr, s8 * Port);
 
 signals:
 	void SignalSectionClicked(int row, int column);
@@ -60,12 +66,23 @@ public slots:
 	void SlotCancelCam();
 	void SlotSectionClicked(int row, int column);
 	void SlotRadioButtonClicked();
+	void SlotSearchRecv();
+    	void SlotStartSearch();    
+	void SlotStopSearch();    
+	void SlotAddAll();	
+	void SlotSelectAll();
 
 public:
-    Ui::VidCamAdd ui;
+    	Ui::VidCamAdd ui;
 private:
 	ClientFactory &m_pFactory;
 	VidStor m_sStor;
+	QTimer *m_Timer;
+	bool m_bStarted;
+	StorSyncInf *m_syncInfSearch;
+	bool m_bSelectedAll;
+	XMutex m_cMutex;
+
 
 };
 

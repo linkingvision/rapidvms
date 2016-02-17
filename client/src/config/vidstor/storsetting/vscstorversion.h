@@ -2,26 +2,29 @@
 #define VSC_VERSION_H
 
 #include <QWidget>
-#include "ui_vscversion.h"
+#include "ui_vscstorversion.h"
 #include "utility.hpp"
+#include "client/clientfactory.hpp"
 #include <QTimer>
 
 
-class VSCVersion : public QWidget
+class VSCStorVersion : public QWidget
 {
     Q_OBJECT
 
 public:
-    VSCVersion(QWidget *parent = 0);
-    ~VSCVersion(){}
+    VSCStorVersion(ClientFactory &pFactory, VidStor &stor, QWidget *parent = 0);
+    ~VSCStorVersion(){}
 
 public slots:   
   void applyConfig();
 	
 public:
-    Ui::VSCVersion ui;
+    Ui::VSCStorVersion ui;
 	
 private:
+	ClientFactory &m_pFactory;
+	VidStor m_pStor;
 
     
 };
