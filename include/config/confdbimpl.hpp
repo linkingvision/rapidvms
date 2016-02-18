@@ -201,24 +201,13 @@ inline   BOOL ConfDB::GetLicense(astring &strLicense)
 
 	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
-	{
-		sysValue = it->value();
-		strLicense = sysValue.ToString();
-	}
-	if (strLicense.length() < 10)
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strLicense);
+	if (s.ok() == false)
 	{
 		strLicense = "";
+		return FALSE;
 	}
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 
@@ -243,24 +232,13 @@ inline BOOL ConfDB::GetCmnParam(astring &strKey, astring &strParam)
 	
 	leveldb::Slice key(strKey);
 
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strParam);
+	if (s.ok() == false)
 	{
-		sysValue = it->value();
-		strParam = sysValue.ToString();
-	}else
-	{
-		delete it;
+		strParam = "";
 		return FALSE;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 }
@@ -290,29 +268,21 @@ inline BOOL ConfDB::GetHdfsRecordConf(VidHDFSConf &pData)
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue("fake");
-
-	if (it->Valid())
+	astring strValue;
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-	    sysValue = it->value();
+		strValue = "fake";
 	}
 
-	if (pData.ParseFromString(sysValue.ToString()) == false)
+	if (pData.ParseFromString(strValue) == false)
 	{
 		VDC_DEBUG( "Hdfs Record Config is not init\n");
-		delete it;
 		VSCHdfsRecordDefault(pData);
 		UpdateHdfsRecordConf(pData);
 		return TRUE;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 
@@ -349,30 +319,21 @@ inline BOOL ConfDB::GetCameraListConf(VidCameraList &pData)
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue("fake");
-	
-
-	if (it->status().IsNotFound() != true)
+	astring strValue;
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-	    sysValue = it->value();
+		strValue = "fake";
 	}
 
-	if (pData.ParseFromString(sysValue.ToString()) == false)
+	if (pData.ParseFromString(strValue) == false)
 	{
 		VidCameraList listDefault;
 		pData = listDefault;
 		VDC_DEBUG( "Camera List Config is not init\n");
-		delete it;
 		return TRUE;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 
@@ -407,29 +368,20 @@ inline bool ConfDB::GetStorServerConf(VidStorServerConf &pData)
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue("fake");
-	
-
-	if (it->status().IsNotFound() != true)
+	astring strValue;
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-	    sysValue = it->value();
+		strValue = "fake";
 	}
 
-	if (pData.ParseFromString(sysValue.ToString()) == false)
+	if (pData.ParseFromString(strValue) == false)
 	{
 		VSCStorServerConfDefault(pData);
 		VDC_DEBUG( "Stor Server Config is not init\n");
-		delete it;
 		return true;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return true;
 }
@@ -457,6 +409,8 @@ inline bool ConfDB::SetStorServerConf(VidStorServerConf &pData)
 
 inline bool ConfDB::GetRecSched(astring strId, RecordSchedWeek &pSched)
 {
+	XGuard guard(m_cMutex);
+	
 	if (strId == REC_SCHED_OFF)
 	{
 		pSched = RecordSchedWeek::CreateOff();

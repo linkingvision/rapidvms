@@ -144,7 +144,8 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, _is_default_instance_));
   VidCamera_descriptor_ = file->message_type(3);
-  static const int VidCamera_offsets_[19] = {
+  static const int VidCamera_offsets_[21] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bdisable_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, ntype_),
@@ -162,8 +163,9 @@ void protobuf_AssignDesc_vidconf_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bservermotion_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nconnecttype_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bhdfsrecord_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, brecord_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strrecordtemplid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, crecsched_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nprerecsec_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, npostrecsec_),
   };
   VidCamera_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -561,65 +563,66 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "\030\003 \001(\t\022\021\n\tstrRoleId\030\004 \001(\t\"1\n\013VidUserList"
     "\022\"\n\010cVidUser\030\001 \003(\0132\020.VidConf.VidUser\">\n\021"
     "VidStorServerConf\022\021\n\tnOapiPort\030\001 \001(\005\022\026\n\016"
-    "strAdminPasswd\030\002 \001(\t\"\267\003\n\tVidCamera\022\r\n\005st"
-    "rId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\"\n\005nType\030\003 \001("
-    "\0162\023.VidConf.CameraType\022\r\n\005strIP\030\004 \001(\t\022\017\n"
-    "\007strPort\030\005 \001(\t\022\017\n\007strUser\030\006 \001(\t\022\021\n\tstrPa"
-    "sswd\030\007 \001(\t\022\027\n\017strONVIFAddress\030\010 \001(\t\022\025\n\rb"
-    "ProfileToken\030\t \001(\010\022\030\n\020strProfileToken1\030\n"
-    " \001(\t\022\030\n\020strProfileToken2\030\013 \001(\t\022\017\n\007strFil"
-    "e\030\014 \001(\t\022\022\n\nstrRTSPUrl\030\r \001(\t\022\020\n\010bHWaccel\030"
-    "\016 \001(\010\022\025\n\rbServerMotion\030\017 \001(\010\0220\n\014nConnect"
-    "Type\030\020 \001(\0162\032.VidConf.CameraConnectType\022\023"
-    "\n\013bHDFSRecord\030\021 \001(\010\022\017\n\007bRecord\030\022 \001(\010\022\030\n\020"
-    "strRecordTemplId\030\023 \001(\t\"7\n\rVidCameraList\022"
-    "&\n\ncVidCamera\030\001 \003(\0132\022.VidConf.VidCamera\""
-    "w\n\007VidDisk\022\r\n\005strId\030\001 \001(\t\022\017\n\007strPath\030\002 \001"
-    "(\t\022\022\n\nnTotalSize\030\003 \001(\003\022\021\n\tnFreeSize\030\004 \001("
-    "\003\022\022\n\nnStorLimit\030\005 \001(\003\022\021\n\tnStorUsed\030\006 \001(\003"
-    "\"1\n\013VidDiskList\022\"\n\010cVidDisk\030\001 \003(\0132\020.VidC"
-    "onf.VidDisk\"n\n\013VidHDFSConf\022\023\n\013strNameNod"
-    "e\030\001 \001(\t\022\017\n\007strPort\030\002 \001(\t\022\017\n\007strUser\030\003 \001("
-    "\t\022\021\n\tstrPasswd\030\004 \001(\t\022\025\n\rnFileInterval\030\005 "
-    "\001(\005\"5\n\013VidCameraId\022\021\n\tstrStorId\030\001 \001(\t\022\023\n"
-    "\013strCameraId\030\002 \001(\t\"`\n\rVidClientConf\022#\n\005n"
-    "Lang\030\001 \001(\0162\024.VidConf.VidLanguage\022\026\n\016strA"
-    "dminPasswd\030\002 \001(\t\022\022\n\nbAutoLogin\030\003 \001(\010\"m\n\007"
-    "VidStor\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022"
-    "\r\n\005strIP\030\003 \001(\t\022\017\n\007strPort\030\004 \001(\t\022\017\n\007strUs"
-    "er\030\005 \001(\t\022\021\n\tstrPasswd\030\006 \001(\t\"1\n\013VidStorLi"
-    "st\022\"\n\010cVidStor\030\001 \003(\0132\020.VidConf.VidStor\"F"
-    "\n\rVidViewWindow\022!\n\003cId\030\001 \001(\0132\024.VidConf.V"
-    "idCameraId\022\022\n\nnWindowsId\030\002 \001(\005\"u\n\007VidVie"
-    "w\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022%\n\005cVi"
-    "ew\030\003 \003(\0132\026.VidConf.VidViewWindow\022#\n\007cLay"
-    "out\030\004 \001(\0162\022.VidConf.VidLayout\"1\n\013VidView"
-    "List\022\"\n\010cVidView\030\001 \003(\0132\020.VidConf.VidView"
-    "\"P\n\010VidGroup\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002"
-    " \001(\t\022$\n\006cGroup\030\003 \003(\0132\024.VidConf.VidCamera"
-    "Id\"4\n\014VidGroupList\022$\n\tcVidGroup\030\001 \003(\0132\021."
-    "VidConf.VidGroup\"^\n\rVidEmapCamera\022!\n\003cId"
-    "\030\001 \001(\0132\024.VidConf.VidCameraId\022\t\n\001x\030\002 \001(\005\022"
-    "\t\n\001y\030\003 \001(\005\022\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"f\n\007VidE"
-    "map\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\'\n\007c"
-    "Camera\030\003 \003(\0132\026.VidConf.VidEmapCamera\022\022\n\n"
-    "strMapFile\030\004 \001(\t\"1\n\013VidEmapList\022\"\n\010cVidE"
-    "map\030\001 \003(\0132\020.VidConf.VidEmap*b\n\nCameraTyp"
-    "e\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022"
-    "\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB"
-    "28181\020\005*P\n\021CameraConnectType\022\021\n\rVID_CONN"
-    "ECT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONN"
-    "ECT_UDP\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_AUT"
-    "O\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLa"
-    "yout\022\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAYOU"
-    "T_MODE_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023V"
-    "ID_LAYOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_"
-    "4X4\020\004\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LAYO"
-    "UT_MODE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022\027\n"
-    "\023VID_LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_MOD"
-    "E_6x6\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_"
-    "LAYOUT_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1x3"
-    "\020\014\022\027\n\023VID_LAYOUT_MODE_1p6\020\rb\006proto3", 2555);
+    "strAdminPasswd\030\002 \001(\t\"\332\003\n\tVidCamera\022\020\n\010bD"
+    "isable\030\001 \001(\010\022\r\n\005strId\030\002 \001(\t\022\017\n\007strName\030\003"
+    " \001(\t\022\"\n\005nType\030\004 \001(\0162\023.VidConf.CameraType"
+    "\022\r\n\005strIP\030\005 \001(\t\022\017\n\007strPort\030\006 \001(\t\022\017\n\007strU"
+    "ser\030\007 \001(\t\022\021\n\tstrPasswd\030\010 \001(\t\022\027\n\017strONVIF"
+    "Address\030\t \001(\t\022\025\n\rbProfileToken\030\n \001(\010\022\030\n\020"
+    "strProfileToken1\030\013 \001(\t\022\030\n\020strProfileToke"
+    "n2\030\014 \001(\t\022\017\n\007strFile\030\r \001(\t\022\022\n\nstrRTSPUrl\030"
+    "\016 \001(\t\022\020\n\010bHWaccel\030\017 \001(\010\022\025\n\rbServerMotion"
+    "\030\020 \001(\010\0220\n\014nConnectType\030\021 \001(\0162\032.VidConf.C"
+    "ameraConnectType\022\023\n\013bHDFSRecord\030\022 \001(\010\022\021\n"
+    "\tcRecSched\030\024 \003(\t\022\022\n\nnPreRecSec\030\025 \001(\005\022\023\n\013"
+    "nPostRecSec\030\026 \001(\005\"7\n\rVidCameraList\022&\n\ncV"
+    "idCamera\030\001 \003(\0132\022.VidConf.VidCamera\"w\n\007Vi"
+    "dDisk\022\r\n\005strId\030\001 \001(\t\022\017\n\007strPath\030\002 \001(\t\022\022\n"
+    "\nnTotalSize\030\003 \001(\003\022\021\n\tnFreeSize\030\004 \001(\003\022\022\n\n"
+    "nStorLimit\030\005 \001(\003\022\021\n\tnStorUsed\030\006 \001(\003\"1\n\013V"
+    "idDiskList\022\"\n\010cVidDisk\030\001 \003(\0132\020.VidConf.V"
+    "idDisk\"n\n\013VidHDFSConf\022\023\n\013strNameNode\030\001 \001"
+    "(\t\022\017\n\007strPort\030\002 \001(\t\022\017\n\007strUser\030\003 \001(\t\022\021\n\t"
+    "strPasswd\030\004 \001(\t\022\025\n\rnFileInterval\030\005 \001(\005\"5"
+    "\n\013VidCameraId\022\021\n\tstrStorId\030\001 \001(\t\022\023\n\013strC"
+    "ameraId\030\002 \001(\t\"`\n\rVidClientConf\022#\n\005nLang\030"
+    "\001 \001(\0162\024.VidConf.VidLanguage\022\026\n\016strAdminP"
+    "asswd\030\002 \001(\t\022\022\n\nbAutoLogin\030\003 \001(\010\"m\n\007VidSt"
+    "or\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\r\n\005st"
+    "rIP\030\003 \001(\t\022\017\n\007strPort\030\004 \001(\t\022\017\n\007strUser\030\005 "
+    "\001(\t\022\021\n\tstrPasswd\030\006 \001(\t\"1\n\013VidStorList\022\"\n"
+    "\010cVidStor\030\001 \003(\0132\020.VidConf.VidStor\"F\n\rVid"
+    "ViewWindow\022!\n\003cId\030\001 \001(\0132\024.VidConf.VidCam"
+    "eraId\022\022\n\nnWindowsId\030\002 \001(\005\"u\n\007VidView\022\r\n\005"
+    "strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022%\n\005cView\030\003 "
+    "\003(\0132\026.VidConf.VidViewWindow\022#\n\007cLayout\030\004"
+    " \001(\0162\022.VidConf.VidLayout\"1\n\013VidViewList\022"
+    "\"\n\010cVidView\030\001 \003(\0132\020.VidConf.VidView\"P\n\010V"
+    "idGroup\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022"
+    "$\n\006cGroup\030\003 \003(\0132\024.VidConf.VidCameraId\"4\n"
+    "\014VidGroupList\022$\n\tcVidGroup\030\001 \003(\0132\021.VidCo"
+    "nf.VidGroup\"^\n\rVidEmapCamera\022!\n\003cId\030\001 \001("
+    "\0132\024.VidConf.VidCameraId\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030"
+    "\003 \001(\005\022\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"f\n\007VidEmap\022\r"
+    "\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\'\n\007cCamer"
+    "a\030\003 \003(\0132\026.VidConf.VidEmapCamera\022\022\n\nstrMa"
+    "pFile\030\004 \001(\t\"1\n\013VidEmapList\022\"\n\010cVidEmap\030\001"
+    " \003(\0132\020.VidConf.VidEmap*b\n\nCameraType\022\t\n\005"
+    "VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VI"
+    "D_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181"
+    "\020\005*P\n\021CameraConnectType\022\021\n\rVID_CONNECT_0"
+    "\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONNECT_U"
+    "DP\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_AUTO\020\000\022\n"
+    "\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022"
+    "\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_MOD"
+    "E_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LA"
+    "YOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004"
+    "\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MO"
+    "DE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_"
+    "LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6"
+    "\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOU"
+    "T_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n"
+    "\023VID_LAYOUT_MODE_1p6\020\rb\006proto3", 2590);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -1890,6 +1893,7 @@ void VidStorServerConf::clear_stradminpasswd() {
 // ===================================================================
 
 #ifndef _MSC_VER
+const int VidCamera::kBDisableFieldNumber;
 const int VidCamera::kStrIdFieldNumber;
 const int VidCamera::kStrNameFieldNumber;
 const int VidCamera::kNTypeFieldNumber;
@@ -1907,8 +1911,9 @@ const int VidCamera::kBHWaccelFieldNumber;
 const int VidCamera::kBServerMotionFieldNumber;
 const int VidCamera::kNConnectTypeFieldNumber;
 const int VidCamera::kBHDFSRecordFieldNumber;
-const int VidCamera::kBRecordFieldNumber;
-const int VidCamera::kStrRecordTemplIdFieldNumber;
+const int VidCamera::kCRecSchedFieldNumber;
+const int VidCamera::kNPreRecSecFieldNumber;
+const int VidCamera::kNPostRecSecFieldNumber;
 #endif  // !_MSC_VER
 
 VidCamera::VidCamera()
@@ -1933,6 +1938,7 @@ void VidCamera::SharedCtor() {
     _is_default_instance_ = false;
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
+  bdisable_ = false;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ntype_ = 0;
@@ -1950,8 +1956,8 @@ void VidCamera::SharedCtor() {
   bservermotion_ = false;
   nconnecttype_ = 0;
   bhdfsrecord_ = false;
-  brecord_ = false;
-  strrecordtemplid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  nprerecsec_ = 0;
+  npostrecsec_ = 0;
 }
 
 VidCamera::~VidCamera() {
@@ -1971,7 +1977,6 @@ void VidCamera::SharedDtor() {
   strprofiletoken2_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strfile_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strrtspurl_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strrecordtemplid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -2010,27 +2015,26 @@ void VidCamera::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
+  ZR_(ntype_, bdisable_);
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ntype_ = 0;
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ZR_(bprofiletoken_, bservermotion_);
+  stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strprofiletoken1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strprofiletoken2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strrtspurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nconnecttype_ = 0;
-  bhdfsrecord_ = false;
-  brecord_ = false;
-  strrecordtemplid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ZR_(nconnecttype_, bhdfsrecord_);
+  ZR_(nprerecsec_, npostrecsec_);
 
 #undef ZR_HELPER_
 #undef ZR_
 
+  crecsched_.Clear();
 }
 
 bool VidCamera::MergePartialFromCodedStream(
@@ -2043,9 +2047,24 @@ bool VidCamera::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // optional bool bDisable = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &bdisable_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_strId;
+        break;
+      }
+
+      // optional string strId = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_strId:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2055,13 +2074,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
+        if (input->ExpectTag(26)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
-      case 2: {
-        if (tag == 18) {
+      // optional string strName = 3;
+      case 3: {
+        if (tag == 26) {
          parse_strName:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
@@ -2072,13 +2091,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_nType;
+        if (input->ExpectTag(32)) goto parse_nType;
         break;
       }
 
-      // optional .VidConf.CameraType nType = 3;
-      case 3: {
-        if (tag == 24) {
+      // optional .VidConf.CameraType nType = 4;
+      case 4: {
+        if (tag == 32) {
          parse_nType:
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
@@ -2088,13 +2107,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_strIP;
+        if (input->ExpectTag(42)) goto parse_strIP;
         break;
       }
 
-      // optional string strIP = 4;
-      case 4: {
-        if (tag == 34) {
+      // optional string strIP = 5;
+      case 5: {
+        if (tag == 42) {
          parse_strIP:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strip()));
@@ -2105,13 +2124,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_strPort;
+        if (input->ExpectTag(50)) goto parse_strPort;
         break;
       }
 
-      // optional string strPort = 5;
-      case 5: {
-        if (tag == 42) {
+      // optional string strPort = 6;
+      case 6: {
+        if (tag == 50) {
          parse_strPort:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strport()));
@@ -2122,13 +2141,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_strUser;
+        if (input->ExpectTag(58)) goto parse_strUser;
         break;
       }
 
-      // optional string strUser = 6;
-      case 6: {
-        if (tag == 50) {
+      // optional string strUser = 7;
+      case 7: {
+        if (tag == 58) {
          parse_strUser:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_struser()));
@@ -2139,13 +2158,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_strPasswd;
+        if (input->ExpectTag(66)) goto parse_strPasswd;
         break;
       }
 
-      // optional string strPasswd = 7;
-      case 7: {
-        if (tag == 58) {
+      // optional string strPasswd = 8;
+      case 8: {
+        if (tag == 66) {
          parse_strPasswd:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpasswd()));
@@ -2156,13 +2175,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(66)) goto parse_strONVIFAddress;
+        if (input->ExpectTag(74)) goto parse_strONVIFAddress;
         break;
       }
 
-      // optional string strONVIFAddress = 8;
-      case 8: {
-        if (tag == 66) {
+      // optional string strONVIFAddress = 9;
+      case 9: {
+        if (tag == 74) {
          parse_strONVIFAddress:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_stronvifaddress()));
@@ -2173,13 +2192,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(72)) goto parse_bProfileToken;
+        if (input->ExpectTag(80)) goto parse_bProfileToken;
         break;
       }
 
-      // optional bool bProfileToken = 9;
-      case 9: {
-        if (tag == 72) {
+      // optional bool bProfileToken = 10;
+      case 10: {
+        if (tag == 80) {
          parse_bProfileToken:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -2188,13 +2207,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(82)) goto parse_strProfileToken1;
+        if (input->ExpectTag(90)) goto parse_strProfileToken1;
         break;
       }
 
-      // optional string strProfileToken1 = 10;
-      case 10: {
-        if (tag == 82) {
+      // optional string strProfileToken1 = 11;
+      case 11: {
+        if (tag == 90) {
          parse_strProfileToken1:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strprofiletoken1()));
@@ -2205,13 +2224,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(90)) goto parse_strProfileToken2;
+        if (input->ExpectTag(98)) goto parse_strProfileToken2;
         break;
       }
 
-      // optional string strProfileToken2 = 11;
-      case 11: {
-        if (tag == 90) {
+      // optional string strProfileToken2 = 12;
+      case 12: {
+        if (tag == 98) {
          parse_strProfileToken2:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strprofiletoken2()));
@@ -2222,13 +2241,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(98)) goto parse_strFile;
+        if (input->ExpectTag(106)) goto parse_strFile;
         break;
       }
 
-      // optional string strFile = 12;
-      case 12: {
-        if (tag == 98) {
+      // optional string strFile = 13;
+      case 13: {
+        if (tag == 106) {
          parse_strFile:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strfile()));
@@ -2239,13 +2258,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(106)) goto parse_strRTSPUrl;
+        if (input->ExpectTag(114)) goto parse_strRTSPUrl;
         break;
       }
 
-      // optional string strRTSPUrl = 13;
-      case 13: {
-        if (tag == 106) {
+      // optional string strRTSPUrl = 14;
+      case 14: {
+        if (tag == 114) {
          parse_strRTSPUrl:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strrtspurl()));
@@ -2256,13 +2275,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(112)) goto parse_bHWaccel;
+        if (input->ExpectTag(120)) goto parse_bHWaccel;
         break;
       }
 
-      // optional bool bHWaccel = 14;
-      case 14: {
-        if (tag == 112) {
+      // optional bool bHWaccel = 15;
+      case 15: {
+        if (tag == 120) {
          parse_bHWaccel:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -2271,13 +2290,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(120)) goto parse_bServerMotion;
+        if (input->ExpectTag(128)) goto parse_bServerMotion;
         break;
       }
 
-      // optional bool bServerMotion = 15;
-      case 15: {
-        if (tag == 120) {
+      // optional bool bServerMotion = 16;
+      case 16: {
+        if (tag == 128) {
          parse_bServerMotion:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -2286,13 +2305,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(128)) goto parse_nConnectType;
+        if (input->ExpectTag(136)) goto parse_nConnectType;
         break;
       }
 
-      // optional .VidConf.CameraConnectType nConnectType = 16;
-      case 16: {
-        if (tag == 128) {
+      // optional .VidConf.CameraConnectType nConnectType = 17;
+      case 17: {
+        if (tag == 136) {
          parse_nConnectType:
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
@@ -2302,13 +2321,13 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(136)) goto parse_bHDFSRecord;
+        if (input->ExpectTag(144)) goto parse_bHDFSRecord;
         break;
       }
 
-      // optional bool bHDFSRecord = 17;
-      case 17: {
-        if (tag == 136) {
+      // optional bool bHDFSRecord = 18;
+      case 18: {
+        if (tag == 144) {
          parse_bHDFSRecord:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -2317,35 +2336,52 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(144)) goto parse_bRecord;
+        if (input->ExpectTag(162)) goto parse_cRecSched;
         break;
       }
 
-      // optional bool bRecord = 18;
-      case 18: {
-        if (tag == 144) {
-         parse_bRecord:
+      // repeated string cRecSched = 20;
+      case 20: {
+        if (tag == 162) {
+         parse_cRecSched:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_crecsched()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->crecsched(this->crecsched_size() - 1).data(),
+            this->crecsched(this->crecsched_size() - 1).length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidConf.VidCamera.cRecSched"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(162)) goto parse_cRecSched;
+        if (input->ExpectTag(168)) goto parse_nPreRecSec;
+        break;
+      }
+
+      // optional int32 nPreRecSec = 21;
+      case 21: {
+        if (tag == 168) {
+         parse_nPreRecSec:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &brecord_)));
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &nprerecsec_)));
 
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(154)) goto parse_strRecordTemplId;
+        if (input->ExpectTag(176)) goto parse_nPostRecSec;
         break;
       }
 
-      // optional string strRecordTemplId = 19;
-      case 19: {
-        if (tag == 154) {
-         parse_strRecordTemplId:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strrecordtemplid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strrecordtemplid().data(), this->strrecordtemplid().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "VidConf.VidCamera.strRecordTemplId"));
+      // optional int32 nPostRecSec = 22;
+      case 22: {
+        if (tag == 176) {
+         parse_nPostRecSec:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &npostrecsec_)));
+
         } else {
           goto handle_unusual;
         }
@@ -2377,161 +2413,171 @@ failure:
 void VidCamera::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidCamera)
-  // optional string strId = 1;
+  // optional bool bDisable = 1;
+  if (this->bdisable() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->bdisable(), output);
+  }
+
+  // optional string strId = 2;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strId");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->strid(), output);
+      2, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // optional string strName = 3;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->strname(), output);
+      3, this->strname(), output);
   }
 
-  // optional .VidConf.CameraType nType = 3;
+  // optional .VidConf.CameraType nType = 4;
   if (this->ntype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      3, this->ntype(), output);
+      4, this->ntype(), output);
   }
 
-  // optional string strIP = 4;
+  // optional string strIP = 5;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strIP");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->strip(), output);
+      5, this->strip(), output);
   }
 
-  // optional string strPort = 5;
+  // optional string strPort = 6;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strPort");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->strport(), output);
+      6, this->strport(), output);
   }
 
-  // optional string strUser = 6;
+  // optional string strUser = 7;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strUser");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      6, this->struser(), output);
+      7, this->struser(), output);
   }
 
-  // optional string strPasswd = 7;
+  // optional string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strPasswd");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      7, this->strpasswd(), output);
+      8, this->strpasswd(), output);
   }
 
-  // optional string strONVIFAddress = 8;
+  // optional string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stronvifaddress().data(), this->stronvifaddress().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strONVIFAddress");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      8, this->stronvifaddress(), output);
+      9, this->stronvifaddress(), output);
   }
 
-  // optional bool bProfileToken = 9;
+  // optional bool bProfileToken = 10;
   if (this->bprofiletoken() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->bprofiletoken(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->bprofiletoken(), output);
   }
 
-  // optional string strProfileToken1 = 10;
+  // optional string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken1().data(), this->strprofiletoken1().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strProfileToken1");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      10, this->strprofiletoken1(), output);
+      11, this->strprofiletoken1(), output);
   }
 
-  // optional string strProfileToken2 = 11;
+  // optional string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken2().data(), this->strprofiletoken2().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strProfileToken2");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      11, this->strprofiletoken2(), output);
+      12, this->strprofiletoken2(), output);
   }
 
-  // optional string strFile = 12;
+  // optional string strFile = 13;
   if (this->strfile().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strfile().data(), this->strfile().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strFile");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      12, this->strfile(), output);
+      13, this->strfile(), output);
   }
 
-  // optional string strRTSPUrl = 13;
+  // optional string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strrtspurl().data(), this->strrtspurl().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidCamera.strRTSPUrl");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      13, this->strrtspurl(), output);
+      14, this->strrtspurl(), output);
   }
 
-  // optional bool bHWaccel = 14;
+  // optional bool bHWaccel = 15;
   if (this->bhwaccel() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(14, this->bhwaccel(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(15, this->bhwaccel(), output);
   }
 
-  // optional bool bServerMotion = 15;
+  // optional bool bServerMotion = 16;
   if (this->bservermotion() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(15, this->bservermotion(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(16, this->bservermotion(), output);
   }
 
-  // optional .VidConf.CameraConnectType nConnectType = 16;
+  // optional .VidConf.CameraConnectType nConnectType = 17;
   if (this->nconnecttype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      16, this->nconnecttype(), output);
+      17, this->nconnecttype(), output);
   }
 
-  // optional bool bHDFSRecord = 17;
+  // optional bool bHDFSRecord = 18;
   if (this->bhdfsrecord() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(17, this->bhdfsrecord(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(18, this->bhdfsrecord(), output);
   }
 
-  // optional bool bRecord = 18;
-  if (this->brecord() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(18, this->brecord(), output);
-  }
-
-  // optional string strRecordTemplId = 19;
-  if (this->strrecordtemplid().size() > 0) {
+  // repeated string cRecSched = 20;
+  for (int i = 0; i < this->crecsched_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strrecordtemplid().data(), this->strrecordtemplid().length(),
+      this->crecsched(i).data(), this->crecsched(i).length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "VidConf.VidCamera.strRecordTemplId");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      19, this->strrecordtemplid(), output);
+      "VidConf.VidCamera.cRecSched");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      20, this->crecsched(i), output);
+  }
+
+  // optional int32 nPreRecSec = 21;
+  if (this->nprerecsec() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(21, this->nprerecsec(), output);
+  }
+
+  // optional int32 nPostRecSec = 22;
+  if (this->npostrecsec() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(22, this->npostrecsec(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:VidConf.VidCamera)
@@ -2540,7 +2586,12 @@ void VidCamera::SerializeWithCachedSizes(
 ::google::protobuf::uint8* VidCamera::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidCamera)
-  // optional string strId = 1;
+  // optional bool bDisable = 1;
+  if (this->bdisable() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->bdisable(), target);
+  }
+
+  // optional string strId = 2;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -2548,10 +2599,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strId");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->strid(), target);
+        2, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // optional string strName = 3;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -2559,16 +2610,16 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->strname(), target);
+        3, this->strname(), target);
   }
 
-  // optional .VidConf.CameraType nType = 3;
+  // optional .VidConf.CameraType nType = 4;
   if (this->ntype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      3, this->ntype(), target);
+      4, this->ntype(), target);
   }
 
-  // optional string strIP = 4;
+  // optional string strIP = 5;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
@@ -2576,10 +2627,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strIP");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->strip(), target);
+        5, this->strip(), target);
   }
 
-  // optional string strPort = 5;
+  // optional string strPort = 6;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -2587,10 +2638,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strPort");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->strport(), target);
+        6, this->strport(), target);
   }
 
-  // optional string strUser = 6;
+  // optional string strUser = 7;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -2598,10 +2649,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strUser");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->struser(), target);
+        7, this->struser(), target);
   }
 
-  // optional string strPasswd = 7;
+  // optional string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -2609,10 +2660,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strPasswd");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->strpasswd(), target);
+        8, this->strpasswd(), target);
   }
 
-  // optional string strONVIFAddress = 8;
+  // optional string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stronvifaddress().data(), this->stronvifaddress().length(),
@@ -2620,15 +2671,15 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strONVIFAddress");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->stronvifaddress(), target);
+        9, this->stronvifaddress(), target);
   }
 
-  // optional bool bProfileToken = 9;
+  // optional bool bProfileToken = 10;
   if (this->bprofiletoken() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->bprofiletoken(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(10, this->bprofiletoken(), target);
   }
 
-  // optional string strProfileToken1 = 10;
+  // optional string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken1().data(), this->strprofiletoken1().length(),
@@ -2636,10 +2687,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strProfileToken1");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        10, this->strprofiletoken1(), target);
+        11, this->strprofiletoken1(), target);
   }
 
-  // optional string strProfileToken2 = 11;
+  // optional string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken2().data(), this->strprofiletoken2().length(),
@@ -2647,10 +2698,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strProfileToken2");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        11, this->strprofiletoken2(), target);
+        12, this->strprofiletoken2(), target);
   }
 
-  // optional string strFile = 12;
+  // optional string strFile = 13;
   if (this->strfile().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strfile().data(), this->strfile().length(),
@@ -2658,10 +2709,10 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strFile");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        12, this->strfile(), target);
+        13, this->strfile(), target);
   }
 
-  // optional string strRTSPUrl = 13;
+  // optional string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strrtspurl().data(), this->strrtspurl().length(),
@@ -2669,44 +2720,48 @@ void VidCamera::SerializeWithCachedSizes(
       "VidConf.VidCamera.strRTSPUrl");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        13, this->strrtspurl(), target);
+        14, this->strrtspurl(), target);
   }
 
-  // optional bool bHWaccel = 14;
+  // optional bool bHWaccel = 15;
   if (this->bhwaccel() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(14, this->bhwaccel(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(15, this->bhwaccel(), target);
   }
 
-  // optional bool bServerMotion = 15;
+  // optional bool bServerMotion = 16;
   if (this->bservermotion() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(15, this->bservermotion(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(16, this->bservermotion(), target);
   }
 
-  // optional .VidConf.CameraConnectType nConnectType = 16;
+  // optional .VidConf.CameraConnectType nConnectType = 17;
   if (this->nconnecttype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      16, this->nconnecttype(), target);
+      17, this->nconnecttype(), target);
   }
 
-  // optional bool bHDFSRecord = 17;
+  // optional bool bHDFSRecord = 18;
   if (this->bhdfsrecord() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(17, this->bhdfsrecord(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(18, this->bhdfsrecord(), target);
   }
 
-  // optional bool bRecord = 18;
-  if (this->brecord() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(18, this->brecord(), target);
-  }
-
-  // optional string strRecordTemplId = 19;
-  if (this->strrecordtemplid().size() > 0) {
+  // repeated string cRecSched = 20;
+  for (int i = 0; i < this->crecsched_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strrecordtemplid().data(), this->strrecordtemplid().length(),
+      this->crecsched(i).data(), this->crecsched(i).length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "VidConf.VidCamera.strRecordTemplId");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        19, this->strrecordtemplid(), target);
+      "VidConf.VidCamera.cRecSched");
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(20, this->crecsched(i), target);
+  }
+
+  // optional int32 nPreRecSec = 21;
+  if (this->nprerecsec() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(21, this->nprerecsec(), target);
+  }
+
+  // optional int32 nPostRecSec = 22;
+  if (this->npostrecsec() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(22, this->npostrecsec(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidCamera)
@@ -2716,125 +2771,139 @@ void VidCamera::SerializeWithCachedSizes(
 int VidCamera::ByteSize() const {
   int total_size = 0;
 
-  // optional string strId = 1;
+  // optional bool bDisable = 1;
+  if (this->bdisable() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional string strId = 2;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // optional string strName = 3;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // optional .VidConf.CameraType nType = 3;
+  // optional .VidConf.CameraType nType = 4;
   if (this->ntype() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
   }
 
-  // optional string strIP = 4;
+  // optional string strIP = 5;
   if (this->strip().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strip());
   }
 
-  // optional string strPort = 5;
+  // optional string strPort = 6;
   if (this->strport().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strport());
   }
 
-  // optional string strUser = 6;
+  // optional string strUser = 7;
   if (this->struser().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->struser());
   }
 
-  // optional string strPasswd = 7;
+  // optional string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpasswd());
   }
 
-  // optional string strONVIFAddress = 8;
+  // optional string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->stronvifaddress());
   }
 
-  // optional bool bProfileToken = 9;
+  // optional bool bProfileToken = 10;
   if (this->bprofiletoken() != 0) {
     total_size += 1 + 1;
   }
 
-  // optional string strProfileToken1 = 10;
+  // optional string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strprofiletoken1());
   }
 
-  // optional string strProfileToken2 = 11;
+  // optional string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strprofiletoken2());
   }
 
-  // optional string strFile = 12;
+  // optional string strFile = 13;
   if (this->strfile().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strfile());
   }
 
-  // optional string strRTSPUrl = 13;
+  // optional string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strrtspurl());
   }
 
-  // optional bool bHWaccel = 14;
+  // optional bool bHWaccel = 15;
   if (this->bhwaccel() != 0) {
     total_size += 1 + 1;
   }
 
-  // optional bool bServerMotion = 15;
+  // optional bool bServerMotion = 16;
   if (this->bservermotion() != 0) {
-    total_size += 1 + 1;
+    total_size += 2 + 1;
   }
 
-  // optional .VidConf.CameraConnectType nConnectType = 16;
+  // optional .VidConf.CameraConnectType nConnectType = 17;
   if (this->nconnecttype() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->nconnecttype());
   }
 
-  // optional bool bHDFSRecord = 17;
+  // optional bool bHDFSRecord = 18;
   if (this->bhdfsrecord() != 0) {
     total_size += 2 + 1;
   }
 
-  // optional bool bRecord = 18;
-  if (this->brecord() != 0) {
-    total_size += 2 + 1;
+  // optional int32 nPreRecSec = 21;
+  if (this->nprerecsec() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nprerecsec());
   }
 
-  // optional string strRecordTemplId = 19;
-  if (this->strrecordtemplid().size() > 0) {
+  // optional int32 nPostRecSec = 22;
+  if (this->npostrecsec() != 0) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strrecordtemplid());
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->npostrecsec());
+  }
+
+  // repeated string cRecSched = 20;
+  total_size += 2 * this->crecsched_size();
+  for (int i = 0; i < this->crecsched_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->crecsched(i));
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -2857,6 +2926,10 @@ void VidCamera::MergeFrom(const ::google::protobuf::Message& from) {
 
 void VidCamera::MergeFrom(const VidCamera& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  crecsched_.MergeFrom(from.crecsched_);
+  if (from.bdisable() != 0) {
+    set_bdisable(from.bdisable());
+  }
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -2919,12 +2992,11 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   if (from.bhdfsrecord() != 0) {
     set_bhdfsrecord(from.bhdfsrecord());
   }
-  if (from.brecord() != 0) {
-    set_brecord(from.brecord());
+  if (from.nprerecsec() != 0) {
+    set_nprerecsec(from.nprerecsec());
   }
-  if (from.strrecordtemplid().size() > 0) {
-
-    strrecordtemplid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strrecordtemplid_);
+  if (from.npostrecsec() != 0) {
+    set_npostrecsec(from.npostrecsec());
   }
 }
 
@@ -2950,6 +3022,7 @@ void VidCamera::Swap(VidCamera* other) {
   InternalSwap(other);
 }
 void VidCamera::InternalSwap(VidCamera* other) {
+  std::swap(bdisable_, other->bdisable_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
   std::swap(ntype_, other->ntype_);
@@ -2967,8 +3040,9 @@ void VidCamera::InternalSwap(VidCamera* other) {
   std::swap(bservermotion_, other->bservermotion_);
   std::swap(nconnecttype_, other->nconnecttype_);
   std::swap(bhdfsrecord_, other->bhdfsrecord_);
-  std::swap(brecord_, other->brecord_);
-  strrecordtemplid_.Swap(&other->strrecordtemplid_);
+  crecsched_.UnsafeArenaSwap(&other->crecsched_);
+  std::swap(nprerecsec_, other->nprerecsec_);
+  std::swap(npostrecsec_, other->npostrecsec_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -2984,7 +3058,21 @@ void VidCamera::InternalSwap(VidCamera* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidCamera
 
-// optional string strId = 1;
+// optional bool bDisable = 1;
+void VidCamera::clear_bdisable() {
+  bdisable_ = false;
+}
+ bool VidCamera::bdisable() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bDisable)
+  return bdisable_;
+}
+ void VidCamera::set_bdisable(bool value) {
+  
+  bdisable_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bDisable)
+}
+
+// optional string strId = 2;
 void VidCamera::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3027,7 +3115,7 @@ void VidCamera::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strId)
 }
 
-// optional string strName = 2;
+// optional string strName = 3;
 void VidCamera::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3070,7 +3158,7 @@ void VidCamera::clear_strname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strName)
 }
 
-// optional .VidConf.CameraType nType = 3;
+// optional .VidConf.CameraType nType = 4;
 void VidCamera::clear_ntype() {
   ntype_ = 0;
 }
@@ -3084,7 +3172,7 @@ void VidCamera::clear_ntype() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nType)
 }
 
-// optional string strIP = 4;
+// optional string strIP = 5;
 void VidCamera::clear_strip() {
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3127,7 +3215,7 @@ void VidCamera::clear_strip() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strIP)
 }
 
-// optional string strPort = 5;
+// optional string strPort = 6;
 void VidCamera::clear_strport() {
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3170,7 +3258,7 @@ void VidCamera::clear_strport() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPort)
 }
 
-// optional string strUser = 6;
+// optional string strUser = 7;
 void VidCamera::clear_struser() {
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3213,7 +3301,7 @@ void VidCamera::clear_struser() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strUser)
 }
 
-// optional string strPasswd = 7;
+// optional string strPasswd = 8;
 void VidCamera::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3256,7 +3344,7 @@ void VidCamera::clear_strpasswd() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPasswd)
 }
 
-// optional string strONVIFAddress = 8;
+// optional string strONVIFAddress = 9;
 void VidCamera::clear_stronvifaddress() {
   stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3299,7 +3387,7 @@ void VidCamera::clear_stronvifaddress() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strONVIFAddress)
 }
 
-// optional bool bProfileToken = 9;
+// optional bool bProfileToken = 10;
 void VidCamera::clear_bprofiletoken() {
   bprofiletoken_ = false;
 }
@@ -3313,7 +3401,7 @@ void VidCamera::clear_bprofiletoken() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bProfileToken)
 }
 
-// optional string strProfileToken1 = 10;
+// optional string strProfileToken1 = 11;
 void VidCamera::clear_strprofiletoken1() {
   strprofiletoken1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3356,7 +3444,7 @@ void VidCamera::clear_strprofiletoken1() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken1)
 }
 
-// optional string strProfileToken2 = 11;
+// optional string strProfileToken2 = 12;
 void VidCamera::clear_strprofiletoken2() {
   strprofiletoken2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3399,7 +3487,7 @@ void VidCamera::clear_strprofiletoken2() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken2)
 }
 
-// optional string strFile = 12;
+// optional string strFile = 13;
 void VidCamera::clear_strfile() {
   strfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3442,7 +3530,7 @@ void VidCamera::clear_strfile() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strFile)
 }
 
-// optional string strRTSPUrl = 13;
+// optional string strRTSPUrl = 14;
 void VidCamera::clear_strrtspurl() {
   strrtspurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3485,7 +3573,7 @@ void VidCamera::clear_strrtspurl() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRTSPUrl)
 }
 
-// optional bool bHWaccel = 14;
+// optional bool bHWaccel = 15;
 void VidCamera::clear_bhwaccel() {
   bhwaccel_ = false;
 }
@@ -3499,7 +3587,7 @@ void VidCamera::clear_bhwaccel() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHWaccel)
 }
 
-// optional bool bServerMotion = 15;
+// optional bool bServerMotion = 16;
 void VidCamera::clear_bservermotion() {
   bservermotion_ = false;
 }
@@ -3513,7 +3601,7 @@ void VidCamera::clear_bservermotion() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bServerMotion)
 }
 
-// optional .VidConf.CameraConnectType nConnectType = 16;
+// optional .VidConf.CameraConnectType nConnectType = 17;
 void VidCamera::clear_nconnecttype() {
   nconnecttype_ = 0;
 }
@@ -3527,7 +3615,7 @@ void VidCamera::clear_nconnecttype() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nConnectType)
 }
 
-// optional bool bHDFSRecord = 17;
+// optional bool bHDFSRecord = 18;
 void VidCamera::clear_bhdfsrecord() {
   bhdfsrecord_ = false;
 }
@@ -3541,61 +3629,86 @@ void VidCamera::clear_bhdfsrecord() {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHDFSRecord)
 }
 
-// optional bool bRecord = 18;
-void VidCamera::clear_brecord() {
-  brecord_ = false;
+// repeated string cRecSched = 20;
+int VidCamera::crecsched_size() const {
+  return crecsched_.size();
 }
- bool VidCamera::brecord() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bRecord)
-  return brecord_;
+void VidCamera::clear_crecsched() {
+  crecsched_.Clear();
 }
- void VidCamera::set_brecord(bool value) {
-  
-  brecord_ = value;
-  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bRecord)
+ const ::std::string& VidCamera::crecsched(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.cRecSched)
+  return crecsched_.Get(index);
+}
+ ::std::string* VidCamera::mutable_crecsched(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.cRecSched)
+  return crecsched_.Mutable(index);
+}
+ void VidCamera::set_crecsched(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.cRecSched)
+  crecsched_.Mutable(index)->assign(value);
+}
+ void VidCamera::set_crecsched(int index, const char* value) {
+  crecsched_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.cRecSched)
+}
+ void VidCamera::set_crecsched(int index, const char* value, size_t size) {
+  crecsched_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.cRecSched)
+}
+ ::std::string* VidCamera::add_crecsched() {
+  return crecsched_.Add();
+}
+ void VidCamera::add_crecsched(const ::std::string& value) {
+  crecsched_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:VidConf.VidCamera.cRecSched)
+}
+ void VidCamera::add_crecsched(const char* value) {
+  crecsched_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:VidConf.VidCamera.cRecSched)
+}
+ void VidCamera::add_crecsched(const char* value, size_t size) {
+  crecsched_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:VidConf.VidCamera.cRecSched)
+}
+ const ::google::protobuf::RepeatedPtrField< ::std::string>&
+VidCamera::crecsched() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidCamera.cRecSched)
+  return crecsched_;
+}
+ ::google::protobuf::RepeatedPtrField< ::std::string>*
+VidCamera::mutable_crecsched() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidCamera.cRecSched)
+  return &crecsched_;
 }
 
-// optional string strRecordTemplId = 19;
-void VidCamera::clear_strrecordtemplid() {
-  strrecordtemplid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional int32 nPreRecSec = 21;
+void VidCamera::clear_nprerecsec() {
+  nprerecsec_ = 0;
 }
- const ::std::string& VidCamera::strrecordtemplid() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strRecordTemplId)
-  return strrecordtemplid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+ ::google::protobuf::int32 VidCamera::nprerecsec() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPreRecSec)
+  return nprerecsec_;
 }
- void VidCamera::set_strrecordtemplid(const ::std::string& value) {
+ void VidCamera::set_nprerecsec(::google::protobuf::int32 value) {
   
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strRecordTemplId)
+  nprerecsec_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPreRecSec)
 }
- void VidCamera::set_strrecordtemplid(const char* value) {
+
+// optional int32 nPostRecSec = 22;
+void VidCamera::clear_npostrecsec() {
+  npostrecsec_ = 0;
+}
+ ::google::protobuf::int32 VidCamera::npostrecsec() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPostRecSec)
+  return npostrecsec_;
+}
+ void VidCamera::set_npostrecsec(::google::protobuf::int32 value) {
   
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strRecordTemplId)
-}
- void VidCamera::set_strrecordtemplid(const char* value, size_t size) {
-  
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strRecordTemplId)
-}
- ::std::string* VidCamera::mutable_strrecordtemplid() {
-  
-  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strRecordTemplId)
-  return strrecordtemplid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- ::std::string* VidCamera::release_strrecordtemplid() {
-  
-  return strrecordtemplid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void VidCamera::set_allocated_strrecordtemplid(::std::string* strrecordtemplid) {
-  if (strrecordtemplid != NULL) {
-    
-  } else {
-    
-  }
-  strrecordtemplid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strrecordtemplid);
-  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRecordTemplId)
+  npostrecsec_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPostRecSec)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

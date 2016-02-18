@@ -42,40 +42,42 @@ enum CameraConnectType {
 }
 
 message VidCamera {
+	bool bDisable = 1;
 	//use uuid for id of the camera
-	string strId = 1;
-	string strName = 2;
-	CameraType nType = 3;
+	string strId = 2;
+	string strName = 3;
+	CameraType nType = 4;
 	
 	//ONVIF
-	string strIP = 4;
-	string strPort = 5;
-	string strUser = 6;
-	string strPasswd = 7;
+	string strIP = 5;
+	string strPort = 6;
+	string strUser = 7;
+	string strPasswd = 8;
 
-	string strONVIFAddress = 8;
-	bool bProfileToken = 9;
-	string strProfileToken1 = 10;
-	string strProfileToken2 = 11;
+	string strONVIFAddress = 9;
+	bool bProfileToken = 10;
+	string strProfileToken1 = 11;
+	string strProfileToken2 = 12;
 	
 	//File
-	string strFile = 12;
+	string strFile = 13;
 	
 	//RTSP
-	string strRTSPUrl = 13;
+	string strRTSPUrl = 14;
 	
 	//Motion and if use HW accel for motion
-	bool bHWaccel = 14;
-	bool bServerMotion = 15;
+	bool bHWaccel = 15;
+	bool bServerMotion = 16;
 	
-	CameraConnectType nConnectType = 16;
+	CameraConnectType nConnectType = 17;
 	
 	//Enable HDFS Record on x64 CPU
-	bool bHDFSRecord = 17;
+	bool bHDFSRecord = 18;
 	
 	//Recording
-	bool bRecord = 18;
-	string strRecordTemplId = 19;
+	repeated string cRecSched = 20;
+	int32 nPreRecSec = 21;
+	int32 nPostRecSec = 22;
 }
 
 message VidCameraList {

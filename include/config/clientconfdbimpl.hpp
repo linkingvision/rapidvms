@@ -81,43 +81,35 @@ inline void VSCClientConfDefault(VidClientConf &pData)
 
 inline s32 ClientConfDB::Open(astring & pPath)
 {
-    m_Options.create_if_missing = true;
-    leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
-    if (false == status.ok())
-    {
-        //cerr << "Unable to open/create test database "<< pPath << endl;
-        //cerr << status.ToString() << endl;
-        VDC_DEBUG( "Unable to open/create test database %s\n", pPath.c_str());
+	m_Options.create_if_missing = true;
+	leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
+	if (false == status.ok())
+	{
+	    //cerr << "Unable to open/create test database "<< pPath << endl;
+	    //cerr << status.ToString() << endl;
+	    VDC_DEBUG( "Unable to open/create test database %s\n", pPath.c_str());
 
-        return FALSE;
-    }
+	    return FALSE;
+	}
+	astring fakeKey = "fakeKey";
+	astring fakeValue = "fakeValue";
+	SetCmnParam(fakeKey, fakeValue);
     return TRUE;
 }
 
 inline BOOL ClientConfDB::GetCmnParam(astring &strKey, astring &strParam)
 {
-	leveldb::Slice key(strKey);
 	XGuard guard(m_cMutex);
+	
+	leveldb::Slice key(strKey);
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strParam);
+	if (s.ok() == false)
 	{
-		sysValue = it->value();
-		strParam = sysValue.ToString();
-	}else
-	{
-		delete it;
+		strParam = "";
 		return FALSE;
 	}
-	
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 }
@@ -142,24 +134,13 @@ inline   bool ClientConfDB::GetLicense(astring &strLicense)
 
 	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
-	{
-		sysValue = it->value();
-		strLicense = sysValue.ToString();
-	}
-	if (strLicense.length() < 10)
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strLicense);
+	if (s.ok() == false)
 	{
 		strLicense = "";
+		return false;
 	}
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return true;
 
@@ -239,35 +220,26 @@ inline bool ClientConfDB::AddStor(VidStor &pStor)
 inline BOOL ClientConfDB::GetStorListConf(VidStorList &pData)
 {
 	VSCConfVidStorKey sKey;
+	astring strValue;
 	
 	XGuard guard(m_cMutex);
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue("fake");
-	
-
-	if (it->status().IsNotFound() != true)
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-	    sysValue = it->value();
+		strValue = "fake";
 	}
 
-	if (pData.ParseFromString(sysValue.ToString()) == false)
+	if (pData.ParseFromString(strValue) == false)
 	{
 		VidStorList listDefault;
 		pData = listDefault;
 		VDC_DEBUG( "Stor List Config is not init\n");
-		delete it;
 		return TRUE;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return TRUE;
 
@@ -318,34 +290,25 @@ inline bool ClientConfDB::GetStorConf(astring strId, VidStor &pStor)
 inline bool ClientConfDB::GetClientConf(VidClientConf &pData)
 {
 	VSCConfClientKey sKey;
+	astring strValue;
 	
 	XGuard guard(m_cMutex);
 
 	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue("fake");
-	
-
-	if (it->status().IsNotFound() != true)
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-	    sysValue = it->value();
+		strValue = "fake";
 	}
 
-	if (pData.ParseFromString(sysValue.ToString()) == false)
+	if (pData.ParseFromString(strValue) == false)
 	{
 		VSCClientConfDefault(pData);
 		VDC_DEBUG( "Client Config is not init\n");
-		delete it;
 		return true;
 	}
-
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
 	return true;
 }

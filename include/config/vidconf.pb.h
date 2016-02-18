@@ -511,9 +511,15 @@ class VidCamera : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional string strId = 1;
+  // optional bool bDisable = 1;
+  void clear_bdisable();
+  static const int kBDisableFieldNumber = 1;
+  bool bdisable() const;
+  void set_bdisable(bool value);
+
+  // optional string strId = 2;
   void clear_strid();
-  static const int kStrIdFieldNumber = 1;
+  static const int kStrIdFieldNumber = 2;
   const ::std::string& strid() const;
   void set_strid(const ::std::string& value);
   void set_strid(const char* value);
@@ -522,9 +528,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strid();
   void set_allocated_strid(::std::string* strid);
 
-  // optional string strName = 2;
+  // optional string strName = 3;
   void clear_strname();
-  static const int kStrNameFieldNumber = 2;
+  static const int kStrNameFieldNumber = 3;
   const ::std::string& strname() const;
   void set_strname(const ::std::string& value);
   void set_strname(const char* value);
@@ -533,15 +539,15 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strname();
   void set_allocated_strname(::std::string* strname);
 
-  // optional .VidConf.CameraType nType = 3;
+  // optional .VidConf.CameraType nType = 4;
   void clear_ntype();
-  static const int kNTypeFieldNumber = 3;
+  static const int kNTypeFieldNumber = 4;
   ::VidConf::CameraType ntype() const;
   void set_ntype(::VidConf::CameraType value);
 
-  // optional string strIP = 4;
+  // optional string strIP = 5;
   void clear_strip();
-  static const int kStrIPFieldNumber = 4;
+  static const int kStrIPFieldNumber = 5;
   const ::std::string& strip() const;
   void set_strip(const ::std::string& value);
   void set_strip(const char* value);
@@ -550,9 +556,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strip();
   void set_allocated_strip(::std::string* strip);
 
-  // optional string strPort = 5;
+  // optional string strPort = 6;
   void clear_strport();
-  static const int kStrPortFieldNumber = 5;
+  static const int kStrPortFieldNumber = 6;
   const ::std::string& strport() const;
   void set_strport(const ::std::string& value);
   void set_strport(const char* value);
@@ -561,9 +567,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strport();
   void set_allocated_strport(::std::string* strport);
 
-  // optional string strUser = 6;
+  // optional string strUser = 7;
   void clear_struser();
-  static const int kStrUserFieldNumber = 6;
+  static const int kStrUserFieldNumber = 7;
   const ::std::string& struser() const;
   void set_struser(const ::std::string& value);
   void set_struser(const char* value);
@@ -572,9 +578,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_struser();
   void set_allocated_struser(::std::string* struser);
 
-  // optional string strPasswd = 7;
+  // optional string strPasswd = 8;
   void clear_strpasswd();
-  static const int kStrPasswdFieldNumber = 7;
+  static const int kStrPasswdFieldNumber = 8;
   const ::std::string& strpasswd() const;
   void set_strpasswd(const ::std::string& value);
   void set_strpasswd(const char* value);
@@ -583,9 +589,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strpasswd();
   void set_allocated_strpasswd(::std::string* strpasswd);
 
-  // optional string strONVIFAddress = 8;
+  // optional string strONVIFAddress = 9;
   void clear_stronvifaddress();
-  static const int kStrONVIFAddressFieldNumber = 8;
+  static const int kStrONVIFAddressFieldNumber = 9;
   const ::std::string& stronvifaddress() const;
   void set_stronvifaddress(const ::std::string& value);
   void set_stronvifaddress(const char* value);
@@ -594,15 +600,15 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_stronvifaddress();
   void set_allocated_stronvifaddress(::std::string* stronvifaddress);
 
-  // optional bool bProfileToken = 9;
+  // optional bool bProfileToken = 10;
   void clear_bprofiletoken();
-  static const int kBProfileTokenFieldNumber = 9;
+  static const int kBProfileTokenFieldNumber = 10;
   bool bprofiletoken() const;
   void set_bprofiletoken(bool value);
 
-  // optional string strProfileToken1 = 10;
+  // optional string strProfileToken1 = 11;
   void clear_strprofiletoken1();
-  static const int kStrProfileToken1FieldNumber = 10;
+  static const int kStrProfileToken1FieldNumber = 11;
   const ::std::string& strprofiletoken1() const;
   void set_strprofiletoken1(const ::std::string& value);
   void set_strprofiletoken1(const char* value);
@@ -611,9 +617,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strprofiletoken1();
   void set_allocated_strprofiletoken1(::std::string* strprofiletoken1);
 
-  // optional string strProfileToken2 = 11;
+  // optional string strProfileToken2 = 12;
   void clear_strprofiletoken2();
-  static const int kStrProfileToken2FieldNumber = 11;
+  static const int kStrProfileToken2FieldNumber = 12;
   const ::std::string& strprofiletoken2() const;
   void set_strprofiletoken2(const ::std::string& value);
   void set_strprofiletoken2(const char* value);
@@ -622,9 +628,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strprofiletoken2();
   void set_allocated_strprofiletoken2(::std::string* strprofiletoken2);
 
-  // optional string strFile = 12;
+  // optional string strFile = 13;
   void clear_strfile();
-  static const int kStrFileFieldNumber = 12;
+  static const int kStrFileFieldNumber = 13;
   const ::std::string& strfile() const;
   void set_strfile(const ::std::string& value);
   void set_strfile(const char* value);
@@ -633,9 +639,9 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strfile();
   void set_allocated_strfile(::std::string* strfile);
 
-  // optional string strRTSPUrl = 13;
+  // optional string strRTSPUrl = 14;
   void clear_strrtspurl();
-  static const int kStrRTSPUrlFieldNumber = 13;
+  static const int kStrRTSPUrlFieldNumber = 14;
   const ::std::string& strrtspurl() const;
   void set_strrtspurl(const ::std::string& value);
   void set_strrtspurl(const char* value);
@@ -644,46 +650,57 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strrtspurl();
   void set_allocated_strrtspurl(::std::string* strrtspurl);
 
-  // optional bool bHWaccel = 14;
+  // optional bool bHWaccel = 15;
   void clear_bhwaccel();
-  static const int kBHWaccelFieldNumber = 14;
+  static const int kBHWaccelFieldNumber = 15;
   bool bhwaccel() const;
   void set_bhwaccel(bool value);
 
-  // optional bool bServerMotion = 15;
+  // optional bool bServerMotion = 16;
   void clear_bservermotion();
-  static const int kBServerMotionFieldNumber = 15;
+  static const int kBServerMotionFieldNumber = 16;
   bool bservermotion() const;
   void set_bservermotion(bool value);
 
-  // optional .VidConf.CameraConnectType nConnectType = 16;
+  // optional .VidConf.CameraConnectType nConnectType = 17;
   void clear_nconnecttype();
-  static const int kNConnectTypeFieldNumber = 16;
+  static const int kNConnectTypeFieldNumber = 17;
   ::VidConf::CameraConnectType nconnecttype() const;
   void set_nconnecttype(::VidConf::CameraConnectType value);
 
-  // optional bool bHDFSRecord = 17;
+  // optional bool bHDFSRecord = 18;
   void clear_bhdfsrecord();
-  static const int kBHDFSRecordFieldNumber = 17;
+  static const int kBHDFSRecordFieldNumber = 18;
   bool bhdfsrecord() const;
   void set_bhdfsrecord(bool value);
 
-  // optional bool bRecord = 18;
-  void clear_brecord();
-  static const int kBRecordFieldNumber = 18;
-  bool brecord() const;
-  void set_brecord(bool value);
+  // repeated string cRecSched = 20;
+  int crecsched_size() const;
+  void clear_crecsched();
+  static const int kCRecSchedFieldNumber = 20;
+  const ::std::string& crecsched(int index) const;
+  ::std::string* mutable_crecsched(int index);
+  void set_crecsched(int index, const ::std::string& value);
+  void set_crecsched(int index, const char* value);
+  void set_crecsched(int index, const char* value, size_t size);
+  ::std::string* add_crecsched();
+  void add_crecsched(const ::std::string& value);
+  void add_crecsched(const char* value);
+  void add_crecsched(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& crecsched() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_crecsched();
 
-  // optional string strRecordTemplId = 19;
-  void clear_strrecordtemplid();
-  static const int kStrRecordTemplIdFieldNumber = 19;
-  const ::std::string& strrecordtemplid() const;
-  void set_strrecordtemplid(const ::std::string& value);
-  void set_strrecordtemplid(const char* value);
-  void set_strrecordtemplid(const char* value, size_t size);
-  ::std::string* mutable_strrecordtemplid();
-  ::std::string* release_strrecordtemplid();
-  void set_allocated_strrecordtemplid(::std::string* strrecordtemplid);
+  // optional int32 nPreRecSec = 21;
+  void clear_nprerecsec();
+  static const int kNPreRecSecFieldNumber = 21;
+  ::google::protobuf::int32 nprerecsec() const;
+  void set_nprerecsec(::google::protobuf::int32 value);
+
+  // optional int32 nPostRecSec = 22;
+  void clear_npostrecsec();
+  static const int kNPostRecSecFieldNumber = 22;
+  ::google::protobuf::int32 npostrecsec() const;
+  void set_npostrecsec(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
@@ -697,18 +714,20 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr struser_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   ::google::protobuf::internal::ArenaStringPtr stronvifaddress_;
-  ::google::protobuf::internal::ArenaStringPtr strprofiletoken1_;
-  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
   int ntype_;
+  bool bdisable_;
   bool bprofiletoken_;
   bool bhwaccel_;
   bool bservermotion_;
-  bool bhdfsrecord_;
+  ::google::protobuf::internal::ArenaStringPtr strprofiletoken1_;
+  ::google::protobuf::internal::ArenaStringPtr strprofiletoken2_;
   ::google::protobuf::internal::ArenaStringPtr strfile_;
   ::google::protobuf::internal::ArenaStringPtr strrtspurl_;
   int nconnecttype_;
-  bool brecord_;
-  ::google::protobuf::internal::ArenaStringPtr strrecordtemplid_;
+  bool bhdfsrecord_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> crecsched_;
+  ::google::protobuf::int32 nprerecsec_;
+  ::google::protobuf::int32 npostrecsec_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -2624,7 +2643,21 @@ inline void VidStorServerConf::set_allocated_stradminpasswd(::std::string* strad
 
 // VidCamera
 
-// optional string strId = 1;
+// optional bool bDisable = 1;
+inline void VidCamera::clear_bdisable() {
+  bdisable_ = false;
+}
+inline bool VidCamera::bdisable() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bDisable)
+  return bdisable_;
+}
+inline void VidCamera::set_bdisable(bool value) {
+  
+  bdisable_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bDisable)
+}
+
+// optional string strId = 2;
 inline void VidCamera::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2667,7 +2700,7 @@ inline void VidCamera::set_allocated_strid(::std::string* strid) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strId)
 }
 
-// optional string strName = 2;
+// optional string strName = 3;
 inline void VidCamera::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2710,7 +2743,7 @@ inline void VidCamera::set_allocated_strname(::std::string* strname) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strName)
 }
 
-// optional .VidConf.CameraType nType = 3;
+// optional .VidConf.CameraType nType = 4;
 inline void VidCamera::clear_ntype() {
   ntype_ = 0;
 }
@@ -2724,7 +2757,7 @@ inline void VidCamera::set_ntype(::VidConf::CameraType value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nType)
 }
 
-// optional string strIP = 4;
+// optional string strIP = 5;
 inline void VidCamera::clear_strip() {
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2767,7 +2800,7 @@ inline void VidCamera::set_allocated_strip(::std::string* strip) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strIP)
 }
 
-// optional string strPort = 5;
+// optional string strPort = 6;
 inline void VidCamera::clear_strport() {
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2810,7 +2843,7 @@ inline void VidCamera::set_allocated_strport(::std::string* strport) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPort)
 }
 
-// optional string strUser = 6;
+// optional string strUser = 7;
 inline void VidCamera::clear_struser() {
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2853,7 +2886,7 @@ inline void VidCamera::set_allocated_struser(::std::string* struser) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strUser)
 }
 
-// optional string strPasswd = 7;
+// optional string strPasswd = 8;
 inline void VidCamera::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2896,7 +2929,7 @@ inline void VidCamera::set_allocated_strpasswd(::std::string* strpasswd) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPasswd)
 }
 
-// optional string strONVIFAddress = 8;
+// optional string strONVIFAddress = 9;
 inline void VidCamera::clear_stronvifaddress() {
   stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2939,7 +2972,7 @@ inline void VidCamera::set_allocated_stronvifaddress(::std::string* stronvifaddr
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strONVIFAddress)
 }
 
-// optional bool bProfileToken = 9;
+// optional bool bProfileToken = 10;
 inline void VidCamera::clear_bprofiletoken() {
   bprofiletoken_ = false;
 }
@@ -2953,7 +2986,7 @@ inline void VidCamera::set_bprofiletoken(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bProfileToken)
 }
 
-// optional string strProfileToken1 = 10;
+// optional string strProfileToken1 = 11;
 inline void VidCamera::clear_strprofiletoken1() {
   strprofiletoken1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2996,7 +3029,7 @@ inline void VidCamera::set_allocated_strprofiletoken1(::std::string* strprofilet
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken1)
 }
 
-// optional string strProfileToken2 = 11;
+// optional string strProfileToken2 = 12;
 inline void VidCamera::clear_strprofiletoken2() {
   strprofiletoken2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3039,7 +3072,7 @@ inline void VidCamera::set_allocated_strprofiletoken2(::std::string* strprofilet
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken2)
 }
 
-// optional string strFile = 12;
+// optional string strFile = 13;
 inline void VidCamera::clear_strfile() {
   strfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3082,7 +3115,7 @@ inline void VidCamera::set_allocated_strfile(::std::string* strfile) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strFile)
 }
 
-// optional string strRTSPUrl = 13;
+// optional string strRTSPUrl = 14;
 inline void VidCamera::clear_strrtspurl() {
   strrtspurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3125,7 +3158,7 @@ inline void VidCamera::set_allocated_strrtspurl(::std::string* strrtspurl) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRTSPUrl)
 }
 
-// optional bool bHWaccel = 14;
+// optional bool bHWaccel = 15;
 inline void VidCamera::clear_bhwaccel() {
   bhwaccel_ = false;
 }
@@ -3139,7 +3172,7 @@ inline void VidCamera::set_bhwaccel(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHWaccel)
 }
 
-// optional bool bServerMotion = 15;
+// optional bool bServerMotion = 16;
 inline void VidCamera::clear_bservermotion() {
   bservermotion_ = false;
 }
@@ -3153,7 +3186,7 @@ inline void VidCamera::set_bservermotion(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bServerMotion)
 }
 
-// optional .VidConf.CameraConnectType nConnectType = 16;
+// optional .VidConf.CameraConnectType nConnectType = 17;
 inline void VidCamera::clear_nconnecttype() {
   nconnecttype_ = 0;
 }
@@ -3167,7 +3200,7 @@ inline void VidCamera::set_nconnecttype(::VidConf::CameraConnectType value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nConnectType)
 }
 
-// optional bool bHDFSRecord = 17;
+// optional bool bHDFSRecord = 18;
 inline void VidCamera::clear_bhdfsrecord() {
   bhdfsrecord_ = false;
 }
@@ -3181,61 +3214,86 @@ inline void VidCamera::set_bhdfsrecord(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHDFSRecord)
 }
 
-// optional bool bRecord = 18;
-inline void VidCamera::clear_brecord() {
-  brecord_ = false;
+// repeated string cRecSched = 20;
+inline int VidCamera::crecsched_size() const {
+  return crecsched_.size();
 }
-inline bool VidCamera::brecord() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bRecord)
-  return brecord_;
+inline void VidCamera::clear_crecsched() {
+  crecsched_.Clear();
 }
-inline void VidCamera::set_brecord(bool value) {
-  
-  brecord_ = value;
-  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bRecord)
+inline const ::std::string& VidCamera::crecsched(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.cRecSched)
+  return crecsched_.Get(index);
+}
+inline ::std::string* VidCamera::mutable_crecsched(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.cRecSched)
+  return crecsched_.Mutable(index);
+}
+inline void VidCamera::set_crecsched(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.cRecSched)
+  crecsched_.Mutable(index)->assign(value);
+}
+inline void VidCamera::set_crecsched(int index, const char* value) {
+  crecsched_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.cRecSched)
+}
+inline void VidCamera::set_crecsched(int index, const char* value, size_t size) {
+  crecsched_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.cRecSched)
+}
+inline ::std::string* VidCamera::add_crecsched() {
+  return crecsched_.Add();
+}
+inline void VidCamera::add_crecsched(const ::std::string& value) {
+  crecsched_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:VidConf.VidCamera.cRecSched)
+}
+inline void VidCamera::add_crecsched(const char* value) {
+  crecsched_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:VidConf.VidCamera.cRecSched)
+}
+inline void VidCamera::add_crecsched(const char* value, size_t size) {
+  crecsched_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:VidConf.VidCamera.cRecSched)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+VidCamera::crecsched() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidCamera.cRecSched)
+  return crecsched_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+VidCamera::mutable_crecsched() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidCamera.cRecSched)
+  return &crecsched_;
 }
 
-// optional string strRecordTemplId = 19;
-inline void VidCamera::clear_strrecordtemplid() {
-  strrecordtemplid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional int32 nPreRecSec = 21;
+inline void VidCamera::clear_nprerecsec() {
+  nprerecsec_ = 0;
 }
-inline const ::std::string& VidCamera::strrecordtemplid() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strRecordTemplId)
-  return strrecordtemplid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::google::protobuf::int32 VidCamera::nprerecsec() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPreRecSec)
+  return nprerecsec_;
 }
-inline void VidCamera::set_strrecordtemplid(const ::std::string& value) {
+inline void VidCamera::set_nprerecsec(::google::protobuf::int32 value) {
   
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strRecordTemplId)
+  nprerecsec_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPreRecSec)
 }
-inline void VidCamera::set_strrecordtemplid(const char* value) {
+
+// optional int32 nPostRecSec = 22;
+inline void VidCamera::clear_npostrecsec() {
+  npostrecsec_ = 0;
+}
+inline ::google::protobuf::int32 VidCamera::npostrecsec() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPostRecSec)
+  return npostrecsec_;
+}
+inline void VidCamera::set_npostrecsec(::google::protobuf::int32 value) {
   
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strRecordTemplId)
-}
-inline void VidCamera::set_strrecordtemplid(const char* value, size_t size) {
-  
-  strrecordtemplid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strRecordTemplId)
-}
-inline ::std::string* VidCamera::mutable_strrecordtemplid() {
-  
-  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strRecordTemplId)
-  return strrecordtemplid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* VidCamera::release_strrecordtemplid() {
-  
-  return strrecordtemplid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void VidCamera::set_allocated_strrecordtemplid(::std::string* strrecordtemplid) {
-  if (strrecordtemplid != NULL) {
-    
-  } else {
-    
-  }
-  strrecordtemplid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strrecordtemplid);
-  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRecordTemplId)
+  npostrecsec_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPostRecSec)
 }
 
 // -------------------------------------------------------------------
