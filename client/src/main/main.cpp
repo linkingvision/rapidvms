@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
 	Debug::init(9200, strLoggerFile);
 
 	Debug::logger().info("opencvrclient started");
-	Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
-	Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
+	//Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
+	//Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
 
 #ifdef WIN32
 	QFont font;

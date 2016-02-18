@@ -100,8 +100,8 @@ void VSCView::SetupConnections()
 	                                    SLOT(ShowFocusClicked(int)));
 	connect(m_pVideo, SIGNAL(Layout1Clicked(int)), this,
 	                                    SLOT(ShowLayout1Clicked(int)));
-	connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
-	                                    SLOT(ShowViewClicked(int)));
+	//connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
+	//                                    SLOT(ShowViewClicked(int)));
 
 	connect(ui.pbTourPlay, SIGNAL(clicked()), this, SLOT(TourStart()));
 	connect(ui.pbTourStop, SIGNAL(clicked()), this, SLOT(TourStop()));
