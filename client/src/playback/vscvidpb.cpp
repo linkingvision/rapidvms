@@ -1,11 +1,20 @@
-#include "live/vscvidpb.h"
+#include "playback/vscvidpb.h"
 
-VSCVidPb::VSCVidPb(ClientFactory &pFactory, QMainWindow *parent)
-: VSCVidInf(pFactory, parent)
+VSCVidPb::VSCVidPb(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent)
+	: VSCVidInf(pFactory, pTab, parent)
 {
 	
 }
 VSCVidPb::~VSCVidPb()
 {
 	
+}
+
+void VSCVidPb::VidShow()
+{
+
+}
+void VSCVidPb::VidHide()
+{
+
 }

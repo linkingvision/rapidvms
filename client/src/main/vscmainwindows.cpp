@@ -298,7 +298,7 @@ again:
 		astring strUser;
 		astring strPasswd;
 		login.GetUserPasswd(strUser, strPasswd);
-		//if (m_pFactory.AuthUser(strUser, strPasswd) == TRUE)
+		if (m_pFactory.AuthUser(strUser, strPasswd) == TRUE)
 		{
 			showMaximized();
 			return;

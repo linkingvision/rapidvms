@@ -67,7 +67,21 @@ void VSCVidList::HideAll()
 void VSCVidList::FilterChanged(const QString & text)
 {
 	astring strFilter = text.toStdString();
-	m_pCameraTree->VidFilter(strFilter);
+
+	if (m_pCameraTree)
+		m_pCameraTree->VidFilter(strFilter);
+
+	if (m_pGroupTree)
+		m_pGroupTree->VidFilter(strFilter);
+
+	if (m_pViewTree)
+		m_pViewTree->VidFilter(strFilter);
+
+	if (m_pEmapTree)
+		m_pEmapTree->VidFilter(strFilter);
+
+	if (m_pConfTree)
+		m_pConfTree->VidFilter(strFilter);
 }
 
 void VSCVidList::FilterCancel()
