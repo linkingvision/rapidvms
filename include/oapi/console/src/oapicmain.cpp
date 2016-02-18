@@ -54,13 +54,13 @@ int main(int argc, char *argv[])
 			{
 				switch(header.cmd)
 				{
-					case OAPI_CMD_DEVICE_LIST_RSP:
+					case OAPI_CAM_LIST_RSP:
 					{
 						oapi::DeviceListReq list;
 						pClient.ParseDeviceList(pRecv, header.length, list);
 						break;
 					}
-					case OAPI_CMD_FRAME_PUSH:
+					case OAPI_FRAME_PUSH:
 					{
 						printf("Go a new frame %d\n", frameCnt++);
 						break;

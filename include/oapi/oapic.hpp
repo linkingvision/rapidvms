@@ -37,11 +37,16 @@ public:
 	inline bool StopLiveview(astring strId, unsigned int nStream);
 
 	inline bool AddCam(oapi::OAPIAddCameraReq sCam);
+	inline bool SetCamSched(oapi::OAPICameraUpdateSchedReq sCam);
 	inline bool DeleteCam(astring strId);
+	inline bool GetCam(astring strId);
 	inline bool AddDisk(oapi::OAPIAddDiskReq sDisk);
 	inline bool DelDisk(astring strId);
+	inline bool PtzCmd(astring strId, u32 action, double param);
+	inline bool UpdateDiskLimit(astring strId, s64 nLimit);
 	inline bool ConfAdminPasswd(astring strOld, astring strNew);
 	inline bool GetLic();
+	inline bool GetVer();
 	inline bool ConfLic(astring strLic);
 	inline bool CamSearchStart();
 	inline bool CamSearchStop();
@@ -55,6 +60,10 @@ public:
 	inline bool ParseSysDiskList(char *pRecv, int len, oapi::OAPISysDiskListRsp &list);
 	inline bool ParseLic(char *pRecv, int len, astring &strLic, astring &strHostId, 
 							int &ch, astring &type, astring &expireTime);
+	inline bool ParseVer(char *pRecv, int len, astring &strVer, astring &strInfo);
+	inline bool ParseGetCam(char *pRecv, int len, oapi::OAPICameraGetRsp &pCam);
+	inline bool ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSearchedNotify &pCam);
+
 	
 private:
 	XRef<XSocket> m_pSocket;

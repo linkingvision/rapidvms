@@ -47,7 +47,7 @@ bool OAPIClient::Setup(std::string strUser, std::string strPasswd,
 		return false;
 	}
 
-	header.cmd = htonl(OAPI_CMD_LOGIN_REQ);
+	header.cmd = htonl(OAPI_LOGIN_REQ);
 	header.length = htonl(nJsonLen + 1);;
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -70,7 +70,7 @@ bool OAPIClient::SendDeviceListRequest()
 		return FALSE;
 	}
 
-	header.cmd = htonl(OAPI_CMD_DEVICE_LIST_REQ);
+	header.cmd = htonl(OAPI_CAM_LIST_REQ);
 	header.length = htonl(nJsonLen + 1);;
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -93,7 +93,7 @@ inline bool OAPIClient::SendSysDiskListRequest()
 		return FALSE;
 	}
 
-	header.cmd = htonl(OAPI_CMD_SYS_DISK_LIST_REQ);
+	header.cmd = htonl(OAPI_SYS_DISK_LIST_REQ);
 	header.length = htonl(nJsonLen + 1);;
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -115,7 +115,7 @@ inline bool OAPIClient::SendDiskListRequest()
 		return FALSE;
 	}
 
-	header.cmd = htonl(OAPI_CMD_DISK_LIST_REQ);
+	header.cmd = htonl(OAPI_DISK_LIST_REQ);
 	header.length = htonl(nJsonLen + 1);;
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -161,7 +161,7 @@ bool OAPIClient::StartLiveview(astring strId, unsigned int nStream)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_START_LIVE_REQ);
+	header.cmd = htonl(OAPI_START_LIVE_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -180,7 +180,26 @@ bool OAPIClient::AddCam(oapi::OAPIAddCameraReq sCam)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_ADD_DEVICE_REQ);
+	header.cmd = htonl(OAPI_ADD_CAM_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return true;
+}
+
+bool OAPIClient::SetCamSched(oapi::OAPICameraUpdateSchedReq sCam)
+{
+	OAPIHeader header;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(sCam);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_SET_CAM_SCHED_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -202,7 +221,28 @@ bool OAPIClient::DeleteCam(astring strId)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_DEL_DEVICE_REQ);
+	header.cmd = htonl(OAPI_DEL_CAM_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+bool OAPIClient::GetCam(astring strId)
+{
+	OAPIHeader header;
+
+	oapi::OAPICameraGetReq cam;
+	cam.strId = strId;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(cam);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_GET_CAM_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -220,7 +260,7 @@ bool OAPIClient::AddDisk(oapi::OAPIAddDiskReq sDisk)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_ADD_DISK_REQ);
+	header.cmd = htonl(OAPI_ADD_DISK_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -239,7 +279,7 @@ bool OAPIClient::DelDisk(astring strId)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_DEL_DISK_REQ);
+	header.cmd = htonl(OAPI_DEL_DISK_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -247,6 +287,53 @@ bool OAPIClient::DelDisk(astring strId)
 
 	return true;
 }
+
+bool OAPIClient::PtzCmd(astring strId, u32 action, double param)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPtzCmd sCmd;
+	sCmd.strId = strId;
+	sCmd.nPtzCmd = (u32)action;
+	sCmd.nParam = param;
+	std::string strJson = autojsoncxx::to_pretty_json_string(sCmd);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_PTZ_CMD);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return true;
+}
+
+
+bool OAPIClient::UpdateDiskLimit(astring strId, s64 nLimit)
+{
+	OAPIHeader header;
+
+	oapi::OAPIUpdateDiskLimitReq sDisk;
+	sDisk.disk.strId = strId;
+	sDisk.disk.nStorLimit = nLimit;
+	std::string strJson = autojsoncxx::to_pretty_json_string(sDisk);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_UPDATE_DISK_LIMIT_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return true;
+}
+
 bool OAPIClient::ConfAdminPasswd(astring strOld, astring strNew)
 {
 	OAPIHeader header;
@@ -261,7 +348,7 @@ bool OAPIClient::ConfAdminPasswd(astring strOld, astring strNew)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_CONF_ADMIN_REQ);
+	header.cmd = htonl(OAPI_CONF_ADMIN_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -282,7 +369,7 @@ bool OAPIClient::CamSearchStart()
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_CAM_SEARCH_START_REQ);
+	header.cmd = htonl(OAPI_CAM_SEARCH_START_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -302,7 +389,7 @@ bool OAPIClient::CamSearchStop()
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_CAM_SEARCH_STOP_REQ);
+	header.cmd = htonl(OAPI_CAM_SEARCH_STOP_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -323,7 +410,7 @@ bool OAPIClient::GetLic()
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_GET_LIC_REQ);
+	header.cmd = htonl(OAPI_GET_LIC_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -331,6 +418,29 @@ bool OAPIClient::GetLic()
 
 	return true;
 }
+
+
+bool OAPIClient::GetVer()
+{
+	OAPIHeader header;
+
+	oapi::OAPIGetVerReq sReq;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(sReq);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_GET_VER_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return true;
+}
+
 bool OAPIClient::ConfLic(astring strLic)
 {
 	OAPIHeader header;
@@ -344,7 +454,7 @@ bool OAPIClient::ConfLic(astring strLic)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_CONF_LIC_REQ);
+	header.cmd = htonl(OAPI_CONF_LIC_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -367,7 +477,7 @@ bool OAPIClient::StopLiveview(astring strId, unsigned int nStream)
 	{
 		return false;
 	}
-	header.cmd = htonl(OAPI_CMD_STOP_LIVE_REQ);
+	header.cmd = htonl(OAPI_STOP_LIVE_REQ);
 	header.length = htonl(nJsonLen + 1);
 	
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -425,8 +535,21 @@ bool OAPIClient::ParseLic(char *pRecv, int len, astring &strLic, astring &strHos
 	expireTime = rsp.strExpireTime;
 	return true;
 }
-		
 
+bool OAPIClient::ParseVer(char *pRecv, int len, astring &strVer, astring &strInfo)
+{
+	oapi::OAPIGetVerRsp rsp;
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, rsp, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+
+	strVer = rsp.strVer;
+	strInfo = rsp.strInfo;
+	return true;
+}
 
 bool OAPIClient::ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp)
 {
@@ -463,5 +586,28 @@ bool OAPIClient::ParseDeviceStrId(char *pRecv, int len, astring &pStrId)
 	pStrId = strId.strId;
 	return true;
 }
+
+bool OAPIClient::ParseGetCam(char *pRecv, int len, oapi::OAPICameraGetRsp &pCam)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, pCam, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
+
+inline bool OAPIClient::ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSearchedNotify &pCam)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, pCam, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
+
 
 #endif
