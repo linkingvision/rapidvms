@@ -56,18 +56,23 @@ public:
 public:
 	inline BOOL ProcessGetDevice(s32 len);	
 	inline BOOL ProcessGetLic(s32 len);
+	inline BOOL ProcessGetVer(s32 len);
 	inline BOOL ProcessConfLic(s32 len);
 	inline BOOL ProcessConfAdmin(s32 len);
 	inline BOOL ProcessStartLive(s32 len);
 	inline BOOL ProcessStopLive(s32 len);
 	inline BOOL ProcessGetDisk(s32 len);
+	inline BOOL ProcessGetCam(s32 len);
 	inline BOOL ProcessGetSysDisk(s32 len);
 	inline BOOL ProcessLogin(s32 len);
 	inline bool ProcessAddCam(s32 len);
+	inline bool ProcessSetCamSched(s32 len);
 	inline bool ProcessDeleteCam(s32 len);
+	inline bool ProcessPtzCmd(s32 len);
 	inline bool ProcessRegNotify(s32 len);
 	inline bool ProcessAddDisk(s32 len);
 	inline bool ProcessDeleteDisk(s32 len);
+	inline bool ProcessUpdateDiskLimit(s32 len);
 	inline bool ProcessCamSearchStart(s32 len);
 	inline bool ProcessCamSearchStop(s32 len);	
 	inline bool NotifyCamAdd(FactoryCameraChangeData data);

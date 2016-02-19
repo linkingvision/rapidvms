@@ -29,11 +29,15 @@
 #include "vplay.hpp"
 #include "debug.hpp"
 #include "config/vidconf.pb.h"
+#include "Poco/UUIDGenerator.h"
+#include "recordwrapper.hpp"
+#include "Poco/URI.h"
 
 using namespace VidConf;
 using namespace UtilityLib;
 using namespace std;
 using namespace ONVIF;
+using namespace Poco;
 
 typedef enum
 {
@@ -57,7 +61,7 @@ typedef enum
 
 
 /* Camera video data callback */
-#ifdef WIN32
+#ifdef WIN32__
 /* Compressed data callback */
 typedef void (__cdecl * CameraDataCallbackFunctionPtr)(VideoFrame& frame, void * pParam);
 /* Raw data callback */
@@ -127,7 +131,9 @@ public:
 class Camera
 {
 public:
-	inline Camera(VDB &pVdb, VHdfsDB &pVHdfsdb, const CameraParam &pParam);
+	inline Camera(ConfDB &pConfDB, VDB &pVdb, 
+					VHdfsDB &pVHdfsdb, const CameraParam &pParam, 
+					RecChangeFunctionPtr pCallback, void *pCallbackParam);
 	inline ~Camera();
 
 public:
@@ -140,17 +146,7 @@ public:
 	
 	inline BOOL StartSubData();
 	inline BOOL StopSubData();
-
-	inline BOOL StartRaw();
-	inline BOOL StopRaw();
-	
-	inline BOOL StartSubRaw();
-	inline BOOL StopSubRaw();
-	
-	inline BOOL StartRecord();
-	//inline BOOL StopRecord();//NO Stop interface, stop will readd the camera
-	inline BOOL StartHdfsRecord();
-	//inline BOOL StopHdfsRecord();
+	inline bool UpdateRecSched(VidCamera &pCam);
 	
 	inline CameraStatus CheckCamera(astring strUrl, astring strUrlSubStream, 
 		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl);
@@ -161,16 +157,6 @@ public:
 	inline BOOL DataHandler1(VideoFrame& frame);
 	inline static BOOL SubDataHandler(void* pData, VideoFrame& frame);
 	inline BOOL SubDataHandler1(VideoFrame& frame);
-	
-	/* Raw Data */
-	inline static BOOL RawHandler(void* pData, RawFrame& frame);
-	inline BOOL RawHandler1(RawFrame& frame);
-	inline static BOOL SubRawHandler(void* pData, RawFrame& frame);
-	inline BOOL SubRawHandler1(RawFrame& frame);
-
-	/* Seq data */
-	inline static BOOL SeqHandler(void* pData, VideoSeqFrame& frame);
-	inline BOOL SeqHandler1(VideoSeqFrame& frame);	
 
 public:
 	inline void Lock(){m_Lock.lock();}
@@ -178,37 +164,20 @@ public:
 	inline void SubLock(){m_SubLock.lock();}
 	inline void SubUnLock(){m_SubLock.unlock();}
 
-	inline void SeqLock(){m_SeqLock.lock();}
-	inline void SeqUnLock(){m_SeqLock.unlock();}
-
 public:
 	/* Data  callback*/
 	inline BOOL RegDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegDataCallback(void * pParam);
 	inline BOOL RegSubDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegSubDataCallback(void * pParam);
-
-	/*Raw Data  callback*/
-	inline BOOL RegRawCallback(CameraRawCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegRawCallback(void * pParam);
-	inline BOOL RegSubRawCallback(CameraRawCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegSubRawCallback(void * pParam);
-
-	/* Video Seq data callback  */
-	inline BOOL RegSeqCallback(CameraSeqCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegSeqCallback(void * pParam);
-
 	
 	inline BOOL RegDelCallback(CameraDelCallbackFunctionPtr pCallback, void * pParam);
 	inline BOOL UnRegDelCallback(void * pParam);
 	
 	inline BOOL GetInfoFrame(InfoFrame &pFrame);
 	inline BOOL GetSubInfoFrame(InfoFrame &pFrame);
-	inline BOOL Cleanup();
 	
 	inline BOOL GetCameraOnline();
-	inline BOOL GetUrl(std::string &url);
-	inline BOOL GetCameraRtspUrl(astring & strUrl);
 	
 	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
@@ -229,27 +198,19 @@ private:
 	CameraDataCallbackMap m_DataMap;
 	CameraDataCallbackMap m_SubDataMap;
 
-	CameraRawCallbackMap m_RawMap;
-	CameraRawCallbackMap m_SubRawMap;
-
-	CameraSeqCallbackMap m_SeqMap;
-
 	CameraDelCallbackMap m_DelMap;
 
 private:
 	CameraParam m_param;
-	tthread::thread *m_pThread;
 	fast_mutex m_Lock;
 	fast_mutex m_SubLock;
-	fast_mutex m_SeqLock;
+
 private:
 	VDB &m_pVdb;
-	VHdfsDB &m_pVHdfsdb;
 	RecordSession *m_pRecord;
-	HdfsRecSession *m_pHdfsRecord;
-	bool m_bRecord;
-	bool m_bHdfsRecord;
-
+	RecordSchedWeekMap m_cSchedMap;
+	RecordWrapper m_cRecordWrapper;
+	
 private:
 	ContinuousMove m_continuousMove;
 	ONVIF::Stop m_stop;
@@ -265,8 +226,8 @@ private:
 	BOOL m_bGotInfoSubData;
 	s32 m_nSubDataRef;
 
-	s32 m_nRawRef;
-	s32 m_nSubRawRef;
+private:
+	ConfDB &m_pConfDB;
 };
 
 typedef CameraParam* LPCameraParam;

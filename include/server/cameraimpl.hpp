@@ -31,9 +31,11 @@ inline string GetProgramDir()
 
 CameraParam::CameraParam()
 {
+	UUIDGenerator uuidCreator;
+	
+	astring strId  = uuidCreator.createRandom().toString();
 	m_Conf.set_ntype(VID_ONVIF_S);
-	m_Conf.set_strid("id");//TODO set ID for NVR
-
+	m_Conf.set_strid(strId);
 	m_Conf.set_strname("Camera");
 
 	m_Conf.set_strip("192.168.0.1");
@@ -41,9 +43,9 @@ CameraParam::CameraParam()
 	m_Conf.set_struser("admin");
 	m_Conf.set_strpasswd("admin");
 
-	m_Conf.set_strrtspurl("rtsp://192.168.0.1/stream");
+	m_Conf.set_strrtspurl("rtsp://192.168.0.1:554/Streaming");
 
-	astring filePath = GetProgramDir() +  "/camera.mov";
+	astring filePath = GetProgramDir() +  "camera.mp4";
 
 	m_Conf.set_strfile(filePath.c_str());
 
@@ -54,8 +56,9 @@ CameraParam::CameraParam()
 
 	m_Conf.set_strprofiletoken1("quality_h264");
 	m_Conf.set_strprofiletoken1("second_h264");
-	m_Conf.set_brecord(true);//TODO current use the manual on sched
 	m_Conf.set_bhdfsrecord(false);
+	astring *pSched = m_Conf.add_crecsched();
+	*pSched = REC_SCHED_ALL_DAY;
 	
 	m_bOnvifUrlGetted = false;
 	m_bHasSubStream = false;
@@ -297,8 +300,14 @@ BOOL CameraParam::UpdateUrl()
                 m_Conf.data.conf.IP,
                 m_Conf.data.conf.Port, m_Conf.data.conf.RtspLocation);
 #endif
-	
-	m_strUrl = m_Conf.strrtspurl();
+	Poco::URI rtspUrl(m_Conf.strrtspurl());
+	astring strRtsp;
+	if (rtspUrl.empty() != true)
+	{
+		strRtsp = "rtsp://" + rtspUrl.getHost() + ":" + std::to_string(rtspUrl.getPort()) + rtspUrl.getPathAndQuery();
+	}
+
+	m_strUrl = strRtsp;
 	m_bHasSubStream = FALSE;
 
     }
@@ -326,19 +335,22 @@ CameraParam::~CameraParam()
 {
 }
 
-Camera::Camera(VDB &pVdb, VHdfsDB &pVHdfsdb, const CameraParam &pParam)
+Camera::Camera(ConfDB &pConfDB, VDB &pVdb, VHdfsDB &pVHdfsdb, 
+	const CameraParam &pParam, RecChangeFunctionPtr pCallback, void *pCallbackParam)
 :m_bStarted(FALSE), m_param(pParam),
-m_pVdb(pVdb), m_pVHdfsdb(pVHdfsdb), m_pRecord(NULL), 
-m_pHdfsRecord(NULL),  m_ptzInited(FALSE), 
+m_pVdb(pVdb), 
+m_ptzInited(FALSE), 
 m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
-m_nSubDataRef(0), m_nRawRef(0),m_nSubRawRef(0),
+m_nSubDataRef(0), 
 m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay), 
 m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream), 
-m_bRecord(false), m_bHdfsRecord(false)
+m_pConfDB(pConfDB),
+m_cRecordWrapper(pVdb, pParam.m_Conf.strid(), m_cSchedMap, pCallback, pCallbackParam)
 
 {	
 	m_param = pParam;
 	m_param.UpdateDefaultUrl();
+	UpdateRecSched(m_param.m_Conf);
 	return ;
 }
 
@@ -363,36 +375,34 @@ Camera::~Camera()
 	UnLock();
 
 	m_vPlay.StopGetData();
-	m_vPlay.StopGetRawFrame();
 	m_vPlaySubStream.StopGetData();
-	m_vPlaySubStream.StopGetRawFrame();
-	
-	if (m_pHdfsRecord)
-	{
-		m_pVHdfsdb.FinishRecord(m_pHdfsRecord);
-		delete m_pHdfsRecord;
-		m_pHdfsRecord = NULL;
-	}
-	
-	Lock();
-	SubLock();
-	
-	if (m_pRecord)
-	{
-	    u32 endTime = m_pRecord->GetEndTime();
-	    if (endTime != 0)
-	    {
-	    	 m_pVdb.FinishRecord(m_pRecord);
-	    }
-	    delete m_pRecord;
-	    m_pRecord = NULL;
-	}
-	SubUnLock();
-	UnLock();
 
 	delete m_pvPlay;
 	delete m_pvPlaySubStream;
 }
+
+bool Camera::UpdateRecSched(VidCamera &pCam)
+{
+	m_cSchedMap.clear();
+
+	int cameraSize = pCam.crecsched_size();
+
+	for (s32 i = 0; i < pCam.crecsched_size(); i ++)
+	{
+		astring strid = pCam.crecsched(i);
+		RecordSchedWeek sched;
+		if (m_pConfDB.GetRecSched(strid, sched) == true)
+		{
+			m_cSchedMap[strid] = sched;
+		}
+	}
+
+	m_cRecordWrapper.UpdateSchedMap(m_cSchedMap);
+
+	return true;
+	
+}
+
 
 BOOL Camera::GetCameraParam(CameraParam &pParam)
 {
@@ -441,14 +451,8 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		
 		m_param.m_OnlineUrl = TRUE;
 		UpdatePTZConf();
-		if (m_param.m_Conf.bhdfsrecord() == true)
-		{
-			StartHdfsRecord();
-		}
-		if (m_param.m_Conf.brecord() == true)
-		{
-			StartRecord();
-		}
+		/* Always start data */
+		StartData();
         }
         if (m_param.m_Online == FALSE)
         {
@@ -468,47 +472,13 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
     
 }
 
-BOOL Camera::GetStreamInfo(VideoStreamInfo &pInfo)
-{
-    m_vPlay.GetStreamInfo(pInfo);
-
-    return TRUE;
-}
-
-BOOL Camera::AttachPlayer(HWND hWnd, int w, int h)
-{
-    m_vPlay.AttachWidget(hWnd, w, h);
-
-    return TRUE;
-}
-
-BOOL Camera::UpdateWidget(HWND hWnd, int w, int h)
-{
-    m_vPlay.UpdateWidget(hWnd, w, h);
-
-    return TRUE;
-}
-
-BOOL Camera::DetachPlayer(HWND hWnd)
-{
-    m_vPlay.DetachWidget(hWnd);
-    
-    return TRUE;
-}
-
-BOOL Camera::ShowAlarm(HWND hWnd)
-{
-	m_vPlay.ShowAlarm(hWnd);
-	return TRUE;
-}
-
  BOOL Camera::UpdatePTZConf()
 {
-    if (m_param.m_Conf.ntype()!= VID_ONVIF_S)
-    {
-    	return TRUE;
-    }
-    QString strToken;
+	if (m_param.m_Conf.ntype()!= VID_ONVIF_S)
+	{
+		return TRUE;
+	}
+	QString strToken;
 
 	astring IP = m_param.m_Conf.strip();
 	astring Port = m_param.m_Conf.strport();
@@ -516,47 +486,47 @@ BOOL Camera::ShowAlarm(HWND hWnd)
 	astring Password = m_param.m_Conf.strpasswd();
 	astring OnvifAddress = m_param.m_Conf.stronvifaddress();
 
-    astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
+	astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 
-    DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
-                            User.c_str(), Password.c_str());
+	DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
+	                        User.c_str(), Password.c_str());
     
-    if (pDm  == NULL)
-    {
-        VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
-        return FALSE;
-    }
+	if (pDm  == NULL)
+	{
+	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
+	    return FALSE;
+	}
 
-    Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
-    if (pMediaCap == NULL)
-    {
-        VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-        delete pDm;
-        return FALSE;
-    }
+	Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
+	if (pMediaCap == NULL)
+	{
+	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
+	    delete pDm;
+	    return FALSE;
+	}
 
-    MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
-                                User.c_str(), Password.c_str());
-    if (pMedia == NULL)
-    {
-        VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        return FALSE;
-    }
+	MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
+	                            User.c_str(), Password.c_str());
+	if (pMedia == NULL)
+	{
+	    VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    return FALSE;
+	}
 
-    Profiles *pProfileS = pMedia->getProfiles();
-    if (pProfileS == NULL)
-    {
-        VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        delete pMedia;
-        return FALSE;
-    }
-    if (pProfileS->m_toKenPro.size() > 0)
-    {
-        	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
+	Profiles *pProfileS = pMedia->getProfiles();
+	if (pProfileS == NULL)
+	{
+	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    return FALSE;
+	}
+	if (pProfileS->m_toKenPro.size() > 0)
+	{
+	    	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
 		
 		if (m_param.m_Conf.bprofiletoken() == true)
 		{
@@ -565,38 +535,38 @@ BOOL Camera::ShowAlarm(HWND hWnd)
 		{
 			strToken = pProfileS->m_toKenPro[0];		
 		}
-        
-    }else
-    {
-    	return FALSE;
-    }
+	    
+	}else
+	{
+		return FALSE;
+	}
 
-    Capabilities * pPtz = pDm->getCapabilitiesPtz();
-    if (pPtz == NULL)
-    {
-        VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-        delete pDm;
-        delete pMediaCap;
-        delete pMedia;
-        return FALSE;
-    }
+	Capabilities * pPtz = pDm->getCapabilitiesPtz();
+	if (pPtz == NULL)
+	{
+	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
+	    delete pDm;
+	    delete pMediaCap;
+	    delete pMedia;
+	    return FALSE;
+	}
 
-    string strPtz = pPtz->ptzXAddr().toStdString();
-    m_ptz  = new PtzManagement(pPtz->ptzXAddr(), 
-                                User.c_str(), Password.c_str());
-    if (m_ptz == NULL)
-    {
-        VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
+	string strPtz = pPtz->ptzXAddr().toStdString();
+	m_ptz  = new PtzManagement(pPtz->ptzXAddr(), 
+	                            User.c_str(), Password.c_str());
+	if (m_ptz == NULL)
+	{
+	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
 	delete pDm;
 	delete pMediaCap;
 	delete pMedia;
 	delete pPtz;
 	return FALSE;
-    }
+	}
 
-    m_continuousMove.setProfileToken(strToken);
-    m_stop.setProfileToken(strToken);
-    m_ptzInited = TRUE;
+	m_continuousMove.setProfileToken(strToken);
+	m_stop.setProfileToken(strToken);
+	m_ptzInited = TRUE;
 }
 
  BOOL Camera::PtzAction(FPtzAction action, float speed)
@@ -745,51 +715,6 @@ BOOL Camera::GetSubInfoFrame(InfoFrame &pFrame)
 	return TRUE;
 }
 
-BOOL Camera::RegRawCallback(CameraRawCallbackFunctionPtr pCallback, void * pParam)
-{
-	Lock();
-	SubLock();
-	m_RawMap[pParam] = pCallback;
-	SubUnLock();
-	UnLock();
-	StartRaw();
-	return TRUE;
-}
-
-BOOL Camera::UnRegRawCallback(void * pParam)
-{
-	Lock();
-	SubLock();
-	m_RawMap.erase(pParam);
-	SubUnLock();
-	UnLock();
-	StopRaw();
-	return TRUE;
-}
-
-BOOL Camera::RegSeqCallback(CameraSeqCallbackFunctionPtr pCallback, void * pParam)
-{
-	Lock();
-	SeqLock();
-	
-	m_SeqMap[pParam] = pCallback;
-	SeqUnLock();
-	UnLock();
-	return TRUE;
-}
-
-BOOL Camera::UnRegSeqCallback(void * pParam)
-{
-	Lock();
-	SeqLock();
-
-	m_SeqMap.erase(pParam);
-	SeqUnLock();
-	
-	UnLock();
-	return TRUE;
-}
-
 BOOL Camera::RegDelCallback(CameraDelCallbackFunctionPtr pCallback, void * pParam)
 {
 	Lock();
@@ -804,41 +729,6 @@ BOOL Camera::UnRegDelCallback(void * pParam)
 	UnLock();
 	return TRUE;
 }
-
-BOOL Camera::RegSubRawCallback(CameraRawCallbackFunctionPtr pCallback, void * pParam)
-{
-	Lock();
-	SubLock();
-	m_SubRawMap[pParam] = pCallback;
-	SubUnLock();
-	UnLock();
-	if (m_param.m_bHasSubStream == FALSE)
-	{
-		StartRaw();
-	}else
-	{
-		StartSubRaw();
-	}
-	return TRUE;
-}
-
-BOOL Camera::UnRegSubRawCallback(void * pParam)
-{
-	Lock();
-	SubLock();
-	m_SubRawMap.erase(pParam);
-	SubUnLock();
-	UnLock();
-	if (m_param.m_bHasSubStream == FALSE)
-	{
-		StopRaw();
-	}else
-	{
-		StopSubRaw();
-	}
-	return TRUE;
-}
-
 
 BOOL Camera::StartData()
 {
@@ -890,149 +780,6 @@ BOOL Camera::StartData()
 	return TRUE;
 }
 
-BOOL Camera::StartRaw()
-{
-	Lock();
-	SubLock();
-	if (m_nRawRef == 0)
-	{
-		m_vPlay.StartGetRawFrame(this, 
-					(VPlayRawFrameHandler)Camera::RawHandler);
-	}
-	m_nRawRef ++;
-	SubUnLock();
-	UnLock();
-	return TRUE;
-}
- BOOL Camera::StopRaw()
-{
-	Lock();
-	SubLock();
-	m_nRawRef --;
-	if (m_nRawRef <= 0)
-	{
-		m_nRawRef = 0;
-		m_vPlay.StopGetRawFrame();
-	}
-	SubUnLock();
-	UnLock();
-	return TRUE;
-}
-
- BOOL Camera::StartSubRaw()
-{
-	Lock();
-	SubLock();
-	if (m_nSubRawRef == 0)
-	{
-		m_vPlaySubStream.StartGetRawFrame(this, 
-			(VPlayRawFrameHandler)Camera::SubRawHandler);
-	}
-	m_nSubRawRef ++;
-	SubUnLock();
-	UnLock();
-	return TRUE;
-}
- BOOL Camera::StopSubRaw()
-{
-	Lock();
-	SubLock();
-	m_nSubRawRef --;
-	if (m_nSubRawRef <= 0)
-	{
-		m_nSubRawRef = 0;
-		m_vPlaySubStream.StopGetRawFrame();
-	}
-	SubUnLock();
-	UnLock();
-	return TRUE;
-}
-
- BOOL Camera::StartRecord()
-{
-	if (m_bRecord == false)
-	{
-		VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-		StartData();
-		m_bRecord = true;
-	}
-	
-
-    return TRUE;
-}
-#if 0
- BOOL Camera::StopRecord()
-{
-	if (m_bRecord == true)
-	{
-		VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
-
-		m_bRecord = false;
-		StopData();
-		Lock();
-		if (m_pRecord)
-		{
-		    u32 endTime = m_pRecord->GetEndTime();
-		    if (endTime != 0)
-		    {
-		    	 m_pVdb.FinishRecord(m_pRecord);
-		    }
-		    delete m_pRecord;
-		    m_pRecord = NULL;
-		}
-		UnLock();
-		m_bRecord = false;
-	}
-
-    return TRUE;
-}
-#endif
-  BOOL Camera::StartHdfsRecord()
-{
-	if (m_bHdfsRecord == true)
-	{
-	    return true;
-	}
-	VDC_DEBUG( "%s Start Record\n",__FUNCTION__);
-	StartData();
-
-	Lock();
-	if (m_pHdfsRecord == NULL)
-	{
-		//TODO
-		m_pHdfsRecord = m_pVHdfsdb.StartRecord(
-			1, m_param.m_Conf.strname());
-		m_pHdfsRecord->RegSeqCallback((HDFSDataHandler)Camera::SeqHandler, (void *)this);
-
-	}
-	m_bHdfsRecord = true;
-
-	UnLock();
-    	return TRUE;
-}
-#if 0
- BOOL Camera::StopHdfsRecord()
-{
-	if (m_bHdfsRecord == false)
-	{
-	    return true;
-	}
-
-	VDC_DEBUG( "%s Stop Record\n",__FUNCTION__);
-	StopData();
-	Lock();
-	if (m_pHdfsRecord)
-	{
-		m_pVHdfsdb.FinishRecord(m_pHdfsRecord);
-		delete m_pHdfsRecord;
-		m_pHdfsRecord = NULL;
-	}
-	
-	UnLock();
-	return TRUE;
-}
-#endif
-
 BOOL Camera::DataHandler(void* pData, VideoFrame& frame)
 {
     int dummy = errno;
@@ -1068,49 +815,8 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 	    }
 	}
 
-	/* 2. Send to Record */
-	if (m_bRecord == true)
-	{
-		if (m_pRecord == NULL)
-		{
-		    m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.strid(), (int)(frame.secs), R_ALARM);
-		}
-		
-		//VDC_DEBUG("Recording Size %d stream %d frame %d (%d, %d)\n", frame.dataLen,      
-		// 	frame.streamType, frame.frameType, frame.secs, frame.msecs);
-		
-		/* Just skip the info stream for recording */
-		if (m_pRecord != NULL 
-		&& frame.streamType != VIDEO_STREAM_INFO && m_pRecord->PushAFrame(&frame) == MF_WRTIE_REACH_END)
-		{
-			u32 endTime = m_pRecord->GetEndTime();
-			if (endTime != 0)
-			{
-				m_pVdb.FinishRecord(m_pRecord);
-			}
-		    	delete m_pRecord;
-		    	m_pRecord = m_pVdb.StartRecord(m_param.m_Conf.strid(), (int)(frame.secs), 1);
-			if (m_pRecord != NULL)
-			{
-			       m_pRecord->PushAFrame(&frame);	 
-			}
-		}
-	}
-#if 0
-	/* 2. Send to Hdfs Record */
-	//if (m_param.m_Conf.data.conf.HdfsRecording == 1)
-	{
-		if (m_pHdfsRecord == NULL)
-		{
-			//m_pHdfsRecord = m_pVHdfsdb.StartRecord(
-			//	m_param.m_Conf.data.conf.nId, m_param.m_Conf.data.conf.Name);
-		}
-		if (m_pHdfsRecord != NULL)
-		{
-			m_pHdfsRecord->PushAFrame(&frame);
-		}
-	}
-#endif
+	m_cRecordWrapper.PushAFrame(frame);
+
 	/* Call the Sub DataHandler if there has no sub stream */
 	if (m_param.m_bHasSubStream == FALSE)
 	{
@@ -1158,151 +864,44 @@ BOOL Camera::SubDataHandler1(VideoFrame& frame)
 	return TRUE;
 }
 
-BOOL Camera::RawHandler(void* pData, RawFrame& frame)
-{
-    int dummy = errno;
-    LPCamera pThread = (LPCamera)pData;
-
-    if (pThread)
-    {
-        return pThread->RawHandler1(frame);
-    }
-}
-
-BOOL Camera::RawHandler1(RawFrame& frame)
-{
-	SubLock();
-	//VDC_DEBUG("RawHandler1 (%d, %d)\n", frame.width, frame.height);	
-	/* 1. Send to client */
-	CameraRawCallbackMap::iterator it = m_RawMap.begin();
-
-	for(; it!=m_RawMap.end(); ++it)
-	{
-	    void *pParam = (*it).first;
-	    CameraRawCallbackFunctionPtr pFunc = (*it).second;
-	    if (pFunc)
-	    {
-	        pFunc(frame, pParam);
-	    }
-	}
-	/* Call the Sub DataHandler if there has no sub stream */
-	if (m_param.m_bHasSubStream == FALSE)
-	{
-		SubRawHandler1(frame);
-	}
-
-	SubUnLock();
-	return TRUE;
-}
-
-
-BOOL Camera::SeqHandler(void* pData, VideoSeqFrame& frame)
-{
-    int dummy = errno;
-    LPCamera pThread = (LPCamera)pData;
-
-    if (pThread)
-    {
-        return pThread->SeqHandler1(frame);
-    }
-}
-
-BOOL Camera::SeqHandler1(VideoSeqFrame& frame)
-{
-	SeqLock();
-	//VDC_DEBUG("SeqHandler1 (%d, %d)\n", frame.start, frame.end);	
-	/* 1. Send to client */
-	CameraSeqCallbackMap::iterator it = m_SeqMap.begin();
-
-	for(; it!=m_SeqMap.end(); ++it)
-	{
-	    void *pParam = (*it).first;
-	    CameraSeqCallbackFunctionPtr pFunc = (*it).second;
-	    if (pFunc)
-	    {
-	        pFunc(frame, pParam);
-	    }
-	}
-	
-	SeqUnLock();
-	return TRUE;
-}
-
-BOOL Camera::SubRawHandler(void* pData, RawFrame& frame)
-{
-    int dummy = errno;
-    LPCamera pThread = (LPCamera)pData;
-
-    if (pThread)
-    {
-        return pThread->SubRawHandler1(frame);
-    }
-}
-
-BOOL Camera::SubRawHandler1(RawFrame& frame)
-{
-	SubLock();
-	
-	/* 1. Send to client */
-	CameraRawCallbackMap::iterator it = m_SubRawMap.begin();
-
-	for(; it!=m_SubRawMap.end(); ++it)
-	{
-	    void *pParam = (*it).first;
-	    CameraRawCallbackFunctionPtr pFunc = (*it).second;
-	    if (pFunc)
-	    {
-	        pFunc(frame, pParam);
-	    }
-	}
-
-	SubUnLock();
-	return TRUE;
-}
-
- BOOL Camera::Cleanup()
-{
-#if 0
-    VDC_DEBUG( "%s Callback begin\n",__FUNCTION__);
-    /* Call the callbacks for this camera */
-    CameraDeleteCallbackMap::iterator it = m_DeleteMap.begin();
-
-    for(; it!=m_DeleteMap.end(); ++it)
-    {
-        void *pParam = (*it).first;
-        CameraDeleteCallbackFunctionPtr pFunc = (*it).second;
-        if (pFunc)
-        {
-            pFunc(m_param.m_Conf.data.conf.nId, pParam);
-        }
-    }
-    VDC_DEBUG( "%s Callback end\n",__FUNCTION__);
-#endif
-
-    return TRUE;
-}
-
 BOOL Camera::GetCameraOnline()
 {
     BOOL online = true;
 	return m_param.m_Online;
 }
 
-BOOL Camera::GetUrl(std::string &url)
+BOOL Camera::GetStreamInfo(VideoStreamInfo &pInfo)
 {
-    url = m_param.m_strUrl;
+    m_vPlay.GetStreamInfo(pInfo);
+
     return TRUE;
 }
-BOOL Camera::GetCameraRtspUrl(astring & strUrl)
+
+BOOL Camera::AttachPlayer(HWND hWnd, int w, int h)
 {
-	if (m_param.m_OnlineUrl == FALSE)
-	{
-		return FALSE;
-	}
-	
-	strUrl = m_param.m_strUrl;
-	return TRUE;
+    m_vPlay.AttachWidget(hWnd, w, h);
+
+    return TRUE;
 }
 
+BOOL Camera::UpdateWidget(HWND hWnd, int w, int h)
+{
+    m_vPlay.UpdateWidget(hWnd, w, h);
+
+    return TRUE;
+}
+
+BOOL Camera::DetachPlayer(HWND hWnd)
+{
+    m_vPlay.DetachWidget(hWnd);
+    
+    return TRUE;
+}
+
+BOOL Camera::ShowAlarm(HWND hWnd)
+{
+	m_vPlay.ShowAlarm(hWnd);
+	return TRUE;
+}
 
 #endif // __VSC_CAMERA_IMPL_H_

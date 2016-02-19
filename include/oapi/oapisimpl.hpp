@@ -32,6 +32,17 @@ bool OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 	to.bServerMotion = from.bservermotion();
 
 	to.nConnectType = from.nconnecttype();
+
+	int cameraSize = from.crecsched_size();
+
+	to.cRecSchedList.clear();
+
+	for (s32 i = 0; i < from.crecsched_size(); i ++)
+	{
+		astring strid = from.crecsched(i);
+
+		to.cRecSchedList.push_back(strid);
+	}
 	
 	return TRUE;
 }
@@ -59,7 +70,15 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_bservermotion(from.bServerMotion);
 
 	to.set_nconnecttype((VidConf::CameraConnectType)from.nConnectType);
-	
+
+	to.clear_crecsched();
+
+	for (s32 i = 0; i < from.cRecSchedList.size(); i ++)
+	{
+		astring strid = from.cRecSchedList[i];
+		astring *pNewSched = to.add_crecsched();
+		*pNewSched = strid;
+	}
 	return TRUE;
 }
 
@@ -69,7 +88,8 @@ bool OAPIConverter::Converter(oapi::OAPIDisk &from, VidDisk &to)
 	to.set_strpath(from.strPath);
 	to.set_ntotalsize(from.nTotalSize);
 	to.set_nfreesize(from.nFreeSize);
-	to.set_nstorsize(from.nStorSize);
+	to.set_nstorlimit(from.nStorLimit);
+	to.set_nstorused(from.nStorUsed);
 
 	return true;
 }
@@ -79,7 +99,8 @@ bool OAPIConverter::Converter(VidDisk &from, oapi::OAPIDisk &to)
 	to.strPath = from.strpath();
 	to.nTotalSize = from.ntotalsize();
 	to.nFreeSize = from.nfreesize();
-	to.nStorSize = from.nstorsize();
+	to.nStorLimit = from.nstorlimit();
+	to.nStorUsed = from.nstorused();
 	
 	return true;
 }
@@ -224,10 +245,43 @@ bool OAPIServer::NotifyCamOffline(FactoryCameraChangeData data)
 }
 bool OAPIServer::NotifyCamRecOn(FactoryCameraChangeData data)
 {
+	OAPIHeader header;
+	oapi::OAPICamNotifyId sCam;
+
+	sCam.strId = data.id;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(sCam);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_NOTIFY_DEVICE_REC_ON);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	
 	return true;
 }
 bool OAPIServer::NotifyCamRecOff(FactoryCameraChangeData data)
 {
+	OAPIHeader header;
+	oapi::OAPICamNotifyId sCam;
+
+	sCam.strId = data.id;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(sCam);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_NOTIFY_DEVICE_REC_OFF);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	return true;
 }
 
@@ -302,7 +356,7 @@ BOOL OAPIServer::ProcessStartLive(s32 len)
 	m_bStreaming = true;
 
 	delete [] pRecv;
-	SendCmnRetRsp(OAPI_CMD_START_LIVE_RSP, true);
+	SendCmnRetRsp(OAPI_START_LIVE_RSP, true);
 
 	return TRUE;
 }
@@ -348,7 +402,7 @@ BOOL OAPIServer::ProcessStopLive(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_STOP_LIVE_RSP, true);
+	SendCmnRetRsp(OAPI_STOP_LIVE_RSP, true);
 
 	return TRUE;
 }
@@ -384,7 +438,41 @@ bool OAPIServer::ProcessAddCam(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_ADD_DEVICE_RSP, true);
+	SendCmnRetRsp(OAPI_ADD_CAM_RSP, true);
+
+	return TRUE;
+}
+
+bool OAPIServer::ProcessSetCamSched(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPICameraUpdateSchedReq cam;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, cam, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	VidCamera updateCam;
+
+	OAPIConverter::Converter(cam.cam, updateCam);
+
+	m_pFactory.UpdateRecSched(updateCam.strid(), updateCam);
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_SET_CAM_SCHED_RSP, true);
 
 	return TRUE;
 }
@@ -414,9 +502,34 @@ bool OAPIServer::ProcessDeleteCam(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_DEL_DEVICE_RSP, true);
+	SendCmnRetRsp(OAPI_DEL_CAM_RSP, true);
 
 	return TRUE;
+}
+
+bool OAPIServer::ProcessPtzCmd(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPtzCmd cmd;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, cmd, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pFactory.PtzAction(cmd.strId, (FPtzAction)(cmd.nPtzCmd), 
+					(float)cmd.nParam);
 }
 
 bool OAPIServer::ProcessAddDisk(s32 len)
@@ -440,14 +553,15 @@ bool OAPIServer::ProcessAddDisk(s32 len)
 		
 	}
 
-	m_pFactory.AddHdd(req.disk.strId, req.disk.strPath, req.disk.nStorSize);
+	m_pFactory.AddHdd(req.disk.strId, req.disk.strPath, req.disk.nStorLimit);
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_ADD_DISK_RSP, true);
+	SendCmnRetRsp(OAPI_ADD_DISK_RSP, true);
 
 	return TRUE;
 }
+
 bool OAPIServer::ProcessDeleteDisk(s32 len)
 {
 	if (len == 0)
@@ -473,10 +587,41 @@ bool OAPIServer::ProcessDeleteDisk(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_DEL_DISK_RSP, true);
+	SendCmnRetRsp(OAPI_DEL_DISK_RSP, true);
 
 	return TRUE;
 }
+
+bool OAPIServer::ProcessUpdateDiskLimit(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIUpdateDiskLimitReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pFactory.HddUpdateSize(req.disk.strId, req.disk.nStorLimit);
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_UPDATE_DISK_LIMIT_RSP, true);
+
+	return TRUE;
+}
+
 
 bool OAPIServer::ProcessRegNotify(s32 len)
 {
@@ -576,7 +721,7 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	}
 
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_LOGIN_RSP);
+	header.cmd = htonl(OAPI_LOGIN_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	
@@ -617,7 +762,7 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	}
 
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_LOGIN_RSP);
+	header.cmd = htonl(OAPI_LOGIN_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	
@@ -661,7 +806,49 @@ BOOL OAPIServer::ProcessGetLic(s32 len)
 		return FALSE;
 	}
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_GET_LIC_RSP);
+	header.cmd = htonl(OAPI_GET_LIC_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+}
+
+inline BOOL OAPIServer::ProcessGetVer(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIGetVerReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+		
+	}
+
+	oapi::OAPIGetVerRsp rsp;
+
+	rsp.strVer = VE_VERSION;
+	rsp.strInfo = VE_INFO;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_GET_VER_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -701,7 +888,7 @@ BOOL OAPIServer::ProcessConfAdmin(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_CONF_ADMIN_RSP, nRet);
+	SendCmnRetRsp(OAPI_CONF_ADMIN_RSP, nRet);
 
 	return TRUE;
 }
@@ -731,7 +918,7 @@ BOOL OAPIServer::ProcessConfLic(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_CMD_CONF_LIC_RSP, true);
+	SendCmnRetRsp(OAPI_CONF_LIC_RSP, true);
 
 	return TRUE;
 }
@@ -761,8 +948,10 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 	dataList.Num = 0;
 
 	CameraOnlineMap pCameraOnlineMap;
+	CameraRecMap pCameraRecMap;
 
 	m_pFactory.GetCameraOnlineMap(pCameraOnlineMap);
+	m_pFactory.GetCameraRecMap(pCameraRecMap);
 
 	VidCameraList pCameraList;
 	m_pFactory.GetCameraList(pCameraList);
@@ -773,6 +962,7 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 		oapi::OAPICamera data;
 		OAPIConverter::Converter((VidCamera &)cam, data);
 		data.bOnline = pCameraOnlineMap[cam.strid()];
+		data.bRec = pCameraRecMap[cam.strid()];
 		dataList.list.push_back(data);
 		dataList.Num ++;
 	}
@@ -786,7 +976,7 @@ BOOL OAPIServer::ProcessGetDevice(s32 len)
 		return FALSE;
 	}
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_DEVICE_LIST_RSP);
+	header.cmd = htonl(OAPI_CAM_LIST_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -827,7 +1017,8 @@ BOOL OAPIServer::ProcessGetDisk(s32 len)
 		oapiDisk.strPath = (*it).second.path;
 		oapiDisk.nTotalSize = 0;
 		oapiDisk.nFreeSize = 0;
-		oapiDisk.nStorSize = (*it).second.limit;
+		oapiDisk.nStorLimit = (*it).second.limit;
+		oapiDisk.nStorUsed = (*it).second.used;
 		dataList.list.push_back(oapiDisk);
 	}
 
@@ -839,7 +1030,7 @@ BOOL OAPIServer::ProcessGetDisk(s32 len)
 	}
 	
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_DISK_LIST_RSP);
+	header.cmd = htonl(OAPI_DISK_LIST_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -847,6 +1038,51 @@ BOOL OAPIServer::ProcessGetDisk(s32 len)
 
 	return TRUE;
 }
+
+BOOL OAPIServer::ProcessGetCam(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPICameraGetReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+	}
+
+	oapi::OAPICameraGetRsp rsp;
+
+	VidCamera pCam;
+	m_pFactory.GetCamera(req.strId, pCam);
+
+	OAPIConverter::Converter((VidCamera &)pCam, rsp.cam);
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_GET_CAM_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+}
+
 BOOL OAPIServer::ProcessGetSysDisk(s32 len)
 {
 	if (len == 0)
@@ -896,9 +1132,10 @@ BOOL OAPIServer::ProcessGetSysDisk(s32 len)
 			oapi::OAPIDisk oapiDisk;
 			oapiDisk.strId = disk.device().toStdString();
 			oapiDisk.strPath = disk.rootPath().toStdString();
-			oapiDisk.nTotalSize = disk.bytesTotal();
-			oapiDisk.nFreeSize = disk.bytesFree();
-			oapiDisk.nStorSize = 0;
+			oapiDisk.nTotalSize = totalSize;
+			oapiDisk.nFreeSize = leftSize;
+			oapiDisk.nStorLimit = 0;
+			oapiDisk.nStorUsed = 0;
 			dataList.list.push_back(oapiDisk);
 		}
 	}
@@ -911,7 +1148,7 @@ BOOL OAPIServer::ProcessGetSysDisk(s32 len)
 	}
 	
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_SYS_DISK_LIST_RSP);
+	header.cmd = htonl(OAPI_SYS_DISK_LIST_RSP);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -944,7 +1181,7 @@ inline bool OAPIServer::ProcessCamSearchStart(s32 len)
 	ClearCamSearcherMap();
 	CamSearcherStart();
 	delete [] pRecv;
-	SendCmnRetRsp(OAPI_CMD_CAM_SEARCH_START_RSP, true);
+	SendCmnRetRsp(OAPI_CAM_SEARCH_START_RSP, true);
 
 	return true;	
 }
@@ -971,7 +1208,7 @@ inline bool OAPIServer::ProcessCamSearchStop(s32 len)
 	}
 	ClearCamSearcherMap();
 	delete [] pRecv;
-	SendCmnRetRsp(OAPI_CMD_CAM_SEARCH_STOP_RSP, true);
+	SendCmnRetRsp(OAPI_CAM_SEARCH_STOP_RSP, true);
 
 	return true;	
 }
@@ -980,57 +1217,79 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 {
 	header.cmd = ntohl(header.cmd);
 	header.length = ntohl(header.length);
-	if (m_bLogin == FALSE && header.cmd != OAPI_CMD_LOGIN_REQ)
+	if (m_bLogin == FALSE && header.cmd != OAPI_LOGIN_REQ)
 	{
 		//return FALSE;
 	}
 
 	switch(header.cmd)
 	{
-		case OAPI_CMD_LOGIN_REQ:
+		case OAPI_LOGIN_REQ:
 			return ProcessLogin(header.length);
 			break;
-		case OAPI_CMD_KEEPALIVE_REQ:
+		case OAPI_KEEPALIVE_REQ:
 			break;
-		case OAPI_CMD_DEVICE_LIST_REQ:
+		case OAPI_CAM_LIST_REQ:
 			return ProcessGetDevice(header.length);
 			break;
-		case OAPI_CMD_START_LIVE_REQ:
+		case OAPI_START_LIVE_REQ:
 			return ProcessStartLive(header.length);
 			break;
-		case OAPI_CMD_STOP_LIVE_REQ:
+		case OAPI_STOP_LIVE_REQ:
 			return ProcessStopLive(header.length);
 			break;
-		case OAPI_CMD_ADD_DEVICE_REQ:
+		case OAPI_ADD_CAM_REQ:
 			return ProcessAddCam(header.length);
 			break;
-		case OAPI_CMD_DEL_DEVICE_REQ:
+		case OAPI_DEL_CAM_REQ:
 			return ProcessDeleteCam(header.length);
 			break;
 		case OAPI_REG_NOTIFY_REQ:
 			return ProcessRegNotify(header.length);
 			break;
-		case OAPI_CMD_GET_LIC_REQ:
+		case OAPI_GET_LIC_REQ:
 			return ProcessGetLic(header.length);
 			break;
-		case OAPI_CMD_CONF_LIC_REQ:
+		case OAPI_CONF_LIC_REQ:
 			return ProcessConfLic(header.length);
 			break;
-		case OAPI_CMD_CONF_ADMIN_REQ:
+		case OAPI_CONF_ADMIN_REQ:
 			return ProcessConfAdmin(header.length);
 			break;
-		case OAPI_CMD_DISK_LIST_REQ:
+		case OAPI_DISK_LIST_REQ:
 			return ProcessGetDisk(header.length);
 			break;
-		case OAPI_CMD_SYS_DISK_LIST_REQ:
+		case OAPI_SYS_DISK_LIST_REQ:
 			return ProcessGetSysDisk(header.length);
 			break;
-		case OAPI_CMD_CAM_SEARCH_START_REQ:
+		case OAPI_ADD_DISK_REQ:
+			return ProcessAddDisk(header.length);
+			break;
+		case OAPI_DEL_DISK_REQ:
+			return ProcessDeleteDisk(header.length);
+			break;
+		case OAPI_UPDATE_DISK_LIMIT_REQ:
+			return ProcessUpdateDiskLimit(header.length);
+			break;
+		case OAPI_CAM_SEARCH_START_REQ:
 			return ProcessCamSearchStart(header.length);
 			break;
-		case OAPI_CMD_CAM_SEARCH_STOP_REQ:
+		case OAPI_CAM_SEARCH_STOP_REQ:
 			return ProcessCamSearchStop(header.length);
 			break;
+		case OAPI_GET_VER_REQ:
+			return ProcessGetVer(header.length);
+			break;
+		case OAPI_GET_CAM_REQ:
+			return ProcessGetCam(header.length);
+			break;
+		case OAPI_SET_CAM_SCHED_REQ:
+			return ProcessSetCamSched(header.length);
+			break;
+		case OAPI_PTZ_CMD:
+			return ProcessPtzCmd(header.length);
+			break;
+
 		default:
 			break;		
 	}
@@ -1180,7 +1439,7 @@ inline void OAPIServer::SlotSearchReceiveData(const QHash<QString, QString> &dat
 	}
 	
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_CAM_SAERCH_PUSH);
+	header.cmd = htonl(OAPI_CAM_SAERCH_PUSH);
 	header.length = htonl(nJsonLen + 1);
 
 	m_pSocket->Send((void *)&header, sizeof(header));
@@ -1194,7 +1453,7 @@ inline void OAPIServer::DataHandler1(VideoFrame& frame)
 {
 	VideoFrameHeader frameHeader;
 	OAPIHeader header;
-	header.cmd = htonl(OAPI_CMD_FRAME_PUSH);
+	header.cmd = htonl(OAPI_FRAME_PUSH);
 	header.length = htonl(sizeof(frameHeader) + frame.dataLen);	
 
 	frameHeader.streamType = htonl(frame.streamType);

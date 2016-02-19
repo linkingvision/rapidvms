@@ -61,8 +61,13 @@
 		["unsigned int", "bHWaccel", {"required": true}],
 		["unsigned int", "bServerMotion", {"required": true}],
 		["unsigned int", "nConnectType", {"required": true}],
+		["unsigned int", "bHDFSRecord", {"required": true}],
+		["std::vector<std::string>", "cRecSchedList"],
+		["unsigned int", "nPreRecSec", {"required": true}],
+		["unsigned int", "nPostRecSec", {"required": true}],
 		
-		["unsigned int", "bOnline", {"required": true}]
+		["unsigned int", "bOnline", {"required": true}],
+		["unsigned int", "bRec", {"required": true}]
     ]
 },
 {
@@ -79,6 +84,27 @@
     "members": [
         ["unsigned int", "Num", {"required": true}],
         ["std::vector<oapi::OAPICamera>", "list"]
+    ]
+},
+{
+    "name": "OAPICameraGetReq",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+{
+    "name": "OAPICameraGetRsp",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPICamera", "cam", {"required": true}]
+    ]
+},
+{
+    "name": "OAPICameraUpdateSchedReq",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPICamera", "cam", {"required": true}]
     ]
 },
 {
@@ -137,9 +163,10 @@
     "members": [
         ["std::string", "strId", {"required": true}],
 		["std::string", "strPath", {"required": true}],
-		["int64_t ", "nTotalSize", {"required": true}],
-		["int64_t ", "nFreeSize", {"required": true}],
-		["int64_t ", "nStorSize", {"required": true}]
+		["unsigned long long ", "nTotalSize", {"required": true}],
+		["unsigned long long ", "nFreeSize", {"required": true}],
+		["unsigned long long ", "nStorLimit", {"required": true}],
+		["unsigned long long ", "nStorUsed", {"required": true}]
     ]
 },
 {
@@ -191,6 +218,14 @@
     ]
 },
 {
+    "name": "OAPIUpdateDiskLimitReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["oapi::OAPIDisk", "disk", {"required": true}]
+    ]
+},
+{
     "name": "OAPIGetLicReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
@@ -208,6 +243,23 @@
 		["int", "nCh", {"required": true}],
 		["std::string", "strType", {"required": true}],
 		["std::string", "strExpireTime", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIGetVerReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strFake", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIGetVerRsp",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strVer", {"required": true}],
+		["std::string", "strInfo", {"required": true}]
     ]
 },
 {
@@ -260,6 +312,16 @@
 		["std::string", "strPort", {"required": true}],
 		["std::string", "strModel", {"required": true}],
 		["std::string", "strONVIFAddress", {"required": true}]
+    ]
+},
+{
+    "name": "OAPIPtzCmd",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}],
+		["unsigned int", "nPtzCmd", {"required": true}],
+		["double", "nParam", {"required": true}]
     ]
 },
 {

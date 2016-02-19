@@ -10,6 +10,7 @@
 #include "utility.hpp"
 #include "debug.hpp"
 #include <QThread>
+#include <QCoreApplication>
 #include "factory.hpp"
 #include "oapi/oapis.hpp"
 
