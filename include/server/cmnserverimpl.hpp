@@ -34,7 +34,7 @@ void CmnHttpServer::run()
 		{
 			request.ReadRequest(clientSocket);
 
-			const URI uri = request.GetURI();
+			const WEBBY::URI uri = request.GetURI();
 
 			XString body = "<!DOCTYPE html>\
 			<html>\
@@ -90,7 +90,7 @@ void CmnHttpsServer::run()
 		{
 			request.ReadRequest(clientSocket);
 
-			const URI uri = request.GetURI();
+			const WEBBY::URI uri = request.GetURI();
 
 			XString body = "<!DOCTYPE html>\
 			<html>\

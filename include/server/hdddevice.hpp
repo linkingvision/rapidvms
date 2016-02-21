@@ -25,68 +25,6 @@ enum HddDriveType {
 	HddRamDrive
 };
 
-#if 0
-class HddDevice
-{
-public:
-    HddDevice()
-    {
-
-    }
-    ~HddDevice()
-    {
-
-    }
-
-public:
-    QStringList GetDeviceList();
-    s64 GetTotalDiskSpace(astring &strDevice);
-    s64 GetavailableDiskSpace(astring &strDevice);
-    HddDriveType GetHddType(astring &strDevice);
-
-public:
-    void Lock()
-    {
-        m_Lock.lock();
-    }
-    void UnLock()
-    {
-        m_Lock.unlock();
-    }
-
-
-private:
-    fast_mutex m_Lock;
-	QStorageInfo m_Info;
-};
-
-typedef HddDevice* LPHddDevice;
-
-
-using namespace std;
-
-inline QStringList HddDevice::GetDeviceList()
-{
-	return m_Info.allLogicalDrives();
-}
-
-/* Total size is in M */
-inline s64 HddDevice::GetTotalDiskSpace(astring &strDevice)
-{
-	return m_Info.totalDiskSpace(strDevice.c_str()) / (1024 * 1024);
-}
-
-/* Total size is in M */
-inline s64 HddDevice::GetavailableDiskSpace(astring &strDevice)
-{
-	return m_Info.availableDiskSpace(strDevice.c_str()) / (1024 * 1024);
-}
-inline HddDriveType HddDevice::GetHddType(astring &strDevice)
-{
-	return (HddDriveType)(m_Info.driveType(strDevice.c_str()));
-}
-
-#endif
 #ifdef WIN32
 inline HddDriveType HddGetDriveType(const QString &drive)
 {
@@ -104,7 +42,7 @@ inline HddDriveType HddGetDriveType(const QString &drive)
         return HddRamDrive;
     case DRIVE_UNKNOWN:
     case DRIVE_NO_ROOT_DIR:
-    default:
+    	default:
         return HddUnknownDrive;
     };
 }

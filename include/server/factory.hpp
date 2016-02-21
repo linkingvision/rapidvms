@@ -29,10 +29,10 @@ typedef enum
     FACTORY_CAMERA_DEL,
     FACTORY_CAMERA_ONLINE,
     FACTORY_CAMERA_OFFLINE,
-    FACTORY_CAMERA_RECORD_ON,
-    FACTORY_CAMERA_RECORD_OFF,
-    FACTORY_CAMERA_HDFS_RECORD_ON,
-    FACTORY_CAMERA_HDFS_RECORD_OFF,
+    FACTORY_CAMERA_REC_ON,
+    FACTORY_CAMERA_REC_OFF,
+    FACTORY_CAMERA_HDFS_REC_ON,
+    FACTORY_CAMERA_HDFS_REC_OFF,
 
     FACTORY_CAMERA_LAST
 } FactoryCameraChangeType;
@@ -43,6 +43,7 @@ class FactoryCameraChangeData
 public:
 	FactoryCameraChangeType type;
 	astring id;
+	VidCamera cCam;
 };
 
 typedef BOOL (*FactoryCameraChangeNotify)(void* pParam, 
@@ -53,6 +54,7 @@ typedef std::list<CameraParam> CameraParamList;
 typedef std::map<astring, LPCamera> CameraMap;
 typedef std::map<astring, CameraParam> CameraParamMap;
 typedef std::map<astring, bool> CameraOnlineMap;
+typedef std::map<astring, bool> CameraRecMap;
 typedef std::map<void *, FactoryCameraChangeNotify> CameraChangeNofityMap;
 
 class Factory;
@@ -83,11 +85,14 @@ public:
 	
 public:
 	BOOL RegCameraChangeNotify(void * pData, FactoryCameraChangeNotify callback);
+	BOOL UnRegCameraChangeNotify(void * pData);
 	BOOL CallCameraChange(FactoryCameraChangeData data);
+	static BOOL RecChangeHandler(astring strId, bool bRec, void * pParam);
+	BOOL RecChangeHandler1(astring strId, bool bRec);
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
-							int &ch, astring &type);
+							int &ch, astring &type, astring &expireTime);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
 
@@ -95,38 +100,21 @@ public:
 	BOOL SetExportPath(astring &strPath);
 
 public:
-#if 0
-	BOOL GetAutoLogin();
-	BOOL AuthUser(astring &strUser, astring &strPasswd);
-	BOOL GetUserData(VSCUserData &pData);
-	BOOL SetUserData(VSCUserData &pData);
-
-public:
-	BOOL GetHdfsRecordConf(VSCHdfsRecordData &pData);
-	BOOL SetHdfsRecordConf(VSCHdfsRecordData &pData);
-
-	/* OpenCVR API port */
-	BOOL GetOAPIPort(u16 &pPort);
-	BOOL SetOAPIPort(u16 &pPort);
-#endif
+	bool AuthUser(astring &strUser, astring &strPasswd);
+	bool GetAdminPasswd(astring &strPasswd);
+	bool SetAdminPasswd(astring strPasswd);
 public:
 	BOOL GetCameraOnlineMap(CameraOnlineMap &pMap);
+	BOOL GetCameraRecMap(CameraRecMap &pMap);
 	bool GetCameraList(VidCameraList & pCameraList);
 
        /* Camera function */
 	astring AddCamera(CameraParam & pParam);
 	BOOL GetCameraRtspUrl(astring & strUrl, astring strCamId);
 	BOOL DelCamera(astring strCamId);
-	
+	BOOL GetCamera(astring strId, VidCamera & pCam);
 	BOOL PtzAction(astring strCamId, FPtzAction action, float speed);
-
-public:
-	BOOL StartRecord(astring strCamId);
-	BOOL StopRecord(astring strCamId);
-	BOOL StartHdfsRecord(astring strCamId);
-	BOOL StopHdfsRecord(astring strCamId);
-public:
-	BOOL GetRecordStatus(astring strCamId, bool &bStatus);
+	BOOL UpdateRecSched(astring strCamId, VidCamera &pCam);
 
 public:
 	/* Disk function */
@@ -145,8 +133,6 @@ public:
 	BOOL SearchAItem(astring strCamId, u32 Time, VdbRecordItem &pItem);
 	BOOL SearchAItemNear(astring strCamId, u32 Time, VdbRecordItem &pItem);
 	BOOL SearchNextItem(astring strCamId, s64 LastId, VdbRecordItem &pItem);
-	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
-	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
 
 	VDB & GetVdb();
 
@@ -161,37 +147,18 @@ public:
 	BOOL UnRegSubDataCallback(astring strCamId, void * pParam);
 	BOOL GetSubInfoFrame(astring strCamId, InfoFrame &pFrame);
 
-	/* Raw data */
-	BOOL RegRawCallback(astring strCamId, CameraRawCallbackFunctionPtr pCallback, void * pParam);
-	BOOL UnRegRawCallback(astring strCamId, void * pParam);
-	BOOL RegSubRawCallback(astring strCamId, CameraRawCallbackFunctionPtr pCallback, void * pParam);
-	BOOL UnRegSubRawCallback(astring strCamId, void * pParam);
-
-	/* Seq data  */
-	BOOL RegSeqCallback(astring strCamId, CameraSeqCallbackFunctionPtr pCallback, void * pParam);
-	BOOL UnRegSeqCallback(astring strCamId, void * pParam);
-	
-	BOOL RegDelCallback(astring strCamId, CameraDelCallbackFunctionPtr pCallback, void * pParam);
-	BOOL UnRegDelCallback(astring strCamId, void * pParam);
-
 	BOOL GetCameraOnline(astring strCamId, BOOL &bStatus);
-	BOOL GetUrl(astring strCamId, std::string &url);
 	BOOL SetSystemPath(astring &strPath);
+
 public:
-	void Lock(){m_Lock.lock();}
-	bool TryLock(){return m_Lock.try_lock();}
-	void UnLock(){m_Lock.unlock();}
-public:
-	static void Run(void * pParam);
 	void run();
 
 private:
 	CameraMap m_CameraMap;
-	//CameraParamMap m_CameraParamMap;//force read from the confdb
 	CameraOnlineMap m_CameraOnlineMap;
+	CameraRecMap m_CameraRecMap;
 
-	fast_mutex m_Lock;
-	tthread::thread *m_pThread;
+	XMutex m_cMutex;
 
 private:
 	CameraChangeNofityMap m_CameraChange;
@@ -204,8 +171,6 @@ private:
 private:
 	ConfDB m_Conf;
 	SysDB m_SysPath;
-private:
-	//CmnHttpServer *m_pHttpServer;
 };
 
 typedef Factory* LPFactory;

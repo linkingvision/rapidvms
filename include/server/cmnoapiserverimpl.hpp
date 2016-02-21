@@ -26,14 +26,19 @@ void CmnOAPIServerSession::run()
 	OAPIServer server(m_pSocket, m_pFactory);
 	while(1)
 	{
-		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header));
+		QCoreApplication::processEvents();
+		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header), 200);
 		if (nRet == sizeof(header) && server.Process(header) == TRUE)
 		{
+			//printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
+			QCoreApplication::processEvents();
 			continue;
 		}else
 		{
 			if (m_pSocket->Valid() == true)
 			{
+				QCoreApplication::processEvents();
+				//printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
 				continue;
 			}else
 			{
@@ -73,12 +78,19 @@ void CmnOAPIServer::run()
 	m_port = 9080;
         XSocket socket;
 
-        socket.Bind(m_port);
-        socket.Listen();
+    socket.Bind(m_port);
+    socket.Listen();
 
 	while(1)
 	{
 		XRef<XSocket> clientSocket = socket.Accept();
+#ifdef WIN32
+		ULONG mode = 1;
+		ioctlsocket( clientSocket->GetSokId(), FIONBIO, &mode);
+#else
+		int flags = fcntl( clientSocket->GetSokId(), F_GETFL, 0);
+		fcntl( clientSocket->GetSokId(), F_SETFL, flags | O_NONBLOCK );
+#endif
 
 		CmnOAPIServerSession *session = new CmnOAPIServerSession(m_pFactory, 
 			clientSocket);
@@ -146,8 +158,8 @@ void CmnOAPISSLServer::run()
 		try
 		{
 			request.ReadRequest(clientSocket);
-
-			const URI uri = request.GetURI();
+#if 0
+			const WEBBY::URI uri = request.GetURI();
 
 			XString body = "<!DOCTYPE html>\
 			<html>\
@@ -161,6 +173,7 @@ void CmnOAPISSLServer::run()
 			ssResponse.SetBody(body);
 			ssResponse.SetContentType("text/html; charset=UTF-8");
 			ssResponse.WriteResponse(clientSocket);
+#endif
 		}
 		catch(XSDK::XException)
 		{

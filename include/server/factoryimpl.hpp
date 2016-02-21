@@ -47,19 +47,15 @@ inline   void FactoryHddTask::run()
 			{
 				status.status = HDD_DISK_READ_ONLY;
 			}
-			status.freeSize = info.bytesAvailable()/1024;
-			status.totalSize = info.bytesTotal()/1024;
+			status.freeSize = info.bytesAvailable();
+			status.totalSize = info.bytesTotal();
 			mapStatus[(*it).second.hdd] = status;
 			//VDC_DEBUG("HDD %s path %s freeSize %lld\n", ((*it).first).c_str(), 
 			//				(*it).second.path.c_str(), status.freeSize);
 			
 		}
 		m_Factory.UpdateDiskStatusMap(mapStatus);
-#ifdef WIN32
-	        Sleep(1000 * 2);
-#else
-		sleep(2);
-#endif
+		ve_sleep(2000);
 	}
 }
 
@@ -166,21 +162,6 @@ inline BOOL Factory::Init()
 	astring strUser = HdfsConf.struser();
 	m_pVHdfsdb = new VHdfsDB(strNameNode, strPort, strUser);
 
-#if 0 //add camera for test
-	{	
-		VidCameraList cameraList;
-		CameraParam Param;
-		Param.m_Conf.set_strip("192.168.1.1");
-		Param.m_Conf.set_strport("80");
-		Param.m_Conf.set_struser("admin");
-		Param.m_Conf.set_strpasswd("admin");
-		m_Conf.AddCamera(Param.m_Conf);
-		astring strhdd = "cccccc";
-		astring strPath = "c:\\";
-		AddHdd(strhdd, strPath, 10 * 1024 );
-	}
-#endif
-
 	VidCameraList cameraList;
 	m_Conf.GetCameraListConf(cameraList);
 	int cameraSize = cameraList.cvidcamera_size();
@@ -193,17 +174,10 @@ inline BOOL Factory::Init()
 	}
 
 	InitLicense();
-	//m_pThread = new thread(Factory::Run, (void *)this);
+
 	//start();
 	m_HddTask = new FactoryHddTask(*this);
 	m_HddTask->start();
-
-	//if (sysData.data.conf.OAPIPort == 0)
-	{
-		//sysData.data.conf.OAPIPort = 9080;
-	}
-	//m_pHttpServer = new CmnHttpServer(sysData.data.conf.OAPIPort);
-	//m_pHttpServer->start();
 
 	/* Init export path */
 	astring strExportPath;
@@ -213,41 +187,94 @@ inline BOOL Factory::Init()
 
 inline BOOL Factory::GetCameraOnlineMap(CameraOnlineMap &pMap)
 {
-    pMap = m_CameraOnlineMap;
+	XGuard guard(m_cMutex);
+    	pMap = m_CameraOnlineMap;
 
-    return TRUE;
+   	return TRUE;
+}
+
+inline BOOL Factory::GetCameraRecMap(CameraRecMap &pMap)
+{
+	XGuard guard(m_cMutex);
+    	pMap = m_CameraRecMap;
+
+   	return TRUE;
 }
 
 inline bool Factory::GetCameraList(VidCameraList & pCameraList)
 {
-	Lock();
-	m_Conf.GetCameraListConf(pCameraList);
-	UnLock();
-	return true;
+	XGuard guard(m_cMutex);
+
+	return m_Conf.GetCameraListConf(pCameraList);
 }
 
 inline BOOL Factory::RegCameraChangeNotify(void * pData, FactoryCameraChangeNotify callback)
 {
-	Lock();
+	XGuard guard(m_cMutex);
 	m_CameraChange[pData] = callback;
-	UnLock();
+
 	return TRUE;
 }
+
+inline BOOL Factory::UnRegCameraChangeNotify(void * pData)
+{
+	XGuard guard(m_cMutex);
+	m_CameraChange.erase(pData);
+
+	return TRUE;
+}
+
 inline BOOL Factory::CallCameraChange(FactoryCameraChangeData data)
 {
-        CameraChangeNofityMap::iterator it = m_CameraChange.begin(); 
-        for(; it!=m_CameraChange.end(); ++it)
-        {
+	XGuard guard(m_cMutex);
+	CameraChangeNofityMap::iterator it = m_CameraChange.begin(); 
+	for(; it!=m_CameraChange.end(); ++it)
+	{
 		if ((*it).second)
 		{
 			(*it).second((*it).first, data);
 		}
-        }	
-	 return TRUE;
+	}
+
+	return TRUE;
 }
-inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type)
+
+inline BOOL Factory::RecChangeHandler(astring strId, bool bRec, void * pParam)
 {
-	VPlay::GetLicenseInfo(strHostId, ch, type);
+	int dummy = errno;
+	LPFactory pFactory = (LPFactory)pParam;
+
+	if (pFactory)
+	{
+	    return pFactory->RecChangeHandler1(strId, bRec);
+	}
+
+	return TRUE;
+
+	
+}
+inline BOOL Factory::RecChangeHandler1(astring strId, bool bRec)
+{
+	FactoryCameraChangeData data;
+	data.id = strId;
+	if (bRec == true)
+	{
+		data.type = FACTORY_CAMERA_REC_ON;
+		m_CameraRecMap[strId] = 1;
+	}else
+	{
+		data.type = FACTORY_CAMERA_REC_OFF;
+		m_CameraRecMap[strId] = 0;
+	}
+
+	CallCameraChange(data);
+
+	return TRUE;
+}
+
+inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type, astring &expireTime)
+{
+	VPlay::GetLicenseInfo(strHostId, ch, type, expireTime);
 	return m_Conf.GetLicense(strLicense);
 }
 inline BOOL Factory::SetLicense(astring &strLicense)
@@ -255,88 +282,51 @@ inline BOOL Factory::SetLicense(astring &strLicense)
 	VPlay::SetLicense(strLicense);
 	return m_Conf.SetLicense(strLicense);
 }
-#if 0
-inline BOOL Factory::AuthUser(astring &strUser, astring &strPasswd)
-{
-	VSCUserData pData;
-	BOOL ret = FALSE;
-	
-	Lock();
-	m_Conf.GetUserData(pData);
-	if (strUser == "admin")
-	{
-		astring realPasswd = pData.data.conf.Passwd;
-		if (realPasswd == strPasswd)
-		{
-			ret = TRUE;
-		}
-	}else
-	{
-		//TODO add support other users
-	}
-	
-	
-	UnLock();
-	return ret;
-}
 
-inline BOOL Factory::GetUserData(VSCUserData &pData)
-{
-	Lock();
-	m_Conf.GetUserData(pData);	
-	UnLock();
-	return TRUE;
-}
-inline BOOL Factory::SetUserData(VSCUserData &pData)
-{
-	Lock();
-	m_Conf.UpdateUserData(pData);	
-	UnLock();
-	return TRUE;
-}
-
-inline BOOL Factory::GetHdfsRecordConf(VSCHdfsRecordData &pData)
-{
-	Lock();
-	BOOL ret = m_Conf.GetHdfsRecordData(pData);
-	UnLock();
-	return ret;
-}
-inline BOOL Factory::SetHdfsRecordConf(VSCHdfsRecordData &pData)
-{
-	Lock();
-	BOOL ret = m_Conf.UpdateHdfsRecordData(pData);
-	UnLock();
-	return ret;
-}
-
-
-inline BOOL Factory::GetOAPIPort(u16 &pPort)
-{	
-	VSCConfData sys;
-	Lock();
-	m_Conf.GetSysData(sys);
-	pPort = sys.data.conf.OAPIPort;
-	UnLock();
-	return TRUE;
-}
-inline BOOL Factory::SetOAPIPort(u16 &pPort)
-{
-	VSCConfData sys;
-	Lock();
-	m_Conf.GetSysData(sys);
-	sys.data.conf.OAPIPort = pPort;
-	m_Conf.UpdateSysData(sys);
-	UnLock();
-	return TRUE;
-}
-#endif
 inline BOOL Factory::InitLicense()
 {
 	astring strLicense;
 	m_Conf.GetLicense(strLicense);
 	VPlay::SetLicense(strLicense);
 	return TRUE;
+}
+
+inline bool Factory::AuthUser(astring &strUser, astring &strPasswd)
+{
+	/* Admin is a Super User */
+	if (strUser == "admin")
+	{
+		VidStorServerConf  cData;
+		m_Conf.GetStorServerConf(cData);
+		SimpleCrypt crypt;
+		QString strDePasswd = cData.stradminpasswd().c_str();
+		if (crypt.decryptToString(strDePasswd).toStdString() == strPasswd)
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+	}
+
+	return false;
+}
+inline bool Factory::GetAdminPasswd(astring &strPasswd)
+{
+	VidStorServerConf  cData;
+	m_Conf.GetStorServerConf(cData);
+	strPasswd = cData.stradminpasswd();
+	
+	return true;
+}
+inline bool Factory::SetAdminPasswd(astring strPasswd)
+{
+	VidStorServerConf  cData;
+	m_Conf.GetStorServerConf(cData);
+	cData.set_stradminpasswd(strPasswd);
+	m_Conf.SetStorServerConf(cData);
+
+	return true;	
 }
 
 inline BOOL Factory::AddHdd(astring &strHdd, astring & strPath, s64 nSize)
@@ -395,14 +385,6 @@ inline BOOL Factory::SearchNextItem(astring cameraId, s64 LastId, VdbRecordItem 
 {
     return m_pVdb->SearchNextItem(cameraId, LastId, pItem);
 }
-inline BOOL Factory::RequestAMFRead(VdbRecordItem &pItem, astring & strPath)
-{
-    return m_pVdb->RequestAMFRead(pItem, strPath);
-}
-inline BOOL Factory::FinishedAMFRead(VdbRecordItem &pItem, astring & strPath)
-{
-    return m_pVdb->FinishedAMFRead(pItem, strPath);
-}
 
 inline VDB& Factory::GetVdb()
 {
@@ -413,9 +395,13 @@ inline VDB& Factory::GetVdb()
 inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
 {
 
-	m_CameraMap[strCamId] = new Camera(*m_pVdb, *m_pVHdfsdb, pParam);
+	m_CameraMap[strCamId] = new Camera(m_Conf, *m_pVdb, 
+			*m_pVHdfsdb, pParam, 
+			(RecChangeFunctionPtr)Factory::RecChangeHandler, 
+			(void *)this);
 
 	m_CameraOnlineMap[strCamId] = FALSE;
+	m_CameraRecMap[strCamId] = FALSE;
 
 	if (pParam.m_Conf.strname() == "Camera")
 	{
@@ -428,26 +414,22 @@ inline s32 Factory::InitAddCamera(CameraParam & pParam, astring strCamId)
 inline BOOL Factory::RegDataCallback(astring nIndex, CameraDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegDataCallback(pCallback, pParam);
-    }
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->RegDataCallback(pCallback, pParam);
+	}
 
-    UnLock();
-
-    return TRUE;
+	return TRUE;
 }
 
 inline BOOL Factory::UnRegDataCallback(astring nIndex, void * pParam)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegDataCallback(pParam);
-    }
-
-    UnLock();
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->UnRegDataCallback(pParam);
+	}
 
     return TRUE;
 }
@@ -455,408 +437,150 @@ inline BOOL Factory::UnRegDataCallback(astring nIndex, void * pParam)
 
 inline BOOL Factory::GetInfoFrame(astring nIndex, InfoFrame &pFrame)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->GetInfoFrame(pFrame);
-    }
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->GetInfoFrame(pFrame);
+	}
 
-    UnLock();
-
-    return TRUE;
+	return TRUE;
 }
 
 inline BOOL Factory::RegSubDataCallback(astring nIndex, CameraDataCallbackFunctionPtr pCallback,
         void * pParam)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegSubDataCallback(pCallback, pParam);
-    }
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->RegSubDataCallback(pCallback, pParam);
+	}
 
-    UnLock();
-
-    return TRUE;
+	return TRUE;
 }
 
 inline BOOL Factory::UnRegSubDataCallback(astring nIndex, void * pParam)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegDataCallback(pParam);
-    }
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->UnRegDataCallback(pParam);
+	}
 
-    UnLock();
-
-    return TRUE;
+	return TRUE;
 }
 
 
 inline BOOL Factory::GetSubInfoFrame(astring nIndex, InfoFrame &pFrame)
 {
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->GetSubInfoFrame(pFrame);
-    }
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[nIndex] != NULL)
+	{
+	    m_CameraMap[nIndex]->GetSubInfoFrame(pFrame);
+	}
 
-    UnLock();
-
-    return TRUE;
+    	return TRUE;
 }
 
-inline BOOL Factory::RegRawCallback(astring nIndex, CameraRawCallbackFunctionPtr pCallback,
-        void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegRawCallback(pCallback, pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::UnRegRawCallback(astring nIndex, void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegRawCallback(pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::RegSeqCallback(astring nIndex, CameraSeqCallbackFunctionPtr pCallback,
-        void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegSeqCallback(pCallback, pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::UnRegSeqCallback(astring nIndex, void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegSeqCallback(pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::RegSubRawCallback(astring nIndex, CameraRawCallbackFunctionPtr pCallback,
-        void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegSubRawCallback(pCallback, pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::UnRegSubRawCallback(astring nIndex, void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegSubRawCallback(pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline BOOL Factory::RegDelCallback(astring nIndex, CameraDelCallbackFunctionPtr pCallback, void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->RegDelCallback(pCallback, pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-inline BOOL Factory::UnRegDelCallback(astring nIndex, void * pParam)
-{
-    Lock();
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        m_CameraMap[nIndex]->UnRegDelCallback(pParam);
-    }
-
-    UnLock();
-
-    return TRUE;
-}
 
 inline BOOL Factory::GetCameraOnline(astring nIndex, BOOL &bStatus)
 {
-    Lock();
-
-    if (m_CameraMap[nIndex] != NULL)
-    {
-        bStatus =  m_CameraMap[nIndex]->GetCameraOnline();
-    }
-
-    UnLock();
-
-    return TRUE;
-}
-
-inline   BOOL Factory::GetUrl(astring nIndex, std::string &url)
-{
-	BOOL ret = FALSE;
+	XGuard guard(m_cMutex);
 
 	if (m_CameraMap[nIndex] != NULL)
 	{
-	    ret =  m_CameraMap[nIndex]->GetUrl(url);
+	    bStatus =  m_CameraMap[nIndex]->GetCameraOnline();
 	}
 
-	UnLock();
-
-	return ret;
+	return TRUE;
 }
 
 inline BOOL Factory::GetStreamInfo(astring nIndex, VideoStreamInfo &pInfo)
 {
-	Lock();
+	XGuard guard(m_cMutex);
 	if (m_CameraMap[nIndex] != NULL)
 	{
 	    m_CameraMap[nIndex]->GetStreamInfo(pInfo);
 	}
-	UnLock();
 
 	return TRUE;
 }
 
-inline BOOL Factory::PtzAction(astring nIndex, FPtzAction action, float speed)
+inline BOOL Factory::UpdateRecSched(astring strCamId, VidCamera &pCam)
 {
-	Lock();
-	if (m_CameraMap[nIndex] != NULL)
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[strCamId] != NULL)
 	{
-	    m_CameraMap[nIndex]->PtzAction(action, speed);
+		m_CameraMap[strCamId]->UpdateRecSched(pCam);
+		/* Save configuration of the sched */
+		m_Conf.DeleteCamera(strCamId);
+		m_Conf.AddCamera(pCam);
 	}
-	UnLock();
+	
+	return TRUE;	
+}
+
+inline BOOL Factory::PtzAction(astring strCamId, FPtzAction action, float speed)
+{
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[strCamId] != NULL)
+	{
+	    m_CameraMap[strCamId]->PtzAction(action, speed);
+	}
 
 	return TRUE;
 }
-
-#if 0
-inline BOOL Factory::GetRecordStatus(astring nIndex,bool &nStatus)
-{
-	VidCamera pParam;
-
-	Lock();
-	
-	m_Conf.GetCameraConf(nIndex, pParam);
-	nStatus = pParam.brecord();
-	
-	UnLock();
-
-	return true;
-}
-
-inline BOOL Factory::StartRecord(astring nIndex)
-{
-	VidCamera pParam;
-	FactoryCameraChangeData change;
-
-	Lock();
-	
-	m_Conf.GetCameraConf(nIndex, pParam);
-	if (pParam.brecord() == true)
-	{
-		UnLock();
-		return true;
-	}
-
-	m_Conf.CameraRecordSet(nIndex, true);
-
-	if (m_CameraMap[nIndex] != NULL)
-	{
-	    m_CameraMap[nIndex]->StartRecord();
-	}
-	UnLock();
-	change.id = nIndex;
-	change.type = FACTORY_CAMERA_RECORD_ON;
-	CallCameraChange(change);
-
-	return TRUE;
-}
-inline BOOL Factory::StopRecord(astring nIndex)
-{
-	VidCamera pParam;
-	FactoryCameraChangeData change;
-
-	Lock();
-	
-	m_Conf.GetCameraConf(nIndex, pParam);
-	if (pParam.brecord() == false)
-	{
-		UnLock();
-		return true;
-	}
-
-	m_Conf.CameraRecordSet(nIndex, false);
-
-	if (m_CameraMap[nIndex] != NULL)
-	{
-	    m_CameraMap[nIndex]->StopRecord();
-	}
-	UnLock();
-	change.id = nIndex;
-	change.type = FACTORY_CAMERA_RECORD_OFF;
-	CallCameraChange(change);
-
-    return TRUE;
-}
-
-
-inline BOOL Factory::StartHdfsRecord(astring nIndex)
-{
-	VidCamera pParam;
-	FactoryCameraChangeData change;
-
-	Lock();
-	
-	m_Conf.GetCameraConf(nIndex, pParam);
-	if (pParam.bhdfsrecord() == true)
-	{
-		UnLock();
-		return true;
-	}
-
-	m_Conf.CameraHDFSRecordSet(nIndex, true);
-
-	if (m_CameraMap[nIndex] != NULL)
-	{
-	    m_CameraMap[nIndex]->StartHdfsRecord();
-	}
-	UnLock();
-	change.id = nIndex;
-	change.type = FACTORY_CAMERA_HDFS_RECORD_ON;
-	CallCameraChange(change);
-
-	return TRUE;
-}
-inline BOOL Factory::StopHdfsRecord(astring nIndex)
-{
-	VidCamera pParam;
-	FactoryCameraChangeData change;
-
-	Lock();
-	
-	m_Conf.GetCameraConf(nIndex, pParam);
-	if (pParam.bhdfsrecord() == false)
-	{
-		UnLock();
-		return true;
-	}
-
-	m_Conf.CameraHDFSRecordSet(nIndex, true);
-
-	if (m_CameraMap[nIndex] != NULL)
-	{
-	    m_CameraMap[nIndex]->StopHdfsRecord();
-	}
-	UnLock();
-	change.id = nIndex;
-	change.type = FACTORY_CAMERA_HDFS_RECORD_OFF;
-	CallCameraChange(change);
-
-	return TRUE;
-}
-#endif
-
 
 inline astring Factory::AddCamera(CameraParam & pParam)
 {
 	FactoryCameraChangeData change;
+	VidCamera pCamCurr;
+	/* if the camera exist, first delete */
+	if (GetCamera(pParam.m_Conf.strid(), pCamCurr) == true)
+	{
+		DelCamera(pParam.m_Conf.strid());
+	}
 
-	Lock();
+	XGuard guard(m_cMutex);
 
 	InitAddCamera(pParam, pParam.m_Conf.strid());
 
 	m_Conf.AddCamera(pParam.m_Conf);
 
-	UnLock();
+	guard.Release();
 	change.id = pParam.m_Conf.strid();
 	change.type = FACTORY_CAMERA_ADD;
+	change.cCam = pParam.m_Conf;
 	CallCameraChange(change);
+	guard.Acquire();
 
     	return pParam.m_Conf.strid();
 }
 
 inline BOOL Factory::DelCamera(astring nIndex)
 {
-    FactoryCameraChangeData change;
+	FactoryCameraChangeData change;
 
-    change.id = nIndex;
-    change.type = FACTORY_CAMERA_DEL;
-    CallCameraChange(change);
+	change.id = nIndex;
+	change.type = FACTORY_CAMERA_DEL;
+	CallCameraChange(change);
 
-    Lock();
-    VDC_DEBUG( "%s Cleanup Begin\n",__FUNCTION__);
-    m_CameraMap[nIndex]->Cleanup();
-    VDC_DEBUG( "%s Cleanup End\n",__FUNCTION__);
-    delete m_CameraMap[nIndex];
-    m_CameraMap[nIndex] = NULL;
-    m_CameraOnlineMap.erase(nIndex);
-    int size1 = m_CameraMap.size();
-    m_CameraMap.erase(nIndex);
-    int size2 = m_CameraMap.size();
-    m_Conf.DeleteCamera(nIndex);
-    UnLock();
+	XGuard guard(m_cMutex);
+	delete m_CameraMap[nIndex];
+	m_CameraMap[nIndex] = NULL;
+	m_CameraOnlineMap.erase(nIndex);
+	m_CameraRecMap.erase(nIndex);
+	int size1 = m_CameraMap.size();
+	m_CameraMap.erase(nIndex);
+	int size2 = m_CameraMap.size();
+	m_Conf.DeleteCamera(nIndex);
 
-    return TRUE;
+	return TRUE;
 }
 
-inline BOOL Factory::GetCameraRtspUrl(astring & strUrl, astring nIndex)
+inline BOOL Factory::GetCamera(astring strId, VidCamera & pCam)
 {
-	BOOL ret = FALSE;
-	Lock();
-	if (m_CameraMap[nIndex] != NULL)
-	{
-	    ret = m_CameraMap[nIndex]->GetCameraRtspUrl(strUrl);
-	}
-	UnLock();
-
-	return ret;
-}
-
-inline void Factory::Run(void * pParam)
-{
-    int dummy = errno;
-    LPFactory pThread = (LPFactory)pParam;
-
-    if (pThread)
-    {
-        //pThread->Run1();
-    }
+	XGuard guard(m_cMutex);
+	return m_Conf.GetCameraConf(strId, pCam);
 }
 
 inline void Factory::run()
@@ -868,7 +592,7 @@ inline void Factory::run()
 		paramMap.clear();
 		{
 			/* Got all the camera param */
-			Lock();
+			XGuard guard(m_cMutex);
 			CameraMap::iterator it = m_CameraMap.begin(); 
 			for(; it!=m_CameraMap.end(); ++it)
 			{	
@@ -882,7 +606,6 @@ inline void Factory::run()
 				pCamera->GetCameraParam(pParam);
 				paramMap[nIndex] = pParam;
 			}
-			UnLock();
 		}
 		{
 			/* Loop all the cameraparam */
@@ -911,14 +634,13 @@ inline void Factory::run()
 			{	
 				/* Loop to check the camera and update the url */
 				astring nIndex = (*it).first;
-				Lock();
+				XGuard guard(m_cMutex);
 				CameraMap::iterator it1 = m_CameraMap.find(nIndex), 
 							ite1 = m_CameraMap.end();
 
 				if (it1 == ite1) 
 				{
 					/* the id may be delete */
-					UnLock();
 					continue;
 				}
 
@@ -935,18 +657,18 @@ inline void Factory::run()
 					{
 						change.type = FACTORY_CAMERA_ONLINE;
 						m_CameraOnlineMap[nIndex] = 1;
-						UnLock(); 
+						guard.Release();
 						CallCameraChange(change);
-						Lock();
+						guard.Acquire();
 						break;
 					}
 					case DEV_ON2OFF:
 					{
 						change.type = FACTORY_CAMERA_OFFLINE;
 						m_CameraOnlineMap[nIndex] = 0;
-						UnLock(); 
+						guard.Release();
 						CallCameraChange(change);
-						Lock();
+						guard.Acquire();
 						break;
 					}
 					default:
@@ -955,10 +677,9 @@ inline void Factory::run()
 						break;
 					}
 				}
-				UnLock();
 			}
 		}
-		ve_sleep(1000 * 90);
+		ve_sleep(1000 * 30);
 	}
 	
 }
