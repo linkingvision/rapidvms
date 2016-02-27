@@ -25,20 +25,32 @@ int main(int argc, char *argv[])
 	Factory *pFactory = NULL;
 
 	QApplication a(argc, argv);
-	Debug::init(9100);
+	astring strVSCDefaultPath = VSC_DEFAULT_SYSPATH;
+#ifdef WIN32
+#ifndef _WIN64
+	astring strLoggerPath = strVSCDefaultPath + "\\vidstor\\logs\\";
+#else
+	astring strLoggerPath = strVSCDefaultPath + "\\vidstor64\\logs\\";
+#endif
+#else
+astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
+#endif
+
+	Poco::File file1(strLoggerPath);
+	file1.createDirectories();
+	astring strLoggerFile = strLoggerPath + "vidstorlog";
+	Debug::init(9100, strLoggerFile);
+
+	Debug::logger().info("vidstor started");
+	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
+	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
 
     pFactory = new Factory;
 	gFactory = pFactory;
 
 	if (pFactory->Init() == FALSE)
 	{
-#ifdef WIN32
-		astring strPath = "C:\\";//TODO get the hdd from hdd
-#else
-
-		astring strPath = "ve/";//TODO get the hdd from hdd
-		s32 size = 2;
-#endif
+		astring strPath = VSC_DEFAULT_SYSPATH;
 		pFactory->SetSystemPath(strPath);
 		pFactory->Init();
 	}
