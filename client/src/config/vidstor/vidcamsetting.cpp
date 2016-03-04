@@ -32,7 +32,7 @@ QWidget *parent, Qt::WindowFlags flags)
 	ui.storName->setText(m_pStor.strname().c_str());
 	
 	QVBoxLayout* layout = new QVBoxLayout();
-    m_pVideo = new VSCVWidget(m_pFactory, 0, this->ui.video);
+    m_pVideo = new VSCVWidget(m_pFactory, 0, this->ui.video, true);
 	m_pVideo->hide();
     //layout->setSpacing(10);
 
