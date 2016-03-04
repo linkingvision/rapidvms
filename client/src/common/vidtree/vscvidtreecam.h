@@ -16,6 +16,7 @@ signals:
 public:
 	void mousePressEvent(QMouseEvent *event);
 	void mouseDoubleClickEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
 	
 public:
 	virtual void VidFilter(astring strFilter);

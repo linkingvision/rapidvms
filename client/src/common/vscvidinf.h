@@ -20,18 +20,21 @@ public:
 	
 public slots:
 	void SlotNewLiveView(){return VidNewLiveView();}
+	void SlotNewLivePB(){return VidNewLivePB();}
 	void SlotNewEmap(){return VidNewEmap();}
 	
 public:
 	virtual void VidShow(){}
 	virtual void VidHide(){}
 	virtual void VidNewLiveView(){}
+	virtual void VidNewLivePB(){}
 	virtual void VidNewEmap(){}
 	virtual VSCVidTreeInf *GetCameraTree (){return NULL;}
 	virtual VSCVidTreeInf *GetGroupTree (){return NULL;}
 	virtual VSCVidTreeInf *GetEmapTree (){return NULL;}
 	virtual VSCVidTreeInf *GetViewTree (){return NULL;}
 	virtual VSCVidTreeInf *GetConfTree (){return NULL;}
+	virtual QWidget * GetMainView(){return NULL;}
 
 protected:
 	ClientFactory &m_pFactory;

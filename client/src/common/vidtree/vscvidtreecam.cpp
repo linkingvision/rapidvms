@@ -44,16 +44,10 @@ VSCVidTreeCam::~VSCVidTreeCam()
 {
 	//TODO UnReg change Notify
 }
-
-void VSCVidTreeCam::mousePressEvent(QMouseEvent *event)
+void VSCVidTreeCam::mouseMoveEvent(QMouseEvent *event)
 {
 	QTreeWidgetItem *selectedItem = currentItem();
-
-	if (event->buttons() & Qt::RightButton)
-	{
-		return;
-	}
-
+	
 	if (selectedItem)
 	{
 		VSCVidItemCam *pCam = dynamic_cast<VSCVidItemCam * >(selectedItem);
@@ -86,6 +80,15 @@ void VSCVidTreeCam::mousePressEvent(QMouseEvent *event)
 			}
 		}
 
+	}
+}
+void VSCVidTreeCam::mousePressEvent(QMouseEvent *event)
+{
+	QTreeWidgetItem *selectedItem = currentItem();
+
+	if (event->buttons() & Qt::RightButton)
+	{
+		return;
 	}
 	
 	QTreeWidget::mousePressEvent(event);
