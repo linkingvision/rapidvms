@@ -152,7 +152,7 @@ inline void StorClient::run()
 
 	while(m_Quit != true)
 	{
-		ve_sleep(500);
+		ve_sleep(1000);
 		guard.Acquire();
 		m_bOnline = false;
 		StorFactoryChangeData data;
@@ -324,7 +324,7 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_ON \n");
+							//VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_ON \n");
 							break;
 						}
 						case OAPI_NOTIFY_DEVICE_REC_OFF:
@@ -340,14 +340,13 @@ inline void StorClient::run()
 							m_pNotify.CallChange(data);
 							guard.Acquire();
 							//pClient.SendDeviceListRequest();
-							VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_OFF \n");
+							//VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_OFF \n");
 							break;
 						}
 						default:
 							break;		
 					}
 
-					guard.Acquire();
 				}
 
 			}

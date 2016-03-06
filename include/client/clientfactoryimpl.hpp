@@ -218,6 +218,25 @@ inline bool ClientFactory::SetAdminPasswd(astring strPasswd)
 	return true;	
 }
 
+inline bool ClientFactory::AddView(VidView &pView)
+{
+	ClientFactoryChangeData data;
+	bool ret = m_Conf.AddView(pView);
+
+	data.type = CLIENT_FACTORY_VIEW_ADD;
+	data.id = pView.strid();
+	return ret;
+}
+inline bool ClientFactory::DelView(astring strId)
+{
+	ClientFactoryChangeData data;
+	bool ret = m_Conf.DeleteView(strId);
+
+	data.type = CLIENT_FACTORY_VIEW_DEL;
+	data.id = strId;
+	return ret;
+}
+
 #if 0
 inline BOOL ClientFactory::GetEmapData(VSCEmapData &pData)
 {

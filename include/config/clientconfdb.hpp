@@ -26,79 +26,60 @@ public:
 
     s32 Open(astring & pPath);
 public:
-
 	BOOL GetCmnParam(astring &strKey, astring &strParam);
 	BOOL SetCmnParam(astring &strKey, astring &strParam);
 	bool GetLicense(astring &strLicense);
 	bool SetLicense(astring &strLicense);
-	
+	/* Client */
+	bool GetClientConf(VidClientConf &pData);
+	bool SetClientConf(VidClientConf &pData);
+public:
+	/* Stor */
 	bool FindStor(astring strStorId);
 	bool DeleteStor(astring strStorId);
 	bool AddStor(VidStor &pStor);
-
 	bool GetStorConf(astring strId, VidStor &pStor);
-public:
+	/* Stor All */
 	BOOL GetStorListConf(VidStorList &pData);
 	BOOL UpdateStorListConf(VidStorList &pData);
 
-	bool GetClientConf(VidClientConf &pData);
-	bool SetClientConf(VidClientConf &pData);
-	
-	
-#if 0
-	s32 GetSysData(VSCConfData &pSysData);
-	s32 UpdateSysData(VSCConfData &pSysData);
-
-	s32 AddDevice(VSCDeviceData &pData, u32 nId);
-	s32 DelDevice(u32 nId);
-
-	s32 AddVIPC(VSCVIPCData &pData, u32 nId);
-	s32 DelVIPC(u32 nId);
-
-	s32 GetVmsData(VSCVmsData &pVmsData);
-	s32 UpdateVmsData(VSCVmsData &pVmsData);
-
-	/* IPC View */
-	s32 GetViewData(VSCViewData &pViewData);
-	s32 UpdateViewData(VSCViewData &pViewData);
-
-	/* IPC Group */
-	s32 GetVGroupData(VSCVGroupData &pVGroupData);
-	s32 UpdateVGroupData(VSCVGroupData &pVGroupData);
-
-	/* Hdfs Record */
-	s32 GetHdfsRecordData(VSCHdfsRecordData &pData);
-	s32 UpdateHdfsRecordData(VSCHdfsRecordData &pData);
-
-	/* User */
-	s32 GetUserData(VSCUserData &pData);
-	s32 UpdateUserData(VSCUserData &pData);
-
-	/* Emap */
-	s32 GetEmapData(VSCEmapData &pData);
-	s32 UpdateEmapData(VSCEmapData &pData);
-	BOOL GetEmapFile(astring &strFile);
-	BOOL SetEmapFile(astring &strFile);
-
-	/* Tour */
-	s32 GetTourData(VSCTourData &pData);
-	s32 UpdateTourData(VSCTourData &pData);
-
+public:
+	/* View */
+	bool FindView(astring strViewId);
+	bool DeleteView(astring strViewId);
+	bool AddView(VidView &pView);
+	bool GetViewConf(astring strId, VidView &pView);
+	/* View All */
+	BOOL GetViewListConf(VidViewList &pData);
+	BOOL UpdateViewListConf(VidViewList &pData);
 
 public:
-	BOOL GetSystemConf(VSCConfData &pSys);
-	BOOL GetVmsConf(VSCVmsData &pVms);
-	BOOL GetViewConf(VSCViewData &pView);
-	
-	BOOL GetVGroupConf(VSCVGroupData &pGroup);
-
-
-	BOOL GetUserConf(VSCUserData &pData);
-
-	BOOL GetEmapConf(VSCEmapData &pData);
-
-	BOOL GetTourConf(VSCTourData &pData);
-#endif	
+	/* Tour */
+	bool FindTour(astring strTourId);
+	bool DeleteTour(astring strTourId);
+	bool AddTour(VidTour &pTour);
+	bool GetTourConf(astring strId, VidTour &pTour);
+	/* Group All */
+	BOOL GetTourListConf(VidTourList &pData);
+	BOOL UpdateTourListConf(VidTourList &pData);
+public:
+	/* Group */
+	bool FindGroup(astring strGroupId);
+	bool DeleteGroup(astring strGroupId);
+	bool AddGroup(VidGroup &pGroup);
+	bool GetGroupConf(astring strId, VidGroup &pGroup);
+	/* Group All */
+	BOOL GetGroupListConf(VidGroupList &pData);
+	BOOL UpdateGroupListConf(VidGroupList &pData);
+public:
+	/* Emap */
+	bool FindEmap(astring strEmapId);
+	bool DeleteEmap(astring strEmapId);
+	bool AddEmap(VidEmap &pEmap);
+	bool GetEmapConf(astring strId, VidEmap &pEmap);
+	/* Emap All */
+	BOOL GetEmapListConf(VidEmapList &pData);
+	BOOL UpdateEmapListConf(VidEmapList &pData);
 
 private:
     XMutex m_cMutex;

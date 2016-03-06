@@ -45,7 +45,7 @@ class ClientFactoryChangeData
 {
 public:
 	ClientFactoryChangeType type;
-	int id;
+	astring id;
 };
 
 typedef bool (*ClientFactoryChangeNotify)(void* pParam, 
@@ -90,6 +90,8 @@ public:
 	bool SetAdminPasswd(astring strPasswd);
 	bool GetLang(VidLanguage &nLang);
 	bool SetLang(VidLanguage &nLang);
+	bool AddView(VidView &pView);
+	bool DelView(astring strId);
 
 #if 0
 

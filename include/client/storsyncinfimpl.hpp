@@ -475,6 +475,96 @@ inline bool StorSyncInf::CamSearchGet(astring &strIP, astring &strPort, astring 
 	return false;
 }
 
+inline bool StorSyncInf::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, RecordItemMap &pMap)
+{
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	VidDiskList empty;
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send Get lic command  */
+	pClient.SearchRec(strId, nStart, nEnd, nType);
+	pMap.clear();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_SEARCH_REC_RSP)
+	{
+		oapi::OAPISearchRecordRsp list;
+		pClient.ParseSearchRecList(m_pRecv, header.length, list);
+		std::vector<oapi::OAPIRecordItem>::iterator it;
+		for (it = list.record.begin(); it != list.record.end(); it++)
+		{
+			VdbRecordItem item;
+			item.id = (*it).nId;
+			item.start = (*it).nStart;
+			item.end = (*it).nEnd;
+			item.type = (*it).nType;
+			pMap[item.id] = item;
+		}
+		return true;
+	}
+
+	return false;
+}
+inline bool StorSyncInf::SearchHasRec(astring strId, HasRecordItemMap &pMap)
+{
+
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+	VidDiskList empty;
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	oapi::OAPISearchHasRecordReq req;
+	req.Num = 0;
+	req.strId = strId;
+	HasRecordItemMap::iterator it = pMap.begin(); 
+	for(; it!=pMap.end(); ++it)
+	{
+		oapi::OAPIHasRecordItem item;
+		item.nIdx = (*it).first;
+		item.nStart = (*it).second.start;
+		item.nEnd =  (*it).second.end;
+		item.nType =  (*it).second.type;
+		req.record.push_back(item);
+	}
+
+	/* Send Get lic command  */
+	pClient.SearchHasRec(req);
+	pMap.clear();
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_SEARCH_HAS_REC_RSP)
+	{
+		oapi::OAPISearchHasRecordRsp list;
+		pClient.ParseSearchHasRecList(m_pRecv, header.length, list);
+		std::vector<oapi::OAPIHasRecordItem>::iterator it2;
+		for (it2 = list.hasRecord.begin(); it2 != list.hasRecord.end(); it2++)
+		{
+			VdbHasRecordItem item;
+			item.id = (*it2).nIdx;
+			item.start = (*it2).nStart;
+			item.end = (*it2).nEnd;
+			item.type = (*it2).nType;
+			item.has = (*it2).bHas;
+			pMap[item.id] = item;
+		}
+		return true;
+	}
+
+	return false;
+
+}
+
 inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 {
 	s32 nRet = 0;

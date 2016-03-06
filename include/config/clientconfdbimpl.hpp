@@ -159,6 +159,53 @@ inline   bool ClientConfDB::SetLicense(astring &strLicense)
     
 }
 
+inline bool ClientConfDB::GetClientConf(VidClientConf &pData)
+{
+	VSCConfClientKey sKey;
+	astring strValue;
+	
+	XGuard guard(m_cMutex);
+
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
+	{
+		strValue = "fake";
+	}
+
+	if (pData.ParseFromString(strValue) == false)
+	{
+		VSCClientConfDefault(pData);
+		VDC_DEBUG( "Client Config is not init\n");
+		return true;
+	}
+
+	return true;
+}
+inline bool ClientConfDB::SetClientConf(VidClientConf &pData)
+{
+	VSCConfClientKey sKey;
+
+	XGuard guard(m_cMutex);
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return true;
+}
+
 inline bool ClientConfDB::FindStor(astring strStorId)
 {
 	XGuard guard(m_cMutex);
@@ -287,9 +334,67 @@ inline bool ClientConfDB::GetStorConf(astring strId, VidStor &pStor)
 	return false;
 }
 
-inline bool ClientConfDB::GetClientConf(VidClientConf &pData)
+inline bool ClientConfDB::FindView(astring strViewId)
 {
-	VSCConfClientKey sKey;
+	XGuard guard(m_cMutex);
+	
+	VidViewList viewList;
+	GetViewListConf(viewList);
+	int viewSize = viewList.cvidview_size();
+
+	for (s32 i = 0; i < viewList.cvidview_size(); i ++)
+	{
+		const VidView &view = viewList.cvidview(i);
+		if (view.strid() == strViewId)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+inline bool ClientConfDB::DeleteView(astring strViewId)
+{
+	XGuard guard(m_cMutex);
+
+	VidViewList viewList;
+	VidViewList viewListNew;
+	GetViewListConf(viewList);
+	int viewSize = viewList.cvidview_size();
+
+	for (s32 i = 0; i < viewList.cvidview_size(); i ++)
+	{
+		const VidView &view = viewList.cvidview(i);
+		if (view.strid() != strViewId)
+		{
+			VidView *pAddView = viewListNew.add_cvidview();
+			*pAddView = view;
+		}
+	}
+
+	UpdateViewListConf(viewListNew);
+	return true;
+}
+inline bool ClientConfDB::AddView(VidView &pView)
+{
+	XGuard guard(m_cMutex);
+	
+	VidViewList viewList;
+
+	GetViewListConf(viewList);
+	
+	VidView *pAddView = viewList.add_cvidview();
+	*pAddView = pView;
+	UpdateViewListConf(viewList);
+
+	return true;
+}
+
+
+
+inline BOOL ClientConfDB::GetViewListConf(VidViewList &pData)
+{
+	VSCConfViewKey sKey;
 	astring strValue;
 	
 	XGuard guard(m_cMutex);
@@ -305,16 +410,18 @@ inline bool ClientConfDB::GetClientConf(VidClientConf &pData)
 
 	if (pData.ParseFromString(strValue) == false)
 	{
-		VSCClientConfDefault(pData);
-		VDC_DEBUG( "Client Config is not init\n");
-		return true;
+		VidViewList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "View List Config is not init\n");
+		return TRUE;
 	}
 
-	return true;
+	return TRUE;
+
 }
-inline bool ClientConfDB::SetClientConf(VidClientConf &pData)
+inline BOOL ClientConfDB::UpdateViewListConf(VidViewList &pData)
 {
-	VSCConfClientKey sKey;
+	VSCConfViewKey sKey;
 
 	XGuard guard(m_cMutex);
 
@@ -331,766 +438,414 @@ inline bool ClientConfDB::SetClientConf(VidClientConf &pData)
 
 	m_pDb->Put(writeOptions, sysKey, sysValue);
 
+	return TRUE;
+}
+
+inline bool ClientConfDB::GetViewConf(astring strId, VidView &pView)
+{
+	XGuard guard(m_cMutex);
+	
+	VidViewList viewList;
+	GetViewListConf(viewList);
+	int storSize = viewList.cvidview_size();
+
+	for (s32 i = 0; i < viewList.cvidview_size(); i ++)
+	{
+		const VidView &view = viewList.cvidview(i);
+		if (view.strid() == strId)
+		{
+			pView = view;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+inline bool ClientConfDB::FindTour(astring strTourId)
+{
+	XGuard guard(m_cMutex);
+	
+	VidTourList tourList;
+	GetTourListConf(tourList);
+	int tourSize = tourList.cvidtour_size();
+
+	for (s32 i = 0; i < tourList.cvidtour_size(); i ++)
+	{
+		const VidTour &tour = tourList.cvidtour(i);
+		if (tour.strid() == strTourId)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+inline bool ClientConfDB::DeleteTour(astring strTourId)
+{
+	XGuard guard(m_cMutex);
+
+	VidTourList tourList;
+	VidTourList tourListNew;
+	GetTourListConf(tourList);
+	int tourSize = tourList.cvidtour_size();
+
+	for (s32 i = 0; i < tourList.cvidtour_size(); i ++)
+	{
+		const VidTour &tour = tourList.cvidtour(i);
+		if (tour.strid() != strTourId)
+		{
+			VidTour *pAddTour = tourListNew.add_cvidtour();
+			*pAddTour = tour;
+		}
+	}
+
+	UpdateTourListConf(tourListNew);
+	return true;
+}
+
+inline bool ClientConfDB::AddTour(VidTour &pTour)
+{
+	XGuard guard(m_cMutex);
+	
+	VidTourList tourList;
+
+	GetTourListConf(tourList);
+	
+	VidTour *pAddTour = tourList.add_cvidtour();
+	*pAddTour = pTour;
+	UpdateTourListConf(tourList);
+
 	return true;
 }
 
 
 
-#if 0
-inline BOOL ClientConfDB::GetSystemConf(VSCConfData &pSys)
+inline BOOL ClientConfDB::GetTourListConf(VidTourList &pData)
 {
-    VSCConfSystemKey sSysKey;
+	VSCConfTourKey sKey;
+	astring strValue;
+	
+	XGuard guard(m_cMutex);
 
-    leveldb::Slice key((char *)&sSysKey, sizeof(sSysKey));
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCConfData))
-    {
-        VDC_DEBUG( "System Config is not init\n");
-        delete it;
-        memset(&pSys, 0, sizeof(VSCConfData));
-        SysConfDataDefault(pSys);
-        UpdateSysData(pSys);
-        astring strLicense = " ";
-        SetLicense(strLicense);//set the default license
-        /* Call get system again */
-        return TRUE;
-    }
-
-    memcpy(&pSys, sysValue.data(), sizeof(VSCConfData));
-	if (pSys.data.conf.RTSPServerPort == 0)
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
 	{
-		pSys.data.conf.RTSPServerPort = VSC_RTSP_DEFAULT_PORT;
-	}
-	if (pSys.data.conf.OAPIPort == 0)
-	{
-		pSys.data.conf.OAPIPort = VSC_OAPI_DEFAULT_PORT;
-	}
-	if (pSys.data.conf.VHTTPServerPort == 0)
-	{
-		pSys.data.conf.VHTTPServerPort = VSC_VHTTPS_DEFAULT_PORT;
-	}
-	if (pSys.data.conf.VHLSServerPort == 0)
-	{
-		pSys.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
-	}
-	if (pSys.data.conf.VHTTPSSLServerPort == 0)
-	{
-		pSys.data.conf.VHTTPSSLServerPort = VSC_VHTTPS_SSL_DEFAULT_PORT;
+		strValue = "fake";
 	}
 
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-inline BOOL ClientConfDB::GetVmsConf(VSCVmsData &pVms)
-{
-    VSCConfVmsKey sVmsKey;
-
-    leveldb::Slice key((char *)&sVmsKey, sizeof(sVmsKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCVmsData))
-    {
-        VDC_DEBUG( "VMS Config is not init\n");
-        delete it;
-        memset(&pVms, 0, sizeof(VSCVmsData));
-        VmsConfDataDefault(pVms);
-        UpdateVmsData(pVms);
-        /* Call get system again */
-        return TRUE;
-    }
-
-    memcpy(&pVms, sysValue.data(), sizeof(VSCVmsData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-inline BOOL ClientConfDB::GetViewConf(VSCViewData &pView)
-{
-    VSCConfViewKey sViewKey;
-
-    leveldb::Slice key((char *)&sViewKey, sizeof(sViewKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCViewData))
-    {
-        VDC_DEBUG( "View Config is not init\n");
-        delete it;
-        memset(&pView, 0, sizeof(VSCViewData));
-        ViewConfDataDefault(pView);
-        UpdateViewData(pView);
-        /* Call get system again */
-        return TRUE;
-    }
-
-    memcpy(&pView, sysValue.data(), sizeof(VSCViewData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-
-inline BOOL ClientConfDB::GetVGroupConf(VSCVGroupData &pVGroup)
-{
-    VSCConfVGroupKey sVGroupKey;
-
-    leveldb::Slice key((char *)&sVGroupKey, sizeof(sVGroupKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCVGroupData))
-    {
-        VDC_DEBUG( "Group Config is not init\n");
-        delete it;
-		memset(&pVGroup, 0, sizeof(VSCVGroupData));
-		VGroupConfDataDefault(pVGroup);
-		UpdateVGroupData(pVGroup);
-        /* Call get system again */
-        return TRUE;
-    }
-
-	memcpy(&pVGroup, sysValue.data(), sizeof(VSCVGroupData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-inline BOOL ClientConfDB::GetUserConf(VSCUserData &pData)
-{
-    VSCConfUserKey sKey;
-
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCUserData))
-    {
-        VDC_DEBUG( "User Config is not init\n");
-        delete it;
-	memset(&pData, 0, sizeof(VSCUserData));
-	VSCUserDataItemDefault(pData.data.conf);
-	UpdateUserData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
-
-	memcpy(&pData, sysValue.data(), sizeof(VSCUserData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-inline BOOL ClientConfDB::GetTourConf(VSCTourData &pData)
-{
-    VSCConfTourKey sKey;
-
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCTourData))
-    {
-        VDC_DEBUG( "Tour Config is not init\n");
-        delete it;
-	memset(&pData, 0, sizeof(VSCTourData));
-	VSCTourDataDefault(pData.data.conf);
-	UpdateTourData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
-
-	memcpy(&pData, sysValue.data(), sizeof(VSCTourData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-
-inline BOOL ClientConfDB::GetEmapConf(VSCEmapData &pData)
-{
-    VSCConfEmapKey sKey;
-
-    leveldb::Slice key((char *)&sKey, sizeof(sKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCEmapData))
-    {
-        VDC_DEBUG( "User Config is not init\n");
-        delete it;
-	memset(&pData, 0, sizeof(VSCEmapData));
-	VSCEmapDataDefault(pData.data.conf);
-	UpdateEmapData(pData);
-        /* Call get system again */
-        return TRUE;
-    }
-
-	memcpy(&pData, sysValue.data(), sizeof(VSCEmapData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-
-}
-
-
-inline s32 ClientConfDB::UpdateSysData(VSCConfData &pSysData)
-{
-    VSCConfSystemKey sSysKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sSysKey, sizeof(sSysKey));
-    leveldb::Slice sysValue((char *)&pSysData, sizeof(VSCConfData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-inline s32 ClientConfDB::GetSysData(VSCConfData &pSysData)
-{
-    GetSystemConf(pSysData);
-
-    return TRUE;
-}
-
-inline BOOL ClientConfDB::UpdateDeviceData(u32 nId, VSCDeviceData &pData)
-{
-    VSCConfDeviceKey sChKey(nId);
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice chKey((char *)&sChKey, sizeof(sChKey));
-    leveldb::Slice chValue((char *)&pData, sizeof(VSCDeviceData));
-    m_pDb->Put(writeOptions, chKey, chValue);
-
-    return TRUE;
-}
-
-inline BOOL ClientConfDB::GetDeviceData(u32 nId, VSCDeviceData &pData)
-{
-    VSCConfDeviceKey sChKey(nId);
-
-    leveldb::Slice key((char *)&sChKey, sizeof(sChKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCDeviceData))
-    {
-        VDC_DEBUG( "Device Can not find !!!\n");
-
-        delete it;
-        return FALSE;
-    }
-
-    memcpy(&pData, sysValue.data(), sizeof(VSCDeviceData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-}
-
-inline BOOL ClientConfDB::UpdateVIPCData(u32 nId, VSCVIPCData &pData)
-{
-    VSCConfVIPCKey sChKey(nId);
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice chKey((char *)&sChKey, sizeof(sChKey));
-    leveldb::Slice chValue((char *)&pData, sizeof(VSCDeviceData));
-    m_pDb->Put(writeOptions, chKey, chValue);
-
-    return TRUE;
-}
-
-inline BOOL ClientConfDB::GetVIPCData(u32 nId, VSCVIPCData &pData)
-{
-    VSCConfVIPCKey sChKey(nId);
-
-    leveldb::Slice key((char *)&sChKey, sizeof(sChKey));
-
-
-    leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-    it->Seek(key);
-    leveldb::Slice sysValue;
-
-    if (it->Valid())
-    {
-        sysValue = it->value();
-    }
-
-    if (sysValue.size() != sizeof(VSCVIPCData))
-    {
-        VDC_DEBUG( "Device Can not find !!!\n");
-
-        delete it;
-        return FALSE;
-    }
-
-    memcpy(&pData, sysValue.data(), sizeof(VSCVIPCData));
-
-    // Check for any errors found during the scan
-    assert(it->status().ok());
-    delete it;
-
-    return TRUE;
-}
-
-
-
-inline s32 ClientConfDB::GetVmsData(VSCVmsData &pVmsData)
-{
-	GetVmsConf(pVmsData);
-	
-	return TRUE;
-}
-inline s32 ClientConfDB::UpdateVmsData(VSCVmsData &pVmsData)
-{
-    VSCConfVmsKey sVmsKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sVmsKey, sizeof(sVmsKey));
-    leveldb::Slice sysValue((char *)&pVmsData, sizeof(VSCVmsData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-inline s32 ClientConfDB::GetViewData(VSCViewData &pViewData)
-{
-	GetViewConf(pViewData);
-	
-	return TRUE;
-}
-inline s32 ClientConfDB::UpdateViewData(VSCViewData &pViewData)
-{
-    VSCConfViewKey sViewKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sViewKey, sizeof(sViewKey));
-    leveldb::Slice sysValue((char *)&pViewData, sizeof(VSCViewData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-/* Camera Group  */
-inline s32 ClientConfDB::GetVGroupData(VSCVGroupData &pGroupData)
-{
-	GetVGroupConf(pGroupData);
-	
-	return TRUE;
-}
-/* Camera Group  */
-inline s32 ClientConfDB::UpdateVGroupData(VSCVGroupData &pVGroupData)
-{
-    VSCConfVGroupKey sVGroupKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sVGroupKey, sizeof(sVGroupKey));
-    leveldb::Slice sysValue((char *)&pVGroupData, sizeof(VSCVGroupData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-/* HDFS record  */
-inline s32 ClientConfDB::GetHdfsRecordData(VSCHdfsRecordData &pData)
-{
-	GetHdfsRecordConf(pData);
-	
-	return TRUE;
-}
-
-/* HDFS record  */
-inline s32 ClientConfDB::UpdateHdfsRecordData(VSCHdfsRecordData &pData)
-{
-    VSCConfHdfsRecordKey sKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
-    leveldb::Slice sysValue((char *)&pData, sizeof(VSCHdfsRecordData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-/* User  */
-inline s32 ClientConfDB::GetUserData(VSCUserData &pData)
-{
-	GetUserConf(pData);
-	
-	return TRUE;
-}
-
-inline s32 ClientConfDB::UpdateUserData(VSCUserData &pData)
-{
-    VSCConfUserKey sKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
-    leveldb::Slice sysValue((char *)&pData, sizeof(VSCUserData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-/* Tour  */
-inline s32 ClientConfDB::GetTourData(VSCTourData &pData)
-{
-	GetTourConf(pData);
-	
-	return TRUE;
-}
-
-inline s32 ClientConfDB::UpdateTourData(VSCTourData &pData)
-{
-    VSCConfTourKey sKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
-    leveldb::Slice sysValue((char *)&pData, sizeof(VSCTourData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-
-/* Emap */
-inline s32 ClientConfDB::GetEmapData(VSCEmapData &pData)
-{
-	GetEmapConf(pData);
-	
-	return TRUE;
-}
-inline s32 ClientConfDB::UpdateEmapData(VSCEmapData &pData)
-{
-    VSCConfEmapKey sKey;
-
-    leveldb::WriteOptions writeOptions;
-
-    leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
-    leveldb::Slice sysValue((char *)&pData, sizeof(VSCEmapData));
-
-    m_pDb->Put(writeOptions, sysKey, sysValue);
-
-    return TRUE;
-}
-
-/* Emap file Get & Set */
-inline   BOOL ClientConfDB::GetEmapFile(astring &strFile)
-{
-	BOOL ret = FALSE;
-	VSCConfEmapFileKey sMapKey;
-	
-
-	leveldb::Slice key((char *)&sMapKey, sizeof(sMapKey));
-
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
+	if (pData.ParseFromString(strValue) == false)
 	{
-		sysValue = it->value();
-		strFile = sysValue.ToString();
-		ret = TRUE;
+		VidTourList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "Tour List Config is not init\n");
+		return TRUE;
 	}
-	
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
 
-	return ret;
+	return TRUE;
 
 }
-
-inline   BOOL ClientConfDB::SetEmapFile(astring &strFile)
+inline BOOL ClientConfDB::UpdateTourListConf(VidTourList &pData)
 {
-	VSCConfEmapFileKey sMapKey;
+	VSCConfTourKey sKey;
+
+	XGuard guard(m_cMutex);
+
 	leveldb::WriteOptions writeOptions;
 
-	leveldb::Slice Key((char *)&sMapKey, sizeof(sMapKey));
-	leveldb::Slice Value(strFile);
-	m_pDb->Put(writeOptions, Key, Value);
-	return TRUE;
-    
-}
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
 
-inline   BOOL ClientConfDB::GetLicense(astring &strLicense)
-{
-	VSCConfLicenseKey sLicKey;
-	
-
-	leveldb::Slice key((char *)&sLicKey, sizeof(sLicKey));
-
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
 	{
-		sysValue = it->value();
-		strLicense = sysValue.ToString();
-	}
-	if (strLicense.length() < 10)
-	{
-		strLicense = "";
-	}
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
-
-	return TRUE;
-
-}
-inline   BOOL ClientConfDB::SetLicense(astring &strLicense)
-{
-	VSCConfLicenseKey sLic;
-	leveldb::WriteOptions writeOptions;
-
-	leveldb::Slice licKey((char *)&sLic, sizeof(sLic));
-	leveldb::Slice licValue(strLicense);
-	m_pDb->Put(writeOptions, licKey, licValue);
-	return TRUE;
-    
-}
-
-inline BOOL ClientConfDB::GetCmnParam(astring &strKey, astring &strParam)
-{
-	leveldb::Slice key(strKey);
-
-
-	leveldb::Iterator* it = m_pDb->NewIterator(leveldb::ReadOptions());
-
-	it->Seek(key);
-	leveldb::Slice sysValue;
-
-	if (it->Valid())
-	{
-		sysValue = it->value();
-		strParam = sysValue.ToString();
-	}else
-	{
-		delete it;
 		return FALSE;
 	}
-	
-	// Check for any errors found during the scan
-	assert(it->status().ok());
-	delete it;
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
 
 	return TRUE;
 }
 
-inline BOOL ClientConfDB::SetCmnParam(astring &strKey, astring &strParam)
+inline bool ClientConfDB::GetTourConf(astring strId, VidTour &pTour)
 {
+	XGuard guard(m_cMutex);
+	
+	VidTourList tourList;
+	GetTourListConf(tourList);
+	int tourSize = tourList.cvidtour_size();
+
+	for (s32 i = 0; i < tourList.cvidtour_size(); i ++)
+	{
+		const VidTour &tour = tourList.cvidtour(i);
+		if (tour.strid() == strId)
+		{
+			pTour = tour;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+inline bool ClientConfDB::FindGroup(astring strGroupId)
+{
+	XGuard guard(m_cMutex);
+	
+	VidGroupList groupList;
+	GetGroupListConf(groupList);
+	int groupSize = groupList.cvidgroup_size();
+
+	for (s32 i = 0; i < groupList.cvidgroup_size(); i ++)
+	{
+		const VidGroup &group = groupList.cvidgroup(i);
+		if (group.strid() == strGroupId)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+inline bool ClientConfDB::DeleteGroup(astring strGroupId)
+{
+	XGuard guard(m_cMutex);
+
+	VidGroupList groupList;
+	VidGroupList groupListNew;
+	GetGroupListConf(groupList);
+	int groupSize = groupList.cvidgroup_size();
+
+	for (s32 i = 0; i < groupList.cvidgroup_size(); i ++)
+	{
+		const VidGroup &group = groupList.cvidgroup(i);
+		if (group.strid() != strGroupId)
+		{
+			VidGroup *pAddGroup = groupListNew.add_cvidgroup();
+			*pAddGroup = group;
+		}
+	}
+
+	UpdateGroupListConf(groupListNew);
+	return true;
+}
+inline bool ClientConfDB::AddGroup(VidGroup &pGroup)
+{
+	XGuard guard(m_cMutex);
+	
+	VidGroupList groupList;
+
+	GetGroupListConf(groupList);
+	
+	VidGroup *pAddGroup = groupList.add_cvidgroup();
+	*pAddGroup = pGroup;
+	UpdateGroupListConf(groupList);
+
+	return true;
+}
+
+
+
+inline BOOL ClientConfDB::GetGroupListConf(VidGroupList &pData)
+{
+	VSCConfVGroupKey sKey;
+	astring strValue;
+	
+	XGuard guard(m_cMutex);
+
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
+
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
+	{
+		strValue = "fake";
+	}
+
+	if (pData.ParseFromString(strValue) == false)
+	{
+		VidGroupList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "Group List Config is not init\n");
+		return TRUE;
+	}
+
+	return TRUE;
+
+}
+inline BOOL ClientConfDB::UpdateGroupListConf(VidGroupList &pData)
+{
+	VSCConfVGroupKey sKey;
+
+	XGuard guard(m_cMutex);
+
 	leveldb::WriteOptions writeOptions;
 
-	leveldb::Slice licKey(strKey);
-	leveldb::Slice licValue(strParam);
-	m_pDb->Put(writeOptions, licKey, licValue);
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
 	return TRUE;
 }
 
-inline s32 ClientConfDB::AddDevice(VSCDeviceData &pData, u32 nId)
+inline bool ClientConfDB::GetGroupConf(astring strId, VidGroup &pGroup)
 {
-    if (nId > CONF_MAP_MAX)
-    {
-        return FALSE;
-    }
-    VSCConfData SysData;
-    GetSysData(SysData);
+	XGuard guard(m_cMutex);
+	
+	VidGroupList groupList;
+	GetGroupListConf(groupList);
+	int groupSize = groupList.cvidgroup_size();
 
-    SysData.data.conf.DeviceMap[nId] = nId;
-    SysData.data.conf.DeviceNum ++;
-    pData.data.conf.nId = nId;
+	for (s32 i = 0; i < groupList.cvidgroup_size(); i ++)
+	{
+		const VidGroup &group = groupList.cvidgroup(i);
+		if (group.strid() == strId)
+		{
+			pGroup = group;
+			return true;
+		}
+	}
 
-    UpdateSysData(SysData);
-
-    UpdateDeviceData(nId, pData);
-
-
-    return TRUE;
+	return false;
 }
 
-inline s32 ClientConfDB::DelDevice(u32 nId)
+inline bool ClientConfDB::FindEmap(astring strEmapId)
 {
-    if (nId > CONF_MAP_MAX)
-    {
-        return FALSE;
-    }
+	XGuard guard(m_cMutex);
+	
+	VidEmapList emapList;
+	GetEmapListConf(emapList);
+	int emapSize = emapList.cvidemap_size();
 
-    VSCConfData SysData;
-    GetSysData(SysData);
+	for (s32 i = 0; i < emapList.cvidemap_size(); i ++)
+	{
+		const VidEmap &emap = emapList.cvidemap(i);
+		if (emap.strid() == strEmapId)
+		{
+			return true;
+		}
+	}
 
-    SysData.data.conf.DeviceMap[nId] = CONF_MAP_INVALID_MIN;
+	return false;
+}
+inline bool ClientConfDB::DeleteEmap(astring strEmapId)
+{
+	XGuard guard(m_cMutex);
 
-    UpdateSysData(SysData);
+	VidEmapList emapList;
+	VidEmapList emapListNew;
+	GetEmapListConf(emapList);
+	int emapSize = emapList.cvidemap_size();
 
-    return TRUE;
+	for (s32 i = 0; i < emapList.cvidemap_size(); i ++)
+	{
+		const VidEmap &emap = emapList.cvidemap(i);
+		if (emap.strid() != strEmapId)
+		{
+			VidEmap *pAddEmap = emapListNew.add_cvidemap();
+			*pAddEmap = emap;
+		}
+	}
+
+	UpdateEmapListConf(emapListNew);
+	return true;
+}
+inline bool ClientConfDB::AddEmap(VidEmap &pEmap)
+{
+	XGuard guard(m_cMutex);
+	
+	VidEmapList emapList;
+
+	GetEmapListConf(emapList);
+	
+	VidEmap *pAddEmap = emapList.add_cvidemap();
+	*pAddEmap = pEmap;
+	UpdateEmapListConf(emapList);
+
+	return true;
 }
 
-inline s32 ClientConfDB::AddVIPC(VSCVIPCData &pData, u32 nId)
+
+
+inline BOOL ClientConfDB::GetEmapListConf(VidEmapList &pData)
 {
-    if (nId > CONF_MAP_MAX)
-    {
-        return FALSE;
-    }
-    VSCConfData SysData;
-    GetSysData(SysData);
+	VSCConfEmapKey sKey;
+	astring strValue;
+	
+	XGuard guard(m_cMutex);
 
-    SysData.data.conf.VIPCMap[nId] = nId;
-    SysData.data.conf.VIPCNum ++;
-    pData.data.conf.nId = nId;
+	leveldb::Slice key((char *)&sKey, sizeof(sKey));
 
-    UpdateSysData(SysData);
+	leveldb::Status s = m_pDb->Get(leveldb::ReadOptions(), 
+					key,  &strValue);
+	if (s.ok() == false)
+	{
+		strValue = "fake";
+	}
 
-    UpdateVIPCData(nId, pData);
+	if (pData.ParseFromString(strValue) == false)
+	{
+		VidEmapList listDefault;
+		pData = listDefault;
+		VDC_DEBUG( "Emap List Config is not init\n");
+		return TRUE;
+	}
 
+	return TRUE;
 
-    return TRUE;
+}
+inline BOOL ClientConfDB::UpdateEmapListConf(VidEmapList &pData)
+{
+	VSCConfEmapKey sKey;
+
+	XGuard guard(m_cMutex);
+
+	leveldb::WriteOptions writeOptions;
+
+	leveldb::Slice sysKey((char *)&sKey, sizeof(sKey));
+
+	astring strOutput;
+	if (pData.SerializeToString(&strOutput) != TRUE)
+	{
+		return FALSE;
+	}
+	leveldb::Slice sysValue(strOutput);
+
+	m_pDb->Put(writeOptions, sysKey, sysValue);
+
+	return TRUE;
 }
 
-inline s32 ClientConfDB::DelVIPC(u32 nId)
+inline bool ClientConfDB::GetEmapConf(astring strId, VidEmap &pEmap)
 {
-    if (nId > CONF_MAP_MAX)
-    {
-        return FALSE;
-    }
+	XGuard guard(m_cMutex);
+	
+	VidEmapList emapList;
+	GetEmapListConf(emapList);
+	int emapSize = emapList.cvidemap_size();
 
-    VSCConfData SysData;
-    GetSysData(SysData);
+	for (s32 i = 0; i < emapList.cvidemap_size(); i ++)
+	{
+		const VidEmap &emap = emapList.cvidemap(i);
+		if (emap.strid() == strId)
+		{
+			pEmap = emap;
+			return true;
+		}
+	}
 
-    SysData.data.conf.VIPCMap[nId] = CONF_MAP_INVALID_MIN;
-
-    UpdateSysData(SysData);
-
-    return TRUE;
+	return false;
 }
-
-#endif
 
 
 #endif /* _CONF_DB_H_ */

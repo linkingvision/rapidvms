@@ -54,9 +54,9 @@ public:
 	bool CamSearchGet(astring &strIP, astring &strPort, astring &strModel, 
 					astring &strOnvifAddr);
 	
-
 	/* Video Search */
-
+	bool SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, RecordItemMap &pMap);
+	bool SearchHasRec(astring strId, HasRecordItemMap &pMap);	
 private:
 	bool SyncRecv(OAPIHeader &header);
  	VidCameraList UpdateVidCameraList(oapi::OAPICameraListRsp list);
