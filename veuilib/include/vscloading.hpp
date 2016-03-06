@@ -6,7 +6,7 @@
 #include <QLabel>
 #include <QMovie>
 #include <QThread>
-#include "factory.hpp"
+#include "server/factory.hpp"
 #include "utility.hpp"
 #include "debug.hpp"
 
@@ -20,6 +20,7 @@ public:
 	~VSCLoading();
 public:
 	void Processing(int cnt);
+	static VSCLoading * Create();
 private:
 	QLabel * m_label;
 	QMovie * m_movie;

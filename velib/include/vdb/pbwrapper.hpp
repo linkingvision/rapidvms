@@ -20,13 +20,13 @@ class PlaybackWrapperImpl;
 class VE_LIBRARY_API PlaybackWrapper
 {
 public:
-    PlaybackWrapper(VDB &pVdb, s32 deviceId, u32 nPlaytime, PBCallbackFunctionPtr callback, 
+    PlaybackWrapper(VDB &pVdb, astring deviceId, u32 nPlaytime, PBCallbackFunctionPtr callback, 
 				BOOL eolLoop, void * pParam);
     ~PlaybackWrapper();
 public:
 	BOOL SeekToTime(u32 seekTime);
 	BOOL StartPlay();
-	BOOL StopPlay();
+	BOOL StopPlay();/* same with pause */
 	BOOL QuitPlay();/* End of play */
 	BOOL SetSpeed(float fSpeed);
 	BOOL SetDirection(BOOL bForward);

@@ -12,7 +12,7 @@
 #include "debug.hpp"
 #include "videotype.hpp"
 #include <QWidget>
-#include "factory.hpp"
+#include "server/factory.hpp"
 #include <QThread>
 #include "vonvifdismgr.hpp"
 

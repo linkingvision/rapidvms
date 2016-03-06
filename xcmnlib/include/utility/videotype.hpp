@@ -51,6 +51,16 @@ typedef enum __CodecType
         CODEC_LAST = 1000
 }CodecType;
 
+struct __RawFrame;
+/* HW Buffer Lock */
+#ifdef WIN32
+typedef bool (__cdecl * RawFrameHWLock)(struct __RawFrame & frame, void * pParam);
+typedef bool (__cdecl * RawFrameHWUnLock)(struct __RawFrame &frame, void * pParam);
+#else
+typedef bool ( * RawFrameHWLock)(struct __RawFrame &frame , void * pParam);
+typedef bool ( * RawFrameHWUnLock)(struct __RawFrame & frame, void * pParam);
+#endif
+
 typedef struct __RawFrame {
 	VideoRawType type;
 	CodecType codec;
@@ -61,6 +71,17 @@ typedef struct __RawFrame {
 	int linesize[VE_NUM_POINTERS];
 	int width, height;
 	int format;
+	bool hwData;
+	void * hwParam;
+	RawFrameHWLock hwLock;
+	RawFrameHWUnLock hwUnLock;
+
+	__RawFrame()
+	{
+		hwData = false;
+		hwLock = NULL;
+		hwUnLock = NULL;
+	}
 } RawFrame;
 
 typedef enum __VideoStreamType
@@ -183,6 +204,7 @@ typedef struct __InfoFrame
 typedef enum
 {
     MF_OK = 0,
+    MF_ERROR,
     MF_WRTIE_REACH_END,
     MF_FRAME_TIME_ERROR,
     MF_LAST
@@ -191,12 +213,20 @@ typedef enum
 
 typedef enum
 {
-    R_MANUAL = 1,
-    R_ALARM,
-    R_SCHED,
-    R_ALL,
-    R_LAST
+	R_OFF = 0,
+	R_ALARM = 1,
+	R_SCHED = 2,
+	R_LAST
 } RecordingType;
+
+typedef enum
+{
+    A_MOT_CAM = 1,
+    A_MOT_SERVER,
+    A_DIGTAL_IN,
+    A_DIGTAL_OUT,
+    A_LAST
+} AlarmType;
 
 enum RecordingMode {
    RECORDING_FULL_STOP = 1,
@@ -216,8 +246,18 @@ typedef struct __VdbRecordItem
 {	
     s64 id;	
     s32 start;	
-    s32 end;
+    s32 end;
+    u32 type;
 } VdbRecordItem;
+
+typedef struct __VdbHasRecordItem
+{	
+    s64 id;	
+    s32 start;	
+    s32 end;
+    u32 type;
+    bool has;
+} VdbHasRecordItem;
 
 typedef struct __VdbDiskItem
 {	
@@ -237,7 +277,8 @@ typedef struct __VdbDiskStatus
     
 } VdbDiskStatus;
 
-typedef std::map<int, VdbRecordItem> RecordItemMap;
+typedef std::map<u64, VdbRecordItem> RecordItemMap;
+typedef std::map<u64, VdbHasRecordItem> HasRecordItemMap;
 
 typedef enum
 {

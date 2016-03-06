@@ -17,6 +17,7 @@
 
 using namespace UtilityLib;
 
+#if defined (WIN32__REMOVE) && !defined (WIN64)
 
 class VHLSServerImpl;
 class VE_LIBRARY_API VHLSServer
@@ -29,5 +30,5 @@ private:
     Factory & m_pFactory;
     VHLSServerImpl *m_pImpl;
 };
-
+#endif
 #endif /* __V_HLS_SERVER_HPP__ */

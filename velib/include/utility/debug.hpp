@@ -2,6 +2,7 @@
 #define _V_DEBUG_H_
 
 #include "utility.hpp"
+#include "spdlog/spdlog.h"
 #define NOMINMAX
 
 #ifdef WIN32
@@ -16,17 +17,27 @@
 using namespace UtilityLib;
 using namespace tthread;
 
+namespace spd = spdlog;
+
 struct cli_def;
 class VE_LIBRARY_API Debug 
 {
 public:
+	Debug(s32 nPort, std::string strLoggerPath)
+	:m_nPort(nPort), m_strLoggerPath(strLoggerPath)
+	{
+		spd::set_level(spd::level::debug);
+		m_pLogger = spd::rotating_logger_mt("OpenCVR", m_strLoggerPath, 1024 * 1024 * 5, 3, true);
+	}
+public:
 	static void run(void * pParam);
 	void run1();
+	spd::logger  & getLogger();
 
 public:
-	static void init(s32 nPort);
+	static void init(s32 nPort, std::string strLoggerPath);
 	static void DebugPrint( const char* format, ... );
-
+	static spd::logger & logger();
 
 	
 public:
@@ -43,9 +54,12 @@ public:
 	
 private:
 	static Debug * gDebug;
-	static thread *gThread;
+	static tthread::thread *gThread;
 public:
     struct cli_def *cli;
+	s32 m_nPort;
+	std::shared_ptr<spd::logger> m_pLogger;
+	std::string m_strLoggerPath;
 
 };
 

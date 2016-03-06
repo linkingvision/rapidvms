@@ -6,7 +6,7 @@
 class VE_LIBRARY_API RecordSession
 {
 public:
-    RecordSession(s32 deviceId, astring &strBlockPath, u32 startTime, s64 recordId);
+	RecordSession(astring deviceId, astring &strBlockPath, u32 startTime, s64 recordId);
     ~RecordSession();
 public:
 	MFStatus PushAFrame(VideoFrame *pFrame);
@@ -15,7 +15,7 @@ public:
 	astring & GetBlockPath();
 
 private:
-    s32 m_DeviceId;
+	astring m_DeviceId;
     astring m_StrBlockPath;
     u32 m_startTime;
     MediaFile m_MediaFile;

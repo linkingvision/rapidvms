@@ -17,7 +17,7 @@
 
 using namespace UtilityLib;
 
-
+#if defined (WIN32__REMOVE) && !defined (WIN64)
 class VHTTPServerImpl;
 class VHTTPsServerImpl;
 class VE_LIBRARY_API VHTTPServer
@@ -31,5 +31,6 @@ private:
 	VHTTPServerImpl *m_pImpl;
 	VHTTPsServerImpl *m_pImplHttps;
 };
+#endif
 
 #endif /* __V_HTTP_SERVER_HPP__ */

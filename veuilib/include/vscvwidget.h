@@ -10,7 +10,9 @@
 #include "fast_mutex.h"
 #include "utility.hpp"
 #include "debug.hpp"
-#include "device.hpp"
+#include "server/factory.hpp"
+#include "client/clientfactory.hpp"
+#include "client/storstream.hpp"
 #include <QTimer>
 #include <QMenu>
 #include <QMimeData>
@@ -19,18 +21,16 @@ using  namespace tthread;
 namespace Ui {
 class VSCVWidget;
 }
-class VSCVideoControl;
-class VSCPbThread;
-class VSCVideoInfo;
-#define  VWIDGET_ID_OFFSET 1000 * 1000
 
-class VSCVWidgetProxy;
+class VSCPTZControl;
+class VSCVideoInfo;
+
 class VE_LIBRARY_API VSCVWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
-	VSCVWidget(s32 nId, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+	VSCVWidget(ClientFactory &pFactory, s32 nId, QWidget *parent = 0, bool bSingle = false, Qt::WindowFlags flags = 0);
 	~VSCVWidget();
 	void mouseDoubleClickEvent(QMouseEvent *e);
 	void mouseReleaseEvent(QMouseEvent *event);
@@ -46,18 +46,12 @@ public:
     }
     void dropEvent(QDropEvent *event);
     void createContentMenu();
-    void setId(s32 nId)
-    {
-        m_nId = nId;
-    }
     void SetVideoFocus(BOOL bFocus);
 
     BOOL SetVideoUpdate(BOOL update);
-    BOOL SetVideoUpdateNoPaint(BOOL update);
     BOOL ChangeLayout();
-    void DeviceEvent(int deviceId, VscEventType type);
-    void PtzAction(int x1, int y1, int x2, int y2);
-    void PtzActionStop();
+    void DeviceEvent(astring deviceId, VscEventType type);
+
     void VideoSetGeometry();
 
 public slots:
@@ -68,17 +62,14 @@ public slots:
     void showDisplay4();
     void Help();
     void videoMouseMove(QMouseEvent *e);
-    void UpdateVideoControl();
+
     void videoResizeEventTimer();
-    void InstantPbClick();
-    void TimeLineChanged(int nStatus );
-    void InstantPbPause();
-    void InstantPbPlay();
-    void TimeLineLengthChanged(int index);
+
     void videoResizeEvent();
     void PTZEnable();
     void AutoFocus();
     void LiveDelCallback();
+    void PlaybackClick();
 
 signals:
     void ShowDisplayClicked(int nId);
@@ -88,40 +79,30 @@ signals:
     void ShowFocusClicked(int nId);
     void Layout1Clicked(int nId);
     void VideoSwitchWith(int nSrcId, int nDstId);
-    void ShowViewClicked(int nId);
+    void ShowViewClicked(std::string strId);
+    void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
 
 
 public:
-	BOOL StartPlay(int nId);
-	BOOL StartPlay(int OAPIId, int nId);
-	BOOL StartPlayById(int nId);
-	BOOL StopPlay(BOOL bForce = FALSE);
-	BOOL StartPlayLive();
-	BOOL StopPlayLive(BOOL bForce = FALSE);
-    
-    int GetPlayId();
-    void LivePlayControlUI();
-    void InstantPbControlUI();
-    void InstantPbControlUISimple();
-    void StopPlayUI();
-    
+	BOOL StartPlay(astring strStorId, astring strCamId, astring strCamName);
+	BOOL StopPlay();
+	bool GetPlayParam(astring &strStorId, astring &strCamId);
+
+public:
+	void setId(int nId){ m_nId = nId; }
+
 private:
 	HWND m_videoWindow;
 	BOOL m_bFocus;
-	s32 m_nId;
 
 	BOOL m_pStarted;
-
-
-	int m_lastTime;
-	BOOL m_InstantPbMode;
+	int m_nId;
 private:
-	VSCVideoControl *m_pVideoControl;
+	VSCPTZControl *m_pPTZControl;
 	VSCVideoInfo * m_pVideoInfo;
 	QWidget  * m_pVideo;
 	
 private:
-	QTimer *m_Timer;
 	QTimer *m_TimerResize;
 	time_t m_lastMoveTime;
 	struct timeval m_lastPressed;
@@ -132,14 +113,7 @@ private:
 	s32 m_lastWidth;
 	s32 m_lastHeight;
 
-	BOOL m_PtzStart;
-	s32 m_lastPtzX;
-	s32 m_lastPtzY;
 	BOOL m_PtzEnable;
-	struct timeval m_lastPtz;
-	struct timeval m_lastPtzZoom;
-private:
-	VSCVWidgetProxy *m_pProxy;
 
 public:
 	Ui::VSCVWidget *p_ui;
@@ -150,6 +124,7 @@ private:
 	QAction *m_pHelp;
 	QAction *m_pRecord;
 	QAction *m_pPTZ;
+	QAction *m_pPlayback;
 	QAction *m_pDisplay1;
 	QAction *m_pDisplay2;
 	QAction *m_pDisplay3;
@@ -159,21 +134,59 @@ private:
 	QAction *m_pTabbed;
 	QAction *m_pControlEnable;
 	QMenu * popupMenu;
+
+	ClientFactory &m_pFactory;
+	StorStream *m_StorStream;
+	astring m_strCamName;
+	astring m_strStor;
+	astring m_strCam;
+	bool m_bSingle;
     
 };
 
-class VE_LIBRARY_API VSCQMimeOAPI : public QMimeData
+class VE_LIBRARY_API VSCQMimeVid : public QMimeData
 {
 public:
-	VSCQMimeOAPI(int OAPIId, int DeviceId)
-	: nOAPIId(OAPIId),nDeviceId(DeviceId)
+	VSCQMimeVid(){}
+	~VSCQMimeVid(){}
+};
+
+class VE_LIBRARY_API VSCQMimeVidCam : public VSCQMimeVid
+{
+public:
+	VSCQMimeVidCam(astring strStorId, astring strCamId, astring strCamName)
+	: m_strCamId(strCamId),m_strStorId(strStorId), m_strCamName(strCamName)
 	{
 	}
-	~VSCQMimeOAPI(){}
+	~VSCQMimeVidCam(){}
 public:
-	int nDeviceId;/* Remote Camera ID */
-	int nOAPIId;/* Remote OpenCVR ID */
-	
+	astring m_strCamId;
+	astring m_strStorId;
+	astring m_strCamName;
+};
+
+class VE_LIBRARY_API VSCQMimeVidWindowSwitch : public VSCQMimeVid
+{
+public:
+	VSCQMimeVidWindowSwitch(int nDstId)
+	: m_nDstId(nDstId)
+	{
+	}
+	~VSCQMimeVidWindowSwitch(){}
+public:
+	int m_nDstId;
+};
+
+class VE_LIBRARY_API VSCQMimeVidView : public VSCQMimeVid
+{
+public:
+	VSCQMimeVidView(astring strViewId)
+	: m_strViewId(strViewId)
+	{
+	}
+	~VSCQMimeVidView(){}
+public:
+	astring m_strViewId;
 };
 
 #endif // QT_VSC_V_WIDGET_H

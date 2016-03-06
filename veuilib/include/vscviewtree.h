@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QTreeWidgetItem>
 #include <QMimeData>
-#include "factory.hpp"
+#include "server/factory.hpp"
 
 class VE_LIBRARY_API VSCQMimeView : public QMimeData
 {
@@ -26,13 +26,14 @@ public:
 	void mousePressEvent(QMouseEvent *event);
 
 public:
-    VSCViewTree(QTreeWidgetItem *parent, VSCViewDataItem &pParam);
+    //VSCViewTree(QTreeWidgetItem *parent, VSCViewDataItem &pParam);
+	VSCViewTree(QTreeWidgetItem *parent);
     ~VSCViewTree();
 	
 public:
 	u32 GetDeviceId()
 	{
-	    return m_Param.nId;
+	    return 1;
 	}
 	
 public:
@@ -41,7 +42,7 @@ public:
 
 
 private:
-	VSCViewDataItem m_Param;
+	//VSCViewDataItem m_Param;
 
 };
 

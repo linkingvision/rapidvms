@@ -19,8 +19,10 @@
 #include "vonvifpgmgr.hpp"
 #include "vrtspserver.hpp"
 #include "vtaskmgr.hpp"
+#if defined (WIN32) && !defined (WIN64)
 #include "vhttpserver.hpp"
 #include "vhlsserver.hpp"
+#endif
 
 using namespace UtilityLib;
 
@@ -40,12 +42,13 @@ public:
 	
 	/* RTSP Server */
 	VRTSPServer *m_pVRTSPServer;
-
+#if defined (WIN32__REMOVE) && !defined (WIN64)
 	/* HTTP Server */
 	VHTTPServer *m_pVHTTPServer;
 
 	/* HLS Server */
 	VHLSServer *m_pVHLSServer;
+#endif
 
 	/* task manager */
 	VTaskMgr * m_pVTaskMgr;

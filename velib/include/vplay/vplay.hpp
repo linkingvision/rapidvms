@@ -35,11 +35,12 @@ public:
 	~VPlay();
 public:
 	static BOOL SetLicense(astring &strLicense);
-	static BOOL GetLicenseInfo(astring &strHostId, int &ch, astring &type);
+	static BOOL GetLicenseInfo(astring &strHostId, int &ch, astring &type, astring &expireTime);
 public:
 	BOOL Init(BOOL bRealStream, string strUrl, string strUser, string strPass, 
 		BOOL bHWAccel = FALSE, VSCConnectType connectType = VSC_CONNECT_TCP);
-	BOOL Init(string strFile, BOOL bHWAccel = FALSE);
+	BOOL Init(string strFile, bool bMJPEG, string strUser, 
+		string strPass, BOOL bHWAccel = FALSE);
 	BOOL AttachWidget(HWND hWnd, int w, int h);
 	BOOL UpdateWidget(HWND hWnd, int w, int h);
 	BOOL DetachWidget(HWND hWnd);

@@ -1,6 +1,5 @@
-
-#ifndef __VIDEO_WALL_H_
-#define __VIDEO_WALL_H_
+#ifndef __VVID_PB_WALL_H__
+#define __VVID_PB_WALL_H__
 
 #include <QWidget>
 #include <QGridLayout>
@@ -12,18 +11,20 @@
 #include "client/clientfactory.hpp"
 
 
-#define VIDEO_WALL_WIDGET_MAX 36
+#define PB_WALL_WIDGET_MAX 16
 
-class VSCVWidget;
-typedef std::map<int, VSCVWidget *> VideoWidgetMap;
+class VVidPBWidget;
+typedef std::map<int, VVidPBWidget *> VVidPBWidgetMap;
+class VVidPBControl;
+typedef std::map<int, VVidPBControl *> VVidPBControlMap;
 
-class VE_LIBRARY_API VSCVideoWall : public QWidget
+class VE_LIBRARY_API VVidPBWall : public QWidget
 {
     Q_OBJECT
 
 public:
-    VSCVideoWall(ClientFactory &pFactory, QWidget *parent = 0);
-    ~VSCVideoWall();
+    VVidPBWall(ClientFactory &pFactory, QWidget *parent = 0);
+    ~VVidPBWall();
 
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
@@ -31,6 +32,7 @@ public:
 
 public:
     void ClearVideoLayout();
+    void ClearControlLayout();
     void SetupVideoLayout4x4();
     void SetupVideoLayout2x2();
     void SetupVideoLayout3x3();
@@ -44,19 +46,12 @@ public:
     void SetupVideoLayout1p6();
     void StopVideoBeforeSetLayout();
     void SetVideoFocus(int nId, BOOL on);
-#if 0
-    void mouseMoveEvent(QMouseEvent *e)
-    	{
-    	    VDC_DEBUG( "%s mouseMoveEvent \n",__FUNCTION__);
-    	}
-#endif
+
     void DeviceEvent(int deviceId, VscEventType type);
     void OffAllFocus();
 	void ResizeAllVideo();
 
 public slots:
-    void floatingAction();
-    void unFloatingAction();
     void SetLayoutMode4x4(){SetLayoutMode(LAYOUT_MODE_4X4);}
     void SetLayoutMode3x3(){SetLayoutMode(LAYOUT_MODE_3X3);}
     void SetLayoutMode2x2(){SetLayoutMode(LAYOUT_MODE_2X2);}
@@ -78,8 +73,8 @@ public:
 	{
 	    nMode = m_VideoWallMode;
 	}
-	void GetPlayMap(std::map<int, VidViewWindow> &playMap);
-	void SetPlayMap(std::map<int, VidViewWindow> &playMap, VideoWallLayoutMode nMode);
+	void GetPlayMap(u32 *Map, int length);
+	void SetPlayMap(u32 *Map, int length, VideoWallLayoutMode nMode);
 	void SetLayout1Mode(int nId);
 
 	void PlayVideoByWindow(u32 nWindow, astring strStor, 
@@ -87,25 +82,15 @@ public:
    
 
 signals:
-	void ShowDisplayClicked(int nId);
-	void ShowFloatingClicked();
-	void ShowTabbedClicked();
-	void ShowControlPanelClicked();
 	void ShowFocusClicked(int nId);
 	void Layout1Clicked(int nId);
-	void ShowViewClicked(std::string strId);
-	void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
 
-public:
-    bool Start();
-    bool Stop();
 private:
     QWidget *m_pParent;
-    VideoWidgetMap m_VideoMap;
+    VVidPBWidgetMap m_VideoMap;
+    VVidPBControlMap m_VideoControlMap;
     QGridLayout *m_pLayout;
-    QAction *m_pFloating;
-    QAction *m_pUnFloating;
-    BOOL m_bFloated;
+    QVBoxLayout* m_pVLayout;
     VideoWallLayoutMode m_VideoWallMode;
     VideoWallLayoutMode m_LastVideoWallMode;
 
