@@ -1,9 +1,11 @@
 #include "live/vscvidlive.h"
 #include "live/vscview.h"
+#include "live/vvidpbview.h"
 #include "vscvwidget.h"
 #include "vscvideowall.h"
 #include "vscloading.hpp"
 #include "common/vidtree/vscvidtreecam.h"
+#include "common/vidtree/vscvidtreeview.h"
 #include <QDesktopWidget>
 
 
@@ -19,22 +21,24 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
 	m_pMainArea.addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
+	m_pMainArea.setCurrentWidget(m_pView);
 	//connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 		//	m_pView, SLOT(DeviceEvent(int, int)));
 #endif
-	connect(&m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
 
 	m_pCameraTree = new VSCVidTreeCam(m_pFactory, parent);
 	m_pCameraTree->Init();
 	m_pGroupTree = new VSCVidTreeInf(m_pFactory, parent);
 	m_pGroupTree->Init();
-	m_pViewTree = new VSCVidTreeInf(m_pFactory, parent);
+	m_pViewTree = new VSCVidTreeView(m_pFactory, parent);
 	m_pViewTree->Init();
 	m_pEmapTree = new VSCVidTreeInf(m_pFactory, parent);
 	m_pEmapTree->Init();
 
 	connect(m_pCameraTree, SIGNAL(CameraSelected(std::string, std::string, std::string)), 
 		m_pView, SLOT(CameraDoubleClicked(std::string, std::string, std::string)));
+	connect(m_pViewTree, SIGNAL(ViewSelected(std::string)), 
+		m_pView, SLOT(ShowViewClicked(std::string)));
 
 
 #if 0
@@ -48,44 +52,6 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 VSCVidLive::~VSCVidLive()
 {
 	
-}
-
-void VSCVidLive::MainCloseTab(int index)
-{
-    QWidget *wdgt = m_pMainArea.widget(index);
-    m_pMainArea.setCurrentWidget(wdgt);
-    /* Frist view can not be closed */
-    if (wdgt == m_pView)
-    {
-        return;
-    }
-#if 0
-    if (wdgt == m_pEMap)	
-    {
-		m_pMainArea->removeTab(index);
-		m_pEMap->hide();
-		return;
-    }
-
-    if (wdgt == m_pPanel)	
-    {
-		m_pMainArea->removeTab(index);
-		m_pPanel->hide();
-		return;
-    }
-#endif
-    m_pMainArea.removeTab(index);
-    if (wdgt)
-    {
-#if 0
-		VSCLoading *loading = new VSCLoading(NULL);
-		loading->setGeometry(width()/2, height()/2, 64, 64);
-		QCoreApplication::processEvents();
-#endif
-		delete wdgt;
-		wdgt = NULL;
-		//delete loading;
-    }
 }
 
 void VSCVidLive::VidShow()
@@ -125,11 +91,47 @@ void VSCVidLive::VidNewLiveView()
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
 	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("View %1").arg(currentNum+1));
+	m_pMainArea.setCurrentWidget(pView);
+	delete loading;
+}
+
+void VSCVidLive::VidNewLivePB()
+{
+	int tabNum = m_pMainArea.count();
+	int currentNum = -1;
+	for (int i=0; i<tabNum; i++)
+	{
+		QWidget *qwidget = m_pMainArea.widget(i);
+		VVidPBView *pView = dynamic_cast<VVidPBView* >(qwidget);
+		if (pView)
+		{
+			currentNum++;
+		}
+	}
+
+	VSCLoading *loading = new VSCLoading(NULL);
+	loading->show();
+	QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	loading->setGeometry(rect.width()/2, rect.height()/2, 64, 64);
+	QCoreApplication::processEvents();
+	
+	VVidPBView *pView = new VVidPBView(m_pFactory, &m_pMainArea, m_pMainArea, tr("Playback%1").arg(currentNum + 1));
+	pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
+
+	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("Playback %1").arg(currentNum+1));
+	m_pMainArea.setCurrentWidget(pView);
 	delete loading;
 }
 
 void VSCVidLive::VidNewEmap()
 {
+}
+
+QWidget * VSCVidLive::GetMainView()
+{
+	return m_pView;
 }
 
 VSCVidTreeInf *VSCVidLive::GetCameraTree()

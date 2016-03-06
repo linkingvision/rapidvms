@@ -16,6 +16,8 @@ signals:
 	void SignalStorConfSelectd(std::string strStor);
 	void SignalDiskConfSelectd(std::string strStor);
 	void SignalClientConfSelectd();
+	void SignalViewConfSelectd();
+	void SignalEmapConfSelectd();
 	void SignalCamAddSelectd(std::string strStor);
 	void SignalCamConfSelectd(std::string strStor, std::string strCam);
 	

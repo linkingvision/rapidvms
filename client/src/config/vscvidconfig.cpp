@@ -5,6 +5,8 @@
 #include "config/vidstor/vidcamsetting.h"
 #include "config/vidclientsetting.h"
 #include "config/vidstor/disksetting/vschddedit.h"
+#include "config/vidview/vidviewconf.h"
+#include "config/videmap/videmapconf.h"
 
 VSCVidConf::VSCVidConf(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent)
 : VSCVidInf(pFactory, pTab, parent)
@@ -24,6 +26,9 @@ VSCVidConf::VSCVidConf(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 								SLOT(SlotVidDiskConf(std::string)));
 	connect(m_pConfTree, SIGNAL(SignalCamConfSelectd(std::string, std::string)), this, 
 								SLOT(SlotVidCamConf(std::string, std::string)));
+								
+	connect(m_pConfTree, SIGNAL(SignalViewConfSelectd()), this, SLOT(SlotVidViewConf()));
+	connect(m_pConfTree, SIGNAL(SignalEmapConfSelectd()), this, SLOT(SlotVidEmapConf()));
 }
 VSCVidConf::~VSCVidConf()
 {
@@ -74,6 +79,24 @@ void VSCVidConf::SlotVidClientConf()
 	m_pMainArea.setCurrentWidget(pConf);
 
 }
+
+void VSCVidConf::SlotVidViewConf()
+{
+	VidViewConf *pConf = new VidViewConf(m_pFactory, &m_pMainArea);
+	
+	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/view.png")), tr("View"));
+	m_pMainArea.setCurrentWidget(pConf);
+}
+
+
+void VSCVidConf::SlotVidEmapConf()
+{
+	VidEmapConf *pConf = new VidEmapConf(m_pFactory, &m_pMainArea);
+
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/map.png")), tr("Emap"));
+	m_pMainArea.setCurrentWidget(pConf);
+}
+
 void VSCVidConf::SlotVidStorConf(std::string strStorId)
 {
 	VidStor pStor;

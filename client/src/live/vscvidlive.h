@@ -16,15 +16,14 @@ public:
 	virtual void VidShow();
 	virtual void VidHide();
 	virtual void VidNewLiveView();
+	virtual void VidNewLivePB();
 	virtual void VidNewEmap();
 
 	virtual VSCVidTreeInf *GetCameraTree();
 	virtual VSCVidTreeInf *GetGroupTree();
 	virtual VSCVidTreeInf *GetEmapTree();
 	virtual VSCVidTreeInf *GetViewTree();
-	
-public slots:
-	void MainCloseTab(int index);
+	virtual QWidget * GetMainView();
 
 private:
 	VSCView *m_pView;

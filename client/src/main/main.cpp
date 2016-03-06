@@ -18,6 +18,7 @@
 #include "server/cmnoapiserver.hpp"
 #include "vstyle.hpp"
 #include "vsclogin.h"
+#include "vtaskmgr.hpp"
 
 void LoadLangZH(QApplication &a)
 {
@@ -116,6 +117,8 @@ int main(int argc, char *argv[])
 
 	
 	splash->showMessage(QObject::tr("Starting ..."));
+
+	VTaskMgr *pVTaskMgr = new VTaskMgr();
 
 	VSCMainWindows w(*pFactory);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VSCView</class>
- <widget class="QWidget" name="VSCView">
+ <class>VVidPBView</class>
+ <widget class="QWidget" name="VVidPBView">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -77,43 +77,6 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="pushButtonView">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/device/resources/view.png</normaloff>:/device/resources/view.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -125,109 +88,6 @@ background-color: rgb(200, 200, 200);}</string>
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbTourPlay">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/action/resources/tourplay.png</normaloff>:/action/resources/tourplay.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbTourStop">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/action/resources/tourstop.png</normaloff>:/action/resources/tourstop.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="tourInterval">
-        <item>
-         <property name="text">
-          <string>20s</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>40s</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>1mins</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>3mins</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>5mins</string>
-         </property>
-        </item>
-       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_2">
@@ -523,105 +383,6 @@ background-color: rgb(200, 200, 200);}</string>
         <property name="icon">
          <iconset resource="../main/vscmainwindows.qrc">
           <normaloff>:/view/resources/4x4.png</normaloff>:/view/resources/4x4.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>23</width>
-          <height>23</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton5x5">
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/view/resources/5x5.png</normaloff>:/view/resources/5x5.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>23</width>
-          <height>23</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton6x6">
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/view/resources/6x6.png</normaloff>:/view/resources/6x6.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>23</width>
-          <height>23</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton8x8">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../main/vscmainwindows.qrc">
-          <normaloff>:/view/resources/8x8.png</normaloff>:/view/resources/8x8.png</iconset>
         </property>
         <property name="iconSize">
          <size>

@@ -9,6 +9,8 @@
 #include "config/viditem/vscviditemcamconf.h"
 #include "config/viditem/vscviditemclientconf.h"
 #include "config/viditem/vscviditemdiskconf.h"
+#include "config/viditem/vscviditemviewconf.h"
+#include "config/viditem/vscviditememapconf.h"
 
 
 VSCVidTreeConf::VSCVidTreeConf(ClientFactory &pFactory, QWidget *parent)
@@ -100,6 +102,20 @@ void VSCVidTreeConf::mouseDoubleClickEvent(QMouseEvent *event)
 			emit SignalClientConfSelectd();
 		}
 		
+		VSCVidItemViewConf *pViewConf = dynamic_cast<VSCVidItemViewConf * >(selectedItem);
+		if (pViewConf)
+		{
+			/* Client */
+			emit SignalViewConfSelectd();
+		}
+		
+		VSCVidItemEmapConf *pEmapConf = dynamic_cast<VSCVidItemEmapConf * >(selectedItem);
+		if (pEmapConf)
+		{
+			/* Client */
+			emit SignalEmapConfSelectd();
+		}
+		
 		VSCVidItemStorConf *pStorConf = dynamic_cast<VSCVidItemStorConf * >(selectedItem);
 		if (pStorConf)
 		{
@@ -127,6 +143,8 @@ void VSCVidTreeConf::TreeUpdate()
 	/* Add fixed items */
 	VSCVidItemAddStor *pItemAddStor = new VSCVidItemAddStor(m_pFactory, m_pRoot);
 	VSCVidItemClientConf *pItemClient = new VSCVidItemClientConf(m_pFactory, m_pRoot);
+	VSCVidItemViewConf *pItemViewConf = new VSCVidItemViewConf(m_pFactory, m_pRoot);
+	VSCVidItemEmapConf *pItemEmapConf = new VSCVidItemEmapConf(m_pFactory, m_pRoot);
 	
 	VidStorList storList;
 	m_pFactory.GetConfDB().GetStorListConf(storList);

@@ -6,46 +6,68 @@
 #include <QHoverEvent>
 #include <QDesktopWidget>
 #include <QApplication>
-//#include "vscviewconf.h"
+#include "vvidpb1.h"
+#include "vscviewconf.h"
+#include "Poco/UUIDGenerator.h"
+
+using namespace Poco;
 
 VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName)
     : m_pFactory(pFactory), QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
     m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE), 
 	m_TimerTour(NULL)
 {
-    ui.setupUi(this);
-    m_pParent = parent;
-    m_lastHoverTime = time(NULL);
+	ui.setupUi(this);
+	m_pParent = parent;
+	m_lastHoverTime = time(NULL);
 
-    this->setAttribute(Qt::WA_Hover,true);
-    QVBoxLayout* layout = new QVBoxLayout();
-    m_pVideo = new VSCVideoWall(m_pFactory, this->ui.widget);
-    m_pVideo->hide();
-    //layout->setSpacing(10);
+	this->setAttribute(Qt::WA_Hover,true);
+	QVBoxLayout* layout = new QVBoxLayout();
+	m_pVideo = new VSCVideoWall(m_pFactory, this->ui.widget);
+	m_pVideo->hide();
+	//layout->setSpacing(10);
 
-    layout->addWidget(m_pVideo);
-    layout->setMargin(0);
+	layout->addWidget(m_pVideo);
+	layout->setMargin(0);
 
-    this->ui.widget->setLayout(layout);
+	this->ui.widget->setLayout(layout);
 
-    m_pVideo->show();
+	m_pVideo->show();
 
-    SetupConnections();
-    createContentMenu();
+	SetupConnections();
+	createContentMenu();
 #if 0
-    m_pPlayControl = new VSCPlayControl();
-    m_bPlayControl = FALSE;
-    m_pPlayControl->hide();
-    VSCViewDataItemDefault(m_ViewItem);
+	m_pPlayControl = new VSCPlayControl();
+	m_bPlayControl = FALSE;
+	m_pPlayControl->hide();
+	VSCViewDataItemDefault(m_ViewItem);
 #endif
-    ui.pushButton8x8->hide();
-    setMouseTracking(true);
+	ui.pushButton8x8->hide();
+	setMouseTracking(true);
 
-    m_Timer = new QTimer(this);
-    connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl())); 
-    m_Timer->start(1000); 
+	m_Timer = new QTimer(this);
+	connect(m_Timer,SIGNAL(timeout()),this,SLOT(UpdateVideoControl())); 
+	m_Timer->start(1000); 
 
-    TourStop();
+	TourStop();
+	ShowFocusClicked(0);
+	/* Set the uuid to null */
+	m_ViewItem.set_strid(VVID_UUID_NULL);
+}
+
+void VSCView::PlaybackClicked(std::string strStor, std::string strId, 
+						std::string strName)
+{
+	VVidPB1 *pPB1 = new VVidPB1(m_pFactory);
+	pPB1->show();
+
+	s32 currentTime = time(NULL) - 5 * 60;
+	if (currentTime < 0)
+	{
+		currentTime = 0;
+	}
+	
+	pPB1->StartPlay(strStor, strId, strName, currentTime);
 }
 
 void VSCView::UpdateVideoControl()
@@ -100,6 +122,8 @@ void VSCView::SetupConnections()
 	                                    SLOT(ShowFocusClicked(int)));
 	connect(m_pVideo, SIGNAL(Layout1Clicked(int)), this,
 	                                    SLOT(ShowLayout1Clicked(int)));
+	connect(m_pVideo, SIGNAL(PlaybackClicked(std::string, std::string, std::string)), this,
+	                                    SLOT(PlaybackClicked(std::string, std::string, std::string)));
 	//connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
 	//                                    SLOT(ShowViewClicked(int)));
 
@@ -226,13 +250,6 @@ void VSCView::mouseMoveEvent(QMouseEvent *event)
 			__FUNCTION__, posView.x(), posView.y(), 
 			posEvent.x(), posEvent.y());
         //m_pVideo->OffAllFocus();
-}
-
-void VSCView::ViewHideFocus()
-{
-//#ifndef WIN32
-        m_pVideo->OffAllFocus();
-//#endif
 }
 
 bool VSCView::event(QEvent *e)
@@ -472,11 +489,10 @@ void VSCView::createContentMenu()
 
 void VSCView::ViewClicked()
 {
-#if 0
 	VideoWallLayoutMode nMode;
 	m_pVideo->GetLayoutMode(nMode);	
        VSCViewConf view;
-	view.SetName(m_ViewItem.Name);
+	view.SetName(m_ViewItem.strname());
        view.show();
        QDesktopWidget *desktop = QApplication::desktop();
 	QRect rect = desktop->screenGeometry(0);
@@ -490,22 +506,47 @@ void VSCView::ViewClicked()
 	{
 		return;
 	}
-	m_ViewItem.Mode = nMode;
+	m_ViewItem.set_clayout((VidLayout)nMode);
 	string strName = "View";
 	view.GetName(strName);
-	m_pVideo->GetPlayMap(m_ViewItem.Map, VSC_CONF_VIEW_CH_MAX);
-	strcpy(m_ViewItem.Name, strName.c_str());
-	if (type == VSC_VIEW_CONF_MODIFY && m_ViewItem.nId > 0)
+	m_ViewItem.add_cview();
+	std::map<int, VidViewWindow> playMap;
+	m_pVideo->GetPlayMap(playMap);
+	std::map<int, VidViewWindow>::iterator it = playMap.begin(); 
+	for(; it!=playMap.end(); ++it)
 	{
-		gFactory->DelView(m_ViewItem.nId);
+		VidViewWindow * pWinNew = m_ViewItem.add_cview();
+		*pWinNew = (*it).second;
 	}
-	u32 nId = gFactory->AddView(m_ViewItem);
-	gFactory->GetViewById(m_ViewItem, nId);
-#endif
+	
+	m_ViewItem.set_strname(strName);
+	if (type == VSC_VIEW_CONF_MODIFY && m_ViewItem.strid() != VVID_UUID_NULL)
+	{
+		m_pFactory.DelView(m_ViewItem.strid());
+	}else
+	{
+		UUIDGenerator uuidCreator;
+		astring strId  = uuidCreator.createRandom().toString();
+		m_ViewItem.set_strid(strName);
+	}
+	m_pFactory.AddView(m_ViewItem);
 }
 
-void VSCView::ShowViewClicked(int nId)
+void VSCView::ShowViewClicked(astring strView)
 {
-	//gFactory->GetViewById(m_ViewItem, nId);
-	//m_pVideo->SetPlayMap(m_ViewItem.Map, VSC_CONF_VIEW_CH_MAX, m_ViewItem.Mode);
+	VidView pView;
+	if (m_pFactory.GetConfDB().GetViewConf(strView, pView)  == false)
+	{
+		return;
+	}
+
+	std::map<int, VidViewWindow> playMap;
+	
+	for (s32 i = 0; i < pView.cview_size(); i ++)
+	{
+		const VidViewWindow &win = pView.cview(i);
+		playMap[win.nwindowsid()] = win;
+	}
+
+	m_pVideo->SetPlayMap(playMap, (VideoWallLayoutMode)(pView.clayout()));
 }

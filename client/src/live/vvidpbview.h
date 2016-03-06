@@ -1,23 +1,22 @@
-#ifndef VSCVIEW_H
-#define VSCVIEW_H
+#ifndef __VVID_PB_VIEW_H__
+#define __VVID_PB_VIEW_H__
 
 #include <QWidget>
 #include <QString>
-#include "ui_vscview.h"
+#include "ui_vvidpbview.h"
 #include "utility.hpp"
 #include "debug.hpp"
-#include "vscvwidget.h"
-#include "vscvideowall.h"
+#include "vvidpbwidget.h"
+#include "vvidpbwall.h"
 #include "QTabWidget"
-//#include "vscplaycontrol.h"
 
-class VSCView : public QWidget
+class VVidPBView : public QWidget
 {
     Q_OBJECT
 
 public:
-    VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName);
-    ~VSCView();
+    VVidPBView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName);
+    ~VVidPBView();
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *);
@@ -27,17 +26,8 @@ public:
     void SetupConnections();
 	
 public slots:
-	void floatingClicked();
-	void ViewClicked();
-	void TabbedClicked();
-	void ControlPanelClicked();
-	void ShowDisplayClicked(int nId);
 	void ShowFocusClicked(int nId);
-	void ShowPlayControl();
 	void ShowLayout1Clicked(int nId);
-	void ShowViewClicked(astring strView);
-	void UpdateVideoControl();
-	void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
 
 	void SetLayoutMode4x4()
 	{
@@ -99,21 +89,16 @@ public slots:
 		m_pVideo->DeviceEvent(deviceId, (VscEventType)type);
 	}
 
-	void TourStop();
-	void TourStart();
-	void TourInit();
-	void TourTimerFunction();
-
 	void CameraDoubleClicked(std::string strStor, std::string strCam, std::string strCamName);
 public:
-	Ui::VSCView ui;
+	Ui::VVidPBView ui;
 private:
 	QWidget *m_pParent;
 	QAction *m_pFloating;
 	QAction *m_pUnFloating;
 	BOOL m_bFloated;
 	int m_currentFocus;
-	VSCVideoWall * m_pVideo;
+	VVidPBWall * m_pVideo;
 	//VSCPlayControl * m_pPlayControl;
 	BOOL m_bPlayControl;
 	QTabWidget &m_pTabbed;
@@ -121,14 +106,14 @@ private:
 	/* Control Panel  */
 	BOOL m_bControlEnable;
 	QString m_strName;
-	VidView m_ViewItem;
+	//VVidPBViewDataItem m_ViewItem;
 	s32 m_lastHoverTime;
 	QTimer *m_Timer;
 
 	/* Video Tour */
 	QTimer *m_TimerTour;
 	s32 m_TourInterval;
-	//VSCViewData m_pTourConf;
+	//VVidPBViewData m_pTourConf;
 	s32 m_TourIdx;
 
 	ClientFactory &m_pFactory;
