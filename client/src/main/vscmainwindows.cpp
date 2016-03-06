@@ -39,7 +39,8 @@
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
 
 VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
-    : m_pFactory(pFactory), QMainWindow(parent), m_VidIdx(VSC_VID_IDX_LAST)
+    : m_pFactory(pFactory), QMainWindow(parent), m_VidIdx(VSC_VID_IDX_LAST), 
+    m_pMainView(NULL), m_pDashBoard(NULL)
 {
 
 	ui.setupUi(this);
@@ -76,12 +77,14 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	m_pMainArea->setMovable(true);
 
 	setCentralWidget(m_pMainArea);
+	connect(m_pMainArea, SIGNAL(tabCloseRequested(int)), this, SLOT(MainCloseTab(int)));
 	
 
 	/* Show the Live default */
 	m_pVidLive = new VSCVidLive(m_pFactory, *m_pMainArea, this);
+	m_pMainView = m_pVidLive->GetMainView();
 	m_pVidConf = new VSCVidConf(m_pFactory, *m_pMainArea, this);
-	m_pVidPb = new VSCVidPb(m_pFactory, *m_pMainArea, this);
+	m_pVidPb = new VSCVidSearchPB(m_pFactory, *m_pMainArea, this);
 
 	/* First hide all */
 	m_pVidLive->VidHide();
@@ -99,16 +102,55 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 
 	connect(m_pToolBar->ui.pbVidLive, SIGNAL(clicked()), this, SLOT(ShowVidLive()));
 	connect(m_pToolBar->ui.pbVidLiveView, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLiveView()));
-	connect(m_pToolBar->ui.pbVidEmap, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewEmap()));
+	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLivePB()));
 
-	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
+	connect(m_pToolBar->ui.pbVidSearch, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
 	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
+	connect(m_pToolBar->ui.pbVidDashBoard, SIGNAL(clicked()), this, SLOT(ShowDashBoard()));
 
 }
 
 VSCMainWindows::~VSCMainWindows()
 {
 
+}
+
+void VSCMainWindows::MainCloseTab(int index)
+{
+    QWidget *wdgt = m_pMainArea->widget(index);
+	m_pMainArea->setCurrentWidget(wdgt);
+    /* Frist view can not be closed */
+    if (wdgt == m_pMainView)
+    {
+        return;
+    }
+
+
+    if (wdgt == m_pDashBoard)	
+    {
+		m_pMainArea->removeTab(index);
+		m_pDashBoard->hide();
+		return;
+    }
+
+	m_pMainArea->removeTab(index);
+    if (wdgt)
+    {
+		delete wdgt;
+		wdgt = NULL;
+    }
+}
+
+void VSCMainWindows::ShowDashBoard()
+{
+	if (m_pDashBoard == NULL)
+	{
+    		m_pDashBoard = new VSCDashBoard(this);
+		//connect(m_pPanel, SIGNAL(AddVIPC()), this, SLOT(AddVIPC()));
+	}
+
+	m_pMainArea->addTab(m_pDashBoard, QIcon(tr(":/action/resources/dashboard.png")), tr("Dashboard"));  
+	m_pMainArea->setCurrentWidget(m_pDashBoard);
 }
 
 void VSCMainWindows::ShowVidLive()
@@ -138,7 +180,7 @@ void VSCMainWindows::ShowVidLive()
 
 	m_pVidLive->VidShow();
 	m_pToolBar->ui.pbVidLiveView->show();
-	m_pToolBar->ui.pbVidEmap->show();
+	m_pToolBar->ui.pbVidPb->show();
 	m_VidIdx = VSC_VID_IDX_LIVE;
 	m_pVidList->SetCurrVidInf(m_pVidLive);
 }
@@ -150,7 +192,7 @@ void VSCMainWindows::ShowVidConf()
 		{
 			m_pVidLive->VidHide();
 			m_pToolBar->ui.pbVidLiveView->hide();
-			m_pToolBar->ui.pbVidEmap->hide();
+			m_pToolBar->ui.pbVidPb->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:
@@ -181,7 +223,7 @@ void VSCMainWindows::ShowVidPb()
 		{
 			m_pVidLive->VidHide();
 			m_pToolBar->ui.pbVidLiveView->hide();
-			m_pToolBar->ui.pbVidEmap->hide();
+			m_pToolBar->ui.pbVidPb->hide();
 			break;
 		}
 		case VSC_VID_IDX_CONF:

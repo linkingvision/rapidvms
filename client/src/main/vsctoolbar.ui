@@ -83,7 +83,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbVidPb">
+      <widget class="QPushButton" name="pbVidSearch">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -203,7 +203,7 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbVidEmap">
+      <widget class="QPushButton" name="pbVidPb">
        <property name="minimumSize">
         <size>
          <width>30</width>
@@ -229,7 +229,7 @@ background-color: rgb(200, 200, 200);}</string>
        </property>
        <property name="icon">
         <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/map.png</normaloff>:/action/resources/map.png</iconset>
+         <normaloff>:/action/resources/videosearch3.png</normaloff>:/action/resources/videosearch3.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -239,28 +239,6 @@ background-color: rgb(200, 200, 200);}</string>
        </property>
        <property name="flat">
         <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lbProcess">
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/action/resources/processing.gif);</string>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
      </item>
@@ -300,6 +278,114 @@ background-color: rgb(200, 200, 200);}</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbProcess">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/action/resources/processing.gif);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbVidDashBoard">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/dashboard.png</normaloff>:/action/resources/dashboard.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbAlarm">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/alarm.png</normaloff>:/action/resources/alarm.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -374,52 +460,6 @@ background-color: rgb(200, 200, 200);}</string>
        <property name="icon">
         <iconset resource="vscmainwindows.qrc">
          <normaloff>:/action/resources/user.png</normaloff>:/action/resources/user.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbAlarm">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover {
-border:none;
-color:white;
-background-color: rgb(85, 170, 255);}
-QPushButton:pressed {
-background-color: rgb(200, 200, 200);}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="vscmainwindows.qrc">
-         <normaloff>:/action/resources/alarm.png</normaloff>:/action/resources/alarm.png</iconset>
        </property>
        <property name="iconSize">
         <size>

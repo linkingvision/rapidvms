@@ -50,6 +50,8 @@
         <file>resources/cancel.png</file>
         <file>resources/disksetting.png</file>
         <file>resources/surveillance.png</file>
+        <file>resources/videosearch3.png</file>
+        <file>resources/dashboard.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>

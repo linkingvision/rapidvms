@@ -8,7 +8,8 @@
 #include "live/vscvidlive.h"
 #include "config/vscvidconfig.h"
 #include "main/vscvidlist.h"
-#include "playback/vscvidpb.h"
+#include "searchpb/vscvidsearchpb.h"
+#include "main/vscdashboard.h"
 
 typedef enum
 {
@@ -31,11 +32,14 @@ public:
 	void ViewHideFocus();
 	void closeEvent(QCloseEvent *event); 
 
-
+public slots:
+	void MainCloseTab(int index);
+	
 public slots:
 	void ShowVidLive();
 	void ShowVidConf();
 	void ShowVidPb();
+	void ShowDashBoard();
 	void about();
 	void UserStatus();
 	void SetFullScreen();
@@ -55,6 +59,8 @@ private:
 	VSCVidIdx m_VidIdx;
 
 	QTabWidget * m_pMainArea;
+	QWidget *m_pMainView;
+	VSCDashBoard *m_pDashBoard;
 
 private:
 	Ui::VSCMainWindowsClass ui;

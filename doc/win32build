@@ -12,9 +12,9 @@ In many cases the default graphics driver may not provide all of the files and r
 needed. For best results, please update to the latest driver available from
 http://downloadcenter.intel.com/ before attempting a new install. While some systems may
 require a vendor-approved driver, the Intel drivers are usually appropriate. These drivers can
-be found by selecting °∞Graphics°± as the product family at the Download Center site. 
+be found by selecting ‚ÄúGraphics‚Äù as the product family at the Download Center site. 
 
-The graphics driver installer populates the Intel Media SDK directories under °∞c:\program
-files\Intel\Media SDK°±, or °∞c:\program files (x86)\Intel\Media SDK°± on 64 bit OS installs. The
+The graphics driver installer populates the Intel Media SDK directories under ‚Äúc:\program
+files\Intel\Media SDK‚Äù, or ‚Äúc:\program files (x86)\Intel\Media SDK‚Äù on 64 bit OS installs. The
 Intel Media SDK hardware acceleration DLLs and certified HW Media Foundation Transforms
 can be found here. 

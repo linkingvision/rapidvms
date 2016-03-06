@@ -22,7 +22,7 @@ VSCVidList::VSCVidList(QWidget *parent)
 	ui.pbEmap->hide();
 	
 	connect(ui.pbCamera, SIGNAL(SignalClicked()), this, SLOT(SlotShowCameraTree()));
-	connect(ui.pbGroup, SIGNAL(SignalClicked()), this, SLOT(SlotShowGroupTree()));
+	connect(ui.pbView, SIGNAL(SignalClicked()), this, SLOT(SlotShowViewTree()));
 	connect(ui.pbGroup, SIGNAL(SignalClicked()), this, SLOT(SlotShowGroupTree()));
 	connect(ui.filterText, SIGNAL(textChanged(const QString &)), this,
 					SLOT(FilterChanged(const QString &)));
@@ -159,7 +159,7 @@ void VSCVidList::SetCurrVidInf(VSCVidInf *pVidInf)
 	
 	if (m_pGroupTree)
 	{
-		ui.pbGroup->show();
+		//ui.pbGroup->show();
 		m_treeLayout->addWidget(m_pGroupTree);
 		m_pGroupTree->hide();
 	}
