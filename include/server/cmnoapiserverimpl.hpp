@@ -27,7 +27,7 @@ void CmnOAPIServerSession::run()
 	while(1)
 	{
 		QCoreApplication::processEvents();
-		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header), 200);
+		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header));
 		if (nRet == sizeof(header) && server.Process(header) == TRUE)
 		{
 			//printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
@@ -84,12 +84,14 @@ void CmnOAPIServer::run()
 	while(1)
 	{
 		XRef<XSocket> clientSocket = socket.Accept();
+#if 0
 #ifdef WIN32
 		ULONG mode = 1;
 		ioctlsocket( clientSocket->GetSokId(), FIONBIO, &mode);
 #else
 		int flags = fcntl( clientSocket->GetSokId(), F_GETFL, 0);
 		fcntl( clientSocket->GetSokId(), F_SETFL, flags | O_NONBLOCK );
+#endif
 #endif
 
 		CmnOAPIServerSession *session = new CmnOAPIServerSession(m_pFactory, 

@@ -42,19 +42,9 @@ public:
 	inline ~CmnOAPIServerSession();
 	
 public:
-	void Lock()
-	{
-		m_Lock.lock();
-	}
-	void UnLock()
-	{
-		m_Lock.unlock();
-	}
-public:
 	inline void run();
 
 private:
-	fast_mutex m_Lock;
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
 };

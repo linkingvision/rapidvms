@@ -372,19 +372,6 @@ inline BOOL Factory::SearchHasItems(astring cameraId, u32 startTime, u32 endTime
 {
     return m_pVdb->SearchHasItems(cameraId, startTime, endTime, recordType);
 }
-inline BOOL Factory::SearchAItem(astring cameraId, u32 Time, VdbRecordItem &pItem)
-{
-    return m_pVdb->SearchAItem(cameraId, Time, pItem);
-}
-
-inline BOOL Factory::SearchAItemNear(astring cameraId, u32 Time, VdbRecordItem &pItem)
-{
-    return m_pVdb->SearchAItemNear(cameraId, Time, pItem);
-}
-inline BOOL Factory::SearchNextItem(astring cameraId, s64 LastId, VdbRecordItem &pItem)
-{
-    return m_pVdb->SearchNextItem(cameraId, LastId, pItem);
-}
 
 inline VDB& Factory::GetVdb()
 {

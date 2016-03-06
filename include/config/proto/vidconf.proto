@@ -32,6 +32,7 @@ enum CameraType {
 	VID_RTSP = 3;
 	VID_ONVIF_S = 4;
 	VID_GB28181 =5;
+	VID_MJPEG = 6;
 }
 
 //Camera config
@@ -181,6 +182,17 @@ message VidView {
 
 message VidViewList {
 	repeated VidView cVidView = 1;
+}
+
+//Tour 
+message VidTour {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated string strView = 3;
+}
+
+message VidTourList {
+	repeated VidTour cVidTour = 1;
 }
 
 //Group 

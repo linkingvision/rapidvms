@@ -1,4 +1,4 @@
-set VE_VER=r2.0.1
+set VE_VER=r2.0.2
 set VE_VER_PHASE=release
 mkdir OpenCVR-%VE_VER%-win64-%VE_VER_PHASE%
 REM copy dir from client and vecvr

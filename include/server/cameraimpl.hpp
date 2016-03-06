@@ -432,8 +432,13 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		m_param.m_bHasSubStream = bHasSubStream;
 		if (m_param.m_Conf.ntype()== VID_FILE)
 		{
-			m_vPlay.Init(m_param.m_strUrl, HWAccel);
-		}else
+			m_vPlay.Init(m_param.m_strUrl, false, "fake", "fake", HWAccel);
+		}else if (m_param.m_Conf.ntype()== VID_MJPEG)
+		{
+			m_vPlay.Init(m_param.m_strUrl, true, m_param.m_Conf.struser(),
+				m_param.m_Conf.strpasswd(), HWAccel);
+		}
+		else
 		{
 			m_vPlay.Init(TRUE, m_param.m_strUrl, m_param.m_Conf.struser(),
 				m_param.m_Conf.strpasswd(), HWAccel, 

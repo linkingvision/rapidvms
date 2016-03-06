@@ -170,6 +170,113 @@ bool OAPIClient::StartLiveview(astring strId, unsigned int nStream)
 
 }
 
+bool OAPIClient::StartPlayback(astring strId, u32 nPlaytime)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPlaybackReq req;
+	req.strId = strId;
+	req.nPlayTime = nPlaytime;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_START_PLAYBACK_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+bool OAPIClient::PausePlayback(astring strId)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPlaybackPauseReq req;
+	req.strId = strId;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_PAUSE_PLAYBACK_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+bool OAPIClient::ResumePlayback(astring strId)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPlaybackResumeReq req;
+	req.strId = strId;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_RESUME_PLAYBACK_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+bool OAPIClient::SeekPlayback(astring strId, u32 nPlaytime)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPlaybackSeekReq req;
+	req.strId = strId;
+	req.nPlayTime = nPlaytime;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_SEEK_PLAYBACK_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+bool OAPIClient::StopPlayback(astring strId)
+{
+	OAPIHeader header;
+
+	oapi::OAPIPlaybackStopReq req;
+	req.strId = strId;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_STOP_PLAYBACK_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
 bool OAPIClient::AddCam(oapi::OAPIAddCameraReq sCam)
 {
 	OAPIHeader header;
@@ -485,6 +592,50 @@ bool OAPIClient::StopLiveview(astring strId, unsigned int nStream)
 	return true;
 
 }
+
+bool OAPIClient::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType)
+{
+	OAPIHeader header;
+
+	oapi::OAPISearchRecordReq rec;
+	rec.strId = strId;
+	rec.nStart = nStart;
+	rec.nEnd = nEnd;
+	rec.nType = nType;
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(rec);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_SEARCH_REC_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
+
+inline bool OAPIClient::SearchHasRec(oapi::OAPISearchHasRecordReq &pList)
+{
+	OAPIHeader header;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(pList);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_SEARCH_HAS_REC_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
 bool OAPIClient::ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &rsp)
 {
 	autojsoncxx::ParsingResult result;
@@ -608,6 +759,30 @@ inline bool OAPIClient::ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSea
 	}
 	return true;
 }
+
+inline bool OAPIClient::ParseSearchRecList(char *pRecv, int len, oapi::OAPISearchRecordRsp &list)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, list, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
+
+inline bool OAPIClient::ParseSearchHasRecList(char *pRecv, int len, 
+						oapi::OAPISearchHasRecordRsp &list)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, list, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
+
 
 
 #endif

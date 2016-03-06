@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
 
-#define VE_VERSION "r2.0.1-20160214"
-#define VE_INFO "OpenCVR r2.0.1 2016"
+#define VE_VERSION "r2.0.2-20160228"
+#define VE_INFO "OpenCVR r2.0.2 2016"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
@@ -20,6 +20,7 @@
 #define VSC_CONF_CAMERA_KEY "ConfVSCCAMERA"
 #define VSC_CONF_VIDSTOR_KEY "ConfVSCVidStor"
 #define VSC_CONF_VIEW_KEY "ConfVSCView"
+#define VSC_CONF_TOUR_KEY "ConfVSCTour"
 #define VSC_CONF_VGROUP_KEY "ConfVSCVGroup"
 #define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
 #define VSC_CONF_EMAP_KEY "ConfVSCEmap"
@@ -34,6 +35,7 @@
 #define REC_SCHED_OFF "0e4adca1-a2d6-499c-84fc-68c450e46d8f"
 #define REC_SCHED_ALL_DAY "44241a90-8927-4907-a3d1-f32f29c2266e"
 #define REC_SCHED_WORK_DAY "2010e075-f937-461f-a1a0-be39b385e0a5"
+#define VVID_UUID_NULL "a17bdf7d-9588-4bf3-8667-3fbaeaabe59e"
 
 //------------------------------------------------------------------------------
 // Conf keys, for leveldb
@@ -113,6 +115,15 @@ typedef struct __VSCConfViewKey {
         strcpy(Key, VSC_CONF_VIEW_KEY);
     }
 }VSCConfViewKey;
+
+typedef struct __VSCConfTourKey {
+    s8 Key[CONF_KEY_STR_MAX];
+    __VSCConfTourKey()
+    {
+        memset(Key, 0, CONF_KEY_STR_MAX);
+        strcpy(Key, VSC_CONF_TOUR_KEY);
+    }
+}VSCConfTourKey;
 
 /* Camera Group key */
 typedef struct __VSCConfGroupKey {

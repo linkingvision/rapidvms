@@ -36,6 +36,13 @@ public:
 	inline bool StartLiveview(astring strId, unsigned int nStream);
 	inline bool StopLiveview(astring strId, unsigned int nStream);
 
+	/* Playback */
+	inline bool StartPlayback(astring strId, u32 nPlaytime);
+	inline bool PausePlayback(astring strId);
+	inline bool ResumePlayback(astring strId);
+	inline bool SeekPlayback(astring strId, u32 nPlaytime);
+	inline bool StopPlayback(astring strId);
+
 	inline bool AddCam(oapi::OAPIAddCameraReq sCam);
 	inline bool SetCamSched(oapi::OAPICameraUpdateSchedReq sCam);
 	inline bool DeleteCam(astring strId);
@@ -50,6 +57,8 @@ public:
 	inline bool ConfLic(astring strLic);
 	inline bool CamSearchStart();
 	inline bool CamSearchStop();
+	inline bool SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType);
+	inline bool SearchHasRec(oapi::OAPISearchHasRecordReq &pList);
 	/* Parse all the list */
 public:
 	inline bool ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
@@ -63,6 +72,8 @@ public:
 	inline bool ParseVer(char *pRecv, int len, astring &strVer, astring &strInfo);
 	inline bool ParseGetCam(char *pRecv, int len, oapi::OAPICameraGetRsp &pCam);
 	inline bool ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSearchedNotify &pCam);
+	inline bool ParseSearchRecList(char *pRecv, int len, oapi::OAPISearchRecordRsp &list);
+	inline bool ParseSearchHasRecList(char *pRecv, int len, oapi::OAPISearchHasRecordRsp &list);
 
 	
 private:

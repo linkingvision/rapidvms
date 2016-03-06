@@ -7,6 +7,7 @@
         ["bool", "bRet", {"required": true}]
     ]
 },
+
 {
     "name": "LoginReq",
     "parse_mode": "strict",
@@ -26,6 +27,7 @@
 		["bool", "bRet", {"required": true}]
     ]
 },
+
 {
     "name": "KeepAliveReq",
     "parse_mode": "strict",
@@ -70,6 +72,8 @@
 		["unsigned int", "bRec", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPICameraListReq",
 	"namespace": "oapi",
@@ -86,6 +90,8 @@
         ["std::vector<oapi::OAPICamera>", "list"]
     ]
 },
+
+
 {
     "name": "OAPICameraGetReq",
 	"namespace": "oapi",
@@ -100,6 +106,8 @@
         ["oapi::OAPICamera", "cam", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPICameraUpdateSchedReq",
 	"namespace": "oapi",
@@ -107,6 +115,8 @@
         ["oapi::OAPICamera", "cam", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIAddCameraReq",
 	"namespace": "oapi",
@@ -114,6 +124,8 @@
         ["oapi::OAPICamera", "cam", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIDeleteCameraReq",
 	"namespace": "oapi",
@@ -121,6 +133,8 @@
         ["std::string", "strId", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIStartLiveViewReq",
     "parse_mode": "strict",
@@ -130,6 +144,8 @@
 		["unsigned int", "nStream", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIStopLiveViewReq",
     "parse_mode": "strict",
@@ -139,6 +155,8 @@
 		["unsigned int", "nStream", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIPlaybackReq",
     "parse_mode": "strict",
@@ -148,14 +166,48 @@
 		["unsigned int", "nPlayTime", {"required": true}]
     ]
 },
+
+
+{
+    "name": "OAPIPlaybackPauseReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+
+
+{
+    "name": "OAPIPlaybackResumeReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+
+
 {
     "name": "OAPIPlaybackSeekReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
+		["std::string", "strId", {"required": true}],
 		["unsigned int", "nPlayTime", {"required": true}]
     ]
 },
+
+{
+    "name": "OAPIPlaybackStopReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+
+
 {
     "name": "OAPIDisk",
     "parse_mode": "strict",
@@ -185,6 +237,8 @@
         ["std::vector<oapi::OAPIDisk>", "list"]
     ]
 },
+
+
 {
     "name": "OAPISysDiskListReq",
     "parse_mode": "strict",
@@ -201,6 +255,8 @@
         ["std::vector<oapi::OAPIDisk>", "list"]
     ]
 },
+
+
 {
     "name": "OAPIAddDiskReq",
     "parse_mode": "strict",
@@ -209,6 +265,8 @@
         ["oapi::OAPIDisk", "disk", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIDelDiskReq",
     "parse_mode": "strict",
@@ -217,6 +275,8 @@
         ["std::string", "strId", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIUpdateDiskLimitReq",
     "parse_mode": "strict",
@@ -225,6 +285,8 @@
         ["oapi::OAPIDisk", "disk", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIGetLicReq",
     "parse_mode": "strict",
@@ -245,6 +307,8 @@
 		["std::string", "strExpireTime", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIGetVerReq",
     "parse_mode": "strict",
@@ -262,6 +326,8 @@
 		["std::string", "strInfo", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIConfLicReq",
     "parse_mode": "strict",
@@ -270,6 +336,8 @@
         ["std::string", "strLic", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIConfAdminReq",
     "parse_mode": "strict",
@@ -279,6 +347,8 @@
 		["std::string", "strNewPasswd", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPIRegNotifyReq",
     "parse_mode": "strict",
@@ -287,6 +357,8 @@
         ["std::string", "strFake", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPISearchCamStartReq",
     "parse_mode": "strict",
@@ -295,6 +367,8 @@
         ["std::string", "strFake", {"required": true}]
     ]
 },
+
+
 {
     "name": "OAPISearchCamStopReq",
     "parse_mode": "strict",
@@ -303,6 +377,76 @@
         ["std::string", "strFake", {"required": true}]
     ]
 },
+
+{
+    "name": "OAPIRecordItem",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned long long", "nId", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}],
+		["unsigned int ", "nType", {"required": true}]
+    ]
+},
+
+{
+    "name": "OAPIHasRecordItem",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["unsigned long long", "nIdx", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}],
+		["unsigned int", "nType", {"required": true}],
+		["unsigned int", "bHas", {"required": true}]
+    ]
+},
+
+
+{
+    "name": "OAPISearchRecordReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}],
+		["unsigned int ", "nType", {"required": true}]
+    ]
+},
+{
+    "name": "OAPISearchRecordRsp",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "strId", {"required": true}],
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIRecordItem>", "record"]
+    ]
+},
+
+
+{
+    "name": "OAPISearchHasRecordReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "strId", {"required": true}],
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIHasRecordItem>", "record"]
+    ]
+},
+{
+    "name": "OAPISearchHasRecordRsp",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "strId", {"required": true}],
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIHasRecordItem>", "hasRecord"]
+    ]
+},
+
+
 {
     "name": "OAPICamSearchedNotify",
     "parse_mode": "strict",

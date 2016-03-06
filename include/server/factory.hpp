@@ -130,9 +130,6 @@ public:
 					RecordItemMap &map);
 	BOOL SearchHasItems(astring strCamId, u32 startTime, u32 endTime, 
 					u32 recordType);
-	BOOL SearchAItem(astring strCamId, u32 Time, VdbRecordItem &pItem);
-	BOOL SearchAItemNear(astring strCamId, u32 Time, VdbRecordItem &pItem);
-	BOOL SearchNextItem(astring strCamId, s64 LastId, VdbRecordItem &pItem);
 
 	VDB & GetVdb();
 

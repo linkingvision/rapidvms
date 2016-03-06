@@ -105,9 +105,244 @@ bool OAPIConverter::Converter(VidDisk &from, oapi::OAPIDisk &to)
 	return true;
 }
 
+ OAPIServerCamSearch::OAPIServerCamSearch(OAPICamSearchInterface &pCamInf, 
+	Factory &pFactory)
+:m_pFactory(pFactory), m_pCamInf(pCamInf), m_bQuit(false), m_Timer(NULL)
+{
+	/* auto delete when the thread exit */
+	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+	m_Timer = new QTimer(this);
+	connect(m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeout()));
+	m_Timer->start(500);
+}
+ OAPIServerCamSearch::~OAPIServerCamSearch()
+{
+
+}
+
+ bool OAPIServerCamSearch::ClearCamSearcherMap()
+{
+	DeviceSearcherMap::iterator it = m_CamSearcherMap.begin(); 
+	for(; it!=m_CamSearcherMap.end(); ++it)
+	{
+		if ((*it).second)
+		{
+    			disconnect((*it).second, SIGNAL(receiveData(const QHash<QString, QString> &) ),
+					this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)));
+			delete (*it).second;
+		}
+	}
+
+	m_CamSearcherMap.clear();
+
+	return true;
+}
+
+static void GetIPAndPort(astring &str, astring & ip, astring & port, astring & onvifAddr)
+{
+       astring strItem = "http://";
+	size_t pos = 0;
+	while (1)
+	{
+	       strItem = "http://";
+		size_t p1 = str.find(strItem, pos);
+		if (p1 == string::npos) return;
+		size_t posIP = p1 + strItem.length();
+		strItem = "/";
+		size_t p2 = str.find(strItem,posIP);
+		if (p2 == string::npos) return;
+		string strGetIP = str.substr(posIP, p2 - posIP);
+		if (strGetIP.find(".") == string::npos || 
+			strGetIP.find("169") == 0)
+		{
+			/* IPV6 address */
+			pos = p2;
+			continue;
+		}
+		string strGetOnvifAddr;
+		strItem = "http://";
+		if (str.find(strItem, p2) == string::npos)
+		{
+			strGetOnvifAddr = str .substr(p2);
+		}else
+		{
+			strItem = " ";
+			size_t p3 = str.find(strItem, p2);
+			if (p3 == string::npos) return;
+			strGetOnvifAddr = str.substr(p2, p3 - p2);
+		}
+
+	       string strPort = "80";
+		size_t posPort = strGetIP.find_first_of(":");
+		if (posPort != std::string::npos) 
+		{
+			strPort = strGetIP.substr(posPort + 1);
+			string strIPTemp = strGetIP.substr(0, posPort);
+			strGetIP = strIPTemp;
+		}
+		ip = strGetIP;
+		port = strPort;
+		onvifAddr = strGetOnvifAddr;
+		strItem = "http://";
+		if (str.find(strItem, p2) == string::npos)
+		{
+			break;
+		}else
+		{
+			pos = p2;
+			continue;			
+		}
+	}
+	
+}
+
+static void GetHardwareModel(astring &str, astring & hdModel)
+{
+	size_t pos1= 0;
+	size_t pos2 = 0;	
+	std::string strItem;
+	strItem = "hardware/";
+	pos2 = str.find(strItem);
+
+	string sHardware = "unknown";
+	if (pos2 != string::npos)
+	{
+		size_t posHardware =  pos2 + strItem.length();
+		strItem = "onvif";
+		pos1 = str.find(strItem,pos2);
+		
+		if (pos1 != string::npos)
+		{
+			sHardware =  str.substr(posHardware,pos1 - posHardware);
+			transform(sHardware.begin(), sHardware.end(),sHardware.begin(),(int(*)(int))toupper);
+		}
+		
+	}
+	hdModel = sHardware;
+}
+
+ void OAPIServerCamSearch::SlotSearchReceiveData(const QHash<QString, QString> &data)
+{
+	astring ip = "192.168.0.1";
+	astring port = "80";
+	astring hdModel = "unknown";
+	astring OnvifAddr = "/onvif/device_service";
+	astring type = data["types"].toStdString();
+	astring strFilter = data["device_ip"].toStdString();
+	transform(type.begin(), type.end(),type.begin(),(int(*)(int))tolower);
+	transform(strFilter.begin(), strFilter.end(),strFilter.begin(),(int(*)(int))tolower);
+	if (strFilter.find("network_video_storage") != string::npos)
+	{
+	    VDC_DEBUG("[ONVIF]: it is a NVS device\n");
+	    return;
+	} 
+	size_t pos1 = type.find("networkvideotransmitter");
+	VDC_DEBUG( "[ONVIF]: Searched ip %s\n", data["device_service_address"].toStdString().c_str());
+	if (pos1 == string::npos)
+	{
+	    return;
+	}
+	astring strServerAddr = data["device_service_address"].toStdString();
+	GetIPAndPort(strServerAddr,  ip, port, OnvifAddr);
+	astring strDeviceIp = data["device_ip"].toStdString();
+	GetHardwareModel(strDeviceIp, hdModel);
+	m_pCamInf.NewCam(ip, port, hdModel, OnvifAddr);
+	
+	return;
+}
+
+ bool OAPIServerCamSearch::CamSearcherStart()
+{
+	QList<QHostAddress> hostAddr = DeviceSearcher::getHostAddress();
+	QList<QHostAddress>::iterator i;
+	for(i=hostAddr.begin();i!=hostAddr.end();i++)
+	{
+		astring strHostAddr = (*i).toString().toStdString();
+		QHostAddress host((*i).toString());
+		m_CamSearcherMap[strHostAddr]  = DeviceSearcher::instance(host);
+    		connect(m_CamSearcherMap[strHostAddr], SIGNAL(receiveData(const QHash<QString, QString> &) ), 
+			this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)));
+    		m_CamSearcherMap[strHostAddr]->sendSearchMsg();
+
+	}
+
+	return true;
+}
+
+ bool OAPIServerCamSearch::QuitSearch()
+{
+	XGuard guard(m_cMutex);
+	m_bQuit = true;
+	return true;
+}
+
+ void OAPIServerCamSearch::SlotTimeout()
+{
+	XGuard guard(m_cMutex);
+	if (m_bQuit == true)
+	{
+		this->exit(0);
+	}
+}
+
+ void OAPIServerCamSearch::run()
+{
+	ClearCamSearcherMap();
+	CamSearcherStart();
+	exec();
+}
+
+OAPIServerPlayback::OAPIServerPlayback(OAPIPlaybackInterface &pPbInf, 
+	Factory &pFactory, astring strId, u32 nPlaytime)
+:m_pFactory(pFactory), m_pPbInf(pPbInf), m_strId(strId), m_nPlaytime(nPlaytime), 
+m_pbWrapper(pFactory.GetVdb(), strId, nPlaytime, 
+(PBCallbackFunctionPtr)(OAPIServerPlayback::DataHandler), 
+false, this), m_bQuit(false)
+{
+	/* auto delete when the thread exit */
+	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+}
+OAPIServerPlayback::~OAPIServerPlayback()
+{
+
+}
+
+void OAPIServerPlayback::run()
+{
+	m_pbWrapper.run();
+	while(m_bQuit != true)
+	{
+		ve_sleep(300);
+	}
+}
+
+bool OAPIServerPlayback::SeekToTime(u32 seekTime)
+{
+	m_pbWrapper.SeekToTime(seekTime);
+	return true;
+}
+bool OAPIServerPlayback::StartPlay()
+{
+	m_pbWrapper.StartPlay();
+	return true;
+}
+bool OAPIServerPlayback::PausePlay()
+{
+	m_pbWrapper.StopPlay();
+	return true;
+}
+bool OAPIServerPlayback::QuitPlay()
+{
+	XGuard guard(m_cMutex);
+	m_bQuit = true;
+	m_pbWrapper.QuitPlay();
+	return true;
+}
+
 OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
 :m_pFactory(pFactory), m_pSocket(pSocket), m_cnt(0), 
-m_bLogin(FALSE), m_bStreaming(false), m_bRegNotify(false)
+m_bLogin(FALSE), m_bStreaming(false), m_bRegNotify(false), m_pPlayback(NULL), 
+m_pCamSearch(NULL)
 {
 	UUIDGenerator uuidCreator;
 	
@@ -174,7 +409,7 @@ bool OAPIServer::NotifyCamAdd(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_ADD);
 	header.length = htonl(nJsonLen + 1);
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	
@@ -195,7 +430,8 @@ bool OAPIServer::NotifyCamDel(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_DEL);
 	header.length = htonl(nJsonLen + 1);
-	
+
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	
@@ -216,7 +452,7 @@ bool OAPIServer::NotifyCamOnline(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_ONLINE);
 	header.length = htonl(nJsonLen + 1);
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	
@@ -237,7 +473,7 @@ bool OAPIServer::NotifyCamOffline(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_OFFLINE);
 	header.length = htonl(nJsonLen + 1);
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	
@@ -258,7 +494,7 @@ bool OAPIServer::NotifyCamRecOn(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_REC_ON);
 	header.length = htonl(nJsonLen + 1);
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	
@@ -279,7 +515,7 @@ bool OAPIServer::NotifyCamRecOff(FactoryCameraChangeData data)
 	}
 	header.cmd = htonl(OAPI_NOTIFY_DEVICE_REC_OFF);
 	header.length = htonl(nJsonLen + 1);
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 	return true;
@@ -308,7 +544,11 @@ OAPIServer::~OAPIServer()
 		m_pFactory.UnRegCameraChangeNotify((void *)this);
 	}
 
-	ClearCamSearcherMap();
+	if (m_pPlayback)
+	{
+		m_pPlayback->QuitPlay();
+		m_pPlayback = NULL;
+	}
 }
 
 BOOL OAPIServer::ProcessStartLive(s32 len)
@@ -765,7 +1005,7 @@ inline BOOL OAPIServer::ProcessLogin(s32 len)
 	header.cmd = htonl(OAPI_LOGIN_RSP);
 	header.length = htonl(nJsonLen + 1);
 
-	
+
 	m_pSocket->Send((void *)&header, sizeof(header));
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 #endif
@@ -1177,11 +1417,12 @@ inline bool OAPIServer::ProcessCamSearchStart(s32 len)
 		}
 		
 	}
-	/* Clear first */
-	ClearCamSearcherMap();
-	CamSearcherStart();
+
+	m_pCamSearch = new OAPIServerCamSearch(*this, m_pFactory);
+	
 	delete [] pRecv;
 	SendCmnRetRsp(OAPI_CAM_SEARCH_START_RSP, true);
+	m_pCamSearch->start();
 
 	return true;	
 }
@@ -1206,11 +1447,312 @@ inline bool OAPIServer::ProcessCamSearchStop(s32 len)
 		}
 		
 	}
-	ClearCamSearcherMap();
+	if (m_pCamSearch)
+	{
+		m_pCamSearch->QuitSearch();
+		m_pCamSearch = NULL;
+	}
 	delete [] pRecv;
 	SendCmnRetRsp(OAPI_CAM_SEARCH_STOP_RSP, true);
 
 	return true;	
+}
+
+
+bool OAPIServer::ProcessSearchRec(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPISearchRecordReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+	}
+
+	RecordItemMap recMap;
+
+	m_pFactory.SearchItems(req.strId, req.nStart, req.nEnd, req.nType, recMap);
+
+	oapi::OAPISearchRecordRsp recList;
+	recList.Num = 0;
+	RecordItemMap::iterator it = recMap.begin(); 
+	recList.strId = req.strId;
+	for(; it!=recMap.end(); ++it)
+	{	
+		oapi::OAPIRecordItem recItem;
+		recItem.nId = (*it).second.id;
+		recItem.nStart = (*it).second.start;
+		recItem.nEnd = (*it).second.end;
+		recItem.nType = (*it).second.type;
+
+		recList.record.push_back(recItem);
+		recList.Num ++;
+	}
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(recList);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_SEARCH_REC_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+}
+
+bool OAPIServer::ProcessSearchHasRec(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPISearchHasRecordReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+	}
+
+	oapi::OAPISearchHasRecordRsp rsp;
+
+	rsp.strId = req.strId;
+	rsp.Num = 0;
+	std::vector<oapi::OAPIHasRecordItem>::iterator it;
+	for (it = req.record.begin(); it != req.record.end(); it ++)
+	{
+		(*it).bHas = m_pFactory.SearchHasItems(req.strId, (*it).nStart, (*it).nEnd, (*it).nType);
+		rsp.hasRecord.push_back(*it);
+		rsp.Num ++;
+	}
+	
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_SEARCH_HAS_REC_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+}
+
+bool OAPIServer::ProcessStartPlayback(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPlaybackReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	if (m_pPlayback != NULL)
+	{
+		m_pPlayback->QuitPlay();
+		/* the playback thread will delete auto */
+		m_pPlayback = NULL;
+	}
+
+	m_pPlayback = new OAPIServerPlayback(*this, m_pFactory, req.strId, req.nPlayTime);
+	m_pPlayback->start();
+	delete [] pRecv;
+
+	return TRUE;
+}
+bool OAPIServer::ProcessPausePlayback(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPlaybackPauseReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	if (m_pPlayback != NULL)
+	{
+		m_pPlayback->PausePlay();
+	}
+
+	delete [] pRecv;
+
+	return TRUE;
+}
+bool OAPIServer::ProcessResumePlayback(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPlaybackResumeReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	if (m_pPlayback != NULL)
+	{
+		m_pPlayback->StartPlay();
+	}
+
+	delete [] pRecv;
+
+	return TRUE;
+}
+bool OAPIServer::ProcessSeekPlayback(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPlaybackSeekReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	if (m_pPlayback != NULL)
+	{
+		m_pPlayback->SeekToTime(req.nPlayTime);
+	}
+
+	delete [] pRecv;
+
+	return TRUE;
+}
+bool OAPIServer::ProcessStopPlayback(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIPlaybackStopReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	if (m_pPlayback != NULL)
+	{
+		m_pPlayback->QuitPlay();
+		/* the playback thread will delete auto */
+		m_pPlayback = NULL;
+	}
+
+	delete [] pRecv;
+
+	return TRUE;
+}
+
+bool OAPIServer::NewFrame(VideoFrame& frame)
+{
+	DataHandler1(frame);
+	return true;
+}
+
+bool OAPIServer::NewCam(astring strIP, astring strPort, 
+			astring strModel, astring strONVIFAddr)
+{
+	oapi::OAPICamSearchedNotify cam;
+
+	cam.strIP = strIP;
+	cam.strPort = strPort;
+	cam.strModel = strModel;
+	cam.strONVIFAddress = strONVIFAddr;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(cam);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_CAM_SAERCH_PUSH);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return true;
 }
 
 BOOL OAPIServer::Process(OAPIHeader &header)
@@ -1289,7 +1831,27 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 		case OAPI_PTZ_CMD:
 			return ProcessPtzCmd(header.length);
 			break;
-
+		case OAPI_SEARCH_REC_REQ:
+			return ProcessSearchRec(header.length);
+			break;
+		case OAPI_SEARCH_HAS_REC_REQ:
+			return ProcessSearchHasRec(header.length);
+			break;
+		case OAPI_START_PLAYBACK_REQ:
+			return ProcessStartPlayback(header.length);
+			break;
+		case OAPI_PAUSE_PLAYBACK_REQ:
+			return ProcessPausePlayback(header.length);
+			break;
+		case OAPI_RESUME_PLAYBACK_REQ:
+			return ProcessResumePlayback(header.length);
+			break;
+		case OAPI_SEEK_PLAYBACK_REQ:
+			return ProcessSeekPlayback(header.length);
+			break;
+		case OAPI_STOP_PLAYBACK_REQ:
+			return ProcessStopPlayback(header.length);
+			break;
 		default:
 			break;		
 	}
@@ -1315,139 +1877,6 @@ inline bool OAPIServer::SendCmnRetRsp(OAPICmd nCmd,
 	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
 }
 
-static void GetIPAndPort(astring &str, astring & ip, astring & port, astring & onvifAddr)
-{
-       astring strItem = "http://";
-	size_t pos = 0;
-	while (1)
-	{
-	       strItem = "http://";
-		size_t p1 = str.find(strItem, pos);
-		if (p1 == string::npos) return;
-		size_t posIP = p1 + strItem.length();
-		strItem = "/";
-		size_t p2 = str.find(strItem,posIP);
-		if (p2 == string::npos) return;
-		string strGetIP = str.substr(posIP, p2 - posIP);
-		if (strGetIP.find(".") == string::npos || 
-			strGetIP.find("169") == 0)
-		{
-			/* IPV6 address */
-			pos = p2;
-			continue;
-		}
-		string strGetOnvifAddr;
-		strItem = "http://";
-		if (str.find(strItem, p2) == string::npos)
-		{
-			strGetOnvifAddr = str .substr(p2);
-		}else
-		{
-			strItem = " ";
-			size_t p3 = str.find(strItem, p2);
-			if (p3 == string::npos) return;
-			strGetOnvifAddr = str.substr(p2, p3 - p2);
-		}
-
-	       string strPort = "80";
-		size_t posPort = strGetIP.find_first_of(":");
-		if (posPort != std::string::npos) 
-		{
-			strPort = strGetIP.substr(posPort + 1);
-			string strIPTemp = strGetIP.substr(0, posPort);
-			strGetIP = strIPTemp;
-		}
-		ip = strGetIP;
-		port = strPort;
-		onvifAddr = strGetOnvifAddr;
-		strItem = "http://";
-		if (str.find(strItem, p2) == string::npos)
-		{
-			break;
-		}else
-		{
-			pos = p2;
-			continue;			
-		}
-	}
-	
-}
-
-static void GetHardwareModel(astring &str, astring & hdModel)
-{
-	size_t pos1= 0;
-	size_t pos2 = 0;	
-	std::string strItem;
-	strItem = "hardware/";
-	pos2 = str.find(strItem);
-
-	string sHardware = "unknown";
-	if (pos2 != string::npos)
-	{
-		size_t posHardware =  pos2 + strItem.length();
-		strItem = "onvif";
-		pos1 = str.find(strItem,pos2);
-		
-		if (pos1 != string::npos)
-		{
-			sHardware =  str.substr(posHardware,pos1 - posHardware);
-			transform(sHardware.begin(), sHardware.end(),sHardware.begin(),(int(*)(int))toupper);
-		}
-		
-	}
-	hdModel = sHardware;
-}
-
-inline void OAPIServer::SlotSearchReceiveData(const QHash<QString, QString> &data)
-{
-	astring ip = "192.168.0.1";
-	astring port = "80";
-	astring hdModel = "unknown";
-	astring OnvifAddr = "/onvif/device_service";
-	astring type = data["types"].toStdString();
-	astring strFilter = data["device_ip"].toStdString();
-	transform(type.begin(), type.end(),type.begin(),(int(*)(int))tolower);
-	transform(strFilter.begin(), strFilter.end(),strFilter.begin(),(int(*)(int))tolower);
-	if (strFilter.find("network_video_storage") != string::npos)
-	{
-	    VDC_DEBUG("[ONVIF]: it is a NVS device\n");
-	    return;
-	} 
-	size_t pos1 = type.find("networkvideotransmitter");
-	VDC_DEBUG( "[ONVIF]: Searched ip %s\n", data["device_service_address"].toStdString().c_str());
-	if (pos1 == string::npos)
-	{
-	    return;
-	}
-	astring strServerAddr = data["device_service_address"].toStdString();
-	GetIPAndPort(strServerAddr,  ip, port, OnvifAddr);
-	astring strDeviceIp = data["device_ip"].toStdString();
-	GetHardwareModel(strDeviceIp, hdModel);
-
-	oapi::OAPICamSearchedNotify cam;
-
-	cam.strIP = ip;
-	cam.strPort = port;
-	cam.strModel = hdModel;
-	cam.strONVIFAddress = OnvifAddr;
-
-	std::string strJson = autojsoncxx::to_pretty_json_string(cam);
-	s32 nJsonLen = strJson.length();
-	if (nJsonLen <= 0)
-	{
-		return;
-	}
-	
-	OAPIHeader header;
-	header.cmd = htonl(OAPI_CAM_SAERCH_PUSH);
-	header.length = htonl(nJsonLen + 1);
-
-	m_pSocket->Send((void *)&header, sizeof(header));
-	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
-
-	return;
-	
-}
 
 inline void OAPIServer::DataHandler1(VideoFrame& frame)
 {
@@ -1474,42 +1903,6 @@ inline void OAPIServer::DataHandler(VideoFrame& frame, void * pParam)
     OAPIServer *pOapi = static_cast<OAPIServer *> (pParam);
     
     return pOapi->DataHandler1(frame);
-}
-
-inline bool OAPIServer::CamSearcherStart()
-{
-	QList<QHostAddress> hostAddr = DeviceSearcher::getHostAddress();
-	QList<QHostAddress>::iterator i;
-	for(i=hostAddr.begin();i!=hostAddr.end();i++)
-	{
-		astring strHostAddr = (*i).toString().toStdString();
-		QHostAddress host((*i).toString());
-		m_CamSearcherMap[strHostAddr]  = DeviceSearcher::instance(host);
-    		connect(m_CamSearcherMap[strHostAddr], SIGNAL(receiveData(const QHash<QString, QString> &) ), 
-			this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)));
-    		m_CamSearcherMap[strHostAddr]->sendSearchMsg();
-
-	}
-
-	return true;
-}
-
-inline bool OAPIServer::ClearCamSearcherMap()
-{
-	DeviceSearcherMap::iterator it = m_CamSearcherMap.begin(); 
-	for(; it!=m_CamSearcherMap.end(); ++it)
-	{
-		if ((*it).second)
-		{
-    			disconnect((*it).second, SIGNAL(receiveData(const QHash<QString, QString> &) ),
-					this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)));
-			delete (*it).second;
-		}
-	}
-
-	m_CamSearcherMap.clear();
-
-	return true;
 }
 
 #endif
