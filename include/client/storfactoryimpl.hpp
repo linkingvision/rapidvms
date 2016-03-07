@@ -198,6 +198,17 @@ inline VidCameraList StorFactory::GetVidCameraList(astring strStor)
 	return empty;
 }
 
+inline astring StorFactory::GetVidCameraName(astring strStor, astring strCam)
+{
+	astring empty;
+	if (m_pConf.FindStor(strStor) && m_StorClientMap[strStor])
+	{
+		return m_StorClientMap[strStor]->GetVidCameraName(strCam);
+	}
+
+	return empty;
+}
+
 inline bool StorFactory::GetOnline(astring strStor)
 {
 	if (m_pConf.FindStor(strStor) &&  m_StorClientMap[strStor])

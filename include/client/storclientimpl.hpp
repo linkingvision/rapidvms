@@ -63,6 +63,32 @@ inline VidCameraList StorClient::GetVidCameraList()
 	return m_cCamList;
 }
 
+inline astring StorClient::GetVidCameraName(astring strCam)
+{
+	astring empty;
+	
+	if (m_bOnline == false)
+	{
+		return empty;
+	}
+
+	XGuard guard(m_cMutex);
+
+	int cameraSize = m_cCamList.cvidcamera_size();
+
+	for (s32 i = 0; i < m_cCamList.cvidcamera_size(); i ++)
+	{
+		const VidCamera &cam = m_cCamList.cvidcamera(i);
+		if (cam.strid() == strCam)
+		{
+			return cam.strname();
+		}
+	}
+
+	return empty;
+	
+}
+
 inline void StorClient::UpdateVidCameraList(oapi::OAPICameraListRsp list)
 {
 	
@@ -174,18 +200,18 @@ inline void StorClient::run()
 			pClient.Setup(m_stor.struser(), m_stor.strpasswd(), "Nonce");
 			
 	
-			m_pSocket->SetRecvTimeout(1 * 300);
+			//m_pSocket->SetRecvTimeout(1 * 300);
 			while(m_Quit != true)
 			{
+				guard.Release();
 				nRet = m_pSocket->Recv((void *)&header, sizeof(header));
+				guard.Acquire();
 				if (nRet != sizeof(header))
 				{
 					if (m_pSocket->Valid() == true)
 					{
 						/* Have not recevice any data */
-						guard.Release();
-						ve_sleep(200);
-						guard.Acquire();
+						//ve_sleep(200);
 						continue;
 					}else
 					{
@@ -263,7 +289,7 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							//pClient.SendDeviceListRequest();
+							pClient.SendDeviceListRequest();
 							m_bOnline = true;
 							break;
 						}
@@ -279,7 +305,7 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.CallChange(data);
 							guard.Acquire();
-							//pClient.SendDeviceListRequest();
+							pClient.SendDeviceListRequest();
 							break;
 						}
 							break;
