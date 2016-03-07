@@ -35,6 +35,10 @@ typedef enum
     CLIENT_FACTORY_VGROUP_ADD,
     CLIENT_FACTORY_VGROUP_DEL,
 
+    /*Emap add and del */
+    CLIENT_FACTORY_EMAP_ADD,
+    CLIENT_FACTORY_EMAP_DEL,
+
     /* Camera tour add and del */
     CLIENT_FACTORY_TOUR_ADD,
     CLIENT_FACTORY_TOUR_DEL,
@@ -92,37 +96,12 @@ public:
 	bool SetLang(VidLanguage &nLang);
 	bool AddView(VidView &pView);
 	bool DelView(astring strId);
+	bool AddEmap(VidEmap &pEmap);
+	bool DelEmap(astring strId);
+	bool AddEmapCamera(astring strId, VidEmapCamera cCam);
+	bool DelEmapCamera(astring strId, astring strCamId);
 
 #if 0
-
-/* Emap function */
-public:
-	BOOL GetEmapData(VSCEmapData &pData);
-	BOOL SetEmapData(VSCEmapData &pData);
-	BOOL AddEmapCamera(s32 nIndex, u32 x, u32 y, u32 w, u32 h);
-	BOOL DelEmapCamera(s32 nIndex);
-	BOOL GetEmapCamera(s32 nIndex, u32 &x, u32 &y, u32 &w, u32 &h);
-	
-	BOOL GetEmapFile(astring &strFile);
-	BOOL SetEmapFile(astring &strFile);
-
-public:
-	BOOL GetLang(VSCLangType &pLang);
-	BOOL SetLang(VSCLangType &pLang);
-	
-public:
-	/* VMS */
-	BOOL GetVms(VSCVmsData &pData);
-	s32 AddVms(VSCVmsDataItem &pParam);
-	BOOL DelVms(s32 Id);
-	BOOL GetVmsById(VSCVmsDataItem &pParam, int nId);
-
-	/* View */
-	BOOL GetView(VSCViewData &pData);
-	s32 AddView(VSCViewDataItem &pParam);
-	BOOL DelView(s32 Id);
-	BOOL GetViewById(VSCViewDataItem &pParam, int nId);
-
 	/* Camera group */
 	BOOL GetVGroup(VSCVGroupData &pData);
 	s32 AddVGroup(VSCVGroupDataItem &pParam);

@@ -225,6 +225,7 @@ inline bool ClientFactory::AddView(VidView &pView)
 
 	data.type = CLIENT_FACTORY_VIEW_ADD;
 	data.id = pView.strid();
+	CallChange(data);
 	return ret;
 }
 inline bool ClientFactory::DelView(astring strId)
@@ -234,115 +235,111 @@ inline bool ClientFactory::DelView(astring strId)
 
 	data.type = CLIENT_FACTORY_VIEW_DEL;
 	data.id = strId;
+	CallChange(data);
 	return ret;
+}
+
+inline bool ClientFactory::AddEmap(VidEmap &pEmap)
+{
+	ClientFactoryChangeData data;
+	bool ret = m_Conf.AddEmap(pEmap);
+
+	data.type = CLIENT_FACTORY_EMAP_ADD;
+	data.id = pEmap.strid();
+	CallChange(data);
+	return ret;
+}
+inline bool ClientFactory::DelEmap(astring strId)
+{
+	ClientFactoryChangeData data;
+	bool ret = m_Conf.DeleteEmap(strId);
+
+	data.type = CLIENT_FACTORY_EMAP_DEL;
+	data.id = strId;
+	CallChange(data);
+	return ret;
+}
+
+inline bool ClientFactory::AddEmapCamera(astring strId, VidEmapCamera cCam)
+{
+	bool ret = false;
+	bool bAdd = false;
+
+	VidEmap pEmap;
+	VidEmap pEmapNew;
+
+	if (m_Conf.GetEmapConf(strId, pEmap) == false)
+	{
+		return false;
+	}
+
+	pEmapNew = pEmap;
+	pEmapNew.clear_ccamera();
+
+	int camSize = pEmap.ccamera_size();
+
+	for (s32 i = 0; i < pEmap.ccamera_size(); i++)
+	{
+		const VidEmapCamera &emapCam = pEmap.ccamera(i);
+		if (emapCam.cid().strcameraid() == strId)
+		{
+			VidEmapCamera *pAddCam = pEmapNew.add_ccamera();
+			*pAddCam = cCam;
+			bAdd = true;
+		}
+		else
+		{
+			VidEmapCamera *pAddCam = pEmapNew.add_ccamera();
+			*pAddCam = emapCam;
+		}
+	}
+
+	if (bAdd == false)
+	{
+		VidEmapCamera *pAddCam = pEmapNew.add_ccamera();
+		*pAddCam = cCam;
+	}
+
+	m_Conf.DeleteEmap(strId);
+	m_Conf.AddEmap(pEmapNew);
+
+	return true;
+}
+inline bool ClientFactory::DelEmapCamera(astring strId, astring strCamId)
+{
+	bool ret = false;
+
+	VidEmap pEmap;
+	VidEmap pEmapNew;
+
+	if (m_Conf.GetEmapConf(strId, pEmap) == false)
+	{
+		return false;
+	}
+
+	pEmapNew = pEmap;
+	pEmapNew.clear_ccamera();
+
+	int camSize = pEmap.ccamera_size();
+
+	for (s32 i = 0; i < pEmap.ccamera_size(); i ++)
+	{
+		const VidEmapCamera &emapCam = pEmap.ccamera(i);
+		if (emapCam.cid().strcameraid() != strId)
+		{
+			VidEmapCamera *pAddCam = pEmapNew.add_ccamera();
+			*pAddCam = emapCam;
+		}
+	}
+
+	m_Conf.DeleteEmap(strId);
+	m_Conf.AddEmap(pEmapNew);
+
+	return true;
+	
 }
 
 #if 0
-inline BOOL ClientFactory::GetEmapData(VSCEmapData &pData)
-{
-	Lock();
-	m_Conf.GetEmapData(pData);	
-	UnLock();
-	return TRUE;
-}
-inline BOOL ClientFactory::SetEmapData(VSCEmapData &pData)
-{
-	Lock();
-	m_Conf.UpdateEmapData(pData);	
-	UnLock();
-	return TRUE;
-}
-
-/* (x, y) in the image, w h is the image width height */
-inline BOOL ClientFactory::AddEmapCamera(s32 nIndex, u32 x, u32 y, u32 w, u32 h)
-{
-	VSCEmapData pData;
-	Lock();
-	m_Conf.GetEmapData(pData);
-	if (nIndex < CONF_MAP_MAX && nIndex > 0)
-	{
-		pData.data.conf.emap[nIndex].x = x;
-		pData.data.conf.emap[nIndex].y = y;
-
-		pData.data.conf.emap[nIndex].w = w;
-		pData.data.conf.emap[nIndex].h = h;
-		
-		pData.data.conf.emap[nIndex].Used = 1;
-		pData.data.conf.emap[nIndex].nId = nIndex;
-	}else
-	{
-		UnLock();
-		return FALSE;
-	}
-	
-	m_Conf.UpdateEmapData(pData);	
-	UnLock();
-	return TRUE;
-}
-inline BOOL ClientFactory::DelEmapCamera(s32 nIndex)
-{
-	VSCEmapData pData;
-	Lock();
-	m_Conf.GetEmapData(pData);
-
-	if (nIndex < CONF_MAP_MAX && nIndex > 0)
-	{
-		pData.data.conf.emap[nIndex].Used = 0;
-	}else
-	{
-		UnLock();
-		return FALSE;
-	}
-	m_Conf.UpdateEmapData(pData);	
-	UnLock();
-	return TRUE;
-}
-inline BOOL ClientFactory::GetEmapCamera(s32 nIndex, u32 &x, u32 &y, u32 &w, u32 &h)
-{
-	VSCEmapData pData;
-	Lock();
-	m_Conf.GetEmapData(pData);
-
-	if (nIndex < CONF_MAP_MAX && nIndex > 0)
-	{
-		x = pData.data.conf.emap[nIndex].x;
-		y = pData.data.conf.emap[nIndex].y;
-		w = pData.data.conf.emap[nIndex].w;
-		h = pData.data.conf.emap[nIndex].h;
-	}else
-	{
-		UnLock();
-		return FALSE;
-	}
-	UnLock();
-	return TRUE;
-}
-
-inline BOOL ClientFactory::GetEmapFile(astring &strFile)
-{	
-	BOOL ret = FALSE;
-	VSCEmapData pData;
-	Lock();
-	m_Conf.GetEmapData(pData);
-	if (pData.data.conf.init == 1)
-	{
-		ret = m_Conf.GetEmapFile(strFile);	
-	}
-	UnLock();
-	return ret;
-}
-inline BOOL ClientFactory::SetEmapFile(astring &strFile)
-{
-	VSCEmapData pData;
-	Lock();
-	m_Conf.SetEmapFile(strFile);
-	m_Conf.GetEmapData(pData);
-	pData.data.conf.init = 1;
-	m_Conf.UpdateEmapData(pData);
-	
-	UnLock();
-	return TRUE;
-}
 
 inline BOOL ClientFactory::GetLang(VSCLangType &pLang)
 {	
