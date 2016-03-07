@@ -454,11 +454,10 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, _is_default_instance_));
   VidEmap_descriptor_ = file->message_type(20);
-  static const int VidEmap_offsets_[4] = {
+  static const int VidEmap_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, ccamera_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strmapfile_),
   };
   VidEmap_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -652,26 +651,26 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "List\022$\n\tcVidGroup\030\001 \003(\0132\021.VidConf.VidGro"
     "up\"^\n\rVidEmapCamera\022!\n\003cId\030\001 \001(\0132\024.VidCo"
     "nf.VidCameraId\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001"
-    "w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"f\n\007VidEmap\022\r\n\005strId\030\001"
+    "w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"R\n\007VidEmap\022\r\n\005strId\030\001"
     " \001(\t\022\017\n\007strName\030\002 \001(\t\022\'\n\007cCamera\030\003 \003(\0132\026"
-    ".VidConf.VidEmapCamera\022\022\n\nstrMapFile\030\004 \001"
-    "(\t\"1\n\013VidEmapList\022\"\n\010cVidEmap\030\001 \003(\0132\020.Vi"
-    "dConf.VidEmap*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013"
-    "\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022"
-    "\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID"
-    "_MJPEG\020\006*P\n\021CameraConnectType\022\021\n\rVID_CON"
-    "NECT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CON"
-    "NECT_UDP\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_AU"
-    "TO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidL"
-    "ayout\022\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAYO"
-    "UT_MODE_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023"
-    "VID_LAYOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MODE"
-    "_4X4\020\004\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LAY"
-    "OUT_MODE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022\027"
-    "\n\023VID_LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_MO"
-    "DE_6x6\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VID"
-    "_LAYOUT_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1x"
-    "3\020\014\022\027\n\023VID_LAYOUT_MODE_1p6\020\rb\006proto3", 2716);
+    ".VidConf.VidEmapCamera\"1\n\013VidEmapList\022\"\n"
+    "\010cVidEmap\030\001 \003(\0132\020.VidConf.VidEmap*q\n\nCam"
+    "eraType\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_F"
+    "ILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013"
+    "VID_GB28181\020\005\022\r\n\tVID_MJPEG\020\006*P\n\021CameraCo"
+    "nnectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID_CONN"
+    "ECT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*;\n\013VidLan"
+    "guage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\t"
+    "VID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOUT_"
+    "MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID_L"
+    "AYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X3\020"
+    "\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYOUT"
+    "_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VID_"
+    "LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_5x"
+    "5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LAYO"
+    "UT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027"
+    "\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MO"
+    "DE_1p6\020\rb\006proto3", 2696);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -10146,7 +10145,6 @@ void VidEmapCamera::clear_h() {
 const int VidEmap::kStrIdFieldNumber;
 const int VidEmap::kStrNameFieldNumber;
 const int VidEmap::kCCameraFieldNumber;
-const int VidEmap::kStrMapFileFieldNumber;
 #endif  // !_MSC_VER
 
 VidEmap::VidEmap()
@@ -10173,7 +10171,6 @@ void VidEmap::SharedCtor() {
   _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strmapfile_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 VidEmap::~VidEmap() {
@@ -10184,7 +10181,6 @@ VidEmap::~VidEmap() {
 void VidEmap::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strmapfile_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -10217,7 +10213,6 @@ VidEmap* VidEmap::New(::google::protobuf::Arena* arena) const {
 void VidEmap::Clear() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strmapfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ccamera_.Clear();
 }
 
@@ -10277,23 +10272,6 @@ bool VidEmap::MergePartialFromCodedStream(
         }
         if (input->ExpectTag(26)) goto parse_loop_cCamera;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectTag(34)) goto parse_strMapFile;
-        break;
-      }
-
-      // optional string strMapFile = 4;
-      case 4: {
-        if (tag == 34) {
-         parse_strMapFile:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strmapfile()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strmapfile().data(), this->strmapfile().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "VidConf.VidEmap.strMapFile"));
-        } else {
-          goto handle_unusual;
-        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -10348,16 +10326,6 @@ void VidEmap::SerializeWithCachedSizes(
       3, this->ccamera(i), output);
   }
 
-  // optional string strMapFile = 4;
-  if (this->strmapfile().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strmapfile().data(), this->strmapfile().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "VidConf.VidEmap.strMapFile");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->strmapfile(), output);
-  }
-
   // @@protoc_insertion_point(serialize_end:VidConf.VidEmap)
 }
 
@@ -10393,17 +10361,6 @@ void VidEmap::SerializeWithCachedSizes(
         3, this->ccamera(i), target);
   }
 
-  // optional string strMapFile = 4;
-  if (this->strmapfile().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strmapfile().data(), this->strmapfile().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "VidConf.VidEmap.strMapFile");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->strmapfile(), target);
-  }
-
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEmap)
   return target;
 }
@@ -10423,13 +10380,6 @@ int VidEmap::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
-  }
-
-  // optional string strMapFile = 4;
-  if (this->strmapfile().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strmapfile());
   }
 
   // repeated .VidConf.VidEmapCamera cCamera = 3;
@@ -10469,10 +10419,6 @@ void VidEmap::MergeFrom(const VidEmap& from) {
 
     strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
   }
-  if (from.strmapfile().size() > 0) {
-
-    strmapfile_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strmapfile_);
-  }
 }
 
 void VidEmap::CopyFrom(const ::google::protobuf::Message& from) {
@@ -10500,7 +10446,6 @@ void VidEmap::InternalSwap(VidEmap* other) {
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
   ccamera_.UnsafeArenaSwap(&other->ccamera_);
-  strmapfile_.Swap(&other->strmapfile_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -10630,49 +10575,6 @@ const ::google::protobuf::RepeatedPtrField< ::VidConf::VidEmapCamera >&
 VidEmap::ccamera() const {
   // @@protoc_insertion_point(field_list:VidConf.VidEmap.cCamera)
   return ccamera_;
-}
-
-// optional string strMapFile = 4;
-void VidEmap::clear_strmapfile() {
-  strmapfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- const ::std::string& VidEmap::strmapfile() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidEmap.strMapFile)
-  return strmapfile_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void VidEmap::set_strmapfile(const ::std::string& value) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:VidConf.VidEmap.strMapFile)
-}
- void VidEmap::set_strmapfile(const char* value) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:VidConf.VidEmap.strMapFile)
-}
- void VidEmap::set_strmapfile(const char* value, size_t size) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEmap.strMapFile)
-}
- ::std::string* VidEmap::mutable_strmapfile() {
-  
-  // @@protoc_insertion_point(field_mutable:VidConf.VidEmap.strMapFile)
-  return strmapfile_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- ::std::string* VidEmap::release_strmapfile() {
-  
-  return strmapfile_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void VidEmap::set_allocated_strmapfile(::std::string* strmapfile) {
-  if (strmapfile != NULL) {
-    
-  } else {
-    
-  }
-  strmapfile_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmapfile);
-  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEmap.strMapFile)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

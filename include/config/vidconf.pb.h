@@ -2451,17 +2451,6 @@ class VidEmap : public ::google::protobuf::Message {
   const ::google::protobuf::RepeatedPtrField< ::VidConf::VidEmapCamera >&
       ccamera() const;
 
-  // optional string strMapFile = 4;
-  void clear_strmapfile();
-  static const int kStrMapFileFieldNumber = 4;
-  const ::std::string& strmapfile() const;
-  void set_strmapfile(const ::std::string& value);
-  void set_strmapfile(const char* value);
-  void set_strmapfile(const char* value, size_t size);
-  ::std::string* mutable_strmapfile();
-  ::std::string* release_strmapfile();
-  void set_allocated_strmapfile(::std::string* strmapfile);
-
   // @@protoc_insertion_point(class_scope:VidConf.VidEmap)
  private:
 
@@ -2470,7 +2459,6 @@ class VidEmap : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   ::google::protobuf::RepeatedPtrField< ::VidConf::VidEmapCamera > ccamera_;
-  ::google::protobuf::internal::ArenaStringPtr strmapfile_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -5130,49 +5118,6 @@ inline const ::google::protobuf::RepeatedPtrField< ::VidConf::VidEmapCamera >&
 VidEmap::ccamera() const {
   // @@protoc_insertion_point(field_list:VidConf.VidEmap.cCamera)
   return ccamera_;
-}
-
-// optional string strMapFile = 4;
-inline void VidEmap::clear_strmapfile() {
-  strmapfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& VidEmap::strmapfile() const {
-  // @@protoc_insertion_point(field_get:VidConf.VidEmap.strMapFile)
-  return strmapfile_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void VidEmap::set_strmapfile(const ::std::string& value) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:VidConf.VidEmap.strMapFile)
-}
-inline void VidEmap::set_strmapfile(const char* value) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:VidConf.VidEmap.strMapFile)
-}
-inline void VidEmap::set_strmapfile(const char* value, size_t size) {
-  
-  strmapfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEmap.strMapFile)
-}
-inline ::std::string* VidEmap::mutable_strmapfile() {
-  
-  // @@protoc_insertion_point(field_mutable:VidConf.VidEmap.strMapFile)
-  return strmapfile_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* VidEmap::release_strmapfile() {
-  
-  return strmapfile_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void VidEmap::set_allocated_strmapfile(::std::string* strmapfile) {
-  if (strmapfile != NULL) {
-    
-  } else {
-    
-  }
-  strmapfile_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmapfile);
-  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEmap.strMapFile)
 }
 
 // -------------------------------------------------------------------

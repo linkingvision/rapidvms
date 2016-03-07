@@ -222,7 +222,6 @@ message VidEmap {
 	string strId = 1;//ID is a uuid
 	string strName = 2;
 	repeated VidEmapCamera cCamera = 3;
-	string strMapFile = 4;
 }
 
 message VidEmapList {
