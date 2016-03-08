@@ -32,6 +32,7 @@ bool OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 	to.bServerMotion = from.bservermotion();
 
 	to.nConnectType = from.nconnecttype();
+	to.bMotionJPEG = from.bmotionjpeg();
 
 	int cameraSize = from.crecsched_size();
 
@@ -70,6 +71,7 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_bservermotion(from.bServerMotion);
 
 	to.set_nconnecttype((VidConf::CameraConnectType)from.nConnectType);
+	to.set_bmotionjpeg(from.bMotionJPEG);
 
 	to.clear_crecsched();
 
