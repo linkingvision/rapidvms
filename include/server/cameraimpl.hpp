@@ -304,7 +304,7 @@ BOOL CameraParam::UpdateUrl()
 	astring strRtsp;
 	if (rtspUrl.empty() != true)
 	{
-		strRtsp = "rtsp://" + rtspUrl.getHost() + ":" + std::to_string(rtspUrl.getPort()) + rtspUrl.getPathAndQuery();
+		strRtsp = rtspUrl.getScheme() + "://" + rtspUrl.getHost() + ":" + std::to_string(rtspUrl.getPort()) + rtspUrl.getPathAndQuery();
 	}
 
 	m_strUrl = strRtsp;
@@ -433,8 +433,9 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		if (m_param.m_Conf.ntype()== VID_FILE)
 		{
 			m_vPlay.Init(m_param.m_strUrl, false, "fake", "fake", HWAccel);
-		}else if (m_param.m_Conf.ntype()== VID_MJPEG)
+		}else if (m_param.m_Conf.bmotionjpeg()== true)
 		{
+			/* Motion JPEG */
 			m_vPlay.Init(m_param.m_strUrl, true, m_param.m_Conf.struser(),
 				m_param.m_Conf.strpasswd(), HWAccel);
 		}
