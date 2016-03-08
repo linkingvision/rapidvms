@@ -79,6 +79,9 @@ message VidCamera {
 	repeated string cRecSched = 20;
 	int32 nPreRecSec = 21;
 	int32 nPostRecSec = 22;
+	
+	//Motion JPEG Stream
+	bool bMotionJPEG = 23;
 }
 
 message VidCameraList {

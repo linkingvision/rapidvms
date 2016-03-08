@@ -705,6 +705,12 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::int32 npostrecsec() const;
   void set_npostrecsec(::google::protobuf::int32 value);
 
+  // optional bool bMotionJPEG = 23;
+  void clear_bmotionjpeg();
+  static const int kBMotionJPEGFieldNumber = 23;
+  bool bmotionjpeg() const;
+  void set_bmotionjpeg(bool value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -727,9 +733,10 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strfile_;
   ::google::protobuf::internal::ArenaStringPtr strrtspurl_;
   int nconnecttype_;
-  bool bhdfsrecord_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> crecsched_;
   ::google::protobuf::int32 nprerecsec_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> crecsched_;
+  bool bhdfsrecord_;
+  bool bmotionjpeg_;
   ::google::protobuf::int32 npostrecsec_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
@@ -3481,6 +3488,20 @@ inline void VidCamera::set_npostrecsec(::google::protobuf::int32 value) {
   
   npostrecsec_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPostRecSec)
+}
+
+// optional bool bMotionJPEG = 23;
+inline void VidCamera::clear_bmotionjpeg() {
+  bmotionjpeg_ = false;
+}
+inline bool VidCamera::bmotionjpeg() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.bMotionJPEG)
+  return bmotionjpeg_;
+}
+inline void VidCamera::set_bmotionjpeg(bool value) {
+  
+  bmotionjpeg_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.bMotionJPEG)
 }
 
 // -------------------------------------------------------------------
