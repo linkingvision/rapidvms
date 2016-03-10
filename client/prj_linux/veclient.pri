@@ -7,7 +7,9 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ../src/main/vscvidlistframe.h \
+HEADERS += ../src/main/vscdashboard.h \
+    ../src/main/vscdashboardtaskitem.h \
+    ../src/main/vscvidlistframe.h \
     ../src/main/vsclogin.h \
     ../src/main/vscuserstatus.h \
     ../src/main/vscvidlist.h \
@@ -17,14 +19,22 @@ HEADERS += ../src/main/vscvidlistframe.h \
     ../src/common/vscvidtreeinf.h \
     ../src/common/switchbutton.h \
     ../src/common/vscvidinf.h \
+    ../src/common/viditem/vscviditememap.h \
+    ../src/common/viditem/vscviditemview.h \
     ../src/common/viditem/vscviditemcam.h \
     ../src/common/viditem/vscviditemvidstor.h \
+    ../src/common/vidtree/vscvidtreeview.h \
+    ../src/common/vidtree/vscvidtreeemap.h \
     ../src/common/vidtree/vscvidtreecam.h \
+    ../src/live/vscviewconf.h \
     ../src/live/vscview.h \
+    ../src/live/vvidpbview.h \
     ../src/live/vscvidlive.h \
     ../src/config/vscvidtreeconf.h \
     ../src/config/vidclientsetting.h \
     ../src/config/vscvidconfig.h \
+    ../src/config/viditem/vscviditememapconf.h \
+    ../src/config/viditem/vscviditemviewconf.h \
     ../src/config/viditem/vscviditemaddcam.h \
     ../src/config/viditem/vscviditemaddstor.h \
     ../src/config/viditem/vscviditemcamconf.h \
@@ -46,7 +56,9 @@ HEADERS += ../src/main/vscvidlistframe.h \
     ../src/config/clientsetting/vsclanguage.h \
     ../src/config/clientsetting/vsclicense.h \
     ../src/config/clientsetting/vscuser.h \
-    ../src/playback/vscvidpb.h \
+    ../src/config/vidview/vidviewconf.h \
+    ../src/config/videmap/videmapconf.h \
+    ../src/searchpb/vscvidsearchpb.h \
     ../../include/oapi/oapic.hpp \
     ../../include/oapi/oapicimpl.hpp \
     ../../include/oapi/oapicmn.hpp \
@@ -72,6 +84,8 @@ HEADERS += ../src/main/vscvidlistframe.h \
     ../../include/client/storstream.hpp \
     ../../include/client/storsyncinf.hpp
 SOURCES += ../src/main/main.cpp \
+    ../src/main/vscdashboard.cpp \
+    ../src/main/vscdashboardtaskitem.cpp \
     ../src/main/vsclogin.cpp \
     ../src/main/vscmainwindows.cpp \
     ../src/main/vsctoobar.cpp \
@@ -83,10 +97,16 @@ SOURCES += ../src/main/main.cpp \
     ../src/common/vscviditeminf.cpp \
     ../src/common/vscvidtreeinf.cpp \
     ../src/common/viditem/vscviditemcam.cpp \
+    ../src/common/viditem/vscviditememap.cpp \
     ../src/common/viditem/vscviditemvidstor.cpp \
+    ../src/common/viditem/vscviditemview.cpp \
     ../src/common/vidtree/vscvidtreecam.cpp \
+    ../src/common/vidtree/vscvidtreeemap.cpp \
+    ../src/common/vidtree/vscvidtreeview.cpp \
     ../src/live/vscvidlive.cpp \
     ../src/live/vscview.cpp \
+    ../src/live/vscviewconf.cpp \
+    ../src/live/vvidpbview.cpp \
     ../src/config/vidclientsetting.cpp \
     ../src/config/vscvidconfig.cpp \
     ../src/config/vscvidtreeconf.cpp \
@@ -95,7 +115,9 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/viditem/vscviditemcamconf.cpp \
     ../src/config/viditem/vscviditemclientconf.cpp \
     ../src/config/viditem/vscviditemdiskconf.cpp \
+    ../src/config/viditem/vscviditememapconf.cpp \
     ../src/config/viditem/vscviditemstorconf.cpp \
+    ../src/config/viditem/vscviditemviewconf.cpp \
     ../src/config/vidstor/vidcamadd.cpp \
     ../src/config/vidstor/vidcamsetting.cpp \
     ../src/config/vidstor/vidstoradd.cpp \
@@ -111,13 +133,19 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/clientsetting/vsclicense.cpp \
     ../src/config/clientsetting/vscuser.cpp \
     ../src/config/clientsetting/vscversion.cpp \
-    ../src/playback/vscvidpb.cpp
+    ../src/config/vidview/vidviewconf.cpp \
+    ../src/config/videmap/videmapconf.cpp \
+    ../src/searchpb/vscvidsearchpb.cpp
 FORMS += ../src/main/vscmainwindows.ui \
     ../src/main/vsctoolbar.ui \
     ../src/main/vscvidlist.ui \
     ../src/main/vsclogin.ui \
     ../src/main/vscuserstatus.ui \
+    ../src/main/vscdashboard.ui \
+    ../src/main/vscdashboardtaskitem.ui \
     ../src/live/vscview.ui \
+    ../src/live/vvidpbview.ui \
+    ../src/live/vscviewconf.ui \
     ../src/config/vidclientsetting.ui \
     ../src/config/vidstor/vidstoradd.ui \
     ../src/config/vidstor/vidcamadd.ui \
@@ -133,7 +161,8 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/config/clientsetting/vscversion.ui \
     ../src/config/clientsetting/vsclanguage.ui \
     ../src/config/clientsetting/vsclicense.ui \
-    ../src/config/clientsetting/vscuser.ui
+    ../src/config/clientsetting/vscuser.ui \
+    ../src/config/vidview/vidviewconf.ui \
+    ../src/config/videmap/videmapconf.ui
 TRANSLATIONS += ../main/translations/opencvr_zh.ts
 RESOURCES += ../src/main/vscmainwindows.qrc
-

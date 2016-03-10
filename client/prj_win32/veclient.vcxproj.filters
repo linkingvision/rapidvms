@@ -523,6 +523,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vidviewconf.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\viditem\vscviditememap.cpp">
+      <Filter>src\common\viditem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\vidtree\vscvidtreeemap.cpp">
+      <Filter>src\common\vidtree</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvidtreeemap.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvidtreeemap.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\main\vscmainwindows.qrc">
@@ -743,6 +755,9 @@
     </CustomBuild>
     <CustomBuild Include="..\src\config\vidview\vidviewconf.ui">
       <Filter>src\config\vidview</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\vidtree\vscvidtreeemap.h">
+      <Filter>src\common\vidtree</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1137,6 +1152,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vidviewconf.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\viditem\vscviditememap.h">
+      <Filter>src\common\viditem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
