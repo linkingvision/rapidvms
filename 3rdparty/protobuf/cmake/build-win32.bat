@@ -1,5 +1,6 @@
 REM cmake -G "Visual Studio 12 2013"
 REM VS2013 x86 Native Tools Command Prompt:
+REM PROTOBUF_USE_DLLS
 rmdir  build\win32 /s /q
 rmdir  win32 /s /q
 
