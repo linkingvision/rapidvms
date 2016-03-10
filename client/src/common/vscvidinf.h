@@ -21,14 +21,14 @@ public:
 public slots:
 	void SlotNewLiveView(){return VidNewLiveView();}
 	void SlotNewLivePB(){return VidNewLivePB();}
-	void SlotNewEmap(){return VidNewEmap();}
+	void SlotNewEmap(std::string strId){return VidNewEmap(strId);}
 	
 public:
 	virtual void VidShow(){}
 	virtual void VidHide(){}
 	virtual void VidNewLiveView(){}
 	virtual void VidNewLivePB(){}
-	virtual void VidNewEmap(){}
+	virtual void VidNewEmap(std::string strId){}
 	virtual VSCVidTreeInf *GetCameraTree (){return NULL;}
 	virtual VSCVidTreeInf *GetGroupTree (){return NULL;}
 	virtual VSCVidTreeInf *GetEmapTree (){return NULL;}

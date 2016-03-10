@@ -46,7 +46,7 @@ void VidEmapConf::SlotNew()
 	UUIDGenerator uuidCreator;
 	astring strId  = uuidCreator.createRandom().toString();
 	p.set_strid(strId);
-	p.set_strname("New ");
+	p.set_strname("New Emap");
 	
 	int insertRow = ui.tableWidget->rowCount();
 	ui.tableWidget->insertRow(insertRow);
@@ -68,7 +68,7 @@ void VidEmapConf::SlotDelete()
 	/* Only the new is false need call the factory */
 	if (p && p->IsNew() == false)
 	{
-		//m_pFactory.GetFactory().EmapDelete(p->Get().strid());
+		m_pFactory.DelEmap(p->Get().strid());
 	}
 
 	ui.tableWidget->removeRow(ui.tableWidget->currentRow());
@@ -83,7 +83,7 @@ void VidEmapConf::SlotApply()
 	{
 		VidEmap sConf = p->Get();
 		GetEmapUI(sConf);
-		//m_pFactory.GetFactory().Add(sConf);
+		m_pFactory.AddEmap(sConf);
 	}
 	TreeWidgetUpdate();
 }

@@ -65,7 +65,7 @@ void VSCVidTreeView::mouseMoveEvent(QMouseEvent *event)
 			drag->setHotSpot(QPoint(drag->pixmap().width()/2,
 			             drag->pixmap().height()/2));
 			drag->exec();
-			QTreeWidget::mousePressEvent(event);
+			//QTreeWidget::mouseMoveEvent(event);
 			return ;
 		}
 

@@ -9,16 +9,35 @@
 #include "client/clientfactory.hpp"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
+#include "common/vscvidtreeinf.h"
+#include "vscvwidget.h"
 
 class VSCVidTreeEmap : public VSCVidTreeInf
 {
     Q_OBJECT
 public:
-    VSCVidTreeEmap(QWidget *parent = 0);
+    VSCVidTreeEmap(ClientFactory &pFactory, QWidget *parent = 0);
     ~VSCVidTreeEmap();
+signals:
+	void EmapSelected(std::string strEmap);
+public:
+	void mousePressEvent(QMouseEvent *event);	
+	void mouseDoubleClickEvent(QMouseEvent *event);
+	void mouseMoveEvent(QMouseEvent *event);
+
 	
 public:
-	virtual void VidFilter(astring strFilter){}
+	virtual void VidFilter(astring strFilter);
+	virtual void Init();
+public:
+	/* Take care all the vid Stor state change */
+	static bool CallChange(void* pParam, ClientFactoryChangeData data);
+	bool CallChange1(ClientFactoryChangeData data);
+public:
+	void TreeUpdate();
+private:
+	QTreeWidgetItem * m_pRoot;
+	bool m_bInit;
 };
 
 #endif

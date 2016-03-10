@@ -16,7 +16,7 @@
 #include <QMovie>
 #include <QtWidgets/QMainWindow>
 #include "client/clientfactory.hpp"
-#include "ui_VidEmapConf.h"
+#include "ui_videmapconf.h"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QApplication>
