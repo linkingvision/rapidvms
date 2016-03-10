@@ -29,21 +29,6 @@
    <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -53,9 +38,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>828</width>
-        <height>732</height>
+        <y>-82</y>
+        <width>810</width>
+        <height>767</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -427,28 +412,18 @@ QRadioButton::indicator:checked:pressed {
               <property name="spacing">
                <number>10</number>
               </property>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEditName">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="labelPassword_2">
+              <item row="8" column="0">
+               <widget class="QLabel" name="labelName_3">
                 <property name="text">
-                 <string>Password:</string>
+                 <string>RTSP Address:</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
-               <widget class="QLineEdit" name="lineEditUser">
+              <item row="10" column="1">
+               <widget class="QLineEdit" name="lineEditFile">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -457,8 +432,28 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEditIP">
+              <item row="10" column="0">
+               <widget class="QLabel" name="labelName_4">
+                <property name="text">
+                 <string>File Name:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelIP_2">
+                <property name="text">
+                 <string>IP Address:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLineEdit" name="lineEditRtspAddr">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -467,8 +462,28 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
-               <widget class="QLineEdit" name="lineEditPort">
+              <item row="6" column="0">
+               <widget class="QLabel" name="labelUser_2">
+                <property name="text">
+                 <string>User:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelName">
+                <property name="text">
+                 <string>Camera Name:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLineEdit" name="lineEditPassword">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -487,8 +502,8 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
-               <widget class="QLineEdit" name="lineEditPassword">
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="lineEditPort">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -497,28 +512,8 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="labelName">
-                <property name="text">
-                 <string>Camera Name:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="labelUser_2">
-                <property name="text">
-                 <string>User:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
-               <widget class="QLineEdit" name="lineEditRtspAddr">
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="lineEditIP">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -527,28 +522,8 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="labelIP_2">
-                <property name="text">
-                 <string>IP Address:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="labelName_4">
-                <property name="text">
-                 <string>File Name:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="1">
-               <widget class="QLineEdit" name="lineEditFile">
+              <item row="6" column="1">
+               <widget class="QLineEdit" name="lineEditUser">
                 <property name="maximumSize">
                  <size>
                   <width>300</width>
@@ -557,10 +532,53 @@ QRadioButton::indicator:checked:pressed {
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="labelName_3">
+              <item row="7" column="0">
+               <widget class="QLabel" name="labelPassword_2">
                 <property name="text">
-                 <string>RTSP Address:</string>
+                 <string>Password:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEditName">
+                <property name="maximumSize">
+                 <size>
+                  <width>300</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="SwitchButton" name="pbMotionJPEG">
+                <property name="maximumSize">
+                 <size>
+                  <width>80</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../main/vscmainwindows.qrc">
+                  <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>80</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="labelName_5">
+                <property name="text">
+                 <string>Motion JPEG</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -939,6 +957,13 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SwitchButton</class>
+   <extends>QPushButton</extends>
+   <header>common/switchbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../main/vscmainwindows.qrc"/>
  </resources>

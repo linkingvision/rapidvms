@@ -53,6 +53,7 @@ VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
 	ShowFocusClicked(0);
 	/* Set the uuid to null */
 	m_ViewItem.set_strid(VVID_UUID_NULL);
+	m_ViewItem.set_strname("New View");
 }
 
 void VSCView::PlaybackClicked(std::string strStor, std::string strId, 
@@ -124,8 +125,8 @@ void VSCView::SetupConnections()
 	                                    SLOT(ShowLayout1Clicked(int)));
 	connect(m_pVideo, SIGNAL(PlaybackClicked(std::string, std::string, std::string)), this,
 	                                    SLOT(PlaybackClicked(std::string, std::string, std::string)));
-	//connect(m_pVideo, SIGNAL(ShowViewClicked(int)), this,
-	//                                    SLOT(ShowViewClicked(int)));
+	connect(m_pVideo, SIGNAL(ShowViewClicked(std::string)), this,
+	                                    SLOT(ShowViewClicked(std::string)));
 
 	connect(ui.pbTourPlay, SIGNAL(clicked()), this, SLOT(TourStart()));
 	connect(ui.pbTourStop, SIGNAL(clicked()), this, SLOT(TourStop()));
@@ -167,7 +168,10 @@ void VSCView::TourStart()
 
 void VSCView::TourInit()
 {
-	//memset(&m_pTourConf, 0, sizeof(m_pTourConf));
+	VidTour empty;
+	m_pTourConf = empty;
+	//TODO Tour Configuration
+	
 	/* Get the tool configure from db */
 	m_TourInterval = 20 * 1000;
 
@@ -195,39 +199,38 @@ void VSCView::TourInit()
 	        break;
 	}	
 
-	//gFactory->GetView(m_pTourConf);
+	m_pFactory.GetConfDB().GetViewListConf(m_ViewList);
 
 	m_TourIdx = 0;
 }
 
 void VSCView::TourTimerFunction()
 {
-#if 0
-	VSCViewDataItem pParam;
-	if (m_TourIdx >= CONF_VIEW_NUM_MAX || m_TourIdx < 0)
+	int viewSize = m_ViewList.cvidview_size();
+	if (viewSize <= 0)
+	{
+		return;
+	}
+	if (m_TourIdx >= viewSize || m_TourIdx < 0)
 	{
 		m_TourIdx = 0;
+		
 	}
 
-	while (1)
+	const VidView &pView = m_ViewList.cvidview(m_TourIdx);
+
+	std::map<int, VidViewWindow> playMap;
+	int nViewSize = pView.cview_size();
+	
+	for (s32 i = 0; i < pView.cview_size(); i ++)
 	{
-		if (m_pTourConf.data.conf.view[m_TourIdx].Used == 1)
-		{
-			memcpy(&pParam, &(m_pTourConf.data.conf.view[m_TourIdx]), 
-				sizeof(VSCViewDataItem));
-			m_pVideo->SetPlayMap(pParam.Map,
-				VSC_CONF_VIEW_CH_MAX, pParam.Mode);
-			m_TourIdx ++;
-			break;
-		}
-		m_TourIdx ++;
-		if (m_TourIdx >= CONF_VIEW_NUM_MAX)
-		{
-			break;
-		}
-
+		const VidViewWindow &win = pView.cview(i);
+		playMap[win.nwindowsid()] = win;
 	}
-#endif
+
+	m_pVideo->SetPlayMap(playMap, (VideoWallLayoutMode)(pView.clayout()));
+	m_TourIdx ++;
+	
 	return;
 }
 
@@ -501,38 +504,42 @@ void VSCView::ViewClicked()
 					view.width(), view.height());
        view.exec();
 
+
 	VSCViewConfType type = view.GetType();
 	if (type == VSC_VIEW_CONF_LAST)
 	{
 		return;
 	}
-	m_ViewItem.set_clayout((VidLayout)nMode);
+	VidView NewView;
+	NewView.set_clayout((VidLayout)nMode);
 	string strName = "View";
 	view.GetName(strName);
-	m_ViewItem.add_cview();
+
 	std::map<int, VidViewWindow> playMap;
 	m_pVideo->GetPlayMap(playMap);
 	std::map<int, VidViewWindow>::iterator it = playMap.begin(); 
 	for(; it!=playMap.end(); ++it)
 	{
-		VidViewWindow * pWinNew = m_ViewItem.add_cview();
+		VidViewWindow * pWinNew = NewView.add_cview();
 		*pWinNew = (*it).second;
 	}
 	
-	m_ViewItem.set_strname(strName);
+	NewView.set_strname(strName);
 	if (type == VSC_VIEW_CONF_MODIFY && m_ViewItem.strid() != VVID_UUID_NULL)
 	{
 		m_pFactory.DelView(m_ViewItem.strid());
+		NewView.set_strid(m_ViewItem.strid());
 	}else
 	{
 		UUIDGenerator uuidCreator;
 		astring strId  = uuidCreator.createRandom().toString();
-		m_ViewItem.set_strid(strName);
+		NewView.set_strid(strName);
 	}
-	m_pFactory.AddView(m_ViewItem);
+	m_pFactory.AddView(NewView);
+	m_ViewItem = NewView;
 }
 
-void VSCView::ShowViewClicked(astring strView)
+void VSCView::ShowViewClicked(std::string strView)
 {
 	VidView pView;
 	if (m_pFactory.GetConfDB().GetViewConf(strView, pView)  == false)
@@ -540,7 +547,10 @@ void VSCView::ShowViewClicked(astring strView)
 		return;
 	}
 
+	m_ViewItem = pView;
+
 	std::map<int, VidViewWindow> playMap;
+	int nViewSize = pView.cview_size();
 	
 	for (s32 i = 0; i < pView.cview_size(); i ++)
 	{

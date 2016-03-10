@@ -64,6 +64,7 @@ void VidCamAdd::SlotRadioButtonClicked()
 	ui.lineEditPassword->setDisabled(1);
 	ui.lineEditRtspAddr->setDisabled(1);
 	ui.lineEditFile->setDisabled(1);
+	ui.pbMotionJPEG->setDisabled(1);
 
 	if(this->ui.radioButtonFile->isChecked())
 	{
@@ -78,6 +79,7 @@ void VidCamAdd::SlotRadioButtonClicked()
 		ui.lineEditUser->setDisabled(0);
 		ui.lineEditPassword->setDisabled(0);
 		ui.lineEditRtspAddr->setDisabled(0);
+		ui.pbMotionJPEG->setDisabled(0);
 	}
 	
 	if(this->ui.radioButtonOnvif->isChecked())
@@ -107,6 +109,7 @@ void VidCamAdd::SlotNewCam()
 	pCam.set_strpasswd("admin");
 	pCam.set_ntype(VID_ONVIF_S);
 	pCam.set_stronvifaddress("/onvif/device_service");
+	pCam.set_bmotionjpeg(false);
 
 
 	pCam.set_strrtspurl("rtsp://192.168.0.1:554/Streaming");
@@ -220,6 +223,7 @@ void VidCamAdd::SetCamUI(VidCamera pCam)
 	ui.lineEditPassword->setText(pCam.strpasswd().c_str());
 	ui.lineEditFile->setText(pCam.strfile().c_str());
 	ui.lineEditRtspAddr->setText(pCam.strrtspurl().c_str());
+	ui.pbMotionJPEG->setChecked(pCam.bmotionjpeg());
 }
 
 void VidCamAdd::GetCamUI(VidCamera &pCam)
@@ -244,6 +248,7 @@ void VidCamAdd::GetCamUI(VidCamera &pCam)
 	pCam.set_strpasswd(ui.lineEditPassword->text().toStdString());
 	pCam.set_strfile(ui.lineEditFile->text().toStdString());
 	pCam.set_strrtspurl(ui.lineEditRtspAddr->text().toStdString());
+	pCam.set_bmotionjpeg(ui.pbMotionJPEG->isChecked());
 }
 
 

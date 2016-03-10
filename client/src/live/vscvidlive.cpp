@@ -6,7 +6,9 @@
 #include "vscloading.hpp"
 #include "common/vidtree/vscvidtreecam.h"
 #include "common/vidtree/vscvidtreeview.h"
+#include "common/vidtree/vscvidtreeemap.h"
 #include <QDesktopWidget>
+#include "vemap.hpp"
 
 
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
@@ -32,13 +34,15 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 	m_pGroupTree->Init();
 	m_pViewTree = new VSCVidTreeView(m_pFactory, parent);
 	m_pViewTree->Init();
-	m_pEmapTree = new VSCVidTreeInf(m_pFactory, parent);
+	m_pEmapTree = new VSCVidTreeEmap(m_pFactory, parent);
 	m_pEmapTree->Init();
 
 	connect(m_pCameraTree, SIGNAL(CameraSelected(std::string, std::string, std::string)), 
 		m_pView, SLOT(CameraDoubleClicked(std::string, std::string, std::string)));
 	connect(m_pViewTree, SIGNAL(ViewSelected(std::string)), 
 		m_pView, SLOT(ShowViewClicked(std::string)));
+	connect(m_pEmapTree, SIGNAL(EmapSelected(std::string)), 
+		this, SLOT(SlotNewEmap(std::string)));
 
 
 #if 0
@@ -125,8 +129,20 @@ void VSCVidLive::VidNewLivePB()
 	delete loading;
 }
 
-void VSCVidLive::VidNewEmap()
+void VSCVidLive::VidNewEmap(std::string strId)
 {
+	VEMap *pEmap =  VEMap::CreateObject(strId, m_pFactory, m_pMainArea, &m_pMainArea);
+	pEmap->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint);
+
+	astring strEmapName;
+	VidEmap cEmap;
+	m_pFactory.GetConfDB().GetEmapConf(strId, cEmap);
+
+	strEmapName = cEmap.strname();
+	
+	m_pMainArea.addTab(pEmap,QIcon(tr(":/action/resources/map.png")), strEmapName.c_str());
+	m_pMainArea.setCurrentWidget(pEmap);
+
 }
 
 QWidget * VSCVidLive::GetMainView()

@@ -35,7 +35,7 @@ public slots:
 	void ShowFocusClicked(int nId);
 	void ShowPlayControl();
 	void ShowLayout1Clicked(int nId);
-	void ShowViewClicked(astring strView);
+	void ShowViewClicked(std::string strView);
 	void UpdateVideoControl();
 	void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
 
@@ -128,7 +128,8 @@ private:
 	/* Video Tour */
 	QTimer *m_TimerTour;
 	s32 m_TourInterval;
-	//VSCViewData m_pTourConf;
+	VidTour m_pTourConf;
+	VidViewList m_ViewList;
 	s32 m_TourIdx;
 
 	ClientFactory &m_pFactory;

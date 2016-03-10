@@ -16,7 +16,7 @@
 #include <QMovie>
 #include <QtWidgets/QMainWindow>
 #include "client/clientfactory.hpp"
-#include "ui_VidViewConf.h"
+#include "ui_vidviewconf.h"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QApplication>
@@ -24,16 +24,16 @@
 class VidViewConfTableItem : public QTableWidgetItem
 {
 public:
-	VidViewConfTableItem(VidStor &pStor, bool bNew)
-	: m_sStor(pStor), m_bNew(bNew)
+	VidViewConfTableItem(VidView &pView, bool bNew)
+		: m_sView(pView), m_bNew(bNew)
 	{
 	}
 	~VidViewConfTableItem(){}
 public:
 	bool IsNew(){return m_bNew;}
-	VidStor GetStor(){return m_sStor;}
+	VidView GetView(){return m_sView;}
 private:
-	VidStor m_sStor;
+	VidView m_sView;
 	bool m_bNew;
 };
 
@@ -47,18 +47,9 @@ public:
 
 public:
 	void TreeWidgetUpdate();
-	void SetStorUI(VidStor pStor);
-	void GetStorUI(VidStor &pStor);
-
-signals:
-	void SignalSectionClicked(int row, int column);
 
 public slots:
-	void SlotNewStor();
-	void SlotDeleteStor();
-	void SlotApplyStor();
-	void SlotCancelStor();
-	void SlotSectionClicked(int row, int column);
+	void SlotDeleteView();
 
 public:
     	Ui::VidViewConf ui;

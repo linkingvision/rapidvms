@@ -1,4 +1,4 @@
-#include "searchpb/VSCVidSearchPB.h"
+#include "searchpb/vscvidsearchpb.h"
 
 VSCVidSearchPB::VSCVidSearchPB(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent)
 	: VSCVidInf(pFactory, pTab, parent)

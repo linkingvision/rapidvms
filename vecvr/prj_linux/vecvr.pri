@@ -7,7 +7,7 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./resource.h \
+HEADERS += ../prj_win32/resource.h \
     ../../include/config/conf.hpp \
     ../../include/config/confdb.hpp \
     ../../include/config/confdbimpl.hpp \
@@ -31,4 +31,3 @@ HEADERS += ./resource.h \
 SOURCES += ../main/main.cpp
 TRANSLATIONS += ../main/translations/opencvr_zh.ts
 RESOURCES += ../main/vscmainwindows.qrc
-

@@ -24,6 +24,7 @@ VSCVidList::VSCVidList(QWidget *parent)
 	connect(ui.pbCamera, SIGNAL(SignalClicked()), this, SLOT(SlotShowCameraTree()));
 	connect(ui.pbView, SIGNAL(SignalClicked()), this, SLOT(SlotShowViewTree()));
 	connect(ui.pbGroup, SIGNAL(SignalClicked()), this, SLOT(SlotShowGroupTree()));
+	connect(ui.pbEmap, SIGNAL(SignalClicked()), this, SLOT(SlotShowEmapTree()));
 	connect(ui.filterText, SIGNAL(textChanged(const QString &)), this,
 					SLOT(FilterChanged(const QString &)));
 	connect(ui.pbFilterCancel, SIGNAL(clicked() ), this, SLOT(FilterCancel()));

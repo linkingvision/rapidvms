@@ -17,7 +17,7 @@ public:
 	virtual void VidHide();
 	virtual void VidNewLiveView();
 	virtual void VidNewLivePB();
-	virtual void VidNewEmap();
+	virtual void VidNewEmap(std::string strId);
 
 	virtual VSCVidTreeInf *GetCameraTree();
 	virtual VSCVidTreeInf *GetGroupTree();
