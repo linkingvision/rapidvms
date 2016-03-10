@@ -1,8 +1,8 @@
 -include ../common.mk
-all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build
+all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build curl_build
 
 clean:distclean
-distclean:poco_clean ffmpeg_clean openssl_clean leveldb_clean qt_clean qtxmlpatterns_clean  onvifc_clean protobuf_clean
+distclean:poco_clean ffmpeg_clean openssl_clean leveldb_clean qt_clean qtxmlpatterns_clean  onvifc_clean protobuf_clean curl_clean
 
 poco_build:
 	cd poco; chmod +x ./configure; chmod +x ./build/script/*; ./configure --no-tests --no-samples --omit=Data/ODBC,Data/MySQL,Crypto,MongoDB,NetSSL_OpenSSL,CppUnit,PDF --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
@@ -42,6 +42,9 @@ qtxmlpatterns_build:
 	cd qt/qtxmlpatterns-opensource-src-5.5.1;qmake PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ 
 	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.5.1; 
 	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.5.1 install;
+curl_build:
+	cd curl; chmod +x ./configure; ./configure --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
+	$(MAKE) -C curl && $(MAKE) -C curl install;
 	
 poco_clean:
 	$(MAKE) -C poco clean
@@ -55,7 +58,6 @@ onvifc_clean:
 	cd onvifc/prj_linux/ ; qmake .;
 	$(MAKE) -C onvifc/prj_linux/ clean
 protobuf_clean:
-	$(MAKE) -C  protobuf/cmake/linux clean
 	rm -rf protobuf/cmake/linux/*.*
 qt_clean:
 	rm -rf qt/qtbase-opensource-src-5.5.1	
@@ -64,3 +66,5 @@ qtxmlpatterns_clean:
 
 qtscript_clean:
 	rm -rf qt/qtscript-opensource-src-5.5.1;
+curl_clean:
+	$(MAKE) -C curl clean
