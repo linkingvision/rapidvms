@@ -11,6 +11,8 @@
 ----------
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrclient.png)
 
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/playback.png)
+
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/configure.png)
 
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstoradd.png)
