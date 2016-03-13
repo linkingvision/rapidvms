@@ -111,7 +111,8 @@ inline std::string Replace(std::string &str, const char *string_to_replace, cons
 BOOL CameraParam::CheckOnline()
 {
     if (m_Conf.ntype()== VID_FILE 
-		|| m_Conf.ntype() == VID_RTSP)
+		|| m_Conf.ntype() == VID_RTSP 
+		|| m_Conf.ntype() == VID_MJPEG )
     {
     	return TRUE;
     }
@@ -292,7 +293,8 @@ BOOL CameraParam::UpdateUrl()
 	 m_bHasSubStream = FALSE;
     }
 
-    if (m_Conf.ntype()== VID_RTSP)
+    if (m_Conf.ntype()== VID_RTSP
+	|| m_Conf.ntype()== VID_MJPEG)
     {
 #if 0
         char url[512];
@@ -433,7 +435,8 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		if (m_param.m_Conf.ntype()== VID_FILE)
 		{
 			m_vPlay.Init(m_param.m_strUrl, false, "fake", "fake", HWAccel);
-		}else if (m_param.m_Conf.bmotionjpeg()== true)
+		}else if (m_param.m_Conf.bmotionjpeg()== true
+		  || m_param.m_Conf.ntype()== VID_MJPEG)
 		{
 			/* Motion JPEG */
 			m_vPlay.Init(m_param.m_strUrl, true, m_param.m_Conf.struser(),
