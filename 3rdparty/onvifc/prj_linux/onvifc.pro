@@ -1,8 +1,8 @@
 TEMPLATE = lib
 TARGET = onvifc
 DESTDIR = ./lib/
-QT += core network xml script xmlpatterns widgets gui
-CONFIG += help staticlib
+QT += core network xml  xmlpatterns widgets gui
+CONFIG +=  staticlib
 DEFINES += QT_DLL QT_NETWORK_LIB QT_HELP_LIB QT_SCRIPT_LIB QT_WIDGETS_LIB QT_XML_LIB QT_XMLPATTERNS_LIB ONVIFC_LIB
 INCLUDEPATH += ./GeneratedFiles/Debug \
     ./GeneratedFiles \
