@@ -32,7 +32,7 @@ enum CameraType {
 	VID_RTSP = 3;
 	VID_ONVIF_S = 4;
 	VID_GB28181 =5;
-	VID_MJPEG = 6;
+	VID_MJPEG = 6; //Http JPEG
 }
 
 //Camera config
@@ -81,7 +81,7 @@ message VidCamera {
 	int32 nPostRecSec = 22;
 	
 	//Motion JPEG Stream
-	bool bMotionJPEG = 23;
+	bool bMotionJPEG = 23;//deprecated
 }
 
 message VidCameraList {
