@@ -1707,11 +1707,10 @@ unsigned int bHDFSRecord;
 std::vector<std::string> cRecSchedList;
 unsigned int nPreRecSec;
 unsigned int nPostRecSec;
-unsigned int bMotionJPEG;
 unsigned int bOnline;
 unsigned int bRec;
 
-explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), cRecSchedList(), nPreRecSec(), nPostRecSec(), bMotionJPEG(), bOnline(), bRec() {  }
+explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), cRecSchedList(), nPreRecSec(), nPostRecSec(), bOnline(), bRec() {  }
 
 
  
@@ -1748,8 +1747,7 @@ SAXEventHandler< std::vector<std::string> > handler_17;
 SAXEventHandler< unsigned int > handler_18;
 SAXEventHandler< unsigned int > handler_19;
 SAXEventHandler< unsigned int > handler_20;
-SAXEventHandler< unsigned int > handler_21;
-SAXEventHandler< unsigned int > handler_22;bool has_strId;
+SAXEventHandler< unsigned int > handler_21;bool has_strId;
 bool has_strName;
 bool has_nType;
 bool has_strIP;
@@ -1768,7 +1766,6 @@ bool has_nConnectType;
 bool has_bHDFSRecord;
 bool has_nPreRecSec;
 bool has_nPostRecSec;
-bool has_bMotionJPEG;
 bool has_bOnline;
 bool has_bRec;
 
@@ -1825,10 +1822,8 @@ case 18:
 case 19:
     return "nPostRecSec";
 case 20:
-    return "bMotionJPEG";
-case 21:
     return "bOnline";
-case 22:
+case 21:
     return "bRec";
         default:
             break;
@@ -1876,7 +1871,6 @@ has_bHDFSRecord = false;
 
 has_nPreRecSec = false;
 has_nPostRecSec = false;
-has_bMotionJPEG = false;
 has_bOnline = false;
 has_bRec = false;
     }
@@ -1905,9 +1899,8 @@ public:
 , handler_17(&obj->cRecSchedList)
 , handler_18(&obj->nPreRecSec)
 , handler_19(&obj->nPostRecSec)
-, handler_20(&obj->bMotionJPEG)
-, handler_21(&obj->bOnline)
-, handler_22(&obj->bRec)
+, handler_20(&obj->bOnline)
+, handler_21(&obj->bRec)
     {
         reset_flags();
     }
@@ -1984,9 +1977,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.Null());
-
-case 22:
-    return checked_event_forwarding(handler_22.Null());
 
         default:
             break;
@@ -2067,9 +2057,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.Bool(b));
 
-case 22:
-    return checked_event_forwarding(handler_22.Bool(b));
-
         default:
             break;
         }
@@ -2148,9 +2135,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.Int(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Int(i));
 
         default:
             break;
@@ -2231,9 +2215,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.Uint(i));
 
-case 22:
-    return checked_event_forwarding(handler_22.Uint(i));
-
         default:
             break;
         }
@@ -2312,9 +2293,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.Int64(i));
-
-case 22:
-    return checked_event_forwarding(handler_22.Int64(i));
 
         default:
             break;
@@ -2395,9 +2373,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.Uint64(i));
 
-case 22:
-    return checked_event_forwarding(handler_22.Uint64(i));
-
         default:
             break;
         }
@@ -2476,9 +2451,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.Double(d));
-
-case 22:
-    return checked_event_forwarding(handler_22.Double(d));
 
         default:
             break;
@@ -2559,9 +2531,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.String(str, length, copy));
 
-case 22:
-    return checked_event_forwarding(handler_22.String(str, length, copy));
-
         default:
             break;
         }
@@ -2616,12 +2585,10 @@ else if (utility::string_equal(str, length, "\x6e\x50\x72\x65\x52\x65\x63\x53\x6
                          { state=18; has_nPreRecSec = true; }
 else if (utility::string_equal(str, length, "\x6e\x50\x6f\x73\x74\x52\x65\x63\x53\x65\x63", 11))
                          { state=19; has_nPostRecSec = true; }
-else if (utility::string_equal(str, length, "\x62\x4d\x6f\x74\x69\x6f\x6e\x4a\x50\x45\x47", 11))
-                         { state=20; has_bMotionJPEG = true; }
 else if (utility::string_equal(str, length, "\x62\x4f\x6e\x6c\x69\x6e\x65", 7))
-                         { state=21; has_bOnline = true; }
+                         { state=20; has_bOnline = true; }
 else if (utility::string_equal(str, length, "\x62\x52\x65\x63", 4))
-                         { state=22; has_bRec = true; }
+                         { state=21; has_bRec = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -2695,9 +2662,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.Key(str, length, copy));
-
-case 22:
-    return checked_event_forwarding(handler_22.Key(str, length, copy));
 
             default:
                 break;
@@ -2779,9 +2743,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.StartArray());
 
-case 22:
-    return checked_event_forwarding(handler_22.StartArray());
-
         default:
             break;
         }
@@ -2861,9 +2822,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.EndArray(length));
 
-case 22:
-    return checked_event_forwarding(handler_22.EndArray(length));
-
         default:
             break;
         }
@@ -2942,9 +2900,6 @@ case 20:
 
 case 21:
     return checked_event_forwarding(handler_21.StartObject());
-
-case 22:
-    return checked_event_forwarding(handler_22.StartObject());
 
             default:
                 break;
@@ -3026,9 +2981,6 @@ case 20:
 case 21:
     return checked_event_forwarding(handler_21.EndObject(length));
 
-case 22:
-    return checked_event_forwarding(handler_22.EndObject(length));
-
             default:
                 break;
             }
@@ -3052,7 +3004,6 @@ if (!has_nConnectType) set_missing_required("nConnectType");
 if (!has_bHDFSRecord) set_missing_required("bHDFSRecord");
 if (!has_nPreRecSec) set_missing_required("nPreRecSec");
 if (!has_nPostRecSec) set_missing_required("nPostRecSec");
-if (!has_bMotionJPEG) set_missing_required("bMotionJPEG");
 if (!has_bOnline) set_missing_required("bOnline");
 if (!has_bRec) set_missing_required("bRec");
         }
@@ -3117,8 +3068,6 @@ case 20:
      handler_20.ReapError(errs); break;
 case 21:
      handler_21.ReapError(errs); break;
-case 22:
-     handler_22.ReapError(errs); break;
 
         default:
             break;
@@ -3155,7 +3104,6 @@ handler_18.PrepareForReuse();
 handler_19.PrepareForReuse();
 handler_20.PrepareForReuse();
 handler_21.PrepareForReuse();
-handler_22.PrepareForReuse();
 
     }
 };
@@ -3187,11 +3135,10 @@ w.Key("\x62\x48\x44\x46\x53\x52\x65\x63\x6f\x72\x64", 11, false); Serializer< Wr
 w.Key("\x63\x52\x65\x63\x53\x63\x68\x65\x64\x4c\x69\x73\x74", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::vector<std::string> >()(w, value.cRecSchedList);
 w.Key("\x6e\x50\x72\x65\x52\x65\x63\x53\x65\x63", 10, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nPreRecSec);
 w.Key("\x6e\x50\x6f\x73\x74\x52\x65\x63\x53\x65\x63", 11, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nPostRecSec);
-w.Key("\x62\x4d\x6f\x74\x69\x6f\x6e\x4a\x50\x45\x47", 11, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bMotionJPEG);
 w.Key("\x62\x4f\x6e\x6c\x69\x6e\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bOnline);
 w.Key("\x62\x52\x65\x63", 4, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bRec);
 
-        w.EndObject(23);
+        w.EndObject(22);
     }
 
 };

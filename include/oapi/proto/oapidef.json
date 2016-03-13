@@ -67,8 +67,7 @@
 		["std::vector<std::string>", "cRecSchedList"],
 		["unsigned int", "nPreRecSec", {"required": true}],
 		["unsigned int", "nPostRecSec", {"required": true}],
-		["unsigned int", "bMotionJPEG", {"required": true}],
-		
+
 		["unsigned int", "bOnline", {"required": true}],
 		["unsigned int", "bRec", {"required": true}]
     ]
