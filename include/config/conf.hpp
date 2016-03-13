@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
 
-#define VE_VERSION "r2.0.3-20160310"
-#define VE_INFO "OpenCVR r2.0.3 2016"
+#define VE_VERSION "r2.0.4-20160331"
+#define VE_INFO "OpenCVR r2.0.4 2016"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
@@ -154,75 +154,6 @@ typedef struct __VSCConfUserKey {
         strcpy(Key, VSC_CONF_USER_KEY);
     }
 }VSCConfUserKey;
-
-//------------------------------------------------------------------------------
-// Conf Data Default function
-//
-//------------------------------------------------------------------------------
-#if 0
-inline void VSCVmsDataItemDefault(VSCVmsDataItem &item)
-{
-    sprintf(item.Name, "Recorder");
-
-    strcpy(item.IP, "192.168.0.1");
-    strcpy(item.Port, "9080");
-    strcpy(item.User, "admin");
-    strcpy(item.Password, "admin");
-    strcpy(item.Param, "none");
-    item.Used = 0;
-    item.nId = 0;
-    item.GroupId = 0;
-}
-
-inline void VSCViewDataItemDefault(VSCViewDataItem &item)
-{
-    memset(&item, 0, sizeof(VSCViewDataItem));
-    sprintf(item.Name, "View");
-    item.Mode = LAYOUT_MODE_3X3;
-}
-
-inline void VSCVGroupDataItemDefault(VSCVGroupDataItem &item)
-{
-    memset(&item, 0, sizeof(VSCVGroupDataItem));
-    sprintf(item.Name, "Group");
-}
-
-inline void VSCVIPCDataItemDefault(VSCVIPCDataItem__ &item)
-{
-    sprintf(item.Name, "Virutal IPC");
-
-    strcpy(item.IP, "192.168.0.1");
-    strcpy(item.Port, "8000");
-    strcpy(item.User, "admin");
-    strcpy(item.Password, "admin");
-    item.nStreamId = 1;
-}
-
-
-
-inline void VSCUserDataItemDefault(VSCUserData__ &item)
-{
-	memset(&item, 0, sizeof(VSCUserData__));
-	strcpy(item.Passwd, "admin");/* Default passwd for User */
-	item.AutoLogin = 0;
-}
-
-inline void VSCEmapDataDefault(VSCEmapData__ &data)
-{
-	memset(&data, 0, sizeof(VSCEmapData__));
-}
-
-inline void VSCTourDataItemDefault(VSCTourDataItem &item)
-{
-    memset(&item, 0, sizeof(VSCTourDataItem));
-    sprintf(item.Name, "Tour");
-}
-
-inline void VSCTourDataDefault(VSCTourData__ &data)
-{
-	memset(&data, 0, sizeof(VSCTourData__));
-}
-#endif
 
 #pragma pack(pop)
 
