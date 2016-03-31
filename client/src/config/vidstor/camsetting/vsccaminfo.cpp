@@ -29,6 +29,9 @@ VSCCamInfo::VSCCamInfo(ClientFactory &pFactory, VidStor &stor, astring strCam, Q
 		case VID_ONVIF_S:
 			ui.radioButtonOnvif->setChecked(true);
 			break;
+		case VID_MJPEG:
+			ui.radioButtonMJPEG->setChecked(true);
+			break;
 		default:
 			break;
 	}
