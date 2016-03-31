@@ -28,8 +28,11 @@
        <property name="verticalSpacing">
         <number>20</number>
        </property>
-       <item row="0" column="3">
-        <widget class="QRadioButton" name="radioButtonFile">
+       <item row="0" column="2">
+        <widget class="QRadioButton" name="radioButtonRtsp">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">QRadioButton::indicator {
     width: 20px;
@@ -61,7 +64,7 @@ QRadioButton::indicator:checked:pressed {
 }</string>
          </property>
          <property name="text">
-          <string>FILE</string>
+          <string>RTSP</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -108,11 +111,8 @@ QRadioButton::indicator:checked:pressed {
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QRadioButton" name="radioButtonRtsp">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
+       <item row="0" column="3">
+        <widget class="QRadioButton" name="radioButtonFile">
          <property name="styleSheet">
           <string notr="true">QRadioButton::indicator {
     width: 20px;
@@ -144,7 +144,47 @@ QRadioButton::indicator:checked:pressed {
 }</string>
          </property>
          <property name="text">
-          <string>RTSP</string>
+          <string>FILE</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QRadioButton" name="radioButtonMJPEG">
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+}
+
+QRadioButton::indicator::unchecked {
+    image: url(:/action/resources/radiobutton_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+    image: url(:/action/resources/radiobutton_unchecked_hover.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/action/resources/radiobutton_unchecked_pressed.png);
+}
+
+QRadioButton::indicator::checked {
+    image: url(:/action/resources/radiobutton_checked.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/action/resources/radiobutton_checked_hover.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/action/resources/radiobutton_checked_pressed.png);
+}</string>
+         </property>
+         <property name="text">
+          <string>MJPEG</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
