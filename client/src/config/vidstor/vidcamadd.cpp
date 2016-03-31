@@ -44,6 +44,7 @@ VidCamAdd::VidCamAdd(VidStor &pStor, ClientFactory &pFactory, QWidget *parent, Q
 	connect( this->ui.radioButtonFile, SIGNAL( clicked() ), this, SLOT(SlotRadioButtonClicked()));
 	connect( this->ui.radioButtonRtsp, SIGNAL( clicked() ), this, SLOT(SlotRadioButtonClicked()));
 	connect( this->ui.radioButtonOnvif, SIGNAL( clicked() ), this, SLOT(SlotRadioButtonClicked()));
+	connect( this->ui.radioButtonMJPEG, SIGNAL( clicked() ), this, SLOT(SlotRadioButtonClicked()));
 
 	connect( this->ui.pushButtonStart, SIGNAL( clicked() ), this, SLOT(SlotStartSearch()));	
 	connect( this->ui.pushButtonStop, SIGNAL( clicked() ), this, SLOT(SlotStopSearch()));	
@@ -64,7 +65,7 @@ void VidCamAdd::SlotRadioButtonClicked()
 	ui.lineEditPassword->setDisabled(1);
 	ui.lineEditRtspAddr->setDisabled(1);
 	ui.lineEditFile->setDisabled(1);
-	ui.pbMotionJPEG->setDisabled(1);
+	//ui.pbMotionJPEG->setDisabled(1);
 
 	if(this->ui.radioButtonFile->isChecked())
 	{
@@ -72,14 +73,15 @@ void VidCamAdd::SlotRadioButtonClicked()
 	}
 
 
-	if(this->ui.radioButtonRtsp->isChecked())
+	if(this->ui.radioButtonRtsp->isChecked()
+	|| this->ui.radioButtonMJPEG->isChecked())
 	{
 		//ui.lineEditIP->setDisabled(0);
 		//ui.lineEditPort->setDisabled(0);
 		ui.lineEditUser->setDisabled(0);
 		ui.lineEditPassword->setDisabled(0);
 		ui.lineEditRtspAddr->setDisabled(0);
-		ui.pbMotionJPEG->setDisabled(0);
+		//ui.pbMotionJPEG->setDisabled(0);
 	}
 	
 	if(this->ui.radioButtonOnvif->isChecked())
@@ -212,6 +214,9 @@ void VidCamAdd::SetCamUI(VidCamera pCam)
 		case VID_ONVIF_S:
 			ui.radioButtonOnvif->setChecked(true);
 			break;
+		case VID_MJPEG:
+			ui.radioButtonMJPEG->setChecked(true);
+			break;
 		default:
 			return;
 	}
@@ -223,7 +228,7 @@ void VidCamAdd::SetCamUI(VidCamera pCam)
 	ui.lineEditPassword->setText(pCam.strpasswd().c_str());
 	ui.lineEditFile->setText(pCam.strfile().c_str());
 	ui.lineEditRtspAddr->setText(pCam.strrtspurl().c_str());
-	ui.pbMotionJPEG->setChecked(pCam.bmotionjpeg());
+	//ui.pbMotionJPEG->setChecked(pCam.bmotionjpeg());
 }
 
 void VidCamAdd::GetCamUI(VidCamera &pCam)
@@ -238,8 +243,10 @@ void VidCamAdd::GetCamUI(VidCamera &pCam)
 	}else if (ui.radioButtonFile->isChecked() == true)
 	{
 		pCam.set_ntype(VID_FILE);
+	}else if (ui.radioButtonMJPEG->isChecked() == true)
+	{
+		pCam.set_ntype(VID_MJPEG);
 	}
-
 	pCam.set_stronvifaddress("/onvif/device_service");
 	pCam.set_strname(ui.lineEditName->text().toStdString());
 	pCam.set_strip(ui.lineEditIP->text().toStdString());
@@ -248,7 +255,7 @@ void VidCamAdd::GetCamUI(VidCamera &pCam)
 	pCam.set_strpasswd(ui.lineEditPassword->text().toStdString());
 	pCam.set_strfile(ui.lineEditFile->text().toStdString());
 	pCam.set_strrtspurl(ui.lineEditRtspAddr->text().toStdString());
-	pCam.set_bmotionjpeg(ui.pbMotionJPEG->isChecked());
+	//pCam.set_bmotionjpeg(ui.pbMotionJPEG->isChecked());
 }
 
 

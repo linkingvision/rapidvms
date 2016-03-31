@@ -52,6 +52,11 @@ void VSCStorLicense::applyConfig()
 	std::string strLicense = ui.lic->toPlainText().toStdString();
 	syncInf.ConfLic(strLicense);
 	UpdateUI();
+	if (pLoading)
+	{
+		delete pLoading;
+		pLoading = NULL;
+	}
 	return;
 
 }
