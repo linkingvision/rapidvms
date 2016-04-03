@@ -45,6 +45,9 @@
     <Filter Include="include\oapi">
       <UniqueIdentifier>{516ed3a6-db5e-4a3a-a7f5-099188efced0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main\civetweb">
+      <UniqueIdentifier>{c9b38e01-94e6-4147-97b9-665b33852fe3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
@@ -96,6 +99,15 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main\webserver.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdparty\civetweb\src\CivetServer.cpp">
+      <Filter>main\civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdparty\civetweb\src\civetweb.c">
+      <Filter>main\civetweb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

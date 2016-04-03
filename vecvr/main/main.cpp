@@ -14,8 +14,28 @@
 #include <QTranslator>
 #include <QTextCodec>
 #include "server/cmnoapiserver.hpp"
+#include "vevent.hpp"
+#include "webserver.hpp"
 
 Factory *gFactory = NULL;
+
+inline string GetProgramRunningDir()
+{
+#ifdef WIN32
+    char exeFullPath[MAX_PATH]; // Full path
+
+    string strPath = "";
+
+    GetModuleFileNameA(NULL,exeFullPath, MAX_PATH);
+    strPath=(string)exeFullPath;    // Get full path of the file
+
+    int pos = strPath.find_last_of('\\', strPath.length());
+
+    return strPath.substr(0, pos) + "\\";  // Return the directory without the file name
+#else
+    return "ve/";
+#endif
+}
 
 
 int main(int argc, char *argv[])
@@ -56,11 +76,27 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	}
 
 	pFactory->start();
-	/* Init Mining framework */
 
 	/* Start the OpenCVR api server */
 	pOAPIServer = new OAPIServerWrapper(*pFactory);
 	pOAPIServer->start();
+
+	/* Init Event framework */
+	VEventMgr *pEventMgr = new VEventMgr(*pFactory);
+	pEventMgr->Init();
+	
+	astring docRoot = GetProgramRunningDir() + "www";
+	
+	const char *options[] = {
+	    "document_root", docRoot.c_str(), "listening_ports", PORT, 0};
+    
+    std::vector<std::string> cpp_options;
+    for (int i=0; i<(sizeof(options)/sizeof(options[0])-1); i++) {
+        cpp_options.push_back(options[i]);
+    }
+
+    VEWebServer server(cpp_options);
+
 	
 	return a.exec();
 }
