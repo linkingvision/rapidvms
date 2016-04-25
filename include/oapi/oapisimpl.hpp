@@ -113,7 +113,7 @@ bool OAPIConverter::Converter(VidDisk &from, oapi::OAPIDisk &to)
 	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 	m_Timer = new QTimer(this);
 	connect(m_Timer, SIGNAL(timeout()), this, SLOT(SlotTimeout()));
-	m_Timer->start(500);
+	
 }
  OAPIServerCamSearch::~OAPIServerCamSearch()
 {
@@ -261,7 +261,7 @@ static void GetHardwareModel(astring &str, astring & hdModel)
 		QHostAddress host((*i).toString());
 		m_CamSearcherMap[strHostAddr]  = DeviceSearcher::instance(host);
     		connect(m_CamSearcherMap[strHostAddr], SIGNAL(receiveData(const QHash<QString, QString> &) ), 
-			this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)));
+			this, SLOT(SlotSearchReceiveData(const QHash<QString, QString> &)), Qt::DirectConnection);
     		m_CamSearcherMap[strHostAddr]->sendSearchMsg();
 
 	}
@@ -278,6 +278,7 @@ static void GetHardwareModel(astring &str, astring & hdModel)
 
  void OAPIServerCamSearch::SlotTimeout()
 {
+	VDC_DEBUG("[ONVIF]: SlotTimeout\n");
 	XGuard guard(m_cMutex);
 	if (m_bQuit == true)
 	{
@@ -287,6 +288,7 @@ static void GetHardwareModel(astring &str, astring & hdModel)
 
  void OAPIServerCamSearch::run()
 {
+	m_Timer->start(300);
 	ClearCamSearcherMap();
 	CamSearcherStart();
 	exec();
@@ -396,8 +398,12 @@ bool OAPIServer::NotifyCamAdd(FactoryCameraChangeData data)
 {
 	OAPIHeader header;
 	oapi::OAPICamAddNotify sCam;
-
-	OAPIConverter::Converter(data.cCam, sCam.cam);
+	VidCamera cCam;
+	if (m_pFactory.GetConfDB().GetCameraConf(data.id, cCam) == false)
+	{
+		return false;
+	}
+	OAPIConverter::Converter(cCam, sCam.cam);
 
 	
 	
