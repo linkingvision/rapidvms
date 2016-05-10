@@ -1,0 +1,83 @@
+﻿==================================
+Firebird $MAJOR.$MINOR.$RELEASE    (Windows Build)
+==================================
+
+
+o Uvod
+o Kome je namjenjen?
+o Odlike ovog release-a (sve platforme)
+o Instalacija
+o Prijavljivanje Bug-ova
+
+
+Uvod
+============
+
+Dobrodosli u Firebird $MAJOR.$MINOR.
+
+
+Kome je namjenjen?
+============================
+
+Firebird $MAJOR.$MINOR je prosao kroz opsezno testiranje i
+namjenjen je za siroku upotrebu u produkciji. Svejedno,
+korisnicima se preporucuje da prate standardne procedure
+prije instalacije ovog release-a na produkcioni server. tj:
+
+ o Molimo prvo procitajte dokumente
+   "Instalacija_ProcitajMe.txt" i release notes.
+
+ o Ako imate vazne podatke, sjetite se da napravite 
+   back-up prije instalacije ovog release-a.
+
+ o Preporucuje se da uklonite sve prethodne
+   verzije prije instalacije. Deinstalacija
+   ce sacuvati konfiguracione datoteke i log datoteke.
+
+ o Preporucuje se da izvrsite sopstvene
+   testove u razvojnom okruzenju prije
+   instalacije u produkciju.
+
+
+Odlike ovog release-a (sve platforme)
+=====================================
+
+Pogledajte Release Notes za vise
+informacija.
+
+
+Instalacija
+===========
+
+Problemi prilikom instalacije su pokriveni u detalje u
+Installation Guide-u koji je dostupan u doc directoriju nakon
+instalacije. Kratak sadržaj instalacionih problema se moze
+naci i u Instalacija_ProcitajMe.txt, koji je takodje
+dostupan u doc directoriju nakon instalacije.
+
+
+Prijavljivanje Bug-ova
+======================
+
+Prije nego prijavite bug:
+
+ o Jeste li sigurni da razumijete kako Firebird radi?
+  Mozda ustvari vidite ispravno ponasanje koje nije bug.
+
+ o Mozda je neko vec prijavio bug? Pogledajte
+   postojece prijave bugova ovdje:
+
+    http://tracker.firebirdsql.org/browse/CORE
+
+ o Ako ste u dilemi zasto ne diskutujete o problemu na
+   Firebird-devel listi? Mozete se prijaviti ovdje:
+
+    http://lists.sourceforge.net/lists/listinfo/firebird-devel
+
+   i listu je moguce pogledati kroz newsgroup interface ovdje:
+
+    news://news.atkin.com/
+
+
+Od Firebird team-a.
+

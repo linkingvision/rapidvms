@@ -1,0 +1,6 @@
+﻿Firebird Database Server $MAJOR.$MINOR.$RELEASE
+==================================================
+
+------------------------------------------------------
+Documentation for Firebird $MAJOR.$MINOR is not yet available.
+-------------------------------------------------------

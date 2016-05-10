@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.1  (Unix)">
+	<META NAME="AUTHOR" CONTENT="alex ">
+	<META NAME="CREATED" CONTENT="20130531;10003100">
+	<META NAME="CHANGEDBY" CONTENT="Alex Peshkoff">
+	<META NAME="CHANGED" CONTENT="20141127;15401600">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P STYLE="margin-top: 0.17in; margin-bottom: 0.2in; page-break-after: avoid">
+<FONT FACE="Albany, sans-serif"><FONT SIZE=4>Compressing data passed
+over the wire.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P>In most of cases compressing data passed over the wire is useless
+&ndash; one spends more time to compress a packet of data than to
+pass it over the typical LAN. But for WAN access data compression may
+be rather efficient way to enhance performance, specially when it can
+provide instead package size decrees packages' number decrees &ndash;
+that's the case for Firebird when it transfers a lot of data like big
+result set. zlib library (<A HREF="http://www.zlib.net/">http://www.zlib.net/</A>)
+is used by Firebird to compress data passed over the wire.</P>
+<P>By default wire compression is off, to turn it on you should set
+&ldquo;WireCompression=true&rdquo; in Firebird configuration on
+client. Compression setting is done by client to let only some
+clients that really need it use compression. Server gets compression
+setting from client when connection is established. Certainly only
+Firebird 3 (or higher) wire protocol supports compression. When
+compression is turned on Z flag is shown in client/server version
+info &ndash; for example: LI-T3.0.0.31451 Firebird 3.0 Beta 1/tcp
+(fbs)/P13:Z.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

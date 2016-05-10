@@ -1,0 +1,155 @@
+﻿Firebird Serveur Bases de données $MAJOR.$MINOR.$RELEASE
+==================================================
+
+** NOTE IMPORTANTE **
+
+Ce document est une traduction et malgré nos efforts,
+il peut ne pas correspondre exactement ŕ la derničre
+version, seul le texte original en anglais
+(installation_readme.txt) est toujours ŕ jour.
+
+**       FIN      **
+
+Ce document est un guide pour l'installation de
+Firebird $MAJOR.$MINOR sur une plateforme Windows. Ces notes
+concernent l'utilitaire d'installation, pas Firebird $MAJOR.$MINOR
+en général.
+
+Ce document s'adresse à des personnes connaissant déjà Firebird.
+Si vous testez Firebird $MAJOR.$MINOR dans l'optique d'une migration
+depuis Firebird 2.5, lisez la documentation de Firebird $MAJOR.$MINOR
+afin de comprendre les modifications intervenues depuis Firebird 2.5.
+
+
+Contenu
+--------
+
+o Avant l'installation
+o Déployement de gds32.dll
+o Installation du Guardian
+o Réinstallation de Firebird 3
+o Problèmes connus d'installation
+o Desinstallation
+o Installation depuis un fichier batch
+
+
+Avant l'installation
+--------------------
+
+Il est recommandé de désinstaller toutes les
+précédentes versions de Firebird  ou
+InterBase avant de commencer l'installation.
+Il est particuličrement important de vérifier que
+fbclient.dll et gds32.dll ont été retirés de <system32>.
+
+Si vous avez installé une version beta ou alpha de Firebird 3,
+l'installeur va renommer firebird.conf et security3.fdb, car ces
+fichiers ne sont plus compatibles avec la version actuelle.
+
+
+Déployement de gds32.dll
+------------------------
+
+
+La bibliothèque gds32.dll n'est plus déployée dans les répertoires
+systèmes de windows par défaut. Nous ne pouvons garantir que les
+bibliothèques MSVC runtiles soit disponibles; Toutefois, au moment de
+l'installation, vous pouvez choisir d'installer gds32.dll en même temps
+que le déploiement de fbclient.dll dans le système.
+
+Vérifiez que votre système cible a bien les MSVC10 runtimes installés si
+vous utilisez ces options.
+
+
+Installation du Guardian
+------------------------
+
+nous ne souhaitons plus utiliser le Guardian. Il ne fonctionne pas
+avec le mode Classic server et l'installateur ne vous propose donc pas
+sont installation si vous choisissez le mode Classic.
+Si le mode SuperServer ou SuperClassic est choisi
+il est proposé mais pas sélectionné par défaut.
+
+
+Problèmes connus d'installation
+-------------------------------
+
+o Vous ne pouvez utiliser l'utilitaire d'installation
+  que pour installer l'instance par défaut de Firebird $MAJOR.$MINOR.
+  Si vous voulez en installer une deuxičme en plus, ou une
+  instance nomée, vous devez le faire ŕ partir de l'image
+  zip.
+
+o Malheureusement, l'utilitaire d'installation de peux
+  avec certitude détecter si une version précédente de
+  Firebird Classic server est en fonctionnement.
+
+o Il y a des chevauchements entre les installations
+  32-bit et 64-bit :
+
+  - L'installateur de service (instsvc) utilise
+    le męme nom default instance pour les installations
+    32-bit et 64-bit. Les services existent
+    dans le męme espace de nom.
+
+  - Si les deux applets 32-bit et 64-bit du panneau de configuration
+    sont installées, elles pointeront sur la męme instance.
+
+o Faites l'installation en tant qu'administrateur
+  Sinon, l'utilitaire d'installation ne pourra pas démarrer
+  le service Firebird ŕ la fin de l'installation.
+
+o Les bibliotèques installées par instclient peuvent ne pas se charger
+  les bibliotèques MSCV runtimes ne sont pas installées. Cela peut être
+  un souci sur des anciennes versions de Windows.
+
+
+Désinstallation
+---------------
+
+o Il est préférable d'utiliser le programme de
+  désinstalation fourni.
+  Il peut ętre appelé depuis le panneau de
+  configuration. Vous pouvez aussi utiliser directement
+  unins000.exe depuis le répertoire d'installation.
+
+o Si Firebird est exécuté comme application (et non
+  comme service) il est recommendé d'arreter d'abord
+  le serveur avant de commencer la désinstalation. Ce
+  parce que le programme de desinstallation ne peut
+  arreter une application en cours. Si le serveur
+  fonctionne pendant la désinstallation, des erreurs
+  seront générées.
+  Vous devrez alors supprimer les fichiers restant
+  manuellement.
+
+o La désinstallation laisse cinq fichiers dans le
+  répertoire d'installation:
+
+  - aliases.conf
+  - firebird.conf
+  - fbtrace.conf
+  - firebird.log
+  - security3.fdb
+
+  Ceci est intentionnel. Ces fichiers sont tous
+  potentiellement modifiables par les utilisateurs et peuvent
+  être nécessaires si Firebird est reinstallé dans le futur. Ils
+  peuvent être effacés si nécessaire.
+
+o Une nouvelle fonctionnalité du desinstallateur existe
+  avec l'option /CLEAN. Cela vérifiera s'il existe les fichiers
+  mentionnées ci dessus et essaiera de les supprimer.
+
+
+Installation depuis un fichier batch
+------------------------------------
+
+Le programme d'installation peut être utilisé depuis un
+fichier batch
+Lisez le document :
+
+    installation_scripted.txt
+
+pour plus de détails.
+
