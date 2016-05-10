@@ -50,12 +50,14 @@ static int flac_write_block_comment(AVIOContext *pb, AVDictionary **m,
                                     int last_block, int bitexact)
 {
     const char *vendor = bitexact ? "ffmpeg" : LIBAVFORMAT_IDENT;
-    unsigned int len;
+    int64_t len;
     uint8_t *p, *p0;
 
     ff_metadata_conv(m, ff_vorbiscomment_metadata_conv, NULL);
 
     len = ff_vorbiscomment_length(*m, vendor);
+    if (len >= ((1<<24) - 4))
+        return AVERROR(EINVAL);
     p0 = av_malloc(len+4);
     if (!p0)
         return AVERROR(ENOMEM);
@@ -185,7 +187,7 @@ static int flac_write_packet(struct AVFormatContext *s, AVPacket *pkt)
 }
 
 static const AVOption flacenc_options[] = {
-    { "write_header", "Write the file header", offsetof(FlacMuxerContext, write_header), AV_OPT_TYPE_INT, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
+    { "write_header", "Write the file header", offsetof(FlacMuxerContext, write_header), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
     { NULL },
 };
 

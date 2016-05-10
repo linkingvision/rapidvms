@@ -164,6 +164,8 @@ static char *microdvd_load_tags(struct microdvd_tag *tags, char *s)
 
         /* Position */
         case 'P':
+            if (!*s)
+                break;
             tag.persistent = MICRODVD_PERSISTENT_ON;
             tag.data1 = (*s++ == '1');
             if (*s != '}')
@@ -368,7 +370,8 @@ static int microdvd_init(AVCodecContext *avctx)
     }
     return ff_ass_subtitle_header(avctx, font_buf.str, font_size, color,
                                   ASS_DEFAULT_BACK_COLOR, bold, italic,
-                                  underline, alignment);
+                                  underline, ASS_DEFAULT_BORDERSTYLE,
+                                  alignment);
 }
 
 AVCodec ff_microdvd_decoder = {

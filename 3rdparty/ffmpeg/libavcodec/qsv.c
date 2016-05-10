@@ -1,8 +1,5 @@
 /*
- * Intel MediaSDK QSV codec-independent code
- *
- * copyright (c) 2013 Luca Barbato
- * copyright (c) 2015 Anton Khirnov <anton@khirnov.net>
+ * Intel MediaSDK QSV encoder/decoder shared code
  *
  * This file is part of FFmpeg.
  *
@@ -21,20 +18,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <string.h>
-#include <sys/types.h>
-
 #include <mfx/mfxvideo.h>
+#include <mfx/mfxplugin.h>
 
-#include "libavutil/common.h"
-#include "libavutil/mem.h"
-#include "libavutil/log.h"
-#include "libavutil/pixfmt.h"
-#include "libavutil/time.h"
+#include <stdio.h>
+#include <string.h>
+
+#include "libavutil/avstring.h"
+#include "libavutil/error.h"
 
 #include "avcodec.h"
-#include "internal.h"
 #include "qsv_internal.h"
+
+int ff_qsv_codec_id_to_mfx(enum AVCodecID codec_id)
+{
+    switch (codec_id) {
+    case AV_CODEC_ID_H264:
+        return MFX_CODEC_AVC;
+#if QSV_VERSION_ATLEAST(1, 8)
+    case AV_CODEC_ID_HEVC:
+        return MFX_CODEC_HEVC;
+#endif
+    case AV_CODEC_ID_MPEG1VIDEO:
+    case AV_CODEC_ID_MPEG2VIDEO:
+        return MFX_CODEC_MPEG2;
+    case AV_CODEC_ID_VC1:
+        return MFX_CODEC_VC1;
+    default:
+        break;
+    }
+
+    return AVERROR(ENOSYS);
+}
 
 int ff_qsv_error(int mfx_err)
 {
@@ -70,293 +85,185 @@ int ff_qsv_error(int mfx_err)
         return AVERROR_UNKNOWN;
     }
 }
-
-int ff_qsv_map_pixfmt(enum AVPixelFormat format)
+static int ff_qsv_set_display_handle(AVCodecContext *avctx, QSVSession *qs)
 {
-    switch (format) {
-    case AV_PIX_FMT_YUV420P:
-    case AV_PIX_FMT_YUVJ420P:
-        return AV_PIX_FMT_NV12;
-    default:
-        return AVERROR(ENOSYS);
-    }
-}
+    // this code is only required for Linux.  It searches for a valid
+    // display handle.  First in /dev/dri/renderD then in /dev/dri/card
+#ifdef AVCODEC_QSV_LINUX_SESSION_HANDLE
+    // VAAPI display handle
+    int ret = 0;
+    VADisplay va_dpy = NULL;
+    VAStatus va_res = VA_STATUS_SUCCESS;
+    int major_version = 0, minor_version = 0;
+    int fd = -1;
+    char adapterpath[256];
+    int adapter_num;
 
-static int codec_id_to_mfx(enum AVCodecID codec_id)
-{
-    switch (codec_id) {
-    case AV_CODEC_ID_H264:
-        return MFX_CODEC_AVC;
-    case AV_CODEC_ID_MPEG1VIDEO:
-    case AV_CODEC_ID_MPEG2VIDEO:
-        return MFX_CODEC_MPEG2;
-    case AV_CODEC_ID_VC1:
-        return MFX_CODEC_VC1;
-    default:
-        break;
-    }
+    qs->fd_display = -1;
+    qs->va_display = NULL;
 
-    return AVERROR(ENOSYS);
-}
+    //search for valid graphics device
+    for (adapter_num = 0;adapter_num < 6;adapter_num++) {
 
-static int qsv_init_session(AVCodecContext *avctx, QSVContext *q, mfxSession session)
-{
-    if (!session) {
-        if (!q->internal_session) {
-            mfxIMPL impl   = MFX_IMPL_AUTO_ANY;
-            mfxVersion ver = { { QSV_VERSION_MINOR, QSV_VERSION_MAJOR } };
+        if (adapter_num<3) {
+            snprintf(adapterpath,sizeof(adapterpath),
+                "/dev/dri/renderD%d", adapter_num+128);
+        } else {
+            snprintf(adapterpath,sizeof(adapterpath),
+                "/dev/dri/card%d", adapter_num-3);
+        }
 
-            const char *desc;
-            int ret;
+        fd = open(adapterpath, O_RDWR);
+        if (fd < 0) {
+            av_log(avctx, AV_LOG_ERROR,
+                "mfx init: %s fd open failed\n", adapterpath);
+            continue;
+        }
 
-            ret = MFXInit(impl, &ver, &q->internal_session);
+        va_dpy = vaGetDisplayDRM(fd);
+        if (!va_dpy) {
+            av_log(avctx, AV_LOG_ERROR,
+                "mfx init: %s vaGetDisplayDRM failed\n", adapterpath);
+            close(fd);
+            continue;
+        }
+
+        va_res = vaInitialize(va_dpy, &major_version, &minor_version);
+        if (VA_STATUS_SUCCESS != va_res) {
+            av_log(avctx, AV_LOG_ERROR,
+                "mfx init: %s vaInitialize failed\n", adapterpath);
+            close(fd);
+            fd = -1;
+            continue;
+        } else {
+            av_log(avctx, AV_LOG_VERBOSE,
+            "mfx initialization: %s vaInitialize successful\n",adapterpath);
+            qs->fd_display = fd;
+            qs->va_display = va_dpy;
+            ret = MFXVideoCORE_SetHandle(qs->session,
+                  (mfxHandleType)MFX_HANDLE_VA_DISPLAY, (mfxHDL)va_dpy);
             if (ret < 0) {
-                av_log(avctx, AV_LOG_ERROR, "Error initializing an internal MFX session\n");
+                av_log(avctx, AV_LOG_ERROR,
+                "Error %d during set display handle\n", ret);
                 return ff_qsv_error(ret);
             }
-
-            MFXQueryIMPL(q->internal_session, &impl);
-
-            if (impl & MFX_IMPL_SOFTWARE)
-                desc = "software";
-            else if (impl & MFX_IMPL_HARDWARE)
-                desc = "hardware accelerated";
-            else
-                desc = "unknown";
-
-            av_log(avctx, AV_LOG_VERBOSE,
-                   "Initialized an internal MFX session using %s implementation\n",
-                   desc);
+            break;
         }
-
-        q->session = q->internal_session;
-    } else {
-        q->session = session;
     }
-
-    /* make sure the decoder is uninitialized */
-    MFXVideoDECODE_Close(q->session);
-
+#endif //AVCODEC_QSV_LINUX_SESSION_HANDLE
     return 0;
 }
-
-int ff_qsv_init(AVCodecContext *avctx, QSVContext *q, mfxSession session)
+/**
+ * @brief Initialize a MSDK session
+ *
+ * Media SDK is based on sessions, so this is the prerequisite
+ * initialization for HW acceleration.  For Windows the session is
+ * complete and ready to use, for Linux a display handle is
+ * required.  For releases of Media Server Studio >= 2015 R4 the
+ * render nodes interface is preferred (/dev/dri/renderD).
+ * Using Media Server Studio 2015 R4 or newer is recommended
+ * but the older /dev/dri/card interface is also searched
+ * for broader compatibility.
+ *
+ * @param avctx    ffmpeg metadata for this codec context
+ * @param session  the MSDK session used
+ */
+int ff_qsv_init_internal_session(AVCodecContext *avctx, QSVSession *qs,
+                                 const char *load_plugins)
 {
-    mfxVideoParam param = { { 0 } };
+    mfxIMPL impl   = MFX_IMPL_AUTO_ANY;
+    mfxVersion ver = { { QSV_VERSION_MINOR, QSV_VERSION_MAJOR } };
+
+    const char *desc;
     int ret;
 
-    ret = qsv_init_session(avctx, q, session);
+    ret = MFXInit(impl, &ver, &qs->session);
     if (ret < 0) {
-        av_log(avctx, AV_LOG_ERROR, "Error initializing an MFX session\n");
-        return ret;
-    }
-
-
-    ret = codec_id_to_mfx(avctx->codec_id);
-    if (ret < 0)
-        return ret;
-
-    param.mfx.CodecId      = ret;
-    param.mfx.CodecProfile = avctx->profile;
-    param.mfx.CodecLevel   = avctx->level;
-
-    param.mfx.FrameInfo.BitDepthLuma   = 8;
-    param.mfx.FrameInfo.BitDepthChroma = 8;
-    param.mfx.FrameInfo.Shift          = 0;
-    param.mfx.FrameInfo.FourCC         = MFX_FOURCC_NV12;
-    param.mfx.FrameInfo.Width          = avctx->coded_width;
-    param.mfx.FrameInfo.Height         = avctx->coded_height;
-    param.mfx.FrameInfo.ChromaFormat   = MFX_CHROMAFORMAT_YUV420;
-
-    param.IOPattern   = q->iopattern;
-    param.AsyncDepth  = q->async_depth;
-    param.ExtParam    = q->ext_buffers;
-    param.NumExtParam = q->nb_ext_buffers;
-
-    ret = MFXVideoDECODE_Init(q->session, &param);
-    if (ret < 0) {
-        av_log(avctx, AV_LOG_ERROR, "Error initializing the MFX video decoder\n");
+        av_log(avctx, AV_LOG_ERROR, "Error initializing an internal MFX session\n");
         return ff_qsv_error(ret);
     }
 
-    return 0;
-}
-
-static int alloc_frame(AVCodecContext *avctx, QSVFrame *frame)
-{
-    int ret;
-
-    ret = ff_get_buffer(avctx, frame->frame, AV_GET_BUFFER_FLAG_REF);
+    ret = ff_qsv_set_display_handle(avctx, qs);
     if (ret < 0)
         return ret;
 
-    if (frame->frame->format == AV_PIX_FMT_QSV) {
-        frame->surface = (mfxFrameSurface1*)frame->frame->data[3];
-    } else {
-        frame->surface_internal.Info.BitDepthLuma   = 8;
-        frame->surface_internal.Info.BitDepthChroma = 8;
-        frame->surface_internal.Info.FourCC         = MFX_FOURCC_NV12;
-        frame->surface_internal.Info.Width          = avctx->coded_width;
-        frame->surface_internal.Info.Height         = avctx->coded_height;
-        frame->surface_internal.Info.ChromaFormat   = MFX_CHROMAFORMAT_YUV420;
+    MFXQueryIMPL(qs->session, &impl);
 
-        frame->surface_internal.Data.PitchLow = frame->frame->linesize[0];
-        frame->surface_internal.Data.Y        = frame->frame->data[0];
-        frame->surface_internal.Data.UV       = frame->frame->data[1];
-
-        frame->surface = &frame->surface_internal;
+    switch (MFX_IMPL_BASETYPE(impl)) {
+    case MFX_IMPL_SOFTWARE:
+        desc = "software";
+        break;
+    case MFX_IMPL_HARDWARE:
+    case MFX_IMPL_HARDWARE2:
+    case MFX_IMPL_HARDWARE3:
+    case MFX_IMPL_HARDWARE4:
+        desc = "hardware accelerated";
+        break;
+    default:
+        desc = "unknown";
     }
+
+    if (load_plugins && *load_plugins) {
+        while (*load_plugins) {
+            mfxPluginUID uid;
+            int i, err = 0;
+
+            char *plugin = av_get_token(&load_plugins, ":");
+            if (!plugin)
+                return AVERROR(ENOMEM);
+            if (strlen(plugin) != 2 * sizeof(uid.Data)) {
+                av_log(avctx, AV_LOG_ERROR, "Invalid plugin UID length\n");
+                err = AVERROR(EINVAL);
+                goto load_plugin_fail;
+            }
+
+            for (i = 0; i < sizeof(uid.Data); i++) {
+                err = sscanf(plugin + 2 * i, "%2hhx", uid.Data + i);
+                if (err != 1) {
+                    av_log(avctx, AV_LOG_ERROR, "Invalid plugin UID\n");
+                    err = AVERROR(EINVAL);
+                    goto load_plugin_fail;
+                }
+
+            }
+
+            ret = MFXVideoUSER_Load(qs->session, &uid, 1);
+            if (ret < 0) {
+                av_log(avctx, AV_LOG_ERROR, "Could not load the requested plugin: %s\n",
+                       plugin);
+                err = ff_qsv_error(ret);
+                goto load_plugin_fail;
+            }
+
+load_plugin_fail:
+            av_freep(&plugin);
+            if (err < 0)
+                return err;
+        }
+    }
+
+    av_log(avctx, AV_LOG_VERBOSE,
+           "Initialized an internal MFX session using %s implementation\n",
+           desc);
 
     return 0;
 }
 
-static void qsv_clear_unused_frames(QSVContext *q)
+int ff_qsv_close_internal_session(QSVSession *qs)
 {
-    QSVFrame *cur = q->work_frames;
-    while (cur) {
-        if (cur->surface && !cur->surface->Data.Locked) {
-            cur->surface = NULL;
-            av_frame_unref(cur->frame);
-        }
-        cur = cur->next;
+    if (qs->session) {
+        MFXClose(qs->session);
+        qs->session = NULL;
     }
-}
-
-static int get_surface(AVCodecContext *avctx, QSVContext *q, mfxFrameSurface1 **surf)
-{
-    QSVFrame *frame, **last;
-    int ret;
-
-    qsv_clear_unused_frames(q);
-
-    frame = q->work_frames;
-    last  = &q->work_frames;
-    while (frame) {
-        if (!frame->surface) {
-            ret = alloc_frame(avctx, frame);
-            if (ret < 0)
-                return ret;
-            *surf = frame->surface;
-            return 0;
-        }
-
-        last  = &frame->next;
-        frame = frame->next;
+#ifdef AVCODEC_QSV_LINUX_SESSION_HANDLE
+    if (qs->va_display) {
+        vaTerminate(qs->va_display);
+        qs->va_display = NULL;
     }
-
-    frame = av_mallocz(sizeof(*frame));
-    if (!frame)
-        return AVERROR(ENOMEM);
-    frame->frame = av_frame_alloc();
-    if (!frame->frame) {
-        av_freep(&frame);
-        return AVERROR(ENOMEM);
+    if (qs->fd_display > 0) {
+        close(qs->fd_display);
+        qs->fd_display = -1;
     }
-    *last = frame;
-
-    ret = alloc_frame(avctx, frame);
-    if (ret < 0)
-        return ret;
-
-    *surf = frame->surface;
-
-    return 0;
-}
-
-static AVFrame *find_frame(QSVContext *q, mfxFrameSurface1 *surf)
-{
-    QSVFrame *cur = q->work_frames;
-    while (cur) {
-        if (surf == cur->surface)
-            return cur->frame;
-        cur = cur->next;
-    }
-    return NULL;
-}
-
-int ff_qsv_decode(AVCodecContext *avctx, QSVContext *q,
-                  AVFrame *frame, int *got_frame,
-                  AVPacket *avpkt)
-{
-    mfxFrameSurface1 *insurf;
-    mfxFrameSurface1 *outsurf;
-    mfxSyncPoint sync;
-    mfxBitstream bs = { { { 0 } } };
-    int ret;
-
-    if (avpkt->size) {
-        bs.Data       = avpkt->data;
-        bs.DataLength = avpkt->size;
-        bs.MaxLength  = bs.DataLength;
-        bs.TimeStamp  = avpkt->pts;
-    }
-
-    do {
-        ret = get_surface(avctx, q, &insurf);
-        if (ret < 0)
-            return ret;
-
-        ret = MFXVideoDECODE_DecodeFrameAsync(q->session, avpkt->size ? &bs : NULL,
-                                              insurf, &outsurf, &sync);
-        if (ret == MFX_WRN_DEVICE_BUSY)
-            av_usleep(1);
-
-    } while (ret == MFX_WRN_DEVICE_BUSY || ret == MFX_ERR_MORE_SURFACE);
-
-    if (ret != MFX_ERR_NONE &&
-        ret != MFX_ERR_MORE_DATA &&
-        ret != MFX_WRN_VIDEO_PARAM_CHANGED &&
-        ret != MFX_ERR_MORE_SURFACE) {
-        av_log(avctx, AV_LOG_ERROR, "Error during QSV decoding.\n");
-        return ff_qsv_error(ret);
-    }
-
-    if (sync) {
-        AVFrame *src_frame;
-
-        MFXVideoCORE_SyncOperation(q->session, sync, 60000);
-
-        src_frame = find_frame(q, outsurf);
-        if (!src_frame) {
-            av_log(avctx, AV_LOG_ERROR,
-                   "The returned surface does not correspond to any frame\n");
-            return AVERROR_BUG;
-        }
-
-        ret = av_frame_ref(frame, src_frame);
-        if (ret < 0)
-            return ret;
-
-        frame->pkt_pts = frame->pts = outsurf->Data.TimeStamp;
-
-        frame->repeat_pict =
-            outsurf->Info.PicStruct & MFX_PICSTRUCT_FRAME_TRIPLING ? 4 :
-            outsurf->Info.PicStruct & MFX_PICSTRUCT_FRAME_DOUBLING ? 2 :
-            outsurf->Info.PicStruct & MFX_PICSTRUCT_FIELD_REPEATED ? 1 : 0;
-        frame->top_field_first =
-            outsurf->Info.PicStruct & MFX_PICSTRUCT_FIELD_TFF;
-        frame->interlaced_frame =
-            !(outsurf->Info.PicStruct & MFX_PICSTRUCT_PROGRESSIVE);
-
-        *got_frame = 1;
-    }
-
-    return bs.DataOffset;
-}
-
-int ff_qsv_close(QSVContext *q)
-{
-    QSVFrame *cur = q->work_frames;
-
-    while (cur) {
-        q->work_frames = cur->next;
-        av_frame_free(&cur->frame);
-        av_freep(&cur);
-        cur = q->work_frames;
-    }
-
-    if (q->internal_session)
-        MFXClose(q->internal_session);
-
+#endif
     return 0;
 }

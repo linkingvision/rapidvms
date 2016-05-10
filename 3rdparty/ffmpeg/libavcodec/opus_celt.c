@@ -27,6 +27,7 @@
 #include <stdint.h>
 
 #include "libavutil/float_dsp.h"
+#include "libavutil/libm.h"
 
 #include "imdct15.h"
 #include "opus.h"
@@ -1454,7 +1455,7 @@ static unsigned int celt_decode_band(CeltContext *s, OpusRangeCoder *rc,
         if (itheta == 0) {
             imid = 32767;
             iside = 0;
-            fill &= (1 << blocks) - 1;
+            fill = av_mod_uintp2(fill, blocks);
             delta = -16384;
         } else if (itheta == 16384) {
             imid = 0;
@@ -1666,7 +1667,7 @@ static unsigned int celt_decode_band(CeltContext *s, OpusRangeCoder *rc,
             for (j = 0; j < N0; j++)
                 lowband_out[j] = n * X[j];
         }
-        cm &= (1 << blocks) - 1;
+        cm = av_mod_uintp2(cm, blocks);
     }
     return cm;
 }
@@ -1677,7 +1678,7 @@ static void celt_denormalize(CeltContext *s, CeltFrame *frame, float *data)
 
     for (i = s->startband; i < s->endband; i++) {
         float *dst = data + (celt_freq_bands[i] << s->duration);
-        float norm = pow(2, frame->energy[i] + celt_mean_energy[i]);
+        float norm = exp2(frame->energy[i] + celt_mean_energy[i]);
 
         for (j = 0; j < celt_freq_range[i] << s->duration; j++)
             dst[j] *= norm;
@@ -1839,7 +1840,7 @@ static void process_anticollapse(CeltContext *s, CeltFrame *frame, float *X)
 
         /* depth in 1/8 bits */
         depth = (1 + s->pulses[i]) / (celt_freq_range[i] << s->duration);
-        thresh = pow(2, -1.0 - 0.125f * depth);
+        thresh = exp2f(-1.0 - 0.125f * depth);
         sqrt_1 = 1.0f / sqrtf(celt_freq_range[i] << s->duration);
 
         xptr = X + (celt_freq_bands[i] << s->duration);
@@ -1857,7 +1858,7 @@ static void process_anticollapse(CeltContext *s, CeltFrame *frame, float *X)
 
         /* r needs to be multiplied by 2 or 2*sqrt(2) depending on LM because
         short blocks don't have the same energy as long */
-        r = pow(2, 1 - Ediff);
+        r = exp2(1 - Ediff);
         if (s->duration == 3)
             r *= M_SQRT2;
         r = FFMIN(thresh, r) * sqrt_1;
@@ -2209,7 +2210,7 @@ int ff_celt_init(AVCodecContext *avctx, CeltContext **ps, int output_channels)
             goto fail;
     }
 
-    s->dsp = avpriv_float_dsp_alloc(avctx->flags & CODEC_FLAG_BITEXACT);
+    s->dsp = avpriv_float_dsp_alloc(avctx->flags & AV_CODEC_FLAG_BITEXACT);
     if (!s->dsp) {
         ret = AVERROR(ENOMEM);
         goto fail;

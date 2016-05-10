@@ -66,7 +66,7 @@ typedef struct DssSpContext {
     int pulse_dec_mode;
 
     DECLARE_ALIGNED(16, uint8_t, bits)[DSS_SP_FRAME_SIZE +
-                                       FF_INPUT_BUFFER_PADDING_SIZE];
+                                       AV_INPUT_BUFFER_PADDING_SIZE];
 } DssSpContext;
 
 /*
@@ -776,12 +776,12 @@ static int dss_sp_decode_frame(AVCodecContext *avctx, void *data,
 }
 
 AVCodec ff_dss_sp_decoder = {
-    .name           = "DSS SP",
+    .name           = "dss_sp",
     .long_name      = NULL_IF_CONFIG_SMALL("Digital Speech Standard - Standard Play mode (DSS SP)"),
     .type           = AVMEDIA_TYPE_AUDIO,
     .id             = AV_CODEC_ID_DSS_SP,
     .priv_data_size = sizeof(DssSpContext),
     .init           = dss_sp_decode_init,
     .decode         = dss_sp_decode_frame,
-    .capabilities   = CODEC_CAP_DR1,
+    .capabilities   = AV_CODEC_CAP_DR1,
 };

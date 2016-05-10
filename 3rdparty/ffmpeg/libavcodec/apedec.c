@@ -247,7 +247,7 @@ static av_cold int ape_decode_init(AVCodecContext *avctx)
     s->compression_level = AV_RL16(avctx->extradata + 2);
     s->flags             = AV_RL16(avctx->extradata + 4);
 
-    av_log(avctx, AV_LOG_DEBUG, "Compression Level: %d - Flags: %d\n",
+    av_log(avctx, AV_LOG_VERBOSE, "Compression Level: %d - Flags: %d\n",
            s->compression_level, s->flags);
     if (s->compression_level % 1000 || s->compression_level > COMPRESSION_LEVEL_INSANE ||
         !s->compression_level ||
@@ -592,14 +592,14 @@ static void decode_array_0000(APEContext *ctx, GetBitContext *gb,
     int ksummax, ksummin;
 
     rice->ksum = 0;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < FFMIN(blockstodecode, 5); i++) {
         out[i] = get_rice_ook(&ctx->gb, 10);
         rice->ksum += out[i];
     }
     rice->k = av_log2(rice->ksum / 10) + 1;
     if (rice->k >= 24)
         return;
-    for (; i < 64; i++) {
+    for (; i < FFMIN(blockstodecode, 64); i++) {
         out[i] = get_rice_ook(&ctx->gb, rice->k);
         rice->ksum += out[i];
         rice->k = av_log2(rice->ksum / ((i + 1) * 2)) + 1;
@@ -891,6 +891,9 @@ static void long_filter_high_3800(int32_t *buffer, int order, int shift, int len
     int i, j;
     int32_t dotprod, sign;
     int32_t coeffs[256], delay[256];
+
+    if (order >= length)
+        return;
 
     memset(coeffs, 0, order * sizeof(*coeffs));
     for (i = 0; i < order; i++)
@@ -1281,7 +1284,7 @@ static void do_apply_filter(APEContext *ctx, int version, APEFilter *f,
             /* Update the adaption coefficients */
             absres = FFABS(res);
             if (absres)
-                *f->adaptcoeffs = ((res & (-1<<31)) ^ (-1<<30)) >>
+                *f->adaptcoeffs = ((res & INT32_MIN) ^ (-(1<<30))) >>
                                   (25 + (absres <= f->avg*3) + (absres <= f->avg*4/3));
             else
                 *f->adaptcoeffs = 0;
@@ -1461,13 +1464,13 @@ static int ape_decode_frame(AVCodecContext *avctx, void *data,
                    nblocks);
             return AVERROR_INVALIDDATA;
         }
-        s->samples = nblocks;
 
         /* Initialize the frame decoder */
         if (init_frame_decoder(s) < 0) {
             av_log(avctx, AV_LOG_ERROR, "Error reading frame header\n");
             return AVERROR_INVALIDDATA;
         }
+        s->samples = nblocks;
     }
 
     if (!s->data) {
@@ -1570,7 +1573,8 @@ AVCodec ff_ape_decoder = {
     .init           = ape_decode_init,
     .close          = ape_decode_close,
     .decode         = ape_decode_frame,
-    .capabilities   = CODEC_CAP_SUBFRAMES | CODEC_CAP_DELAY | CODEC_CAP_DR1,
+    .capabilities   = AV_CODEC_CAP_SUBFRAMES | AV_CODEC_CAP_DELAY |
+                      AV_CODEC_CAP_DR1,
     .flush          = ape_flush,
     .sample_fmts    = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_U8P,
                                                       AV_SAMPLE_FMT_S16P,

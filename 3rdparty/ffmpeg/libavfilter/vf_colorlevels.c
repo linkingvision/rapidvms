@@ -84,8 +84,10 @@ static int query_formats(AVFilterContext *ctx)
         AV_PIX_FMT_NONE
     };
 
-    ff_set_common_formats(ctx, ff_make_format_list(pix_fmts));
-    return 0;
+    AVFilterFormats *fmts_list = ff_make_format_list(pix_fmts);
+    if (!fmts_list)
+        return AVERROR(ENOMEM);
+    return ff_set_common_formats(ctx, fmts_list);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -95,7 +97,7 @@ static int config_input(AVFilterLink *inlink)
     const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(inlink->format);
 
     s->nb_comp = desc->nb_components;
-    s->bpp = (desc->comp[0].depth_minus1 + 1) >> 3;
+    s->bpp = desc->comp[0].depth >> 3;
     s->step = (av_get_padded_bits_per_pixel(desc) >> 3) / s->bpp;
     s->linesize = inlink->w * s->step;
     ff_fill_rgba_map(s->rgba_map, inlink->format);
@@ -130,10 +132,10 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
             const uint8_t offset = s->rgba_map[i];
             const uint8_t *srcrow = in->data[0];
             uint8_t *dstrow = out->data[0];
-            int imin = round(r->in_min  * UINT8_MAX);
-            int imax = round(r->in_max  * UINT8_MAX);
-            int omin = round(r->out_min * UINT8_MAX);
-            int omax = round(r->out_max * UINT8_MAX);
+            int imin = lrint(r->in_min  * UINT8_MAX);
+            int imax = lrint(r->in_max  * UINT8_MAX);
+            int omin = lrint(r->out_min * UINT8_MAX);
+            int omax = lrint(r->out_max * UINT8_MAX);
             double coeff;
 
             if (imin < 0) {
@@ -177,10 +179,10 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
             const uint8_t offset = s->rgba_map[i];
             const uint8_t *srcrow = in->data[0];
             uint8_t *dstrow = out->data[0];
-            int imin = round(r->in_min  * UINT16_MAX);
-            int imax = round(r->in_max  * UINT16_MAX);
-            int omin = round(r->out_min * UINT16_MAX);
-            int omax = round(r->out_max * UINT16_MAX);
+            int imin = lrint(r->in_min  * UINT16_MAX);
+            int imax = lrint(r->in_max  * UINT16_MAX);
+            int omin = lrint(r->out_min * UINT16_MAX);
+            int omax = lrint(r->out_max * UINT16_MAX);
             double coeff;
 
             if (imin < 0) {

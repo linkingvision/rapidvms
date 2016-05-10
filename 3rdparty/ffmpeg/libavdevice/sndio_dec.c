@@ -22,12 +22,14 @@
 #include <stdint.h>
 #include <sndio.h>
 
-#include "libavformat/avformat.h"
-#include "libavformat/internal.h"
+#include "libavutil/internal.h"
 #include "libavutil/opt.h"
 #include "libavutil/time.h"
 
-#include "sndio_common.h"
+#include "libavformat/avformat.h"
+#include "libavformat/internal.h"
+
+#include "libavdevice/sndio.h"
 
 static av_cold int audio_read_header(AVFormatContext *s1)
 {
@@ -65,7 +67,7 @@ static int audio_read_packet(AVFormatContext *s1, AVPacket *pkt)
 
     ret = sio_read(s->hdl, pkt->data, pkt->size);
     if (ret == 0 || sio_eof(s->hdl)) {
-        av_free_packet(pkt);
+        av_packet_unref(pkt);
         return AVERROR_EOF;
     }
 

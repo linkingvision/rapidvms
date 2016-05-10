@@ -94,7 +94,7 @@ static int decode_frame(AVCodecContext *avctx, void *data, int *got_frame,
     if (ret != Z_DATA_ERROR) {
         bytestream2_init(&c->gb, c->decomp_buf,
                          c->decomp_size - c->zstream.avail_out);
-        ff_msrle_decode(avctx, (AVPicture*)frame, c->bpp, &c->gb);
+        ff_msrle_decode(avctx, frame, c->bpp, &c->gb);
     }
 
     /* make the palette available on the way out */
@@ -184,5 +184,5 @@ AVCodec ff_tscc_decoder = {
     .init           = decode_init,
     .close          = decode_end,
     .decode         = decode_frame,
-    .capabilities   = CODEC_CAP_DR1,
+    .capabilities   = AV_CODEC_CAP_DR1,
 };

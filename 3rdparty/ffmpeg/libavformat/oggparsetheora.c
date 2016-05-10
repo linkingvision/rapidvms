@@ -108,7 +108,7 @@ static int theora_header(AVFormatContext *s, int idx)
             skip_bits(&gb, 2);
 
         thp->gpshift = get_bits(&gb, 5);
-        thp->gpmask  = (1 << thp->gpshift) - 1;
+        thp->gpmask  = (1U << thp->gpshift) - 1;
 
         st->codec->codec_type = AVMEDIA_TYPE_VIDEO;
         st->codec->codec_id   = AV_CODEC_ID_THEORA;
@@ -127,11 +127,11 @@ static int theora_header(AVFormatContext *s, int idx)
     }
 
     if ((err = av_reallocp(&st->codec->extradata,
-                           cds + FF_INPUT_BUFFER_PADDING_SIZE)) < 0) {
+                           cds + AV_INPUT_BUFFER_PADDING_SIZE)) < 0) {
         st->codec->extradata_size = 0;
         return err;
     }
-    memset(st->codec->extradata + cds, 0, FF_INPUT_BUFFER_PADDING_SIZE);
+    memset(st->codec->extradata + cds, 0, AV_INPUT_BUFFER_PADDING_SIZE);
 
     cdp    = st->codec->extradata + st->codec->extradata_size;
     *cdp++ = os->psize >> 8;
@@ -191,7 +191,7 @@ static int theora_packet(AVFormatContext *s, int idx)
         os->lastpts = os->lastdts   = theora_gptopts(s, idx, os->granule, NULL) - duration;
         if(s->streams[idx]->start_time == AV_NOPTS_VALUE) {
             s->streams[idx]->start_time = os->lastpts;
-            if (s->streams[idx]->duration)
+            if (s->streams[idx]->duration > 0)
                 s->streams[idx]->duration -= s->streams[idx]->start_time;
         }
     }

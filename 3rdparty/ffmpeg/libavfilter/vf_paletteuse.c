@@ -24,7 +24,9 @@
  */
 
 #include "libavutil/bprint.h"
+#include "libavutil/internal.h"
 #include "libavutil/opt.h"
+#include "libavutil/qsort.h"
 #include "dualinput.h"
 #include "avfilter.h"
 
@@ -118,8 +120,8 @@ static const AVOption paletteuse_options[] = {
         { "nns_iterative", "iterative search",             0, AV_OPT_TYPE_CONST, {.i64=COLOR_SEARCH_NNS_ITERATIVE}, INT_MIN, INT_MAX, FLAGS, "search" },
         { "nns_recursive", "recursive search",             0, AV_OPT_TYPE_CONST, {.i64=COLOR_SEARCH_NNS_RECURSIVE}, INT_MIN, INT_MAX, FLAGS, "search" },
         { "bruteforce",    "brute-force into the palette", 0, AV_OPT_TYPE_CONST, {.i64=COLOR_SEARCH_BRUTEFORCE},    INT_MIN, INT_MAX, FLAGS, "search" },
-    { "mean_err", "compute and print mean error", OFFSET(calc_mean_err), AV_OPT_TYPE_INT, {.i64=0}, 0, 1, FLAGS },
-    { "debug_accuracy", "test color search accuracy", OFFSET(debug_accuracy), AV_OPT_TYPE_FLAGS, {.i64=0}, 0, 1, FLAGS },
+    { "mean_err", "compute and print mean error", OFFSET(calc_mean_err), AV_OPT_TYPE_BOOL, {.i64=0}, 0, 1, FLAGS },
+    { "debug_accuracy", "test color search accuracy", OFFSET(debug_accuracy), AV_OPT_TYPE_BOOL, {.i64=0}, 0, 1, FLAGS },
     { NULL }
 };
 
@@ -130,6 +132,7 @@ static int query_formats(AVFilterContext *ctx)
     static const enum AVPixelFormat in_fmts[]    = {AV_PIX_FMT_RGB32, AV_PIX_FMT_NONE};
     static const enum AVPixelFormat inpal_fmts[] = {AV_PIX_FMT_RGB32, AV_PIX_FMT_NONE};
     static const enum AVPixelFormat out_fmts[]   = {AV_PIX_FMT_PAL8,  AV_PIX_FMT_NONE};
+    int ret;
     AVFilterFormats *in    = ff_make_format_list(in_fmts);
     AVFilterFormats *inpal = ff_make_format_list(inpal_fmts);
     AVFilterFormats *out   = ff_make_format_list(out_fmts);
@@ -139,9 +142,10 @@ static int query_formats(AVFilterContext *ctx)
         av_freep(&out);
         return AVERROR(ENOMEM);
     }
-    ff_formats_ref(in,    &ctx->inputs[0]->out_formats);
-    ff_formats_ref(inpal, &ctx->inputs[1]->out_formats);
-    ff_formats_ref(out,   &ctx->outputs[0]->in_formats);
+    if ((ret = ff_formats_ref(in   , &ctx->inputs[0]->out_formats)) < 0 ||
+        (ret = ff_formats_ref(inpal, &ctx->inputs[1]->out_formats)) < 0 ||
+        (ret = ff_formats_ref(out  , &ctx->outputs[0]->in_formats)) < 0)
+        return ret;
     return 0;
 }
 
@@ -315,11 +319,11 @@ end:
  * Note: r, g, and b are the component of c but are passed as well to avoid
  * recomputing them (they are generally computed by the caller for other uses).
  */
-static av_always_inline uint8_t color_get(struct cache_node *cache, uint32_t color,
-                                          uint8_t r, uint8_t g, uint8_t b,
-                                          const struct color_node *map,
-                                          const uint32_t *palette,
-                                          const enum color_search_method search_method)
+static av_always_inline int color_get(struct cache_node *cache, uint32_t color,
+                                      uint8_t r, uint8_t g, uint8_t b,
+                                      const struct color_node *map,
+                                      const uint32_t *palette,
+                                      const enum color_search_method search_method)
 {
     int i;
     const uint8_t rgb[] = {r, g, b};
@@ -345,16 +349,16 @@ static av_always_inline uint8_t color_get(struct cache_node *cache, uint32_t col
     return e->pal_entry;
 }
 
-static av_always_inline uint8_t get_dst_color_err(struct cache_node *cache,
-                                                  uint32_t c, const struct color_node *map,
-                                                  const uint32_t *palette,
-                                                  int *er, int *eg, int *eb,
-                                                  const enum color_search_method search_method)
+static av_always_inline int get_dst_color_err(struct cache_node *cache,
+                                              uint32_t c, const struct color_node *map,
+                                              const uint32_t *palette,
+                                              int *er, int *eg, int *eb,
+                                              const enum color_search_method search_method)
 {
     const uint8_t r = c >> 16 & 0xff;
     const uint8_t g = c >>  8 & 0xff;
     const uint8_t b = c       & 0xff;
-    const uint8_t dstx = color_get(cache, c, r, g, b, map, palette, search_method);
+    const int dstx = color_get(cache, c, r, g, b, map, palette, search_method);
     const uint32_t dstc = palette[dstx];
     *er = r - (dstc >> 16 & 0xff);
     *eg = g - (dstc >>  8 & 0xff);
@@ -592,6 +596,7 @@ static int get_next_color(const uint8_t *color_used, const uint32_t *palette,
     unsigned nb_color = 0;
     struct color_rect ranges;
     struct color tmp_pal[256];
+    cmp_func cmpf;
 
     ranges.min[0] = ranges.min[1] = ranges.min[2] = 0xff;
     ranges.max[0] = ranges.max[1] = ranges.max[2] = 0x00;
@@ -631,10 +636,11 @@ static int get_next_color(const uint8_t *color_used, const uint32_t *palette,
     if (wr >= wg && wr >= wb) longest = 0;
     if (wg >= wr && wg >= wb) longest = 1;
     if (wb >= wr && wb >= wg) longest = 2;
+    cmpf = cmp_funcs[longest];
     *component = longest;
 
     /* sort along this axis to get median */
-    qsort(tmp_pal, nb_color, sizeof(*tmp_pal), cmp_funcs[longest]);
+    AV_QSORT(tmp_pal, nb_color, struct color, cmpf);
 
     return tmp_pal[nb_color >> 1].pal_id;
 }
@@ -872,7 +878,7 @@ static AVFrame *apply_palette(AVFilterLink *inlink, AVFrame *in)
         return NULL;
     }
 
-    av_dlog(ctx, "%dx%d rect: (%d;%d) -> (%d,%d) [area:%dx%d]\n",
+    ff_dlog(ctx, "%dx%d rect: (%d;%d) -> (%d,%d) [area:%dx%d]\n",
             w, h, x, y, x+w, y+h, in->width, in->height);
 
     if (s->set_frame(s, out, in, x, y, w, h) < 0) {

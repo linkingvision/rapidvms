@@ -59,7 +59,7 @@ static RTPDynamicProtocolHandler opus_dynamic_handler = {
 static RTPDynamicProtocolHandler t140_dynamic_handler = { /* RFC 4103 */
     .enc_name   = "t140",
     .codec_type = AVMEDIA_TYPE_SUBTITLE,
-    .codec_id   = AV_CODEC_ID_SUBRIP,
+    .codec_id   = AV_CODEC_ID_TEXT,
 };
 
 static RTPDynamicProtocolHandler *rtp_first_dynamic_payload_handler = NULL;
@@ -362,9 +362,9 @@ int ff_rtp_check_and_send_back_rr(RTPDemuxContext *s, URLContext *fd,
     len = avio_close_dyn_buf(pb, &buf);
     if ((len > 0) && buf) {
         int av_unused result;
-        av_dlog(s->ic, "sending %d bytes of RR\n", len);
+        av_log(s->ic, AV_LOG_TRACE, "sending %d bytes of RR\n", len);
         result = ffurl_write(fd, buf, len);
-        av_dlog(s->ic, "result from ffurl_write: %d\n", result);
+        av_log(s->ic, AV_LOG_TRACE, "result from ffurl_write: %d\n", result);
         av_free(buf);
     }
     return 0;
@@ -520,6 +520,10 @@ RTPDemuxContext *ff_rtp_parse_open(AVFormatContext *s1, AVStream *st,
     s->ic                  = s1;
     s->st                  = st;
     s->queue_size          = queue_size;
+
+    av_log(s->st ? s->st->codec : NULL, AV_LOG_VERBOSE,
+            "setting jitter buffer size to %d\n", s->queue_size);
+
     rtp_init_statistics(&s->statistics, 0);
     if (st) {
         switch (st->codec->codec_id) {
@@ -687,7 +691,7 @@ void ff_rtp_reset_packet_queue(RTPDemuxContext *s)
     s->prev_ret  = 0;
 }
 
-static void enqueue_packet(RTPDemuxContext *s, uint8_t *buf, int len)
+static int enqueue_packet(RTPDemuxContext *s, uint8_t *buf, int len)
 {
     uint16_t seq   = AV_RB16(buf + 2);
     RTPPacket **cur = &s->queue, *packet;
@@ -702,7 +706,7 @@ static void enqueue_packet(RTPDemuxContext *s, uint8_t *buf, int len)
 
     packet = av_mallocz(sizeof(*packet));
     if (!packet)
-        return;
+        return AVERROR(ENOMEM);
     packet->recvtime = av_gettime_relative();
     packet->seq      = seq;
     packet->len      = len;
@@ -710,6 +714,8 @@ static void enqueue_packet(RTPDemuxContext *s, uint8_t *buf, int len)
     packet->next     = *cur;
     *cur = packet;
     s->queue_len++;
+
+    return 0;
 }
 
 static int has_next_packet(RTPDemuxContext *s)
@@ -807,12 +813,17 @@ static int rtp_parse_one_packet(RTPDemuxContext *s, AVPacket *pkt,
             return rv;
         } else {
             /* Still missing some packet, enqueue this one. */
-            enqueue_packet(s, buf, len);
+            rv = enqueue_packet(s, buf, len);
+            if (rv < 0)
+                return rv;
             *bufptr = NULL;
             /* Return the first enqueued packet if the queue is full,
              * even if we're missing something */
-            if (s->queue_len >= s->queue_size)
+            if (s->queue_len >= s->queue_size) {
+                av_log(s->st ? s->st->codec : NULL, AV_LOG_WARNING,
+                       "jitter buffer full\n");
                 return rtp_parse_queued_packet(s, pkt);
+            }
             return -1;
         }
     }

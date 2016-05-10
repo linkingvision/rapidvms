@@ -87,7 +87,7 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *frame)
 
     for (plane = 0; plane < 4 && frame->data[plane] && frame->linesize[plane]; plane++) {
         uint8_t *data = frame->data[plane];
-        int h = plane == 1 || plane == 2 ? FF_CEIL_RSHIFT(inlink->h, vsub) : inlink->h;
+        int h = plane == 1 || plane == 2 ? AV_CEIL_RSHIFT(inlink->h, vsub) : inlink->h;
         int linesize = av_image_get_linesize(frame->format, frame->width, plane);
 
         if (linesize < 0)
@@ -104,7 +104,7 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *frame)
     }
 
     av_log(ctx, AV_LOG_INFO,
-           "n:%"PRId64" pts:%s pts_time:%s pos:%"PRId64" "
+           "n:%4"PRId64" pts:%7s pts_time:%-7s pos:%9"PRId64" "
            "fmt:%s sar:%d/%d s:%dx%d i:%c iskey:%d type:%c "
            "checksum:%08"PRIX32" plane_checksum:[%08"PRIX32,
            inlink->frame_count,
@@ -166,10 +166,9 @@ static int config_props(AVFilterContext *ctx, AVFilterLink *link, int is_out)
 {
 
     av_log(ctx, AV_LOG_INFO, "config %s time_base: %d/%d, frame_rate: %d/%d\n",
-           is_out ? "out" :"in",
+           is_out ? "out" : "in",
            link->time_base.num, link->time_base.den,
-           link->frame_rate.num, link->frame_rate.den
-    );
+           link->frame_rate.num, link->frame_rate.den);
 
     return 0;
 }
@@ -188,10 +187,10 @@ static int config_props_out(AVFilterLink *link)
 
 static const AVFilterPad avfilter_vf_showinfo_inputs[] = {
     {
-        .name         = "default",
-        .type         = AVMEDIA_TYPE_VIDEO,
-        .filter_frame = filter_frame,
-        .config_props  = config_props_in,
+        .name             = "default",
+        .type             = AVMEDIA_TYPE_VIDEO,
+        .filter_frame     = filter_frame,
+        .config_props     = config_props_in,
     },
     { NULL }
 };

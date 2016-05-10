@@ -273,29 +273,30 @@ static int wv_read_packet(AVFormatContext *s, AVPacket *pkt)
     memcpy(pkt->data, wc->block_header, WV_HEADER_SIZE);
     ret = avio_read(s->pb, pkt->data + WV_HEADER_SIZE, wc->header.blocksize);
     if (ret != wc->header.blocksize) {
-        av_free_packet(pkt);
+        av_packet_unref(pkt);
         return AVERROR(EIO);
     }
     while (!(wc->header.flags & WV_FLAG_FINAL_BLOCK)) {
         if ((ret = wv_read_block_header(s, s->pb)) < 0) {
-            av_free_packet(pkt);
+            av_packet_unref(pkt);
             return ret;
         }
 
         off = pkt->size;
         if ((ret = av_grow_packet(pkt, WV_HEADER_SIZE + wc->header.blocksize)) < 0) {
-            av_free_packet(pkt);
+            av_packet_unref(pkt);
             return ret;
         }
         memcpy(pkt->data + off, wc->block_header, WV_HEADER_SIZE);
 
         ret = avio_read(s->pb, pkt->data + off + WV_HEADER_SIZE, wc->header.blocksize);
         if (ret != wc->header.blocksize) {
-            av_free_packet(pkt);
+            av_packet_unref(pkt);
             return (ret < 0) ? ret : AVERROR_EOF;
         }
     }
     pkt->stream_index = 0;
+    pkt->pos          = pos;
     wc->block_parsed  = 1;
     pkt->pts          = wc->header.block_idx;
     block_samples     = wc->header.samples;
@@ -305,41 +306,6 @@ static int wv_read_packet(AVFormatContext *s, AVPacket *pkt)
     else
         pkt->duration = block_samples;
 
-    av_add_index_entry(s->streams[0], pos, pkt->pts, 0, 0, AVINDEX_KEYFRAME);
-    return 0;
-}
-
-static int wv_read_seek(AVFormatContext *s, int stream_index,
-                        int64_t timestamp, int flags)
-{
-    AVStream  *st = s->streams[stream_index];
-    WVContext *wc = s->priv_data;
-    AVPacket pkt1, *pkt = &pkt1;
-    int ret;
-    int index = av_index_search_timestamp(st, timestamp, flags);
-    int64_t pos, pts;
-
-    /* if found, seek there */
-    if (index >= 0 &&
-        timestamp <= st->index_entries[st->nb_index_entries - 1].timestamp) {
-        wc->block_parsed = 1;
-        avio_seek(s->pb, st->index_entries[index].pos, SEEK_SET);
-        return 0;
-    }
-    /* if timestamp is out of bounds, return error */
-    if (timestamp < 0 || timestamp >= s->duration)
-        return AVERROR(EINVAL);
-
-    pos = avio_tell(s->pb);
-    do {
-        ret = av_read_frame(s, pkt);
-        if (ret < 0) {
-            avio_seek(s->pb, pos, SEEK_SET);
-            return ret;
-        }
-        pts = pkt->pts;
-        av_free_packet(pkt);
-    } while(pts < timestamp);
     return 0;
 }
 
@@ -350,5 +316,5 @@ AVInputFormat ff_wv_demuxer = {
     .read_probe     = wv_probe,
     .read_header    = wv_read_header,
     .read_packet    = wv_read_packet,
-    .read_seek      = wv_read_seek,
+    .flags          = AVFMT_GENERIC_INDEX,
 };

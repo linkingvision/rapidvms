@@ -1,7 +1,145 @@
 Entries are sorted chronologically from oldest to youngest within each release,
 releases are sorted from youngest to oldest.
 
-version <next>:
+version 3.0:
+- Common Encryption (CENC) MP4 encoding and decoding support
+- DXV decoding
+- extrastereo filter
+- ocr filter
+- alimiter filter
+- stereowiden filter
+- stereotools filter
+- rubberband filter
+- tremolo filter
+- agate filter
+- chromakey filter
+- maskedmerge filter
+- Screenpresso SPV1 decoding
+- chromaprint fingerprinting muxer
+- ffplay dynamic volume control
+- displace filter
+- selectivecolor filter
+- extensive native AAC encoder improvements and removal of experimental flag
+- ADPCM PSX decoder
+- 3dostr, dcstr, fsb, genh, vag, xvag, ads, msf, svag & vpk demuxer
+- zscale filter
+- wve demuxer
+- zero-copy Intel QSV transcoding in ffmpeg
+- shuffleframes filter
+- SDX2 DPCM decoder
+- vibrato filter
+- innoHeim/Rsupport Screen Capture Codec decoder
+- ADPCM AICA decoder
+- Interplay ACM demuxer and audio decoder
+- XMA1 & XMA2 decoder
+- realtime filter
+- anoisesrc audio filter source
+- IVR demuxer
+- compensationdelay filter
+- acompressor filter
+- support encoding 16-bit RLE SGI images
+- apulsator filter
+- sidechaingate audio filter
+- mipsdspr1 option has been renamed to mipsdsp
+- aemphasis filter
+- mips32r5 option has been removed
+- mips64r6 option has been removed
+- DXVA2-accelerated VP9 decoding
+- SOFAlizer: virtual binaural acoustics filter
+- VAAPI VP9 hwaccel
+- audio high-order multiband parametric equalizer
+- automatic bitstream filtering
+- showspectrumpic filter
+- libstagefright support removed
+- spectrumsynth filter
+- ahistogram filter
+- only seek with the right mouse button in ffplay
+- toggle full screen when double-clicking with the left mouse button in ffplay
+- afftfilt filter
+- convolution filter
+- libquvi support removed
+- support for dvaudio in wav and avi
+- libaacplus and libvo-aacenc support removed
+- Cineform HD decoder
+- new DCA decoder with full support for DTS-HD extensions
+- significant performance improvements in Windows Television (WTV) demuxer
+- nnedi deinterlacer
+- streamselect video and astreamselect audio filter
+- swaprect filter
+- metadata video and ametadata audio filter
+- SMPTE VC-2 HQ profile support for the Dirac decoder
+- SMPTE VC-2 native encoder supporting the HQ profile
+
+
+version 2.8:
+- colorkey video filter
+- BFSTM/BCSTM demuxer
+- little-endian ADPCM_THP decoder
+- Hap decoder and encoder
+- DirectDraw Surface image/texture decoder
+- ssim filter
+- optional new ASF demuxer
+- showvolume filter
+- Many improvements to the JPEG 2000 decoder
+- Go2Meeting decoding support
+- adrawgraph audio and drawgraph video filter
+- removegrain video filter
+- Intel QSV-accelerated MPEG-2 video and HEVC encoding
+- Intel QSV-accelerated MPEG-2 video and HEVC decoding
+- Intel QSV-accelerated VC-1 video decoding
+- libkvazaar HEVC encoder
+- erosion, dilation, deflate and inflate video filters
+- Dynamic Audio Normalizer as dynaudnorm filter
+- Reverse video and areverse audio filter
+- Random filter
+- deband filter
+- AAC fixed-point decoding
+- sidechaincompress audio filter
+- bitstream filter for converting HEVC from MP4 to Annex B
+- acrossfade audio filter
+- allyuv and allrgb video sources
+- atadenoise video filter
+- OS X VideoToolbox support
+- aphasemeter filter
+- showfreqs filter
+- vectorscope filter
+- waveform filter
+- hstack and vstack filter
+- Support DNx100 (1440x1080@8)
+- VAAPI hevc hwaccel
+- VDPAU hevc hwaccel
+- framerate filter
+- Switched default encoders for webm to VP9 and Opus
+- Removed experimental flag from the JPEG 2000 encoder
+
+
+version 2.7:
+- FFT video filter
+- TDSC decoder
+- DTS lossless extension (XLL) decoding (not lossless, disabled by default)
+- showwavespic filter
+- DTS decoding through libdcadec
+- Drop support for nvenc API before 5.0
+- nvenc HEVC encoder
+- Detelecine filter
+- Intel QSV-accelerated H.264 encoding
+- MMAL-accelerated H.264 decoding
+- basic APNG encoder and muxer with default extension "apng"
+- unpack DivX-style packed B-frames in MPEG-4 bitstream filter
+- WebM Live Chunk Muxer
+- nvenc level and tier options
+- chorus filter
+- Canopus HQ/HQA decoder
+- Automatically rotate videos based on metadata in ffmpeg
+- improved Quickdraw compatibility
+- VP9 high bit-depth and extended colorspaces decoding support
+- WebPAnimEncoder API when available for encoding and muxing WebP
+- Direct3D11-accelerated decoding
+- Support Secure Transport
+- Multipart JPEG demuxer
+
+
+version 2.6:
 - nvenc encoder
 - 10bit spp filter
 - colorlevels filter
@@ -35,6 +173,7 @@ version <next>:
 - Fix stsd atom corruption in DNxHD QuickTimes
 - Canopus HQX decoder
 - RTP depacketization of T.140 text (RFC 4103)
+- Port MIPS optimizations to 64-bit
 
 
 version 2.5:
@@ -543,7 +682,7 @@ easier to use. The changes are:
           all the stream in the first input file, except for the second audio
           stream'.
     * There is a new option -c (or -codec) for choosing the decoder/encoder to
-      use, which allows to precisely specify target stream(s) consistently with
+      use, which makes it possible to precisely specify target stream(s) consistently with
       other options. E.g. -c:v lib264 sets the codec for all video streams, -c:a:0
       libvorbis sets the codec for the first audio stream and -c copy copies all
       the streams without reencoding. Old -vcodec/-acodec/-scodec options are now

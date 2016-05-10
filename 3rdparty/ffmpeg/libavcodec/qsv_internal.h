@@ -1,7 +1,5 @@
 /*
- * Intel MediaSDK QSV utility functions
- *
- * copyright (c) 2013 Luca Barbato
+ * Intel MediaSDK QSV encoder/decoder shared code
  *
  * This file is part of FFmpeg.
  *
@@ -23,64 +21,65 @@
 #ifndef AVCODEC_QSV_INTERNAL_H
 #define AVCODEC_QSV_INTERNAL_H
 
-#include <stdint.h>
-#include <sys/types.h>
+#if CONFIG_VAAPI
+#define AVCODEC_QSV_LINUX_SESSION_HANDLE
+#endif //CONFIG_VAAPI
+
+#ifdef AVCODEC_QSV_LINUX_SESSION_HANDLE
+#include <stdio.h>
+#include <string.h>
+#if HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+#include <fcntl.h>
+#include <va/va.h>
+#include <va/va_drm.h>
+#endif
 
 #include <mfx/mfxvideo.h>
 
 #include "libavutil/frame.h"
-#include "libavutil/pixfmt.h"
-
-#include "avcodec.h"
 
 #define QSV_VERSION_MAJOR 1
-#define QSV_VERSION_MINOR 1
+#define QSV_VERSION_MINOR 9
 
 #define ASYNC_DEPTH_DEFAULT 4       // internal parallelism
+
+#define QSV_MAX_ENC_PAYLOAD 2       // # of mfxEncodeCtrl payloads supported
+
+#define QSV_VERSION_ATLEAST(MAJOR, MINOR)   \
+    (MFX_VERSION_MAJOR > (MAJOR) ||         \
+     MFX_VERSION_MAJOR == (MAJOR) && MFX_VERSION_MINOR >= (MINOR))
 
 typedef struct QSVFrame {
     AVFrame *frame;
     mfxFrameSurface1 *surface;
+    mfxEncodeCtrl enc_ctrl;
 
     mfxFrameSurface1 surface_internal;
+
+    int queued;
 
     struct QSVFrame *next;
 } QSVFrame;
 
-typedef struct QSVContext {
-    // the session used for decoding
+typedef struct QSVSession {
     mfxSession session;
-
-    // the session we allocated internally, in case the caller did not provide
-    // one
-    mfxSession internal_session;
-
-    /**
-     * a linked list of frames currently being used by QSV
-     */
-    QSVFrame *work_frames;
-
-    // options set by the caller
-    int async_depth;
-    int iopattern;
-
-    mfxExtBuffer **ext_buffers;
-    int         nb_ext_buffers;
-} QSVContext;
+#ifdef AVCODEC_QSV_LINUX_SESSION_HANDLE
+    int        fd_display;
+    VADisplay  va_display;
+#endif
+} QSVSession;
 
 /**
  * Convert a libmfx error code into a ffmpeg error code.
  */
 int ff_qsv_error(int mfx_err);
 
-int ff_qsv_map_pixfmt(enum AVPixelFormat format);
+int ff_qsv_codec_id_to_mfx(enum AVCodecID codec_id);
 
-int ff_qsv_init(AVCodecContext *s, QSVContext *q, mfxSession session);
-
-int ff_qsv_decode(AVCodecContext *s, QSVContext *q,
-                  AVFrame *frame, int *got_frame,
-                  AVPacket *avpkt);
-
-int ff_qsv_close(QSVContext *q);
+int ff_qsv_init_internal_session(AVCodecContext *avctx, QSVSession *qs,
+                                 const char *load_plugins);
+int ff_qsv_close_internal_session(QSVSession *qs);
 
 #endif /* AVCODEC_QSV_INTERNAL_H */

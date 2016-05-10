@@ -37,13 +37,14 @@
 #include <xcb/shape.h>
 #endif
 
-#include "libavformat/avformat.h"
-#include "libavformat/internal.h"
-
+#include "libavutil/internal.h"
 #include "libavutil/mathematics.h"
 #include "libavutil/opt.h"
 #include "libavutil/parseutils.h"
 #include "libavutil/time.h"
+
+#include "libavformat/avformat.h"
+#include "libavformat/internal.h"
 
 typedef struct XCBGrabContext {
     const AVClass *class;
@@ -149,13 +150,25 @@ static int xcbgrab_frame(AVFormatContext *s, AVPacket *pkt)
     xcb_get_image_cookie_t iq;
     xcb_get_image_reply_t *img;
     xcb_drawable_t drawable = c->screen->root;
+    xcb_generic_error_t *e = NULL;
     uint8_t *data;
     int length, ret;
 
     iq  = xcb_get_image(c->conn, XCB_IMAGE_FORMAT_Z_PIXMAP, drawable,
                         c->x, c->y, c->width, c->height, ~0);
 
-    img = xcb_get_image_reply(c->conn, iq, NULL);
+    img = xcb_get_image_reply(c->conn, iq, &e);
+
+    if (e) {
+        av_log(s, AV_LOG_ERROR,
+               "Cannot get the image data "
+               "event_error: response_type:%u error_code:%u "
+               "sequence:%u resource_id:%u minor_code:%u major_code:%u.\n",
+               e->response_type, e->error_code,
+               e->sequence, e->resource_id, e->minor_code, e->major_code);
+        return AVERROR(EACCES);
+    }
+
     if (!img)
         return AVERROR(EAGAIN);
 
@@ -218,7 +231,7 @@ static int xcbgrab_frame_shm(AVFormatContext *s, AVPacket *pkt)
     xcb_shm_get_image_reply_t *img;
     xcb_drawable_t drawable = c->screen->root;
     uint8_t *data;
-    int size = c->frame_size + FF_INPUT_BUFFER_PADDING_SIZE;
+    int size = c->frame_size + AV_INPUT_BUFFER_PADDING_SIZE;
     int id   = shmget(IPC_PRIVATE, size, IPC_CREAT | 0777);
     xcb_generic_error_t *e = NULL;
 
@@ -409,7 +422,7 @@ static int xcbgrab_read_packet(AVFormatContext *s, AVPacket *pkt)
         ret = xcbgrab_frame(s, pkt);
 
 #if CONFIG_LIBXCB_XFIXES
-    if (c->draw_mouse && p->same_screen)
+    if (ret >= 0 && c->draw_mouse && p->same_screen)
         xcbgrab_draw_mouse(s, pkt, p, geo);
 #endif
 
@@ -520,8 +533,17 @@ static int create_stream(AVFormatContext *s)
     gc  = xcb_get_geometry(c->conn, c->screen->root);
     geo = xcb_get_geometry_reply(c->conn, gc, NULL);
 
-    c->width      = FFMIN(geo->width, c->width);
-    c->height     = FFMIN(geo->height, c->height);
+    if (c->x + c->width > geo->width ||
+        c->y + c->height > geo->height) {
+        av_log(s, AV_LOG_ERROR,
+               "Capture area %dx%d at position %d.%d "
+               "outside the screen size %dx%d\n",
+               c->width, c->height,
+               c->x, c->y,
+               geo->width, geo->height);
+        return AVERROR(EINVAL);
+    }
+
     c->time_base  = (AVRational){ st->avg_frame_rate.den,
                                   st->avg_frame_rate.num };
     c->time_frame = av_gettime();
@@ -569,7 +591,7 @@ static void setup_window(AVFormatContext *s)
     uint32_t values[] = { 1,
                           XCB_EVENT_MASK_EXPOSURE |
                           XCB_EVENT_MASK_STRUCTURE_NOTIFY };
-    xcb_rectangle_t rect = { 0, 0, c->width, c->height };
+    av_unused xcb_rectangle_t rect = { 0, 0, c->width, c->height };
 
     c->window = xcb_generate_id(c->conn);
 
@@ -621,6 +643,7 @@ static av_cold int xcbgrab_read_header(AVFormatContext *s)
                s->filename[0] ? s->filename : "default", ret);
         return AVERROR(EIO);
     }
+
     setup = xcb_get_setup(c->conn);
 
     c->screen = get_screen(setup, screen_num);

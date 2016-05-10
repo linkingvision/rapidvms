@@ -207,7 +207,7 @@ static inline void dct_get(ASV1Context *a, const AVFrame *frame,
     for (i = 0; i < 4; i++)
         a->fdsp.fdct(block[i]);
 
-    if (!(a->avctx->flags & CODEC_FLAG_GRAY)) {
+    if (!(a->avctx->flags & AV_CODEC_FLAG_GRAY)) {
         a->pdsp.get_pixels(block[4], ptr_cb, frame->linesize[1]);
         a->pdsp.get_pixels(block[5], ptr_cr, frame->linesize[2]);
         for (i = 4; i < 6; i++)
@@ -245,10 +245,10 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
 
         for (i = 0; i<3; i++) {
             int x, y;
-            int w  = FF_CEIL_RSHIFT(pict->width, !!i);
-            int h  = FF_CEIL_RSHIFT(pict->height, !!i);
-            int w2 = FF_CEIL_RSHIFT(clone->width, !!i);
-            int h2 = FF_CEIL_RSHIFT(clone->height, !!i);
+            int w  = AV_CEIL_RSHIFT(pict->width, !!i);
+            int h  = AV_CEIL_RSHIFT(pict->height, !!i);
+            int w2 = AV_CEIL_RSHIFT(clone->width, !!i);
+            int h2 = AV_CEIL_RSHIFT(clone->height, !!i);
             for (y=0; y<h; y++)
                 for (x=w; x<w2; x++)
                     clone->data[i][x + y*clone->linesize[i]] =
@@ -265,7 +265,7 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     }
 
     if ((ret = ff_alloc_packet2(avctx, pkt, a->mb_height * a->mb_width * MAX_MB_SIZE +
-                                FF_MIN_BUFFER_SIZE)) < 0)
+                                AV_INPUT_BUFFER_MIN_SIZE, 0)) < 0)
         return ret;
 
     init_put_bits(&a->pb, pkt->data, pkt->size);
@@ -333,6 +333,8 @@ static av_cold int encode_init(AVCodecContext *avctx)
                      avctx->global_quality / 2) / avctx->global_quality;
 
     avctx->extradata                   = av_mallocz(8);
+    if (!avctx->extradata)
+        return AVERROR(ENOMEM);
     avctx->extradata_size              = 8;
     ((uint32_t *) avctx->extradata)[0] = av_le2ne32(a->inv_qscale);
     ((uint32_t *) avctx->extradata)[1] = av_le2ne32(AV_RL32("ASUS"));
@@ -361,6 +363,7 @@ AVCodec ff_asv1_encoder = {
     .encode2        = encode_frame,
     .pix_fmts       = (const enum AVPixelFormat[]) { AV_PIX_FMT_YUV420P,
                                                      AV_PIX_FMT_NONE },
+    .caps_internal  = FF_CODEC_CAP_INIT_THREADSAFE,
 };
 #endif
 
@@ -375,5 +378,6 @@ AVCodec ff_asv2_encoder = {
     .encode2        = encode_frame,
     .pix_fmts       = (const enum AVPixelFormat[]) { AV_PIX_FMT_YUV420P,
                                                      AV_PIX_FMT_NONE },
+    .caps_internal  = FF_CODEC_CAP_INIT_THREADSAFE,
 };
 #endif

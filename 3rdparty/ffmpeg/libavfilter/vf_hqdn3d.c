@@ -180,9 +180,9 @@ static int16_t *precalc_coefs(double dist25, int depth)
 
     gamma = log(0.25) / log(1.0 - FFMIN(dist25,252.0)/255.0 - 0.00001);
 
-    for (i = -255<<LUT_BITS; i <= 255<<LUT_BITS; i++) {
+    for (i = -256<<LUT_BITS; i < 256<<LUT_BITS; i++) {
         double f = ((i<<(9-LUT_BITS)) + (1<<(8-LUT_BITS)) - 1) / 512.0; // midpoint of the bin
-        simil = 1.0 - FFABS(f) / 255.0;
+        simil = FFMAX(0, 1.0 - fabs(f) / 255.0);
         C = pow(simil, gamma) * 256.0 * f;
         ct[(256<<LUT_BITS)+i] = lrint(C);
     }
@@ -253,10 +253,10 @@ static int query_formats(AVFilterContext *ctx)
         AV_PIX_FMT_YUV444P16,
         AV_PIX_FMT_NONE
     };
-
-    ff_set_common_formats(ctx, ff_make_format_list(pix_fmts));
-
-    return 0;
+    AVFilterFormats *fmts_list = ff_make_format_list(pix_fmts);
+    if (!fmts_list)
+        return AVERROR(ENOMEM);
+    return ff_set_common_formats(ctx, fmts_list);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -269,7 +269,7 @@ static int config_input(AVFilterLink *inlink)
 
     s->hsub  = desc->log2_chroma_w;
     s->vsub  = desc->log2_chroma_h;
-    s->depth = desc->comp[0].depth_minus1+1;
+    s->depth = desc->comp[0].depth;
 
     s->line = av_malloc_array(inlink->w, sizeof(*s->line));
     if (!s->line)
@@ -311,8 +311,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     for (c = 0; c < 3; c++) {
         denoise(s, in->data[c], out->data[c],
                 s->line, &s->frame_prev[c],
-                FF_CEIL_RSHIFT(in->width,  (!!c * s->hsub)),
-                FF_CEIL_RSHIFT(in->height, (!!c * s->vsub)),
+                AV_CEIL_RSHIFT(in->width,  (!!c * s->hsub)),
+                AV_CEIL_RSHIFT(in->height, (!!c * s->vsub)),
                 in->linesize[c], out->linesize[c],
                 s->coefs[c ? CHROMA_SPATIAL : LUMA_SPATIAL],
                 s->coefs[c ? CHROMA_TMP     : LUMA_TMP]);

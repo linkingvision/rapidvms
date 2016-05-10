@@ -960,9 +960,6 @@ static int roq_encode_video(RoqContext *enc)
     reconstruct_and_encode_image(enc, tempData, enc->width, enc->height,
                                  enc->width*enc->height/64);
 
-    av_frame_unref(enc->avctx->coded_frame);
-    av_frame_ref(enc->avctx->coded_frame, enc->current_frame);
-
     /* Rotate frame history */
     FFSWAP(AVFrame *, enc->current_frame, enc->last_frame);
     FFSWAP(motion_vect *, enc->last_motion4, enc->this_motion4);
@@ -982,7 +979,6 @@ static av_cold int roq_encode_end(AVCodecContext *avctx)
 
     av_frame_free(&enc->current_frame);
     av_frame_free(&enc->last_frame);
-    av_frame_free(&enc->avctx->coded_frame);
 
     av_freep(&enc->tmpData);
     av_freep(&enc->this_motion4);
@@ -998,6 +994,8 @@ static av_cold int roq_encode_init(AVCodecContext *avctx)
     RoqContext *enc = avctx->priv_data;
 
     av_lfg_init(&enc->randctx, 1);
+
+    enc->avctx = avctx;
 
     enc->framesSinceKeyframe = 0;
     if ((avctx->width & 0xf) || (avctx->height & 0xf)) {
@@ -1021,8 +1019,7 @@ static av_cold int roq_encode_init(AVCodecContext *avctx)
 
     enc->last_frame    = av_frame_alloc();
     enc->current_frame = av_frame_alloc();
-    avctx->coded_frame = av_frame_alloc();
-    if (!enc->last_frame || !enc->current_frame || !avctx->coded_frame) {
+    if (!enc->last_frame || !enc->current_frame) {
         roq_encode_end(avctx);
         return AVERROR(ENOMEM);
     }
@@ -1093,7 +1090,7 @@ static int roq_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     /* 138 bits max per 8x8 block +
      *     256 codebooks*(6 bytes 2x2 + 4 bytes 4x4) + 8 bytes frame header */
     size = ((enc->width * enc->height / 64) * 138 + 7) / 8 + 256 * (6 + 4) + 8;
-    if ((ret = ff_alloc_packet2(avctx, pkt, size)) < 0)
+    if ((ret = ff_alloc_packet2(avctx, pkt, size, 0)) < 0)
         return ret;
     enc->out_buf = pkt->data;
 
@@ -1130,7 +1127,7 @@ static int roq_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
 #define OFFSET(x) offsetof(RoqContext, x)
 #define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
 static const AVOption options[] = {
-    { "quake3_compat", "Whether to respect known limitations in Quake 3 decoder", OFFSET(quake3_compat), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, VE },
+    { "quake3_compat", "Whether to respect known limitations in Quake 3 decoder", OFFSET(quake3_compat), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, VE },
     { NULL },
 };
 

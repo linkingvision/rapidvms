@@ -31,10 +31,12 @@
 
 int ff_get_guid(AVIOContext *s, ff_asf_guid *g)
 {
+    int ret;
     av_assert0(sizeof(*g) == 16); //compiler will optimize this out
-    if (avio_read(s, *g, sizeof(*g)) < (int)sizeof(*g)) {
+    ret = avio_read(s, *g, sizeof(*g));
+    if (ret < (int)sizeof(*g)) {
         memset(*g, 0, sizeof(*g));
-        return AVERROR_INVALIDDATA;
+        return ret < 0 ? ret : AVERROR_INVALIDDATA;
     }
     return 0;
 }
@@ -67,6 +69,8 @@ static void parse_waveformatex(AVIOContext *pb, AVCodecContext *c)
 
     ff_get_guid(pb, &subformat);
     if (!memcmp(subformat + 4,
+                (const uint8_t[]){ FF_AMBISONIC_BASE_GUID }, 12) ||
+        !memcmp(subformat + 4,
                 (const uint8_t[]){ FF_MEDIASUBTYPE_BASE_GUID }, 12)) {
         c->codec_tag = AV_RL32(subformat);
         c->codec_id  = ff_wav_codec_get_id(c->codec_tag,
@@ -81,25 +85,31 @@ static void parse_waveformatex(AVIOContext *pb, AVCodecContext *c)
 }
 
 /* "big_endian" values are needed for RIFX file format */
-int ff_get_wav_header(AVIOContext *pb, AVCodecContext *codec, int size, int big_endian)
+int ff_get_wav_header(AVFormatContext *s, AVIOContext *pb,
+                      AVCodecContext *codec, int size, int big_endian)
 {
     int id;
+    uint64_t bitrate = 0;
 
-    if (size < 14)
+    if (size < 14) {
         avpriv_request_sample(codec, "wav header size < 14");
+        return AVERROR_INVALIDDATA;
+    }
 
     codec->codec_type  = AVMEDIA_TYPE_AUDIO;
     if (!big_endian) {
         id                 = avio_rl16(pb);
-        codec->channels    = avio_rl16(pb);
-        codec->sample_rate = avio_rl32(pb);
-        codec->bit_rate    = avio_rl32(pb) * 8;
-        codec->block_align = avio_rl16(pb);
+        if (id != 0x0165) {
+            codec->channels    = avio_rl16(pb);
+            codec->sample_rate = avio_rl32(pb);
+            bitrate            = avio_rl32(pb) * 8LL;
+            codec->block_align = avio_rl16(pb);
+        }
     } else {
         id                 = avio_rb16(pb);
         codec->channels    = avio_rb16(pb);
         codec->sample_rate = avio_rb32(pb);
-        codec->bit_rate    = avio_rb32(pb) * 8;
+        bitrate            = avio_rb32(pb) * 8LL;
         codec->block_align = avio_rb16(pb);
     }
     if (size == 14) {  /* We're dealing with plain vanilla WAVEFORMAT */
@@ -118,7 +128,7 @@ int ff_get_wav_header(AVIOContext *pb, AVCodecContext *codec, int size, int big_
         codec->codec_id  = ff_wav_codec_get_id(id,
                                                codec->bits_per_coded_sample);
     }
-    if (size >= 18) {  /* We're obviously dealing with WAVEFORMATEX */
+    if (size >= 18 && id != 0x0165) {  /* We're obviously dealing with WAVEFORMATEX */
         int cbSize = avio_rl16(pb); /* cbSize */
         if (big_endian) {
             avpriv_report_missing_feature(codec, "WAVEFORMATEX support for RIFX files\n");
@@ -141,9 +151,27 @@ int ff_get_wav_header(AVIOContext *pb, AVCodecContext *codec, int size, int big_
         /* It is possible for the chunk to contain garbage at the end */
         if (size > 0)
             avio_skip(pb, size);
+    } else if (id == 0x0165 && size >= 32) {
+        int nb_streams, i;
+
+        size -= 4;
+        av_freep(&codec->extradata);
+        if (ff_get_extradata(codec, pb, size) < 0)
+            return AVERROR(ENOMEM);
+        nb_streams         = AV_RL16(codec->extradata + 4);
+        codec->sample_rate = AV_RL32(codec->extradata + 12);
+        codec->channels    = 0;
+        bitrate            = 0;
+        if (size < 8 + nb_streams * 20)
+            return AVERROR_INVALIDDATA;
+        for (i = 0; i < nb_streams; i++)
+            codec->channels += codec->extradata[8 + i * 20 + 17];
     }
+
+    codec->bit_rate = bitrate;
+
     if (codec->sample_rate <= 0) {
-        av_log(NULL, AV_LOG_ERROR,
+        av_log(s, AV_LOG_ERROR,
                "Invalid sample rate: %d\n", codec->sample_rate);
         return AVERROR_INVALIDDATA;
     }
@@ -251,6 +279,9 @@ int ff_read_riff_info(AVFormatContext *s, int64_t size)
         }
 
         AV_WL32(key, chunk_code);
+        // Work around VC++ 2015 Update 1 code-gen bug:
+        // https://connect.microsoft.com/VisualStudio/feedback/details/2291638
+        key[4] = 0;
 
         if (avio_read(pb, value, chunk_size) != chunk_size) {
             av_log(s, AV_LOG_WARNING,

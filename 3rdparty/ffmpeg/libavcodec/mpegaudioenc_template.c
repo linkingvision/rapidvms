@@ -139,7 +139,7 @@ static av_cold int MPA_encode_init(AVCodecContext *avctx)
     s->sblimit = ff_mpa_sblimit_table[table];
     s->alloc_table = ff_mpa_alloc_tables[table];
 
-    av_dlog(avctx, "%d kb/s, %d Hz, frame_size=%d bits, table=%d, padincr=%x\n",
+    ff_dlog(avctx, "%d kb/s, %d Hz, frame_size=%d bits, table=%d, padincr=%x\n",
             bitrate, freq, s->frame_size, table, s->frame_frac_incr);
 
     for(i=0;i<s->nb_channels;i++)
@@ -244,11 +244,11 @@ static void idct32(int *out, int *tab)
     do {
         int x1, x2, x3, x4;
 
-        x3 = MUL(t[16], FIX(SQRT2*0.5));
+        x3 = MUL(t[16], FIX(M_SQRT2*0.5));
         x4 = t[0] - x3;
         x3 = t[0] + x3;
 
-        x2 = MUL(-(t[24] + t[8]), FIX(SQRT2*0.5));
+        x2 = MUL(-(t[24] + t[8]), FIX(M_SQRT2*0.5));
         x1 = MUL((t[8] - x2), xp[0]);
         x2 = MUL((t[8] + x2), xp[1]);
 
@@ -410,7 +410,7 @@ static void compute_scale_factors(MpegAudioContext *s,
                 index = 62; /* value 63 is not allowed */
             }
 
-            av_dlog(NULL, "%2d:%d in=%x %x %d\n",
+            ff_dlog(NULL, "%2d:%d in=%x %x %d\n",
                     j, i, vmax, s->scale_factor_table[index], index);
             /* store the scale factor */
             av_assert2(index >=0 && index <= 63);
@@ -479,7 +479,7 @@ static void compute_scale_factors(MpegAudioContext *s,
             code = 0;           /* kill warning */
         }
 
-        av_dlog(NULL, "%d: %2d %2d %2d %d %d -> %d\n", j,
+        ff_dlog(NULL, "%d: %2d %2d %2d %d %d -> %d\n", j,
                 sf[0], sf[1], sf[2], d1, d2, code);
         scale_code[j] = code;
         sf += 3;
@@ -556,7 +556,7 @@ static void compute_bit_allocation(MpegAudioContext *s,
         }
         if (max_sb < 0)
             break;
-        av_dlog(NULL, "current=%d max=%d max_sb=%d max_ch=%d alloc=%d\n",
+        ff_dlog(NULL, "current=%d max=%d max_sb=%d max_ch=%d alloc=%d\n",
                 current_frame_size, max_frame_size, max_sb, max_ch,
                 bit_alloc[max_ch][max_sb]);
 
@@ -763,7 +763,7 @@ static int MPA_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
     }
     compute_bit_allocation(s, smr, bit_alloc, &padding);
 
-    if ((ret = ff_alloc_packet2(avctx, avpkt, MPA_MAX_CODED_FRAME_SIZE)) < 0)
+    if ((ret = ff_alloc_packet2(avctx, avpkt, MPA_MAX_CODED_FRAME_SIZE, 0)) < 0)
         return ret;
 
     init_put_bits(&s->pb, avpkt->data, avpkt->size);

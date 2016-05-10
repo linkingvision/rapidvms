@@ -251,7 +251,7 @@ static int decode_picture_header(ProresContext *ctx, const uint8_t *buf,
                       (1 << (4 + ctx->frame->interlaced_frame)) - 1) >>
                      (4 + ctx->frame->interlaced_frame);
 
-    remainder    = ctx->num_x_mbs & ((1 << slice_width_factor) - 1);
+    remainder    = av_mod_uintp2(ctx->num_x_mbs, slice_width_factor);
     num_x_slices = (ctx->num_x_mbs >> slice_width_factor) + (remainder & 1) +
                    ((remainder >> 1) & 1) + ((remainder >> 2) & 1);
 
@@ -366,6 +366,7 @@ static inline void decode_dc_coeffs(GetBitContext *gb, int16_t *out,
     }
 }
 
+#define MAX_PADDING 16
 
 /**
  * Decode AC coefficients for all blocks in a slice.
@@ -390,7 +391,7 @@ static inline int decode_ac_coeffs(GetBitContext *gb, int16_t *out,
         lev_cb_index = ff_prores_lev_to_cb_index[FFMIN(level, 9)];
 
         bits_left = get_bits_left(gb);
-        if (bits_left <= 0 || (bits_left <= 8 && !show_bits(gb, bits_left)))
+        if (bits_left <= 0 || (bits_left <= MAX_PADDING && !show_bits(gb, bits_left)))
             return 0;
 
         run = decode_vlc_codeword(gb, ff_prores_ac_codebook[run_cb_index]);
@@ -398,7 +399,7 @@ static inline int decode_ac_coeffs(GetBitContext *gb, int16_t *out,
             return AVERROR_INVALIDDATA;
 
         bits_left = get_bits_left(gb);
-        if (bits_left <= 0 || (bits_left <= 8 && !show_bits(gb, bits_left)))
+        if (bits_left <= 0 || (bits_left <= MAX_PADDING && !show_bits(gb, bits_left)))
             return AVERROR_INVALIDDATA;
 
         level = decode_vlc_codeword(gb, ff_prores_ac_codebook[lev_cb_index]) + 1;
@@ -779,5 +780,5 @@ AVCodec ff_prores_lgpl_decoder = {
     .init           = decode_init,
     .close          = decode_close,
     .decode         = decode_frame,
-    .capabilities   = CODEC_CAP_DR1 | CODEC_CAP_SLICE_THREADS,
+    .capabilities   = AV_CODEC_CAP_DR1 | AV_CODEC_CAP_SLICE_THREADS,
 };

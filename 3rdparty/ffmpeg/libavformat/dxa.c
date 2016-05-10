@@ -106,7 +106,7 @@ static int dxa_read_header(AVFormatContext *s)
         ast = avformat_new_stream(s, NULL);
         if (!ast)
             return AVERROR(ENOMEM);
-        ret = ff_get_wav_header(pb, ast->codec, fsize, 0);
+        ret = ff_get_wav_header(s, pb, ast->codec, fsize, 0);
         if (ret < 0)
             return ret;
         if (ast->codec->sample_rate > 0)
@@ -207,7 +207,7 @@ static int dxa_read_packet(AVFormatContext *s, AVPacket *pkt)
             memcpy(pkt->data + pal_size, buf, DXA_EXTRA_SIZE);
             ret = avio_read(s->pb, pkt->data + DXA_EXTRA_SIZE + pal_size, size);
             if(ret != size){
-                av_free_packet(pkt);
+                av_packet_unref(pkt);
                 return AVERROR(EIO);
             }
             if(pal_size) memcpy(pkt->data, pal, pal_size);

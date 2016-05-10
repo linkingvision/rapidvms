@@ -19,6 +19,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#ifndef AVDEVICE_DECKLINK_COMMON_H
+#define AVDEVICE_DECKLINK_COMMON_H
+
+#include <DeckLinkAPIVersion.h>
+
 #include "decklink_common_c.h"
 
 class decklink_output_callback;
@@ -65,10 +70,12 @@ struct decklink_ctx {
     unsigned int dropped;
     AVStream *audio_st;
     AVStream *video_st;
+    AVStream *teletext_st;
 
     /* Options */
     int list_devices;
     int list_formats;
+    int64_t teletext_lines;
     double preroll;
 
     int frames_preroll;
@@ -82,7 +89,11 @@ struct decklink_ctx {
 typedef enum { DIRECTION_IN, DIRECTION_OUT} decklink_direction_t;
 
 #ifdef _WIN32
+#if BLACKMAGIC_DECKLINK_API_VERSION < 0x0a040000
 typedef unsigned long buffercount_type;
+#else
+typedef unsigned int buffercount_type;
+#endif
 IDeckLinkIterator *CreateDeckLinkIteratorInstance(void);
 #else
 typedef uint32_t buffercount_type;
@@ -95,3 +106,4 @@ int ff_decklink_set_format(AVFormatContext *avctx, decklink_direction_t directio
 int ff_decklink_list_devices(AVFormatContext *avctx);
 int ff_decklink_list_formats(AVFormatContext *avctx, decklink_direction_t direction = DIRECTION_OUT);
 
+#endif /* AVDEVICE_DECKLINK_COMMON_H */

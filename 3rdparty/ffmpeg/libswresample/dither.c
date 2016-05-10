@@ -23,11 +23,14 @@
 
 #include "noise_shaping_data.c"
 
-void swri_get_dither(SwrContext *s, void *dst, int len, unsigned seed, enum AVSampleFormat noise_fmt) {
+int swri_get_dither(SwrContext *s, void *dst, int len, unsigned seed, enum AVSampleFormat noise_fmt) {
     double scale = s->dither.noise_scale;
 #define TMP_EXTRA 2
     double *tmp = av_malloc_array(len + TMP_EXTRA, sizeof(double));
     int i;
+
+    if (!tmp)
+        return AVERROR(ENOMEM);
 
     for(i=0; i<len + TMP_EXTRA; i++){
         double v;
@@ -70,6 +73,7 @@ void swri_get_dither(SwrContext *s, void *dst, int len, unsigned seed, enum AVSa
     }
 
     av_free(tmp);
+    return 0;
 }
 
 av_cold int swri_dither_init(SwrContext *s, enum AVSampleFormat out_fmt, enum AVSampleFormat in_fmt)
@@ -105,7 +109,7 @@ av_cold int swri_dither_init(SwrContext *s, enum AVSampleFormat out_fmt, enum AV
     memset(s->dither.ns_errors, 0, sizeof(s->dither.ns_errors));
     for (i=0; filters[i].coefs; i++) {
         const filter_t *f = &filters[i];
-        if (fabs(s->out_sample_rate - f->rate) / f->rate <= .05 && f->name == s->dither.method) {
+        if (llabs(s->out_sample_rate - f->rate)*20 <= f->rate && f->name == s->dither.method) {
             int j;
             s->dither.ns_taps = f->len;
             for (j=0; j<f->len; j++)

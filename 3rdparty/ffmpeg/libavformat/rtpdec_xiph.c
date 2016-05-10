@@ -73,7 +73,7 @@ static int xiph_handle_packet(AVFormatContext *ctx, PayloadContext *data,
         }
         pkt_len = AV_RB16(data->split_buf + data->split_pos);
         data->split_pos += 2;
-        if (data->split_pos + pkt_len > data->split_buf_len) {
+        if (pkt_len > data->split_buf_len - data->split_pos) {
             av_log(ctx, AV_LOG_ERROR, "Not enough data to return\n");
             return AVERROR_INVALIDDATA;
         }
@@ -88,7 +88,7 @@ static int xiph_handle_packet(AVFormatContext *ctx, PayloadContext *data,
         return data->split_pkts > 0;
     }
 
-    if (len < 6) {
+    if (len < 6 || len > INT_MAX/2) {
         av_log(ctx, AV_LOG_ERROR, "Invalid %d byte packet\n", len);
         return AVERROR_INVALIDDATA;
     }
@@ -141,7 +141,7 @@ static int xiph_handle_packet(AVFormatContext *ctx, PayloadContext *data,
                 data->split_buf = av_malloc(data->split_buf_size);
                 if (!data->split_buf) {
                     av_log(ctx, AV_LOG_ERROR, "Out of memory.\n");
-                    av_free_packet(pkt);
+                    av_packet_unref(pkt);
                     return AVERROR(ENOMEM);
                 }
             }
@@ -262,8 +262,8 @@ parse_packed_headers(const uint8_t * packed_headers,
     /* allocate extra space:
      * -- length/255 +2 for xiphlacing
      * -- one for the '2' marker
-     * -- FF_INPUT_BUFFER_PADDING_SIZE required */
-    extradata_alloc = length + length/255 + 3 + FF_INPUT_BUFFER_PADDING_SIZE;
+     * -- AV_INPUT_BUFFER_PADDING_SIZE required */
+    extradata_alloc = length + length/255 + 3 + AV_INPUT_BUFFER_PADDING_SIZE;
 
     if (ff_alloc_extradata(codec, extradata_alloc)) {
         av_log(codec, AV_LOG_ERROR, "Out of memory\n");

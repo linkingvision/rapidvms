@@ -106,14 +106,14 @@ AVRational av_sub_q(AVRational b, AVRational c)
 AVRational av_d2q(double d, int max)
 {
     AVRational a;
-#define LOG2  0.69314718055994530941723212145817656807550013436025
     int exponent;
     int64_t den;
     if (isnan(d))
         return (AVRational) { 0,0 };
     if (fabs(d) > INT_MAX + 3LL)
         return (AVRational) { d < 0 ? -1 : 1, 0 };
-    exponent = FFMAX( (int)(log(fabs(d) + 1e-20)/LOG2), 0);
+    frexp(d, &exponent);
+    exponent = FFMAX(exponent-1, 0);
     den = 1LL << (61 - exponent);
     // (int64_t)rint() and llrint() do not work with gcc on ia64 and sparc64
     av_reduce(&a.num, &a.den, floor(d * den + 0.5), den, max);
@@ -148,10 +148,53 @@ int av_find_nearest_q_idx(AVRational q, const AVRational* q_list)
     return nearest_q_idx;
 }
 
+uint32_t av_q2intfloat(AVRational q) {
+    int64_t n;
+    int shift;
+    int sign = 0;
+
+    if (q.den < 0) {
+        q.den *= -1;
+        q.num *= -1;
+    }
+    if (q.num < 0) {
+        q.num *= -1;
+        sign = 1;
+    }
+
+    if (!q.num && !q.den) return 0xFFC00000;
+    if (!q.num) return 0;
+    if (!q.den) return 0x7F800000 | (q.num & 0x80000000);
+
+    shift = 23 + av_log2(q.den) - av_log2(q.num);
+    if (shift >= 0) n = av_rescale(q.num, 1LL<<shift, q.den);
+    else            n = av_rescale(q.num, 1, ((int64_t)q.den) << -shift);
+
+    shift -= n >= (1<<24);
+    shift += n <  (1<<23);
+
+    if (shift >= 0) n = av_rescale(q.num, 1LL<<shift, q.den);
+    else            n = av_rescale(q.num, 1, ((int64_t)q.den) << -shift);
+
+    av_assert1(n <  (1<<24));
+    av_assert1(n >= (1<<23));
+
+    return sign<<31 | (150-shift)<<23 | (n - (1<<23));
+}
+
 #ifdef TEST
+
+#include "integer.h"
+
 int main(void)
 {
     AVRational a,b,r;
+    int i,j,k;
+    static const int64_t numlist[] = {
+        INT64_MIN, INT64_MIN+1, INT64_MAX, INT32_MIN, INT32_MAX, 1,0,-1,
+        123456789, INT32_MAX-1, INT32_MAX+1LL, UINT32_MAX-1, UINT32_MAX, UINT32_MAX+1LL
+    };
+
     for (a.num = -2; a.num <= 2; a.num++) {
         for (a.den = -2; a.den <= 2; a.den++) {
             for (b.num = -2; b.num <= 2; b.num++) {
@@ -169,6 +212,41 @@ int main(void)
                     if(b.den && (r.num*a.den != a.num*r.den || !r.num != !a.num || !r.den != !a.den))
                         av_log(NULL, AV_LOG_ERROR, "%d/%d ", r.num, r.den);
                 }
+            }
+        }
+    }
+
+    for (i = 0; i < FF_ARRAY_ELEMS(numlist); i++) {
+        int64_t a = numlist[i];
+
+        for (j = 0; j < FF_ARRAY_ELEMS(numlist); j++) {
+            int64_t b = numlist[j];
+            if (b<=0)
+                continue;
+            for (k = 0; k < FF_ARRAY_ELEMS(numlist); k++) {
+                int64_t c = numlist[k];
+                int64_t res;
+                AVInteger ai;
+
+                if (c<=0)
+                    continue;
+                res = av_rescale_rnd(a,b,c, AV_ROUND_ZERO);
+
+                ai = av_mul_i(av_int2i(a), av_int2i(b));
+                ai = av_div_i(ai, av_int2i(c));
+
+                if (av_cmp_i(ai, av_int2i(INT64_MAX)) > 0 && res == INT64_MIN)
+                    continue;
+                if (av_cmp_i(ai, av_int2i(INT64_MIN)) < 0 && res == INT64_MIN)
+                    continue;
+                if (av_cmp_i(ai, av_int2i(res)) == 0)
+                    continue;
+
+                // Special exception for INT64_MIN, remove this in case INT64_MIN is handled without off by 1 error
+                if (av_cmp_i(ai, av_int2i(res-1)) == 0 && a == INT64_MIN)
+                    continue;
+
+                av_log(NULL, AV_LOG_ERROR, "%"PRId64" * %"PRId64" / %"PRId64" = %"PRId64" or %"PRId64"\n", a,b,c, res, av_i2int(ai));
             }
         }
     }
@@ -202,6 +280,20 @@ int main(void)
             }
         }
     }
+
+    for (a.den = 1; a.den < 0x100000000U/3; a.den*=3) {
+        for (a.num = -1; a.num < (1<<27); a.num += 1 + a.num/100) {
+            float f  = av_int2float(av_q2intfloat(a));
+            float f2 = av_q2d(a);
+            if (fabs(f - f2) > fabs(f)/5000000) {
+                av_log(NULL, AV_LOG_ERROR, "%d/%d %f %f\n", a.num,
+                       a.den, f, f2);
+                return 1;
+            }
+
+        }
+    }
+
     return 0;
 }
 #endif

@@ -24,8 +24,8 @@
 
 #include "libavutil/float_dsp.h"
 
+#include "avcodec.h"
 #include "fft.h"
-#include "fmtconvert.h"
 #include "get_bits.h"
 #include "put_bits.h"
 
@@ -120,7 +120,7 @@ typedef struct WMACodecContext {
     /* output buffer for one frame and the last for IMDCT windowing */
     DECLARE_ALIGNED(32, float, frame_out)[MAX_CHANNELS][BLOCK_MAX_SIZE * 2];
     /* last frame info */
-    uint8_t last_superframe[MAX_CODED_SUPERFRAME_SIZE + FF_INPUT_BUFFER_PADDING_SIZE]; /* padding added */
+    uint8_t last_superframe[MAX_CODED_SUPERFRAME_SIZE + AV_INPUT_BUFFER_PADDING_SIZE]; /* padding added */
     int last_bitoffset;
     int last_superframe_len;
     float noise_table[NOISE_TAB_SIZE];
@@ -131,7 +131,6 @@ typedef struct WMACodecContext {
     float lsp_pow_e_table[256];
     float lsp_pow_m_table1[(1 << LSP_POW_BITS)];
     float lsp_pow_m_table2[(1 << LSP_POW_BITS)];
-    FmtConvertContext fmt_conv;
     AVFloatDSPContext *fdsp;
 
 #ifdef TRACE
@@ -145,7 +144,9 @@ extern const float ff_wma_lsp_codebook[NB_LSP_COEFS][16];
 extern const uint32_t ff_aac_scalefactor_code[121];
 extern const uint8_t  ff_aac_scalefactor_bits[121];
 
+av_warn_unused_result
 int ff_wma_init(AVCodecContext *avctx, int flags2);
+
 int ff_wma_total_gain_to_bits(int total_gain);
 int ff_wma_end(AVCodecContext *avctx);
 unsigned int ff_wma_get_large_val(GetBitContext *gb);

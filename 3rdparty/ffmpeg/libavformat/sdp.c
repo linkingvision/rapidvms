@@ -685,7 +685,7 @@ static char *sdp_write_media_attributes(char *buff, int size, AVCodecContext *c,
                 const char *mode;
                 uint64_t vad_option;
 
-                if (c->flags & CODEC_FLAG_QSCALE)
+                if (c->flags & AV_CODEC_FLAG_QSCALE)
                       mode = "on";
                 else if (!av_opt_get_int(c, "vad", AV_OPT_FLAG_ENCODING_PARAM, &vad_option) && vad_option)
                       mode = "vad";
@@ -740,7 +740,7 @@ void ff_sdp_write_media(char *buff, int size, AVStream *st, int idx,
     av_strlcatf(buff, size, "m=%s %d RTP/AVP %d\r\n", type, port, payload_type);
     sdp_write_address(buff, size, dest_addr, dest_type, ttl);
     if (c->bit_rate) {
-        av_strlcatf(buff, size, "b=AS:%d\r\n", c->bit_rate / 1000);
+        av_strlcatf(buff, size, "b=AS:%"PRId64"\r\n", (int64_t)c->bit_rate / 1000);
     }
 
     sdp_write_media_attributes(buff, size, c, payload_type, fmt);

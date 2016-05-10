@@ -26,7 +26,9 @@
  */
 
 extern "C" {
+#include "libavutil/opt.h"
 #include "libavutil/avassert.h"
+#include "libavutil/imgutils.h"
 #include "avcodec.h"
 #include "internal.h"
 }
@@ -72,16 +74,22 @@ static av_cold int utvideo_encode_init(AVCodecContext *avctx)
         return AVERROR(EINVAL);
     }
 
+#if FF_API_PRIVATE_OPT
+FF_DISABLE_DEPRECATION_WARNINGS
+    if (avctx->prediction_method)
+        utv->pred = avctx->prediction_method;
+FF_ENABLE_DEPRECATION_WARNINGS
+#endif
+
     /* Check before we alloc anything */
-    if (avctx->prediction_method != 0 && avctx->prediction_method != 2) {
+    if (utv->pred != 0 && utv->pred != 2) {
         av_log(avctx, AV_LOG_ERROR, "Invalid prediction method.\n");
         return AVERROR(EINVAL);
     }
 
-    flags = ((avctx->prediction_method + 1) << 8) | (avctx->thread_count - 1);
+    flags = ((utv->pred + 1) << 8) | (avctx->thread_count - 1);
 
     avctx->priv_data = utv;
-    avctx->coded_frame = av_frame_alloc();
 
     /* Alloc extradata buffer */
     info = (UtVideoExtra *)av_malloc(sizeof(*info));
@@ -95,9 +103,11 @@ static av_cold int utvideo_encode_init(AVCodecContext *avctx)
      * We use this buffer to hold the data that Ut Video returns,
      * since we cannot decode planes separately with it.
      */
-    ret = avpicture_get_size(avctx->pix_fmt, avctx->width, avctx->height);
-    if (ret < 0)
+    ret = av_image_get_buffer_size(avctx->pix_fmt, avctx->width, avctx->height, 1);
+    if (ret < 0) {
+        av_free(info);
         return ret;
+    }
     utv->buf_size = ret;
 
     utv->buffer = (uint8_t *)av_malloc(utv->buf_size);
@@ -142,7 +152,7 @@ static int utvideo_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     uint8_t *dst;
 
     /* Alloc buffer */
-    if ((ret = ff_alloc_packet2(avctx, pkt, utv->buf_size)) < 0)
+    if ((ret = ff_alloc_packet2(avctx, pkt, utv->buf_size, 0)) < 0)
         return ret;
 
     dst = pkt->data;
@@ -197,8 +207,6 @@ static int utvideo_encode_frame(AVCodecContext *avctx, AVPacket *pkt,
      * assert that this is true.
      */
     av_assert2(keyframe == true);
-    avctx->coded_frame->key_frame = 1;
-    avctx->coded_frame->pict_type = AV_PICTURE_TYPE_I;
 
     pkt->flags |= AV_PKT_FLAG_KEY;
     *got_packet = 1;
@@ -209,7 +217,6 @@ static av_cold int utvideo_encode_close(AVCodecContext *avctx)
 {
     UtVideoContext *utv = (UtVideoContext *)avctx->priv_data;
 
-    av_freep(&avctx->coded_frame);
     av_freep(&avctx->extradata);
     av_freep(&utv->buffer);
 
@@ -219,12 +226,35 @@ static av_cold int utvideo_encode_close(AVCodecContext *avctx)
     return 0;
 }
 
+#define OFFSET(x) offsetof(UtVideoContext, x)
+#define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
+static const AVOption options[] = {
+    { "pred", "Prediction method", OFFSET(pred), AV_OPT_TYPE_INT, 0, 0, 2, VE, "pred" },
+    { "left",   NULL, 0, AV_OPT_TYPE_CONST, 0, INT_MIN, INT_MAX, VE, "pred" },
+    { "median",   NULL, 0, AV_OPT_TYPE_CONST, 2, INT_MIN, INT_MAX, VE, "pred" },
+    { NULL },
+};
+
+static const AVClass utvideo_class = {
+    "libutvideo",
+    av_default_item_name,
+    options,
+    LIBAVUTIL_VERSION_INT,
+    0,
+    0,
+    NULL,
+    NULL,
+    AV_CLASS_CATEGORY_NA,
+    NULL,
+    NULL,
+};
+
 AVCodec ff_libutvideo_encoder = {
     "libutvideo",
     NULL_IF_CONFIG_SMALL("Ut Video"),
     AVMEDIA_TYPE_VIDEO,
     AV_CODEC_ID_UTVIDEO,
-    CODEC_CAP_AUTO_THREADS | CODEC_CAP_LOSSLESS,
+    AV_CODEC_CAP_AUTO_THREADS | AV_CODEC_CAP_LOSSLESS | AV_CODEC_CAP_INTRA_ONLY,
     NULL, /* supported_framerates */
     (const enum AVPixelFormat[]) {
         AV_PIX_FMT_YUV420P, AV_PIX_FMT_YUYV422, AV_PIX_FMT_BGR24,
@@ -234,7 +264,7 @@ AVCodec ff_libutvideo_encoder = {
     NULL, /* sample_fmts */
     NULL, /* channel_layouts */
     0,    /* max_lowres */
-    NULL, /* priv_class */
+    &utvideo_class, /* priv_class */
     NULL, /* profiles */
     sizeof(UtVideoContext),
     NULL, /* next */

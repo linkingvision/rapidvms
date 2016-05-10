@@ -348,11 +348,11 @@ static int decode_frame(AVCodecContext *avctx,
                 // For 12 bit, ignore alpha
                 if (elements == 4)
                     buf += 2;
-                // Jump to next aligned position
-                buf += need_align;
             }
             for (i = 0; i < 3; i++)
                 ptr[i] += p->linesize[i];
+            // Jump to next aligned position
+            buf += need_align;
         }
         break;
     case 16:
@@ -392,5 +392,5 @@ AVCodec ff_dpx_decoder = {
     .type           = AVMEDIA_TYPE_VIDEO,
     .id             = AV_CODEC_ID_DPX,
     .decode         = decode_frame,
-    .capabilities   = CODEC_CAP_DR1,
+    .capabilities   = AV_CODEC_CAP_DR1,
 };

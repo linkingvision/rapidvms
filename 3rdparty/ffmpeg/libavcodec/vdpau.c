@@ -32,6 +32,7 @@
 #include <assert.h>
 
 #include "vdpau.h"
+#include "vdpau_compat.h"
 #include "vdpau_internal.h"
 
 /**
@@ -186,8 +187,7 @@ int ff_vdpau_common_init(AVCodecContext *avctx, VdpDecoderProfile profile,
     status = decoder_query_caps(vdctx->device, profile, &supported, &max_level,
                                 &max_mb, &max_width, &max_height);
 #ifdef VDP_DECODER_PROFILE_H264_CONSTRAINED_BASELINE
-    if (status != VDP_STATUS_OK && profile == VDP_DECODER_PROFILE_H264_CONSTRAINED_BASELINE) {
-        /* Run-time backward compatibility for libvdpau 0.8 and earlier */
+    if ((status != VDP_STATUS_OK || supported != VDP_TRUE) && profile == VDP_DECODER_PROFILE_H264_CONSTRAINED_BASELINE) {
         profile = VDP_DECODER_PROFILE_H264_MAIN;
         status = decoder_query_caps(vdctx->device, profile, &supported,
                                     &max_level, &max_mb,
@@ -317,7 +317,7 @@ FF_ENABLE_DEPRECATION_WARNINGS
     return vdpau_error(status);
 }
 
-#if CONFIG_H263_VDPAU_HWACCEL  || CONFIG_MPEG1_VDPAU_HWACCEL || \
+#if CONFIG_MPEG1_VDPAU_HWACCEL || \
     CONFIG_MPEG2_VDPAU_HWACCEL || CONFIG_MPEG4_VDPAU_HWACCEL || \
     CONFIG_VC1_VDPAU_HWACCEL   || CONFIG_WMV3_VDPAU_HWACCEL
 int ff_vdpau_mpeg_end_frame(AVCodecContext *avctx)
@@ -357,6 +357,25 @@ int ff_vdpau_add_buffer(struct vdpau_picture_context *pic_ctx,
 
 /* Obsolete non-hwaccel VDPAU support below... */
 
+#if FF_API_VDPAU
+void ff_vdpau_add_data_chunk(uint8_t *data, const uint8_t *buf, int buf_size)
+{
+    struct vdpau_render_state *render = (struct vdpau_render_state*)data;
+    assert(render);
+
+    render->bitstream_buffers= av_fast_realloc(
+        render->bitstream_buffers,
+        &render->bitstream_buffers_allocated,
+        sizeof(*render->bitstream_buffers)*(render->bitstream_buffers_used + 1)
+    );
+
+    render->bitstream_buffers[render->bitstream_buffers_used].struct_version  = VDP_BITSTREAM_BUFFER_VERSION;
+    render->bitstream_buffers[render->bitstream_buffers_used].bitstream       = buf;
+    render->bitstream_buffers[render->bitstream_buffers_used].bitstream_bytes = buf_size;
+    render->bitstream_buffers_used++;
+}
+
+#if CONFIG_H264_VDPAU_DECODER
 void ff_vdpau_h264_set_reference_frames(H264Context *h)
 {
     struct vdpau_render_state *render, *render_ref;
@@ -364,7 +383,7 @@ void ff_vdpau_h264_set_reference_frames(H264Context *h)
     H264Picture *pic;
     int i, list, pic_frame_idx;
 
-    render = (struct vdpau_render_state *)h->cur_pic_ptr->f.data[0];
+    render = (struct vdpau_render_state *)h->cur_pic_ptr->f->data[0];
     assert(render);
 
     rf = &render->info.h264.referenceFrames[0];
@@ -380,7 +399,7 @@ void ff_vdpau_h264_set_reference_frames(H264Context *h)
                 continue;
             pic_frame_idx = pic->long_ref ? pic->pic_id : pic->frame_num;
 
-            render_ref = (struct vdpau_render_state *)pic->f.data[0];
+            render_ref = (struct vdpau_render_state *)pic->f->data[0];
             assert(render_ref);
 
             rf2 = &render->info.h264.referenceFrames[0];
@@ -425,30 +444,12 @@ void ff_vdpau_h264_set_reference_frames(H264Context *h)
     }
 }
 
-void ff_vdpau_add_data_chunk(uint8_t *data, const uint8_t *buf, int buf_size)
-{
-    struct vdpau_render_state *render = (struct vdpau_render_state*)data;
-    assert(render);
-
-    render->bitstream_buffers= av_fast_realloc(
-        render->bitstream_buffers,
-        &render->bitstream_buffers_allocated,
-        sizeof(*render->bitstream_buffers)*(render->bitstream_buffers_used + 1)
-    );
-
-    render->bitstream_buffers[render->bitstream_buffers_used].struct_version  = VDP_BITSTREAM_BUFFER_VERSION;
-    render->bitstream_buffers[render->bitstream_buffers_used].bitstream       = buf;
-    render->bitstream_buffers[render->bitstream_buffers_used].bitstream_bytes = buf_size;
-    render->bitstream_buffers_used++;
-}
-
-#if CONFIG_H264_VDPAU_DECODER
 void ff_vdpau_h264_picture_start(H264Context *h)
 {
     struct vdpau_render_state *render;
     int i;
 
-    render = (struct vdpau_render_state *)h->cur_pic_ptr->f.data[0];
+    render = (struct vdpau_render_state *)h->cur_pic_ptr->f->data[0];
     assert(render);
 
     for (i = 0; i < 2; ++i) {
@@ -465,10 +466,10 @@ void ff_vdpau_h264_picture_complete(H264Context *h)
 {
     struct vdpau_render_state *render;
 
-    render = (struct vdpau_render_state *)h->cur_pic_ptr->f.data[0];
+    render = (struct vdpau_render_state *)h->cur_pic_ptr->f->data[0];
     assert(render);
 
-    render->info.h264.slice_count = h->slice_num;
+    render->info.h264.slice_count = h->current_slice;
     if (render->info.h264.slice_count < 1)
         return;
 
@@ -500,7 +501,7 @@ void ff_vdpau_h264_picture_complete(H264Context *h)
     memcpy(render->info.h264.scaling_lists_8x8[0], h->pps.scaling_matrix8[0], sizeof(render->info.h264.scaling_lists_8x8[0]));
     memcpy(render->info.h264.scaling_lists_8x8[1], h->pps.scaling_matrix8[3], sizeof(render->info.h264.scaling_lists_8x8[0]));
 
-    ff_h264_draw_horiz_band(h, 0, h->avctx->height);
+    ff_h264_draw_horiz_band(h, &h->slice_ctx[0], 0, h->avctx->height);
     render->bitstream_buffers_used = 0;
 }
 #endif /* CONFIG_H264_VDPAU_DECODER */
@@ -691,6 +692,7 @@ void ff_vdpau_mpeg4_decode_picture(Mpeg4DecContext *ctx, const uint8_t *buf,
     render->bitstream_buffers_used = 0;
 }
 #endif /* CONFIG_MPEG4_VDPAU_DECODER */
+#endif /* FF_API_VDPAU */
 
 int av_vdpau_get_profile(AVCodecContext *avctx, VdpDecoderProfile *profile)
 {

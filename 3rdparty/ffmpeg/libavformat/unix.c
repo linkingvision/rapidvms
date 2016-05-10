@@ -45,7 +45,7 @@ typedef struct UnixContext {
 #define OFFSET(x) offsetof(UnixContext, x)
 #define ED AV_OPT_FLAG_DECODING_PARAM|AV_OPT_FLAG_ENCODING_PARAM
 static const AVOption unix_options[] = {
-    { "listen",    "Open socket for listening",             OFFSET(listen),  AV_OPT_TYPE_INT,   { .i64 = 0 },                    0,       1, ED },
+    { "listen",    "Open socket for listening",             OFFSET(listen),  AV_OPT_TYPE_BOOL,  { .i64 = 0 },                    0,       1, ED },
     { "timeout",   "Timeout in ms",                         OFFSET(timeout), AV_OPT_TYPE_INT,   { .i64 = -1 },                  -1, INT_MAX, ED },
     { "type",      "Socket type",                           OFFSET(type),    AV_OPT_TYPE_INT,   { .i64 = SOCK_STREAM },    INT_MIN, INT_MAX, ED, "type" },
     { "stream",    "Stream (reliable stream-oriented)",     0,               AV_OPT_TYPE_CONST, { .i64 = SOCK_STREAM },    INT_MIN, INT_MAX, ED, "type" },
@@ -74,12 +74,11 @@ static int unix_open(URLContext *h, const char *filename, int flags)
         return ff_neterrno();
 
     if (s->listen) {
-        fd = ff_listen_bind(fd, (struct sockaddr *)&s->addr,
-                            sizeof(s->addr), s->timeout, h);
-        if (fd < 0) {
-            ret = fd;
+        ret = ff_listen_bind(fd, (struct sockaddr *)&s->addr,
+                             sizeof(s->addr), s->timeout, h);
+        if (ret < 0)
             goto fail;
-        }
+        fd = ret;
     } else {
         ret = ff_listen_connect(fd, (struct sockaddr *)&s->addr,
                                 sizeof(s->addr), s->timeout, h, 0);

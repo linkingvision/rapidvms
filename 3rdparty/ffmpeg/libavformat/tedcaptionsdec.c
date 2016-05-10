@@ -34,7 +34,7 @@ typedef struct {
 
 static const AVOption tedcaptions_options[] = {
     { "start_time", "set the start time (offset) of the subtitles, in ms",
-      offsetof(TEDCaptionsDemuxer, start_time), FF_OPT_TYPE_INT64,
+      offsetof(TEDCaptionsDemuxer, start_time), AV_OPT_TYPE_INT64,
       { .i64 = 15000 }, INT64_MIN, INT64_MAX,
       AV_OPT_FLAG_SUBTITLE_PARAM | AV_OPT_FLAG_DECODING_PARAM },
     { NULL },
@@ -287,7 +287,7 @@ static av_cold int tedcaptions_read_header(AVFormatContext *avf)
         ff_subtitles_queue_clean(&tc->subs);
         return ret;
     }
-    ff_subtitles_queue_finalize(&tc->subs);
+    ff_subtitles_queue_finalize(avf, &tc->subs);
     for (i = 0; i < tc->subs.nb_subs; i++)
         tc->subs.subs[i].pts += tc->start_time;
 

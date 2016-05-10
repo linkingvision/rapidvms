@@ -91,7 +91,7 @@ static void get_meta(AVFormatContext *s, const char *key, int size)
 }
 
 /* Returns the number of sound data frames or negative on error */
-static unsigned int get_aiff_header(AVFormatContext *s, int size,
+static int get_aiff_header(AVFormatContext *s, int size,
                                     unsigned version)
 {
     AVIOContext *pb        = s->pb;
@@ -99,7 +99,7 @@ static unsigned int get_aiff_header(AVFormatContext *s, int size,
     AIFFInputContext *aiff = s->priv_data;
     int exp;
     uint64_t val;
-    double sample_rate;
+    int sample_rate;
     unsigned int num_frames;
 
     if (size & 1)
@@ -109,9 +109,16 @@ static unsigned int get_aiff_header(AVFormatContext *s, int size,
     num_frames = avio_rb32(pb);
     codec->bits_per_coded_sample = avio_rb16(pb);
 
-    exp = avio_rb16(pb);
+    exp = avio_rb16(pb) - 16383 - 63;
     val = avio_rb64(pb);
-    sample_rate = ldexp(val, exp - 16383 - 63);
+    if (exp <-63 || exp >63) {
+        av_log(s, AV_LOG_ERROR, "exp %d is out of range\n", exp);
+        return AVERROR_INVALIDDATA;
+    }
+    if (exp >= 0)
+        sample_rate = val << exp;
+    else
+        sample_rate = (val + (1ULL<<(-exp-1))) >> -exp;
     codec->sample_rate = sample_rate;
     size -= 18;
 
@@ -121,6 +128,11 @@ static unsigned int get_aiff_header(AVFormatContext *s, int size,
     } else if (version == AIFF_C_VERSION1) {
         codec->codec_tag = avio_rl32(pb);
         codec->codec_id  = ff_codec_get_id(ff_codec_aiff_tags, codec->codec_tag);
+        if (codec->codec_id == AV_CODEC_ID_NONE) {
+            char tag[32];
+            av_get_codec_tag_string(tag, sizeof(tag), codec->codec_tag);
+            avpriv_request_sample(s, "unknown or unsupported codec tag: %s", tag);
+        }
         size -= 4;
     }
 
@@ -145,8 +157,10 @@ static unsigned int get_aiff_header(AVFormatContext *s, int size,
             break;
         case AV_CODEC_ID_ADPCM_G726LE:
             codec->bits_per_coded_sample = 5;
+        case AV_CODEC_ID_ADPCM_IMA_WS:
         case AV_CODEC_ID_ADPCM_G722:
         case AV_CODEC_ID_MACE6:
+        case AV_CODEC_ID_SDX2_DPCM:
             codec->block_align = 1*codec->channels;
             break;
         case AV_CODEC_ID_GSM:
@@ -223,6 +237,11 @@ static int aiff_read_header(AVFormatContext *s)
     while (filesize > 0) {
         /* parse different chunks */
         size = get_tag(pb, &tag);
+
+        if (size == AVERROR_EOF && offset > 0 && st->codec->block_align) {
+            av_log(s, AV_LOG_WARNING, "header parser hit EOF\n");
+            goto got_sound;
+        }
         if (size < 0)
             return size;
 
@@ -306,6 +325,9 @@ static int aiff_read_header(AVFormatContext *s)
             if(ff_mov_read_chan(s, pb, st, size) < 0)
                 return AVERROR_INVALIDDATA;
             break;
+        case 0:
+            if (offset > 0 && st->codec->block_align) // COMM && SSND
+                goto got_sound;
         default: /* Jump */
             if (size & 1)   /* Always even aligned */
                 size++;

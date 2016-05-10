@@ -29,9 +29,10 @@
  * change without prior notice.
  */
 
-#ifndef LIBAVUTIL_OPENCL_H
-#define LIBAVUTIL_OPENCL_H
+#ifndef AVUTIL_OPENCL_H
+#define AVUTIL_OPENCL_H
 
+#define CL_USE_DEPRECATED_OPENCL_1_2_APIS 1
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
 #else
@@ -44,21 +45,15 @@
 
 #define AV_OPENCL_KERNEL( ... )# __VA_ARGS__
 
-#define AV_OPENCL_MAX_KERNEL_NAME_SIZE 150
-
-#define AV_OPENCL_MAX_DEVICE_NAME_SIZE 100
-
-#define AV_OPENCL_MAX_PLATFORM_NAME_SIZE 100
-
 typedef struct {
     int device_type;
-    char device_name[AV_OPENCL_MAX_DEVICE_NAME_SIZE];
+    char *device_name;
     cl_device_id device_id;
 } AVOpenCLDeviceNode;
 
 typedef struct {
     cl_platform_id platform_id;
-    char platform_name[AV_OPENCL_MAX_PLATFORM_NAME_SIZE];
+    char *platform_name;
     int device_num;
     AVOpenCLDeviceNode **device_node;
 } AVOpenCLPlatformNode;
@@ -294,4 +289,4 @@ void av_opencl_uninit(void);
 int64_t av_opencl_benchmark(AVOpenCLDeviceNode *device, cl_platform_id platform,
                             int64_t (*benchmark)(AVOpenCLExternalEnv *ext_opencl_env));
 
-#endif /* LIBAVUTIL_OPENCL_H */
+#endif /* AVUTIL_OPENCL_H */

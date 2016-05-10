@@ -79,13 +79,6 @@ static const int factor[16] = {
     N / (N2 * N0), N / (N2 * N1), N / (N2 * N0), N / (N2 * N2),
 };
 
-static const int thres[16] = {
-    N / (SN0 * SN0), N / (SN0 * SN2), N / (SN0 * SN0), N / (SN0 * SN2),
-    N / (SN2 * SN0), N / (SN2 * SN2), N / (SN2 * SN0), N / (SN2 * SN2),
-    N / (SN0 * SN0), N / (SN0 * SN2), N / (SN0 * SN0), N / (SN0 * SN2),
-    N / (SN2 * SN0), N / (SN2 * SN2), N / (SN2 * SN0), N / (SN2 * SN2),
-};
-
 static void init_thres2(PP7Context *p)
 {
     int qp, i;
@@ -272,7 +265,7 @@ static void filter(PP7Context *p, uint8_t *dst, uint8_t *src,
 
 static int query_formats(AVFilterContext *ctx)
 {
-    static const enum PixelFormat pix_fmts[] = {
+    static const enum AVPixelFormat pix_fmts[] = {
         AV_PIX_FMT_YUV444P,  AV_PIX_FMT_YUV422P,
         AV_PIX_FMT_YUV420P,  AV_PIX_FMT_YUV411P,
         AV_PIX_FMT_YUV410P,  AV_PIX_FMT_YUV440P,
@@ -281,8 +274,11 @@ static int query_formats(AVFilterContext *ctx)
         AV_PIX_FMT_GBRP,
         AV_PIX_FMT_GRAY8,    AV_PIX_FMT_NONE
     };
-    ff_set_common_formats(ctx, ff_make_format_list(pix_fmts));
-    return 0;
+
+    AVFilterFormats *fmts_list = ff_make_format_list(pix_fmts);
+    if (!fmts_list)
+        return AVERROR(ENOMEM);
+    return ff_set_common_formats(ctx, fmts_list);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -332,8 +328,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
         qp_table = av_frame_get_qp_table(in, &qp_stride, &pp7->qscale_type);
 
     if (!ctx->is_disabled) {
-        const int cw = FF_CEIL_RSHIFT(inlink->w, pp7->hsub);
-        const int ch = FF_CEIL_RSHIFT(inlink->h, pp7->vsub);
+        const int cw = AV_CEIL_RSHIFT(inlink->w, pp7->hsub);
+        const int ch = AV_CEIL_RSHIFT(inlink->h, pp7->vsub);
 
         /* get a new frame if in-place is not possible or if the dimensions
         * are not multiple of 8 */

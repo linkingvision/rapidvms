@@ -25,6 +25,7 @@
 #include "libavutil/parseutils.h"
 #include "libavutil/opt.h"
 #include "avformat.h"
+#include "avio_internal.h"
 #include "internal.h"
 #include "ffm.h"
 
@@ -127,7 +128,6 @@ static int ffm_write_header_codec_ctx(AVIOContext *pb, AVCodecContext *ctx, unsi
 {
     AVIOContext *tmp;
     char *buf = NULL;
-    uint8_t *p = NULL;
     int ret, need_coma = 0;
 
 #define SKIP_DEFAULTS   AV_OPT_SERIALIZE_SKIP_DEFAULTS
@@ -156,8 +156,7 @@ static int ffm_write_header_codec_ctx(AVIOContext *pb, AVCodecContext *ctx, unsi
     return 0;
   fail:
     av_free(buf);
-    avio_close_dyn_buf(tmp, &p);
-    av_free(p);
+    ffio_free_dyn_buf(&tmp);
     return ret;
 
 #undef SKIP_DEFAULTS
@@ -222,17 +221,13 @@ static int ffm_write_recommended_config(AVIOContext *pb, AVCodecContext *ctx, un
 static int ffm_write_header(AVFormatContext *s)
 {
     FFMContext *ffm = s->priv_data;
-    AVDictionaryEntry *t;
     AVStream *st;
     AVIOContext *pb = s->pb;
     AVCodecContext *codec;
     int bit_rate, i, ret;
 
-    if (t = av_dict_get(s->metadata, "creation_time", NULL, 0)) {
-        ret = av_parse_time(&ffm->start_time, t->value, 0);
-        if (ret < 0)
-            return ret;
-    }
+    if ((ret = ff_parse_creation_time_metadata(s, &ffm->start_time, 0)) < 0)
+        return ret;
 
     ffm->packet_size = FFM_PACKET_SIZE;
 
@@ -269,7 +264,7 @@ static int ffm_write_header(AVFormatContext *s)
         avio_wb32(pb, codec->flags);
         avio_wb32(pb, codec->flags2);
         avio_wb32(pb, codec->debug);
-        if (codec->flags & CODEC_FLAG_GLOBAL_HEADER) {
+        if (codec->flags & AV_CODEC_FLAG_GLOBAL_HEADER) {
             avio_wb32(pb, codec->extradata_size);
             avio_write(pb, codec->extradata, codec->extradata_size);
         }

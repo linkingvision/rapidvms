@@ -227,8 +227,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     OWDenoiseContext *s = ctx->priv;
     AVFilterLink *outlink = ctx->outputs[0];
     AVFrame *out;
-    const int cw = FF_CEIL_RSHIFT(inlink->w, s->hsub);
-    const int ch = FF_CEIL_RSHIFT(inlink->h, s->vsub);
+    const int cw = AV_CEIL_RSHIFT(inlink->w, s->hsub);
+    const int ch = AV_CEIL_RSHIFT(inlink->h, s->vsub);
 
     if (av_frame_is_writable(in)) {
         direct = 1;
@@ -267,8 +267,10 @@ static int query_formats(AVFilterContext *ctx)
         AV_PIX_FMT_YUVA420P,
         AV_PIX_FMT_NONE
     };
-    ff_set_common_formats(ctx, ff_make_format_list(pix_fmts));
-    return 0;
+    AVFilterFormats *fmts_list = ff_make_format_list(pix_fmts);
+    if (!fmts_list)
+        return AVERROR(ENOMEM);
+    return ff_set_common_formats(ctx, fmts_list);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -313,11 +315,11 @@ static const AVFilterPad owdenoise_inputs[] = {
 };
 
 static const AVFilterPad owdenoise_outputs[] = {
-     {
-         .name = "default",
-         .type = AVMEDIA_TYPE_VIDEO,
-     },
-     { NULL }
+    {
+        .name = "default",
+        .type = AVMEDIA_TYPE_VIDEO,
+    },
+    { NULL }
 };
 
 AVFilter ff_vf_owdenoise = {

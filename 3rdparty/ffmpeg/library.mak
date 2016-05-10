@@ -28,12 +28,13 @@ $(SUBDIR)x86/%$(DEFAULT_YASMD).asm: $(SUBDIR)x86/%.asm
 
 $(SUBDIR)x86/%.o: $(SUBDIR)x86/%$(YASMD).asm
 	$(DEPYASM) $(YASMFLAGS) -I $(<D)/ -M -o $@ $< > $(@:.o=.d)
-	$(YASM) $(YASMFLAGS) -I $(<D)/ -o $@ $<
+	$(YASM) $(YASMFLAGS) -I $(<D)/ -o $@ $(patsubst $(SRC_PATH)/%,$(SRC_LINK)/%,$<)
 	-$(if $(ASMSTRIPFLAGS), $(STRIP) $(ASMSTRIPFLAGS) $@)
 
 LIBOBJS := $(OBJS) $(SUBDIR)%.h.o $(TESTOBJS)
 $(LIBOBJS) $(LIBOBJS:.o=.s) $(LIBOBJS:.o=.i):   CPPFLAGS += -DHAVE_AV_CONFIG_H
 $(TESTOBJS) $(TESTOBJS:.o=.i): CPPFLAGS += -DTEST
+$(TESTOBJS) $(TESTOBJS:.o=.i): CFLAGS += -Umain
 
 $(SUBDIR)$(LIBNAME): $(OBJS)
 	$(RM) $@
@@ -57,7 +58,7 @@ $(SUBDIR)$(SLIBNAME): $(SUBDIR)$(SLIBNAME_WITH_MAJOR)
 
 $(SUBDIR)$(SLIBNAME_WITH_MAJOR): $(OBJS) $(SLIBOBJS) $(SUBDIR)lib$(NAME).ver
 	$(SLIB_CREATE_DEF_CMD)
-	$$(LD) $(SHFLAGS) $(LDFLAGS) $$(LD_O) $$(filter %.o,$$^) $(FFEXTRALIBS)
+	$$(LD) $(SHFLAGS) $(LDFLAGS) $(LDLIBFLAGS) $$(LD_O) $$(filter %.o,$$^) $(FFEXTRALIBS)
 	$(SLIB_EXTRA_CMD)
 
 ifdef SUBDIR
@@ -90,8 +91,8 @@ install-lib$(NAME)-headers: $(addprefix $(SUBDIR),$(HEADERS) $(BUILT_HEADERS))
 	$$(INSTALL) -m 644 $$^ "$(INCINSTDIR)"
 
 install-lib$(NAME)-pkgconfig: $(SUBDIR)lib$(FULLNAME).pc
-	$(Q)mkdir -p "$(LIBDIR)/pkgconfig"
-	$$(INSTALL) -m 644 $$^ "$(LIBDIR)/pkgconfig"
+	$(Q)mkdir -p "$(PKGCONFIGDIR)"
+	$$(INSTALL) -m 644 $$^ "$(PKGCONFIGDIR)"
 
 uninstall-libs::
 	-$(RM) "$(SHLIBDIR)/$(SLIBNAME_WITH_MAJOR)" \
@@ -103,7 +104,7 @@ uninstall-libs::
 
 uninstall-headers::
 	$(RM) $(addprefix "$(INCINSTDIR)/",$(HEADERS) $(BUILT_HEADERS))
-	$(RM) "$(LIBDIR)/pkgconfig/lib$(FULLNAME).pc"
+	$(RM) "$(PKGCONFIGDIR)/lib$(FULLNAME).pc"
 	-rmdir "$(INCINSTDIR)"
 endef
 

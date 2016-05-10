@@ -129,7 +129,7 @@ should be @code{1 / frame_rate} and timestamp increments should be
 identically 1.
 
 @item g @var{integer} (@emph{encoding,video})
-Set the group of picture size. Default value is 12.
+Set the group of picture (GOP) size. Default value is 12.
 
 @item ar @var{integer} (@emph{decoding/encoding,audio})
 Set audio sampling rate (in Hz).
@@ -475,6 +475,9 @@ per-block quantization parameter (QP)
 motion vector
 @item dct_coeff
 
+@item green_metadata
+display complexity metadata for the upcoming frame, GoP or for a given duration.
+
 @item skip
 
 @item startcode
@@ -814,12 +817,16 @@ for codecs that support it. See also @file{doc/examples/export_mvs.c}.
 Deprecated, use mpegvideo private options instead.
 
 @item threads @var{integer} (@emph{decoding/encoding,video})
+Set the number of threads to be used, in case the selected codec
+implementation supports multi-threading.
 
 Possible values:
 @table @samp
-@item auto
-detect a good number of threads
+@item auto, 0
+automatically select the number of threads to set
 @end table
+
+Default value is @samp{auto}.
 
 @item me_threshold @var{integer} (@emph{encoding,video})
 Set motion estimation threshold.
@@ -1042,7 +1049,11 @@ Possible values:
 @item color_primaries @var{integer} (@emph{decoding/encoding,video})
 @item color_trc @var{integer} (@emph{decoding/encoding,video})
 @item colorspace @var{integer} (@emph{decoding/encoding,video})
+
 @item color_range @var{integer} (@emph{decoding/encoding,video})
+If used as input parameter, it serves as a hint to the decoder, which
+color_range the input has.
+
 @item chroma_sample_location @var{integer} (@emph{decoding/encoding,video})
 
 @item log_level_offset @var{integer}

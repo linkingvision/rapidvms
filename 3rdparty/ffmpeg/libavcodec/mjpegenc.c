@@ -33,6 +33,7 @@
 #include "libavutil/pixdesc.h"
 
 #include "avcodec.h"
+#include "jpegtables.h"
 #include "mjpegenc_common.h"
 #include "mpegvideo.h"
 #include "mjpeg.h"
@@ -112,7 +113,7 @@ av_cold int ff_mjpeg_encode_init(MpegEncContext *s)
     return 0;
 }
 
-void ff_mjpeg_encode_close(MpegEncContext *s)
+av_cold void ff_mjpeg_encode_close(MpegEncContext *s)
 {
     av_freep(&s->mjpeg_ctx);
 }
@@ -223,9 +224,11 @@ static int amv_encode_picture(AVCodecContext *avctx, AVPacket *pkt,
 
     av_pix_fmt_get_chroma_sub_sample(avctx->pix_fmt, &chroma_h_shift, &chroma_v_shift);
 
+#if FF_API_EMU_EDGE
     //CODEC_FLAG_EMU_EDGE have to be cleared
     if(s->avctx->flags & CODEC_FLAG_EMU_EDGE)
         return AVERROR(EINVAL);
+#endif
 
     if ((avctx->height & 15) && avctx->strict_std_compliance > FF_COMPLIANCE_UNOFFICIAL) {
         av_log(avctx, AV_LOG_ERROR,
@@ -250,8 +253,26 @@ static int amv_encode_picture(AVCodecContext *avctx, AVPacket *pkt,
     return ret;
 }
 
+#define OFFSET(x) offsetof(MpegEncContext, x)
+#define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
+static const AVOption options[] = {
+FF_MPV_COMMON_OPTS
+{ "pred", "Prediction method", OFFSET(pred), AV_OPT_TYPE_INT, { .i64 = 1 }, 1, 3, VE, "pred" },
+    { "left",   NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 1 }, INT_MIN, INT_MAX, VE, "pred" },
+    { "plane",  NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 2 }, INT_MIN, INT_MAX, VE, "pred" },
+    { "median", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 3 }, INT_MIN, INT_MAX, VE, "pred" },
+
+{ NULL},
+};
+
 #if CONFIG_MJPEG_ENCODER
-FF_MPV_GENERIC_CLASS(mjpeg)
+
+static const AVClass mjpeg_class = {
+    .class_name = "mjpeg encoder",
+    .item_name  = av_default_item_name,
+    .option     = options,
+    .version    = LIBAVUTIL_VERSION_INT,
+};
 
 AVCodec ff_mjpeg_encoder = {
     .name           = "mjpeg",
@@ -262,7 +283,7 @@ AVCodec ff_mjpeg_encoder = {
     .init           = ff_mpv_encode_init,
     .encode2        = ff_mpv_encode_picture,
     .close          = ff_mpv_encode_end,
-    .capabilities   = CODEC_CAP_SLICE_THREADS | CODEC_CAP_FRAME_THREADS | CODEC_CAP_INTRA_ONLY,
+    .capabilities   = AV_CODEC_CAP_SLICE_THREADS | AV_CODEC_CAP_FRAME_THREADS | AV_CODEC_CAP_INTRA_ONLY,
     .pix_fmts       = (const enum AVPixelFormat[]){
         AV_PIX_FMT_YUVJ420P, AV_PIX_FMT_YUVJ422P, AV_PIX_FMT_YUVJ444P, AV_PIX_FMT_NONE
     },
@@ -270,7 +291,12 @@ AVCodec ff_mjpeg_encoder = {
 };
 #endif
 #if CONFIG_AMV_ENCODER
-FF_MPV_GENERIC_CLASS(amv)
+static const AVClass amv_class = {
+    .class_name = "amv encoder",
+    .item_name  = av_default_item_name,
+    .option     = options,
+    .version    = LIBAVUTIL_VERSION_INT,
+};
 
 AVCodec ff_amv_encoder = {
     .name           = "amv",

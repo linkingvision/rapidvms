@@ -32,7 +32,14 @@
 #include "internal.h"
 #include "mathops.h"
 #include "mjpeg.h"
+#include "mjpegenc.h"
 #include "jpegls.h"
+
+typedef struct JPEGLSContext {
+    AVClass *class;
+
+    int pred;
+} JPEGLSContext;
 
 /**
  * Encode error from regular symbol
@@ -249,15 +256,24 @@ static void ls_store_lse(JLSState *state, PutBitContext *pb)
 static int encode_picture_ls(AVCodecContext *avctx, AVPacket *pkt,
                              const AVFrame *pict, int *got_packet)
 {
+    JPEGLSContext *ctx = avctx->priv_data;
     const AVFrame *const p = pict;
-    const int near         = avctx->prediction_method;
     PutBitContext pb, pb2;
     GetBitContext gb;
     uint8_t *buf2 = NULL;
-    uint8_t *zero, *cur, *last;
+    uint8_t *zero = NULL;
+    uint8_t *cur  = NULL;
+    uint8_t *last = NULL;
     JLSState *state = NULL;
     int i, size, ret;
     int comps;
+
+#if FF_API_PRIVATE_OPT
+FF_DISABLE_DEPRECATION_WARNINGS
+    if (avctx->prediction_method)
+        ctx->pred = avctx->prediction_method;
+FF_ENABLE_DEPRECATION_WARNINGS
+#endif
 
     if (avctx->pix_fmt == AV_PIX_FMT_GRAY8 ||
         avctx->pix_fmt == AV_PIX_FMT_GRAY16)
@@ -266,12 +282,12 @@ static int encode_picture_ls(AVCodecContext *avctx, AVPacket *pkt,
         comps = 3;
 
     if ((ret = ff_alloc_packet2(avctx, pkt, avctx->width  *avctx->height * comps * 4 +
-                                FF_MIN_BUFFER_SIZE)) < 0)
+                                AV_INPUT_BUFFER_MIN_SIZE, 0)) < 0)
         return ret;
 
     buf2 = av_malloc(pkt->size);
     if (!buf2)
-        goto fail;
+        goto memfail;
 
     init_put_bits(&pb, pkt->data, pkt->size);
     init_put_bits(&pb2, buf2, pkt->size);
@@ -297,26 +313,26 @@ static int encode_picture_ls(AVCodecContext *avctx, AVPacket *pkt,
         put_bits(&pb, 8, i);   // component ID
         put_bits(&pb, 8, 0);   // mapping index: none
     }
-    put_bits(&pb, 8, near);
+    put_bits(&pb, 8, ctx->pred);
     put_bits(&pb, 8, (comps > 1) ? 1 : 0);  // interleaving: 0 - plane, 1 - line
     put_bits(&pb, 8, 0);  // point transform: none
 
     state = av_mallocz(sizeof(JLSState));
     if (!state)
-        goto fail;
+        goto memfail;
+
     /* initialize JPEG-LS state from JPEG parameters */
-    state->near = near;
+    state->near = ctx->pred;
     state->bpp  = (avctx->pix_fmt == AV_PIX_FMT_GRAY16) ? 16 : 8;
     ff_jpegls_reset_coding_parameters(state, 0);
     ff_jpegls_init_state(state);
 
     ls_store_lse(state, &pb);
 
-    zero = av_mallocz(FFABS(p->linesize[0]));
+    zero = last = av_mallocz(FFABS(p->linesize[0]));
     if (!zero)
-        goto fail;
+        goto memfail;
 
-    last = zero;
     cur  = p->data[0];
     if (avctx->pix_fmt == AV_PIX_FMT_GRAY8) {
         int t = 0;
@@ -400,27 +416,23 @@ static int encode_picture_ls(AVCodecContext *avctx, AVPacket *pkt,
     pkt->flags |= AV_PKT_FLAG_KEY;
     *got_packet = 1;
     return 0;
-fail:
+
+memfail:
+    av_packet_unref(pkt);
     av_freep(&buf2);
     av_freep(&state);
-
+    av_freep(&zero);
     return AVERROR(ENOMEM);
-}
-
-static av_cold int encode_close(AVCodecContext *avctx)
-{
-    av_frame_free(&avctx->coded_frame);
-    return 0;
 }
 
 static av_cold int encode_init_ls(AVCodecContext *ctx)
 {
-    ctx->coded_frame = av_frame_alloc();
-    if (!ctx->coded_frame)
-        return AVERROR(ENOMEM);
-
+#if FF_API_CODED_FRAME
+FF_DISABLE_DEPRECATION_WARNINGS
     ctx->coded_frame->pict_type = AV_PICTURE_TYPE_I;
     ctx->coded_frame->key_frame = 1;
+FF_ENABLE_DEPRECATION_WARNINGS
+#endif
 
     if (ctx->pix_fmt != AV_PIX_FMT_GRAY8  &&
         ctx->pix_fmt != AV_PIX_FMT_GRAY16 &&
@@ -433,18 +445,39 @@ static av_cold int encode_init_ls(AVCodecContext *ctx)
     return 0;
 }
 
+#define OFFSET(x) offsetof(JPEGLSContext, x)
+#define VE AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_ENCODING_PARAM
+static const AVOption options[] = {
+{ "pred", "Prediction method", OFFSET(pred), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 2, VE, "pred" },
+    { "left",   NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 0 }, INT_MIN, INT_MAX, VE, "pred" },
+    { "plane",  NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 1 }, INT_MIN, INT_MAX, VE, "pred" },
+    { "median", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = 2 }, INT_MIN, INT_MAX, VE, "pred" },
+
+    { NULL},
+};
+
+static const AVClass jpegls_class = {
+    .class_name = "jpegls",
+    .item_name  = av_default_item_name,
+    .option     = options,
+    .version    = LIBAVUTIL_VERSION_INT,
+};
+
 AVCodec ff_jpegls_encoder = {
     .name           = "jpegls",
     .long_name      = NULL_IF_CONFIG_SMALL("JPEG-LS"),
     .type           = AVMEDIA_TYPE_VIDEO,
     .id             = AV_CODEC_ID_JPEGLS,
+    .priv_data_size = sizeof(JPEGLSContext),
+    .priv_class     = &jpegls_class,
     .init           = encode_init_ls,
-    .close          = encode_close,
-    .capabilities   = CODEC_CAP_FRAME_THREADS | CODEC_CAP_INTRA_ONLY,
+    .capabilities   = AV_CODEC_CAP_FRAME_THREADS | AV_CODEC_CAP_INTRA_ONLY,
     .encode2        = encode_picture_ls,
     .pix_fmts       = (const enum AVPixelFormat[]) {
         AV_PIX_FMT_BGR24, AV_PIX_FMT_RGB24,
         AV_PIX_FMT_GRAY8, AV_PIX_FMT_GRAY16,
         AV_PIX_FMT_NONE
     },
+    .caps_internal  = FF_CODEC_CAP_INIT_THREADSAFE |
+                      FF_CODEC_CAP_INIT_CLEANUP,
 };

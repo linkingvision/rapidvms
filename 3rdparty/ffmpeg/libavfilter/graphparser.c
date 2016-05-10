@@ -118,13 +118,16 @@ static int create_filter(AVFilterContext **filt_ctx, AVFilterGraph *ctx, int ind
         return AVERROR(ENOMEM);
     }
 
-    if (!strcmp(filt_name, "scale") && args && !strstr(args, "flags") &&
+    if (!strcmp(filt_name, "scale") && (!args || !strstr(args, "flags")) &&
         ctx->scale_sws_opts) {
-        tmp_args = av_asprintf("%s:%s",
-                 args, ctx->scale_sws_opts);
-        if (!tmp_args)
-            return AVERROR(ENOMEM);
-        args = tmp_args;
+        if (args) {
+            tmp_args = av_asprintf("%s:%s",
+                    args, ctx->scale_sws_opts);
+            if (!tmp_args)
+                return AVERROR(ENOMEM);
+            args = tmp_args;
+        } else
+            args = ctx->scale_sws_opts;
     }
 
     ret = avfilter_init_str(*filt_ctx, args);
@@ -453,7 +456,6 @@ int avfilter_graph_parse2(AVFilterGraph *graph, const char *filters,
     return ret;
 }
 
-#if HAVE_INCOMPATIBLE_LIBAV_ABI || !FF_API_OLD_GRAPH_PARSE
 int avfilter_graph_parse(AVFilterGraph *graph, const char *filters,
                          AVFilterInOut *open_inputs,
                          AVFilterInOut *open_outputs, void *log_ctx)
@@ -515,13 +517,6 @@ int avfilter_graph_parse(AVFilterGraph *graph, const char *filters,
     avfilter_inout_free(&open_inputs);
     avfilter_inout_free(&open_outputs);
     return ret;
-#else
-int avfilter_graph_parse(AVFilterGraph *graph, const char *filters,
-                         AVFilterInOut **inputs, AVFilterInOut **outputs,
-                         void *log_ctx)
-{
-    return avfilter_graph_parse_ptr(graph, filters, inputs, outputs, log_ctx);
-#endif
 }
 
 int avfilter_graph_parse_ptr(AVFilterGraph *graph, const char *filters,

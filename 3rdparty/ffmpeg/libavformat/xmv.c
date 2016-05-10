@@ -549,16 +549,17 @@ static int xmv_read_packet(AVFormatContext *s,
         /* Fetch a video frame */
 
         result = xmv_fetch_video_packet(s, pkt);
-        if (result)
-            return result;
-
     } else {
         /* Fetch an audio frame */
 
         result = xmv_fetch_audio_packet(s, pkt, xmv->current_stream - 1);
-        if (result)
-            return result;
     }
+    if (result) {
+        xmv->current_stream = 0;
+        xmv->video.current_frame = xmv->video.frame_count;
+        return result;
+    }
+
 
     /* Increase our counters */
     if (++xmv->current_stream >= xmv->stream_count) {
@@ -572,6 +573,7 @@ static int xmv_read_packet(AVFormatContext *s,
 AVInputFormat ff_xmv_demuxer = {
     .name           = "xmv",
     .long_name      = NULL_IF_CONFIG_SMALL("Microsoft XMV"),
+    .extensions     = "xmv",
     .priv_data_size = sizeof(XMVDemuxContext),
     .read_probe     = xmv_probe,
     .read_header    = xmv_read_header,

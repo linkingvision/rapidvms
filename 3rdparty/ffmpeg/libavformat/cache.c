@@ -65,9 +65,9 @@ typedef struct Context {
     int read_ahead_limit;
 } Context;
 
-static int cmp(void *key, const void *node)
+static int cmp(const void *key, const void *node)
 {
-    return (*(int64_t *) key) - ((const CacheEntry *) node)->logical_pos;
+    return FFDIFFSIGN(*(const int64_t *)key, ((const CacheEntry *) node)->logical_pos);
 }
 
 static int cache_open(URLContext *h, const char *arg, int flags, AVDictionary **options)
@@ -86,7 +86,8 @@ static int cache_open(URLContext *h, const char *arg, int flags, AVDictionary **
     unlink(buffername);
     av_freep(&buffername);
 
-    return ffurl_open(&c->inner, arg, flags, &h->interrupt_callback, options);
+    return ffurl_open_whitelist(&c->inner, arg, flags, &h->interrupt_callback,
+                                options, h->protocol_whitelist);
 }
 
 static int add_entry(URLContext *h, const unsigned char *buf, int size)
@@ -145,7 +146,7 @@ static int add_entry(URLContext *h, const unsigned char *buf, int size)
 
     return 0;
 fail:
-    //we could truncate the file to pos here if pos >=0 but ftruncate isnt available in VS so
+    //we could truncate the file to pos here if pos >=0 but ftruncate isn't available in VS so
     //for simplicty we just leave the file a bit larger
     av_free(entry);
     av_free(node);
@@ -156,7 +157,7 @@ static int cache_read(URLContext *h, unsigned char *buf, int size)
 {
     Context *c= h->priv_data;
     CacheEntry *entry, *next[2] = {NULL, NULL};
-    int r;
+    int64_t r;
 
     entry = av_tree_find(c->root, &c->logical_pos, cmp, (void**)next);
 
@@ -300,7 +301,7 @@ static int cache_close(URLContext *h)
 #define D AV_OPT_FLAG_DECODING_PARAM
 
 static const AVOption options[] = {
-    { "read_ahead_limit", "Amount in bytes that may be read ahead when seeking isnt supported, -1 for unlimited", OFFSET(read_ahead_limit), AV_OPT_TYPE_INT, { .i64 = 65536 }, -1, INT_MAX, D },
+    { "read_ahead_limit", "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited", OFFSET(read_ahead_limit), AV_OPT_TYPE_INT, { .i64 = 65536 }, -1, INT_MAX, D },
     {NULL},
 };
 

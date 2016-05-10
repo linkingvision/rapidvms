@@ -38,9 +38,10 @@ typedef struct {
     int first_field;
     char *pattern;
     unsigned int pattern_pos;
+    int64_t start_time;
 
     AVRational pts;
-    double ts_unit;
+    AVRational ts_unit;
     int out_cnt;
     int occupied;
 
@@ -89,6 +90,8 @@ static av_cold int init(AVFilterContext *ctx)
         s->pts.den += *p - '0';
     }
 
+    s->start_time = AV_NOPTS_VALUE;
+
     s->out_cnt = (max + 1) / 2;
     av_log(ctx, AV_LOG_INFO, "Telecine pattern %s yields up to %d frames per frame, pts advance factor: %d/%d\n",
            s->pattern, s->out_cnt, s->pts.num, s->pts.den);
@@ -99,18 +102,18 @@ static av_cold int init(AVFilterContext *ctx)
 static int query_formats(AVFilterContext *ctx)
 {
     AVFilterFormats *pix_fmts = NULL;
-    int fmt;
+    int fmt, ret;
 
     for (fmt = 0; av_pix_fmt_desc_get(fmt); fmt++) {
         const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(fmt);
         if (!(desc->flags & AV_PIX_FMT_FLAG_HWACCEL ||
               desc->flags & AV_PIX_FMT_FLAG_PAL     ||
-              desc->flags & AV_PIX_FMT_FLAG_BITSTREAM))
-            ff_add_format(&pix_fmts, fmt);
+              desc->flags & AV_PIX_FMT_FLAG_BITSTREAM) &&
+            (ret = ff_add_format(&pix_fmts, fmt)) < 0)
+            return ret;
     }
 
-    ff_set_common_formats(ctx, pix_fmts);
-    return 0;
+    return ff_set_common_formats(ctx, pix_fmts);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -131,7 +134,7 @@ static int config_input(AVFilterLink *inlink)
     if ((ret = av_image_fill_linesizes(s->stride, inlink->format, inlink->w)) < 0)
         return ret;
 
-    s->planeheight[1] = s->planeheight[2] = FF_CEIL_RSHIFT(inlink->h, desc->log2_chroma_h);
+    s->planeheight[1] = s->planeheight[2] = AV_CEIL_RSHIFT(inlink->h, desc->log2_chroma_h);
     s->planeheight[0] = s->planeheight[3] = inlink->h;
 
     s->nb_planes = av_pix_fmt_count_planes(inlink->format);
@@ -155,13 +158,12 @@ static int config_output(AVFilterLink *outlink)
     av_log(ctx, AV_LOG_VERBOSE, "FPS: %d/%d -> %d/%d\n",
            inlink->frame_rate.num, inlink->frame_rate.den, fps.num, fps.den);
 
-    outlink->flags |= FF_LINK_FLAG_REQUEST_LOOP;
     outlink->frame_rate = fps;
     outlink->time_base = av_mul_q(inlink->time_base, s->pts);
     av_log(ctx, AV_LOG_VERBOSE, "TB: %d/%d -> %d/%d\n",
            inlink->time_base.num, inlink->time_base.den, outlink->time_base.num, outlink->time_base.den);
 
-    s->ts_unit = av_q2d(av_inv_q(av_mul_q(fps, outlink->time_base)));
+    s->ts_unit = av_inv_q(av_mul_q(fps, outlink->time_base));
 
     return 0;
 }
@@ -172,6 +174,9 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *inpicref)
     AVFilterLink *outlink = ctx->outputs[0];
     TelecineContext *s = ctx->priv;
     int i, len, ret = 0, nout = 0;
+
+    if (s->start_time == AV_NOPTS_VALUE)
+        s->start_time = inpicref->pts;
 
     len = s->pattern[s->pattern_pos] - '0';
 
@@ -235,7 +240,10 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *inpicref)
             return AVERROR(ENOMEM);
         }
 
-        frame->pts = outlink->frame_count * s->ts_unit;
+        av_frame_copy_props(frame, inpicref);
+        frame->pts = ((s->start_time == AV_NOPTS_VALUE) ? 0 : s->start_time) +
+                     av_rescale(outlink->frame_count, s->ts_unit.num,
+                                s->ts_unit.den);
         ret = ff_filter_frame(outlink, frame);
     }
     av_frame_free(&inpicref);

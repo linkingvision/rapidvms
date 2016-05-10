@@ -30,7 +30,6 @@
 #define MAX_NEG_CROP 1024
 
 extern const uint32_t ff_inverse[257];
-extern const uint8_t  ff_reverse[256];
 extern const uint8_t ff_sqrt_tab[256];
 extern const uint8_t ff_crop_tab[256 + 2 * MAX_NEG_CROP];
 extern const uint8_t ff_zigzag_direct[64];
@@ -211,6 +210,8 @@ if ((y) < (x)) {\
 #   define FASTDIV(a,b) ((uint32_t)((((uint64_t)a) * ff_inverse[b]) >> 32))
 #endif /* FASTDIV */
 
+#ifndef ff_sqrt
+#define ff_sqrt ff_sqrt
 static inline av_const unsigned int ff_sqrt(unsigned int a)
 {
     unsigned int b;
@@ -229,6 +230,12 @@ static inline av_const unsigned int ff_sqrt(unsigned int a)
     }
 
     return b - (a < b * b);
+}
+#endif
+
+static inline av_const float ff_sqrf(float a)
+{
+    return a*a;
 }
 
 static inline int8_t ff_u8_to_s8(uint8_t a)

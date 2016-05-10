@@ -236,7 +236,7 @@ static int swf_write_header(AVFormatContext *s)
     }
 
     if (!swf->audio_enc)
-        swf->samples_per_frame = (44100.0 * rate_base) / rate;
+        swf->samples_per_frame = (44100LL * rate_base) / rate;
     else
         swf->samples_per_frame = (swf->audio_enc->sample_rate * rate_base) / rate;
 
@@ -256,6 +256,10 @@ static int swf_write_header(AVFormatContext *s)
                                       (will be patched if not streamed) */
 
     put_swf_rect(pb, 0, width * 20, 0, height * 20);
+    if ((rate * 256LL) / rate_base >= (1<<16)) {
+        av_log(s, AV_LOG_ERROR, "Invalid (too large) frame rate %d/%d\n", rate, rate_base);
+        return AVERROR(EINVAL);
+    }
     avio_wl16(pb, (rate * 256) / rate_base); /* frame rate */
     swf->duration_pos = avio_tell(pb);
     avio_wl16(pb, (uint16_t)(DUMMY_DURATION * (int64_t)rate / rate_base)); /* frame count */
@@ -279,8 +283,8 @@ static int swf_write_header(AVFormatContext *s)
         avio_w8(pb, 0x41); /* clipped bitmap fill */
         avio_wl16(pb, BITMAP_ID); /* bitmap ID */
         /* position of the bitmap */
-        put_swf_matrix(pb, (int)(1.0 * (1 << FRAC_BITS)), 0,
-                       0, (int)(1.0 * (1 << FRAC_BITS)), 0, 0);
+        put_swf_matrix(pb, 1 << FRAC_BITS, 0,
+                       0,  1 << FRAC_BITS, 0, 0);
         avio_w8(pb, 0); /* no line style */
 
         /* shape drawing */

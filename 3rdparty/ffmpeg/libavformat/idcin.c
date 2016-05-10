@@ -307,15 +307,13 @@ static int idcin_read_packet(AVFormatContext *s,
         }
         /* skip the number of decoded bytes (always equal to width * height) */
         avio_skip(pb, 4);
-        if (chunk_size < 4)
-            return AVERROR_INVALIDDATA;
         chunk_size -= 4;
         ret= av_get_packet(pb, pkt, chunk_size);
         if (ret < 0)
             return ret;
         else if (ret != chunk_size) {
             av_log(s, AV_LOG_ERROR, "incomplete packet\n");
-            av_free_packet(pkt);
+            av_packet_unref(pkt);
             return AVERROR(EIO);
         }
         if (command == 1) {
@@ -324,7 +322,7 @@ static int idcin_read_packet(AVFormatContext *s,
             pal = av_packet_new_side_data(pkt, AV_PKT_DATA_PALETTE,
                                           AVPALETTE_SIZE);
             if (!pal) {
-                av_free_packet(pkt);
+                av_packet_unref(pkt);
                 return AVERROR(ENOMEM);
             }
             memcpy(pal, palette, AVPALETTE_SIZE);

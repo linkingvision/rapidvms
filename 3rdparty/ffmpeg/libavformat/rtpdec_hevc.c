@@ -55,7 +55,7 @@ static av_cold int hevc_sdp_parse_fmtp_config(AVFormatContext *s,
     /* profile-id: 0-31 */
     if (!strcmp(attr, "profile-id")) {
         hevc_data->profile_id = atoi(value);
-        av_dlog(s, "SDP: found profile-id: %d\n", hevc_data->profile_id);
+        av_log(s, AV_LOG_TRACE, "SDP: found profile-id: %d\n", hevc_data->profile_id);
     }
 
     /* tier-flag: 0-1 */
@@ -106,7 +106,7 @@ static av_cold int hevc_sdp_parse_fmtp_config(AVFormatContext *s,
     if (!strcmp(attr, "sprop-max-don-diff")) {
         if (atoi(value) > 0)
             hevc_data->using_donl_field = 1;
-        av_dlog(s, "Found sprop-max-don-diff in SDP, DON field usage is: %d\n",
+        av_log(s, AV_LOG_TRACE, "Found sprop-max-don-diff in SDP, DON field usage is: %d\n",
                 hevc_data->using_donl_field);
     }
 
@@ -114,7 +114,7 @@ static av_cold int hevc_sdp_parse_fmtp_config(AVFormatContext *s,
     if (!strcmp(attr, "sprop-depack-buf-nalus")) {
         if (atoi(value) > 0)
             hevc_data->using_donl_field = 1;
-        av_dlog(s, "Found sprop-depack-buf-nalus in SDP, DON field usage is: %d\n",
+        av_log(s, AV_LOG_TRACE, "Found sprop-depack-buf-nalus in SDP, DON field usage is: %d\n",
                 hevc_data->using_donl_field);
     }
 
@@ -152,7 +152,7 @@ static av_cold int hevc_parse_sdp_line(AVFormatContext *ctx, int st_index,
             codec->extradata_size = hevc_data->vps_size + hevc_data->sps_size +
                                     hevc_data->pps_size + hevc_data->sei_size;
             codec->extradata = av_malloc(codec->extradata_size +
-                                         FF_INPUT_BUFFER_PADDING_SIZE);
+                                         AV_INPUT_BUFFER_PADDING_SIZE);
             if (!codec->extradata) {
                 ret = AVERROR(ENOMEM);
                 codec->extradata_size = 0;
@@ -166,7 +166,7 @@ static av_cold int hevc_parse_sdp_line(AVFormatContext *ctx, int st_index,
                 pos += hevc_data->pps_size;
                 memcpy(codec->extradata + pos, hevc_data->sei, hevc_data->sei_size);
                 pos += hevc_data->sei_size;
-                memset(codec->extradata + pos, 0, FF_INPUT_BUFFER_PADDING_SIZE);
+                memset(codec->extradata + pos, 0, AV_INPUT_BUFFER_PADDING_SIZE);
             }
 
             av_freep(&hevc_data->vps);
@@ -222,7 +222,7 @@ static int hevc_handle_packet(AVFormatContext *ctx, PayloadContext *rtp_hevc_ctx
     /* sanity check for correct layer ID */
     if (lid) {
         /* future scalable or 3D video coding extensions */
-        avpriv_report_missing_feature(ctx, "Multi-layer HEVC coding\n");
+        avpriv_report_missing_feature(ctx, "Multi-layer HEVC coding");
         return AVERROR_PATCHWELCOME;
     }
 
@@ -249,14 +249,6 @@ static int hevc_handle_packet(AVFormatContext *ctx, PayloadContext *rtp_hevc_ctx
     case 39:
     /* single NAL unit packet */
     default:
-        /* sanity check for size of input packet: 1 byte payload at least */
-        if (len < 1) {
-            av_log(ctx, AV_LOG_ERROR,
-                   "Too short RTP/HEVC packet, got %d bytes of NAL unit type %d\n",
-                   len, nal_type);
-            return AVERROR_INVALIDDATA;
-        }
-
         /* create A/V packet */
         if ((res = av_new_packet(pkt, sizeof(start_sequence) + len)) < 0)
             return res;
@@ -317,7 +309,7 @@ static int hevc_handle_packet(AVFormatContext *ctx, PayloadContext *rtp_hevc_ctx
             len -= RTP_HEVC_DONL_FIELD_SIZE;
         }
 
-        av_dlog(ctx, " FU type %d with %d bytes\n", fu_type, len);
+        av_log(ctx, AV_LOG_TRACE, " FU type %d with %d bytes\n", fu_type, len);
 
         /* sanity check for size of input packet: 1 byte payload at least */
         if (len <= 0) {
@@ -346,7 +338,7 @@ static int hevc_handle_packet(AVFormatContext *ctx, PayloadContext *rtp_hevc_ctx
     /* PACI packet */
     case 50:
         /* Temporal scalability control information (TSCI) */
-        avpriv_report_missing_feature(ctx, "PACI packets for RTP/HEVC\n");
+        avpriv_report_missing_feature(ctx, "PACI packets for RTP/HEVC");
         res = AVERROR_PATCHWELCOME;
         break;
     }

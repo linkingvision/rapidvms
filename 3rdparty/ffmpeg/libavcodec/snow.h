@@ -121,7 +121,6 @@ typedef struct SnowContext{
     H264QpelContext h264qpel;
     MpegvideoEncDSPContext mpvencdsp;
     SnowDWTContext dwt;
-    const AVFrame *new_picture;
     AVFrame *input_picture;              ///< new_picture with the internal linesizes
     AVFrame *current_picture;
     AVFrame *last_picture[MAX_REF_FRAMES];
@@ -175,6 +174,10 @@ typedef struct SnowContext{
     slice_buffer sb;
     int memc_only;
     int no_bitstream;
+    int intra_penalty;
+    int motion_est;
+    int iterative_dia_size;
+    int scenechange_threshold;
 
     MpegEncContext m; // needed for motion estimation, should not be used for anything else, the idea is to eventually make the motion estimation independent of MpegEncContext, so this will be removed then (FIXME/XXX)
 
@@ -183,6 +186,9 @@ typedef struct SnowContext{
 
     AVMotionVector *avmv;
     int avmv_index;
+    uint64_t encoding_error[AV_NUM_DATA_POINTERS];
+
+    int pred;
 }SnowContext;
 
 /* Tables */
@@ -303,6 +309,8 @@ static av_always_inline void add_yblock(SnowContext *s, int sliced, slice_buffer
     BlockNode *lb= lt+b_stride;
     BlockNode *rb= lb+1;
     uint8_t *block[4];
+    // When src_stride is large enough, it is possible to interleave the blocks.
+    // Otherwise the blocks are written sequentially in the tmp buffer.
     int tmp_step= src_stride >= 7*MB_SIZE ? MB_SIZE : MB_SIZE*src_stride;
     uint8_t *tmp = s->scratchbuf;
     uint8_t *ptmp;
@@ -345,8 +353,6 @@ static av_always_inline void add_yblock(SnowContext *s, int sliced, slice_buffer
     }
 
     if(b_w<=0 || b_h<=0) return;
-
-    av_assert2(src_stride > 2*MB_SIZE + 5);
 
     if(!sliced && offset_dst)
         dst += src_x + src_y*dst_stride;
@@ -562,6 +568,8 @@ static inline int get_symbol(RangeCoder *c, uint8_t *state, int is_signed){
         e= 0;
         while(get_rac(c, state+1 + FFMIN(e,9))){ //1..10
             e++;
+            if (e > 31)
+                return AVERROR_INVALIDDATA;
         }
 
         a= 1;

@@ -61,7 +61,7 @@ typedef struct {
 static const AVOption uspp_options[] = {
     { "quality",       "set quality",                          OFFSET(log2_count),    AV_OPT_TYPE_INT, {.i64 = 3}, 0, MAX_LEVEL, FLAGS },
     { "qp",            "force a constant quantizer parameter", OFFSET(qp),            AV_OPT_TYPE_INT, {.i64 = 0}, 0, 63,        FLAGS },
-    { "use_bframe_qp", "use B-frames' QP",                     OFFSET(use_bframe_qp), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1,         FLAGS },
+    { "use_bframe_qp", "use B-frames' QP",                     OFFSET(use_bframe_qp), AV_OPT_TYPE_BOOL,{.i64 = 0}, 0, 1,         FLAGS },
     { NULL }
 };
 
@@ -189,8 +189,8 @@ static void filter(USPPContext *p, uint8_t *dst[3], uint8_t *src[3],
 
     for (i = 0; i < 3; i++) {
         int is_chroma = !!i;
-        int w = FF_CEIL_RSHIFT(width,  is_chroma ? p->hsub : 0);
-        int h = FF_CEIL_RSHIFT(height, is_chroma ? p->vsub : 0);
+        int w = AV_CEIL_RSHIFT(width,  is_chroma ? p->hsub : 0);
+        int h = AV_CEIL_RSHIFT(height, is_chroma ? p->vsub : 0);
         int stride = p->temp_stride[i];
         int block = BLOCK >> (is_chroma ? p->hsub : 0);
 
@@ -263,8 +263,8 @@ static void filter(USPPContext *p, uint8_t *dst[3], uint8_t *src[3],
 
         offset = (BLOCKc-x1c) + (BLOCKc-y1c) * p->frame_dec->linesize[1];
 
-        for (y = 0; y < FF_CEIL_RSHIFT(height, p->vsub); y++) {
-            for (x = 0; x < FF_CEIL_RSHIFT(width, p->hsub); x++) {
+        for (y = 0; y < AV_CEIL_RSHIFT(height, p->vsub); y++) {
+            for (x = 0; x < AV_CEIL_RSHIFT(width, p->hsub); x++) {
                 p->temp[1][x + y * p->temp_stride[1]] += p->frame_dec->data[1][x + y * p->frame_dec->linesize[1] + offset];
                 p->temp[2][x + y * p->temp_stride[2]] += p->frame_dec->data[2][x + y * p->frame_dec->linesize[2] + offset];
             }
@@ -276,15 +276,15 @@ static void filter(USPPContext *p, uint8_t *dst[3], uint8_t *src[3],
         if (!dst[j])
             continue;
         store_slice_c(dst[j], p->temp[j], dst_stride[j], p->temp_stride[j],
-                      FF_CEIL_RSHIFT(width,  is_chroma ? p->hsub : 0),
-                      FF_CEIL_RSHIFT(height, is_chroma ? p->vsub : 0),
+                      AV_CEIL_RSHIFT(width,  is_chroma ? p->hsub : 0),
+                      AV_CEIL_RSHIFT(height, is_chroma ? p->vsub : 0),
                       8-p->log2_count);
     }
 }
 
 static int query_formats(AVFilterContext *ctx)
 {
-    static const enum PixelFormat pix_fmts[] = {
+    static const enum AVPixelFormat pix_fmts[] = {
         AV_PIX_FMT_YUV444P,
         AV_PIX_FMT_YUV420P,
         AV_PIX_FMT_YUV410P,
@@ -293,8 +293,11 @@ static int query_formats(AVFilterContext *ctx)
         AV_PIX_FMT_GRAY8,
         AV_PIX_FMT_NONE
     };
-    ff_set_common_formats(ctx, ff_make_format_list(pix_fmts));
-    return 0;
+
+    AVFilterFormats *fmts_list = ff_make_format_list(pix_fmts);
+    if (!fmts_list)
+        return AVERROR(ENOMEM);
+    return ff_set_common_formats(ctx, fmts_list);
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -322,8 +325,8 @@ static int config_input(AVFilterLink *inlink)
         int h = (height + 4 * BLOCK-1) & (~(2 * BLOCK-1));
 
         if (is_chroma) {
-            w = FF_CEIL_RSHIFT(w, uspp->hsub);
-            h = FF_CEIL_RSHIFT(h, uspp->vsub);
+            w = AV_CEIL_RSHIFT(w, uspp->hsub);
+            h = AV_CEIL_RSHIFT(h, uspp->vsub);
         }
 
         uspp->temp_stride[i] = w;
@@ -348,7 +351,7 @@ static int config_input(AVFilterLink *inlink)
         avctx_enc->gop_size = INT_MAX;
         avctx_enc->max_b_frames = 0;
         avctx_enc->pix_fmt = inlink->format;
-        avctx_enc->flags = CODEC_FLAG_QSCALE | CODEC_FLAG_LOW_DELAY;
+        avctx_enc->flags = AV_CODEC_FLAG_QSCALE | CODEC_FLAG_LOW_DELAY;
         avctx_enc->strict_std_compliance = FF_COMPLIANCE_EXPERIMENTAL;
         avctx_enc->global_quality = 123;
         av_dict_set(&opts, "no_bitstream", "1", 0);
@@ -391,11 +394,11 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
             /* if the qp stride is not set, it means the QP are only defined on
              * a line basis */
             if (!qp_stride) {
-                w = FF_CEIL_RSHIFT(inlink->w, 4);
+                w = AV_CEIL_RSHIFT(inlink->w, 4);
                 h = 1;
             } else {
                 w = qp_stride;
-                h = FF_CEIL_RSHIFT(inlink->h, 4);
+                h = AV_CEIL_RSHIFT(inlink->h, 4);
             }
 
             if (w * h > uspp->non_b_qp_alloc_size) {

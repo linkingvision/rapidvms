@@ -684,7 +684,7 @@ void ff_spatial_idwt_buffered_slice(SnowDWTContext *dsp, DWTCompose *cs,
         }
 }
 
-static void ff_spatial_idwt_init(DWTCompose *cs, IDWTELEM *buffer, int width,
+static void spatial_idwt_init(DWTCompose *cs, IDWTELEM *buffer, int width,
                                  int height, int stride, int type,
                                  int decomposition_count)
 {
@@ -703,7 +703,7 @@ static void ff_spatial_idwt_init(DWTCompose *cs, IDWTELEM *buffer, int width,
     }
 }
 
-static void ff_spatial_idwt_slice(DWTCompose *cs, IDWTELEM *buffer,
+static void spatial_idwt_slice(DWTCompose *cs, IDWTELEM *buffer,
                                   IDWTELEM *temp, int width, int height,
                                   int stride, int type,
                                   int decomposition_count, int y)
@@ -733,10 +733,10 @@ void ff_spatial_idwt(IDWTELEM *buffer, IDWTELEM *temp, int width, int height,
 {
     DWTCompose cs[MAX_DECOMPOSITIONS];
     int y;
-    ff_spatial_idwt_init(cs, buffer, width, height, stride, type,
+    spatial_idwt_init(cs, buffer, width, height, stride, type,
                          decomposition_count);
     for (y = 0; y < height; y += 4)
-        ff_spatial_idwt_slice(cs, buffer, temp, width, height, stride, type,
+        spatial_idwt_slice(cs, buffer, temp, width, height, stride, type,
                               decomposition_count, y);
 }
 
@@ -839,7 +839,7 @@ int ff_w97_32_c(struct MpegEncContext *v, uint8_t *pix1, uint8_t *pix2, ptrdiff_
     return w_c(v, pix1, pix2, line_size, 32, h, 0);
 }
 
-void ff_dsputil_init_dwt(MECmpContext *c)
+av_cold void ff_dsputil_init_dwt(MECmpContext *c)
 {
     c->w53[0] = w53_16_c;
     c->w53[1] = w53_8_c;
@@ -847,7 +847,7 @@ void ff_dsputil_init_dwt(MECmpContext *c)
     c->w97[1] = w97_8_c;
 }
 
-void ff_dwt_init(SnowDWTContext *c)
+av_cold void ff_dwt_init(SnowDWTContext *c)
 {
     c->vertical_compose97i   = ff_snow_vertical_compose97i;
     c->horizontal_compose97i = ff_snow_horizontal_compose97i;

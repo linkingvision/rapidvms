@@ -75,7 +75,7 @@ static int xwma_read_header(AVFormatContext *s)
     if (!st)
         return AVERROR(ENOMEM);
 
-    ret = ff_get_wav_header(pb, st->codec, size, 0);
+    ret = ff_get_wav_header(s, pb, st->codec, size, 0);
     if (ret < 0)
         return ret;
     st->need_parsing = AVSTREAM_PARSE_NONE;
@@ -85,7 +85,8 @@ static int xwma_read_header(AVFormatContext *s)
      * extradata for that. Thus, ask the user for feedback, but try to go on
      * anyway.
      */
-    if (st->codec->codec_id != AV_CODEC_ID_WMAV2) {
+    if (st->codec->codec_id != AV_CODEC_ID_WMAV2 &&
+        st->codec->codec_id != AV_CODEC_ID_WMAPRO) {
         avpriv_request_sample(s, "Unexpected codec (tag 0x04%x; id %d)",
                               st->codec->codec_tag, st->codec->codec_id);
     } else {
@@ -103,12 +104,18 @@ static int xwma_read_header(AVFormatContext *s)
              */
             avpriv_request_sample(s, "Unexpected extradata (%d bytes)",
                                   st->codec->extradata_size);
-        } else {
-            st->codec->extradata_size = 6;
-            st->codec->extradata      = av_mallocz(6 + FF_INPUT_BUFFER_PADDING_SIZE);
-            if (!st->codec->extradata)
+        } else if (st->codec->codec_id == AV_CODEC_ID_WMAPRO) {
+            if (ff_alloc_extradata(st->codec, 18))
                 return AVERROR(ENOMEM);
 
+            memset(st->codec->extradata, 0, st->codec->extradata_size);
+            st->codec->extradata[ 0] = st->codec->bits_per_coded_sample;
+            st->codec->extradata[14] = 224;
+        } else {
+            if (ff_alloc_extradata(st->codec, 6))
+                return AVERROR(ENOMEM);
+
+            memset(st->codec->extradata, 0, st->codec->extradata_size);
             /* setup extradata with our experimentally obtained value */
             st->codec->extradata[4] = 31;
         }
@@ -173,7 +180,7 @@ static int xwma_read_header(AVFormatContext *s)
             /* Allocate some temporary storage to keep the dpds data around.
              * for processing later on.
              */
-            dpds_table = av_malloc(dpds_table_size * sizeof(uint32_t));
+            dpds_table = av_malloc_array(dpds_table_size, sizeof(uint32_t));
             if (!dpds_table) {
                 return AVERROR(ENOMEM);
             }

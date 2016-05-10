@@ -24,7 +24,9 @@
  */
 
 #include "libavutil/avassert.h"
+#include "libavutil/internal.h"
 #include "libavutil/opt.h"
+#include "libavutil/qsort.h"
 #include "avfilter.h"
 #include "internal.h"
 
@@ -77,7 +79,7 @@ typedef struct {
 #define FLAGS AV_OPT_FLAG_FILTERING_PARAM|AV_OPT_FLAG_VIDEO_PARAM
 static const AVOption palettegen_options[] = {
     { "max_colors", "set the maximum number of colors to use in the palette", OFFSET(max_colors), AV_OPT_TYPE_INT, {.i64=256}, 4, 256, FLAGS },
-    { "reserve_transparent", "reserve a palette entry for transparency", OFFSET(reserve_transparent), AV_OPT_TYPE_INT, {.i64=1}, 0, 1, FLAGS },
+    { "reserve_transparent", "reserve a palette entry for transparency", OFFSET(reserve_transparent), AV_OPT_TYPE_BOOL, {.i64=1}, 0, 1, FLAGS },
     { "stats_mode", "set statistics mode", OFFSET(stats_mode), AV_OPT_TYPE_INT, {.i64=STATS_MODE_ALL_FRAMES}, 0, NB_STATS_MODE, FLAGS, "mode" },
         { "full", "compute full frame histograms", 0, AV_OPT_TYPE_CONST, {.i64=STATS_MODE_ALL_FRAMES}, INT_MIN, INT_MAX, FLAGS, "mode" },
         { "diff", "compute histograms only for the part that differs from previous frame", 0, AV_OPT_TYPE_CONST, {.i64=STATS_MODE_DIFF_FRAMES}, INT_MIN, INT_MAX, FLAGS, "mode" },
@@ -90,6 +92,7 @@ static int query_formats(AVFilterContext *ctx)
 {
     static const enum AVPixelFormat in_fmts[]  = {AV_PIX_FMT_RGB32, AV_PIX_FMT_NONE};
     static const enum AVPixelFormat out_fmts[] = {AV_PIX_FMT_RGB32, AV_PIX_FMT_NONE};
+    int ret;
     AVFilterFormats *in  = ff_make_format_list(in_fmts);
     AVFilterFormats *out = ff_make_format_list(out_fmts);
     if (!in || !out) {
@@ -97,8 +100,9 @@ static int query_formats(AVFilterContext *ctx)
         av_freep(&out);
         return AVERROR(ENOMEM);
     }
-    ff_formats_ref(in,  &ctx->inputs[0]->out_formats);
-    ff_formats_ref(out, &ctx->outputs[0]->in_formats);
+    if ((ret = ff_formats_ref(in , &ctx->inputs[0]->out_formats)) < 0 ||
+        (ret = ff_formats_ref(out, &ctx->outputs[0]->in_formats)) < 0)
+        return ret;
     return 0;
 }
 
@@ -126,7 +130,7 @@ static int cmp_color(const void *a, const void *b)
 {
     const struct range_box *box1 = a;
     const struct range_box *box2 = b;
-    return box1->color - box2->color;
+    return FFDIFFSIGN(box1->color , box2->color);
 }
 
 static av_always_inline int diff(const uint32_t a, const uint32_t b)
@@ -225,8 +229,9 @@ static void split_box(PaletteGenContext *s, struct range_box *box, int n)
 /**
  * Write the palette into the output frame.
  */
-static void write_palette(const PaletteGenContext *s, AVFrame *out)
+static void write_palette(AVFilterContext *ctx, AVFrame *out)
 {
+    const PaletteGenContext *s = ctx->priv;
     int x, y, box_id = 0;
     uint32_t *pal = (uint32_t *)out->data[0];
     const int pal_linesize = out->linesize[0] >> 2;
@@ -237,7 +242,7 @@ static void write_palette(const PaletteGenContext *s, AVFrame *out)
             if (box_id < s->nb_boxes) {
                 pal[x] = s->boxes[box_id++].color;
                 if ((x || y) && pal[x] == last_color)
-                    av_log(NULL, AV_LOG_WARNING, "Dupped color: %08X\n", pal[x]);
+                    av_log(ctx, AV_LOG_WARNING, "Dupped color: %08X\n", pal[x]);
                 last_color = pal[x];
             } else {
                 pal[x] = 0xff000000; // pad with black
@@ -275,6 +280,15 @@ static struct color_ref **load_color_refs(const struct hist_node *hist, int nb_r
     return refs;
 }
 
+static double set_colorquant_ratio_meta(AVFrame *out, int nb_out, int nb_in)
+{
+    char buf[32];
+    const double ratio = (double)nb_out / nb_in;
+    snprintf(buf, sizeof(buf), "%f", ratio);
+    av_dict_set(&out->metadata, "lavfi.color_quant_ratio", buf, 0);
+    return ratio;
+}
+
 /**
  * Main function implementing the Median Cut Algorithm defined by Paul Heckbert
  * in Color Image Quantization for Frame Buffer Display (1982)
@@ -284,8 +298,8 @@ static AVFrame *get_palette_frame(AVFilterContext *ctx)
     AVFrame *out;
     PaletteGenContext *s = ctx->priv;
     AVFilterLink *outlink = ctx->outputs[0];
+    double ratio;
     int box_id = 0;
-    int longest = 0;
     struct range_box *box;
 
     /* reference only the used colors from histogram */
@@ -310,7 +324,7 @@ static AVFrame *get_palette_frame(AVFilterContext *ctx)
     s->nb_boxes = 1;
 
     while (box && box->len > 1) {
-        int i, rr, gr, br;
+        int i, rr, gr, br, longest;
         uint64_t median, box_weight = 0;
 
         /* compute the box weight (sum all the weights of the colors in the
@@ -336,13 +350,14 @@ static AVFrame *get_palette_frame(AVFilterContext *ctx)
         if (rr >= gr && rr >= br) longest = 0;
         if (gr >= rr && gr >= br) longest = 1; // prefer green again
 
-        av_dlog(ctx, "box #%02X [%6d..%-6d] (%6d) w:%-6"PRIu64" ranges:[%2x %2x %2x] sort by %c (already sorted:%c) ",
+        ff_dlog(ctx, "box #%02X [%6d..%-6d] (%6d) w:%-6"PRIu64" ranges:[%2x %2x %2x] sort by %c (already sorted:%c) ",
                 box_id, box->start, box->start + box->len - 1, box->len, box_weight,
                 rr, gr, br, "rgb"[longest], box->sorted_by == longest ? 'y':'n');
 
         /* sort the range by its longest axis if it's not already sorted */
         if (box->sorted_by != longest) {
-            qsort(&s->refs[box->start], box->len, sizeof(*s->refs), cmp_funcs[longest]);
+            cmp_func cmpf = cmp_funcs[longest];
+            AV_QSORT(&s->refs[box->start], box->len, const struct color_ref *, cmpf);
             box->sorted_by = longest;
         }
 
@@ -356,19 +371,20 @@ static AVFrame *get_palette_frame(AVFilterContext *ctx)
             if (box_weight > median)
                 break;
         }
-        av_dlog(ctx, "split @ i=%-6d with w=%-6"PRIu64" (target=%6"PRIu64")\n", i, box_weight, median);
+        ff_dlog(ctx, "split @ i=%-6d with w=%-6"PRIu64" (target=%6"PRIu64")\n", i, box_weight, median);
         split_box(s, box, i);
 
         box_id = get_next_box_id_to_split(s);
         box = box_id >= 0 ? &s->boxes[box_id] : NULL;
     }
 
-    av_log(ctx, AV_LOG_DEBUG, "%d%s boxes generated out of %d colors\n",
-           s->nb_boxes, s->reserve_transparent ? "(+1)" : "", s->nb_refs);
+    ratio = set_colorquant_ratio_meta(out, s->nb_boxes, s->nb_refs);
+    av_log(ctx, AV_LOG_INFO, "%d%s colors generated out of %d colors; ratio=%f\n",
+           s->nb_boxes, s->reserve_transparent ? "(+1)" : "", s->nb_refs, ratio);
 
     qsort(s->boxes, s->nb_boxes, sizeof(*s->boxes), cmp_color);
 
-    write_palette(s, out);
+    write_palette(ctx, out);
 
     return out;
 }
@@ -425,7 +441,7 @@ static int update_histogram_diff(struct hist_node *hist,
         const uint32_t *p = (const uint32_t *)(f1->data[0] + y*f1->linesize[0]);
         const uint32_t *q = (const uint32_t *)(f2->data[0] + y*f2->linesize[0]);
 
-        for (x = 0; x < f2->width; x++) {
+        for (x = 0; x < f1->width; x++) {
             if (p[x] == q[x])
                 continue;
             ret = color_inc(hist, p[x]);
@@ -491,7 +507,7 @@ static int request_frame(AVFilterLink *outlink)
     int r;
 
     r = ff_request_frame(inlink);
-    if (r == AVERROR_EOF && !s->palette_pushed) {
+    if (r == AVERROR_EOF && !s->palette_pushed && s->nb_refs) {
         r = ff_filter_frame(outlink, get_palette_frame(ctx));
         s->palette_pushed = 1;
         return r;
@@ -506,7 +522,6 @@ static int config_output(AVFilterLink *outlink)
 {
     outlink->w = outlink->h = 16;
     outlink->sample_aspect_ratio = av_make_q(1, 1);
-    outlink->flags |= FF_LINK_FLAG_REQUEST_LOOP;
     return 0;
 }
 
@@ -518,7 +533,7 @@ static av_cold void uninit(AVFilterContext *ctx)
     for (i = 0; i < HIST_SIZE; i++)
         av_freep(&s->histogram[i].entries);
     av_freep(&s->refs);
-    av_freep(&s->prev_frame);
+    av_frame_free(&s->prev_frame);
 }
 
 static const AVFilterPad palettegen_inputs[] = {

@@ -269,6 +269,14 @@ static inline unsigned int get_bits(GetBitContext *s, int n)
     return tmp;
 }
 
+/**
+ * Read 0-25 bits.
+ */
+static av_always_inline int get_bitsz(GetBitContext *s, int n)
+{
+    return n ? get_bits(s, n) : 0;
+}
+
 static inline unsigned int get_bits_le(GetBitContext *s, int n)
 {
     register int tmp;
@@ -394,14 +402,14 @@ static inline int check_marker(GetBitContext *s, const char *msg)
 {
     int bit = get_bits1(s);
     if (!bit)
-        av_log(NULL, AV_LOG_INFO, "Marker bit missing %s\n", msg);
+        av_log(NULL, AV_LOG_INFO, "Marker bit missing at %d of %d %s\n", get_bits_count(s) - 1, s->size_in_bits, msg);
 
     return bit;
 }
 
 /**
  * Initialize GetBitContext.
- * @param buffer bitstream buffer, must be FF_INPUT_BUFFER_PADDING_SIZE bytes
+ * @param buffer bitstream buffer, must be AV_INPUT_BUFFER_PADDING_SIZE bytes
  *        larger than the actual read bits because some optimized bitstream
  *        readers read 32 or 64 bit at once and could read over the end
  * @param bit_size the size of the buffer in bits
@@ -432,7 +440,7 @@ static inline int init_get_bits(GetBitContext *s, const uint8_t *buffer,
 
 /**
  * Initialize GetBitContext.
- * @param buffer bitstream buffer, must be FF_INPUT_BUFFER_PADDING_SIZE bytes
+ * @param buffer bitstream buffer, must be AV_INPUT_BUFFER_PADDING_SIZE bytes
  *        larger than the actual read bits because some optimized bitstream
  *        readers read 32 or 64 bit at once and could read over the end
  * @param byte_size the size of the buffer in bytes
@@ -539,6 +547,17 @@ void ff_free_vlc(VLC *vlc);
             index = SHOW_UBITS(name, gb, nb_bits) + level;      \
             level = table[index].level;                         \
             n     = table[index].len;                           \
+            if (max_depth > 2 && n < 0) {                       \
+                LAST_SKIP_BITS(name, gb, nb_bits);              \
+                if (need_update) {                              \
+                    UPDATE_CACHE(name, gb);                     \
+                }                                               \
+                nb_bits = -n;                                   \
+                                                                \
+                index = SHOW_UBITS(name, gb, nb_bits) + level;  \
+                level = table[index].level;                     \
+                n     = table[index].len;                       \
+            }                                                   \
         }                                                       \
         run = table[index].run;                                 \
         SKIP_BITS(name, gb, n);                                 \
@@ -685,11 +704,7 @@ static inline int get_xbits_trace(GetBitContext *s, int n, const char *file,
 
 #define get_vlc(s, vlc)             get_vlc_trace(s, (vlc)->table, (vlc)->bits,   3, __FILE__, __PRETTY_FUNCTION__, __LINE__)
 #define get_vlc2(s, tab, bits, max) get_vlc_trace(s,          tab,        bits, max, __FILE__, __PRETTY_FUNCTION__, __LINE__)
-
-#define tprintf(p, ...) av_log(p, AV_LOG_DEBUG, __VA_ARGS__)
-
 #else //TRACE
-#define tprintf(p, ...) { }
 #define GET_RL_VLC GET_RL_VLC_INTERNAL
 #endif
 

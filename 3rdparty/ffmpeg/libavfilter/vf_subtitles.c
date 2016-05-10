@@ -50,6 +50,7 @@ typedef struct {
     ASS_Renderer *renderer;
     ASS_Track    *track;
     char *filename;
+    char *fontsdir;
     char *charenc;
     char *force_style;
     int stream_index;
@@ -67,6 +68,7 @@ typedef struct {
     {"filename",       "set the filename of file to read",                         OFFSET(filename),   AV_OPT_TYPE_STRING,     {.str = NULL},  CHAR_MIN, CHAR_MAX, FLAGS }, \
     {"f",              "set the filename of file to read",                         OFFSET(filename),   AV_OPT_TYPE_STRING,     {.str = NULL},  CHAR_MIN, CHAR_MAX, FLAGS }, \
     {"original_size",  "set the size of the original video (used to scale fonts)", OFFSET(original_w), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL},  CHAR_MIN, CHAR_MAX, FLAGS }, \
+    {"fontsdir",       "set the directory containing the fonts to read",           OFFSET(fontsdir),   AV_OPT_TYPE_STRING,     {.str = NULL},  CHAR_MIN, CHAR_MAX, FLAGS }, \
 
 /* libass supports a log level ranging from 0 to 7 */
 static const int ass_libavfilter_log_level_map[] = {
@@ -106,6 +108,8 @@ static av_cold int init(AVFilterContext *ctx)
     }
     ass_set_message_cb(ass->library, ass_log, ctx);
 
+    ass_set_fonts_dir(ass->library, ass->fontsdir);
+
     ass->renderer = ass_renderer_init(ass->library);
     if (!ass->renderer) {
         av_log(ctx, AV_LOG_ERROR, "Could not initialize libass renderer.\n");
@@ -129,8 +133,7 @@ static av_cold void uninit(AVFilterContext *ctx)
 
 static int query_formats(AVFilterContext *ctx)
 {
-    ff_set_common_formats(ctx, ff_draw_supported_pixel_formats(0));
-    return 0;
+    return ff_set_common_formats(ctx, ff_draw_supported_pixel_formats(0));
 }
 
 static int config_input(AVFilterLink *inlink)
@@ -441,7 +444,7 @@ static av_cold int init_subtitles(AVFilterContext *ctx)
                 }
             }
         }
-        av_free_packet(&pkt);
+        av_packet_unref(&pkt);
         avsubtitle_free(&sub);
     }
 

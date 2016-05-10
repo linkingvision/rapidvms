@@ -36,8 +36,10 @@ Possible forms of stream specifiers are:
 Matches the stream with this index. E.g. @code{-threads:1 4} would set the
 thread count for the second stream to 4.
 @item @var{stream_type}[:@var{stream_index}]
-@var{stream_type} is one of following: 'v' for video, 'a' for audio, 's' for subtitle,
-'d' for data, and 't' for attachments. If @var{stream_index} is given, then it matches
+@var{stream_type} is one of following: 'v' or 'V' for video, 'a' for audio, 's'
+for subtitle, 'd' for data, and 't' for attachments. 'v' matches all video
+streams, 'V' only matches video streams which are not attached pictures, video
+thumbnails or cover arts.  If @var{stream_index} is given, then it matches
 stream number @var{stream_index} of this type. Otherwise, it matches all
 streams of this type.
 @item p:@var{program_id}[:@var{stream_index}]
@@ -50,6 +52,9 @@ Match the stream by stream id (e.g. PID in MPEG-TS container).
 Matches streams with the metadata tag @var{key} having the specified value. If
 @var{value} is not given, matches streams that contain the given tag with any
 value.
+@item u
+Matches streams with usable configuration, the codec must be defined and the
+essential information such as video dimension or audio sample rate must be present.
 
 Note that in @command{ffmpeg}, matching by metadata will only work properly for
 input files.
@@ -187,6 +192,7 @@ warnings and errors. This is the default value.
 Same as @code{info}, except more verbose.
 @item debug, 48
 Show everything, including debugging information.
+@item trace, 56
 @end table
 
 By default the program logs to stderr, if coloring is supported by the
@@ -261,10 +267,14 @@ Possible flags for this option are:
 @item sse4.1
 @item sse4.2
 @item avx
+@item avx2
 @item xop
+@item fma3
 @item fma4
 @item 3dnow
 @item 3dnowext
+@item bmi1
+@item bmi2
 @item cmov
 @end table
 @item ARM
@@ -274,6 +284,13 @@ Possible flags for this option are:
 @item armv6t2
 @item vfp
 @item vfpv3
+@item neon
+@item setend
+@end table
+@item AArch64
+@table @samp
+@item armv8
+@item vfp
 @item neon
 @end table
 @item PowerPC

@@ -164,7 +164,8 @@ static int add_entry1(TiffEncoderContext *s,
  * @param dst output buffer
  * @param n size of input buffer
  * @param compr compression method
- * @return number of output bytes. If an output error is encountered, -1 is returned
+ * @return number of output bytes. If an output error is encountered, a negative
+ * value corresponding to an AVERROR error code is returned.
  */
 static int encode_strip(TiffEncoderContext *s, const int8_t *src,
                         uint8_t *dst, int n, int compr)
@@ -177,14 +178,14 @@ static int encode_strip(TiffEncoderContext *s, const int8_t *src,
         unsigned long zlen = s->buf_size - (*s->buf - s->buf_start);
         if (compress(dst, &zlen, src, n) != Z_OK) {
             av_log(s->avctx, AV_LOG_ERROR, "Compressing failed\n");
-            return -1;
+            return AVERROR_EXTERNAL;
         }
         return zlen;
     }
 #endif
     case TIFF_RAW:
         if (check_size(s, n))
-            return -1;
+            return AVERROR(EINVAL);
         memcpy(dst, src, n);
         return n;
     case TIFF_PACKBITS:
@@ -193,7 +194,9 @@ static int encode_strip(TiffEncoderContext *s, const int8_t *src,
     case TIFF_LZW:
         return ff_lzw_encode(s->lzws, src, n);
     default:
-        return -1;
+        av_log(s->avctx, AV_LOG_ERROR, "Unsupported compression method: %d\n",
+               compr);
+        return AVERROR(EINVAL);
     }
 }
 
@@ -304,11 +307,11 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     default:
         av_log(s->avctx, AV_LOG_ERROR,
                "This colors format is not supported\n");
-        return -1;
+        return AVERROR(EINVAL);
     }
 
     for (i = 0; i < s->bpp_tab_size; i++)
-        bpp_tab[i] = desc->comp[i].depth_minus1 + 1;
+        bpp_tab[i] = desc->comp[i].depth;
 
     if (s->compr == TIFF_DEFLATE       ||
         s->compr == TIFF_ADOBE_DEFLATE ||
@@ -326,9 +329,9 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     bytes_per_row = (((s->width - 1) / s->subsampling[0] + 1) * s->bpp *
                      s->subsampling[0] * s->subsampling[1] + 7) >> 3;
     packet_size = avctx->height * bytes_per_row * 2 +
-                  avctx->height * 4 + FF_MIN_BUFFER_SIZE;
+                  avctx->height * 4 + AV_INPUT_BUFFER_MIN_SIZE;
 
-    if ((ret = ff_alloc_packet2(avctx, pkt, packet_size)) < 0)
+    if ((ret = ff_alloc_packet2(avctx, pkt, packet_size, 0)) < 0)
         return ret;
     ptr          = pkt->data;
     s->buf_start = pkt->data;
@@ -472,7 +475,7 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     ADD_ENTRY(s,  TIFF_YRES,         TIFF_RATIONAL, 1,      res);
     ADD_ENTRY1(s, TIFF_RES_UNIT,     TIFF_SHORT,    2);
 
-    if (!(avctx->flags & CODEC_FLAG_BITEXACT))
+    if (!(avctx->flags & AV_CODEC_FLAG_BITEXACT))
         ADD_ENTRY(s, TIFF_SOFTWARE_NAME, TIFF_STRING,
                   strlen(LIBAVCODEC_IDENT) + 1, LIBAVCODEC_IDENT);
 
@@ -518,13 +521,12 @@ fail:
 static av_cold int encode_init(AVCodecContext *avctx)
 {
     TiffEncoderContext *s = avctx->priv_data;
-
-    avctx->coded_frame = av_frame_alloc();
-    if (!avctx->coded_frame)
-        return AVERROR(ENOMEM);
-
+#if FF_API_CODED_FRAME
+FF_DISABLE_DEPRECATION_WARNINGS
     avctx->coded_frame->pict_type = AV_PICTURE_TYPE_I;
     avctx->coded_frame->key_frame = 1;
+FF_ENABLE_DEPRECATION_WARNINGS
+#endif
     s->avctx = avctx;
 
     return 0;
@@ -534,7 +536,6 @@ static av_cold int encode_close(AVCodecContext *avctx)
 {
     TiffEncoderContext *s = avctx->priv_data;
 
-    av_frame_free(&avctx->coded_frame);
     av_freep(&s->strip_sizes);
     av_freep(&s->strip_offsets);
     av_freep(&s->yuv_line);
@@ -571,7 +572,7 @@ AVCodec ff_tiff_encoder = {
     .priv_data_size = sizeof(TiffEncoderContext),
     .init           = encode_init,
     .close          = encode_close,
-    .capabilities   = CODEC_CAP_FRAME_THREADS | CODEC_CAP_INTRA_ONLY,
+    .capabilities   = AV_CODEC_CAP_FRAME_THREADS | AV_CODEC_CAP_INTRA_ONLY,
     .encode2        = encode_frame,
     .pix_fmts       = (const enum AVPixelFormat[]) {
         AV_PIX_FMT_RGB24, AV_PIX_FMT_RGB48LE, AV_PIX_FMT_PAL8,

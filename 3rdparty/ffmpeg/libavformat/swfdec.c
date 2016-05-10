@@ -20,9 +20,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include "config.h"
+
+#if CONFIG_ZLIB
+#include <zlib.h>
+#endif
+
 #include "libavutil/avassert.h"
 #include "libavutil/channel_layout.h"
 #include "libavutil/imgutils.h"
+#include "libavutil/internal.h"
 #include "libavutil/intreadwrite.h"
 #include "libavcodec/get_bits.h"
 #include "swf.h"
@@ -67,7 +74,12 @@ static int swf_probe(AVProbeData *p)
         && AV_RB24(p->buf) != AV_RB24("FWS"))
         return 0;
 
-    init_get_bits8(&gb, p->buf + 3, p->buf_size - 3);
+    if (   AV_RB24(p->buf) == AV_RB24("CWS")
+        && p->buf[3] <= 20)
+        return AVPROBE_SCORE_MAX / 4 + 1;
+
+    if (init_get_bits8(&gb, p->buf + 3, p->buf_size - 3) < 0)
+        return 0;
 
     skip_bits(&gb, 40);
     len = get_bits(&gb, 5);
@@ -338,7 +350,7 @@ static int swf_read_packet(AVFormatContext *s, AVPacket *pkt)
 
             out_len = colormapsize * colormapbpp + linesize * height;
 
-            av_dlog(s, "bitmap: ch=%d fmt=%d %dx%d (linesize=%d) len=%d->%ld pal=%d\n",
+            ff_dlog(s, "bitmap: ch=%d fmt=%d %dx%d (linesize=%d) len=%d->%ld pal=%d\n",
                     ch_id, bmp_fmt, width, height, linesize, len, out_len, colormapsize);
 
             zbuf = av_malloc(len);
@@ -407,10 +419,8 @@ static int swf_read_packet(AVFormatContext *s, AVPacket *pkt)
             }
             if (st->codec->pix_fmt != AV_PIX_FMT_NONE && st->codec->pix_fmt != pix_fmt) {
                 av_log(s, AV_LOG_ERROR, "pixel format change unsupported\n");
-                res = AVERROR_PATCHWELCOME;
-                goto bitmap_end;
-            }
-            st->codec->pix_fmt = pix_fmt;
+            } else
+                st->codec->pix_fmt = pix_fmt;
 
             if (linesize * height > pkt->size) {
                 res = AVERROR_INVALIDDATA;
@@ -475,7 +485,7 @@ bitmap_end_skip:
             if ((res = av_new_packet(pkt, len)) < 0)
                 return res;
             if (avio_read(pb, pkt->data, 4) != 4) {
-                av_free_packet(pkt);
+                av_packet_unref(pkt);
                 return AVERROR_INVALIDDATA;
             }
             if (AV_RB32(pkt->data) == 0xffd8ffd9 ||
@@ -492,7 +502,7 @@ bitmap_end_skip:
             }
             if (res != pkt->size) {
                 if (res < 0) {
-                    av_free_packet(pkt);
+                    av_packet_unref(pkt);
                     return res;
                 }
                 av_shrink_packet(pkt, res);

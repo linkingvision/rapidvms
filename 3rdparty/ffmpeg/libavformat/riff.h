@@ -53,6 +53,11 @@ void ff_put_bmp_header(AVIOContext *pb, AVCodecContext *enc, const AVCodecTag *t
 #define FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX    0x00000001
 
 /**
+ * Tell ff_put_wav_header() to write an empty channel mask.
+ */
+#define FF_PUT_WAV_HEADER_SKIP_CHANNELMASK      0x00000002
+
+/**
  * Write WAVEFORMAT header structure.
  *
  * @param flags a combination of FF_PUT_WAV_HEADER_* constants
@@ -62,7 +67,7 @@ void ff_put_bmp_header(AVIOContext *pb, AVCodecContext *enc, const AVCodecTag *t
 int ff_put_wav_header(AVIOContext *pb, AVCodecContext *enc, int flags);
 
 enum AVCodecID ff_wav_codec_get_id(unsigned int tag, int bps);
-int ff_get_wav_header(AVIOContext *pb, AVCodecContext *codec, int size, int big_endian);
+int ff_get_wav_header(AVFormatContext *s, AVIOContext *pb, AVCodecContext *codec, int size, int big_endian);
 
 extern const AVCodecTag ff_codec_bmp_tags[]; // exposed through avformat_get_riff_video_tags()
 extern const AVCodecTag ff_codec_wav_tags[];
@@ -102,6 +107,8 @@ extern const AVCodecGuid ff_codec_wav_guids[];
 
 #define FF_MEDIASUBTYPE_BASE_GUID \
     0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71
+#define FF_AMBISONIC_BASE_GUID \
+    0x21, 0x07, 0xD3, 0x11, 0x86, 0x44, 0xC8, 0xC1, 0xCA, 0x00, 0x00, 0x00
 
 static av_always_inline int ff_guidcmp(const void *g1, const void *g2)
 {
@@ -110,7 +117,7 @@ static av_always_inline int ff_guidcmp(const void *g1, const void *g2)
 
 int ff_get_guid(AVIOContext *s, ff_asf_guid *g);
 void ff_put_guid(AVIOContext *s, const ff_asf_guid *g);
-const ff_asf_guid *get_codec_guid(enum AVCodecID id, const AVCodecGuid *av_guid);
+const ff_asf_guid *ff_get_codec_guid(enum AVCodecID id, const AVCodecGuid *av_guid);
 
 enum AVCodecID ff_codec_guid_get_id(const AVCodecGuid *guids, ff_asf_guid guid);
 
