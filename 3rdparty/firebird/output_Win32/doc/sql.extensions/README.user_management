@@ -1,0 +1,111 @@
+SQL Language Extension: CREATE/ALTER/CREATE_OR_ALTER/DROP USER
+
+   Implements capability to manage users from regular database attachment.
+
+
+Author:
+   Alex Peshkoff <peshkoff@mail.ru>
+
+
+Syntax is:
+
+   CREATE USER name [ options ] [ TAGS ( tag [, tag [, tag ...]] ) ]
+   ALTER USER name [ SET ] [ options ] [ TAGS ( tag [, tag [, tag ...]] ) ]
+   ALTER CURRENT USER [ SET ] [ options ] [ TAGS ( tag [, tag [, tag ...]] ) ]
+   CREATE OR ALTER USER name [ SET ] [ options ] [ TAGS ( tag [, tag [, tag ...]] ) ]
+   DROP USER name [ USING PLUGIN name ];
+
+where OPTIONS is a list of following options:
+- PASSWORD 'password'
+- FIRSTNAME 'firstname'
+- MIDDLENAME 'middlename'
+- LASTNAME 'lastname'
+- ACTIVE
+- INACTIVE
+- USING PLUGIN name
+
+and each TAG may have one of two forms:
+ name = 'string value'
+  or:
+ DROP name
+where NAME is any valid SQL identifier.
+
+
+Description:
+
+Makes it possible to add, modify and delete users in security database using SQL language.
+
+Firebird since version 3.0 supports multiple security databases. gsec utility and services API
+do not support it and use of them to manage users is deprecated.
+
+CREATE and DROP clauses are available only for SYSDBA (or other user, granted RDB$ADMIN role in
+security database). Ordinary user can ALTER his own password, wide names and tags. Attempt to modify
+another user will fail. Also will fail an attempt to make yourself inactive or active. In order to
+avoid typing your name each time simplified form ALTER CURRENT USER is present.
+
+At least one of PASSWORD, FIRSTNAME, MIDDLENAME, LASTNAME, ACTIVE, INACTIVE or TAGS must be present
+in ALTER USER statement. Also notice that PASSWORD clause is required when creating new user.
+
+PASSWORD clause is enough self-descripting. Clauses FIRSTNAME, MIDDLENAME and LASTNAME too, but may
+be also used to store any short information about user. Clauses INACTIVE/ACTIVE are used to disable
+user's login to server not dropping it from the list and restoring that ability. USING PLUGIN clause
+makes it possible to work with users not only with default management plugin (first listed in
+UserManager parameter in firebird.conf) but also with others. gsec utility and services API do not
+support multiple user management plugins - default one is always used.
+
+TAGS is a list of end-user defined attributes. Length of the value should not exceed 255 bytes.
+Assigning name some value sets new or modifies existing tag. To remove the tag use DROP option.
+Setting a list of tags for the user keeps earlier set tags if they are not mentioned currently.
+Notice - UID/GID, entered by deprecated gsec, are treated as tags in SQL interface.
+
+To access list of users please select from virtual tables SEC$USERS and SEC$USER_ATTRIBUTES.
+
+
+Samples (suppose UserManager=Srp,Legacy_UserManager in firebird.conf):
+
+ Generic:
+   CREATE USER alex PASSWORD 'test';
+   ALTER USER alex SET FIRSTNAME 'Alex' LASTNAME 'Peshkoff';
+   CREATE OR ALTER USER alex SET PASSWORD 'IdQfA';
+   DROP USER alex;
+   ALTER CURRENT USER SET PASSWORD 'SomethingLongEnough' USING PLUGIN srp;
+
+ Working with tags:
+   ALTER USER alex SET TAGS (a='a', b='b');
+	NAME             VALUE
+	================ ============================== 
+	A                a
+	B                b
+
+   ALTER USER alex SET TAGS (b='x', c='d');
+	NAME             VALUE
+	================ ============================== 
+	A                a
+	B                x
+	C                d
+
+   ALTER USER alex SET TAGS (drop a, c='sample');
+	NAME             VALUE
+	================ ============================== 
+	B                x
+	C                sample
+
+ Displaying users' list:
+  SELECT CAST(U.SEC$USER_NAME AS CHAR(20)) LOGIN,
+    CAST(A.SEC$KEY AS CHAR(10)) TAG,
+    CAST(A.SEC$VALUE AS CHAR(20)) "VALUE",
+    U.SEC$PLUGIN "PLUGIN"
+  FROM SEC$USERS U LEFT JOIN SEC$USER_ATTRIBUTES A
+    ON U.SEC$USER_NAME = A.SEC$USER_NAME
+   AND U.SEC$PLUGIN = A.SEC$PLUGIN;
+
+   LOGIN                TAG        VALUE                PLUGIN
+   ==================== ========== ==================== ===============================
+   SYSDBA               <null>     <null>               Srp
+   ALEX                 B          x                    Srp
+   ALEX                 C          sample               Srp
+   SYSDBA               <null>     <null>               Legacy_UserManager
+
+Notice!
+This feature highly depends upon user management plugin. Take into an account that some options
+are ignored when using legacy user management plugin.
