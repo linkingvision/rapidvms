@@ -329,6 +329,7 @@ void VSCView::ShowDisplayClicked(int nId)
     {
         return;
     }
+    m_pVideo->ShowVideoInfo(false);
 
     QDesktopWidget *desktop = QApplication::desktop();
     if ( 1==desktop->screenCount()  ) {
@@ -419,6 +420,7 @@ void VSCView::TabbedClicked()
     {
         return;
     }
+    m_pVideo->ShowVideoInfo(true);
     VideoWallLayoutMode nMode;
     m_pVideo->GetLayoutMode(nMode);
     QIcon icon1;
