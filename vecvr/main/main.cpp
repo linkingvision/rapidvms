@@ -16,6 +16,7 @@
 #include "server/cmnoapiserver.hpp"
 #include "vevent.hpp"
 #include "webserver.hpp"
+#include "vrtspserver.hpp"
 
 Factory *gFactory = NULL;
 
@@ -96,6 +97,9 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
     }
 
     VEWebServer server(cpp_options);
+	
+	/* Start RTSP server */
+	VRTSPServer *pRTSPServer = new VRTSPServer(*pFactory);
 
 	
 	return a.exec();
