@@ -29,7 +29,12 @@ public:
 	StorStream(VidStor &stor, astring strId, unsigned int nStream, 
 		bool bPlayback = false, u32 nPlaytime = 0);
 	~StorStream();
-	bool AttachWidget(HWND hWnd, int w, int h);
+#ifdef WIN32
+	bool AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_D3D);
+#else
+	bool AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_SDL);
+#endif
+	bool EnableMot(HWND hWnd, bool bEnable);
 	bool UpdateWidget(HWND hWnd, int w, int h);
 	bool DetachWidget(HWND hWnd);
 	bool GetStreamInfo(VideoStreamInfo &pInfo);
