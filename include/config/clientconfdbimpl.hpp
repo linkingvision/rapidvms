@@ -284,7 +284,7 @@ inline BOOL ClientConfDB::GetStorListConf(VidStorList &pData)
 	{
 		VidStorList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "Stor List Config is not init\n");
+		//VDC_DEBUG( "Stor List Config is not init\n");
 		return TRUE;
 	}
 
@@ -412,7 +412,7 @@ inline BOOL ClientConfDB::GetViewListConf(VidViewList &pData)
 	{
 		VidViewList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "View List Config is not init\n");
+		//VDC_DEBUG( "View List Config is not init\n");
 		return TRUE;
 	}
 
@@ -541,7 +541,7 @@ inline BOOL ClientConfDB::GetTourListConf(VidTourList &pData)
 	{
 		VidTourList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "Tour List Config is not init\n");
+		//VDC_DEBUG( "Tour List Config is not init\n");
 		return TRUE;
 	}
 
@@ -669,7 +669,7 @@ inline BOOL ClientConfDB::GetGroupListConf(VidGroupList &pData)
 	{
 		VidGroupList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "Group List Config is not init\n");
+		//VDC_DEBUG( "Group List Config is not init\n");
 		return TRUE;
 	}
 
@@ -797,7 +797,7 @@ inline BOOL ClientConfDB::GetEmapListConf(VidEmapList &pData)
 	{
 		VidEmapList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "Emap List Config is not init\n");
+		//VDC_DEBUG( "Emap List Config is not init\n");
 		return TRUE;
 	}
 

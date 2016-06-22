@@ -37,7 +37,7 @@ using namespace VidConf;
 using namespace UtilityLib;
 using namespace std;
 using namespace ONVIF;
-using namespace Poco;
+//using namespace Poco;
 
 typedef enum
 {

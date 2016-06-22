@@ -331,7 +331,7 @@ inline BOOL ConfDB::GetCameraListConf(VidCameraList &pData)
 	{
 		VidCameraList listDefault;
 		pData = listDefault;
-		VDC_DEBUG( "Camera List Config is not init\n");
+		//VDC_DEBUG( "Camera List Config is not init\n");
 		return TRUE;
 	}
 

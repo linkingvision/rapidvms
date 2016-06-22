@@ -536,7 +536,7 @@ inline astring Factory::AddCamera(CameraParam & pParam)
 	guard.Release();
 	change.id = pParam.m_Conf.strid();
 	change.type = FACTORY_CAMERA_ADD;
-	change.cCam = pParam.m_Conf;
+	//change.cCam = pParam.m_Conf;
 	CallCameraChange(change);
 	guard.Acquire();
 
