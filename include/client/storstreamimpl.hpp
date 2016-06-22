@@ -107,9 +107,15 @@ inline bool StorStream::UnRegDataCallback()
 	
 }
 
-inline bool StorStream::AttachWidget(HWND hWnd, int w, int h)
+inline bool StorStream::EnableMot(HWND hWnd, bool bEnable)
 {
-	m_play.AttachWidget(hWnd, w, h);
+	m_play.EnableMot(hWnd, bEnable);
+	return true;
+}
+
+inline bool StorStream::AttachWidget(HWND hWnd, int w, int h, RenderType render)
+{
+	m_play.AttachWidget(hWnd, w, h, render);
 
 	return true;
 }
