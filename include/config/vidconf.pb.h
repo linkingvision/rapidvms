@@ -52,6 +52,8 @@ class VidHDFSConf;
 class VidStor;
 class VidStorList;
 class VidStorServerConf;
+class VidStream;
+class VidStreamList;
 class VidTour;
 class VidTourList;
 class VidUser;
@@ -2557,6 +2559,185 @@ class VidEmapList : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static VidEmapList* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VidStream : public ::google::protobuf::Message {
+ public:
+  VidStream();
+  virtual ~VidStream();
+
+  VidStream(const VidStream& from);
+
+  inline VidStream& operator=(const VidStream& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidStream& default_instance();
+
+  void Swap(VidStream* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidStream* New() const { return New(NULL); }
+
+  VidStream* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidStream& from);
+  void MergeFrom(const VidStream& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidStream* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string strToken = 1;
+  void clear_strtoken();
+  static const int kStrTokenFieldNumber = 1;
+  const ::std::string& strtoken() const;
+  void set_strtoken(const ::std::string& value);
+  void set_strtoken(const char* value);
+  void set_strtoken(const char* value, size_t size);
+  ::std::string* mutable_strtoken();
+  ::std::string* release_strtoken();
+  void set_allocated_strtoken(::std::string* strtoken);
+
+  // optional string strName = 2;
+  void clear_strname();
+  static const int kStrNameFieldNumber = 2;
+  const ::std::string& strname() const;
+  void set_strname(const ::std::string& value);
+  void set_strname(const char* value);
+  void set_strname(const char* value, size_t size);
+  ::std::string* mutable_strname();
+  ::std::string* release_strname();
+  void set_allocated_strname(::std::string* strname);
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidStream)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr strtoken_;
+  ::google::protobuf::internal::ArenaStringPtr strname_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidStream* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VidStreamList : public ::google::protobuf::Message {
+ public:
+  VidStreamList();
+  virtual ~VidStreamList();
+
+  VidStreamList(const VidStreamList& from);
+
+  inline VidStreamList& operator=(const VidStreamList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidStreamList& default_instance();
+
+  void Swap(VidStreamList* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidStreamList* New() const { return New(NULL); }
+
+  VidStreamList* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidStreamList& from);
+  void MergeFrom(const VidStreamList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidStreamList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .VidConf.VidStream cVidStream = 1;
+  int cvidstream_size() const;
+  void clear_cvidstream();
+  static const int kCVidStreamFieldNumber = 1;
+  const ::VidConf::VidStream& cvidstream(int index) const;
+  ::VidConf::VidStream* mutable_cvidstream(int index);
+  ::VidConf::VidStream* add_cvidstream();
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream >*
+      mutable_cvidstream();
+  const ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream >&
+      cvidstream() const;
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidStreamList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream > cvidstream_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidStreamList* default_instance_;
 };
 // ===================================================================
 
@@ -5175,7 +5356,135 @@ VidEmapList::cvidemap() const {
   return cvidemap_;
 }
 
+// -------------------------------------------------------------------
+
+// VidStream
+
+// optional string strToken = 1;
+inline void VidStream::clear_strtoken() {
+  strtoken_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidStream::strtoken() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidStream.strToken)
+  return strtoken_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStream::set_strtoken(const ::std::string& value) {
+  
+  strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidStream.strToken)
+}
+inline void VidStream::set_strtoken(const char* value) {
+  
+  strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidStream.strToken)
+}
+inline void VidStream::set_strtoken(const char* value, size_t size) {
+  
+  strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidStream.strToken)
+}
+inline ::std::string* VidStream::mutable_strtoken() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidStream.strToken)
+  return strtoken_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStream::release_strtoken() {
+  
+  return strtoken_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStream::set_allocated_strtoken(::std::string* strtoken) {
+  if (strtoken != NULL) {
+    
+  } else {
+    
+  }
+  strtoken_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strtoken);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidStream.strToken)
+}
+
+// optional string strName = 2;
+inline void VidStream::clear_strname() {
+  strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidStream::strname() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidStream.strName)
+  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStream::set_strname(const ::std::string& value) {
+  
+  strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidStream.strName)
+}
+inline void VidStream::set_strname(const char* value) {
+  
+  strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidStream.strName)
+}
+inline void VidStream::set_strname(const char* value, size_t size) {
+  
+  strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidStream.strName)
+}
+inline ::std::string* VidStream::mutable_strname() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidStream.strName)
+  return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStream::release_strname() {
+  
+  return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStream::set_allocated_strname(::std::string* strname) {
+  if (strname != NULL) {
+    
+  } else {
+    
+  }
+  strname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strname);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidStream.strName)
+}
+
+// -------------------------------------------------------------------
+
+// VidStreamList
+
+// repeated .VidConf.VidStream cVidStream = 1;
+inline int VidStreamList::cvidstream_size() const {
+  return cvidstream_.size();
+}
+inline void VidStreamList::clear_cvidstream() {
+  cvidstream_.Clear();
+}
+inline const ::VidConf::VidStream& VidStreamList::cvidstream(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidStreamList.cVidStream)
+  return cvidstream_.Get(index);
+}
+inline ::VidConf::VidStream* VidStreamList::mutable_cvidstream(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidStreamList.cVidStream)
+  return cvidstream_.Mutable(index);
+}
+inline ::VidConf::VidStream* VidStreamList::add_cvidstream() {
+  // @@protoc_insertion_point(field_add:VidConf.VidStreamList.cVidStream)
+  return cvidstream_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream >*
+VidStreamList::mutable_cvidstream() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidStreamList.cVidStream)
+  return &cvidstream_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream >&
+VidStreamList::cvidstream() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidStreamList.cVidStream)
+  return cvidstream_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -59,7 +59,8 @@ public:
 	inline bool CamSearchStop();
 	inline bool SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType);
 	inline bool SearchHasRec(oapi::OAPISearchHasRecordReq &pList);
-	/* Parse all the list */
+	inline bool GetStreamList(astring strId);
+/* Parse all the list */
 public:
 	inline bool ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
 	inline bool ParseLogin(char *pRecv, int len, oapi::LoginRsp &rsp);
@@ -74,6 +75,7 @@ public:
 	inline bool ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSearchedNotify &pCam);
 	inline bool ParseSearchRecList(char *pRecv, int len, oapi::OAPISearchRecordRsp &list);
 	inline bool ParseSearchHasRecList(char *pRecv, int len, oapi::OAPISearchHasRecordRsp &list);
+	inline bool ParseStreamList(char *pRecv, int len, oapi::OAPIStreamListRsp &list);
 
 	
 private:

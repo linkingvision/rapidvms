@@ -105,6 +105,33 @@ bool OAPIConverter::Converter(VidDisk &from, oapi::OAPIDisk &to)
 	return true;
 }
 
+bool OAPIConverter::Converter(oapi::OAPIStreamListRsp &from, VidStreamList &to)
+{
+	for (s32 i = 0; i < from.list.size(); i ++)
+	{
+		VidStream *pNewStream = to.add_cvidstream();
+		pNewStream->set_strname(from.list[i].strName);
+		pNewStream->set_strtoken(from.list[i].strToken);
+	}
+
+	return true;
+}
+
+bool OAPIConverter::Converter(VidStreamList &from, oapi::OAPIStreamListRsp &to)
+{
+	for (s32 i = 0; i < from.cvidstream_size(); i ++)
+	{
+		oapi::OAPIStreamProfile profile;
+		VidStream stream = from.cvidstream(i);
+		
+		profile.strName = stream.strname();
+		profile.strToken = stream.strtoken();
+		to.list.push_back(profile);
+	}
+
+	return true;
+}
+
  OAPIServerCamSearch::OAPIServerCamSearch(OAPICamSearchInterface &pCamInf, 
 	Factory &pFactory)
 :m_pFactory(pFactory), m_pCamInf(pCamInf), m_bQuit(false), m_Timer(NULL)
@@ -1464,6 +1491,50 @@ inline bool OAPIServer::ProcessCamSearchStop(s32 len)
 	return true;	
 }
 
+bool OAPIServer::ProcessGetStreamList(s32 len)
+{
+	if (len == 0)
+	{
+		return FALSE;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIStreamListReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return FALSE;
+		}
+	}
+
+	oapi::OAPIStreamListRsp rsp;
+
+	VidStreamList pList;
+	m_pFactory.GetCamStreamList(req.strId, pList);
+
+	OAPIConverter::Converter((VidStreamList &)pList, rsp);
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return FALSE;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_STREAM_LIST_RSP);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return TRUE;
+}
+
 
 bool OAPIServer::ProcessSearchRec(s32 len)
 {
@@ -1806,6 +1877,9 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 			break;
 		case OAPI_DISK_LIST_REQ:
 			return ProcessGetDisk(header.length);
+			break;
+		case OAPI_STREAM_LIST_REQ:
+			return ProcessGetStreamList(header.length);
 			break;
 		case OAPI_SYS_DISK_LIST_REQ:
 			return ProcessGetSysDisk(header.length);

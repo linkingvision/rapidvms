@@ -636,6 +636,26 @@ inline bool OAPIClient::SearchHasRec(oapi::OAPISearchHasRecordReq &pList)
 	return true;
 }
 
+bool OAPIClient::GetStreamList(astring strId)
+{
+	oapi::OAPIStreamListReq req;
+	OAPIHeader header;
+	req.strId = strId;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_STREAM_LIST_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
 bool OAPIClient::ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &rsp)
 {
 	autojsoncxx::ParsingResult result;
@@ -773,6 +793,17 @@ inline bool OAPIClient::ParseSearchRecList(char *pRecv, int len, oapi::OAPISearc
 
 inline bool OAPIClient::ParseSearchHasRecList(char *pRecv, int len, 
 						oapi::OAPISearchHasRecordRsp &list)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, list, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
+
+bool OAPIClient::ParseStreamList(char *pRecv, int len, oapi::OAPIStreamListRsp &list)
 {
 	autojsoncxx::ParsingResult result;
 	if (!autojsoncxx::from_json_string(pRecv, list, result)) 

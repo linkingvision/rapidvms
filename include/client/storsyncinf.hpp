@@ -56,7 +56,11 @@ public:
 	
 	/* Video Search */
 	bool SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, RecordItemMap &pMap);
-	bool SearchHasRec(astring strId, HasRecordItemMap &pMap);	
+	bool SearchHasRec(astring strId, HasRecordItemMap &pMap);
+
+	/* Stream List */
+	bool GetStreamList(astring strId, VidStreamList &pList);
+
 private:
 	bool SyncRecv(OAPIHeader &header);
  	VidCameraList UpdateVidCameraList(oapi::OAPICameraListRsp list);

@@ -31,7 +31,7 @@ inline string GetProgramDir()
 
 CameraParam::CameraParam()
 {
-	UUIDGenerator uuidCreator;
+	Poco::UUIDGenerator uuidCreator;
 	
 	astring strId  = uuidCreator.createRandom().toString();
 	m_Conf.set_ntype(VID_ONVIF_S);
@@ -264,6 +264,20 @@ BOOL CameraParam::UpdateUrlOnvif()
 			}
 			delete pUri;
 		}
+	}
+
+	/* Cache the stream profile list */
+	
+	for ( int i=0; i!=pProfileS->m_toKenPro.size(); ++i )
+	{
+		VidStream *pNewStream = m_cStreamList.add_cvidstream();
+		s8 profileDisplay[1024];
+		sprintf(profileDisplay, "%s %dx%d %dfps %dbps", 
+				pProfileS->m_encodingVec.at(i).toStdString().c_str(), pProfileS->m_widthVec.at(i), 
+				pProfileS->m_heightVec.at(i), pProfileS->m_frameRateLimitVec.at(i), 
+				pProfileS->m_bitrateLimitVec.at(i));
+		pNewStream->set_strname( profileDisplay);
+		pNewStream->set_strtoken( pProfileS->m_toKenPro.at(i).toStdString());
 	}
 
 	/* rtsp://admin:12345@192.168.1.1:554/Streaming/Channels/1\
@@ -885,6 +899,15 @@ BOOL Camera::GetStreamInfo(VideoStreamInfo &pInfo)
 
     return TRUE;
 }
+
+
+BOOL Camera::GetCamStreamList(VidStreamList &pList)
+{
+	pList =  m_param.m_cStreamList;
+	return TRUE;
+}
+		
+
 
 BOOL Camera::AttachPlayer(HWND hWnd, int w, int h)
 {

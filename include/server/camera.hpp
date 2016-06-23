@@ -126,6 +126,7 @@ public:
 	/* backend status  */
 	BOOL m_wipOnline;
 	BOOL m_wipOnlineUrl;
+	VidStreamList m_cStreamList;
 };
 
 class Camera
@@ -183,6 +184,7 @@ public:
 	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
 	inline BOOL DetachPlayer(HWND hWnd);
 	inline BOOL GetStreamInfo(VideoStreamInfo &pInfo);
+	inline BOOL GetCamStreamList(VidStreamList &pList);
 
 	inline BOOL ShowAlarm(HWND hWnd);
 	inline BOOL PtzAction(FPtzAction action, float speed);

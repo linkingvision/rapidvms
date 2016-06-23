@@ -492,6 +492,18 @@ inline BOOL Factory::GetStreamInfo(astring nIndex, VideoStreamInfo &pInfo)
 	return TRUE;
 }
 
+
+inline BOOL Factory::GetCamStreamList(astring strCamId, VidStreamList &pList)
+{
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[strCamId] != NULL)
+	{
+	    m_CameraMap[strCamId]->GetCamStreamList(pList);
+	}
+
+	return TRUE;
+}
+
 inline BOOL Factory::UpdateRecSched(astring strCamId, VidCamera &pCam)
 {
 	XGuard guard(m_cMutex);

@@ -43,7 +43,7 @@ class FactoryCameraChangeData
 public:
 	FactoryCameraChangeType type;
 	astring id;
-	VidCamera cCam;
+	//VidCamera cCam;
 };
 
 typedef BOOL (*FactoryCameraChangeNotify)(void* pParam, 
@@ -136,6 +136,7 @@ public:
 
 public:
 	BOOL GetStreamInfo(astring strCamId, VideoStreamInfo &pInfo);
+	BOOL GetCamStreamList(astring strCamId, VidStreamList &pList);
 	/* Data */
 	BOOL RegDataCallback(astring strCamId, CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDataCallback(astring strCamId, void * pParam);

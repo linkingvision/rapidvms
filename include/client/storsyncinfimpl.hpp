@@ -565,6 +565,35 @@ inline bool StorSyncInf::SearchHasRec(astring strId, HasRecordItemMap &pMap)
 
 }
 
+inline bool StorSyncInf::GetStreamList(astring strId, VidStreamList &pList)
+{
+
+	if (m_bConnected == false)
+	{
+		return false;
+	}
+
+	XGuard guard(m_cMutex);
+
+	OAPIClient pClient(m_pSocket);
+	OAPIHeader header;
+
+	/* Send add cam command  */
+	pClient.GetStreamList(strId);
+
+	if (SyncRecv(header) == true 
+			&& header.cmd == OAPI_STREAM_LIST_RSP)
+	{
+		oapi::OAPIStreamListRsp streamlist;
+		pClient.ParseStreamList(m_pRecv, header.length, streamlist);
+		OAPIConverter::Converter(streamlist, pList);
+		return true;
+	}
+
+	return false;
+	
+}
+
 inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 {
 	s32 nRet = 0;

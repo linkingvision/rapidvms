@@ -43,6 +43,8 @@ public:
 	inline static bool Converter(oapi::OAPICamera &from, VidCamera &toVid);
 	inline static bool Converter(oapi::OAPIDisk &from, VidDisk &to);
 	inline static bool Converter(VidDisk &from, oapi::OAPIDisk &to);
+	inline static bool Converter(oapi::OAPIStreamListRsp &from, VidStreamList &to);
+	inline static bool Converter(VidStreamList &from, oapi::OAPIStreamListRsp &to);
 };
 
 typedef std::map<astring, DeviceSearcher *> DeviceSearcherMap;
@@ -163,6 +165,8 @@ public:
 	inline bool ProcessCamSearchStop(s32 len);
 	inline bool ProcessSearchRec(s32 len);
 	inline bool ProcessSearchHasRec(s32 len);
+
+	inline bool ProcessGetStreamList(s32 len);	
 
 	/* Playback */
 	inline bool ProcessStartPlayback(s32 len);

@@ -231,6 +231,16 @@ message VidEmapList {
 	repeated VidEmap cVidEmap = 1;
 }
 
+//Stream List
+message VidStream {
+	string strToken = 1;//Token of the Stream
+	string strName = 2;
+}
+
+message VidStreamList {
+	repeated VidStream cVidStream = 1;
+}
+
 
 
 
