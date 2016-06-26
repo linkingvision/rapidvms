@@ -82,6 +82,10 @@ message VidCamera {
 	
 	//Motion JPEG Stream
 	bool bMotionJPEG = 23;//deprecated
+	
+	/* Stream select */
+	int32 nRecordStream = 24;//Recording streaming NO.
+	int32 nServerMotionStream = 25;//Server based Motion Stream.
 }
 
 message VidCameraList {
