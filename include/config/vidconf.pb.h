@@ -713,6 +713,18 @@ class VidCamera : public ::google::protobuf::Message {
   bool bmotionjpeg() const;
   void set_bmotionjpeg(bool value);
 
+  // optional int32 nRecordStream = 24;
+  void clear_nrecordstream();
+  static const int kNRecordStreamFieldNumber = 24;
+  ::google::protobuf::int32 nrecordstream() const;
+  void set_nrecordstream(::google::protobuf::int32 value);
+
+  // optional int32 nServerMotionStream = 25;
+  void clear_nservermotionstream();
+  static const int kNServerMotionStreamFieldNumber = 25;
+  ::google::protobuf::int32 nservermotionstream() const;
+  void set_nservermotionstream(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -740,6 +752,8 @@ class VidCamera : public ::google::protobuf::Message {
   bool bhdfsrecord_;
   bool bmotionjpeg_;
   ::google::protobuf::int32 npostrecsec_;
+  ::google::protobuf::int32 nrecordstream_;
+  ::google::protobuf::int32 nservermotionstream_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -3683,6 +3697,34 @@ inline void VidCamera::set_bmotionjpeg(bool value) {
   
   bmotionjpeg_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bMotionJPEG)
+}
+
+// optional int32 nRecordStream = 24;
+inline void VidCamera::clear_nrecordstream() {
+  nrecordstream_ = 0;
+}
+inline ::google::protobuf::int32 VidCamera::nrecordstream() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nRecordStream)
+  return nrecordstream_;
+}
+inline void VidCamera::set_nrecordstream(::google::protobuf::int32 value) {
+  
+  nrecordstream_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nRecordStream)
+}
+
+// optional int32 nServerMotionStream = 25;
+inline void VidCamera::clear_nservermotionstream() {
+  nservermotionstream_ = 0;
+}
+inline ::google::protobuf::int32 VidCamera::nservermotionstream() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nServerMotionStream)
+  return nservermotionstream_;
+}
+inline void VidCamera::set_nservermotionstream(::google::protobuf::int32 value) {
+  
+  nservermotionstream_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nServerMotionStream)
 }
 
 // -------------------------------------------------------------------

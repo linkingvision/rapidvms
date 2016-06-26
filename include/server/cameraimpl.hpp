@@ -427,7 +427,8 @@ BOOL Camera::GetCameraParam(CameraParam &pParam)
 }
 
 CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream, 
-		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl)
+		BOOL bHasSubStream, BOOL bOnline, 
+		BOOL bOnlineUrl, VidStreamList cStreamlist)
 {
     if (bOnline == TRUE)
     {
@@ -474,6 +475,7 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		
 		m_param.m_OnlineUrl = TRUE;
 		UpdatePTZConf();
+		m_param.m_cStreamList = cStreamlist;
 		/* Always start data */
 		StartData();
         }

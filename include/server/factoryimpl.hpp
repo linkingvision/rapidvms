@@ -646,7 +646,8 @@ inline void Factory::run()
 				CameraStatus bCheck = m_CameraMap[nIndex]->CheckCamera(
 					(*it).second.m_strUrl, (*it).second.m_strUrlSubStream, 
 					(*it).second.m_bHasSubStream, 
-					(*it).second.m_wipOnline, (*it).second.m_wipOnlineUrl);
+					(*it).second.m_wipOnline, (*it).second.m_wipOnlineUrl, 
+					(*it).second.m_cStreamList);
 				
 				FactoryCameraChangeData change;
 				change.id = nIndex;

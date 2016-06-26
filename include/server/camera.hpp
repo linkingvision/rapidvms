@@ -150,7 +150,8 @@ public:
 	inline bool UpdateRecSched(VidCamera &pCam);
 	
 	inline CameraStatus CheckCamera(astring strUrl, astring strUrlSubStream, 
-		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl);
+		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl, 
+		VidStreamList cStreamlist);
 
 public:
 	/* Data  */
