@@ -52,8 +52,12 @@ public:
 	bool PtzCmd(astring strStorId, astring strId, u32 action, double param);
 	
 public:
-	BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);
+	//BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);
 	virtual bool CallChange(StorFactoryChangeData data);
+signals:
+	void SignalCallChange(int type, std::string strId, std::string strCam);
+
+//public slots:
 
 	
 public:
@@ -152,8 +156,6 @@ private:
 	StorClientOnlineMap m_StorClientOnlineMap;
 
 	XMutex m_cMutex;
-private:
-	StorChangeNofityMap m_Change;
 	
 private:
 	ClientConfDB &m_pConf;

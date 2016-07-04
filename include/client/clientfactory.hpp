@@ -52,11 +52,6 @@ public:
 	astring id;
 };
 
-typedef bool (*ClientFactoryChangeNotify)(void* pParam, 
-		ClientFactoryChangeData data);
-
-typedef std::map<void *, ClientFactoryChangeNotify> ChangeNofityMap;
-
 /* Fatory is Qthread for callback in Qt GUI */
 class ClientFactory: public QThread
 {
@@ -71,8 +66,10 @@ public:
 	ClientConfDB &GetConfDB(){return m_Conf;};
 	
 public:
-	BOOL RegChangeNotify(void * pData, ClientFactoryChangeNotify callback);
+	//BOOL RegChangeNotify(void * pData, ClientFactoryChangeNotify callback);
 	BOOL CallChange(ClientFactoryChangeData data);
+signals:
+	void SignalCallChange(int type, std::string strId);
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
@@ -123,9 +120,6 @@ private:
 
 private:
 	XMutex m_cMutex;
-
-private:
-	ChangeNofityMap m_Change;
 
 private:
 	ClientConfDB m_Conf;

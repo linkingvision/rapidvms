@@ -37,11 +37,6 @@ public:
 	VidCamera cCam;
 };
 
-typedef bool (*StorFactoryChangeNotify)(void* pParam, 
-		StorFactoryChangeData data);
-		
-typedef std::map<void *, StorFactoryChangeNotify> StorChangeNofityMap;
-
 class StorFactoryNotifyInterface
 {
 public:

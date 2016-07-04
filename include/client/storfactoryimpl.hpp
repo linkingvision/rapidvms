@@ -111,18 +111,9 @@ inline bool StorFactory::DeleteStor(astring strId)
 	return true;
 }
 
-
-inline BOOL StorFactory::RegChangeNotify(void * pData, StorFactoryChangeNotify callback)
-{
-	XGuard guard(m_cMutex);
-	m_Change[pData] = callback;
-
-	return TRUE;
-}
-
-
 inline bool StorFactory::CallChange(StorFactoryChangeData data)
 {
+#if 0
 	//XGuard guard(m_cMutex);
 	StorChangeNofityMap::iterator it = m_Change.begin(); 
 	for(; it!=m_Change.end(); ++it)
@@ -131,7 +122,16 @@ inline bool StorFactory::CallChange(StorFactoryChangeData data)
 		{
 			(*it).second((*it).first, data);
 		}
-	}	
+	}
+#endif
+	std::string strId;
+	std::string strCam;
+	bool bRet1 = data.cId.SerializeToString(&strId);
+	bool bRet2 = data.cCam.SerializeToString(&strCam);
+	if (bRet1 == true && bRet2 == true)
+	{
+		emit(SignalCallChange(data.type, strId, strCam));
+	}
 	return true;
 }
 

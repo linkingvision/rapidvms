@@ -102,15 +102,9 @@ inline BOOL ClientFactory::Init()
 	return TRUE;
 }
 
-inline BOOL ClientFactory::RegChangeNotify(void * pData, ClientFactoryChangeNotify callback)
-{
-	XGuard guard(m_cMutex);
-	m_Change[pData] = callback;
-
-	return TRUE;
-}
 inline BOOL ClientFactory::CallChange(ClientFactoryChangeData data)
 {
+#if 0
 	//XGuard guard(m_cMutex);
 	ChangeNofityMap::iterator it = m_Change.begin(); 
 	for(; it!=m_Change.end(); ++it)
@@ -119,7 +113,10 @@ inline BOOL ClientFactory::CallChange(ClientFactoryChangeData data)
 		{
 			(*it).second((*it).first, data);
 		}
-	}	
+	}
+#else
+	emit(SignalCallChange(data.type, data.id));
+#endif
 	 return TRUE;
 }
 
