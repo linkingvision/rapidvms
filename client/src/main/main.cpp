@@ -20,6 +20,8 @@
 #include "vsclogin.h"
 #include "vtaskmgr.hpp"
 
+Q_DECLARE_METATYPE (std::string) 
+
 void LoadLangZH(QApplication &a)
 {
 	QTranslator *translator = new QTranslator(&a);
@@ -88,6 +90,8 @@ int main(int argc, char *argv[])
 
 	QPixmap pixmap(":/logo/resources/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
+	qRegisterMetaType<QVector<int> >("QVector<int>");
+	qRegisterMetaType<std::string>("std::string");
 
 	splash->setStyleSheet(QStringLiteral("color : white;"));    
 	splash->show();
@@ -134,6 +138,8 @@ int main(int argc, char *argv[])
 	{
 		w.showMaximized();
 	}
+
+	VDC_DEBUG("Start successfully !\n");
 
 	delete splash;
 	return a.exec();

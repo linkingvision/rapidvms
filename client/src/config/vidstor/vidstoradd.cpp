@@ -90,8 +90,10 @@ void VidStorAdd::SlotApplyStor()
 		VidStor sStorConf = pStor->GetStor();
 		GetStorUI(sStorConf);
 		m_pFactory.GetStorFactory().AddStor(sStorConf);
+		
 	}
 	TreeWidgetUpdate();
+	
 }
 void VidStorAdd::SlotCancelStor()
 {
@@ -146,11 +148,12 @@ void VidStorAdd::TreeWidgetUpdate()
 	
 	int nRowCnt = ui.tableWidget->rowCount();
 
-	for (s32 j = 0; j < nRowCnt; j ++)
+	for (s32 j = nRowCnt - 1; j >= 0; j --)
 	{
 		ui.tableWidget->removeRow(j);
 	}
 	ui.tableWidget->clear();
+	ui.tableWidget->clearSpans();
 
 	
 	for (s32 i = 0; i < storList.cvidstor_size(); i ++)

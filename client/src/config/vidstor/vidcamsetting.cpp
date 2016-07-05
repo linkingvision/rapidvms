@@ -14,6 +14,8 @@
 #include "Poco/UUIDGenerator.h"
 #include "config/vidstor/camsetting/vsccaminfo.h"
 #include "config/vidstor/camsetting/vsccamrec.h"
+#include "config/vidstor/camsetting/vscstreamselect.h"
+#include "config/vidstor/camsetting/vscmotion.h"
 
 using namespace Poco;
 
@@ -26,7 +28,9 @@ QWidget *parent, Qt::WindowFlags flags)
 	setMouseTracking(true);
 	
 	ui.tabWidget->addTab(new VSCCamInfo(pFactory, m_pStor, m_strCam, this), tr("Information"));
+	ui.tabWidget->addTab(new VSCStreamSelect(pFactory, m_pStor, m_strCam, this), tr("Stream"));
 	ui.tabWidget->addTab(new VSCCamRec(pFactory, m_pStor, m_strCam, this), tr("Recording"));
+	ui.tabWidget->addTab(new VSCMotion(pFactory, m_pStor, m_strCam, this), tr("Motion"));
 
 	//connect(this, SIGNAL(SignalSectionClicked(int, int)), ui.tableWidget, SIGNAL(cellClicked(int, int)));
 	ui.storName->setText(m_pStor.strname().c_str());
@@ -41,6 +45,7 @@ QWidget *parent, Qt::WindowFlags flags)
 	
 	this->ui.video->setLayout(layout);
 	m_pVideo->show();
+	m_pVideo->ShowVideoInfo(false);
 	m_pVideo->StartPlay(m_pStor.strid(), m_strCam, "");
 	
 }

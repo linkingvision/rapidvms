@@ -283,7 +283,7 @@ void VidCamAdd::TreeWidgetUpdate()
 	int storSize = camList.cvidcamera_size();
 	int nRowCnt = ui.tableWidget->rowCount();
 
-	for (s32 j = 0; j < nRowCnt; j ++)
+	for (s32 j = nRowCnt - 1; j >= 0; j --)
 	{
 		ui.tableWidget->removeRow(j);
 	}
@@ -408,7 +408,7 @@ void VidCamAdd::SlotStartSearch()
 	m_syncInfSearch->Connect();
 	m_syncInfSearch->CamSearchStart();
 	m_syncInfSearch->SetRecvTimeout(200);
-	m_Timer->start(1000);
+	m_Timer->start(300);
 	
 }
 void VidCamAdd::SlotStopSearch()

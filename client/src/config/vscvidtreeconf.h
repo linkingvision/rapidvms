@@ -29,9 +29,11 @@ public:
 	virtual void VidFilter(astring strFilter);
 	virtual void Init();
 public:
-	/* Take care all the vid Stor state change */
-	static bool CallChange(void* pParam, StorFactoryChangeData data);
-	bool CallChange1(StorFactoryChangeData data);
+	/* Take care all the child state change */
+	//static bool CallChange(void* pParam, StorFactoryChangeData data);
+	bool CallChange(StorFactoryChangeData data);
+public slots:
+	void SlotCallChange(int type, std::string strId, std::string strCam);
 	
 public:
 	void TreeUpdate();

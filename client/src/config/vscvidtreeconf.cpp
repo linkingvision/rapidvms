@@ -40,8 +40,10 @@ void VSCVidTreeConf::Init()
 	m_pRoot->setExpanded(true);
 	
 	TreeUpdate();
-	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeConf::CallChange);
-
+	//m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeConf::CallChange);
+	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalCallChange(int, std::string, std::string)), 
+		this, SLOT(SlotCallChange(int, std::string, std::string)));
+	
 	m_bInit = true;
 }
 
@@ -159,17 +161,19 @@ void VSCVidTreeConf::TreeUpdate()
 	
 }
 
-bool VSCVidTreeConf::CallChange(void* pParam, StorFactoryChangeData data)
+void VSCVidTreeConf::SlotCallChange(int type, std::string strId, std::string strCam)
 {
-    int dummy = errno;
-    VSCVidTreeConf * pObject = (VSCVidTreeConf * )pParam;
+	StorFactoryChangeData data;
+	data.type = (StorFactoryChangeType)type;
+	bool bRet1 = data.cId.ParseFromString(strId);
+	bool bRet2 = data.cCam.ParseFromString(strCam);
 
-    if (pObject)
-    {
-        return pObject->CallChange1(data);
-    }
+	if (bRet1 == true && bRet2 == true)
+	{
+		CallChange(data);
+	}
 }
-bool VSCVidTreeConf::CallChange1(StorFactoryChangeData data)
+bool VSCVidTreeConf::CallChange(StorFactoryChangeData data)
 {
 	switch (data.type)
 	{
