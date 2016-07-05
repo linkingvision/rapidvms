@@ -129,6 +129,31 @@ inline BOOL Factory::SetExportPath(astring &strPath)
 	return TRUE;
 }
 
+inline BOOL Factory::GetEventDBPath(astring &strPath)
+{
+	astring strSysPath;
+	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
+	{
+	    return FALSE;
+	}
+
+#ifdef WIN32
+#ifndef _WIN64
+	astring strPathDefault = strSysPath + "vidstor\\eventdb\\";
+#else
+	astring strPathDefault = strSysPath + "vidstor64\\eventdb\\";
+#endif
+#else
+	astring strPathDefault = strSysPath + "vidstor/eventdb/";
+#endif
+
+	strPath = strPathDefault;
+	Poco::File file1(strPath);
+	file1.createDirectories();
+		
+	return TRUE;
+}
+
 inline BOOL Factory::Init()
 {
 	astring strPath;
