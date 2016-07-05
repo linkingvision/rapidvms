@@ -16,7 +16,9 @@ VSCVidItemStorConf::VSCVidItemStorConf(VidStor cStor, ClientFactory &pFactory, Q
 	
 	//TreeUpdated();
 
-	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidItemStorConf::CallChange);
+	//m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidItemStorConf::CallChange);
+	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalCallChange(int, std::string, std::string)), 
+		this, SLOT(SlotCallChange(int, std::string, std::string)));
 
 	UpdateOnline(m_pFactory.GetStorFactory().GetOnline(m_cStor.strid()));
 	if (m_pFactory.GetStorFactory().GetOnline(m_cStor.strid()) == true)
@@ -31,17 +33,20 @@ VSCVidItemStorConf::~VSCVidItemStorConf()
 	
 }
 
-bool VSCVidItemStorConf::CallChange(void* pParam, StorFactoryChangeData data)
+void VSCVidItemStorConf::SlotCallChange(int type, std::string strId, std::string strCam)
 {
-    int dummy = errno;
-    VSCVidItemStorConf * pObject = (VSCVidItemStorConf * )pParam;
+	StorFactoryChangeData data;
+	data.type = (StorFactoryChangeType)type;
+	bool bRet1 = data.cId.ParseFromString(strId);
+	bool bRet2 = data.cCam.ParseFromString(strCam);
 
-    if (pObject)
-    {
-        return pObject->CallChange1(data);
-    }
+	if (bRet1 == true && bRet2 == true)
+	{
+		CallChange(data);
+	}
 }
-bool VSCVidItemStorConf::CallChange1(StorFactoryChangeData data)
+
+bool VSCVidItemStorConf::CallChange(StorFactoryChangeData data)
 {
 
 	if (data.cId.strstorid() != m_cStor.strid())

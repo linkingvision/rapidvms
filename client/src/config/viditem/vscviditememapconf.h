@@ -3,8 +3,9 @@
 
 #include "common/vscviditeminf.h"
 
-class VSCVidItemEmapConf : public VSCVidItemInf
+class VSCVidItemEmapConf : public QObject,public VSCVidItemInf
 {
+Q_OBJECT
 public:
     VSCVidItemEmapConf(ClientFactory &pFactory, QTreeWidgetItem *parent);
     ~VSCVidItemEmapConf();

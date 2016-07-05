@@ -4,15 +4,18 @@
 #include "common/vscviditeminf.h"
 #include "config/viditem/vscviditemaddcam.h"
 
-class VSCVidItemStorConf : public VSCVidItemInf
+class VSCVidItemStorConf : public QObject, public VSCVidItemInf
 {
+Q_OBJECT
 public:
     VSCVidItemStorConf(VidStor cStor, ClientFactory &pFactory, QTreeWidgetItem *parent);
     ~VSCVidItemStorConf();
 public:
 	/* Take care all the child state change */
-	static bool CallChange(void* pParam, StorFactoryChangeData data);
-	bool CallChange1(StorFactoryChangeData data);
+	//static bool CallChange(void* pParam, StorFactoryChangeData data);
+	bool CallChange(StorFactoryChangeData data);
+public slots:
+	void SlotCallChange(int type, std::string strId, std::string strCam);
 	
 public:
 	/* Get all the child of this VidStor */

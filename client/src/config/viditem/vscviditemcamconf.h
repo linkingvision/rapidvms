@@ -3,8 +3,9 @@
 
 #include "common/vscviditeminf.h"
 
-class VSCVidItemCamConf : public VSCVidItemInf
+class VSCVidItemCamConf : public QObject,public VSCVidItemInf
 {
+Q_OBJECT
 public:
     VSCVidItemCamConf(VidStor cStor, VidCamera cCam, ClientFactory &pFactory, QTreeWidgetItem *parent);
     ~VSCVidItemCamConf();

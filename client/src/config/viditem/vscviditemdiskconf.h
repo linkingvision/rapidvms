@@ -3,8 +3,9 @@
 
 #include "common/vscviditeminf.h"
 
-class VSCVidItemDiskConf : public VSCVidItemInf
+class VSCVidItemDiskConf : public QObject,public VSCVidItemInf
 {
+Q_OBJECT
 public:
 	VSCVidItemDiskConf(VidStor cStor, ClientFactory &pFactory, QTreeWidgetItem *parent);
 	~VSCVidItemDiskConf();

@@ -3,8 +3,9 @@
 
 #include "common/vscviditeminf.h"
 
-class VSCVidItemAddStor : public VSCVidItemInf
+class VSCVidItemAddStor : public QObject,public VSCVidItemInf
 {
+Q_OBJECT
 public:
     VSCVidItemAddStor(ClientFactory &pFactory, QTreeWidgetItem *parent);
     ~VSCVidItemAddStor();
