@@ -3,16 +3,20 @@
 
 #include "common/vscviditeminf.h"
 
-class VSCVidItemVidStor : public VSCVidItemInf
+class VSCVidItemVidStor : public QObject, public VSCVidItemInf
 {
+Q_OBJECT
 public:
 	VSCVidItemVidStor(VidStor cStor, ClientFactory &pFactory, QTreeWidgetItem *parent);
 	~VSCVidItemVidStor();
 
 public:
 	/* Take care all the child state change */
-	static bool CallChange(void* pParam, StorFactoryChangeData data);
-	bool CallChange1(StorFactoryChangeData data);
+	//static bool CallChange(void* pParam, StorFactoryChangeData data);
+	bool CallChange(StorFactoryChangeData data);
+public slots:
+	void SlotCallChange(int type, std::string strId, std::string strCam);
+	
 public:
 	/* Get all the child of this VidStor */
 	void TreeUpdated(bool bClear = false);

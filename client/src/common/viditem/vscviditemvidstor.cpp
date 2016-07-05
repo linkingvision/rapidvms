@@ -12,8 +12,11 @@ VSCVidItemVidStor::VSCVidItemVidStor(VidStor cStor, ClientFactory &pFactory, QTr
 	setIcon(0, icon1);
 
 	setText(0, QApplication::translate(" ", m_cStor.strname().c_str(), 0));
-	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidItemVidStor::CallChange);
+	//m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidItemVidStor::CallChange);
 
+	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalCallChange(int, std::string, std::string)), 
+		this, SLOT(SlotCallChange(int, std::string, std::string)));
+	
 	UpdateOnline(m_pFactory.GetStorFactory().GetOnline(m_cStor.strid()));
 
 	if (m_pFactory.GetStorFactory().GetOnline(m_cStor.strid()) == true)
@@ -27,17 +30,20 @@ VSCVidItemVidStor::~VSCVidItemVidStor()
 	
 }
 
-bool VSCVidItemVidStor::CallChange(void* pParam, StorFactoryChangeData data)
+void VSCVidItemVidStor::SlotCallChange(int type, std::string strId, std::string strCam)
 {
-    int dummy = errno;
-    VSCVidItemVidStor * pObject = (VSCVidItemVidStor * )pParam;
+	StorFactoryChangeData data;
+	data.type = (StorFactoryChangeType)type;
+	bool bRet1 = data.cId.ParseFromString(strId);
+	bool bRet2 = data.cCam.ParseFromString(strCam);
 
-    if (pObject)
-    {
-        return pObject->CallChange1(data);
-    }
+	if (bRet1 == true && bRet2 == true)
+	{
+		CallChange(data);
+	}
 }
-bool VSCVidItemVidStor::CallChange1(StorFactoryChangeData data)
+
+bool VSCVidItemVidStor::CallChange(StorFactoryChangeData data)
 {
 	if (data.cId.strstorid() != m_cStor.strid())
 	{
