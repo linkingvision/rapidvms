@@ -32,8 +32,9 @@ public:
 	virtual void Init();
 public:
 	/* Take care all the vid Stor state change */
-	static bool CallChange(void* pParam, ClientFactoryChangeData data);
-	bool CallChange1(ClientFactoryChangeData data);
+	bool CallChange(ClientFactoryChangeData data);
+public slots:
+	void SlotCallChange(int type, std::string strId);
 public:
 	void TreeUpdate();
 private:

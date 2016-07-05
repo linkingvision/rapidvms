@@ -36,7 +36,8 @@ void VSCVidTreeEmap::Init()
 	TreeUpdate();
 	
 	/* Register the device callback */
-	m_pFactory.RegChangeNotify((void *)this, VSCVidTreeEmap::CallChange);
+	//m_pFactory.RegChangeNotify((void *)this, VSCVidTreeEmap::CallChange);
+	connect(&(m_pFactory), SIGNAL(SignalCallChange(int, std::string)), this, SLOT(SlotCallChange(int, std::string)));
 	m_bInit = true;
 }
 
@@ -87,17 +88,15 @@ void VSCVidTreeEmap::mouseDoubleClickEvent(QMouseEvent *event)
 	
 }
 
-bool VSCVidTreeEmap::CallChange(void* pParam, ClientFactoryChangeData data)
+void VSCVidTreeEmap::SlotCallChange(int type, std::string strId)
 {
-    int dummy = errno;
-    VSCVidTreeEmap * pObject = (VSCVidTreeEmap * )pParam;
-
-    if (pObject)
-    {
-        return pObject->CallChange1(data);
-    }
+	ClientFactoryChangeData data;
+	data.type = (ClientFactoryChangeType)type;
+	data.id = strId;
+	CallChange(data);
 }
-bool VSCVidTreeEmap::CallChange1(ClientFactoryChangeData data)
+
+bool VSCVidTreeEmap::CallChange(ClientFactoryChangeData data)
 {
 	switch (data.type)
 	{

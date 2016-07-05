@@ -36,7 +36,10 @@ void VSCVidTreeCam::Init()
 	TreeUpdate();
 	
 	/* Register the device callback */
-	m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeCam::CallChange);
+	//m_pFactory.GetStorFactory().RegChangeNotify((void *)this, VSCVidTreeCam::CallChange);
+	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalCallChange(int, std::string, std::string)), 
+		this, SLOT(SlotCallChange(int, std::string, std::string)));
+	
 	m_bInit = true;
 }
 
@@ -54,7 +57,7 @@ void VSCVidTreeCam::mouseMoveEvent(QMouseEvent *event)
 		if (pCam)
 		{
 			VSCVidItemVidStor *pStor = 
-					dynamic_cast<VSCVidItemVidStor * >(pCam->parent());
+				dynamic_cast<VSCVidItemVidStor * >(pCam->QTreeWidgetItem::parent());
 			if (pStor)
 			{
 				VDC_DEBUG( "%s id Stor %s Camera %s \n",__FUNCTION__, 
@@ -110,7 +113,7 @@ void VSCVidTreeCam::mouseDoubleClickEvent(QMouseEvent *event)
 		if (pCam)
 		{
 			VSCVidItemVidStor *pStor = 
-					dynamic_cast<VSCVidItemVidStor * >(pCam->parent());
+				dynamic_cast<VSCVidItemVidStor * >(pCam->QTreeWidgetItem::parent());
 			if (pStor)
 			{
 				VDC_DEBUG( "%s id Stor %s Camera %s \n",__FUNCTION__, 
@@ -127,17 +130,20 @@ void VSCVidTreeCam::mouseDoubleClickEvent(QMouseEvent *event)
 	
 }
 
-bool VSCVidTreeCam::CallChange(void* pParam, StorFactoryChangeData data)
+void VSCVidTreeCam::SlotCallChange(int type, std::string strId, std::string strCam)
 {
-    int dummy = errno;
-    VSCVidTreeCam * pObject = (VSCVidTreeCam * )pParam;
+	StorFactoryChangeData data;
+	data.type = (StorFactoryChangeType)type;
+	bool bRet1 = data.cId.ParseFromString(strId);
+	bool bRet2 = data.cCam.ParseFromString(strCam);
 
-    if (pObject)
-    {
-        return pObject->CallChange1(data);
-    }
+	if (bRet1 == true && bRet2 == true)
+	{
+		CallChange(data);
+	}
 }
-bool VSCVidTreeCam::CallChange1(StorFactoryChangeData data)
+
+bool VSCVidTreeCam::CallChange(StorFactoryChangeData data)
 {
 	switch (data.type)
 	{
