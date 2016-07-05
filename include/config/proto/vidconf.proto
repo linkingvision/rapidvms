@@ -245,6 +245,19 @@ message VidStreamList {
 	repeated VidStream cVidStream = 1;
 }
 
+//Below Is VA part
+//Blob
+message VidBlob{
+	int32 x0 = 1;
+	int32 y0 = 2;
+	int32 x1 = 3;
+	int32 y1 = 4;
+}
+
+message VidBlobList {
+	repeated VidBlob cBlob = 1;
+}
+
 
 
 

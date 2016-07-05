@@ -37,6 +37,8 @@ void protobuf_AddDesc_vidconf_2eproto();
 void protobuf_AssignDesc_vidconf_2eproto();
 void protobuf_ShutdownFile_vidconf_2eproto();
 
+class VidBlob;
+class VidBlobList;
 class VidCamera;
 class VidCameraId;
 class VidCameraList;
@@ -2752,6 +2754,189 @@ class VidStreamList : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static VidStreamList* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VidBlob : public ::google::protobuf::Message {
+ public:
+  VidBlob();
+  virtual ~VidBlob();
+
+  VidBlob(const VidBlob& from);
+
+  inline VidBlob& operator=(const VidBlob& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidBlob& default_instance();
+
+  void Swap(VidBlob* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidBlob* New() const { return New(NULL); }
+
+  VidBlob* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidBlob& from);
+  void MergeFrom(const VidBlob& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidBlob* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 x0 = 1;
+  void clear_x0();
+  static const int kX0FieldNumber = 1;
+  ::google::protobuf::int32 x0() const;
+  void set_x0(::google::protobuf::int32 value);
+
+  // optional int32 y0 = 2;
+  void clear_y0();
+  static const int kY0FieldNumber = 2;
+  ::google::protobuf::int32 y0() const;
+  void set_y0(::google::protobuf::int32 value);
+
+  // optional int32 x1 = 3;
+  void clear_x1();
+  static const int kX1FieldNumber = 3;
+  ::google::protobuf::int32 x1() const;
+  void set_x1(::google::protobuf::int32 value);
+
+  // optional int32 y1 = 4;
+  void clear_y1();
+  static const int kY1FieldNumber = 4;
+  ::google::protobuf::int32 y1() const;
+  void set_y1(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidBlob)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 x0_;
+  ::google::protobuf::int32 y0_;
+  ::google::protobuf::int32 x1_;
+  ::google::protobuf::int32 y1_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidBlob* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VidBlobList : public ::google::protobuf::Message {
+ public:
+  VidBlobList();
+  virtual ~VidBlobList();
+
+  VidBlobList(const VidBlobList& from);
+
+  inline VidBlobList& operator=(const VidBlobList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidBlobList& default_instance();
+
+  void Swap(VidBlobList* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidBlobList* New() const { return New(NULL); }
+
+  VidBlobList* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidBlobList& from);
+  void MergeFrom(const VidBlobList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidBlobList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .VidConf.VidBlob cBlob = 1;
+  int cblob_size() const;
+  void clear_cblob();
+  static const int kCBlobFieldNumber = 1;
+  const ::VidConf::VidBlob& cblob(int index) const;
+  ::VidConf::VidBlob* mutable_cblob(int index);
+  ::VidConf::VidBlob* add_cblob();
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >*
+      mutable_cblob();
+  const ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >&
+      cblob() const;
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidBlobList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob > cblob_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidBlobList* default_instance_;
 };
 // ===================================================================
 
@@ -5522,7 +5707,105 @@ VidStreamList::cvidstream() const {
   return cvidstream_;
 }
 
+// -------------------------------------------------------------------
+
+// VidBlob
+
+// optional int32 x0 = 1;
+inline void VidBlob::clear_x0() {
+  x0_ = 0;
+}
+inline ::google::protobuf::int32 VidBlob::x0() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.x0)
+  return x0_;
+}
+inline void VidBlob::set_x0(::google::protobuf::int32 value) {
+  
+  x0_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.x0)
+}
+
+// optional int32 y0 = 2;
+inline void VidBlob::clear_y0() {
+  y0_ = 0;
+}
+inline ::google::protobuf::int32 VidBlob::y0() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.y0)
+  return y0_;
+}
+inline void VidBlob::set_y0(::google::protobuf::int32 value) {
+  
+  y0_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.y0)
+}
+
+// optional int32 x1 = 3;
+inline void VidBlob::clear_x1() {
+  x1_ = 0;
+}
+inline ::google::protobuf::int32 VidBlob::x1() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.x1)
+  return x1_;
+}
+inline void VidBlob::set_x1(::google::protobuf::int32 value) {
+  
+  x1_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.x1)
+}
+
+// optional int32 y1 = 4;
+inline void VidBlob::clear_y1() {
+  y1_ = 0;
+}
+inline ::google::protobuf::int32 VidBlob::y1() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.y1)
+  return y1_;
+}
+inline void VidBlob::set_y1(::google::protobuf::int32 value) {
+  
+  y1_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.y1)
+}
+
+// -------------------------------------------------------------------
+
+// VidBlobList
+
+// repeated .VidConf.VidBlob cBlob = 1;
+inline int VidBlobList::cblob_size() const {
+  return cblob_.size();
+}
+inline void VidBlobList::clear_cblob() {
+  cblob_.Clear();
+}
+inline const ::VidConf::VidBlob& VidBlobList::cblob(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlobList.cBlob)
+  return cblob_.Get(index);
+}
+inline ::VidConf::VidBlob* VidBlobList::mutable_cblob(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidBlobList.cBlob)
+  return cblob_.Mutable(index);
+}
+inline ::VidConf::VidBlob* VidBlobList::add_cblob() {
+  // @@protoc_insertion_point(field_add:VidConf.VidBlobList.cBlob)
+  return cblob_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >*
+VidBlobList::mutable_cblob() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidBlobList.cBlob)
+  return &cblob_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >&
+VidBlobList::cblob() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidBlobList.cBlob)
+  return cblob_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

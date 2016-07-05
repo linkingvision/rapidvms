@@ -92,6 +92,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* VidStreamList_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   VidStreamList_reflection_ = NULL;
+const ::google::protobuf::Descriptor* VidBlob_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  VidBlob_reflection_ = NULL;
+const ::google::protobuf::Descriptor* VidBlobList_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  VidBlobList_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* CameraType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor_ = NULL;
@@ -525,6 +531,39 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       sizeof(VidStreamList),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, _is_default_instance_));
+  VidBlob_descriptor_ = file->message_type(24);
+  static const int VidBlob_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x0_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y0_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x1_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y1_),
+  };
+  VidBlob_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      VidBlob_descriptor_,
+      VidBlob::default_instance_,
+      VidBlob_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(VidBlob),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, _is_default_instance_));
+  VidBlobList_descriptor_ = file->message_type(25);
+  static const int VidBlobList_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, cblob_),
+  };
+  VidBlobList_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      VidBlobList_descriptor_,
+      VidBlobList::default_instance_,
+      VidBlobList_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(VidBlobList),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _is_default_instance_));
   CameraType_descriptor_ = file->enum_type(0);
   CameraConnectType_descriptor_ = file->enum_type(1);
   VidLanguage_descriptor_ = file->enum_type(2);
@@ -589,6 +628,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
       VidStream_descriptor_, &VidStream::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       VidStreamList_descriptor_, &VidStreamList::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      VidBlob_descriptor_, &VidBlob::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      VidBlobList_descriptor_, &VidBlobList::default_instance());
 }
 
 }  // namespace
@@ -642,6 +685,10 @@ void protobuf_ShutdownFile_vidconf_2eproto() {
   delete VidStream_reflection_;
   delete VidStreamList::default_instance_;
   delete VidStreamList_reflection_;
+  delete VidBlob::default_instance_;
+  delete VidBlob_reflection_;
+  delete VidBlobList::default_instance_;
+  delete VidBlobList_reflection_;
 }
 
 void protobuf_AddDesc_vidconf_2eproto() {
@@ -707,22 +754,25 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "ap\030\001 \003(\0132\020.VidConf.VidEmap\".\n\tVidStream\022"
     "\020\n\010strToken\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\"7\n\rVi"
     "dStreamList\022&\n\ncVidStream\030\001 \003(\0132\022.VidCon"
-    "f.VidStream*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013\n\007"
-    "VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n"
-    "\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID_M"
-    "JPEG\020\006*P\n\021CameraConnectType\022\021\n\rVID_CONNE"
-    "CT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONNE"
-    "CT_UDP\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_AUTO"
-    "\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLay"
-    "out\022\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT"
-    "_MODE_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VI"
-    "D_LAYOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4"
-    "X4\020\004\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LAYOU"
-    "T_MODE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023"
-    "VID_LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE"
-    "_6x6\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_L"
-    "AYOUT_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020"
-    "\014\022\027\n\023VID_LAYOUT_MODE_1p6\020\rb\006proto3", 2874);
+    "f.VidStream\"9\n\007VidBlob\022\n\n\002x0\030\001 \001(\005\022\n\n\002y0"
+    "\030\002 \001(\005\022\n\n\002x1\030\003 \001(\005\022\n\n\002y1\030\004 \001(\005\".\n\013VidBlo"
+    "bList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf.VidBlob*q"
+    "\n\nCameraType\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010"
+    "VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020"
+    "\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID_MJPEG\020\006*P\n\021Cam"
+    "eraConnectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID"
+    "_CONNECT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*;\n\013V"
+    "idLanguage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020"
+    "\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LA"
+    "YOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023"
+    "VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE"
+    "_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_L"
+    "AYOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n"
+    "\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MO"
+    "DE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID"
+    "_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ON"
+    "E\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYO"
+    "UT_MODE_1p6\020\rb\006proto3", 2981);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -749,6 +799,8 @@ void protobuf_AddDesc_vidconf_2eproto() {
   VidEmapList::default_instance_ = new VidEmapList();
   VidStream::default_instance_ = new VidStream();
   VidStreamList::default_instance_ = new VidStreamList();
+  VidBlob::default_instance_ = new VidBlob();
+  VidBlobList::default_instance_ = new VidBlobList();
   VidUser::default_instance_->InitAsDefaultInstance();
   VidUserList::default_instance_->InitAsDefaultInstance();
   VidStorServerConf::default_instance_->InitAsDefaultInstance();
@@ -773,6 +825,8 @@ void protobuf_AddDesc_vidconf_2eproto() {
   VidEmapList::default_instance_->InitAsDefaultInstance();
   VidStream::default_instance_->InitAsDefaultInstance();
   VidStreamList::default_instance_->InitAsDefaultInstance();
+  VidBlob::default_instance_->InitAsDefaultInstance();
+  VidBlobList::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_vidconf_2eproto);
 }
 
@@ -11643,6 +11697,645 @@ const ::google::protobuf::RepeatedPtrField< ::VidConf::VidStream >&
 VidStreamList::cvidstream() const {
   // @@protoc_insertion_point(field_list:VidConf.VidStreamList.cVidStream)
   return cvidstream_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int VidBlob::kX0FieldNumber;
+const int VidBlob::kY0FieldNumber;
+const int VidBlob::kX1FieldNumber;
+const int VidBlob::kY1FieldNumber;
+#endif  // !_MSC_VER
+
+VidBlob::VidBlob()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:VidConf.VidBlob)
+}
+
+void VidBlob::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+VidBlob::VidBlob(const VidBlob& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:VidConf.VidBlob)
+}
+
+void VidBlob::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  x0_ = 0;
+  y0_ = 0;
+  x1_ = 0;
+  y1_ = 0;
+}
+
+VidBlob::~VidBlob() {
+  // @@protoc_insertion_point(destructor:VidConf.VidBlob)
+  SharedDtor();
+}
+
+void VidBlob::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void VidBlob::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* VidBlob::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return VidBlob_descriptor_;
+}
+
+const VidBlob& VidBlob::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
+  return *default_instance_;
+}
+
+VidBlob* VidBlob::default_instance_ = NULL;
+
+VidBlob* VidBlob::New(::google::protobuf::Arena* arena) const {
+  VidBlob* n = new VidBlob;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void VidBlob::Clear() {
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<VidBlob*>(16)->f)
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(x0_, y1_);
+
+#undef ZR_HELPER_
+#undef ZR_
+
+}
+
+bool VidBlob::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:VidConf.VidBlob)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 x0 = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &x0_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_y0;
+        break;
+      }
+
+      // optional int32 y0 = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_y0:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &y0_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_x1;
+        break;
+      }
+
+      // optional int32 x1 = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_x1:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &x1_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_y1;
+        break;
+      }
+
+      // optional int32 y1 = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_y1:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &y1_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:VidConf.VidBlob)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:VidConf.VidBlob)
+  return false;
+#undef DO_
+}
+
+void VidBlob::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:VidConf.VidBlob)
+  // optional int32 x0 = 1;
+  if (this->x0() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->x0(), output);
+  }
+
+  // optional int32 y0 = 2;
+  if (this->y0() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->y0(), output);
+  }
+
+  // optional int32 x1 = 3;
+  if (this->x1() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->x1(), output);
+  }
+
+  // optional int32 y1 = 4;
+  if (this->y1() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->y1(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:VidConf.VidBlob)
+}
+
+::google::protobuf::uint8* VidBlob::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidBlob)
+  // optional int32 x0 = 1;
+  if (this->x0() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->x0(), target);
+  }
+
+  // optional int32 y0 = 2;
+  if (this->y0() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->y0(), target);
+  }
+
+  // optional int32 x1 = 3;
+  if (this->x1() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->x1(), target);
+  }
+
+  // optional int32 y1 = 4;
+  if (this->y1() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->y1(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidBlob)
+  return target;
+}
+
+int VidBlob::ByteSize() const {
+  int total_size = 0;
+
+  // optional int32 x0 = 1;
+  if (this->x0() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->x0());
+  }
+
+  // optional int32 y0 = 2;
+  if (this->y0() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->y0());
+  }
+
+  // optional int32 x1 = 3;
+  if (this->x1() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->x1());
+  }
+
+  // optional int32 y1 = 4;
+  if (this->y1() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->y1());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void VidBlob::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const VidBlob* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const VidBlob>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void VidBlob::MergeFrom(const VidBlob& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.x0() != 0) {
+    set_x0(from.x0());
+  }
+  if (from.y0() != 0) {
+    set_y0(from.y0());
+  }
+  if (from.x1() != 0) {
+    set_x1(from.x1());
+  }
+  if (from.y1() != 0) {
+    set_y1(from.y1());
+  }
+}
+
+void VidBlob::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VidBlob::CopyFrom(const VidBlob& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VidBlob::IsInitialized() const {
+
+  return true;
+}
+
+void VidBlob::Swap(VidBlob* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void VidBlob::InternalSwap(VidBlob* other) {
+  std::swap(x0_, other->x0_);
+  std::swap(y0_, other->y0_);
+  std::swap(x1_, other->x1_);
+  std::swap(y1_, other->y1_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata VidBlob::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = VidBlob_descriptor_;
+  metadata.reflection = VidBlob_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// VidBlob
+
+// optional int32 x0 = 1;
+void VidBlob::clear_x0() {
+  x0_ = 0;
+}
+ ::google::protobuf::int32 VidBlob::x0() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.x0)
+  return x0_;
+}
+ void VidBlob::set_x0(::google::protobuf::int32 value) {
+  
+  x0_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.x0)
+}
+
+// optional int32 y0 = 2;
+void VidBlob::clear_y0() {
+  y0_ = 0;
+}
+ ::google::protobuf::int32 VidBlob::y0() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.y0)
+  return y0_;
+}
+ void VidBlob::set_y0(::google::protobuf::int32 value) {
+  
+  y0_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.y0)
+}
+
+// optional int32 x1 = 3;
+void VidBlob::clear_x1() {
+  x1_ = 0;
+}
+ ::google::protobuf::int32 VidBlob::x1() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.x1)
+  return x1_;
+}
+ void VidBlob::set_x1(::google::protobuf::int32 value) {
+  
+  x1_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.x1)
+}
+
+// optional int32 y1 = 4;
+void VidBlob::clear_y1() {
+  y1_ = 0;
+}
+ ::google::protobuf::int32 VidBlob::y1() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlob.y1)
+  return y1_;
+}
+ void VidBlob::set_y1(::google::protobuf::int32 value) {
+  
+  y1_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidBlob.y1)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int VidBlobList::kCBlobFieldNumber;
+#endif  // !_MSC_VER
+
+VidBlobList::VidBlobList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:VidConf.VidBlobList)
+}
+
+void VidBlobList::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+VidBlobList::VidBlobList(const VidBlobList& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:VidConf.VidBlobList)
+}
+
+void VidBlobList::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+}
+
+VidBlobList::~VidBlobList() {
+  // @@protoc_insertion_point(destructor:VidConf.VidBlobList)
+  SharedDtor();
+}
+
+void VidBlobList::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void VidBlobList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* VidBlobList::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return VidBlobList_descriptor_;
+}
+
+const VidBlobList& VidBlobList::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
+  return *default_instance_;
+}
+
+VidBlobList* VidBlobList::default_instance_ = NULL;
+
+VidBlobList* VidBlobList::New(::google::protobuf::Arena* arena) const {
+  VidBlobList* n = new VidBlobList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void VidBlobList::Clear() {
+  cblob_.Clear();
+}
+
+bool VidBlobList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:VidConf.VidBlobList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .VidConf.VidBlob cBlob = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_cBlob:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_cblob()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(10)) goto parse_loop_cBlob;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:VidConf.VidBlobList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:VidConf.VidBlobList)
+  return false;
+#undef DO_
+}
+
+void VidBlobList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:VidConf.VidBlobList)
+  // repeated .VidConf.VidBlob cBlob = 1;
+  for (unsigned int i = 0, n = this->cblob_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->cblob(i), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:VidConf.VidBlobList)
+}
+
+::google::protobuf::uint8* VidBlobList::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidBlobList)
+  // repeated .VidConf.VidBlob cBlob = 1;
+  for (unsigned int i = 0, n = this->cblob_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, this->cblob(i), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidBlobList)
+  return target;
+}
+
+int VidBlobList::ByteSize() const {
+  int total_size = 0;
+
+  // repeated .VidConf.VidBlob cBlob = 1;
+  total_size += 1 * this->cblob_size();
+  for (int i = 0; i < this->cblob_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->cblob(i));
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void VidBlobList::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const VidBlobList* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const VidBlobList>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void VidBlobList::MergeFrom(const VidBlobList& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  cblob_.MergeFrom(from.cblob_);
+}
+
+void VidBlobList::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VidBlobList::CopyFrom(const VidBlobList& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VidBlobList::IsInitialized() const {
+
+  return true;
+}
+
+void VidBlobList::Swap(VidBlobList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void VidBlobList::InternalSwap(VidBlobList* other) {
+  cblob_.UnsafeArenaSwap(&other->cblob_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata VidBlobList::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = VidBlobList_descriptor_;
+  metadata.reflection = VidBlobList_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// VidBlobList
+
+// repeated .VidConf.VidBlob cBlob = 1;
+int VidBlobList::cblob_size() const {
+  return cblob_.size();
+}
+void VidBlobList::clear_cblob() {
+  cblob_.Clear();
+}
+const ::VidConf::VidBlob& VidBlobList::cblob(int index) const {
+  // @@protoc_insertion_point(field_get:VidConf.VidBlobList.cBlob)
+  return cblob_.Get(index);
+}
+::VidConf::VidBlob* VidBlobList::mutable_cblob(int index) {
+  // @@protoc_insertion_point(field_mutable:VidConf.VidBlobList.cBlob)
+  return cblob_.Mutable(index);
+}
+::VidConf::VidBlob* VidBlobList::add_cblob() {
+  // @@protoc_insertion_point(field_add:VidConf.VidBlobList.cBlob)
+  return cblob_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >*
+VidBlobList::mutable_cblob() {
+  // @@protoc_insertion_point(field_mutable_list:VidConf.VidBlobList.cBlob)
+  return &cblob_;
+}
+const ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >&
+VidBlobList::cblob() const {
+  // @@protoc_insertion_point(field_list:VidConf.VidBlobList.cBlob)
+  return cblob_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
