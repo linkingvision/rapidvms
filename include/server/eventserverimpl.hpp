@@ -61,13 +61,19 @@ inline void VEventServerCallbackTask::run()
 }
 
 inline VEventServerDbTask::VEventServerDbTask(Factory &pFactory)
+//:m_Factory(pFactory), m_pSqlSession(NULL)
 :m_Factory(pFactory)
 {
 }
 
 inline VEventServerDbTask::~VEventServerDbTask()
 {
-
+#if 0
+	if (m_pSqlSession)
+	{
+		delete m_pSqlSession;
+	}
+#endif
 }
 
 inline void VEventServerDbTask::PushEvent(VEventData &pData)
@@ -79,6 +85,17 @@ inline void VEventServerDbTask::PushEvent(VEventData &pData)
 
 inline void VEventServerDbTask::run()
 {
+	std::time_t pTime = time(NULL);
+
+	Poco::Timestamp pTimeStamp = Poco::Timestamp::fromEpochTime(pTime);
+
+	/* Use next sec to check  */
+	Poco::DateTime pTimeTime(pTimeStamp);
+
+	int nYear = pTimeTime.year();
+	int nMonth = pTimeTime.month();
+	int nHour = pTimeTime.hour();
+	
 	//m_Factory.GetEventDBPath();
 	/* Check if need  create new DB file*/
 	while(m_Queue.BlockingPeek() == true)

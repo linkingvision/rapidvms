@@ -34,6 +34,7 @@ public:
 	s64 nTime;
 	astring strTime;
 	astring strDesc;
+	bool bMetaData;
 	astring strMetaData;/* the MetaData Depend the type */
 };
 
@@ -53,6 +54,7 @@ public:
 private:
 	XSDK::XBlockingQueue<VEventData> m_Queue;
 	Factory &m_Factory;
+	//soci::session *m_pSqlSession;
 	
 };
 
