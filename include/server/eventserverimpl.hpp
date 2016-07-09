@@ -122,16 +122,24 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 	if (cDBConf.ntype() == VID_DB_FIREBIRD)
 	{
 		//astring strEventDB = cDBConf.strdbpath() + "eventdb" + strPlus + ".db";
-		astring strEventDB = "service=" + cDBConf.strdbpath() + "eventdb" + ".db";
+		astring strEventDB = "service=" + cDBConf.strdbpath() + "EVENTDB" + ".DB";
 		if (m_pSqlSession != NULL)
 		{
 			delete m_pSqlSession;
 			m_pSqlSession = NULL;
 		}
-		m_pSqlSession = new soci::session(soci::firebird, strEventDB);
-		*m_pSqlSession << "create table if not exists events (id integer primary key,"
-			" strDevice text, strId text, strDevname text, strType text, nEvttime integer, "
-			"strEvttimestr date, strDesc text)";
+		try
+		{	
+			soci::backend_factory const &backEnd = soci::firebird;
+			m_pSqlSession = new soci::session(backEnd, strEventDB);
+			*m_pSqlSession << "create table events (id integer primary key,"
+				" strDevice varchar(128), strId varchar(128), strDevname varchar(128), strType varchar(128), nEvttime integer, "
+				"strDesc varchar(128))";
+		}
+		catch (exception const &e)		
+		{			
+			VDC_DEBUG("%s Create firebird session failed \n", __FUNCTION__);
+		}
 
 	}else
 	{
@@ -157,12 +165,24 @@ inline void VEventServerDbTask::run()
 		{
 			UpdateDBSession(false);
 		}
-		/* Insert the data to db */
-		*m_pSqlSession << "insert into events values(NULL, :strDevice, :strId,"
-			" :strDevname :strType :nEvttime :strEvttimestr :strDesc)", 
-			soci::use(sData.strDevice, "strDevice"), soci::use(sData.strId, "strId"), soci::use(sData.strDeviceName, "strDevname"),
-			soci::use(sData.strType, "strType"), soci::use(sData.nTime, "nEvttime"), soci::use(sData.strTime, "strEvttimestr"),
-			soci::use(sData.strDesc, "strDesc");
+		if (m_pSqlSession == NULL)
+		{
+			VDC_DEBUG("%s Database session is NULL \n", __FUNCTION__);
+			continue;
+		}
+		try
+		{
+			/* Insert the data to db */
+			*m_pSqlSession << "insert into events values(NULL, :strDevice, :strId,"
+				" :strDevname :strType :nEvttime :strEvttimestr :strDesc)", 
+				soci::use(sData.strDevice, "strDevice"), soci::use(sData.strId, "strId"), soci::use(sData.strDeviceName, "strDevname"),
+				soci::use(sData.strType, "strType"), soci::use(sData.nTime, "nEvttime"), 
+				soci::use(sData.strDesc, "strDesc");
+		}
+		catch (exception const &e)
+		{			
+			VDC_DEBUG("%s insert event error \n", __FUNCTION__);
+		}
 	}
 }
 		

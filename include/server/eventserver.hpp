@@ -39,7 +39,6 @@ public:
 	astring strDeviceName;
 	astring strType;/* MOTION_START, MOTION_END, SMART_MOTION */
 	s64 nTime;
-	astring strTime;
 	astring strDesc;
 	bool bMetaData;
 	astring strMetaData;/* the MetaData Depend the type */

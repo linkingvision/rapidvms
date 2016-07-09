@@ -160,6 +160,7 @@ inline void StorStream::run()
 		try
 		{
 			XSDK::XString host = m_stor.strip();
+			int nNoData = 0;
 			
 			m_pSocket->Connect(host, Port);
 			
@@ -170,7 +171,8 @@ inline void StorStream::run()
 			
 	
 			m_pSocket->SetRecvTimeout(1 * 300);
-			while(m_Quit != true)
+			/* If 20s do not get data, and break the current connection */
+			while(m_Quit != true && nNoData <= 50)
 			{
 				nRet = m_pSocket->Recv((void *)&header, sizeof(header));
 				if (nRet != sizeof(header))
@@ -180,16 +182,18 @@ inline void StorStream::run()
 						/* Have not recevice any data */
 						guard.Release();
 						ve_sleep(200);
+						nNoData ++;
 						guard.Acquire();
 						continue;
 					}else
 					{
 						//printf("%s---%d Receive error\n", __FILE__, __LINE__);
-						m_pSocket->Close();
 						break;
 					}
 				}
 				//printf("%s---%d\n", __FILE__, __LINE__);
+				nNoData = 0;
+
 
 				header.cmd = ntohl(header.cmd);
 				header.length = ntohl(header.length);
@@ -276,6 +280,13 @@ inline void StorStream::run()
 		catch( XSDK::XException& ex )
 		{
 			
+		}
+
+		{
+			m_pSocket->Close();
+			m_pSocket.Clear();
+			/* Create a new socket for reconnect */
+			m_pSocket = new XSocket;
 		}
 		guard.Release();
 

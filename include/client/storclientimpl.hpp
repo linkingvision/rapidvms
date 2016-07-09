@@ -382,6 +382,12 @@ inline void StorClient::run()
 		{
 			
 		}
+		{
+			m_pSocket->Close();
+			m_pSocket.Clear();
+			/* Create a new socket for reconnect */
+			m_pSocket = new XSocket;
+		}
 
 		guard.Release();
 
