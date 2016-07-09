@@ -61,19 +61,16 @@ inline void VEventServerCallbackTask::run()
 }
 
 inline VEventServerDbTask::VEventServerDbTask(Factory &pFactory)
-//:m_Factory(pFactory), m_pSqlSession(NULL)
-:m_Factory(pFactory)
+:m_Factory(pFactory), m_pSqlSession(NULL), m_nYear(0), m_nMonth(0)
 {
 }
 
 inline VEventServerDbTask::~VEventServerDbTask()
 {
-#if 0
 	if (m_pSqlSession)
 	{
 		delete m_pSqlSession;
 	}
-#endif
 }
 
 inline void VEventServerDbTask::PushEvent(VEventData &pData)
@@ -83,9 +80,14 @@ inline void VEventServerDbTask::PushEvent(VEventData &pData)
 	return;
 }
 
-inline void VEventServerDbTask::run()
+
+inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 {
 	std::time_t pTime = time(NULL);
+
+	/* Get the Event Server Conf */
+	VidEventDBConf cDBConf;
+	m_Factory.GetEventDBConf(cDBConf);
 
 	Poco::Timestamp pTimeStamp = Poco::Timestamp::fromEpochTime(pTime);
 
@@ -95,14 +97,72 @@ inline void VEventServerDbTask::run()
 	int nYear = pTimeTime.year();
 	int nMonth = pTimeTime.month();
 	int nHour = pTimeTime.hour();
+
+	if (bIsFirst != true)
+	{
+
+		/* Every day check if need new database */
+		if (pTime%3600 != 0 || nHour != 0)
+		{
+			return;
+		}
+
+		if (nYear == m_nYear && nMonth == m_nMonth)
+		{
+			return;
+		}
+	}
+
+	m_nYear = nYear;
+	m_nMonth = nMonth;
+
+	char strPlus[1024];
+	sprintf(strPlus, "%d_%d", m_nYear, nMonth);
 	
-	//m_Factory.GetEventDBPath();
+	if (cDBConf.ntype() == VID_DB_FIREBIRD)
+	{
+		//astring strEventDB = cDBConf.strdbpath() + "eventdb" + strPlus + ".db";
+		astring strEventDB = "service=" + cDBConf.strdbpath() + "eventdb" + ".db";
+		if (m_pSqlSession != NULL)
+		{
+			delete m_pSqlSession;
+			m_pSqlSession = NULL;
+		}
+		m_pSqlSession = new soci::session(soci::firebird, strEventDB);
+		*m_pSqlSession << "create table if not exists events (id integer primary key,"
+			" strDevice text, strId text, strDevname text, strType text, nEvttime integer, "
+			"strEvttimestr date, strDesc text)";
+
+	}else
+	{
+		VDC_DEBUG( "%s Do not support the DB TYPE \n",__FUNCTION__);
+		ve_sleep(1000);
+	}	
+}
+
+inline void VEventServerDbTask::run()
+{
+	/* Update Session first */
+	UpdateDBSession(true);
+	
 	/* Check if need  create new DB file*/
 	while(m_Queue.BlockingPeek() == true)
 	{
+		
 		VEventData sData = m_Queue.Pop();
 		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
 		/* Write the Data to DB */
+		std::time_t pTime = time(NULL);
+		if (pTime%3600 == 0)
+		{
+			UpdateDBSession(false);
+		}
+		/* Insert the data to db */
+		*m_pSqlSession << "insert into events values(NULL, :strDevice, :strId,"
+			" :strDevname :strType :nEvttime :strEvttimestr :strDesc)", 
+			soci::use(sData.strDevice, "strDevice"), soci::use(sData.strId, "strId"), soci::use(sData.strDeviceName, "strDevname"),
+			soci::use(sData.strType, "strType"), soci::use(sData.nTime, "nEvttime"), soci::use(sData.strTime, "strEvttimestr"),
+			soci::use(sData.strDesc, "strDesc");
 	}
 }
 		

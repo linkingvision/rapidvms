@@ -129,7 +129,7 @@ inline BOOL Factory::SetExportPath(astring &strPath)
 	return TRUE;
 }
 
-inline BOOL Factory::GetEventDBPath(astring &strPath)
+inline BOOL Factory::GetEventDBConf(VidEventDBConf &pConf)
 {
 	astring strSysPath;
 	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
@@ -147,9 +147,13 @@ inline BOOL Factory::GetEventDBPath(astring &strPath)
 	astring strPathDefault = strSysPath + "vidstor/eventdb/";
 #endif
 
-	strPath = strPathDefault;
+	astring strPath = strPathDefault;
 	Poco::File file1(strPath);
 	file1.createDirectories();
+
+	/* Default use the firebird, and TODO for postgresql */
+	pConf.set_strdbpath(strPath);
+	pConf.set_ntype(VID_DB_FIREBIRD);
 		
 	return TRUE;
 }

@@ -99,7 +99,7 @@ public:
 	BOOL GetExportPath(astring &strPath);
 	BOOL SetExportPath(astring &strPath);
 
-	BOOL GetEventDBPath(astring &strPath);
+	BOOL GetEventDBConf(VidEventDBConf &pConf);
 
 public:
 	bool AuthUser(astring &strUser, astring &strPasswd);
