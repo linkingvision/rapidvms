@@ -258,6 +258,17 @@ message VidBlobList {
 	repeated VidBlob cBlob = 1;
 }
 
+//DataBase configuration
+enum VidEventDBType {
+	VID_DB_FIREBIRD = 0;
+    VID_DB_POSTGRESQL = 1;
+}
+
+message VidEventDBConf {
+	VidEventDBType nType = 1;
+	string strDBPath = 2;
+}
+
 
 
 

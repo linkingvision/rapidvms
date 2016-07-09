@@ -23,6 +23,12 @@
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XBlockingQueue.h"
 
+#include <soci.h>
+#include <firebird/soci-firebird.h>
+#include <exception>
+
+
+
 using namespace VidConf;
 
 class VEventData
@@ -30,6 +36,7 @@ class VEventData
 public:
 	astring strId;
 	astring strDevice;
+	astring strDeviceName;
 	astring strType;/* MOTION_START, MOTION_END, SMART_MOTION */
 	s64 nTime;
 	astring strTime;
@@ -49,14 +56,19 @@ public:
 	~VEventServerDbTask();
 public:
 	void PushEvent(VEventData &pData);
+	void UpdateDBSession(bool bIsFirst);
 public:
 	void run();
 private:
 	XSDK::XBlockingQueue<VEventData> m_Queue;
 	Factory &m_Factory;
-	//soci::session *m_pSqlSession;
+	soci::session *m_pSqlSession;
+	int m_nYear;
+	int m_nMonth;
 	
 };
+
+//TODO VEventServerMetaDbTask for the Meta Data for the VA 
 
 class VEventServerCallbackTask: public QThread
 {

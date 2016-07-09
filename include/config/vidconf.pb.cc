@@ -98,10 +98,14 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* VidBlobList_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   VidBlobList_reflection_ = NULL;
+const ::google::protobuf::Descriptor* VidEventDBConf_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  VidEventDBConf_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* CameraType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* VidLayout_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor_ = NULL;
 
 }  // namespace
 
@@ -564,10 +568,27 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       sizeof(VidBlobList),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _is_default_instance_));
+  VidEventDBConf_descriptor_ = file->message_type(26);
+  static const int VidEventDBConf_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, ntype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, strdbpath_),
+  };
+  VidEventDBConf_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      VidEventDBConf_descriptor_,
+      VidEventDBConf::default_instance_,
+      VidEventDBConf_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(VidEventDBConf),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _is_default_instance_));
   CameraType_descriptor_ = file->enum_type(0);
   CameraConnectType_descriptor_ = file->enum_type(1);
   VidLanguage_descriptor_ = file->enum_type(2);
   VidLayout_descriptor_ = file->enum_type(3);
+  VidEventDBType_descriptor_ = file->enum_type(4);
 }
 
 namespace {
@@ -632,6 +653,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
       VidBlob_descriptor_, &VidBlob::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       VidBlobList_descriptor_, &VidBlobList::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      VidEventDBConf_descriptor_, &VidEventDBConf::default_instance());
 }
 
 }  // namespace
@@ -689,6 +712,8 @@ void protobuf_ShutdownFile_vidconf_2eproto() {
   delete VidBlob_reflection_;
   delete VidBlobList::default_instance_;
   delete VidBlobList_reflection_;
+  delete VidEventDBConf::default_instance_;
+  delete VidEventDBConf_reflection_;
 }
 
 void protobuf_AddDesc_vidconf_2eproto() {
@@ -756,23 +781,26 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "dStreamList\022&\n\ncVidStream\030\001 \003(\0132\022.VidCon"
     "f.VidStream\"9\n\007VidBlob\022\n\n\002x0\030\001 \001(\005\022\n\n\002y0"
     "\030\002 \001(\005\022\n\n\002x1\030\003 \001(\005\022\n\n\002y1\030\004 \001(\005\".\n\013VidBlo"
-    "bList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf.VidBlob*q"
-    "\n\nCameraType\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010"
-    "VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020"
-    "\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID_MJPEG\020\006*P\n\021Cam"
-    "eraConnectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID"
-    "_CONNECT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*;\n\013V"
-    "idLanguage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020"
-    "\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LA"
-    "YOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023"
-    "VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE"
-    "_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_L"
-    "AYOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n"
-    "\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MO"
-    "DE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID"
-    "_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ON"
-    "E\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYO"
-    "UT_MODE_1p6\020\rb\006proto3", 2981);
+    "bList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf.VidBlob\"K"
+    "\n\016VidEventDBConf\022&\n\005nType\030\001 \001(\0162\027.VidCon"
+    "f.VidEventDBType\022\021\n\tstrDBPath\030\002 \001(\t*q\n\nC"
+    "ameraType\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID"
+    "_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017"
+    "\n\013VID_GB28181\020\005\022\r\n\tVID_MJPEG\020\006*P\n\021Camera"
+    "ConnectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID_CO"
+    "NNECT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*;\n\013VidL"
+    "anguage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r"
+    "\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOU"
+    "T_MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID"
+    "_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X"
+    "3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYO"
+    "UT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VI"
+    "D_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_"
+    "5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LA"
+    "YOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013"
+    "\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_"
+    "MODE_1p6\020\r*<\n\016VidEventDBType\022\023\n\017VID_DB_F"
+    "IREBIRD\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3120);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -801,6 +829,7 @@ void protobuf_AddDesc_vidconf_2eproto() {
   VidStreamList::default_instance_ = new VidStreamList();
   VidBlob::default_instance_ = new VidBlob();
   VidBlobList::default_instance_ = new VidBlobList();
+  VidEventDBConf::default_instance_ = new VidEventDBConf();
   VidUser::default_instance_->InitAsDefaultInstance();
   VidUserList::default_instance_->InitAsDefaultInstance();
   VidStorServerConf::default_instance_->InitAsDefaultInstance();
@@ -827,6 +856,7 @@ void protobuf_AddDesc_vidconf_2eproto() {
   VidStreamList::default_instance_->InitAsDefaultInstance();
   VidBlob::default_instance_->InitAsDefaultInstance();
   VidBlobList::default_instance_->InitAsDefaultInstance();
+  VidEventDBConf::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_vidconf_2eproto);
 }
 
@@ -905,6 +935,20 @@ bool VidLayout_IsValid(int value) {
     case 11:
     case 12:
     case 13:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return VidEventDBType_descriptor_;
+}
+bool VidEventDBType_IsValid(int value) {
+  switch(value) {
+    case 0:
+    case 1:
       return true;
     default:
       return false;
@@ -12336,6 +12380,332 @@ const ::google::protobuf::RepeatedPtrField< ::VidConf::VidBlob >&
 VidBlobList::cblob() const {
   // @@protoc_insertion_point(field_list:VidConf.VidBlobList.cBlob)
   return cblob_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int VidEventDBConf::kNTypeFieldNumber;
+const int VidEventDBConf::kStrDBPathFieldNumber;
+#endif  // !_MSC_VER
+
+VidEventDBConf::VidEventDBConf()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:VidConf.VidEventDBConf)
+}
+
+void VidEventDBConf::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+VidEventDBConf::VidEventDBConf(const VidEventDBConf& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:VidConf.VidEventDBConf)
+}
+
+void VidEventDBConf::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  ntype_ = 0;
+  strdbpath_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+VidEventDBConf::~VidEventDBConf() {
+  // @@protoc_insertion_point(destructor:VidConf.VidEventDBConf)
+  SharedDtor();
+}
+
+void VidEventDBConf::SharedDtor() {
+  strdbpath_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void VidEventDBConf::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* VidEventDBConf::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return VidEventDBConf_descriptor_;
+}
+
+const VidEventDBConf& VidEventDBConf::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
+  return *default_instance_;
+}
+
+VidEventDBConf* VidEventDBConf::default_instance_ = NULL;
+
+VidEventDBConf* VidEventDBConf::New(::google::protobuf::Arena* arena) const {
+  VidEventDBConf* n = new VidEventDBConf;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void VidEventDBConf::Clear() {
+  ntype_ = 0;
+  strdbpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool VidEventDBConf::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:VidConf.VidEventDBConf)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .VidConf.VidEventDBType nType = 1;
+      case 1: {
+        if (tag == 8) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_ntype(static_cast< ::VidConf::VidEventDBType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_strDBPath;
+        break;
+      }
+
+      // optional string strDBPath = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_strDBPath:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strdbpath()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strdbpath().data(), this->strdbpath().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidConf.VidEventDBConf.strDBPath"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:VidConf.VidEventDBConf)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:VidConf.VidEventDBConf)
+  return false;
+#undef DO_
+}
+
+void VidEventDBConf::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:VidConf.VidEventDBConf)
+  // optional .VidConf.VidEventDBType nType = 1;
+  if (this->ntype() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->ntype(), output);
+  }
+
+  // optional string strDBPath = 2;
+  if (this->strdbpath().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strdbpath().data(), this->strdbpath().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEventDBConf.strDBPath");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->strdbpath(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:VidConf.VidEventDBConf)
+}
+
+::google::protobuf::uint8* VidEventDBConf::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEventDBConf)
+  // optional .VidConf.VidEventDBType nType = 1;
+  if (this->ntype() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->ntype(), target);
+  }
+
+  // optional string strDBPath = 2;
+  if (this->strdbpath().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strdbpath().data(), this->strdbpath().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEventDBConf.strDBPath");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->strdbpath(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEventDBConf)
+  return target;
+}
+
+int VidEventDBConf::ByteSize() const {
+  int total_size = 0;
+
+  // optional .VidConf.VidEventDBType nType = 1;
+  if (this->ntype() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
+  }
+
+  // optional string strDBPath = 2;
+  if (this->strdbpath().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strdbpath());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void VidEventDBConf::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const VidEventDBConf* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const VidEventDBConf>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void VidEventDBConf::MergeFrom(const VidEventDBConf& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.ntype() != 0) {
+    set_ntype(from.ntype());
+  }
+  if (from.strdbpath().size() > 0) {
+
+    strdbpath_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdbpath_);
+  }
+}
+
+void VidEventDBConf::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VidEventDBConf::CopyFrom(const VidEventDBConf& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VidEventDBConf::IsInitialized() const {
+
+  return true;
+}
+
+void VidEventDBConf::Swap(VidEventDBConf* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void VidEventDBConf::InternalSwap(VidEventDBConf* other) {
+  std::swap(ntype_, other->ntype_);
+  strdbpath_.Swap(&other->strdbpath_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata VidEventDBConf::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = VidEventDBConf_descriptor_;
+  metadata.reflection = VidEventDBConf_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// VidEventDBConf
+
+// optional .VidConf.VidEventDBType nType = 1;
+void VidEventDBConf::clear_ntype() {
+  ntype_ = 0;
+}
+ ::VidConf::VidEventDBType VidEventDBConf::ntype() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEventDBConf.nType)
+  return static_cast< ::VidConf::VidEventDBType >(ntype_);
+}
+ void VidEventDBConf::set_ntype(::VidConf::VidEventDBType value) {
+  
+  ntype_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEventDBConf.nType)
+}
+
+// optional string strDBPath = 2;
+void VidEventDBConf::clear_strdbpath() {
+  strdbpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& VidEventDBConf::strdbpath() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEventDBConf.strDBPath)
+  return strdbpath_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEventDBConf::set_strdbpath(const ::std::string& value) {
+  
+  strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEventDBConf.strDBPath)
+}
+ void VidEventDBConf::set_strdbpath(const char* value) {
+  
+  strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEventDBConf.strDBPath)
+}
+ void VidEventDBConf::set_strdbpath(const char* value, size_t size) {
+  
+  strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEventDBConf.strDBPath)
+}
+ ::std::string* VidEventDBConf::mutable_strdbpath() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEventDBConf.strDBPath)
+  return strdbpath_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* VidEventDBConf::release_strdbpath() {
+  
+  return strdbpath_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEventDBConf::set_allocated_strdbpath(::std::string* strdbpath) {
+  if (strdbpath != NULL) {
+    
+  } else {
+    
+  }
+  strdbpath_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdbpath);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEventDBConf.strDBPath)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
