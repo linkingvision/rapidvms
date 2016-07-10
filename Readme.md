@@ -43,7 +43,7 @@
 *  OpenCVR Individual license is for personal such as home users.
 *  The licnese is a yearly fee.
 
-# [Pay](http://veyesys.com/) # 
+# [Pay](http://veyesys.com/) #
 
 For more guide
 [http://veyesys.com/](http://veyesys.com/)
