@@ -30,12 +30,17 @@
 	Multi Display screen support.
 	Alarm Support
 	PTZ Support
-	ONVIF ProfileS simulator
 	Emap
-	Data Mining Framework 
-	HDFS Video Recording
 	HW accel Decoding
 	MJPEG/MPEG4/H264/H265 support
+
+#### License ####
+*  The source code which is opened is licnesed by MIT, and the whole application use the blow license
+*  OpenCVR enterprise license is for comany or organization users. 
+*  OpenCVR Individual license is for personal such as home users.
+*  The licnese is a yearly fee.
+
+# [Pay](http://veyesys.com/) #
 
 
 For more guide
