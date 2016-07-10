@@ -43,36 +43,7 @@
 *  OpenCVR Individual license is for personal such as home users.
 *  The licnese is a yearly fee.
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="DQYC2DBQPQJAJ">
-<table>
-<tr><td><input type="hidden" name="on0" value="OpenCVR enterprise license">OpenCVR enterprise license</td></tr><tr><td><select name="os0">
-	<option value="1-4 Channel">1-4 Channel $ 12.00 USD</option>
-	<option value="5-8 Channel">5-8 Channel $ 24.00 USD</option>
-	<option value="8-16 Channel">8-16 Channel $ 48.00 USD</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="X3VJ84MK3SMGW">
-<table>
-<tr><td><input type="hidden" name="on0" value="OpenCVR Individual license">OpenCVR Individual license</td></tr><tr><td><select name="os0">
-	<option value="1-4 Channel">1-4 Channel $ 4.00 USD</option>
-	<option value="5-8 Channel">5-8 Channel $ 8.00 USD</option>
-	<option value="8-16 Channel">8-16 Channel $ 16.00 USD</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
-</form>
+# [Pay](http://veyesys.com/) # 
 
 For more guide
 [http://veyesys.com/](http://veyesys.com/)
