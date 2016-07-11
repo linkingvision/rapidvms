@@ -169,13 +169,13 @@ inline bool VidLayout_Parse(
     VidLayout_descriptor(), name, value);
 }
 enum VidEventDBType {
-  VID_DB_FIREBIRD = 0,
+  VID_DB_SQLITE = 0,
   VID_DB_POSTGRESQL = 1,
   VidEventDBType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidEventDBType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool VidEventDBType_IsValid(int value);
-const VidEventDBType VidEventDBType_MIN = VID_DB_FIREBIRD;
+const VidEventDBType VidEventDBType_MIN = VID_DB_SQLITE;
 const VidEventDBType VidEventDBType_MAX = VID_DB_POSTGRESQL;
 const int VidEventDBType_ARRAYSIZE = VidEventDBType_MAX + 1;
 

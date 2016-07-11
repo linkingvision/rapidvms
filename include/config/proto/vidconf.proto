@@ -260,7 +260,7 @@ message VidBlobList {
 
 //DataBase configuration
 enum VidEventDBType {
-	VID_DB_FIREBIRD = 0;
+	VID_DB_SQLITE = 0;
     VID_DB_POSTGRESQL = 1;
 }
 

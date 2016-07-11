@@ -61,7 +61,7 @@ inline void VEventServerCallbackTask::run()
 }
 
 inline VEventServerDbTask::VEventServerDbTask(Factory &pFactory)
-:m_Factory(pFactory), m_pSqlSession(NULL), m_nYear(0), m_nMonth(0)
+:m_Factory(pFactory),  m_nYear(0), m_nMonth(0), m_pSqlSession(NULL)
 {
 }
 
@@ -119,10 +119,8 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 	char strPlus[1024];
 	sprintf(strPlus, "%d_%d", m_nYear, nMonth);
 	
-	if (cDBConf.ntype() == VID_DB_FIREBIRD)
+	if (cDBConf.ntype() == VID_DB_SQLITE)
 	{
-		//astring strEventDB = cDBConf.strdbpath() + "eventdb" + strPlus + ".db";
-		astring strEventDB = "service=" + cDBConf.strdbpath() + "EVENTDB" + ".DB";
 		if (m_pSqlSession != NULL)
 		{
 			delete m_pSqlSession;
@@ -130,15 +128,25 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 		}
 		try
 		{	
-			soci::backend_factory const &backEnd = soci::firebird;
-			m_pSqlSession = new soci::session(backEnd, strEventDB);
-			*m_pSqlSession << "create table events (id integer primary key,"
-				" strDevice varchar(128), strId varchar(128), strDevname varchar(128), strType varchar(128), nEvttime integer, "
-				"strDesc varchar(128))";
+			Poco::Path path(cDBConf.strdbpath());
+			Poco::File file(path);
+			file.createDirectories();
+			SQLite::Connector::registerConnector();
+			VDC_DEBUG("Create the Event DB path %s\n", path.toString().c_str());
+			
+			Poco::Path filePath("eventdb.db");
+			path.append(filePath);
+			path.makeFile();
+			VDC_DEBUG("Create the Event DB file %s\n", path.toString().c_str());
+
+			m_pSqlSession = new Poco::Data::Session("SQLite", path.toString());
+			*m_pSqlSession << "CREATE TABLE IF NOT EXISTS events "
+				"(id INTEGER PRIMARY KEY, strId TEXT, strDevice TEXT, "
+				"strDeviceName TEXT, strType TEXT, nTime INTEGER, strEvttime DATE, strDesc TEXT)", now;
 		}
 		catch (exception const &e)		
 		{			
-			VDC_DEBUG("%s Create firebird session failed \n", __FUNCTION__);
+			VDC_DEBUG("%s Create SQLITE session failed \n", __FUNCTION__);
 		}
 
 	}else
@@ -158,12 +166,15 @@ inline void VEventServerDbTask::run()
 	{
 		
 		VEventData sData = m_Queue.Pop();
+		/* Take the mutex for write */
+		XGuard guard(m_cMutex);
 		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
 		/* Write the Data to DB */
 		std::time_t pTime = time(NULL);
 		if (pTime%3600 == 0)
 		{
-			UpdateDBSession(false);
+			//TODO update the session
+			//UpdateDBSession(false);
 		}
 		if (m_pSqlSession == NULL)
 		{
@@ -172,12 +183,10 @@ inline void VEventServerDbTask::run()
 		}
 		try
 		{
-			/* Insert the data to db */
-			*m_pSqlSession << "insert into events values(NULL, :strDevice, :strId,"
-				" :strDevname :strType :nEvttime :strEvttimestr :strDesc)", 
-				soci::use(sData.strDevice, "strDevice"), soci::use(sData.strId, "strId"), soci::use(sData.strDeviceName, "strDevname"),
-				soci::use(sData.strType, "strType"), soci::use(sData.nTime, "nEvttime"), 
-				soci::use(sData.strDesc, "strDesc");
+			*m_pSqlSession << "INSERT INTO events VALUES(NULL, :strId, :strDevice, :strDeviceName, "
+				":strType, :nTime, :strEvttime, :strDesc)", 
+			use(sData.strId), use(sData.strDevice), use(sData.strDeviceName), use(sData.strType), 
+			use(sData.nTime), use(sData.strEvttime), use(sData.strDesc), now;
 		}
 		catch (exception const &e)
 		{			

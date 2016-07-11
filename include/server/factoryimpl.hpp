@@ -153,7 +153,7 @@ inline BOOL Factory::GetEventDBConf(VidEventDBConf &pConf)
 
 	/* Default use the firebird, and TODO for postgresql */
 	pConf.set_strdbpath(strPath);
-	pConf.set_ntype(VID_DB_FIREBIRD);
+	pConf.set_ntype(VID_DB_SQLITE);
 		
 	return TRUE;
 }

@@ -799,8 +799,8 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LA"
     "YOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013"
     "\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_"
-    "MODE_1p6\020\r*<\n\016VidEventDBType\022\023\n\017VID_DB_F"
-    "IREBIRD\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3120);
+    "MODE_1p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_S"
+    "QLITE\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3118);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();

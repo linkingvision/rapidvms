@@ -473,6 +473,40 @@
     ]
 },
 
+{
+    "name": "OAPIEventItem",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned long long", "nId", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}],
+		["unsigned int ", "nType", {"required": true}]
+    ]
+},
+
+
+{
+    "name": "OAPISearchEventReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}]
+    ]
+},
+{
+    "name": "OAPISearchEventRsp",
+	"namespace": "oapi",
+    "members": [
+		["std::string", "strId", {"required": true}],
+        ["unsigned int", "Num", {"required": true}],
+        ["std::vector<oapi::OAPIEventItem>", "record"]
+    ]
+},
+
+
 
 {
     "name": "OAPICamSearchedNotify",

@@ -506,6 +506,7 @@ inline bool StorSyncInf::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nTyp
 			item.type = (*it).nType;
 			pMap[item.id] = item;
 		}
+		VDC_DEBUG("SearchRec size %d!\n", pMap.size());
 		return true;
 	}
 

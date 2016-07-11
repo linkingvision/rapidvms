@@ -22,14 +22,31 @@
 #include "config/vidconf.pb.h"
 #include "XSDK/TimeUtils.h"
 #include "XSDK/XBlockingQueue.h"
+#include "Poco/UUIDGenerator.h"
+#include "Poco/Data/RecordSet.h"
+#include "Poco/Data/Column.h"
+#include "Poco/Data/SQLite/Connector.h"
+#include "Poco/Path.h"
+#include "Poco/File.h"
+#include "Poco/SharedPtr.h"
+#include "Poco/DateTime.h"
+#include "Poco/Data/SessionFactory.h"
+#include "Poco/Data/SQLite/Connector.h"
 
-#include <soci.h>
-#include <firebird/soci-firebird.h>
-#include <exception>
+//#include <soci.h>
+//#include <firebird/soci-firebird.h>
+//#include <exception>
 
 
 
 using namespace VidConf;
+using Poco::Data::Statement;
+using Poco::Data::RecordSet;
+using namespace Poco::Data;
+using namespace Poco;
+using namespace Poco::Data::Keywords;
+
+using Poco::Data::Session;
 
 class VEventData
 {
@@ -37,12 +54,15 @@ public:
 	astring strId;
 	astring strDevice;
 	astring strDeviceName;
-	astring strType;/* MOTION_START, MOTION_END, SMART_MOTION */
+	astring strType;/* MOTION_START, MOTION_END, MOTION, SMART_MOTION */
 	s64 nTime;
+	astring strEvttime;
 	astring strDesc;
 	bool bMetaData;
 	astring strMetaData;/* the MetaData Depend the type */
 };
+
+typedef std::map<u64, VEventData> EventItemMap;
 
 typedef BOOL (*FunctionEventNotify)(void* pParam, VEventData data);
 typedef std::map<void *, FunctionEventNotify> FunctionEventNotifyMap;
@@ -61,9 +81,10 @@ public:
 private:
 	XSDK::XBlockingQueue<VEventData> m_Queue;
 	Factory &m_Factory;
-	soci::session *m_pSqlSession;
+	Poco::Data::Session *m_pSqlSession;
 	int m_nYear;
 	int m_nMonth;
+	XMutex m_cMutex;
 	
 };
 
