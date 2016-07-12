@@ -474,19 +474,6 @@
 },
 
 {
-    "name": "OAPIEventItem",
-    "parse_mode": "strict",
-	"namespace": "oapi",
-    "members": [
-        ["unsigned long long", "nId", {"required": true}],
-		["unsigned int", "nStart", {"required": true}],
-		["unsigned int", "nEnd", {"required": true}],
-		["unsigned int ", "nType", {"required": true}]
-    ]
-},
-
-
-{
     "name": "OAPISearchEventReq",
     "parse_mode": "strict",
 	"namespace": "oapi",
@@ -496,17 +483,24 @@
 		["unsigned int", "nEnd", {"required": true}]
     ]
 },
+
 {
-    "name": "OAPISearchEventRsp",
+    "name": "OAPIRegEventReq",
+    "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-		["std::string", "strId", {"required": true}],
-        ["unsigned int", "Num", {"required": true}],
-        ["std::vector<oapi::OAPIEventItem>", "record"]
+        ["std::string", "strId", {"required": true}]
     ]
 },
 
-
+{
+    "name": "OAPIUnRegEventReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
 
 {
     "name": "OAPICamSearchedNotify",
@@ -519,6 +513,20 @@
 		["std::string", "strONVIFAddress", {"required": true}]
     ]
 },
+
+{
+    "name": "OAPIEventNotify",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["unsigned long long", "nId", {"required": true}],
+		["unsigned int", "nStart", {"required": true}],
+		["unsigned int", "nEnd", {"required": true}],
+		["unsigned int ", "nType", {"required": true}],
+		["unsigned int ", "bSearched", {"required": true}]
+    ]
+},
+
 {
     "name": "OAPIPtzCmd",
     "parse_mode": "strict",

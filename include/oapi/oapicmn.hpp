@@ -52,8 +52,15 @@ typedef enum
 	OAPI_SEARCH_REC_REQ,
 	OAPI_SEARCH_REC_RSP,
 
+	/* Event is pushed from search thread */
 	OAPI_SEARCH_EVENT_REQ,
-	OAPI_SEARCH_EVENT_RSP,
+	OAPI_SEARCH_EVENT_RSP,/* CmnRetRsp */
+
+	OAPI_REG_EVENT_REQ,
+	OAPI_REG_EVENT_RSP,/* CmnRetRsp */
+
+	OAPI_UNREG_EVENT_REQ,
+	OAPI_UNREG_EVENT_RSP,/* CmnRetRsp */
 
 	OAPI_SEARCH_HAS_REC_REQ,
 	OAPI_SEARCH_HAS_REC_RSP,
@@ -122,6 +129,7 @@ typedef enum
 	OAPI_FRAME_PUSH  = 10000,/* a binrary data */
 	OAPI_CAM_SAERCH_PUSH,
 	OAPI_PTZ_CMD,
+	OAPI_EVENT_PUSH,
 
 	/* All the deivce notify */
 	OAPI_NOTIFY_DEVICE_ADD = 20000,

@@ -64,7 +64,7 @@ public:
 
 typedef std::map<u64, VEventData> EventItemMap;
 
-typedef BOOL (*FunctionEventNotify)(void* pParam, VEventData data);
+typedef BOOL (*FunctionEventNotify)(void* pParam, VEventData data, bool bSearchEvent);
 typedef std::map<void *, FunctionEventNotify> FunctionEventNotifyMap;
 
 class VEventServerDbTask: public QThread
@@ -112,6 +112,46 @@ private:
 	FunctionEventNotifyMap m_NotifyMap;
 };
 
+typedef enum __VVidEventSearchCmdType
+{
+	VVID_EVENT_SEARCH_CMD = 1,
+	VVID_TIMELINE_CMD_CLEAR,
+	VVID_TIMELINE_CMD_QUIT,
+	VVID_TIMELINE_CMD_LAST
+}VVidEventSearchCmdType;
+
+typedef struct __VVidEventSearchCmd
+{
+	VVidEventSearchCmdType type;
+	astring strId;
+	s64 nStart;
+	s64 nEnd;
+	void * pData;/* Who send this cmd */
+}VVidEventSearchCmd;
+
+class VEventServerSearchTask: public QThread
+{
+	Q_OBJECT
+public:
+	VEventServerSearchTask(Factory &pFactory, VEventServerDbTask &pDbTask);
+	~VEventServerSearchTask();
+public:
+	void PushCmd(VVidEventSearchCmd &pCmd);
+	/* Register the call back for the event */
+	BOOL RegEventNotify(void * pData, FunctionEventNotify callback);
+	BOOL UnRegEventNotify(void * pData);	
+
+public:
+	void run();
+private:
+	XSDK::XBlockingQueue<VVidEventSearchCmd> m_Queue;
+	Factory &m_Factory;
+	XMutex m_cMutex;
+
+	FunctionEventNotifyMap m_NotifyMap;
+	VEventServerDbTask &m_pDbTask;
+};
+
 
 class VEventServer: public QObject
 {
@@ -124,11 +164,14 @@ public:
 	/* Register the call back for the event */
 	BOOL RegEventNotify(void * pData, FunctionEventNotify callback);
 	BOOL UnRegEventNotify(void * pData);
+	BOOL RegSearchEventNotify(void * pData, FunctionEventNotify callback);
+	BOOL UnRegSearchEventNotify(void * pData);
 public:
 	BOOL Init();
 private:
 	VEventServerDbTask m_DbTask;
 	VEventServerCallbackTask m_CallbackTask;
+	VEventServerSearchTask m_SearchTask;
 	Factory &m_Factory;
 };
 

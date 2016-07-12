@@ -20,8 +20,10 @@
 #include "Poco/Path.h"
 #include "Poco/File.h"
 #include "config/vidconf.pb.h"
+#include "XSDK/TimeUtils.h"
 
 using namespace VidConf;
+using namespace XSDK;
 
 typedef enum
 {

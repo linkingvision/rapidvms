@@ -52,6 +52,8 @@
         <file>resources/surveillance.png</file>
         <file>resources/videosearch3.png</file>
         <file>resources/dashboard.png</file>
+        <file>resources/buttonlarge.png</file>
+        <file>resources/buttonlargepress.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>

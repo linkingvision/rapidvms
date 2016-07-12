@@ -393,13 +393,38 @@ inline BOOL Factory::UpdateDiskStatusMap(VDBDiskStatus &pStatus)
 inline BOOL Factory::SearchItems(astring cameraId, u32 startTime, u32 endTime, u32 recordType, 
 				RecordItemMap &map)
 {
-    return m_pVdb->SearchItems(cameraId, startTime, endTime, recordType, 
+	struct timeval time1;
+	gettimeofday(&time1, NULL);
+	
+	
+    	BOOL ret = m_pVdb->SearchItems(cameraId, startTime, endTime, recordType, 
                         map);
+	struct timeval time2;
+	gettimeofday(&time2, NULL);
+
+	long result;
+	timerdiff(&time2, &time1, result);	
+	
+	VDC_DEBUG( "%s SearchItems %d\n", __FUNCTION__, result);
+
+	return ret;
 }
 
 inline BOOL Factory::SearchHasItems(astring cameraId, u32 startTime, u32 endTime, u32 recordType)
 {
-    return m_pVdb->SearchHasItems(cameraId, startTime, endTime, recordType);
+	struct timeval time1;
+	gettimeofday(&time1, NULL);
+	
+	BOOL ret = m_pVdb->SearchHasItems(cameraId, startTime, endTime, recordType);
+	struct timeval time2;
+	gettimeofday(&time2, NULL);
+
+	long result;
+	timerdiff(&time2, &time1, result);	
+	
+	VDC_DEBUG( "%s SearchHasItems %d\n", __FUNCTION__, result);
+
+	return ret;
 }
 
 inline VDB& Factory::GetVdb()

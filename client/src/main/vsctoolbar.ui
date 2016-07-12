@@ -64,6 +64,14 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -95,9 +103,6 @@
          <width>30</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {
@@ -138,9 +143,6 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {
@@ -360,9 +362,6 @@ background-color: rgb(200, 200, 200);}</string>
          <height>30</height>
         </size>
        </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TODO next version &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {
 border:none;
@@ -402,9 +401,6 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FullScreen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {
@@ -485,9 +481,6 @@ background-color: rgb(200, 200, 200);}</string>
          <width>30</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;About&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton:hover {

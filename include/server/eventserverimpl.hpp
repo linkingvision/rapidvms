@@ -45,7 +45,7 @@ inline void VEventServerCallbackTask::run()
 {
 	while(m_Queue.BlockingPeek() == true)
 	{
-		VEventData sData = m_Queue.Pop();
+		VEventData pData = m_Queue.Pop();
 		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
 		/* Call the callback */
 		XGuard guard(m_cMutex);
@@ -54,7 +54,65 @@ inline void VEventServerCallbackTask::run()
 		{
 			if ((*it).second)
 			{
-				(*it).second((*it).first, sData);
+				(*it).second((*it).first, pData, false);
+			}
+		}
+	}
+}
+
+
+inline VEventServerSearchTask::VEventServerSearchTask(Factory &pFactory, VEventServerDbTask &pDbTask)
+:m_Factory(pFactory), m_pDbTask(pDbTask)
+{
+}
+
+inline VEventServerSearchTask::~VEventServerSearchTask()
+{
+
+}
+
+inline void VEventServerSearchTask::PushCmd(VVidEventSearchCmd &pCmd)
+{
+	m_Queue.Push(pCmd);
+
+	return;
+}
+
+/* Register the call back for the event */
+inline BOOL VEventServerSearchTask::RegEventNotify(void * pData, FunctionEventNotify callback)
+{
+	XGuard guard(m_cMutex);
+	m_NotifyMap[pData] = callback;
+
+	return TRUE;
+}
+inline BOOL VEventServerSearchTask::UnRegEventNotify(void * pData)
+{
+	XGuard guard(m_cMutex);
+	m_NotifyMap.erase(pData);
+
+	return TRUE;
+}
+
+inline void VEventServerSearchTask::run()
+{
+	while(m_Queue.BlockingPeek() == true)
+	{
+		VVidEventSearchCmd sCmd = m_Queue.Pop();
+		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
+		/* Call the callback */
+		XGuard guard(m_cMutex);
+		FunctionEventNotifyMap::iterator it = m_NotifyMap.begin(); 
+		for(; it!=m_NotifyMap.end(); ++it)
+		{
+			if ((*it).second)
+			{
+				if (sCmd.pData == (*it).first)
+				{
+					VEventData data;
+					/* The data is search from database */
+					(*it).second((*it).first, data, true);
+				}
 			}
 		}
 	}
@@ -128,6 +186,7 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 		}
 		try
 		{	
+#if 0
 			Poco::Path path(cDBConf.strdbpath());
 			Poco::File file(path);
 			file.createDirectories();
@@ -143,6 +202,7 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 			*m_pSqlSession << "CREATE TABLE IF NOT EXISTS events "
 				"(id INTEGER PRIMARY KEY, strId TEXT, strDevice TEXT, "
 				"strDeviceName TEXT, strType TEXT, nTime INTEGER, strEvttime DATE, strDesc TEXT)", now;
+#endif
 		}
 		catch (exception const &e)		
 		{			
@@ -183,10 +243,12 @@ inline void VEventServerDbTask::run()
 		}
 		try
 		{
+#if 0
 			*m_pSqlSession << "INSERT INTO events VALUES(NULL, :strId, :strDevice, :strDeviceName, "
 				":strType, :nTime, :strEvttime, :strDesc)", 
 			use(sData.strId), use(sData.strDevice), use(sData.strDeviceName), use(sData.strType), 
 			use(sData.nTime), use(sData.strEvttime), use(sData.strDesc), now;
+#endif
 		}
 		catch (exception const &e)
 		{			
@@ -198,7 +260,8 @@ inline void VEventServerDbTask::run()
 
 
 inline VEventServer::VEventServer(Factory &pFactory)
-:m_Factory(pFactory), m_DbTask(pFactory), m_CallbackTask(pFactory)
+:m_Factory(pFactory), m_DbTask(pFactory), m_CallbackTask(pFactory), 
+m_SearchTask(pFactory, m_DbTask)
 {
 }
 
@@ -224,10 +287,20 @@ inline BOOL VEventServer::UnRegEventNotify(void * pData)
 	return m_CallbackTask.UnRegEventNotify(pData);
 }
 
+inline BOOL VEventServer::RegSearchEventNotify(void * pData, FunctionEventNotify callback)
+{	
+	return m_SearchTask.RegEventNotify(pData, callback);
+}
+inline BOOL VEventServer::UnRegSearchEventNotify(void * pData)
+{	
+	return m_SearchTask.UnRegEventNotify(pData);
+}
+
 inline BOOL VEventServer::Init()
 {
 	m_DbTask.start();
 	m_CallbackTask.start();
+	m_SearchTask.start();
 
 	return TRUE;
 }

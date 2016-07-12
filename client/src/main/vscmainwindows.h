@@ -10,6 +10,7 @@
 #include "main/vscvidlist.h"
 #include "searchpb/vscvidsearchpb.h"
 #include "main/vscdashboard.h"
+#include "main/vsceventconsole.h"
 
 typedef enum
 {
@@ -40,9 +41,11 @@ public slots:
 	void ShowVidConf();
 	void ShowVidPb();
 	void ShowDashBoard();
+	void ShowEventConsole();
 	void about();
 	void UserStatus();
 	void SetFullScreen();
+	void ShowAbout();
 
 	/* Show Login */
 	void ShowLogin();
@@ -61,6 +64,7 @@ private:
 	QTabWidget * m_pMainArea;
 	QWidget *m_pMainView;
 	VSCDashBoard *m_pDashBoard;
+	VSCEventConsole *m_pEventConsole;
 
 private:
 	Ui::VSCMainWindowsClass ui;
