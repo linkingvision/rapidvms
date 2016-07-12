@@ -34,13 +34,14 @@
 #include "vscloading.hpp"
 #include "vscuserstatus.h"
 #include "vsclogin.h"
+#include "vscabout.h"
 
 
 Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
 
 VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
     : m_pFactory(pFactory), QMainWindow(parent), m_VidIdx(VSC_VID_IDX_LAST), 
-    m_pMainView(NULL), m_pDashBoard(NULL)
+    m_pMainView(NULL), m_pDashBoard(NULL), m_pEventConsole(NULL)
 {
 
 	ui.setupUi(this);
@@ -97,6 +98,7 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	setWindowTitle(QApplication::translate("VSCMainWindowsClass", VE_INFO, 0));
 
 	connect(m_pToolBar->ui.pbFullScreen, SIGNAL(clicked()), this, SLOT(SetFullScreen()));
+	//connect(m_pToolBar->ui.pbAbout, SIGNAL(clicked()), this, SLOT(ShowAbout()));
 	connect(m_pToolBar->ui.pbAbout, SIGNAL(clicked()), this, SLOT(about()));
 	connect(m_pToolBar->ui.pbUser, SIGNAL(clicked()), this, SLOT(UserStatus()));
 
@@ -107,6 +109,8 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	connect(m_pToolBar->ui.pbVidSearch, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
 	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
 	connect(m_pToolBar->ui.pbVidDashBoard, SIGNAL(clicked()), this, SLOT(ShowDashBoard()));
+	connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(ShowEventConsole()));
+	
 
 }
 
@@ -133,6 +137,13 @@ void VSCMainWindows::MainCloseTab(int index)
 		return;
     }
 
+	if (wdgt == m_pEventConsole)
+	{
+		m_pMainArea->removeTab(index);
+		m_pEventConsole->hide();
+		return;
+	}
+
 	m_pMainArea->removeTab(index);
     if (wdgt)
     {
@@ -151,6 +162,18 @@ void VSCMainWindows::ShowDashBoard()
 
 	m_pMainArea->addTab(m_pDashBoard, QIcon(tr(":/action/resources/dashboard.png")), tr("Dashboard"));  
 	m_pMainArea->setCurrentWidget(m_pDashBoard);
+}
+
+void VSCMainWindows::ShowEventConsole()
+{
+	if (m_pEventConsole == NULL)
+	{
+    		m_pEventConsole = new VSCEventConsole(this);
+		//connect(m_pPanel, SIGNAL(AddVIPC()), this, SLOT(AddVIPC()));
+	}
+
+	m_pMainArea->addTab(m_pEventConsole, QIcon(tr(":/action/resources/alarmno.png")), tr("Console"));  
+	m_pMainArea->setCurrentWidget(m_pEventConsole);
 }
 
 void VSCMainWindows::ShowVidLive()
@@ -299,9 +322,10 @@ void VSCMainWindows::SetupToolBar()
 void VSCMainWindows::about()
 {
    QMessageBox::about(this, tr("About OpenCVR"),
-            tr("<b>OpenCVR</b>. <br>"
+            tr("<b>License & Pricing</b> <br>"
             "<a href=\"https://github.com/xsmart/opencvr\">https://github.com/xsmart/opencvr</a>"
-            "  <br><a href=\"http://www.veyesys.com/\">http://www.veyesys.com/</a>"));
+            "  <br><a href=\"http://www.veyesys.com/\">http://www.veyesys.com/</a>"
+			"<br>"));
 }
 
 void VSCMainWindows::UserStatus()
@@ -320,6 +344,19 @@ void VSCMainWindows::UserStatus()
 	{
 		ShowLogin();
 	}
+}
+
+void VSCMainWindows::ShowAbout()
+{
+	VSCAbout about;
+
+	about.show();
+       QDesktopWidget *desktop = QApplication::desktop();
+	QRect rect = desktop->screenGeometry(0);
+	about.setGeometry(rect.width()/2 -about.width()/2 , 
+					rect.height()/2 - about.height()/2, 
+					about.width(), about.height());
+	about.exec();
 }
 
 void VSCMainWindows::ShowLogin()

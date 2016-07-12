@@ -95,7 +95,15 @@ void VidCamAdd::SlotRadioButtonClicked()
 
 VidCamAdd::~VidCamAdd()
 {
-
+	if (m_syncInfSearch != NULL)
+	{
+		m_syncInfSearch->CamSearchStop();
+		m_Timer->stop();
+		
+		delete m_syncInfSearch;
+		m_syncInfSearch = NULL;
+		m_bStarted = false;
+	}
 }
 
 void VidCamAdd::SlotNewCam()

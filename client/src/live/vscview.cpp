@@ -71,6 +71,19 @@ void VSCView::PlaybackClicked(std::string strStor, std::string strId,
 	pPB1->StartPlay(strStor, strId, strName, currentTime);
 }
 
+void VSCView::MotionDetectClicked(std::string strStor, std::string strId, 
+						std::string strName)
+{
+	VSCVWidget * pVideo = new VSCVWidget(m_pFactory, 0, NULL, true);
+
+	pVideo->ShowVideoInfo(false);
+	
+	pVideo->setWindowTitle(QApplication::translate("VSCMainWindowsClass", 
+								strName.c_str(), 0));	
+	pVideo->StartPlay(strStor, strId, strName, true);
+	pVideo->show();	
+}
+
 void VSCView::UpdateVideoControl()
 {
    time_t current = time(NULL);
@@ -125,6 +138,8 @@ void VSCView::SetupConnections()
 	                                    SLOT(ShowLayout1Clicked(int)));
 	connect(m_pVideo, SIGNAL(PlaybackClicked(std::string, std::string, std::string)), this,
 	                                    SLOT(PlaybackClicked(std::string, std::string, std::string)));
+	connect(m_pVideo, SIGNAL(MotionDetectClicked(std::string, std::string, std::string)), this,
+	                                    SLOT(MotionDetectClicked(std::string, std::string, std::string)));
 	connect(m_pVideo, SIGNAL(ShowViewClicked(std::string)), this,
 	                                    SLOT(ShowViewClicked(std::string)));
 

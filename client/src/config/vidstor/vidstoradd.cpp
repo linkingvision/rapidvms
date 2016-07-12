@@ -42,6 +42,7 @@ VidStorAdd::~VidStorAdd()
 
 void VidStorAdd::SlotNewStor()
 {
+	TreeWidgetUpdate();
 	VidStor pStor;
 	UUIDGenerator uuidCreator;
 	astring strId  = uuidCreator.createRandom().toString();

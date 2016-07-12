@@ -61,7 +61,13 @@ void VSCMotion::applyConfig()
 	{
 		current = 2;
 	}
-
+	if (ui.enable->isChecked() == true)
+	{
+		pCam.set_bservermotion(true);
+	}else
+	{
+		pCam.set_bservermotion(false);
+	}
 	pCam.set_nservermotionstream(current);
 
 	

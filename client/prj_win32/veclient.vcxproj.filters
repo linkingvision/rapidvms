@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon1.ico" />
-    <None Include="..\main\translations\opencvr_zh.ts">
+    <None Include="..\src\main\translations\opencvr_zh.ts">
       <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
@@ -535,6 +535,111 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscvidtreeemap.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vscstreamselect.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscstreamselect.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscstreamselect.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vscmotion.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmotion.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmotion.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemaddcam.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemaddcam.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemaddstor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemaddstor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemcamconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemcamconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemclientconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemclientconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemdiskconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemdiskconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditememapconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditememapconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemstorconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemstorconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemviewconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemviewconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditeminf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditeminf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscviditemvidstor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscviditemvidstor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vsceventconsole.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsceventconsole.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsceventconsole.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\vscabout.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscabout.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscabout.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vscschedule.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscschedule.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscschedule.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\main\vscmainwindows.qrc">
@@ -758,6 +863,66 @@
     </CustomBuild>
     <CustomBuild Include="..\src\common\vidtree\vscvidtreeemap.h">
       <Filter>src\common\vidtree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscstreamselect.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscstreamselect.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscmotion.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscmotion.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemaddcam.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemaddstor.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemcamconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemclientconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemdiskconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditememapconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemstorconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\viditem\vscviditemviewconf.h">
+      <Filter>src\config\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\vscviditeminf.h">
+      <Filter>src\common</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\viditem\vscviditemvidstor.h">
+      <Filter>src\common\viditem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsceventconsole.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vsceventconsole.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscabout.h">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\main\vscabout.ui">
+      <Filter>src\main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscschedule.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscschedule.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1042,29 +1207,11 @@
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
       <Filter>include\oapi</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\vscviditeminf.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\common\viditem\vscviditemcam.h">
       <Filter>src\common\viditem</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\viditem\vscviditemvidstor.h">
-      <Filter>src\common\viditem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemaddstor.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vidstoradd.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemaddcam.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemcamconf.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemstorconf.h">
-      <Filter>src\config\viditem</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vidcamadd.h">
       <Filter>Generated Files</Filter>
@@ -1086,12 +1233,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vidstorsetting.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemclientconf.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemdiskconf.h">
-      <Filter>src\config\viditem</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsclanguage.h">
       <Filter>Generated Files</Filter>
@@ -1141,12 +1282,6 @@
     <ClInclude Include="GeneratedFiles\ui_vscviewconf.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditememapconf.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\config\viditem\vscviditemviewconf.h">
-      <Filter>src\config\viditem</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_videmapconf.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -1155,6 +1290,21 @@
     </ClInclude>
     <ClInclude Include="..\src\common\viditem\vscviditememap.h">
       <Filter>src\common\viditem</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscstreamselect.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscmotion.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vsceventconsole.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscabout.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscschedule.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

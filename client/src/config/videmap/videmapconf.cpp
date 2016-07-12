@@ -132,7 +132,7 @@ void VidEmapConf::TreeWidgetUpdate()
 	
 	int nRowCnt = ui.tableWidget->rowCount();
 
-	for (s32 j = 0; j < nRowCnt; j ++)
+	for (s32 j = nRowCnt -1 ; j >= 0; j --)
 	{
 		ui.tableWidget->removeRow(j);
 	}
@@ -151,6 +151,7 @@ void VidEmapConf::TreeWidgetUpdate()
 		ui.tableWidget->setItem(insertRow, 1, new QTableWidgetItem(p.strname().c_str()));
 	}
 }
+
 
 
 

@@ -38,6 +38,8 @@ public slots:
 	void ShowViewClicked(std::string strView);
 	void UpdateVideoControl();
 	void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
+	void MotionDetectClicked(std::string strStor, std::string strId, std::string strName);
+
 
 	void SetLayoutMode4x4()
 	{
