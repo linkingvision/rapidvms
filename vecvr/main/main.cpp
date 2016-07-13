@@ -17,6 +17,7 @@
 #include "vevent.hpp"
 #include "webserver.hpp"
 #include "vrtspserver.hpp"
+#include "server/eventserver.hpp"
 
 Factory *gFactory = NULL;
 
@@ -76,15 +77,9 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 		pFactory->Init();
 	}
 
-	pFactory->start();
-
 	/* Start the OpenCVR api server */
 	pOAPIServer = new OAPIServerWrapper(*pFactory);
 	pOAPIServer->start();
-
-	/* Init Event framework */
-	VEventMgr *pEventMgr = new VEventMgr(*pFactory);
-	pEventMgr->Init();
 	
 	astring docRoot = GetProgramRunningDir() + "www";
 	
@@ -96,11 +91,21 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
         cpp_options.push_back(options[i]);
     }
 
-    VEWebServer server(cpp_options);
+	VEWebServer server(cpp_options, *pFactory);
 	
 	/* Start RTSP server */
 	VRTSPServer *pRTSPServer = new VRTSPServer(*pFactory);
 
+	/* Init Event Server */
+	VEventServer *pEventServer = new VEventServer(*pFactory);
+	pEventServer->Init();
+
+	/* Init Event framework */
+	VEventMgr *pEventMgr = new VEventMgr(*pFactory, *pEventServer);
+	pEventMgr->Init();
+
+	pFactory->start();
+	VDC_DEBUG("Start successfully !\n");
 	
 	return a.exec();
 }

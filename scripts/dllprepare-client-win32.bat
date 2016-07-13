@@ -19,7 +19,6 @@ xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  client\prj_win3
 xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobufd.dll  client\prj_win32\Win32\Debug
 
 
-
 REM Win32 Release
 xcopy /y /e 3rdparty\ffmpeg-win\ffmpeg-win32\bin  client\prj_win32\Win32\Release
 
