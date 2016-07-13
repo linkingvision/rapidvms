@@ -2,6 +2,7 @@
 #define __VE_WEB_SERVER_H__
 
 #include "CivetServer.h"
+#include "webserverapi.hpp"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -240,16 +241,17 @@ class FooHandler : public CivetHandler
 class VEWebServer 
 {
 public:
-	VEWebServer(std::vector<std::string> cpp_options)
-	:pServer(new CivetServer(cpp_options)), server(*pServer)
+	VEWebServer(std::vector<std::string> cpp_options, Factory &pFactory)
+		:pServer(new CivetServer(cpp_options)), server(*pServer), m_pFactory(pFactory), 
+		h_GetCamList(pFactory)
 	{
-		server.addHandler(EXAMPLE_URI, h_ex);
+		server.addHandler("/oapi/GetCamList", h_GetCamList);
 
-		server.addHandler("/a", h_a);
+		//server.addHandler("/a/b", h_ab);
+		//server.addHandler("/a", h_a);
 
-		server.addHandler("/a/b", h_ab);
-
-		//server.addHandler("", h_foo);		
+		//server.addHandler("", h_foo);	
+		//server.addHandler(EXAMPLE_URI, h_ex);		
 	}
 	~VEWebServer(){}
 	
@@ -258,8 +260,10 @@ private:
 	AHandler h_a;
 	ABHandler h_ab;
 	FooHandler h_foo;
+	WebAPIGetCamListHandler h_GetCamList;
 	CivetServer *pServer;
 	CivetServer &server;
+	Factory &m_pFactory;
 };
 
 #endif /* __VE_WEB_SERVER_H__ */

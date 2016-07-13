@@ -65,6 +65,9 @@
     <CustomBuild Include="..\..\include\oapi\oapis.hpp">
       <Filter>include\oapi</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\include\server\eventserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -108,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdparty\civetweb\src\civetweb.c">
       <Filter>main\civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_eventserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_eventserver.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
       <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\server\eventserverimpl.hpp">
+      <Filter>include\server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
