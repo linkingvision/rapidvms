@@ -13,36 +13,33 @@
 #include "videotype.hpp"
 #include <QWidget>
 #include "server/factory.hpp"
+#include "server/eventserver.hpp"
 #include <QThread>
 
 using namespace UtilityLib;
 
-class VE_LIBRARY_API VEventThread : public QThread
-{
-    Q_OBJECT
-public:
-	VEventThread();
-	~VEventThread();
-signals:
-	void EventNotify(int deviceId, int type);
-	void EventNotifyNoParam();
-public:
-	static VEventThread * CreateObject();
-private:
+class VOnvifEventThread;
+class VSmartMotionThread;
 
-};
-
-class VE_LIBRARY_API VEvent : public QWidget
+class VE_LIBRARY_API VEventMgr
 {
-	Q_OBJECT
 public:
-	VEvent(QWidget *parent = 0);
-	~VEvent();
+	VEventMgr(Factory &pFactory, VEventServer &pEventServer)
+	:m_pFactory(pFactory), m_pEventServer(pEventServer), m_OnvifThread(NULL), 
+	m_SmartMotionThread(NULL)
+	{
+	}
+	~VEventMgr()
+	{
+		
+	}
 public:
-	static BOOL Init(Factory &pFactory);
-	static VEvent * CreateObject(QWidget *parent);
+	bool Init();
 private:
-	
+	VOnvifEventThread *m_OnvifThread;
+	VSmartMotionThread *m_SmartMotionThread;
+	Factory &m_pFactory;
+	VEventServer &m_pEventServer;
 };
 
 

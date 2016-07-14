@@ -6,6 +6,7 @@
 #include "recordsession.hpp"
 #include "pbsession.hpp"
 #include "indexdb.hpp"
+#include "veventdb.hpp"
 
 using namespace UtilityLib;
 
@@ -17,6 +18,11 @@ public:
 
 	VDB(astring & strPath);
 	~VDB();
+	
+public:
+	IndexDB  &GetIndexDB(){return m_IndexDB;}
+	//VEventDB &GetEventDB(){return m_EventDB;}
+
 public:
 	BOOL SetRecordingMode(RecordingMode mode);
 
@@ -55,6 +61,7 @@ public:
 
 private:
     IndexDB m_IndexDB;
+	//VEventDB m_EventDB;
     RecordingMode m_Mode;
     fast_mutex m_Lock;
 };

@@ -20,6 +20,16 @@ typedef enum __VPlayCmd
 	VPLAY_CMD_LAST
 }VPlayCmd;
 
+typedef enum __RenderType
+{
+	RENDER_TYPE_SDL = 1,
+	RENDER_TYPE_D3D,
+	RENDER_TYPE_OPENGL,
+	RENDER_TYPE_DDRAW,
+	RENDER_TYPE_VAAPI,
+	RENDER_TYPE_LAST
+}RenderType;
+
 typedef struct __VPlayCmdParam
 {
 	int speed;
@@ -41,14 +51,16 @@ public:
 		BOOL bHWAccel = FALSE, VSCConnectType connectType = VSC_CONNECT_TCP);
 	BOOL Init(string strFile, bool bMJPEG, string strUser, 
 		string strPass, BOOL bHWAccel = FALSE);
-	BOOL AttachWidget(HWND hWnd, int w, int h);
+#ifdef WIN32
+	BOOL AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_D3D);
+#else
+	BOOL AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_SDL);
+#endif
 	BOOL UpdateWidget(HWND hWnd, int w, int h);
 	BOOL DetachWidget(HWND hWnd);
 	BOOL SetPbTimeCallback(HWND hWnd, void * pData, VPlayPBTimeCallback callback);
 	BOOL Control(VPlayCmd cmd, VPlayCmdParam param);
-	BOOL EnablePtz(HWND hWnd, bool enable);
-	BOOL DrawPtzDirection(HWND hWnd, int x1, int y1, int x2,  int y2);
-	BOOL ClearPtzDirection(HWND hWnd);
+	BOOL EnableMot(HWND hWnd, bool enable);
 
 	BOOL StartGetData(void * pData, VPlayDataHandler callback);
 	BOOL StopGetData();
