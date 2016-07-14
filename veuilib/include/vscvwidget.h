@@ -39,6 +39,7 @@ public:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dragMoveEvent(QDragMoveEvent *event);
 	void contextMenuEvent(QContextMenuEvent* e) ;
+	void ReCreateVideoWidget();
 
     Qt::DropActions supportedDropActions () const
     {
@@ -53,23 +54,32 @@ public:
     void DeviceEvent(astring deviceId, VscEventType type);
 
     void VideoSetGeometry();
+    void ShowVideoInfo(bool bEnable);
 
 public slots:
-    void stopAction();
-    void showDisplay1();
-    void showDisplay2();
-    void showDisplay3();
-    void showDisplay4();
-    void Help();
-    void videoMouseMove(QMouseEvent *e);
+	void stopAction();
+	void MotionDetectAction();
+	void showDisplay1();
+	void showDisplay2();
+	void showDisplay3();
+	void showDisplay4();
+	void Help();
+	QCursor GetPTZCursor(QHoverEvent *e);
+	u32 GetPTZAction(int x, int y, float &speed);
+	
+	void videoMouseMove(QMouseEvent *e);
+	void videoHoverMove(QHoverEvent *e);
+	void videoHoverEnter(QHoverEvent *e);
+	void videoHoverLeave(QHoverEvent *e);
 
-    void videoResizeEventTimer();
+	void videoResizeEventTimer();
 
-    void videoResizeEvent();
-    void PTZEnable();
-    void AutoFocus();
-    void LiveDelCallback();
-    void PlaybackClick();
+	void videoResizeEvent();
+	void PTZEnable();
+	void PTZPanel();
+	void AutoFocus();
+	void LiveDelCallback();
+	void PlaybackClick();
 
 signals:
     void ShowDisplayClicked(int nId);
@@ -81,10 +91,12 @@ signals:
     void VideoSwitchWith(int nSrcId, int nDstId);
     void ShowViewClicked(std::string strId);
     void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
+    void MotionDetectClicked(std::string strStor, std::string strId, std::string strName);
 
 
 public:
-	BOOL StartPlay(astring strStorId, astring strCamId, astring strCamName);
+	BOOL StartPlay(astring strStorId, astring strCamId, astring strCamName, 
+			bool bMotion = false);
 	BOOL StopPlay();
 	bool GetPlayParam(astring &strStorId, astring &strCamId);
 
@@ -98,14 +110,13 @@ private:
 	BOOL m_pStarted;
 	int m_nId;
 private:
-	VSCPTZControl *m_pPTZControl;
-	VSCVideoInfo * m_pVideoInfo;
 	QWidget  * m_pVideo;
 	
 private:
 	QTimer *m_TimerResize;
 	time_t m_lastMoveTime;
 	struct timeval m_lastPressed;
+	struct timeval m_lastPtzZoom;
 	
 private:
 	BOOL m_DragStart;
@@ -114,6 +125,7 @@ private:
 	s32 m_lastHeight;
 
 	BOOL m_PtzEnable;
+	RenderType m_render;
 
 public:
 	Ui::VSCVWidget *p_ui;
@@ -121,9 +133,11 @@ public:
 	
 private:
 	QAction *m_pStop;
+	QAction *m_pMotion;
 	QAction *m_pHelp;
 	QAction *m_pRecord;
 	QAction *m_pPTZ;
+	QAction *m_pPTZPanel;
 	QAction *m_pPlayback;
 	QAction *m_pDisplay1;
 	QAction *m_pDisplay2;

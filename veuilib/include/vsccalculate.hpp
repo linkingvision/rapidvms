@@ -8,22 +8,23 @@
 
 using namespace UtilityLib;
 
+class cpuOccupy;
+
 class VE_LIBRARY_API VSCCalculate: public QObject
 {
 	Q_OBJECT
 public:
 	VSCCalculate(QLabel* label);
-	~VSCCalculate()
-	{
-		m_Timer->stop();
-		delete m_Timer;
-	}
+	~VSCCalculate();
 public slots:
 	void showCpuMemoryState();
 
 private:
 	QLabel* m_label;
 	QTimer* m_Timer;
+#ifndef WIN32
+	cpuOccupy *m_LastCPU;
+#endif
 };
 
 #endif

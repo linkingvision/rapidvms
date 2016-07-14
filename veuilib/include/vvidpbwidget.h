@@ -52,6 +52,7 @@ public:
 	void DeviceEvent(astring deviceId, VscEventType type);
 
 	void VideoSetGeometry();
+	void ShowVideoInfo(bool bEnable);
 
 public slots:
 	void stopAction();

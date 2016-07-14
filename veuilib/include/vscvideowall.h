@@ -84,6 +84,7 @@ public:
 
 	void PlayVideoByWindow(u32 nWindow, astring strStor, 
 						astring strCam, astring strCamName);
+	void ShowVideoInfo(bool bEnable);
    
 
 signals:
@@ -95,6 +96,7 @@ signals:
 	void Layout1Clicked(int nId);
 	void ShowViewClicked(std::string strId);
 	void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
+	void MotionDetectClicked(std::string strStor, std::string strId, std::string strName);
 
 public:
     bool Start();
