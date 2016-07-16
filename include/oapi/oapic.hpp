@@ -60,6 +60,9 @@ public:
 	inline bool SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType);
 	inline bool SearchHasRec(oapi::OAPISearchHasRecordReq &pList);
 	inline bool GetStreamList(astring strId);
+	inline bool SearchEvent(astring strId, s64 nStart, s64 nEnd);
+	inline bool RegRealEvent();
+	inline bool UnRegRealEvent();
 /* Parse all the list */
 public:
 	inline bool ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);
@@ -76,6 +79,7 @@ public:
 	inline bool ParseSearchRecList(char *pRecv, int len, oapi::OAPISearchRecordRsp &list);
 	inline bool ParseSearchHasRecList(char *pRecv, int len, oapi::OAPISearchHasRecordRsp &list);
 	inline bool ParseStreamList(char *pRecv, int len, oapi::OAPIStreamListRsp &list);
+	inline bool ParseEventNotify(char *pRecv, int len, oapi::OAPIEventNotify &event);
 
 	
 private:

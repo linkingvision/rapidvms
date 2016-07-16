@@ -37,6 +37,10 @@ public:
 	astring GetVidCameraName(astring strCam);
 	bool GetOnline();
 public:
+	bool SearchEvent(astring strId, s64 nStart, s64 nEnd);
+	bool RegRealEvent();
+	bool UnRegRealEvent();
+public:
 	bool AddCam(VidCamera &pParam);
 	bool DeleteCam(astring strId);
 	bool PtzCmd(astring strId, u32 action, double param);

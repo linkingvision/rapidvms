@@ -54,12 +54,11 @@ inline void VEventServerCallbackTask::run()
 		{
 			if ((*it).second)
 			{
-				(*it).second((*it).first, pData, false);
+				(*it).second(pData, (*it).first);
 			}
 		}
 	}
 }
-
 
 inline VEventServerSearchTask::VEventServerSearchTask(Factory &pFactory, VEventServerDbTask &pDbTask)
 :m_Factory(pFactory), m_pDbTask(pDbTask)
@@ -71,11 +70,11 @@ inline VEventServerSearchTask::~VEventServerSearchTask()
 
 }
 
-inline void VEventServerSearchTask::PushCmd(VVidEventSearchCmd &pCmd)
+inline BOOL VEventServerSearchTask::PushCmd(VVidEventSearchCmd &pCmd)
 {
 	m_Queue.Push(pCmd);
 
-	return;
+	return TRUE;
 }
 
 /* Register the call back for the event */
@@ -111,7 +110,7 @@ inline void VEventServerSearchTask::run()
 				{
 					VEventData data;
 					/* The data is search from database */
-					(*it).second((*it).first, data, true);
+					(*it).second(data, (*it).first);
 				}
 			}
 		}
@@ -186,7 +185,6 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 		}
 		try
 		{	
-#if 0
 			Poco::Path path(cDBConf.strdbpath());
 			Poco::File file(path);
 			file.createDirectories();
@@ -201,8 +199,8 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 			m_pSqlSession = new Poco::Data::Session("SQLite", path.toString());
 			*m_pSqlSession << "CREATE TABLE IF NOT EXISTS events "
 				"(id INTEGER PRIMARY KEY, strId TEXT, strDevice TEXT, "
-				"strDeviceName TEXT, strType TEXT, nTime INTEGER, strEvttime DATE, strDesc TEXT)", now;
-#endif
+				"strDeviceName TEXT, strType TEXT, nTime INTEGER, strEvttime DATE, strDesc TEXT,"
+				"handled INTEGER, strComments TEXT)", now;
 		}
 		catch (exception const &e)		
 		{			
@@ -243,12 +241,13 @@ inline void VEventServerDbTask::run()
 		}
 		try
 		{
-#if 0
+			s64 handled = 0;
+			astring strComment = "Add your comments ...";
 			*m_pSqlSession << "INSERT INTO events VALUES(NULL, :strId, :strDevice, :strDeviceName, "
-				":strType, :nTime, :strEvttime, :strDesc)", 
+				":strType, :nTime, :strEvttime, :strDesc, :handled, :strComments)", 
 			use(sData.strId), use(sData.strDevice), use(sData.strDeviceName), use(sData.strType), 
-			use(sData.nTime), use(sData.strEvttime), use(sData.strDesc), now;
-#endif
+			use(sData.nTime), use(sData.strEvttime), use(sData.strDesc), 
+			use(handled), use(strComment), now;
 		}
 		catch (exception const &e)
 		{			
@@ -294,6 +293,18 @@ inline BOOL VEventServer::RegSearchEventNotify(void * pData, FunctionEventNotify
 inline BOOL VEventServer::UnRegSearchEventNotify(void * pData)
 {	
 	return m_SearchTask.UnRegEventNotify(pData);
+}
+
+inline BOOL VEventServer::SearchEvent(astring strId, s64 nStart, s64 nEnd, void *pData)
+{
+	VVidEventSearchCmd cmd;
+	cmd.strId = strId;
+	cmd.type = VVID_EVENT_SEARCH_CMD;
+	cmd.nStart = nStart;
+	cmd.nEnd = nEnd;
+	cmd.pData = pData;
+	
+	return m_SearchTask.PushCmd(cmd);
 }
 
 inline BOOL VEventServer::Init()

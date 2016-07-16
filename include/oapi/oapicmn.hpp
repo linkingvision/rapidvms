@@ -62,6 +62,14 @@ typedef enum
 	OAPI_UNREG_EVENT_REQ,
 	OAPI_UNREG_EVENT_RSP,/* CmnRetRsp */
 
+	/* Handle the Event */
+	OAPI_HANDLE_EVENT_REQ,
+	OAPI_HANDLE_EVENT_RSP,/* CmnRetRsp */
+
+	/* Comment the Event */
+	OAPI_COMMENT_EVENT_REQ,
+	OAPI_COMMENT_EVENT_RSP,/* CmnRetRsp */	
+
 	OAPI_SEARCH_HAS_REC_REQ,
 	OAPI_SEARCH_HAS_REC_RSP,
 

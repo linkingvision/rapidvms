@@ -8,8 +8,8 @@
 #ifndef __VSC_CMN_OAPI_SERVER_IMPL__H_
 #define __VSC_CMN_OAPI_SERVER_IMPL__H_
 
-CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, XRef<XSocket> pSocket)
-:m_pFactory(pFactory), m_pSocket(pSocket)
+CmnOAPIServerSession::CmnOAPIServerSession(Factory &pFactory, VEventServer &pEvent, XRef<XSocket> pSocket)
+:m_pFactory(pFactory), m_pSocket(pSocket), m_pEvent(pEvent)
 {
 	/* auto delete when the thread exit */
 	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
@@ -23,7 +23,7 @@ void CmnOAPIServerSession::run()
 {
 	/* Process command from oapi client  */
 	OAPIHeader header;
-	OAPIServer server(m_pSocket, m_pFactory);
+	OAPIServer server(m_pSocket, m_pFactory, m_pEvent);
 	while(1)
 	{
 		QCoreApplication::processEvents();
@@ -52,9 +52,9 @@ void CmnOAPIServerSession::run()
 }
 
 /* Below is SSL */
-OAPIServerWrapper::OAPIServerWrapper(Factory &pFactory)
+OAPIServerWrapper::OAPIServerWrapper(Factory &pFactory, VEventServer &pEvent)
 //:m_cmn(pFactory), m_ssl(pFactory)
-:m_cmn(pFactory)
+:m_cmn(pFactory, pEvent)
 {
 
 }
@@ -63,8 +63,8 @@ OAPIServerWrapper::~OAPIServerWrapper()
 
 }
 
-CmnOAPIServer::CmnOAPIServer(Factory &pFactory)
-:m_pFactory(pFactory)
+CmnOAPIServer::CmnOAPIServer(Factory &pFactory, VEventServer &pEvent)
+:m_pFactory(pFactory), m_pEvent(pEvent)
 {
 
 }
@@ -95,7 +95,7 @@ void CmnOAPIServer::run()
 #endif
 
 		CmnOAPIServerSession *session = new CmnOAPIServerSession(m_pFactory, 
-			clientSocket);
+			m_pEvent, clientSocket);
 		session->start();
 #if 0
 

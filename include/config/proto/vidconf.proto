@@ -42,6 +42,12 @@ enum CameraConnectType {
 	VID_CONNECT_UDP = 2;
 }
 
+enum OnvifEventLevel {
+	VID_ONVIF_EVENT_OFF = 0;
+	VID_ONVIF_EVENT_FULL = 1;
+	VID_ONVIF_EVENT_MOTION = 2;
+}
+
 message VidCamera {
 	bool bDisable = 1;
 	//use uuid for id of the camera
@@ -86,6 +92,8 @@ message VidCamera {
 	/* Stream select */
 	int32 nRecordStream = 24;//Recording streaming NO.
 	int32 nServerMotionStream = 25;//Server based Motion Stream.
+	
+	OnvifEventLevel nOnvifEvtLevel = 26;//ONVIF event level
 }
 
 message VidCameraList {
@@ -267,6 +275,18 @@ enum VidEventDBType {
 message VidEventDBConf {
 	VidEventDBType nType = 1;
 	string strDBPath = 2;
+}
+
+message VidEvent {
+	string strId = 1;
+	string strDevice = 2;
+	string strDeviceName = 3;
+	string strType = 4;
+	int64 nTime = 5;
+	string strTime = 6;
+	string strDesc = 7;
+	bool bSearched = 8;
+	string strStorName=9;//Used for Client display
 }
 
 

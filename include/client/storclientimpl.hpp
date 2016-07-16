@@ -110,6 +110,47 @@ inline void StorClient::UpdateVidCameraList(oapi::OAPICameraListRsp list)
 	return;
 }
 
+inline bool StorClient::SearchEvent(astring strId, s64 nStart, s64 nEnd)
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	OAPIClient pClient(m_pSocket);
+
+	XGuard guard(m_cMutex);
+	/* Send add cam command  */
+	return pClient.SearchEvent(strId, nStart, nEnd);
+}
+
+inline bool StorClient::RegRealEvent()
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	OAPIClient pClient(m_pSocket);
+
+	XGuard guard(m_cMutex);
+	/* Send add cam command  */
+	return pClient.RegRealEvent();
+}
+inline bool StorClient::UnRegRealEvent()
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	OAPIClient pClient(m_pSocket);
+
+	XGuard guard(m_cMutex);
+	/* Send add cam command  */
+	return pClient.UnRegRealEvent();
+}
+
 inline bool StorClient::AddCam(VidCamera &pParam)
 {
 	if (m_bOnline == false)
@@ -268,7 +309,10 @@ inline void StorClient::run()
 							{
 								/* login ok, send device list */
 								pClient.SendDeviceListRequest();
+								/* Send the device notify */
 								pClient.SendRegNotifyRequest();
+								/* Send reg event notify */
+								pClient.RegRealEvent();
 							}
 							break;
 						}
@@ -367,6 +411,25 @@ inline void StorClient::run()
 							guard.Acquire();
 							//pClient.SendDeviceListRequest();
 							//VDC_DEBUG( "STOR_FACTORY_CAMERA_REC_OFF \n");
+							break;
+						}
+						case OAPI_EVENT_PUSH:
+						{
+							oapi::OAPIEventNotify event;
+							pClient.ParseEventNotify(pRecv, header.length, event);
+							VidEvent cEvent;
+							cEvent.set_strid(event.strId);
+							cEvent.set_strdevice(event.strDevice);
+							cEvent.set_strdevicename(event.strDeviceName);
+							cEvent.set_ntime(event.nTime);
+							cEvent.set_strtime(event.strTime);
+							cEvent.set_strtype(event.strType);
+							cEvent.set_strdesc(event.strDesc);
+							cEvent.set_bsearched(event.bSearched);
+							
+							guard.Release();
+							m_pNotify.OnEvent(cEvent, m_stor);
+							guard.Acquire();
 							break;
 						}
 						default:

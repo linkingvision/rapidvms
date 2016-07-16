@@ -6,8 +6,8 @@
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
 
-#define VE_VERSION "r2.0.5-20160712"
-#define VE_INFO "OpenCVR r2.0.5 2016"
+#define VE_VERSION "r2.0.6-20160718"
+#define VE_INFO "OpenCVR r2.0.6 2016"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
@@ -36,6 +36,7 @@
 #define REC_SCHED_ALL_DAY "44241a90-8927-4907-a3d1-f32f29c2266e"
 #define REC_SCHED_WORK_DAY "2010e075-f937-461f-a1a0-be39b385e0a5"
 #define VVID_UUID_NULL "a17bdf7d-9588-4bf3-8667-3fbaeaabe59e"
+#define VVID_UUID_ALL "a1947501-930e-476f-a8b1-9002b0a6ca66"
 
 //------------------------------------------------------------------------------
 // Conf keys, for leveldb

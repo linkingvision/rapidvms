@@ -21938,13 +21938,16 @@ w.Key("\x73\x74\x72\x4f\x4e\x56\x49\x46\x41\x64\x64\x72\x65\x73\x73", 15, false)
 // such syntax is chosen so that the template file looks like valid C++
 
 namespace oapi { struct OAPIEventNotify {
- unsigned long long nId;
-unsigned int nStart;
-unsigned int nEnd;
-unsigned int  nType;
+ std::string strId;
+std::string strDevice;
+std::string strDeviceName;
+std::string strType;
+unsigned long long nTime;
+std::string strTime;
+std::string strDesc;
 unsigned int  bSearched;
 
-explicit OAPIEventNotify():nId(), nStart(), nEnd(), nType(), bSearched() {  }
+explicit OAPIEventNotify():strId(), strDevice(), strDeviceName(), strType(), nTime(), strTime(), strDesc(), bSearched() {  }
 
 
  
@@ -21960,14 +21963,20 @@ private:
     int state;
     int depth;
 
-    SAXEventHandler< unsigned long long > handler_0;
-SAXEventHandler< unsigned int > handler_1;
-SAXEventHandler< unsigned int > handler_2;
-SAXEventHandler< unsigned int  > handler_3;
-SAXEventHandler< unsigned int  > handler_4;bool has_nId;
-bool has_nStart;
-bool has_nEnd;
-bool has_nType;
+    SAXEventHandler< std::string > handler_0;
+SAXEventHandler< std::string > handler_1;
+SAXEventHandler< std::string > handler_2;
+SAXEventHandler< std::string > handler_3;
+SAXEventHandler< unsigned long long > handler_4;
+SAXEventHandler< std::string > handler_5;
+SAXEventHandler< std::string > handler_6;
+SAXEventHandler< unsigned int  > handler_7;bool has_strId;
+bool has_strDevice;
+bool has_strDeviceName;
+bool has_strType;
+bool has_nTime;
+bool has_strTime;
+bool has_strDesc;
 bool has_bSearched;
 
     bool check_depth(const char* type)
@@ -21983,14 +21992,20 @@ bool has_bSearched;
     {
         switch (state) {
             case 0:
-    return "nId";
+    return "strId";
 case 1:
-    return "nStart";
+    return "strDevice";
 case 2:
-    return "nEnd";
+    return "strDeviceName";
 case 3:
-    return "nType";
+    return "strType";
 case 4:
+    return "nTime";
+case 5:
+    return "strTime";
+case 6:
+    return "strDesc";
+case 7:
     return "bSearched";
         default:
             break;
@@ -22018,10 +22033,13 @@ case 4:
 
     void reset_flags()
     {
-        has_nId = false;
-has_nStart = false;
-has_nEnd = false;
-has_nType = false;
+        has_strId = false;
+has_strDevice = false;
+has_strDeviceName = false;
+has_strType = false;
+has_nTime = false;
+has_strTime = false;
+has_strDesc = false;
 has_bSearched = false;
     }
 
@@ -22029,11 +22047,14 @@ public:
     explicit SAXEventHandler( ::oapi::OAPIEventNotify * obj)
         : state(-1)
         , depth(0)
-        , handler_0(&obj->nId)
-, handler_1(&obj->nStart)
-, handler_2(&obj->nEnd)
-, handler_3(&obj->nType)
-, handler_4(&obj->bSearched)
+        , handler_0(&obj->strId)
+, handler_1(&obj->strDevice)
+, handler_2(&obj->strDeviceName)
+, handler_3(&obj->strType)
+, handler_4(&obj->nTime)
+, handler_5(&obj->strTime)
+, handler_6(&obj->strDesc)
+, handler_7(&obj->bSearched)
     {
         reset_flags();
     }
@@ -22059,6 +22080,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Null());
+
+case 5:
+    return checked_event_forwarding(handler_5.Null());
+
+case 6:
+    return checked_event_forwarding(handler_6.Null());
+
+case 7:
+    return checked_event_forwarding(handler_7.Null());
 
         default:
             break;
@@ -22088,6 +22118,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Bool(b));
 
+case 5:
+    return checked_event_forwarding(handler_5.Bool(b));
+
+case 6:
+    return checked_event_forwarding(handler_6.Bool(b));
+
+case 7:
+    return checked_event_forwarding(handler_7.Bool(b));
+
         default:
             break;
         }
@@ -22115,6 +22154,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Int(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int(i));
+
+case 6:
+    return checked_event_forwarding(handler_6.Int(i));
+
+case 7:
+    return checked_event_forwarding(handler_7.Int(i));
 
         default:
             break;
@@ -22144,6 +22192,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Uint(i));
 
+case 5:
+    return checked_event_forwarding(handler_5.Uint(i));
+
+case 6:
+    return checked_event_forwarding(handler_6.Uint(i));
+
+case 7:
+    return checked_event_forwarding(handler_7.Uint(i));
+
         default:
             break;
         }
@@ -22171,6 +22228,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Int64(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int64(i));
+
+case 6:
+    return checked_event_forwarding(handler_6.Int64(i));
+
+case 7:
+    return checked_event_forwarding(handler_7.Int64(i));
 
         default:
             break;
@@ -22200,6 +22266,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Uint64(i));
 
+case 5:
+    return checked_event_forwarding(handler_5.Uint64(i));
+
+case 6:
+    return checked_event_forwarding(handler_6.Uint64(i));
+
+case 7:
+    return checked_event_forwarding(handler_7.Uint64(i));
+
         default:
             break;
         }
@@ -22227,6 +22302,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Double(d));
+
+case 5:
+    return checked_event_forwarding(handler_5.Double(d));
+
+case 6:
+    return checked_event_forwarding(handler_6.Double(d));
+
+case 7:
+    return checked_event_forwarding(handler_7.Double(d));
 
         default:
             break;
@@ -22256,6 +22340,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.String(str, length, copy));
 
+case 5:
+    return checked_event_forwarding(handler_5.String(str, length, copy));
+
+case 6:
+    return checked_event_forwarding(handler_6.String(str, length, copy));
+
+case 7:
+    return checked_event_forwarding(handler_7.String(str, length, copy));
+
         default:
             break;
         }
@@ -22270,16 +22363,22 @@ case 4:
         if (depth == 1) {
             if (0) {
             }
-            else if (utility::string_equal(str, length, "\x6e\x49\x64", 3))
-                         { state=0; has_nId = true; }
-else if (utility::string_equal(str, length, "\x6e\x53\x74\x61\x72\x74", 6))
-                         { state=1; has_nStart = true; }
-else if (utility::string_equal(str, length, "\x6e\x45\x6e\x64", 4))
-                         { state=2; has_nEnd = true; }
-else if (utility::string_equal(str, length, "\x6e\x54\x79\x70\x65", 5))
-                         { state=3; has_nType = true; }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x44\x65\x76\x69\x63\x65", 9))
+                         { state=1; has_strDevice = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x44\x65\x76\x69\x63\x65\x4e\x61\x6d\x65", 13))
+                         { state=2; has_strDeviceName = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x54\x79\x70\x65", 7))
+                         { state=3; has_strType = true; }
+else if (utility::string_equal(str, length, "\x6e\x54\x69\x6d\x65", 5))
+                         { state=4; has_nTime = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x54\x69\x6d\x65", 7))
+                         { state=5; has_strTime = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x44\x65\x73\x63", 7))
+                         { state=6; has_strDesc = true; }
 else if (utility::string_equal(str, length, "\x62\x53\x65\x61\x72\x63\x68\x65\x64", 9))
-                         { state=4; has_bSearched = true; }
+                         { state=7; has_bSearched = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -22302,6 +22401,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Key(str, length, copy));
+
+case 5:
+    return checked_event_forwarding(handler_5.Key(str, length, copy));
+
+case 6:
+    return checked_event_forwarding(handler_6.Key(str, length, copy));
+
+case 7:
+    return checked_event_forwarding(handler_7.Key(str, length, copy));
 
             default:
                 break;
@@ -22332,6 +22440,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.StartArray());
 
+case 5:
+    return checked_event_forwarding(handler_5.StartArray());
+
+case 6:
+    return checked_event_forwarding(handler_6.StartArray());
+
+case 7:
+    return checked_event_forwarding(handler_7.StartArray());
+
         default:
             break;
         }
@@ -22360,6 +22477,15 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.EndArray(length));
 
+case 5:
+    return checked_event_forwarding(handler_5.EndArray(length));
+
+case 6:
+    return checked_event_forwarding(handler_6.EndArray(length));
+
+case 7:
+    return checked_event_forwarding(handler_7.EndArray(length));
+
         default:
             break;
         }
@@ -22387,6 +22513,15 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.StartObject());
+
+case 5:
+    return checked_event_forwarding(handler_5.StartObject());
+
+case 6:
+    return checked_event_forwarding(handler_6.StartObject());
+
+case 7:
+    return checked_event_forwarding(handler_7.StartObject());
 
             default:
                 break;
@@ -22417,14 +22552,26 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.EndObject(length));
 
+case 5:
+    return checked_event_forwarding(handler_5.EndObject(length));
+
+case 6:
+    return checked_event_forwarding(handler_6.EndObject(length));
+
+case 7:
+    return checked_event_forwarding(handler_7.EndObject(length));
+
             default:
                 break;
             }
         } else {
-            if (!has_nId) set_missing_required("nId");
-if (!has_nStart) set_missing_required("nStart");
-if (!has_nEnd) set_missing_required("nEnd");
-if (!has_nType) set_missing_required("nType");
+            if (!has_strId) set_missing_required("strId");
+if (!has_strDevice) set_missing_required("strDevice");
+if (!has_strDeviceName) set_missing_required("strDeviceName");
+if (!has_strType) set_missing_required("strType");
+if (!has_nTime) set_missing_required("nTime");
+if (!has_strTime) set_missing_required("strTime");
+if (!has_strDesc) set_missing_required("strDesc");
 if (!has_bSearched) set_missing_required("bSearched");
         }
         return the_error.empty();
@@ -22454,6 +22601,12 @@ case 3:
      handler_3.ReapError(errs); break;
 case 4:
      handler_4.ReapError(errs); break;
+case 5:
+     handler_5.ReapError(errs); break;
+case 6:
+     handler_6.ReapError(errs); break;
+case 7:
+     handler_7.ReapError(errs); break;
 
         default:
             break;
@@ -22473,6 +22626,9 @@ handler_1.PrepareForReuse();
 handler_2.PrepareForReuse();
 handler_3.PrepareForReuse();
 handler_4.PrepareForReuse();
+handler_5.PrepareForReuse();
+handler_6.PrepareForReuse();
+handler_7.PrepareForReuse();
 
     }
 };
@@ -22484,13 +22640,16 @@ struct Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec
     {
         w.StartObject();
 
-        w.Key("\x6e\x49\x64", 3, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned long long >()(w, value.nId);
-w.Key("\x6e\x53\x74\x61\x72\x74", 6, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int >()(w, value.nStart);
-w.Key("\x6e\x45\x6e\x64", 4, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int >()(w, value.nEnd);
-w.Key("\x6e\x54\x79\x70\x65", 5, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int  >()(w, value.nType);
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strId);
+w.Key("\x73\x74\x72\x44\x65\x76\x69\x63\x65", 9, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strDevice);
+w.Key("\x73\x74\x72\x44\x65\x76\x69\x63\x65\x4e\x61\x6d\x65", 13, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strDeviceName);
+w.Key("\x73\x74\x72\x54\x79\x70\x65", 7, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strType);
+w.Key("\x6e\x54\x69\x6d\x65", 5, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned long long >()(w, value.nTime);
+w.Key("\x73\x74\x72\x54\x69\x6d\x65", 7, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strTime);
+w.Key("\x73\x74\x72\x44\x65\x73\x63", 7, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strDesc);
 w.Key("\x62\x53\x65\x61\x72\x63\x68\x65\x64", 9, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int  >()(w, value.bSearched);
 
-        w.EndObject(5);
+        w.EndObject(8);
     }
 
 };

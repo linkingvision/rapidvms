@@ -368,10 +368,11 @@ bool OAPIServerPlayback::QuitPlay()
 	return true;
 }
 
-OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory)
+OAPIServer::OAPIServer(XRef<XSocket> pSocket, Factory &pFactory, VEventServer &pEvent)
 :m_pFactory(pFactory), m_pSocket(pSocket), m_cnt(0), 
 m_bLogin(FALSE), m_bStreaming(false), m_bRegNotify(false), m_pPlayback(NULL), 
-m_pCamSearch(NULL)
+m_pCamSearch(NULL), m_bRealEvent(false), m_bSearchEvent(false), 
+m_pEvent(pEvent)
 {
 	UUIDGenerator uuidCreator;
 	
@@ -581,6 +582,15 @@ OAPIServer::~OAPIServer()
 	{
 		m_pPlayback->QuitPlay();
 		m_pPlayback = NULL;
+	}
+
+	if (m_bSearchEvent == true)
+	{
+		m_pEvent.UnRegSearchEventNotify((void *)this);
+	}
+	if (m_bRealEvent == true)
+	{
+		m_pEvent.UnRegEventNotify((void *)this);
 	}
 }
 
@@ -1799,6 +1809,100 @@ bool OAPIServer::ProcessStopPlayback(s32 len)
 	return TRUE;
 }
 
+bool OAPIServer::ProcessSearchEvent(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPISearchEventReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pEvent.RegSearchEventNotify(this, (FunctionEventNotify)(OAPIServer::SearchEventHandler));
+	m_pEvent.SearchEvent(req.strId, req.nStart, req.nEnd, this);
+	m_bSearchEvent = true;
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_SEARCH_EVENT_RSP, true);
+
+	return TRUE;
+
+}
+
+bool OAPIServer::ProcessRegEvent(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIRegEventReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pEvent.RegEventNotify(this, OAPIServer::EventHandler);
+	m_bRealEvent = true;
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_REG_EVENT_REQ, true);
+
+	return TRUE;
+}
+bool OAPIServer::ProcessUnRegEvent(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIRegEventReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pEvent.UnRegEventNotify(this);
+	m_bRealEvent = false;
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_UNREG_EVENT_REQ, true);
+
+	return TRUE;
+}
+
 bool OAPIServer::NewFrame(VideoFrame& frame)
 {
 	DataHandler1(frame);
@@ -1932,6 +2036,15 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 		case OAPI_STOP_PLAYBACK_REQ:
 			return ProcessStopPlayback(header.length);
 			break;
+		case OAPI_SEARCH_EVENT_REQ:
+			return ProcessSearchEvent(header.length);
+			break;
+		case OAPI_REG_EVENT_REQ:
+			return ProcessRegEvent(header.length);
+			break;
+		case OAPI_UNREG_EVENT_REQ:
+			return ProcessUnRegEvent(header.length);
+			break;
 		default:
 			break;		
 	}
@@ -1983,6 +2096,74 @@ inline void OAPIServer::DataHandler(VideoFrame& frame, void * pParam)
     OAPIServer *pOapi = static_cast<OAPIServer *> (pParam);
     
     return pOapi->DataHandler1(frame);
+}
+
+inline void OAPIServer::EventHandler1(VEventData data)
+{
+	oapi::OAPIEventNotify event;
+
+	event.strId = data.strId;
+	event.strDevice = data.strDevice;
+	event.strDeviceName = data.strDeviceName;
+	event.nTime = data.nTime;
+	event.strTime = data.strEvttime;
+	event.strType = data.strType;
+	event.bSearched = false;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(event);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return ;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_EVENT_PUSH);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+
+	return;
+}
+inline void OAPIServer::EventHandler(VEventData data, void* pParam)
+{
+    OAPIServer *pOapi = static_cast<OAPIServer *> (pParam);
+    
+    return pOapi->EventHandler1(data);
+}
+inline void OAPIServer::SearchEventHandler1(VEventData data)
+{
+	oapi::OAPIEventNotify event;
+
+	event.strId = data.strId;
+	event.strDevice = data.strDevice;
+	event.strDeviceName = data.strDeviceName;
+	event.nTime = data.nTime;
+	event.strTime = data.strEvttime;
+	event.strType = data.strType;
+	event.bSearched = true;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(event);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return;
+	}
+	
+	OAPIHeader header;
+	header.cmd = htonl(OAPI_EVENT_PUSH);
+	header.length = htonl(nJsonLen + 1);
+
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return;
+}
+inline void OAPIServer::SearchEventHandler(VEventData data, void* pParam)
+{
+    OAPIServer *pOapi = static_cast<OAPIServer *> (pParam);
+    
+    return pOapi->EventHandler1(data);
 }
 
 #endif

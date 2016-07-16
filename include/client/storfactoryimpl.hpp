@@ -135,6 +135,24 @@ inline bool StorFactory::CallChange(StorFactoryChangeData data)
 	return true;
 }
 
+inline bool StorFactory::OnEvent(VidEvent &pEvent, VidStor &pStor)
+{	
+	std::string strEvent;
+	std::string strStor;
+
+	pEvent.set_strstorname(pStor.strname());
+	bool bRet = pEvent.SerializeToString(&strEvent);
+	if (bRet == true)
+	{
+		VDC_DEBUG( "%s  Get Event %d %s  %s\n",__FUNCTION__, 
+								pEvent.strtime().c_str(), 
+								pEvent.strdevicename().c_str(), pEvent.strtype().c_str());
+		emit(SignalEvent(strEvent));
+		emit(SignalEvent1());
+	}
+	return true;
+}
+
 inline bool StorFactory::AddCam(astring strStorId, VidCamera &pParam)
 {
 	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
@@ -158,6 +176,34 @@ inline bool StorFactory::DeleteCam(astring strStorId, astring strId)
 	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
 	{
 		return m_StorClientMap[strStorId]->DeleteCam(strId);
+	}
+	return false;
+}
+
+
+inline bool StorFactory::SearchEvent(astring strStorId, astring strId, s64 nStart, s64 nEnd)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->SearchEvent(strId, nStart, nEnd);
+	}
+	return false;
+}
+
+inline bool StorFactory::RegRealEvent(astring strStorId)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->RegRealEvent();
+	}
+	return false;
+}
+
+inline bool StorFactory::UnRegRealEvent(astring strStorId)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->UnRegRealEvent();
 	}
 	return false;
 }

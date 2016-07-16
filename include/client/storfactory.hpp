@@ -50,12 +50,21 @@ public:
 	bool AddCam(astring strStorId, VidCamera &pParam);
 	bool DeleteCam(astring strStorId, astring strId);
 	bool PtzCmd(astring strStorId, astring strId, u32 action, double param);
+
+public:
+	bool SearchEvent(astring strStorId, astring strId, s64 nStart, s64 nEnd);
+	bool RegRealEvent(astring strStorId);
+	bool UnRegRealEvent(astring strStorId);
+	
 	
 public:
 	//BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);
 	virtual bool CallChange(StorFactoryChangeData data);
+	virtual bool OnEvent(VidEvent &pEvent, VidStor &pStor);
 signals:
 	void SignalCallChange(int type, std::string strId, std::string strCam);
+	void SignalEvent(std::string strEvent);
+	void SignalEvent1();
 
 //public slots:
 

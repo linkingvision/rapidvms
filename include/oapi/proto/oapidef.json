@@ -519,10 +519,13 @@
     "parse_mode": "strict",
 	"namespace": "oapi",
     "members": [
-        ["unsigned long long", "nId", {"required": true}],
-		["unsigned int", "nStart", {"required": true}],
-		["unsigned int", "nEnd", {"required": true}],
-		["unsigned int ", "nType", {"required": true}],
+        ["std::string", "strId", {"required": true}],
+		["std::string", "strDevice", {"required": true}],
+		["std::string", "strDeviceName", {"required": true}],
+		["std::string", "strType", {"required": true}],
+		["unsigned long long", "nTime", {"required": true}],
+		["std::string", "strTime", {"required": true}],
+		["std::string", "strDesc", {"required": true}],
 		["unsigned int ", "bSearched", {"required": true}]
     ]
 },

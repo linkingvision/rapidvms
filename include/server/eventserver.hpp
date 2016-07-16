@@ -64,7 +64,7 @@ public:
 
 typedef std::map<u64, VEventData> EventItemMap;
 
-typedef BOOL (*FunctionEventNotify)(void* pParam, VEventData data, bool bSearchEvent);
+typedef void (*FunctionEventNotify)(VEventData data, void* pParam);
 typedef std::map<void *, FunctionEventNotify> FunctionEventNotifyMap;
 
 class VEventServerDbTask: public QThread
@@ -115,9 +115,7 @@ private:
 typedef enum __VVidEventSearchCmdType
 {
 	VVID_EVENT_SEARCH_CMD = 1,
-	VVID_TIMELINE_CMD_CLEAR,
-	VVID_TIMELINE_CMD_QUIT,
-	VVID_TIMELINE_CMD_LAST
+	VVID_EVENT_SEARCH_LAST
 }VVidEventSearchCmdType;
 
 typedef struct __VVidEventSearchCmd
@@ -136,7 +134,7 @@ public:
 	VEventServerSearchTask(Factory &pFactory, VEventServerDbTask &pDbTask);
 	~VEventServerSearchTask();
 public:
-	void PushCmd(VVidEventSearchCmd &pCmd);
+	BOOL PushCmd(VVidEventSearchCmd &pCmd);
 	/* Register the call back for the event */
 	BOOL RegEventNotify(void * pData, FunctionEventNotify callback);
 	BOOL UnRegEventNotify(void * pData);	
@@ -166,6 +164,7 @@ public:
 	BOOL UnRegEventNotify(void * pData);
 	BOOL RegSearchEventNotify(void * pData, FunctionEventNotify callback);
 	BOOL UnRegSearchEventNotify(void * pData);
+	BOOL SearchEvent(astring strId, s64 nStart, s64 nEnd, void *pData);
 public:
 	BOOL Init();
 private:

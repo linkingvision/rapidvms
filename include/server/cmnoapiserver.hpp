@@ -38,7 +38,7 @@ class CmnOAPIServerSession: public QThread
 {
 	Q_OBJECT
 public:
-	inline CmnOAPIServerSession(Factory &pFactory, XRef<XSocket> pSocket);
+	inline CmnOAPIServerSession(Factory &pFactory, VEventServer &pEvent, XRef<XSocket> pSocket);
 	inline ~CmnOAPIServerSession();
 	
 public:
@@ -47,13 +47,14 @@ public:
 private:
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
+	VEventServer &m_pEvent;
 };
 
 class CmnOAPIServer:public QThread
 {
 	Q_OBJECT
 public:
-	inline CmnOAPIServer(Factory &pFactory);
+	inline CmnOAPIServer(Factory &pFactory, VEventServer &pEvent);
 	inline ~CmnOAPIServer();
 	
 public:
@@ -72,6 +73,7 @@ private:
 	fast_mutex m_Lock;
 	u16 m_port;
 	Factory &m_pFactory;
+	VEventServer &m_pEvent;
 };
 
 class CmnOAPISSLServer:public QThread
@@ -104,7 +106,7 @@ typedef CmnOAPISSLServer* LPCmnOAPISSLServer;
 class OAPIServerWrapper
 {
 public:
-	inline OAPIServerWrapper(Factory &pFactory);
+	inline OAPIServerWrapper(Factory &pFactory, VEventServer &pEvent);
 	inline ~OAPIServerWrapper();
 	
 public:

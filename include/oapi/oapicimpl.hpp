@@ -656,6 +656,67 @@ bool OAPIClient::GetStreamList(astring strId)
 	return true;
 }
 
+inline bool OAPIClient::SearchEvent(astring strId, s64 nStart, s64 nEnd)
+{
+	oapi::OAPISearchEventReq req;
+	OAPIHeader header;
+	req.strId = strId;
+	req.nStart = nStart;
+	req.nEnd = nEnd;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_SEARCH_EVENT_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+inline bool OAPIClient::RegRealEvent()
+{
+	oapi::OAPIRegEventReq req;
+	OAPIHeader header;
+	req.strId = VVID_UUID_ALL;/* add some id for the camera */
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_REG_EVENT_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+	
+}
+inline bool OAPIClient::UnRegRealEvent()
+{
+	oapi::OAPIUnRegEventReq req;
+	OAPIHeader header;
+	req.strId = VVID_UUID_ALL;/* add some id for the camera */
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_UNREG_EVENT_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
 bool OAPIClient::ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &rsp)
 {
 	autojsoncxx::ParsingResult result;
@@ -814,6 +875,17 @@ bool OAPIClient::ParseStreamList(char *pRecv, int len, oapi::OAPIStreamListRsp &
 	return true;
 }
 
+
+bool OAPIClient::ParseEventNotify(char *pRecv, int len, oapi::OAPIEventNotify &event)
+{
+	autojsoncxx::ParsingResult result;
+	if (!autojsoncxx::from_json_string(pRecv, event, result)) 
+	{
+	    std::cerr << result << '\n';
+	    return false;
+	}
+	return true;
+}
 
 
 #endif

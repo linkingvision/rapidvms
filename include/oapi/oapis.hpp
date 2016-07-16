@@ -9,6 +9,7 @@
 #define __VSC_OAPIS_H_
 #include "oapicmn.hpp"
 #include "server/factory.hpp"
+#include "server/eventserver.hpp"
 #include "oapiproto.hpp"
 #include "XSDK/XHash.h"
 #include "XSDK/TimeUtils.h"
@@ -136,7 +137,7 @@ class OAPIServer:public QObject ,public OAPICamSearchInterface,
 {
 	Q_OBJECT
 public:
-	inline OAPIServer(XRef<XSocket> pSocket, Factory &pFactory);
+	inline OAPIServer(XRef<XSocket> pSocket, Factory &pFactory, VEventServer &pEvent);
 	inline ~OAPIServer();
 public:
 	inline BOOL Process(OAPIHeader &header);
@@ -174,6 +175,9 @@ public:
 	inline bool ProcessResumePlayback(s32 len);
 	inline bool ProcessSeekPlayback(s32 len);
 	inline bool ProcessStopPlayback(s32 len);
+	inline bool ProcessSearchEvent(s32 len);
+	inline bool ProcessRegEvent(s32 len);
+	inline bool ProcessUnRegEvent(s32 len);
 	
 	inline bool NotifyCamAdd(FactoryCameraChangeData data);
 	inline bool NotifyCamDel(FactoryCameraChangeData data);
@@ -187,7 +191,13 @@ public:
 	inline bool CallChange1(FactoryCameraChangeData data);
 public:
 	inline void DataHandler1(VideoFrame& frame);
-	inline static void DataHandler(VideoFrame& frame, void * pParam);	
+	inline static void DataHandler(VideoFrame& frame, void * pParam);
+public:
+	inline void EventHandler1(VEventData data);
+	inline static void EventHandler(VEventData data, void* pParam);
+	inline void SearchEventHandler1(VEventData data);
+	inline static void SearchEventHandler(VEventData data, void* pParam);	
+	
 public:
 	inline bool SendCmnRetRsp(OAPICmd nCmd, bool bRet);
 
@@ -200,9 +210,12 @@ private:
 	XMutex m_cMutex;
 	XRef<XSocket> m_pSocket;
 	Factory &m_pFactory;
+	VEventServer &m_pEvent;
 	astring m_strLiveviewId;
 	unsigned int m_nStream;
 	bool m_bStreaming;
+	bool m_bRealEvent;
+	bool m_bSearchEvent;
 	bool m_bRegNotify;
 	int m_cnt;
 	BOOL m_bLogin;

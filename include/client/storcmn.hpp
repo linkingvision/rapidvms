@@ -41,6 +41,7 @@ class StorFactoryNotifyInterface
 {
 public:
 virtual bool CallChange(StorFactoryChangeData data){return FALSE;}
+virtual bool OnEvent(VidEvent &pEvent,  VidStor &pStor){return FALSE;}
 };
 
 

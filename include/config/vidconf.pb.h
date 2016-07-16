@@ -48,6 +48,7 @@ class VidDiskList;
 class VidEmap;
 class VidEmapCamera;
 class VidEmapList;
+class VidEvent;
 class VidEventDBConf;
 class VidGroup;
 class VidGroupList;
@@ -112,6 +113,28 @@ inline bool CameraConnectType_Parse(
     const ::std::string& name, CameraConnectType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<CameraConnectType>(
     CameraConnectType_descriptor(), name, value);
+}
+enum OnvifEventLevel {
+  VID_ONVIF_EVENT_OFF = 0,
+  VID_ONVIF_EVENT_FULL = 1,
+  VID_ONVIF_EVENT_MOTION = 2,
+  OnvifEventLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  OnvifEventLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool OnvifEventLevel_IsValid(int value);
+const OnvifEventLevel OnvifEventLevel_MIN = VID_ONVIF_EVENT_OFF;
+const OnvifEventLevel OnvifEventLevel_MAX = VID_ONVIF_EVENT_MOTION;
+const int OnvifEventLevel_ARRAYSIZE = OnvifEventLevel_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* OnvifEventLevel_descriptor();
+inline const ::std::string& OnvifEventLevel_Name(OnvifEventLevel value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    OnvifEventLevel_descriptor(), value);
+}
+inline bool OnvifEventLevel_Parse(
+    const ::std::string& name, OnvifEventLevel* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<OnvifEventLevel>(
+    OnvifEventLevel_descriptor(), name, value);
 }
 enum VidLanguage {
   VID_LANG_AUTO = 0,
@@ -749,6 +772,12 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::int32 nservermotionstream() const;
   void set_nservermotionstream(::google::protobuf::int32 value);
 
+  // optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+  void clear_nonvifevtlevel();
+  static const int kNOnvifEvtLevelFieldNumber = 26;
+  ::VidConf::OnvifEventLevel nonvifevtlevel() const;
+  void set_nonvifevtlevel(::VidConf::OnvifEventLevel value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -778,6 +807,7 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::int32 npostrecsec_;
   ::google::protobuf::int32 nrecordstream_;
   ::google::protobuf::int32 nservermotionstream_;
+  int nonvifevtlevel_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -3050,6 +3080,175 @@ class VidEventDBConf : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static VidEventDBConf* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class VidEvent : public ::google::protobuf::Message {
+ public:
+  VidEvent();
+  virtual ~VidEvent();
+
+  VidEvent(const VidEvent& from);
+
+  inline VidEvent& operator=(const VidEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidEvent& default_instance();
+
+  void Swap(VidEvent* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidEvent* New() const { return New(NULL); }
+
+  VidEvent* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VidEvent& from);
+  void MergeFrom(const VidEvent& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VidEvent* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // optional string strDevice = 2;
+  void clear_strdevice();
+  static const int kStrDeviceFieldNumber = 2;
+  const ::std::string& strdevice() const;
+  void set_strdevice(const ::std::string& value);
+  void set_strdevice(const char* value);
+  void set_strdevice(const char* value, size_t size);
+  ::std::string* mutable_strdevice();
+  ::std::string* release_strdevice();
+  void set_allocated_strdevice(::std::string* strdevice);
+
+  // optional string strDeviceName = 3;
+  void clear_strdevicename();
+  static const int kStrDeviceNameFieldNumber = 3;
+  const ::std::string& strdevicename() const;
+  void set_strdevicename(const ::std::string& value);
+  void set_strdevicename(const char* value);
+  void set_strdevicename(const char* value, size_t size);
+  ::std::string* mutable_strdevicename();
+  ::std::string* release_strdevicename();
+  void set_allocated_strdevicename(::std::string* strdevicename);
+
+  // optional string strType = 4;
+  void clear_strtype();
+  static const int kStrTypeFieldNumber = 4;
+  const ::std::string& strtype() const;
+  void set_strtype(const ::std::string& value);
+  void set_strtype(const char* value);
+  void set_strtype(const char* value, size_t size);
+  ::std::string* mutable_strtype();
+  ::std::string* release_strtype();
+  void set_allocated_strtype(::std::string* strtype);
+
+  // optional int64 nTime = 5;
+  void clear_ntime();
+  static const int kNTimeFieldNumber = 5;
+  ::google::protobuf::int64 ntime() const;
+  void set_ntime(::google::protobuf::int64 value);
+
+  // optional string strTime = 6;
+  void clear_strtime();
+  static const int kStrTimeFieldNumber = 6;
+  const ::std::string& strtime() const;
+  void set_strtime(const ::std::string& value);
+  void set_strtime(const char* value);
+  void set_strtime(const char* value, size_t size);
+  ::std::string* mutable_strtime();
+  ::std::string* release_strtime();
+  void set_allocated_strtime(::std::string* strtime);
+
+  // optional string strDesc = 7;
+  void clear_strdesc();
+  static const int kStrDescFieldNumber = 7;
+  const ::std::string& strdesc() const;
+  void set_strdesc(const ::std::string& value);
+  void set_strdesc(const char* value);
+  void set_strdesc(const char* value, size_t size);
+  ::std::string* mutable_strdesc();
+  ::std::string* release_strdesc();
+  void set_allocated_strdesc(::std::string* strdesc);
+
+  // optional bool bSearched = 8;
+  void clear_bsearched();
+  static const int kBSearchedFieldNumber = 8;
+  bool bsearched() const;
+  void set_bsearched(bool value);
+
+  // optional string strStorName = 9;
+  void clear_strstorname();
+  static const int kStrStorNameFieldNumber = 9;
+  const ::std::string& strstorname() const;
+  void set_strstorname(const ::std::string& value);
+  void set_strstorname(const char* value);
+  void set_strstorname(const char* value, size_t size);
+  ::std::string* mutable_strstorname();
+  ::std::string* release_strstorname();
+  void set_allocated_strstorname(::std::string* strstorname);
+
+  // @@protoc_insertion_point(class_scope:VidConf.VidEvent)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::internal::ArenaStringPtr strdevice_;
+  ::google::protobuf::internal::ArenaStringPtr strdevicename_;
+  ::google::protobuf::internal::ArenaStringPtr strtype_;
+  ::google::protobuf::int64 ntime_;
+  ::google::protobuf::internal::ArenaStringPtr strtime_;
+  ::google::protobuf::internal::ArenaStringPtr strdesc_;
+  ::google::protobuf::internal::ArenaStringPtr strstorname_;
+  bool bsearched_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_vidconf_2eproto();
+  friend void protobuf_AssignDesc_vidconf_2eproto();
+  friend void protobuf_ShutdownFile_vidconf_2eproto();
+
+  void InitAsDefaultInstance();
+  static VidEvent* default_instance_;
+};
 // ===================================================================
 
 
@@ -4022,6 +4221,20 @@ inline void VidCamera::set_nservermotionstream(::google::protobuf::int32 value) 
   
   nservermotionstream_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nServerMotionStream)
+}
+
+// optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+inline void VidCamera::clear_nonvifevtlevel() {
+  nonvifevtlevel_ = 0;
+}
+inline ::VidConf::OnvifEventLevel VidCamera::nonvifevtlevel() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.nOnvifEvtLevel)
+  return static_cast< ::VidConf::OnvifEventLevel >(nonvifevtlevel_);
+}
+inline void VidCamera::set_nonvifevtlevel(::VidConf::OnvifEventLevel value) {
+  
+  nonvifevtlevel_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.nOnvifEvtLevel)
 }
 
 // -------------------------------------------------------------------
@@ -5974,7 +6187,342 @@ inline void VidEventDBConf::set_allocated_strdbpath(::std::string* strdbpath) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEventDBConf.strDBPath)
 }
 
+// -------------------------------------------------------------------
+
+// VidEvent
+
+// optional string strId = 1;
+inline void VidEvent::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strid() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strId)
+  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strId)
+}
+inline void VidEvent::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strId)
+}
+inline void VidEvent::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strId)
+}
+inline ::std::string* VidEvent::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strid() {
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strId)
+}
+
+// optional string strDevice = 2;
+inline void VidEvent::clear_strdevice() {
+  strdevice_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strdevice() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDevice)
+  return strdevice_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strdevice(const ::std::string& value) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDevice)
+}
+inline void VidEvent::set_strdevice(const char* value) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDevice)
+}
+inline void VidEvent::set_strdevice(const char* value, size_t size) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDevice)
+}
+inline ::std::string* VidEvent::mutable_strdevice() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDevice)
+  return strdevice_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strdevice() {
+  
+  return strdevice_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strdevice(::std::string* strdevice) {
+  if (strdevice != NULL) {
+    
+  } else {
+    
+  }
+  strdevice_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdevice);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDevice)
+}
+
+// optional string strDeviceName = 3;
+inline void VidEvent::clear_strdevicename() {
+  strdevicename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strdevicename() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDeviceName)
+  return strdevicename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strdevicename(const ::std::string& value) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDeviceName)
+}
+inline void VidEvent::set_strdevicename(const char* value) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDeviceName)
+}
+inline void VidEvent::set_strdevicename(const char* value, size_t size) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDeviceName)
+}
+inline ::std::string* VidEvent::mutable_strdevicename() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDeviceName)
+  return strdevicename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strdevicename() {
+  
+  return strdevicename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strdevicename(::std::string* strdevicename) {
+  if (strdevicename != NULL) {
+    
+  } else {
+    
+  }
+  strdevicename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdevicename);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDeviceName)
+}
+
+// optional string strType = 4;
+inline void VidEvent::clear_strtype() {
+  strtype_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strtype() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strType)
+  return strtype_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strtype(const ::std::string& value) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strType)
+}
+inline void VidEvent::set_strtype(const char* value) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strType)
+}
+inline void VidEvent::set_strtype(const char* value, size_t size) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strType)
+}
+inline ::std::string* VidEvent::mutable_strtype() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strType)
+  return strtype_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strtype() {
+  
+  return strtype_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strtype(::std::string* strtype) {
+  if (strtype != NULL) {
+    
+  } else {
+    
+  }
+  strtype_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strtype);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strType)
+}
+
+// optional int64 nTime = 5;
+inline void VidEvent::clear_ntime() {
+  ntime_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidEvent::ntime() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.nTime)
+  return ntime_;
+}
+inline void VidEvent::set_ntime(::google::protobuf::int64 value) {
+  
+  ntime_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.nTime)
+}
+
+// optional string strTime = 6;
+inline void VidEvent::clear_strtime() {
+  strtime_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strtime() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strTime)
+  return strtime_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strtime(const ::std::string& value) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strTime)
+}
+inline void VidEvent::set_strtime(const char* value) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strTime)
+}
+inline void VidEvent::set_strtime(const char* value, size_t size) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strTime)
+}
+inline ::std::string* VidEvent::mutable_strtime() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strTime)
+  return strtime_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strtime() {
+  
+  return strtime_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strtime(::std::string* strtime) {
+  if (strtime != NULL) {
+    
+  } else {
+    
+  }
+  strtime_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strtime);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strTime)
+}
+
+// optional string strDesc = 7;
+inline void VidEvent::clear_strdesc() {
+  strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strdesc() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDesc)
+  return strdesc_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strdesc(const ::std::string& value) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDesc)
+}
+inline void VidEvent::set_strdesc(const char* value) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDesc)
+}
+inline void VidEvent::set_strdesc(const char* value, size_t size) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDesc)
+}
+inline ::std::string* VidEvent::mutable_strdesc() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDesc)
+  return strdesc_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strdesc() {
+  
+  return strdesc_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strdesc(::std::string* strdesc) {
+  if (strdesc != NULL) {
+    
+  } else {
+    
+  }
+  strdesc_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdesc);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDesc)
+}
+
+// optional bool bSearched = 8;
+inline void VidEvent::clear_bsearched() {
+  bsearched_ = false;
+}
+inline bool VidEvent::bsearched() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.bSearched)
+  return bsearched_;
+}
+inline void VidEvent::set_bsearched(bool value) {
+  
+  bsearched_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.bSearched)
+}
+
+// optional string strStorName = 9;
+inline void VidEvent::clear_strstorname() {
+  strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidEvent::strstorname() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strStorName)
+  return strstorname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_strstorname(const ::std::string& value) {
+  
+  strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strStorName)
+}
+inline void VidEvent::set_strstorname(const char* value) {
+  
+  strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strStorName)
+}
+inline void VidEvent::set_strstorname(const char* value, size_t size) {
+  
+  strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strStorName)
+}
+inline ::std::string* VidEvent::mutable_strstorname() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strStorName)
+  return strstorname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidEvent::release_strstorname() {
+  
+  return strstorname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidEvent::set_allocated_strstorname(::std::string* strstorname) {
+  if (strstorname != NULL) {
+    
+  } else {
+    
+  }
+  strstorname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strstorname);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorName)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -6045,6 +6593,11 @@ template <> struct is_proto_enum< ::VidConf::CameraConnectType> : ::google::prot
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::CameraConnectType>() {
   return ::VidConf::CameraConnectType_descriptor();
+}
+template <> struct is_proto_enum< ::VidConf::OnvifEventLevel> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::OnvifEventLevel>() {
+  return ::VidConf::OnvifEventLevel_descriptor();
 }
 template <> struct is_proto_enum< ::VidConf::VidLanguage> : ::google::protobuf::internal::true_type {};
 template <>
