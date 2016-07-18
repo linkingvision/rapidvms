@@ -13,8 +13,12 @@ public:
 public:
 	virtual void VidShow();
 	virtual void VidHide();
+	virtual void VidNewEventSearch();
+	virtual void VidNewMotionSearch();
+	virtual VSCVidTreeInf *GetCameraTree();
 
 private:
+	VSCVidTreeInf *m_pCameraTree;
 
 };
 #endif
