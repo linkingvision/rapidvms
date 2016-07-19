@@ -1,4 +1,4 @@
-#include "VSCAbout.h"
+#include "vscabout.h"
 #include "debug.hpp"
 
 

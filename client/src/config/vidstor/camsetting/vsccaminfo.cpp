@@ -7,7 +7,8 @@
 
 
 VSCCamInfo::VSCCamInfo(ClientFactory &pFactory, VidStor &stor, astring strCam, QWidget *parent)
-    : m_pFactory(pFactory), m_pStor(stor), m_strCam(strCam), QWidget(parent)
+    : m_pFactory(pFactory), m_pStor(stor), m_strCam(strCam), QWidget(parent), 
+    m_strCamName("Loading...")
 {
 	VSCLoading * pLoading = VSCLoading::Create();
 	StorSyncInf syncInf(m_pStor);
@@ -35,7 +36,7 @@ VSCCamInfo::VSCCamInfo(ClientFactory &pFactory, VidStor &stor, astring strCam, Q
 		default:
 			break;
 	}
-
+	m_strCamName = pCam.strname();
 	ui.lineEditName->setText(pCam.strname().c_str());
 	ui.lineEditIP->setText(pCam.strip().c_str());
 	ui.lineEditPort->setText(pCam.strport().c_str());

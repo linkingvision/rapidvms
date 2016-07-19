@@ -15,6 +15,11 @@ class VSCCamInfo : public QWidget
 public:
     VSCCamInfo(ClientFactory &pFactory, VidStor &stor, astring strCam, QWidget *parent = 0);
     ~VSCCamInfo(){}
+public:
+	astring GetCameraName()
+	{
+		return m_strCamName;
+	}
 
 public slots:   
   void applyConfig();
@@ -26,6 +31,7 @@ private:
 	ClientFactory &m_pFactory;
 	VidStor m_pStor;
 	astring m_strCam;
+	astring m_strCamName;
 
     
 };

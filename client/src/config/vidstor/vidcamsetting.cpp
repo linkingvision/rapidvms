@@ -27,15 +27,15 @@ QWidget *parent, Qt::WindowFlags flags)
 	ui.setupUi(this);
 	setAcceptDrops(true);
 	setMouseTracking(true);
-	
-	ui.tabWidget->addTab(new VSCCamInfo(pFactory, m_pStor, m_strCam, this), tr("Information"));
+	VSCCamInfo *pCamInfo = new VSCCamInfo(pFactory, m_pStor, m_strCam, this);
+	ui.tabWidget->addTab(pCamInfo, tr("Information"));
 	ui.tabWidget->addTab(new VSCStreamSelect(pFactory, m_pStor, m_strCam, this), tr("Stream"));
 	ui.tabWidget->addTab(new VSCCamRec(pFactory, m_pStor, m_strCam, this), tr("Recording"));
 	ui.tabWidget->addTab(new VSCMotion(pFactory, m_pStor, m_strCam, this), tr("Motion"));
-	//ui.tabWidget->addTab(new VSCSchedule(pFactory, m_pStor, m_strCam, this), tr("Schedule"));
+	ui.tabWidget->addTab(new VSCSchedule(pFactory, m_pStor, m_strCam, this), tr("Schedule"));
 
 	//connect(this, SIGNAL(SignalSectionClicked(int, int)), ui.tableWidget, SIGNAL(cellClicked(int, int)));
-	ui.storName->setText(m_pStor.strname().c_str());
+	ui.storName->setText(pCamInfo->GetCameraName().c_str());
 	
 	QVBoxLayout* layout = new QVBoxLayout();
     m_pVideo = new VSCVWidget(m_pFactory, 0, this->ui.video, true);
