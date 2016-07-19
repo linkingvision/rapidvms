@@ -9,6 +9,8 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 HEADERS += ../src/main/vscdashboard.h \
     ../src/main/vscdashboardtaskitem.h \
+    ../src/main/vsceventconsole.h \
+    ../src/main/vscabout.h \
     ../src/main/vscvidlistframe.h \
     ../src/main/vsclogin.h \
     ../src/main/vscuserstatus.h \
@@ -33,14 +35,14 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/vscvidtreeconf.h \
     ../src/config/vidclientsetting.h \
     ../src/config/vscvidconfig.h \
-    ../src/config/viditem/vscviditememapconf.h \
-    ../src/config/viditem/vscviditemviewconf.h \
     ../src/config/viditem/vscviditemaddcam.h \
     ../src/config/viditem/vscviditemaddstor.h \
     ../src/config/viditem/vscviditemcamconf.h \
     ../src/config/viditem/vscviditemclientconf.h \
     ../src/config/viditem/vscviditemdiskconf.h \
+    ../src/config/viditem/vscviditememapconf.h \
     ../src/config/viditem/vscviditemstorconf.h \
+    ../src/config/viditem/vscviditemviewconf.h \
     ../src/config/vidstor/vidstoradd.h \
     ../src/config/vidstor/vidcamadd.h \
     ../src/config/vidstor/vidstorsetting.h \
@@ -50,6 +52,9 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/vidstor/storsetting/vscstoruser.h \
     ../src/config/vidstor/disksetting/vschddedit.h \
     ../src/config/vidstor/disksetting/vschddoneedit.h \
+    ../src/config/vidstor/camsetting/vscstreamselect.h \
+    ../src/config/vidstor/camsetting/vscmotion.h \
+    ../src/config/vidstor/camsetting/vscschedule.h \
     ../src/config/vidstor/camsetting/vsccaminfo.h \
     ../src/config/vidstor/camsetting/vsccamrec.h \
     ../src/config/clientsetting/vscversion.h \
@@ -84,8 +89,10 @@ HEADERS += ../src/main/vscdashboard.h \
     ../../include/client/storstream.hpp \
     ../../include/client/storsyncinf.hpp
 SOURCES += ../src/main/main.cpp \
+    ../src/main/vscabout.cpp \
     ../src/main/vscdashboard.cpp \
     ../src/main/vscdashboardtaskitem.cpp \
+    ../src/main/vsceventconsole.cpp \
     ../src/main/vsclogin.cpp \
     ../src/main/vscmainwindows.cpp \
     ../src/main/vsctoobar.cpp \
@@ -129,6 +136,9 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/vidstor/disksetting/vschddoneedit.cpp \
     ../src/config/vidstor/camsetting/vsccaminfo.cpp \
     ../src/config/vidstor/camsetting/vsccamrec.cpp \
+    ../src/config/vidstor/camsetting/vscmotion.cpp \
+    ../src/config/vidstor/camsetting/vscschedule.cpp \
+    ../src/config/vidstor/camsetting/vscstreamselect.cpp \
     ../src/config/clientsetting/vsclanguage.cpp \
     ../src/config/clientsetting/vsclicense.cpp \
     ../src/config/clientsetting/vscuser.cpp \
@@ -143,6 +153,8 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/main/vscuserstatus.ui \
     ../src/main/vscdashboard.ui \
     ../src/main/vscdashboardtaskitem.ui \
+    ../src/main/vsceventconsole.ui \
+    ../src/main/vscabout.ui \
     ../src/live/vscview.ui \
     ../src/live/vvidpbview.ui \
     ../src/live/vscviewconf.ui \
@@ -158,11 +170,14 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/config/vidstor/disksetting/vschddoneedit.ui \
     ../src/config/vidstor/camsetting/vsccaminfo.ui \
     ../src/config/vidstor/camsetting/vsccamrec.ui \
+    ../src/config/vidstor/camsetting/vscstreamselect.ui \
+    ../src/config/vidstor/camsetting/vscmotion.ui \
+    ../src/config/vidstor/camsetting/vscschedule.ui \
     ../src/config/clientsetting/vscversion.ui \
     ../src/config/clientsetting/vsclanguage.ui \
     ../src/config/clientsetting/vsclicense.ui \
     ../src/config/clientsetting/vscuser.ui \
     ../src/config/vidview/vidviewconf.ui \
     ../src/config/videmap/videmapconf.ui
-TRANSLATIONS += ../main/translations/opencvr_zh.ts
+TRANSLATIONS += ../src/main/translations/opencvr_zh.ts
 RESOURCES += ../src/main/vscmainwindows.qrc

@@ -640,6 +640,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscschedule.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\searchpb\vscvideventsearch.cpp">
+      <Filter>src\searchpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvideventsearch.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvideventsearch.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\main\vscmainwindows.qrc">
@@ -923,6 +932,12 @@
     </CustomBuild>
     <CustomBuild Include="..\src\config\vidstor\camsetting\vscschedule.ui">
       <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\searchpb\vscvideventsearch.h">
+      <Filter>src\searchpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\searchpb\vscvideventsearch.ui">
+      <Filter>src\searchpb</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1304,6 +1319,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscschedule.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvideventsearch.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

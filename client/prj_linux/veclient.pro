@@ -58,6 +58,7 @@ LIBS +=  \
     -lavcodec \
     -lavformat \
     -lavutil \
+    -lavfilter \
     -lswscale \
     -lleveldb \
     -lonvifc \
