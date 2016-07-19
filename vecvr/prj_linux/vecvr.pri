@@ -17,17 +17,22 @@ HEADERS += ../prj_win32/resource.h \
     ../../include/server/cameraimpl.hpp \
     ../../include/server/cmnoapiserverimpl.hpp \
     ../../include/server/cmnserverimpl.hpp \
+    ../../include/server/eventserverimpl.hpp \
     ../../include/server/factoryimpl.hpp \
     ../../include/server/hdddevice.hpp \
     ../../include/server/cmnoapiserver.hpp \
     ../../include/server/cmnserver.hpp \
     ../../include/server/factory.hpp \
+    ../../include/server/eventserver.hpp \
     ../../include/oapi/oapic.hpp \
     ../../include/oapi/oapicimpl.hpp \
     ../../include/oapi/oapicmn.hpp \
     ../../include/oapi/oapiproto.hpp \
     ../../include/oapi/oapisimpl.hpp \
     ../../include/oapi/oapis.hpp
-SOURCES += ../main/main.cpp
+SOURCES += ../main/main.cpp \
+    ../main/webserver.cpp \
+    ../../3rdparty/civetweb/src/CivetServer.cpp \
+    ../../3rdparty/civetweb/src/civetweb.c
 TRANSLATIONS += ../main/translations/opencvr_zh.ts
 RESOURCES += ../main/vscmainwindows.qrc

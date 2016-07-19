@@ -245,6 +245,86 @@ background-color: rgb(200, 200, 200);}</string>
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbVidEventSearch">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/alarm_search.png</normaloff>:/action/resources/alarm_search.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbVidMotionSearch">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QPushButton:pressed {
+background-color: rgb(200, 200, 200);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="vscmainwindows.qrc">
+         <normaloff>:/action/resources/motion_search.png</normaloff>:/action/resources/motion_search.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

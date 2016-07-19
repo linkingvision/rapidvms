@@ -54,6 +54,8 @@
         <file>resources/dashboard.png</file>
         <file>resources/buttonlarge.png</file>
         <file>resources/buttonlargepress.png</file>
+        <file>resources/alarm_search.png</file>
+        <file>resources/motion_search.png</file>
     </qresource>
     <qresource prefix="/device">
         <file>resources/computer.png</file>

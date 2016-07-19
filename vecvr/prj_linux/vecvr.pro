@@ -24,6 +24,7 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../../3rdparty/poco/Net/include \
     ./../../3rdparty/poco/Util/include \
     ./../../3rdparty/onvifc/include \
+    ./../../3rdparty/civetweb/include \
     ./../../velib/include/vplay \
     ./../../velib/include/utility \
     ./../../velib/include/vdb \
@@ -68,12 +69,15 @@ LIBS +=  \
     -lavcodec \
     -lavformat \
     -lavutil \
+    -lavfilter \
     -lswscale \
     -lleveldb \
     -lonvifc \
     -lvelib \
     -lveuilib \
     -lPocoFoundation\
+    -lPocoDataSQLite\
+    -lPocoData\
     -lprotobuf\
     -lssl \
     -lcrypto\

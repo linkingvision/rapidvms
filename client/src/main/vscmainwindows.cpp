@@ -88,6 +88,8 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	m_pVidPb = new VSCVidSearchPB(m_pFactory, *m_pMainArea, this);
 
 	/* First hide all */
+	m_pToolBar->ui.pbVidEventSearch->hide();
+	m_pToolBar->ui.pbVidMotionSearch->hide();
 	m_pVidLive->VidHide();
 	m_pVidConf->VidHide();
 	m_pVidPb->VidHide();
@@ -107,9 +109,21 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLivePB()));
 
 	connect(m_pToolBar->ui.pbVidSearch, SIGNAL(clicked()), this, SLOT(ShowVidPb()));
+
+	connect(m_pToolBar->ui.pbVidEventSearch, SIGNAL(clicked()), m_pVidPb, 
+													SLOT(SlotNewEventSearch()));
+	connect(m_pToolBar->ui.pbVidMotionSearch, SIGNAL(clicked()), m_pVidPb, 
+													SLOT(SlotNewMotionSearch()));
+	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLivePB()));
+	
 	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
 	connect(m_pToolBar->ui.pbVidDashBoard, SIGNAL(clicked()), this, SLOT(ShowDashBoard()));
 	connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(ShowEventConsole()));
+	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalEvent1()), 
+			m_pToolBar, SLOT(NewAlarm()));
+
+	m_pEventConsole = new VSCEventConsole(m_pFactory, this);
+	m_pEventConsole->hide();
 	
 
 }
@@ -168,9 +182,10 @@ void VSCMainWindows::ShowEventConsole()
 {
 	if (m_pEventConsole == NULL)
 	{
-    		m_pEventConsole = new VSCEventConsole(this);
+    		m_pEventConsole = new VSCEventConsole(m_pFactory, this);
 		//connect(m_pPanel, SIGNAL(AddVIPC()), this, SLOT(AddVIPC()));
 	}
+	m_pEventConsole->show();
 
 	m_pMainArea->addTab(m_pEventConsole, QIcon(tr(":/action/resources/alarmno.png")), tr("Console"));  
 	m_pMainArea->setCurrentWidget(m_pEventConsole);
@@ -193,6 +208,8 @@ void VSCMainWindows::ShowVidLive()
 		case VSC_VID_IDX_PB:
 		{
 			m_pVidPb->VidHide();
+			m_pToolBar->ui.pbVidEventSearch->hide();
+			m_pToolBar->ui.pbVidMotionSearch->hide();
 			break;
 		}
 		default:
@@ -225,6 +242,8 @@ void VSCMainWindows::ShowVidConf()
 		}
 		case VSC_VID_IDX_PB:
 		{
+			m_pToolBar->ui.pbVidEventSearch->hide();
+			m_pToolBar->ui.pbVidMotionSearch->hide();
 			m_pVidPb->VidHide();
 			break;
 		}
@@ -266,6 +285,8 @@ void VSCMainWindows::ShowVidPb()
 	}
 
 	m_pVidPb->VidShow();
+	m_pToolBar->ui.pbVidEventSearch->show();
+	m_pToolBar->ui.pbVidMotionSearch->show();
 	m_VidIdx = VSC_VID_IDX_PB;
 	m_pVidList->SetCurrVidInf(m_pVidPb);
 

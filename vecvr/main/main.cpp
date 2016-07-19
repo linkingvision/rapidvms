@@ -76,10 +76,6 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 		pFactory->SetSystemPath(strPath);
 		pFactory->Init();
 	}
-
-	/* Start the OpenCVR api server */
-	pOAPIServer = new OAPIServerWrapper(*pFactory);
-	pOAPIServer->start();
 	
 	astring docRoot = GetProgramRunningDir() + "www";
 	
@@ -103,6 +99,10 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	/* Init Event framework */
 	VEventMgr *pEventMgr = new VEventMgr(*pFactory, *pEventServer);
 	pEventMgr->Init();
+
+	/* Start the OpenCVR api server */
+	pOAPIServer = new OAPIServerWrapper(*pFactory, *pEventServer);
+	pOAPIServer->start();
 
 	pFactory->start();
 	VDC_DEBUG("Start successfully !\n");

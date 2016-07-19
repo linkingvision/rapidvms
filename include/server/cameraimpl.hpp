@@ -233,6 +233,14 @@ BOOL CameraParam::UpdateUrlOnvif()
 			}else
 			{
 				bGotUrl = TRUE;
+				Poco::URI rtspUrl(m_strUrl);
+				astring strRtsp;
+				if (rtspUrl.empty() != true)
+				{
+					strRtsp = rtspUrl.getScheme() + "://" + rtspUrl.getHost() + ":" + std::to_string(rtspUrl.getPort()) + rtspUrl.getPathAndQuery();
+				}
+
+				m_strUrl = strRtsp;
 			}
 			delete pUri;
 		}
@@ -261,6 +269,14 @@ BOOL CameraParam::UpdateUrlOnvif()
 			{
 				m_bHasSubStream = TRUE;
 				bGotUrl = TRUE;
+				Poco::URI rtspUrl(m_strUrlSubStream);
+				astring strRtsp;
+				if (rtspUrl.empty() != true)
+				{
+					strRtsp = rtspUrl.getScheme() + "://" + rtspUrl.getHost() + ":" + std::to_string(rtspUrl.getPort()) + rtspUrl.getPathAndQuery();
+				}
+
+				m_strUrlSubStream = strRtsp;
 			}
 			delete pUri;
 		}
