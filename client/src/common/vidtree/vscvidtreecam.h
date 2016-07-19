@@ -21,6 +21,7 @@ public:
 public:
 	virtual void VidFilter(astring strFilter);
 	virtual void Init();
+	virtual void VidSetChecked(bool bChecked);
 public:
 	/* Take care all the child state change */
 	//static bool CallChange(void* pParam, StorFactoryChangeData data);

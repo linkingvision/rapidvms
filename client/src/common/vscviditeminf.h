@@ -19,6 +19,12 @@ public:
 public:
 	void UpdateOnline(bool bOnline);
 	void UpdateRec(bool bRec);
+
+public:
+	void VidSetChecked(bool bChecked);
+	bool VidGetChecked();
+	virtual void VidSetCheckedChild(bool bChecked){}
+	
 public:
 	virtual astring GetId(){return __FUNCTION__;}
 	virtual astring GetName(){return __FUNCTION__;}

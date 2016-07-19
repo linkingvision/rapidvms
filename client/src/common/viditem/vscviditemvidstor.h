@@ -31,6 +31,7 @@ public:
 public:
 	virtual astring GetId(){return m_cStor.strid();}
 	virtual void VidFilter(astring strFilter);
+	virtual void VidSetCheckedChild(bool bChecked);
 private:
 	VidStor m_cStor;
 

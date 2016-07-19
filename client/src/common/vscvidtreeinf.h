@@ -21,6 +21,7 @@ public:
 public:
 	virtual void VidFilter(astring strFilter){}
 	virtual void Init(){}
+	virtual void VidSetChecked(bool bChecked){}
 	
 protected:
 	ClientFactory &m_pFactory;

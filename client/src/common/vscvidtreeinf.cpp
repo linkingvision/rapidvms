@@ -5,6 +5,7 @@ VSCVidTreeInf::VSCVidTreeInf(ClientFactory &pFactory, QWidget *parent)
 {
 	setHeaderHidden(true);
 	setIconSize(QSize(20, 20));
+	setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 VSCVidTreeInf::~VSCVidTreeInf()
 {

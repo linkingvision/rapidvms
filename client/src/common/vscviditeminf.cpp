@@ -9,6 +9,31 @@ VSCVidItemInf::~VSCVidItemInf()
 {
 	
 }
+
+void VSCVidItemInf::VidSetChecked(bool bChecked)
+{
+	if (bChecked == true)
+	{
+		setCheckState(0, Qt::Checked);
+	}else
+	{
+		setCheckState(0, Qt::Unchecked);
+	}
+
+	return;
+}
+
+bool VSCVidItemInf::VidGetChecked()
+{
+	if (checkState(0) == Qt::Checked)
+	{
+		return true;
+	}else
+	{
+		return false;
+	}
+}
+
 void VSCVidItemInf::UpdateOnline(bool bOnline)
 {
 	if (bOnline == true)

@@ -21,6 +21,8 @@ public:
 public slots:
 	void SlotNewLiveView(){return VidNewLiveView();}
 	void SlotNewLivePB(){return VidNewLivePB();}
+	void SlotNewEventSearch(){return VidNewEventSearch();}
+	void SlotNewMotionSearch(){return VidNewMotionSearch();}
 	void SlotNewEmap(std::string strId){return VidNewEmap(strId);}
 	
 public:
@@ -28,6 +30,8 @@ public:
 	virtual void VidHide(){}
 	virtual void VidNewLiveView(){}
 	virtual void VidNewLivePB(){}
+	virtual void VidNewEventSearch(){}
+	virtual void VidNewMotionSearch(){}
 	virtual void VidNewEmap(std::string strId){}
 	virtual VSCVidTreeInf *GetCameraTree (){return NULL;}
 	virtual VSCVidTreeInf *GetGroupTree (){return NULL;}

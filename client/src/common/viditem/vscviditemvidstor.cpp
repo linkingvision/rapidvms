@@ -180,6 +180,17 @@ void VSCVidItemVidStor::CameraRecOff(astring strId)
 		}
 	}
 }
+void VSCVidItemVidStor::VidSetCheckedChild(bool bChecked)
+{
+	int cnt = this->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = this->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		pItem->VidSetChecked(bChecked);
+	}
+}
 
 void VSCVidItemVidStor::TreeUpdated(bool bClear)
 {
