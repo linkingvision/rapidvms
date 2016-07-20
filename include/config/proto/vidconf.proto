@@ -285,8 +285,10 @@ message VidEvent {
 	int64 nTime = 5;
 	string strTime = 6;
 	string strDesc = 7;
-	bool bSearched = 8;
-	string strStorName=9;//Used for Client display
+	bool bHandled = 8;
+	bool bSearched = 9;
+	string strStorName=10;//Used for Client display
+	int64 nIdx = 11;//For Count in UI
 }
 
 

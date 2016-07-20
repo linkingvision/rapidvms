@@ -15,6 +15,8 @@
 #include <Winbase.h>
 #endif 
 
+#include <algorithm>
+
 #include "utility.hpp"
 #include "config/conf.hpp"
 #include "devicemanagement.h"
@@ -32,6 +34,7 @@
 #include "Poco/UUIDGenerator.h"
 #include "recordwrapper.hpp"
 #include "Poco/URI.h"
+#include "Poco/String.h"
 
 using namespace VidConf;
 using namespace UtilityLib;

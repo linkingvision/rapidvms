@@ -3210,15 +3210,21 @@ class VidEvent : public ::google::protobuf::Message {
   ::std::string* release_strdesc();
   void set_allocated_strdesc(::std::string* strdesc);
 
-  // optional bool bSearched = 8;
+  // optional bool bHandled = 8;
+  void clear_bhandled();
+  static const int kBHandledFieldNumber = 8;
+  bool bhandled() const;
+  void set_bhandled(bool value);
+
+  // optional bool bSearched = 9;
   void clear_bsearched();
-  static const int kBSearchedFieldNumber = 8;
+  static const int kBSearchedFieldNumber = 9;
   bool bsearched() const;
   void set_bsearched(bool value);
 
-  // optional string strStorName = 9;
+  // optional string strStorName = 10;
   void clear_strstorname();
-  static const int kStrStorNameFieldNumber = 9;
+  static const int kStrStorNameFieldNumber = 10;
   const ::std::string& strstorname() const;
   void set_strstorname(const ::std::string& value);
   void set_strstorname(const char* value);
@@ -3226,6 +3232,12 @@ class VidEvent : public ::google::protobuf::Message {
   ::std::string* mutable_strstorname();
   ::std::string* release_strstorname();
   void set_allocated_strstorname(::std::string* strstorname);
+
+  // optional int64 nIdx = 11;
+  void clear_nidx();
+  static const int kNIdxFieldNumber = 11;
+  ::google::protobuf::int64 nidx() const;
+  void set_nidx(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:VidConf.VidEvent)
  private:
@@ -3240,6 +3252,8 @@ class VidEvent : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr strtime_;
   ::google::protobuf::internal::ArenaStringPtr strdesc_;
   ::google::protobuf::internal::ArenaStringPtr strstorname_;
+  ::google::protobuf::int64 nidx_;
+  bool bhandled_;
   bool bsearched_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
@@ -6463,7 +6477,21 @@ inline void VidEvent::set_allocated_strdesc(::std::string* strdesc) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDesc)
 }
 
-// optional bool bSearched = 8;
+// optional bool bHandled = 8;
+inline void VidEvent::clear_bhandled() {
+  bhandled_ = false;
+}
+inline bool VidEvent::bhandled() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.bHandled)
+  return bhandled_;
+}
+inline void VidEvent::set_bhandled(bool value) {
+  
+  bhandled_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.bHandled)
+}
+
+// optional bool bSearched = 9;
 inline void VidEvent::clear_bsearched() {
   bsearched_ = false;
 }
@@ -6477,7 +6505,7 @@ inline void VidEvent::set_bsearched(bool value) {
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.bSearched)
 }
 
-// optional string strStorName = 9;
+// optional string strStorName = 10;
 inline void VidEvent::clear_strstorname() {
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -6518,6 +6546,20 @@ inline void VidEvent::set_allocated_strstorname(::std::string* strstorname) {
   }
   strstorname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strstorname);
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorName)
+}
+
+// optional int64 nIdx = 11;
+inline void VidEvent::clear_nidx() {
+  nidx_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 VidEvent::nidx() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.nIdx)
+  return nidx_;
+}
+inline void VidEvent::set_nidx(::google::protobuf::int64 value) {
+  
+  nidx_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.nIdx)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

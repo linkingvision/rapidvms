@@ -590,7 +590,7 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _is_default_instance_));
   VidEvent_descriptor_ = file->message_type(27);
-  static const int VidEvent_offsets_[9] = {
+  static const int VidEvent_offsets_[11] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevice_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevicename_),
@@ -598,8 +598,10 @@ void protobuf_AssignDesc_vidconf_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, ntime_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strtime_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdesc_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bhandled_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bsearched_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorname_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, nidx_),
   };
   VidEvent_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -818,31 +820,31 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "\".\n\013VidBlobList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf"
     ".VidBlob\"K\n\016VidEventDBConf\022&\n\005nType\030\001 \001("
     "\0162\027.VidConf.VidEventDBType\022\021\n\tstrDBPath\030"
-    "\002 \001(\t\"\255\001\n\010VidEvent\022\r\n\005strId\030\001 \001(\t\022\021\n\tstr"
+    "\002 \001(\t\"\315\001\n\010VidEvent\022\r\n\005strId\030\001 \001(\t\022\021\n\tstr"
     "Device\030\002 \001(\t\022\025\n\rstrDeviceName\030\003 \001(\t\022\017\n\007s"
     "trType\030\004 \001(\t\022\r\n\005nTime\030\005 \001(\003\022\017\n\007strTime\030\006"
-    " \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\021\n\tbSearched\030\010 \001(\010"
-    "\022\023\n\013strStorName\030\t \001(\t*q\n\nCameraType\022\t\n\005V"
-    "ID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID"
-    "_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020"
-    "\005\022\r\n\tVID_MJPEG\020\006*P\n\021CameraConnectType\022\021\n"
-    "\rVID_CONNECT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n"
-    "\017VID_CONNECT_UDP\020\002*`\n\017OnvifEventLevel\022\027\n"
-    "\023VID_ONVIF_EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVEN"
-    "T_FULL\020\001\022\032\n\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013"
-    "VidLanguage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN"
-    "\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_L"
-    "AYOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n"
-    "\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MOD"
-    "E_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_"
-    "LAYOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030"
-    "\n\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_M"
-    "ODE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VI"
-    "D_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_O"
-    "NE\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAY"
-    "OUT_MODE_1p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_"
-    "DB_SQLITE\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006prot"
-    "o3", 3442);
+    " \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010bHandled\030\010 \001(\010\022"
+    "\021\n\tbSearched\030\t \001(\010\022\023\n\013strStorName\030\n \001(\t\022"
+    "\014\n\004nIdx\030\013 \001(\003*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013"
+    "\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022"
+    "\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID"
+    "_MJPEG\020\006*P\n\021CameraConnectType\022\021\n\rVID_CON"
+    "NECT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CON"
+    "NECT_UDP\020\002*`\n\017OnvifEventLevel\022\027\n\023VID_ONV"
+    "IF_EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVENT_FULL\020\001"
+    "\022\032\n\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013VidLangu"
+    "age\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVI"
+    "D_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOUT_MO"
+    "DE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID_LAY"
+    "OUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X3\020\003\022"
+    "\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYOUT_M"
+    "ODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VID_LA"
+    "YOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_5x5\020"
+    "\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LAYOUT"
+    "_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027\n\023"
+    "VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MODE"
+    "_1p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_SQLIT"
+    "E\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3474);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -12834,8 +12836,10 @@ const int VidEvent::kStrTypeFieldNumber;
 const int VidEvent::kNTimeFieldNumber;
 const int VidEvent::kStrTimeFieldNumber;
 const int VidEvent::kStrDescFieldNumber;
+const int VidEvent::kBHandledFieldNumber;
 const int VidEvent::kBSearchedFieldNumber;
 const int VidEvent::kStrStorNameFieldNumber;
+const int VidEvent::kNIdxFieldNumber;
 #endif  // !_MSC_VER
 
 VidEvent::VidEvent()
@@ -12867,8 +12871,10 @@ void VidEvent::SharedCtor() {
   ntime_ = GOOGLE_LONGLONG(0);
   strtime_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdesc_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  bhandled_ = false;
   bsearched_ = false;
   strstorname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  nidx_ = GOOGLE_LONGLONG(0);
 }
 
 VidEvent::~VidEvent() {
@@ -12921,8 +12927,10 @@ void VidEvent::Clear() {
   ntime_ = GOOGLE_LONGLONG(0);
   strtime_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  bhandled_ = false;
   bsearched_ = false;
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  nidx_ = GOOGLE_LONGLONG(0);
 }
 
 bool VidEvent::MergePartialFromCodedStream(
@@ -13047,13 +13055,28 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(64)) goto parse_bSearched;
+        if (input->ExpectTag(64)) goto parse_bHandled;
         break;
       }
 
-      // optional bool bSearched = 8;
+      // optional bool bHandled = 8;
       case 8: {
         if (tag == 64) {
+         parse_bHandled:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &bhandled_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(72)) goto parse_bSearched;
+        break;
+      }
+
+      // optional bool bSearched = 9;
+      case 9: {
+        if (tag == 72) {
          parse_bSearched:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -13062,13 +13085,13 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(74)) goto parse_strStorName;
+        if (input->ExpectTag(82)) goto parse_strStorName;
         break;
       }
 
-      // optional string strStorName = 9;
-      case 9: {
-        if (tag == 74) {
+      // optional string strStorName = 10;
+      case 10: {
+        if (tag == 82) {
          parse_strStorName:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strstorname()));
@@ -13076,6 +13099,21 @@ bool VidEvent::MergePartialFromCodedStream(
             this->strstorname().data(), this->strstorname().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "VidConf.VidEvent.strStorName"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(88)) goto parse_nIdx;
+        break;
+      }
+
+      // optional int64 nIdx = 11;
+      case 11: {
+        if (tag == 88) {
+         parse_nIdx:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &nidx_)));
+
         } else {
           goto handle_unusual;
         }
@@ -13172,19 +13210,29 @@ void VidEvent::SerializeWithCachedSizes(
       7, this->strdesc(), output);
   }
 
-  // optional bool bSearched = 8;
-  if (this->bsearched() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->bsearched(), output);
+  // optional bool bHandled = 8;
+  if (this->bhandled() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->bhandled(), output);
   }
 
-  // optional string strStorName = 9;
+  // optional bool bSearched = 9;
+  if (this->bsearched() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->bsearched(), output);
+  }
+
+  // optional string strStorName = 10;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidEvent.strStorName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      9, this->strstorname(), output);
+      10, this->strstorname(), output);
+  }
+
+  // optional int64 nIdx = 11;
+  if (this->nidx() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->nidx(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:VidConf.VidEvent)
@@ -13264,12 +13312,17 @@ void VidEvent::SerializeWithCachedSizes(
         7, this->strdesc(), target);
   }
 
-  // optional bool bSearched = 8;
-  if (this->bsearched() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->bsearched(), target);
+  // optional bool bHandled = 8;
+  if (this->bhandled() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->bhandled(), target);
   }
 
-  // optional string strStorName = 9;
+  // optional bool bSearched = 9;
+  if (this->bsearched() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->bsearched(), target);
+  }
+
+  // optional string strStorName = 10;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
@@ -13277,7 +13330,12 @@ void VidEvent::SerializeWithCachedSizes(
       "VidConf.VidEvent.strStorName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        9, this->strstorname(), target);
+        10, this->strstorname(), target);
+  }
+
+  // optional int64 nIdx = 11;
+  if (this->nidx() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->nidx(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEvent)
@@ -13336,16 +13394,28 @@ int VidEvent::ByteSize() const {
         this->strdesc());
   }
 
-  // optional bool bSearched = 8;
+  // optional bool bHandled = 8;
+  if (this->bhandled() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional bool bSearched = 9;
   if (this->bsearched() != 0) {
     total_size += 1 + 1;
   }
 
-  // optional string strStorName = 9;
+  // optional string strStorName = 10;
   if (this->strstorname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strstorname());
+  }
+
+  // optional int64 nIdx = 11;
+  if (this->nidx() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->nidx());
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -13395,12 +13465,18 @@ void VidEvent::MergeFrom(const VidEvent& from) {
 
     strdesc_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdesc_);
   }
+  if (from.bhandled() != 0) {
+    set_bhandled(from.bhandled());
+  }
   if (from.bsearched() != 0) {
     set_bsearched(from.bsearched());
   }
   if (from.strstorname().size() > 0) {
 
     strstorname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorname_);
+  }
+  if (from.nidx() != 0) {
+    set_nidx(from.nidx());
   }
 }
 
@@ -13433,8 +13509,10 @@ void VidEvent::InternalSwap(VidEvent* other) {
   std::swap(ntime_, other->ntime_);
   strtime_.Swap(&other->strtime_);
   strdesc_.Swap(&other->strdesc_);
+  std::swap(bhandled_, other->bhandled_);
   std::swap(bsearched_, other->bsearched_);
   strstorname_.Swap(&other->strstorname_);
+  std::swap(nidx_, other->nidx_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -13722,7 +13800,21 @@ void VidEvent::clear_strdesc() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDesc)
 }
 
-// optional bool bSearched = 8;
+// optional bool bHandled = 8;
+void VidEvent::clear_bhandled() {
+  bhandled_ = false;
+}
+ bool VidEvent::bhandled() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.bHandled)
+  return bhandled_;
+}
+ void VidEvent::set_bhandled(bool value) {
+  
+  bhandled_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.bHandled)
+}
+
+// optional bool bSearched = 9;
 void VidEvent::clear_bsearched() {
   bsearched_ = false;
 }
@@ -13736,7 +13828,7 @@ void VidEvent::clear_bsearched() {
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.bSearched)
 }
 
-// optional string strStorName = 9;
+// optional string strStorName = 10;
 void VidEvent::clear_strstorname() {
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -13777,6 +13869,20 @@ void VidEvent::clear_strstorname() {
   }
   strstorname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strstorname);
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorName)
+}
+
+// optional int64 nIdx = 11;
+void VidEvent::clear_nidx() {
+  nidx_ = GOOGLE_LONGLONG(0);
+}
+ ::google::protobuf::int64 VidEvent::nidx() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.nIdx)
+  return nidx_;
+}
+ void VidEvent::set_nidx(::google::protobuf::int64 value) {
+  
+  nidx_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.nIdx)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
