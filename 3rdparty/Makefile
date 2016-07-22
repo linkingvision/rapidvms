@@ -50,6 +50,15 @@ protobuf_build:
 	cd protobuf/cmake/linux && cmake -DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_C_FLAGS=-fPIC -Dprotobuf_MSVC_STATIC_RUNTIME=ON -DCMAKE_BUILD_TYPE=Release -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/  ../;
 	$(MAKE) -C protobuf/cmake/linux;
 	$(MAKE) -C protobuf/cmake/linux install;
+
+protobuf_build_cross:
+	cd protobuf; chmod +x ./configure ; make distclean; ./configure --prefix=$(VE_PATH)/output/host/
+	$(MAKE) -C protobuf; 
+	$(MAKE) -C protobuf install; 
+	cd protobuf; chmod +x ./configure ; make distclean; ./configure --host=$(VE_CROSS_TOOL) CC=$(CC) CXX=$(CPP)  --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ --with-protoc=$(VE_PATH)/output/host/bin/protoc
+	$(MAKE) -C protobuf; 
+	$(MAKE) -C protobuf install; 
+
 qt_build:
 	cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
 	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
@@ -62,9 +71,10 @@ qt_build_cross:
 	cd qt/pcre-8.39; chmod +x ./configure ; ./configure --enable-pcre16  CC=$(VE_CROSS_COMPILER)gcc --host=$(VE_CROSS_TOOL)  --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
 	$(MAKE) -C qt/pcre-8.39;
 	$(MAKE) -C qt/pcre-8.39 install; 
-	#cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
+	cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
 	cp -r qt/linux-cross-g++ qt/qtbase-opensource-src-5.5.1/mkspecs/devices
-	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -device linux-cross-g++ -device-option CROSS_COMPILE=$(VE_CROSS_COMPILER) -hostprefix $(VE_PATH)/output/$(VE_INSTALL_DIR)/ -system-pcre -release -make libs -no-qpa-platform-guard -L $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/ -I $(VE_PATH)/output/$(VE_INSTALL_DIR)/include/ 
+	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -device linux-cross-g++ -device-option CROSS_COMPILE=$(VE_CROSS_COMPILER) -hostprefix $(VE_PATH)/output/$(VE_INSTALL_DIR)/  -release -make libs -no-qpa-platform-guard -L $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/ -I $(VE_PATH)/output/$(VE_INSTALL_DIR)/include/ 
+	#-system-pcre
 	$(MAKE) -C qt/qtbase-opensource-src-5.5.1; 
 	$(MAKE) -C qt/qtbase-opensource-src-5.5.1 install; 
 
@@ -80,6 +90,10 @@ qtxmlpatterns_build:
 	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.5.1 install;
 curl_build:
 	cd curl; chmod +x ./configure; ./configure --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
+	$(MAKE) -C curl && $(MAKE) -C curl install;
+
+curl_build_cross:
+	cd curl; chmod +x ./configure; ./configure --host=$(VE_CROSS_TOOL) --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C curl && $(MAKE) -C curl install;
 	
 poco_clean:
