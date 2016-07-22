@@ -33,6 +33,8 @@
 	Emap
 	HW accel Decoding
 	MJPEG/MPEG4/H264/H265 support
+	Linux(ARM X64 X86) Windows MacOS(Coming sonn)support
+	Recloud and Mobile APP (Coming soon)
 
 #### License ####
 *  The source code which is opened is licnesed by MIT, and the whole application use the blow license
