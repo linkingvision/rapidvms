@@ -598,9 +598,9 @@ inline bool StorSyncInf::GetStreamList(astring strId, VidStreamList &pList)
 inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 {
 	s32 nRet = 0;
-	QCoreApplication::processEvents();
+	//QCoreApplication::processEvents();
 	nRet = m_pSocket->Recv((void *)&header, sizeof(header));
-	QCoreApplication::processEvents();
+	//QCoreApplication::processEvents();
 	if (nRet != sizeof(header))
 	{
 		if (m_pSocket->Valid() == true)

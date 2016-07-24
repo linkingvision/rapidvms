@@ -141,14 +141,19 @@ inline bool StorFactory::OnEvent(VidEvent &pEvent, VidStor &pStor)
 	std::string strStor;
 
 	pEvent.set_strstorname(pStor.strname());
+	pEvent.set_strstorid(pStor.strid());
 	bool bRet = pEvent.SerializeToString(&strEvent);
 	if (bRet == true)
 	{
-		VDC_DEBUG( "%s  Get Event %d %s  %s\n",__FUNCTION__, 
+		VDC_DEBUG( "%s  Get Event %d %s  %s bsearched %d\n",__FUNCTION__, 
 								pEvent.strtime().c_str(), 
-								pEvent.strdevicename().c_str(), pEvent.strtype().c_str());
+								pEvent.strdevicename().c_str(), pEvent.strtype().c_str(), 
+								pEvent.bsearched());
 		emit(SignalEvent(strEvent));
-		emit(SignalEvent1());
+		if (pEvent.bsearched() == false)
+		{
+			emit(SignalEvent1());
+		}
 	}
 	return true;
 }
@@ -204,6 +209,15 @@ inline bool StorFactory::UnRegRealEvent(astring strStorId)
 	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
 	{
 		return m_StorClientMap[strStorId]->UnRegRealEvent();
+	}
+	return false;
+}
+
+inline bool StorFactory::HandleEvent(astring strStorId, astring strId)
+{
+	if (m_pConf.FindStor(strStorId) && m_StorClientMap[strStorId])
+	{
+		return m_StorClientMap[strStorId]->HandleEvent(strId);
 	}
 	return false;
 }

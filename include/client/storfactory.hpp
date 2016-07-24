@@ -55,7 +55,8 @@ public:
 	bool SearchEvent(astring strStorId, astring strId, s64 nStart, s64 nEnd);
 	bool RegRealEvent(astring strStorId);
 	bool UnRegRealEvent(astring strStorId);
-	
+	/* the Id is the eventId */
+	bool HandleEvent(astring strStorId, astring strId);
 	
 public:
 	//BOOL RegChangeNotify(void * pData, StorFactoryChangeNotify callback);

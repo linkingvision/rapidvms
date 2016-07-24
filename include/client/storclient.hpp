@@ -40,6 +40,7 @@ public:
 	bool SearchEvent(astring strId, s64 nStart, s64 nEnd);
 	bool RegRealEvent();
 	bool UnRegRealEvent();
+	bool HandleEvent(astring strId);
 public:
 	bool AddCam(VidCamera &pParam);
 	bool DeleteCam(astring strId);

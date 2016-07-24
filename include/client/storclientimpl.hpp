@@ -151,6 +151,21 @@ inline bool StorClient::UnRegRealEvent()
 	return pClient.UnRegRealEvent();
 }
 
+inline bool StorClient::HandleEvent(astring strId)
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	OAPIClient pClient(m_pSocket);
+
+	XGuard guard(m_cMutex);
+	/* Send add cam command  */
+	return pClient.HandleEvent(strId);
+
+}
+
 inline bool StorClient::AddCam(VidCamera &pParam)
 {
 	if (m_bOnline == false)
@@ -425,6 +440,8 @@ inline void StorClient::run()
 							cEvent.set_strtime(event.strTime);
 							cEvent.set_strtype(event.strType);
 							cEvent.set_strdesc(event.strDesc);
+							cEvent.set_bhandled(event.bHandled);
+							cEvent.set_strcomments(event.strComments);
 							cEvent.set_bsearched(event.bSearched);
 							
 							guard.Release();
