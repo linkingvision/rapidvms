@@ -1868,7 +1868,7 @@ bool OAPIServer::ProcessRegEvent(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_REG_EVENT_REQ, true);
+	SendCmnRetRsp(OAPI_REG_EVENT_RSP, true);
 
 	return TRUE;
 }
@@ -1898,10 +1898,41 @@ bool OAPIServer::ProcessUnRegEvent(s32 len)
 
 	delete [] pRecv;
 
-	SendCmnRetRsp(OAPI_UNREG_EVENT_REQ, true);
+	SendCmnRetRsp(OAPI_UNREG_EVENT_RSP, true);
 
 	return TRUE;
 }
+
+bool OAPIServer::ProcessHandleEvent(s32 len)
+{
+	if (len == 0)
+	{
+		return false;
+	}
+	char *pRecv = new char[len + 1];
+	s32 nRetBody = m_pSocket->Recv((void *)pRecv, len);
+	oapi::OAPIHandleEventReq req;
+	if (nRetBody == len)
+	{
+		autojsoncxx::ParsingResult result;
+		if (!autojsoncxx::from_json_string(pRecv, req, result)) 
+		{
+			std::cerr << result << '\n';
+			delete [] pRecv;
+			return false;
+		}
+		
+	}
+
+	m_pEvent.HandleEvent(req.strId);
+
+	delete [] pRecv;
+
+	SendCmnRetRsp(OAPI_HANDLE_EVENT_RSP, true);
+	return true;
+}
+
+
 
 bool OAPIServer::NewFrame(VideoFrame& frame)
 {
@@ -2045,6 +2076,9 @@ BOOL OAPIServer::Process(OAPIHeader &header)
 		case OAPI_UNREG_EVENT_REQ:
 			return ProcessUnRegEvent(header.length);
 			break;
+		case OAPI_HANDLE_EVENT_REQ:
+			return ProcessHandleEvent(header.length);
+			break;
 		default:
 			break;		
 	}
@@ -2142,6 +2176,7 @@ inline void OAPIServer::SearchEventHandler1(VEventData data)
 	event.nTime = data.nTime;
 	event.strTime = data.strEvttime;
 	event.strType = data.strType;
+	event.bHandled = data.bHandled;
 	event.bSearched = true;
 
 	std::string strJson = autojsoncxx::to_pretty_json_string(event);
@@ -2163,7 +2198,7 @@ inline void OAPIServer::SearchEventHandler(VEventData data, void* pParam)
 {
     OAPIServer *pOapi = static_cast<OAPIServer *> (pParam);
     
-    return pOapi->EventHandler1(data);
+    return pOapi->SearchEventHandler1(data);
 }
 
 #endif

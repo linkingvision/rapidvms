@@ -590,7 +590,7 @@ void protobuf_AssignDesc_vidconf_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _is_default_instance_));
   VidEvent_descriptor_ = file->message_type(27);
-  static const int VidEvent_offsets_[11] = {
+  static const int VidEvent_offsets_[13] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevice_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevicename_),
@@ -600,6 +600,8 @@ void protobuf_AssignDesc_vidconf_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdesc_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bhandled_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bsearched_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strcomments_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, nidx_),
   };
@@ -820,12 +822,13 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "\".\n\013VidBlobList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf"
     ".VidBlob\"K\n\016VidEventDBConf\022&\n\005nType\030\001 \001("
     "\0162\027.VidConf.VidEventDBType\022\021\n\tstrDBPath\030"
-    "\002 \001(\t\"\315\001\n\010VidEvent\022\r\n\005strId\030\001 \001(\t\022\021\n\tstr"
+    "\002 \001(\t\"\365\001\n\010VidEvent\022\r\n\005strId\030\001 \001(\t\022\021\n\tstr"
     "Device\030\002 \001(\t\022\025\n\rstrDeviceName\030\003 \001(\t\022\017\n\007s"
     "trType\030\004 \001(\t\022\r\n\005nTime\030\005 \001(\003\022\017\n\007strTime\030\006"
     " \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010bHandled\030\010 \001(\010\022"
-    "\021\n\tbSearched\030\t \001(\010\022\023\n\013strStorName\030\n \001(\t\022"
-    "\014\n\004nIdx\030\013 \001(\003*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013"
+    "\021\n\tbSearched\030\t \001(\010\022\023\n\013strComments\030\n \001(\t\022"
+    "\021\n\tstrStorId\030\013 \001(\t\022\023\n\013strStorName\030\014 \001(\t\022"
+    "\014\n\004nIdx\030\r \001(\003*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013"
     "\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022"
     "\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID"
     "_MJPEG\020\006*P\n\021CameraConnectType\022\021\n\rVID_CON"
@@ -844,7 +847,7 @@ void protobuf_AddDesc_vidconf_2eproto() {
     "_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027\n\023"
     "VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MODE"
     "_1p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_SQLIT"
-    "E\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3474);
+    "E\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3514);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   VidUser::default_instance_ = new VidUser();
@@ -12838,6 +12841,8 @@ const int VidEvent::kStrTimeFieldNumber;
 const int VidEvent::kStrDescFieldNumber;
 const int VidEvent::kBHandledFieldNumber;
 const int VidEvent::kBSearchedFieldNumber;
+const int VidEvent::kStrCommentsFieldNumber;
+const int VidEvent::kStrStorIdFieldNumber;
 const int VidEvent::kStrStorNameFieldNumber;
 const int VidEvent::kNIdxFieldNumber;
 #endif  // !_MSC_VER
@@ -12873,6 +12878,8 @@ void VidEvent::SharedCtor() {
   strdesc_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   bhandled_ = false;
   bsearched_ = false;
+  strcomments_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strstorid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nidx_ = GOOGLE_LONGLONG(0);
 }
@@ -12889,6 +12896,8 @@ void VidEvent::SharedDtor() {
   strtype_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strtime_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdesc_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strcomments_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strstorid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
@@ -12929,6 +12938,8 @@ void VidEvent::Clear() {
   strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   bhandled_ = false;
   bsearched_ = false;
+  strcomments_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nidx_ = GOOGLE_LONGLONG(0);
 }
@@ -13085,13 +13096,47 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(82)) goto parse_strStorName;
+        if (input->ExpectTag(82)) goto parse_strComments;
         break;
       }
 
-      // optional string strStorName = 10;
+      // optional string strComments = 10;
       case 10: {
         if (tag == 82) {
+         parse_strComments:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strcomments()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strcomments().data(), this->strcomments().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidConf.VidEvent.strComments"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(90)) goto parse_strStorId;
+        break;
+      }
+
+      // optional string strStorId = 11;
+      case 11: {
+        if (tag == 90) {
+         parse_strStorId:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strstorid()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strstorid().data(), this->strstorid().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidConf.VidEvent.strStorId"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(98)) goto parse_strStorName;
+        break;
+      }
+
+      // optional string strStorName = 12;
+      case 12: {
+        if (tag == 98) {
          parse_strStorName:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strstorname()));
@@ -13102,13 +13147,13 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(88)) goto parse_nIdx;
+        if (input->ExpectTag(104)) goto parse_nIdx;
         break;
       }
 
-      // optional int64 nIdx = 11;
-      case 11: {
-        if (tag == 88) {
+      // optional int64 nIdx = 13;
+      case 13: {
+        if (tag == 104) {
          parse_nIdx:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
@@ -13220,19 +13265,39 @@ void VidEvent::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->bsearched(), output);
   }
 
-  // optional string strStorName = 10;
+  // optional string strComments = 10;
+  if (this->strcomments().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strcomments().data(), this->strcomments().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEvent.strComments");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      10, this->strcomments(), output);
+  }
+
+  // optional string strStorId = 11;
+  if (this->strstorid().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strstorid().data(), this->strstorid().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEvent.strStorId");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      11, this->strstorid(), output);
+  }
+
+  // optional string strStorName = 12;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "VidConf.VidEvent.strStorName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      10, this->strstorname(), output);
+      12, this->strstorname(), output);
   }
 
-  // optional int64 nIdx = 11;
+  // optional int64 nIdx = 13;
   if (this->nidx() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->nidx(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(13, this->nidx(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:VidConf.VidEvent)
@@ -13322,7 +13387,29 @@ void VidEvent::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->bsearched(), target);
   }
 
-  // optional string strStorName = 10;
+  // optional string strComments = 10;
+  if (this->strcomments().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strcomments().data(), this->strcomments().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEvent.strComments");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        10, this->strcomments(), target);
+  }
+
+  // optional string strStorId = 11;
+  if (this->strstorid().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strstorid().data(), this->strstorid().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidConf.VidEvent.strStorId");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        11, this->strstorid(), target);
+  }
+
+  // optional string strStorName = 12;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
@@ -13330,12 +13417,12 @@ void VidEvent::SerializeWithCachedSizes(
       "VidConf.VidEvent.strStorName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        10, this->strstorname(), target);
+        12, this->strstorname(), target);
   }
 
-  // optional int64 nIdx = 11;
+  // optional int64 nIdx = 13;
   if (this->nidx() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->nidx(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(13, this->nidx(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEvent)
@@ -13404,14 +13491,28 @@ int VidEvent::ByteSize() const {
     total_size += 1 + 1;
   }
 
-  // optional string strStorName = 10;
+  // optional string strComments = 10;
+  if (this->strcomments().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strcomments());
+  }
+
+  // optional string strStorId = 11;
+  if (this->strstorid().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strstorid());
+  }
+
+  // optional string strStorName = 12;
   if (this->strstorname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strstorname());
   }
 
-  // optional int64 nIdx = 11;
+  // optional int64 nIdx = 13;
   if (this->nidx() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
@@ -13471,6 +13572,14 @@ void VidEvent::MergeFrom(const VidEvent& from) {
   if (from.bsearched() != 0) {
     set_bsearched(from.bsearched());
   }
+  if (from.strcomments().size() > 0) {
+
+    strcomments_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strcomments_);
+  }
+  if (from.strstorid().size() > 0) {
+
+    strstorid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorid_);
+  }
   if (from.strstorname().size() > 0) {
 
     strstorname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorname_);
@@ -13511,6 +13620,8 @@ void VidEvent::InternalSwap(VidEvent* other) {
   strdesc_.Swap(&other->strdesc_);
   std::swap(bhandled_, other->bhandled_);
   std::swap(bsearched_, other->bsearched_);
+  strcomments_.Swap(&other->strcomments_);
+  strstorid_.Swap(&other->strstorid_);
   strstorname_.Swap(&other->strstorname_);
   std::swap(nidx_, other->nidx_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
@@ -13828,7 +13939,93 @@ void VidEvent::clear_bsearched() {
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.bSearched)
 }
 
-// optional string strStorName = 10;
+// optional string strComments = 10;
+void VidEvent::clear_strcomments() {
+  strcomments_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& VidEvent::strcomments() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strComments)
+  return strcomments_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEvent::set_strcomments(const ::std::string& value) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strComments)
+}
+ void VidEvent::set_strcomments(const char* value) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strComments)
+}
+ void VidEvent::set_strcomments(const char* value, size_t size) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strComments)
+}
+ ::std::string* VidEvent::mutable_strcomments() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strComments)
+  return strcomments_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* VidEvent::release_strcomments() {
+  
+  return strcomments_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEvent::set_allocated_strcomments(::std::string* strcomments) {
+  if (strcomments != NULL) {
+    
+  } else {
+    
+  }
+  strcomments_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strcomments);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strComments)
+}
+
+// optional string strStorId = 11;
+void VidEvent::clear_strstorid() {
+  strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& VidEvent::strstorid() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidEvent.strStorId)
+  return strstorid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEvent::set_strstorid(const ::std::string& value) {
+  
+  strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidEvent.strStorId)
+}
+ void VidEvent::set_strstorid(const char* value) {
+  
+  strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strStorId)
+}
+ void VidEvent::set_strstorid(const char* value, size_t size) {
+  
+  strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strStorId)
+}
+ ::std::string* VidEvent::mutable_strstorid() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strStorId)
+  return strstorid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* VidEvent::release_strstorid() {
+  
+  return strstorid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void VidEvent::set_allocated_strstorid(::std::string* strstorid) {
+  if (strstorid != NULL) {
+    
+  } else {
+    
+  }
+  strstorid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strstorid);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorId)
+}
+
+// optional string strStorName = 12;
 void VidEvent::clear_strstorname() {
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -13871,7 +14068,7 @@ void VidEvent::clear_strstorname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorName)
 }
 
-// optional int64 nIdx = 11;
+// optional int64 nIdx = 13;
 void VidEvent::clear_nidx() {
   nidx_ = GOOGLE_LONGLONG(0);
 }

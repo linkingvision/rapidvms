@@ -697,6 +697,27 @@ inline bool OAPIClient::RegRealEvent()
 	return true;
 	
 }
+
+inline bool OAPIClient::HandleEvent(astring strId)
+{
+	oapi::OAPIRegEventReq req;
+	OAPIHeader header;
+	req.strId = strId;
+
+	std::string strJson = autojsoncxx::to_pretty_json_string(req);
+	s32 nJsonLen = strJson.length();
+	if (nJsonLen <= 0)
+	{
+		return false;
+	}
+	header.cmd = htonl(OAPI_HANDLE_EVENT_REQ);
+	header.length = htonl(nJsonLen + 1);
+	
+	m_pSocket->Send((void *)&header, sizeof(header));
+	m_pSocket->Send((void *)strJson.c_str(), nJsonLen + 1);
+	return true;
+}
+
 inline bool OAPIClient::UnRegRealEvent()
 {
 	oapi::OAPIUnRegEventReq req;

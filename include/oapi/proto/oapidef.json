@@ -503,6 +503,15 @@
 },
 
 {
+    "name": "OAPIHandleEventReq",
+    "parse_mode": "strict",
+	"namespace": "oapi",
+    "members": [
+        ["std::string", "strId", {"required": true}]
+    ]
+},
+
+{
     "name": "OAPICamSearchedNotify",
     "parse_mode": "strict",
 	"namespace": "oapi",
@@ -526,6 +535,8 @@
 		["unsigned long long", "nTime", {"required": true}],
 		["std::string", "strTime", {"required": true}],
 		["std::string", "strDesc", {"required": true}],
+		["unsigned int ", "bHandled", {"required": true}],
+		["std::string", "strComments", {"required": true}],
 		["unsigned int ", "bSearched", {"required": true}]
     ]
 },

@@ -178,6 +178,7 @@ public:
 	inline bool ProcessSearchEvent(s32 len);
 	inline bool ProcessRegEvent(s32 len);
 	inline bool ProcessUnRegEvent(s32 len);
+	inline bool ProcessHandleEvent(s32 len);
 	
 	inline bool NotifyCamAdd(FactoryCameraChangeData data);
 	inline bool NotifyCamDel(FactoryCameraChangeData data);

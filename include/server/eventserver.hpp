@@ -58,6 +58,8 @@ public:
 	s64 nTime;
 	astring strEvttime;
 	astring strDesc;
+	bool bHandled;
+	astring strComments;
 	bool bMetaData;
 	astring strMetaData;/* the MetaData Depend the type */
 };
@@ -76,6 +78,9 @@ public:
 public:
 	void PushEvent(VEventData &pData);
 	void UpdateDBSession(bool bIsFirst);
+	/* Used by the Search task, TODO for the Release DataSession  */
+	Poco::Data::Session *GetDataSession();
+	void ReleaseDataSession();
 public:
 	void run();
 private:
@@ -115,6 +120,7 @@ private:
 typedef enum __VVidEventSearchCmdType
 {
 	VVID_EVENT_SEARCH_CMD = 1,
+	VVID_EVENT_HANDLE_CMD,	
 	VVID_EVENT_SEARCH_LAST
 }VVidEventSearchCmdType;
 
@@ -138,6 +144,8 @@ public:
 	/* Register the call back for the event */
 	BOOL RegEventNotify(void * pData, FunctionEventNotify callback);
 	BOOL UnRegEventNotify(void * pData);	
+	BOOL ProcessSearchCmd(VVidEventSearchCmd &pCmd);
+	BOOL ProcessHandleCmd(VVidEventSearchCmd &pCmd);
 
 public:
 	void run();
@@ -165,6 +173,7 @@ public:
 	BOOL RegSearchEventNotify(void * pData, FunctionEventNotify callback);
 	BOOL UnRegSearchEventNotify(void * pData);
 	BOOL SearchEvent(astring strId, s64 nStart, s64 nEnd, void *pData);
+	BOOL HandleEvent(astring strId);
 public:
 	BOOL Init();
 private:

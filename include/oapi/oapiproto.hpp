@@ -21403,6 +21403,381 @@ struct Serializer< Writerf540f3a2aa1def93b5dc6d7d157575b3c35a58acec315ed838c913b
 // The comments are reserved for replacement
 // such syntax is chosen so that the template file looks like valid C++
 
+namespace oapi { struct OAPIHandleEventReq {
+ std::string strId;
+
+explicit OAPIHandleEventReq():strId() {  }
+
+
+ 
+}; }
+
+
+namespace autojsoncxx {
+
+template <>
+class SAXEventHandler< ::oapi::OAPIHandleEventReq > {
+private:
+    utility::scoped_ptr<error::ErrorBase> the_error;
+    int state;
+    int depth;
+
+    SAXEventHandler< std::string > handler_0;bool has_strId;
+
+    bool check_depth(const char* type)
+    {
+        if (depth <= 0) {
+            the_error.reset(new error::TypeMismatchError("object", type));
+            return false;
+        }
+        return true;
+    }
+
+    const char* current_member_name() const
+    {
+        switch (state) {
+            case 0:
+    return "strId";
+        default:
+            break;
+        }
+        return "<UNKNOWN>";
+    }
+
+    bool checked_event_forwarding(bool success)
+    {
+        if (!success)
+            the_error.reset(new error::ObjectMemberError(current_member_name()));
+        return success;
+    }
+
+    void set_missing_required(const char* name)
+    {
+        if (the_error.empty() || the_error->type() != error::MISSING_REQUIRED)
+            the_error.reset(new error::RequiredFieldMissingError());
+
+        std::vector<std::string>& missing =
+            static_cast<error::RequiredFieldMissingError*>(the_error.get())->missing_members();
+
+        missing.push_back(name);
+    }
+
+    void reset_flags()
+    {
+        has_strId = false;
+    }
+
+public:
+    explicit SAXEventHandler( ::oapi::OAPIHandleEventReq * obj)
+        : state(-1)
+        , depth(0)
+        , handler_0(&obj->strId)
+    {
+        reset_flags();
+    }
+
+    bool Null()
+    {
+        if (!check_depth("null"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Null());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Bool(bool b)
+    {
+        if (!check_depth("bool"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Bool(b));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int(int i)
+    {
+        if (!check_depth("int"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint(unsigned i)
+    {
+        if (!check_depth("unsigned"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Int64(utility::int64_t i)
+    {
+        if (!check_depth("int64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Int64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Uint64(utility::uint64_t i)
+    {
+        if (!check_depth("uint64_t"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Uint64(i));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Double(double d)
+    {
+        if (!check_depth("double"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.Double(d));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool String(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("string"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.String(str, length, copy));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool Key(const char* str, SizeType length, bool copy)
+    {
+        if (!check_depth("object"))
+            return false;
+
+        if (depth == 1) {
+            if (0) {
+            }
+            else if (utility::string_equal(str, length, "\x73\x74\x72\x49\x64", 5))
+                         { state=0; has_strId = true; }
+            else {
+                state = -1;
+                the_error.reset(new error::UnknownFieldError(str, length)); return false;
+            }
+
+        } else {
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.Key(str, length, copy));
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool StartArray()
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.StartArray());
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool EndArray(SizeType length)
+    {
+        if (!check_depth("array"))
+            return false;
+
+        switch (state) {
+
+        case 0:
+    return checked_event_forwarding(handler_0.EndArray(length));
+
+        default:
+            break;
+        }
+        return true;
+    }
+
+    bool StartObject()
+    {
+        ++depth;
+        if (depth > 1) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.StartObject());
+
+            default:
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool EndObject(SizeType length)
+    {
+        --depth;
+        if (depth > 0) {
+
+            switch (state) {
+
+            case 0:
+    return checked_event_forwarding(handler_0.EndObject(length));
+
+            default:
+                break;
+            }
+        } else {
+            if (!has_strId) set_missing_required("strId");
+        }
+        return the_error.empty();
+    }
+
+    bool HasError() const
+    {
+        return !this->the_error.empty();
+    }
+
+    bool ReapError(error::ErrorStack& errs)
+    {
+        if (this->the_error.empty())
+            return false;
+
+        errs.push(this->the_error.release());
+
+        switch (state) {
+
+        case 0:
+     handler_0.ReapError(errs); break;
+
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    void PrepareForReuse()
+    {
+        depth = 0;
+        state = -1;
+        the_error.reset();
+        reset_flags();
+        handler_0.PrepareForReuse();
+
+    }
+};
+
+template < class Writer6e13e80f3c64ddbaefeb3f2cc58e7b2359e5dcc204bc97867d77942b35853095 >
+struct Serializer< Writer6e13e80f3c64ddbaefeb3f2cc58e7b2359e5dcc204bc97867d77942b35853095, ::oapi::OAPIHandleEventReq > {
+
+    void operator()( Writer6e13e80f3c64ddbaefeb3f2cc58e7b2359e5dcc204bc97867d77942b35853095& w, const ::oapi::OAPIHandleEventReq& value) const
+    {
+        w.StartObject();
+
+        w.Key("\x73\x74\x72\x49\x64", 5, false); Serializer< Writer6e13e80f3c64ddbaefeb3f2cc58e7b2359e5dcc204bc97867d77942b35853095, std::string >()(w, value.strId);
+
+        w.EndObject(1);
+    }
+
+};
+}
+
+
+// The MIT License (MIT)
+//
+// Copyright (c) 2014 Siyuan Ren (netheril96@gmail.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <autojsoncxx/autojsoncxx.hpp>
+
+// The comments are reserved for replacement
+// such syntax is chosen so that the template file looks like valid C++
+
 namespace oapi { struct OAPICamSearchedNotify {
  std::string strIP;
 std::string strPort;
@@ -21945,9 +22320,11 @@ std::string strType;
 unsigned long long nTime;
 std::string strTime;
 std::string strDesc;
+unsigned int  bHandled;
+std::string strComments;
 unsigned int  bSearched;
 
-explicit OAPIEventNotify():strId(), strDevice(), strDeviceName(), strType(), nTime(), strTime(), strDesc(), bSearched() {  }
+explicit OAPIEventNotify():strId(), strDevice(), strDeviceName(), strType(), nTime(), strTime(), strDesc(), bHandled(), strComments(), bSearched() {  }
 
 
  
@@ -21970,13 +22347,17 @@ SAXEventHandler< std::string > handler_3;
 SAXEventHandler< unsigned long long > handler_4;
 SAXEventHandler< std::string > handler_5;
 SAXEventHandler< std::string > handler_6;
-SAXEventHandler< unsigned int  > handler_7;bool has_strId;
+SAXEventHandler< unsigned int  > handler_7;
+SAXEventHandler< std::string > handler_8;
+SAXEventHandler< unsigned int  > handler_9;bool has_strId;
 bool has_strDevice;
 bool has_strDeviceName;
 bool has_strType;
 bool has_nTime;
 bool has_strTime;
 bool has_strDesc;
+bool has_bHandled;
+bool has_strComments;
 bool has_bSearched;
 
     bool check_depth(const char* type)
@@ -22006,6 +22387,10 @@ case 5:
 case 6:
     return "strDesc";
 case 7:
+    return "bHandled";
+case 8:
+    return "strComments";
+case 9:
     return "bSearched";
         default:
             break;
@@ -22040,6 +22425,8 @@ has_strType = false;
 has_nTime = false;
 has_strTime = false;
 has_strDesc = false;
+has_bHandled = false;
+has_strComments = false;
 has_bSearched = false;
     }
 
@@ -22054,7 +22441,9 @@ public:
 , handler_4(&obj->nTime)
 , handler_5(&obj->strTime)
 , handler_6(&obj->strDesc)
-, handler_7(&obj->bSearched)
+, handler_7(&obj->bHandled)
+, handler_8(&obj->strComments)
+, handler_9(&obj->bSearched)
     {
         reset_flags();
     }
@@ -22089,6 +22478,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.Null());
+
+case 8:
+    return checked_event_forwarding(handler_8.Null());
+
+case 9:
+    return checked_event_forwarding(handler_9.Null());
 
         default:
             break;
@@ -22127,6 +22522,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.Bool(b));
 
+case 8:
+    return checked_event_forwarding(handler_8.Bool(b));
+
+case 9:
+    return checked_event_forwarding(handler_9.Bool(b));
+
         default:
             break;
         }
@@ -22163,6 +22564,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.Int(i));
+
+case 8:
+    return checked_event_forwarding(handler_8.Int(i));
+
+case 9:
+    return checked_event_forwarding(handler_9.Int(i));
 
         default:
             break;
@@ -22201,6 +22608,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.Uint(i));
 
+case 8:
+    return checked_event_forwarding(handler_8.Uint(i));
+
+case 9:
+    return checked_event_forwarding(handler_9.Uint(i));
+
         default:
             break;
         }
@@ -22237,6 +22650,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.Int64(i));
+
+case 8:
+    return checked_event_forwarding(handler_8.Int64(i));
+
+case 9:
+    return checked_event_forwarding(handler_9.Int64(i));
 
         default:
             break;
@@ -22275,6 +22694,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.Uint64(i));
 
+case 8:
+    return checked_event_forwarding(handler_8.Uint64(i));
+
+case 9:
+    return checked_event_forwarding(handler_9.Uint64(i));
+
         default:
             break;
         }
@@ -22311,6 +22736,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.Double(d));
+
+case 8:
+    return checked_event_forwarding(handler_8.Double(d));
+
+case 9:
+    return checked_event_forwarding(handler_9.Double(d));
 
         default:
             break;
@@ -22349,6 +22780,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.String(str, length, copy));
 
+case 8:
+    return checked_event_forwarding(handler_8.String(str, length, copy));
+
+case 9:
+    return checked_event_forwarding(handler_9.String(str, length, copy));
+
         default:
             break;
         }
@@ -22377,8 +22814,12 @@ else if (utility::string_equal(str, length, "\x73\x74\x72\x54\x69\x6d\x65", 7))
                          { state=5; has_strTime = true; }
 else if (utility::string_equal(str, length, "\x73\x74\x72\x44\x65\x73\x63", 7))
                          { state=6; has_strDesc = true; }
+else if (utility::string_equal(str, length, "\x62\x48\x61\x6e\x64\x6c\x65\x64", 8))
+                         { state=7; has_bHandled = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x43\x6f\x6d\x6d\x65\x6e\x74\x73", 11))
+                         { state=8; has_strComments = true; }
 else if (utility::string_equal(str, length, "\x62\x53\x65\x61\x72\x63\x68\x65\x64", 9))
-                         { state=7; has_bSearched = true; }
+                         { state=9; has_bSearched = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -22410,6 +22851,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.Key(str, length, copy));
+
+case 8:
+    return checked_event_forwarding(handler_8.Key(str, length, copy));
+
+case 9:
+    return checked_event_forwarding(handler_9.Key(str, length, copy));
 
             default:
                 break;
@@ -22449,6 +22896,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.StartArray());
 
+case 8:
+    return checked_event_forwarding(handler_8.StartArray());
+
+case 9:
+    return checked_event_forwarding(handler_9.StartArray());
+
         default:
             break;
         }
@@ -22486,6 +22939,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.EndArray(length));
 
+case 8:
+    return checked_event_forwarding(handler_8.EndArray(length));
+
+case 9:
+    return checked_event_forwarding(handler_9.EndArray(length));
+
         default:
             break;
         }
@@ -22522,6 +22981,12 @@ case 6:
 
 case 7:
     return checked_event_forwarding(handler_7.StartObject());
+
+case 8:
+    return checked_event_forwarding(handler_8.StartObject());
+
+case 9:
+    return checked_event_forwarding(handler_9.StartObject());
 
             default:
                 break;
@@ -22561,6 +23026,12 @@ case 6:
 case 7:
     return checked_event_forwarding(handler_7.EndObject(length));
 
+case 8:
+    return checked_event_forwarding(handler_8.EndObject(length));
+
+case 9:
+    return checked_event_forwarding(handler_9.EndObject(length));
+
             default:
                 break;
             }
@@ -22572,6 +23043,8 @@ if (!has_strType) set_missing_required("strType");
 if (!has_nTime) set_missing_required("nTime");
 if (!has_strTime) set_missing_required("strTime");
 if (!has_strDesc) set_missing_required("strDesc");
+if (!has_bHandled) set_missing_required("bHandled");
+if (!has_strComments) set_missing_required("strComments");
 if (!has_bSearched) set_missing_required("bSearched");
         }
         return the_error.empty();
@@ -22607,6 +23080,10 @@ case 6:
      handler_6.ReapError(errs); break;
 case 7:
      handler_7.ReapError(errs); break;
+case 8:
+     handler_8.ReapError(errs); break;
+case 9:
+     handler_9.ReapError(errs); break;
 
         default:
             break;
@@ -22629,6 +23106,8 @@ handler_4.PrepareForReuse();
 handler_5.PrepareForReuse();
 handler_6.PrepareForReuse();
 handler_7.PrepareForReuse();
+handler_8.PrepareForReuse();
+handler_9.PrepareForReuse();
 
     }
 };
@@ -22647,9 +23126,11 @@ w.Key("\x73\x74\x72\x54\x79\x70\x65", 7, false); Serializer< Writer8ccc208c1ac4a
 w.Key("\x6e\x54\x69\x6d\x65", 5, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned long long >()(w, value.nTime);
 w.Key("\x73\x74\x72\x54\x69\x6d\x65", 7, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strTime);
 w.Key("\x73\x74\x72\x44\x65\x73\x63", 7, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strDesc);
+w.Key("\x62\x48\x61\x6e\x64\x6c\x65\x64", 8, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int  >()(w, value.bHandled);
+w.Key("\x73\x74\x72\x43\x6f\x6d\x6d\x65\x6e\x74\x73", 11, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, std::string >()(w, value.strComments);
 w.Key("\x62\x53\x65\x61\x72\x63\x68\x65\x64", 9, false); Serializer< Writer8ccc208c1ac4a1f7a6d94ee3474a29f2887f0723ae9eddb3bd28bec837ebc22f, unsigned int  >()(w, value.bSearched);
 
-        w.EndObject(8);
+        w.EndObject(10);
     }
 
 };

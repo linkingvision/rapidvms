@@ -63,6 +63,7 @@ public:
 	inline bool SearchEvent(astring strId, s64 nStart, s64 nEnd);
 	inline bool RegRealEvent();
 	inline bool UnRegRealEvent();
+	inline bool HandleEvent(astring strId);
 /* Parse all the list */
 public:
 	inline bool ParseDeviceList(char *pRecv, int len, oapi::OAPICameraListRsp &list);

@@ -93,26 +93,115 @@ inline BOOL VEventServerSearchTask::UnRegEventNotify(void * pData)
 	return TRUE;
 }
 
+inline BOOL VEventServerSearchTask::ProcessSearchCmd(VVidEventSearchCmd &pCmd)
+{
+
+	Poco::Data::Session *m_DB = m_pDbTask.GetDataSession();
+	/* Can not search the event db */
+	if (m_DB == NULL)
+	{
+		m_pDbTask.ReleaseDataSession();
+		return FALSE;
+	}
+
+	s64 recordId = 0;
+	s64 recordLastId = 0;
+	while (1)
+	{
+	    std::vector<s64> recordIds;
+	    
+	    Statement stmt = (*m_DB << "SELECT id FROM events WHERE strDevice=:strDevice AND id >:recordid AND \
+	(nTime>=:starttime AND  nTime<=:endtime)", 
+	use(pCmd.strId), use(recordLastId), use(pCmd.nStart), use(pCmd.nEnd), into(recordIds), limit(1));
+	    stmt.execute();
+		
+	    if (recordIds.size() > 0)
+	    {
+			VEventData sEvent;
+			std::vector<s64>::iterator it = recordIds.begin();
+			recordId = *it;
+			sEvent.strDevice = pCmd.strId;
+#if 1
+		*m_DB << "SELECT strId FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strId), now;
+		*m_DB << "SELECT strDeviceName FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strDeviceName), now;
+		*m_DB << "SELECT strType FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strType), now;
+		*m_DB << "SELECT nTime FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.nTime), now;
+		*m_DB << "SELECT strEvttime FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strEvttime), now;
+		*m_DB << "SELECT strDesc FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strDesc), now;
+		*m_DB << "SELECT bHandled FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.bHandled), now;
+		*m_DB << "SELECT strComments FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strComments), now;
+#else
+		*m_DB << "SELECT strId strDeviceName strType nTime strEvttime strDesc \
+			bHandled strComments FROM events WHERE id=:id", use(recordId), 
+		   into(sEvent.strId), into(sEvent.strDeviceName), into(sEvent.strType), into(sEvent.nTime),
+		   into(sEvent.strEvttime), into(sEvent.strDesc), into(sEvent.bHandled),
+		   into(sEvent.strComments), now;
+#endif
+			XGuard guard(m_cMutex);
+			FunctionEventNotifyMap::iterator it2 = m_NotifyMap.begin(); 
+			for (; it2 != m_NotifyMap.end(); ++it2)
+			{
+				if ((*it2).second)
+				{
+					if (pCmd.pData == (*it2).first)
+					{
+						/* The data is search from database */
+						(*it2).second(sEvent, (*it2).first);
+					}
+				}
+			}
+			recordLastId = recordId;
+	    }
+
+	}
+	m_pDbTask.ReleaseDataSession();
+	return TRUE;
+}
+
+
+inline BOOL VEventServerSearchTask::ProcessHandleCmd(VVidEventSearchCmd &pCmd)
+{
+	Poco::Data::Session *m_DB = m_pDbTask.GetDataSession();
+	/* Can not search the event db */
+	if (m_DB == NULL)
+	{
+		m_pDbTask.ReleaseDataSession();
+		return FALSE;
+	}
+	bool bHandled = true;
+	/* Set handle true */
+	*m_DB << "UPDATE events SET bHandled=:bHandled WHERE strId=:strId", 
+					use(bHandled), use(pCmd.strId), now;
+	
+	m_pDbTask.ReleaseDataSession();
+	return TRUE;
+	return TRUE;
+}
+
 inline void VEventServerSearchTask::run()
 {
 	while(m_Queue.BlockingPeek() == true)
 	{
 		VVidEventSearchCmd sCmd = m_Queue.Pop();
 		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
-		/* Call the callback */
-		XGuard guard(m_cMutex);
-		FunctionEventNotifyMap::iterator it = m_NotifyMap.begin(); 
-		for(; it!=m_NotifyMap.end(); ++it)
+		switch(sCmd.type)
 		{
-			if ((*it).second)
-			{
-				if (sCmd.pData == (*it).first)
-				{
-					VEventData data;
-					/* The data is search from database */
-					(*it).second(data, (*it).first);
-				}
-			}
+			case VVID_EVENT_SEARCH_CMD:
+				ProcessSearchCmd(sCmd);
+				break;
+			case VVID_EVENT_HANDLE_CMD:
+				ProcessHandleCmd(sCmd);
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -200,7 +289,7 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 			*m_pSqlSession << "CREATE TABLE IF NOT EXISTS events "
 				"(id INTEGER PRIMARY KEY, strId TEXT, strDevice TEXT, "
 				"strDeviceName TEXT, strType TEXT, nTime INTEGER, strEvttime DATE, strDesc TEXT,"
-				"handled INTEGER, strComments TEXT)", now;
+				"bHandled INTEGER, strComments TEXT)", now;
 		}
 		catch (exception const &e)		
 		{			
@@ -212,6 +301,16 @@ inline void VEventServerDbTask::UpdateDBSession(bool bIsFirst)
 		VDC_DEBUG( "%s Do not support the DB TYPE \n",__FUNCTION__);
 		ve_sleep(1000);
 	}	
+}
+
+inline  Poco::Data::Session *VEventServerDbTask::GetDataSession()
+{
+	return m_pSqlSession;
+}
+
+inline void VEventServerDbTask::ReleaseDataSession()
+{
+	//TODO for the count
 }
 
 inline void VEventServerDbTask::run()
@@ -244,7 +343,7 @@ inline void VEventServerDbTask::run()
 			s64 handled = 0;
 			astring strComment = "Add your comments ...";
 			*m_pSqlSession << "INSERT INTO events VALUES(NULL, :strId, :strDevice, :strDeviceName, "
-				":strType, :nTime, :strEvttime, :strDesc, :handled, :strComments)", 
+				":strType, :nTime, :strEvttime, :strDesc, :bHandled, :strComments)", 
 			use(sData.strId), use(sData.strDevice), use(sData.strDeviceName), use(sData.strType), 
 			use(sData.nTime), use(sData.strEvttime), use(sData.strDesc), 
 			use(handled), use(strComment), now;
@@ -303,6 +402,15 @@ inline BOOL VEventServer::SearchEvent(astring strId, s64 nStart, s64 nEnd, void 
 	cmd.nStart = nStart;
 	cmd.nEnd = nEnd;
 	cmd.pData = pData;
+	
+	return m_SearchTask.PushCmd(cmd);
+}
+
+inline BOOL VEventServer::HandleEvent(astring strId)
+{
+	VVidEventSearchCmd cmd;
+	cmd.strId = strId;
+	cmd.type = VVID_EVENT_HANDLE_CMD;
 	
 	return m_SearchTask.PushCmd(cmd);
 }
