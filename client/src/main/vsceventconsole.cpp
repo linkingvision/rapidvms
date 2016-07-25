@@ -17,7 +17,8 @@
 
 
 VSCEventConsole::VSCEventConsole(ClientFactory &pFactory, QWidget *parent, Qt::WindowFlags flags)
-    : m_pFactory(pFactory), m_EventId(0), m_pVideo(NULL), QWidget(parent, flags)
+    : m_pFactory(pFactory), m_EventId(0), m_pVideo(NULL),m_bHolded(FALSE), 
+    m_nLastUpdateTime(time(NULL)), QWidget(parent, flags)
 {
 	ui.setupUi(this);
 	setAcceptDrops(true);
@@ -36,8 +37,15 @@ VSCEventConsole::VSCEventConsole(ClientFactory &pFactory, QWidget *parent, Qt::W
 	this->ui.video->setLayout(layout);
 	m_pVideo->show();
 
+	ui.pbHold->setText(tr("Hold"));
+
 	connect(&(m_pFactory.GetStorFactory()), SIGNAL(SignalEvent(std::string)), 
 		this, SLOT(SlotEvent(std::string)));
+	connect(this, SIGNAL(SignalSectionClicked(int, int)), ui.tableWidget, SIGNAL(cellClicked(int, int)));
+	connect(ui.tableWidget, SIGNAL(cellClicked(int, int)), this, SLOT(SlotSectionClicked(int, int)));
+
+	connect(ui.pbHold, SIGNAL(clicked()), this, SLOT(SlotHold()));
+
 	ui.tableWidget->setColumnWidth(2, 120);
 }
 
@@ -46,12 +54,25 @@ VSCEventConsole::~VSCEventConsole()
 
 }
 
+void VSCEventConsole::SlotHold()
+{
+	if (m_bHolded == FALSE)
+	{
+		ui.pbHold->setText(tr("UnHold"));
+		m_bHolded = TRUE;
+	}else
+	{
+		ui.pbHold->setText(tr("Hold"));
+		m_bHolded = FALSE;
+	}
+}
+
 void VSCEventConsole::SlotEvent(std::string strEvent)
 {	
 	VidEvent cEvent;
 	bool bRet = cEvent.ParseFromString(strEvent);
 
-	if (bRet == true)
+	if (bRet == true && cEvent.bsearched() == false)
 	{
 		EventTableUpdate(cEvent);
 	}
@@ -60,8 +81,19 @@ void VSCEventConsole::SlotEvent(std::string strEvent)
 
 void VSCEventConsole::EventTableUpdate(VidEvent &cEvent)
 {
-	m_EventMap[m_EventId] = cEvent;
+	s64 nCurrentTime = time(NULL);
 
+	m_EventMap[m_EventId] = cEvent;
+	m_EventMap[m_EventId].set_nidx(m_EventId);
+
+	/* The update  */
+	if (m_bHolded == TRUE || abs(nCurrentTime - m_nLastUpdateTime) == 0)
+	{
+		m_EventId ++;
+		return;
+	}
+	m_nLastUpdateTime = nCurrentTime;
+	
 	int nRowCnt = ui.tableWidget->rowCount();
 
 	for (s32 j = nRowCnt - 1; j >= 0; j --)
@@ -74,7 +106,6 @@ void VSCEventConsole::EventTableUpdate(VidEvent &cEvent)
 	s32 nStart = 0;
 	if (m_EventId > VSC_MAX_EVENT_NUM)
 	{
-		nMax = VSC_MAX_EVENT_NUM;
 		nStart = m_EventId - VSC_MAX_EVENT_NUM;
 	}
 
@@ -83,14 +114,17 @@ void VSCEventConsole::EventTableUpdate(VidEvent &cEvent)
 		VidEvent cEventCurrent = m_EventMap[i];
 		int insertRow = ui.tableWidget->rowCount();
 		ui.tableWidget->insertRow(insertRow);
-		QTableWidgetItem *pItem0 = new QTableWidgetItem(cEventCurrent.strstorname().c_str());
+		QTableWidgetItem *pItem0 = new VidEventTableItem(cEventCurrent, cEventCurrent.strstorname().c_str());
 		QTableWidgetItem *pItem1 = new QTableWidgetItem(cEventCurrent.strdevicename().c_str());
 		QTableWidgetItem *pItem2 = new QTableWidgetItem(cEventCurrent.strtype().c_str());
 		QTableWidgetItem *pItem3 = new QTableWidgetItem(cEventCurrent.strtime().c_str());
-		pItem0->setBackgroundColor(QColor(255,0,0));
-		pItem1->setBackgroundColor(QColor(255,0,0));
-		pItem2->setBackgroundColor(QColor(255,0,0));
-		pItem3->setBackgroundColor(QColor(255,0,0));
+		if (cEventCurrent.bhandled() == false)
+		{
+			pItem0->setBackgroundColor(QColor(255,0,0));
+			pItem1->setBackgroundColor(QColor(255,0,0));
+			pItem2->setBackgroundColor(QColor(255,0,0));
+			pItem3->setBackgroundColor(QColor(255,0,0));
+		}
 		ui.tableWidget->setItem(insertRow, 0, pItem0);
 		ui.tableWidget->setItem(insertRow, 1, pItem1);
 		ui.tableWidget->setItem(insertRow, 2, pItem2);
@@ -104,6 +138,52 @@ void VSCEventConsole::EventTableUpdate(VidEvent &cEvent)
 	{
 		m_EventMap.erase(m_EventId - VSC_MAX_EVENT_NUM);
 	}
+}
+
+void VSCEventConsole::SlotSectionClicked(int row, int column)
+{
+	QTableWidgetItem *firstCheck = ui.tableWidget->item(ui.tableWidget->currentRow(), 0);
+
+	VidEventTableItem *pEvent = dynamic_cast<VidEventTableItem * >(firstCheck);
+	if (pEvent )
+	{
+		SetEventUI(pEvent->GetEvent());
+		VidEvent cEvent = pEvent->GetEvent();
+		/* Set this event handled */
+		if (cEvent.bhandled() != true)
+		{
+			/* Send to server handled */
+			m_pFactory.GetStorFactory().HandleEvent(cEvent.strstorid(),
+				cEvent.strid());
+			/* Set handled in the map */
+			cEvent.set_bhandled(true);
+			m_EventMap[cEvent.nidx()] = cEvent;
+			ui.tableWidget->item(ui.tableWidget->currentRow(), 0)->setBackgroundColor(QColor(255,255,255));
+			ui.tableWidget->item(ui.tableWidget->currentRow(), 1)->setBackgroundColor(QColor(255,255,255));
+			ui.tableWidget->item(ui.tableWidget->currentRow(), 2)->setBackgroundColor(QColor(255,255,255));			
+			ui.tableWidget->item(ui.tableWidget->currentRow(), 3)->setBackgroundColor(QColor(255,255,255));
+		}
+
+		/* Start playplay video  */
+		m_pVideo->StopPlay();
+		m_pVideo->StartPlay(cEvent.strstorid(), cEvent.strdevice(), cEvent.strdevicename(), cEvent.ntime());
+	}
+	
+}
+
+
+void VSCEventConsole::SetEventUI(VidEvent pEvent)
+{
+	VDC_DEBUG("%s VSCEventConsole::SetEventUI \n", __FUNCTION__);
+	ui.lineEditStorName->setText(pEvent.strstorname().c_str());
+	ui.lineEditName->setText(pEvent.strdevicename().c_str());
+
+	ui.lineEditType->setText(pEvent.strtype().c_str());
+	ui.lineEditTime->setText(pEvent.strtime().c_str());
+
+	ui.lineEditDesc->setText(pEvent.strdesc().c_str());
+	//ui.lineEditMark->setText(pEvent.str().c_str());
+	
 }
 
 

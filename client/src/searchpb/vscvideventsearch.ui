@@ -89,6 +89,112 @@
       </widget>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>50</number>
+       </property>
+       <item>
+        <widget class="QDateTimeEdit" name="startTime">
+         <property name="styleSheet">
+          <string notr="true">QDateTimeEdit:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QDateTimeEdit:pressed {
+background-color: rgb(200, 200, 200);}
+</string>
+         </property>
+         <property name="wrapping">
+          <bool>false</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="accelerated">
+          <bool>false</bool>
+         </property>
+         <property name="showGroupSeparator" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="dateTime">
+          <datetime>
+           <hour>0</hour>
+           <minute>0</minute>
+           <second>0</second>
+           <year>2015</year>
+           <month>7</month>
+           <day>1</day>
+          </datetime>
+         </property>
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm:ss</string>
+         </property>
+         <property name="calendarPopup">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="minimumSize">
+          <size>
+           <width>21</width>
+           <height>21</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>21</width>
+           <height>21</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(60, 60, 60);
+border:none;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../veuilib/src/velibui.qrc">
+           <normaloff>:/date/resources/date/libuinextm.png</normaloff>:/date/resources/date/libuinextm.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateTimeEdit" name="endTime">
+         <property name="styleSheet">
+          <string notr="true">QDateTimeEdit:hover {
+border:none;
+color:white;
+background-color: rgb(85, 170, 255);}
+QDateTimeEdit:pressed {
+background-color: rgb(200, 200, 200);}</string>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="dateTime">
+          <datetime>
+           <hour>0</hour>
+           <minute>0</minute>
+           <second>0</second>
+           <year>2015</year>
+           <month>7</month>
+           <day>1</day>
+          </datetime>
+         </property>
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm:ss</string>
+         </property>
+         <property name="calendarPopup">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QGridLayout" name="gridLayout_3">
        <property name="horizontalSpacing">
         <number>20</number>
@@ -110,7 +216,7 @@
         </spacer>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pbApply_3">
+        <widget class="QPushButton" name="pbSearch">
          <property name="minimumSize">
           <size>
            <width>60</width>
@@ -134,7 +240,7 @@ QPushButton:pressed {
 	background-image: url(:/action/resources/button.png);}</string>
          </property>
          <property name="text">
-          <string>Hold</string>
+          <string>Search</string>
          </property>
          <property name="iconSize">
           <size>
@@ -164,7 +270,27 @@ QPushButton:pressed {
           <property name="spacing">
            <number>10</number>
           </property>
-          <item row="3" column="1">
+          <item row="6" column="0">
+           <widget class="QLabel" name="labelPort_2">
+            <property name="text">
+             <string>Event Time:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelName">
+            <property name="text">
+             <string>Camera Name:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
            <widget class="QLineEdit" name="lineEditName">
             <property name="maximumSize">
              <size>
@@ -177,17 +303,7 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelName">
-            <property name="text">
-             <string>Camera Name:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="labelIP_2">
             <property name="text">
              <string>Event Type:</string>
@@ -197,8 +313,8 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="lineEditPort">
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="lineEditTime">
             <property name="maximumSize">
              <size>
               <width>300</width>
@@ -210,17 +326,30 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelPort_2">
-            <property name="text">
-             <string>Event Time:</string>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="lineEditDesc">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
             </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="8" column="1">
+           <widget class="QLineEdit" name="lineEditMark">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
            <widget class="QLabel" name="labelPassword_2">
             <property name="text">
              <string>Description:</string>
@@ -230,8 +359,8 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEditIP">
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="lineEditType">
             <property name="maximumSize">
              <size>
               <width>300</width>
@@ -243,20 +372,7 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
-           <widget class="QLineEdit" name="lineEditPort_2">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="labelPassword_3">
             <property name="text">
              <string>Mark:</string>
@@ -266,13 +382,26 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="lineEditPort_3">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelName_2">
+            <property name="text">
+             <string>Stor Name:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditStorName">
             <property name="maximumSize">
              <size>
               <width>300</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -354,7 +483,8 @@ QPushButton:pressed {
   </layout>
  </widget>
  <resources>
-  <include location="vscmainwindows.qrc"/>
+  <include location="../main/vscmainwindows.qrc"/>
+  <include location="../../../veuilib/src/velibui.qrc"/>
  </resources>
  <connections/>
 </ui>

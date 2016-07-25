@@ -2,6 +2,7 @@
 #define __VSC_VID_SEARCH_PB_H__
 
 #include "common/vscvidinf.h"
+#include "searchpb/vscvideventsearch.h"
 
 class VSCVidSearchPB : public VSCVidInf
 {
@@ -16,9 +17,11 @@ public:
 	virtual void VidNewEventSearch();
 	virtual void VidNewMotionSearch();
 	virtual VSCVidTreeInf *GetCameraTree();
+	virtual bool CheckClosed(QWidget * pTab);
 
 private:
 	VSCVidTreeInf *m_pCameraTree;
+	VSCVidEventSearch *m_pSearch;
 
 };
 #endif

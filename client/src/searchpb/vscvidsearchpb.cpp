@@ -3,11 +3,11 @@
 #include "common/vidtree/vscvidtreecam.h"
 
 VSCVidSearchPB::VSCVidSearchPB(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *parent)
-	: m_pCameraTree(NULL), VSCVidInf(pFactory, pTab, parent)
+	: m_pCameraTree(NULL), m_pSearch(NULL), VSCVidInf(pFactory, pTab, parent)
 {
 	m_pCameraTree = new VSCVidTreeCam(m_pFactory, parent);
 	m_pCameraTree->Init();
-	m_pCameraTree->VidSetChecked(false);
+	m_pCameraTree->VidSetCheckedChild(NULL, false);
 	m_pCameraTree->hide();
 }
 VSCVidSearchPB::~VSCVidSearchPB()
@@ -26,12 +26,28 @@ void VSCVidSearchPB::VidHide()
 
 void VSCVidSearchPB::VidNewEventSearch()
 {
-	VSCVidEventSearch *pSearch = new VSCVidEventSearch(m_pFactory, &m_pMainArea);
-	pSearch->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+	if (m_pSearch == NULL)
+	{
+		m_pSearch = new VSCVidEventSearch(m_pFactory, *m_pCameraTree, &m_pMainArea);
+		m_pSearch->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
+	}
 
-	m_pMainArea.addTab(pSearch, QIcon(tr(":/action/resources/alarm_search.png")), tr("Event Search"));
-	m_pMainArea.setCurrentWidget(pSearch);
+	m_pSearch->show();
+	m_pMainArea.addTab(m_pSearch, QIcon(tr(":/action/resources/alarm_search.png")), tr("Event Search"));
+	m_pMainArea.setCurrentWidget(m_pSearch);
 }
+
+bool VSCVidSearchPB::CheckClosed(QWidget * pTab)
+{
+	if (m_pSearch == pTab)
+	{
+		return true;
+	}else
+	{
+		return false;
+	}
+}
+
 void VSCVidSearchPB::VidNewMotionSearch()
 {
 }

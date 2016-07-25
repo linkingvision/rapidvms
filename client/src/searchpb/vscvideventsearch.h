@@ -15,6 +15,7 @@
 #include "utility.hpp"
 #include "ui_vscvideventsearch.h"
 #include "vvidpb1.h"
+#include "common/vscvidtreeinf.h"
 
 using  namespace tthread;
 
@@ -23,17 +24,29 @@ class VSCVidEventSearch : public QWidget
     Q_OBJECT
 
 public:
-	VSCVidEventSearch(ClientFactory &pFactory, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+	VSCVidEventSearch(ClientFactory &pFactory, VSCVidTreeInf &pCamTree, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~VSCVidEventSearch();
 	void EventTableUpdate(VidEvent &cEvent);
-
+	void SetEventUI(VidEvent pEvent);
+		
+signals:
+	void SignalSectionClicked(int row, int column);
 public slots:
 	void SlotEvent(std::string strEvent);
+	void SlotSectionClicked(int row, int column);
+	void SlotSearch();
+	void SlotStartDateTimeChanged(const QDateTime &dateTime);
+	
 public:
     	Ui::VSCVidEventSearch ui;
 private:
 	ClientFactory &m_pFactory;
 	VVidPB1 *m_pVideo;
+	VSCVidTreeInf &m_pCamTree;
+	s64 m_startTime;
+
+	QDateTime m_endMax;
+	QDateTime m_endMin;
 
 };
 

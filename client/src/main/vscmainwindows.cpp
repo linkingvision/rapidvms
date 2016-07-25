@@ -158,12 +158,21 @@ void VSCMainWindows::MainCloseTab(int index)
 		return;
 	}
 
+	if (m_pVidLive->CheckClosed(wdgt) == true
+		|| m_pVidConf->CheckClosed(wdgt) == true
+		|| m_pVidPb->CheckClosed(wdgt) == true)
+	{
+		m_pMainArea->removeTab(index);
+		wdgt->hide();
+		return;
+	}
+	
 	m_pMainArea->removeTab(index);
-    if (wdgt)
-    {
+	if (wdgt)
+	{
 		delete wdgt;
 		wdgt = NULL;
-    }
+	}
 }
 
 void VSCMainWindows::ShowDashBoard()
