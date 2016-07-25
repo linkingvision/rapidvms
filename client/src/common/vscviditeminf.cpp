@@ -10,8 +10,13 @@ VSCVidItemInf::~VSCVidItemInf()
 	
 }
 
-void VSCVidItemInf::VidSetChecked(bool bChecked)
+void VSCVidItemInf::VidSetChecked(QTreeWidgetItem * item, bool bChecked)
 {
+	/* The event is send from myself */
+	if (item == this)
+	{
+		return;
+	}
 	if (bChecked == true)
 	{
 		setCheckState(0, Qt::Checked);

@@ -21,7 +21,8 @@ public:
 public:
 	virtual void VidFilter(astring strFilter);
 	virtual void Init();
-	virtual void VidSetChecked(bool bChecked);
+	virtual void VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked);
+	virtual void VidGetSelectedItems(VidCameraIdMap &pMap);
 public:
 	/* Take care all the child state change */
 	//static bool CallChange(void* pParam, StorFactoryChangeData data);

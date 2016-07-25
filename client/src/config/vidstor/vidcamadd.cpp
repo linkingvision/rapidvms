@@ -23,7 +23,7 @@
 using namespace Poco;
 
 VidCamAdd::VidCamAdd(VidStor &pStor, ClientFactory &pFactory, QWidget *parent, Qt::WindowFlags flags)
-    : m_sStor(pStor), m_pFactory(pFactory), m_bStarted(false), m_syncInfSearch(NULL),
+    : m_sStor(pStor), m_Timer(NULL), m_pFactory(pFactory), m_bStarted(false), m_syncInfSearch(NULL),
     m_bSelectedAll(false), QWidget(parent, flags)
 {
 	ui.setupUi(this);
@@ -52,9 +52,6 @@ VidCamAdd::VidCamAdd(VidStor &pStor, ClientFactory &pFactory, QWidget *parent, Q
 	connect( this->ui.pushButtonSelect, SIGNAL( clicked() ), this, SLOT(SlotSelectAll()));
 	/* Set Stor Name */
 	ui.storName->setText(m_sStor.strname().c_str());
-
-	m_Timer = new QTimer(this);
-	connect(m_Timer, SIGNAL(timeout()), this, SLOT(SlotSearchRecv()));
 }
 
 void VidCamAdd::SlotRadioButtonClicked()
@@ -415,8 +412,10 @@ void VidCamAdd::SlotStartSearch()
 	
 	m_syncInfSearch->Connect();
 	m_syncInfSearch->CamSearchStart();
-	m_syncInfSearch->SetRecvTimeout(200);
-	m_Timer->start(300);
+	m_syncInfSearch->SetRecvTimeout(10);
+	m_Timer = new QTimer();
+	connect(m_Timer, SIGNAL(timeout()), this, SLOT(SlotSearchRecv()));
+	m_Timer->start(500);
 	
 }
 void VidCamAdd::SlotStopSearch()
@@ -444,7 +443,12 @@ void VidCamAdd::SlotStopSearch()
 	}
 
 	m_syncInfSearch->CamSearchStop();
-	m_Timer->stop();
+	if (m_Timer)
+	{
+		m_Timer->stop();
+		delete m_Timer;
+		m_Timer = NULL;
+	}
 	
 	delete m_syncInfSearch;
 	m_syncInfSearch = NULL;
@@ -455,7 +459,7 @@ void VidCamAdd::SlotStopSearch()
 void VidCamAdd::SlotAddAll()
 {
 	int insertRow = ui.tableSearch->rowCount();
-    	VDC_DEBUG( "[ONVIF]: Searched %d", insertRow);
+    	VDC_DEBUG( "[ONVIF]: Searched %d\n", insertRow);
 	StorSyncInf syncInf(m_sStor, 5 * 1000);
 
 	VSCLoading loading(NULL);
@@ -506,7 +510,7 @@ void VidCamAdd::SlotAddAll()
 void VidCamAdd::SlotSelectAll()
 {
 	int insertRow = ui.tableSearch->rowCount();
-    VDC_DEBUG( "[ONVIF]: Searched %d", insertRow);
+    VDC_DEBUG( "[ONVIF]: Searched %d\n", insertRow);
 
 	if (m_bSelectedAll == true)
 	{

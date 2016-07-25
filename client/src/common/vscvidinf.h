@@ -39,6 +39,7 @@ public:
 	virtual VSCVidTreeInf *GetViewTree (){return NULL;}
 	virtual VSCVidTreeInf *GetConfTree (){return NULL;}
 	virtual QWidget * GetMainView(){return NULL;}
+	virtual bool CheckClosed(QWidget * pTab){return false;}
 
 protected:
 	ClientFactory &m_pFactory;

@@ -1,7 +1,7 @@
 #include "common/viditem/vscviditemcam.h"
 
-VSCVidItemCam::VSCVidItemCam(VidCamera cCam, ClientFactory &pFactory, QTreeWidgetItem *parent)
-: m_cCam(cCam), VSCVidItemInf(pFactory, parent)
+VSCVidItemCam::VSCVidItemCam(VidCamera cCam, VidCameraId cCamId, ClientFactory &pFactory, QTreeWidgetItem *parent)
+: m_cCam(cCam), m_cCamId(cCamId), VSCVidItemInf(pFactory, parent)
 {
 	QIcon icon1;
 	icon1.addFile(QStringLiteral(":/device/resources/camera.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -32,5 +32,14 @@ void VSCVidItemCam::VidFilter(astring strFilter)
 	}else
 	{
 		setHidden(true);
+	}
+}
+
+void VSCVidItemCam::VidGetSelectedItems(VidCameraIdMap &pMap)
+{	
+	/* if check add to the map */
+	if (VidGetChecked() == true)
+	{
+		pMap[GetId()] = m_cCamId;
 	}
 }

@@ -11,6 +11,8 @@
 #include <QTreeWidget>
 #include <QApplication>
 
+typedef std::map<astring, VidCameraId> VidCameraIdMap;
+
 class VSCVidItemInf : public QTreeWidgetItem
 {
 public:
@@ -21,9 +23,10 @@ public:
 	void UpdateRec(bool bRec);
 
 public:
-	void VidSetChecked(bool bChecked);
-	bool VidGetChecked();
-	virtual void VidSetCheckedChild(bool bChecked){}
+	virtual  void VidSetChecked(QTreeWidgetItem * item, bool bChecked);
+	virtual  bool VidGetChecked();
+	virtual void VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked){}
+	virtual void VidGetSelectedItems(VidCameraIdMap &pMap){}
 	
 public:
 	virtual astring GetId(){return __FUNCTION__;}

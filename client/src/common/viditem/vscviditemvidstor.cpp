@@ -102,7 +102,10 @@ void VSCVidItemVidStor::CameraAdd(VidCamera cCam)
 			this->removeChild(pChild);
 		}
 	}
-	VSCVidItemCam *pItemCam = new  VSCVidItemCam(cCam,
+	VidCameraId cCamId;
+	cCamId.set_strcameraid(cCam.strid());
+	cCamId.set_strstorid(GetId());
+	VSCVidItemCam *pItemCam = new  VSCVidItemCam(cCam,cCamId,
 								m_pFactory, this);
 }
 void VSCVidItemVidStor::CameraDelete(astring strId)
@@ -180,7 +183,7 @@ void VSCVidItemVidStor::CameraRecOff(astring strId)
 		}
 	}
 }
-void VSCVidItemVidStor::VidSetCheckedChild(bool bChecked)
+void VSCVidItemVidStor::VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked)
 {
 	int cnt = this->childCount();
 
@@ -188,7 +191,19 @@ void VSCVidItemVidStor::VidSetCheckedChild(bool bChecked)
 	{
 		QTreeWidgetItem * pChild = this->child(i);
 		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
-		pItem->VidSetChecked(bChecked);
+		pItem->VidSetChecked(item, bChecked);
+	}
+}
+
+void VSCVidItemVidStor::VidGetSelectedItems(VidCameraIdMap &pMap)
+{
+	int cnt = this->childCount();
+
+	for (int i = 0; i < cnt; i ++)
+	{
+		QTreeWidgetItem * pChild = this->child(i);
+		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
+		pItem->VidGetSelectedItems(pMap);
 	}
 }
 
@@ -208,7 +223,10 @@ void VSCVidItemVidStor::TreeUpdated(bool bClear)
 	for (s32 i = 0; i < cCamList.cvidcamera_size(); i ++)
 	{
 		VidCamera pCam = cCamList.cvidcamera(i);
-		VSCVidItemCam *pItemCam = new  VSCVidItemCam(pCam,
+		VidCameraId cCamId;
+		cCamId.set_strcameraid(pCam.strid());
+		cCamId.set_strstorid(GetId());
+		VSCVidItemCam *pItemCam = new  VSCVidItemCam(pCam, cCamId,
 								m_pFactory, this);
 		StorClientOnlineMap::iterator it = bOnline.find(pCam.strid()), ite = bOnline.end();
 		if (it != ite)

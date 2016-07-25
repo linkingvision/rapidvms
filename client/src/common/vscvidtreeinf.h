@@ -10,6 +10,11 @@
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QApplication>
+#include "common/vscviditeminf.h"
+
+
+
+/*  QTreeWidget::itemClicked for get the item is checked or not */
 
 class VSCVidTreeInf : public QTreeWidget
 {
@@ -21,7 +26,10 @@ public:
 public:
 	virtual void VidFilter(astring strFilter){}
 	virtual void Init(){}
-	virtual void VidSetChecked(bool bChecked){}
+	virtual void VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked){}
+	virtual void VidGetSelectedItems(VidCameraIdMap &pMap){}
+public slots:
+	void SlotItemClicked(QTreeWidgetItem * item, int column);
 	
 protected:
 	ClientFactory &m_pFactory;

@@ -31,7 +31,8 @@ public:
 public:
 	virtual astring GetId(){return m_cStor.strid();}
 	virtual void VidFilter(astring strFilter);
-	virtual void VidSetCheckedChild(bool bChecked);
+	virtual void VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked);
+	virtual void VidGetSelectedItems(VidCameraIdMap &pMap);
 private:
 	VidStor m_cStor;
 
