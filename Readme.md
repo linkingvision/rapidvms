@@ -6,6 +6,8 @@
 
 *  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/opencvrusermanual)
 
+[![Codewake](https://www.codewake.com/badges/codewake2.svg)](https://www.codewake.com/p/opencvr)
+
 [https://github.com/xsmart/opencvr/wiki](https://github.com/xsmart/opencvr/wiki)
 
 ----------
