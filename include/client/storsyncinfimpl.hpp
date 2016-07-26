@@ -623,6 +623,12 @@ inline bool StorSyncInf::SyncRecv(OAPIHeader &header)
 			delete [] m_pRecv;
 			m_pRecv = NULL;
 		}
+		/* Some thing has break */
+		if (header.length > 1024 * 1024 * 8)
+		{
+			m_pSocket->Close();
+			return false;
+		}
 		m_pRecv = new char[header.length + 1];
 		m_nRecvLen = header.length + 1;
 	}

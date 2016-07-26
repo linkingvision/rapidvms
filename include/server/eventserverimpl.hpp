@@ -114,9 +114,13 @@ inline BOOL VEventServerSearchTask::ProcessSearchCmd(VVidEventSearchCmd &pCmd)
 	(nTime>=:starttime AND  nTime<=:endtime)", 
 	use(pCmd.strId), use(recordLastId), use(pCmd.nStart), use(pCmd.nEnd), into(recordIds), limit(1));
 	    stmt.execute();
+		VDC_DEBUG( "%s  %d recordLastId %d \n",__FUNCTION__, __LINE__, 
+					recordLastId);
 		
 	    if (recordIds.size() > 0)
 	    {
+			VDC_DEBUG( "%s  %d recordLastId %d \n",__FUNCTION__, __LINE__, 
+					recordLastId);	   
 			VEventData sEvent;
 			std::vector<s64>::iterator it = recordIds.begin();
 			recordId = *it;
@@ -155,10 +159,14 @@ inline BOOL VEventServerSearchTask::ProcessSearchCmd(VVidEventSearchCmd &pCmd)
 					{
 						/* The data is search from database */
 						(*it2).second(sEvent, (*it2).first);
+						break;
 					}
 				}
 			}
 			recordLastId = recordId;
+	    }else
+	    {
+		break;
 	    }
 
 	}

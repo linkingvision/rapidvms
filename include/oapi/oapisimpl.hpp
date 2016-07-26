@@ -2177,6 +2177,8 @@ inline void OAPIServer::SearchEventHandler1(VEventData data)
 	event.strTime = data.strEvttime;
 	event.strType = data.strType;
 	event.bHandled = data.bHandled;
+	event.strComments = data.strComments;
+	event.strDesc = data.strComments;
 	event.bSearched = true;
 
 	std::string strJson = autojsoncxx::to_pretty_json_string(event);

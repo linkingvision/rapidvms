@@ -678,6 +678,8 @@ inline void Factory::run()
 					}
 					
 				}
+				/* One by One for CPU usage */
+				ve_sleep(1000 * 2);
 			}
 		}
 		{

@@ -231,7 +231,7 @@ inline void StorClient::run()
 	u16 Port = ckPort.to_uint16(10);
 	XGuard guard(m_cMutex);
 	guard.Release();
-
+	//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	   
 	while(m_Quit != true)
 	{
 		ve_sleep(1000);
@@ -243,19 +243,19 @@ inline void StorClient::run()
 		guard.Release();
 		m_pNotify.CallChange(data);
 		guard.Acquire();
-		
+		//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	 
 		try
 		{
 			XSDK::XString host = m_stor.strip();
 			
 			m_pSocket->Connect(host, Port);
-			
+			//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	 
 			oapi::OAPICameraListRsp list;
 			OAPIClient pClient(m_pSocket);
 			
 			pClient.Setup(m_stor.struser(), m_stor.strpasswd(), "Nonce");
 			
-	
+			//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	 
 			//m_pSocket->SetRecvTimeout(1 * 300);
 			while(m_Quit != true)
 			{
@@ -266,8 +266,9 @@ inline void StorClient::run()
 				{
 					if (m_pSocket->Valid() == true)
 					{
+						//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	 
 						/* Have not recevice any data */
-						//ve_sleep(200);
+						ve_sleep(200);
 						continue;
 					}else
 					{
@@ -275,6 +276,7 @@ inline void StorClient::run()
 						break;
 					}
 				}
+				//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);	 
 				//printf("%s---%d\n", __FILE__, __LINE__);
 
 				header.cmd = ntohl(header.cmd);
@@ -285,6 +287,13 @@ inline void StorClient::run()
 					{
 						delete [] pRecv;
 						pRecv = NULL;
+					}
+
+					/* Some thing has break */
+					if (header.length > 1024 * 1024 * 8)
+					{
+						m_pSocket->Close();
+						break;
 					}
 					pRecv = new char[header.length + 1];
 					nRecvLen = header.length + 1;
@@ -447,6 +456,7 @@ inline void StorClient::run()
 							guard.Release();
 							m_pNotify.OnEvent(cEvent, m_stor);
 							guard.Acquire();
+							//VDC_DEBUG( "%s  %d \n",__FUNCTION__, __LINE__);
 							break;
 						}
 						default:
