@@ -18,7 +18,7 @@ VSCCamRec::VSCCamRec(ClientFactory &pFactory, VidStor &stor, astring strCam, QWi
 	astring strSched;
 	
 	syncInf.GetVidCamera(m_strCam, pCam);	
-
+#if 0
 	int nSchedSize = pCam.crecsched_size();
 
 	for (s32 i = 0; i < pCam.crecsched_size(); i ++)
@@ -43,7 +43,7 @@ VSCCamRec::VSCCamRec(ClientFactory &pFactory, VidStor &stor, astring strCam, QWi
 	{
 		ui.recType->setCurrentIndex(2);
 	}
-	
+#endif	
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 
 	delete pLoading;
@@ -86,13 +86,14 @@ void VSCCamRec::applyConfig()
 			break;
 		}
 	}
+#if 0
 	pCam.clear_crecsched();
 	int nSchedSize = pCam.crecsched_size();
 	if (nSchedSize == 0)
 	{
 		pCam.add_crecsched(strSched);
 	}
-
+#endif
 	syncInf.SetCamSched(pCam);
 	
 	delete pLoading;

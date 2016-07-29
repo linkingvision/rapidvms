@@ -20,9 +20,7 @@ VSCSchedule::VSCSchedule(ClientFactory &pFactory, VidStor &stor, astring strCam,
 	//connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 
 	//delete pLoading;
-#ifdef WIN32
-	ui.sched->setStyleSheet(QString::fromUtf8("font: 8pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
-#endif
+
 }
 
 void VSCSchedule::applyConfig()
