@@ -64,9 +64,10 @@
 		["unsigned int", "bServerMotion", {"required": true}],
 		["unsigned int", "nConnectType", {"required": true}],
 		["unsigned int", "bHDFSRecord", {"required": true}],
-		["std::vector<std::string>", "cRecSchedList"],
 		["unsigned int", "nPreRecSec", {"required": true}],
 		["unsigned int", "nPostRecSec", {"required": true}],
+		
+		["std::string", "strSched", {"required": true}],
 
 		["unsigned int", "bOnline", {"required": true}],
 		["unsigned int", "bRec", {"required": true}]

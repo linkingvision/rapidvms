@@ -92,6 +92,28 @@ inline bool CameraType_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<CameraType>(
     CameraType_descriptor(), name, value);
 }
+enum VidRecType {
+  VID_R_OFF = 0,
+  VID_R_ALARM = 1,
+  VID_R_SCHED = 2,
+  VidRecType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  VidRecType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool VidRecType_IsValid(int value);
+const VidRecType VidRecType_MIN = VID_R_OFF;
+const VidRecType VidRecType_MAX = VID_R_SCHED;
+const int VidRecType_ARRAYSIZE = VidRecType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* VidRecType_descriptor();
+inline const ::std::string& VidRecType_Name(VidRecType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    VidRecType_descriptor(), value);
+}
+inline bool VidRecType_Parse(
+    const ::std::string& name, VidRecType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<VidRecType>(
+    VidRecType_descriptor(), name, value);
+}
 enum CameraConnectType {
   VID_CONNECT_0 = 0,
   VID_CONNECT_TCP = 1,
@@ -778,6 +800,17 @@ class VidCamera : public ::google::protobuf::Message {
   ::VidConf::OnvifEventLevel nonvifevtlevel() const;
   void set_nonvifevtlevel(::VidConf::OnvifEventLevel value);
 
+  // optional string strSched = 27;
+  void clear_strsched();
+  static const int kStrSchedFieldNumber = 27;
+  const ::std::string& strsched() const;
+  void set_strsched(const ::std::string& value);
+  void set_strsched(const char* value);
+  void set_strsched(const char* value, size_t size);
+  ::std::string* mutable_strsched();
+  ::std::string* release_strsched();
+  void set_allocated_strsched(::std::string* strsched);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -807,6 +840,7 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::int32 npostrecsec_;
   ::google::protobuf::int32 nrecordstream_;
   ::google::protobuf::int32 nservermotionstream_;
+  ::google::protobuf::internal::ArenaStringPtr strsched_;
   int nonvifevtlevel_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
@@ -4275,6 +4309,49 @@ inline void VidCamera::set_nonvifevtlevel(::VidConf::OnvifEventLevel value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nOnvifEvtLevel)
 }
 
+// optional string strSched = 27;
+inline void VidCamera::clear_strsched() {
+  strsched_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidCamera::strsched() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strSched)
+  return strsched_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_strsched(const ::std::string& value) {
+  
+  strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strSched)
+}
+inline void VidCamera::set_strsched(const char* value) {
+  
+  strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strSched)
+}
+inline void VidCamera::set_strsched(const char* value, size_t size) {
+  
+  strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strSched)
+}
+inline ::std::string* VidCamera::mutable_strsched() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strSched)
+  return strsched_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidCamera::release_strsched() {
+  
+  return strsched_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_allocated_strsched(::std::string* strsched) {
+  if (strsched != NULL) {
+    
+  } else {
+    
+  }
+  strsched_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strsched);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strSched)
+}
+
 // -------------------------------------------------------------------
 
 // VidCameraList
@@ -6740,6 +6817,11 @@ template <> struct is_proto_enum< ::VidConf::CameraType> : ::google::protobuf::i
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::CameraType>() {
   return ::VidConf::CameraType_descriptor();
+}
+template <> struct is_proto_enum< ::VidConf::VidRecType> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::VidConf::VidRecType>() {
+  return ::VidConf::VidRecType_descriptor();
 }
 template <> struct is_proto_enum< ::VidConf::CameraConnectType> : ::google::protobuf::internal::true_type {};
 template <>

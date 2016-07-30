@@ -405,18 +405,21 @@ bool Camera::UpdateRecSched(VidCamera &pCam)
 {
 	m_cSchedMap.clear();
 
-	int cameraSize = pCam.crecsched_size();
+	astring strSched = pCam.strsched();
 
-	for (s32 i = 0; i < pCam.crecsched_size(); i ++)
+	if (RecordSchedWeek::CheckStringForSched(strSched) == false)
 	{
-		astring strid = pCam.crecsched(i);
-		RecordSchedWeek sched;
-		if (m_pConfDB.GetRecSched(strid, sched) == true)
-		{
-			m_cSchedMap[strid] = sched;
-		}
+		return false;
 	}
-
+		
+	RecordSchedWeek sched(strSched);
+#if 0
+	if (m_pConfDB.GetRecSched(REC_SCHED_ALL_DAY, sched) == true)
+	{
+		m_cSchedMap[REC_SCHED_ALL_DAY] = sched;
+	}
+#endif
+	
 	m_cRecordWrapper.UpdateSchedMap(m_cSchedMap);
 
 	return true;

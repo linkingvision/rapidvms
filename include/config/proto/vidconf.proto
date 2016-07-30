@@ -15,7 +15,6 @@ message VidUserList {
 	repeated VidUser cVidUser = 1;
 }
 
-
 //=========================video stor
 
 //Service Stor configure
@@ -33,6 +32,13 @@ enum CameraType {
 	VID_ONVIF_S = 4;
 	VID_GB28181 =5;
 	VID_MJPEG = 6; //Http JPEG
+}
+
+//Record Type
+enum VidRecType {
+	VID_R_OFF = 0;
+	VID_R_ALARM = 1;
+	VID_R_SCHED = 2;
 }
 
 //Camera config
@@ -82,7 +88,7 @@ message VidCamera {
 	bool bHDFSRecord = 18;
 	
 	//Recording
-	repeated string cRecSched = 20;
+	repeated string cRecSched = 20;//deprecated
 	int32 nPreRecSec = 21;
 	int32 nPostRecSec = 22;
 	
@@ -94,6 +100,8 @@ message VidCamera {
 	int32 nServerMotionStream = 25;//Server based Motion Stream.
 	
 	OnvifEventLevel nOnvifEvtLevel = 26;//ONVIF event level
+	
+	string strSched = 27;//Record Schedule 7 x 24
 }
 
 message VidCameraList {

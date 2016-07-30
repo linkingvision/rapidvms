@@ -35,14 +35,7 @@ bool OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 
 	int cameraSize = from.crecsched_size();
 
-	to.cRecSchedList.clear();
-
-	for (s32 i = 0; i < from.crecsched_size(); i ++)
-	{
-		astring strid = from.crecsched(i);
-
-		to.cRecSchedList.push_back(strid);
-	}
+	to.strSched = from.strsched();
 	
 	return TRUE;
 }
@@ -71,14 +64,8 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 
 	to.set_nconnecttype((VidConf::CameraConnectType)from.nConnectType);
 
-	to.clear_crecsched();
+	to.set_strsched(from.strSched);
 
-	for (s32 i = 0; i < from.cRecSchedList.size(); i ++)
-	{
-		astring strid = from.cRecSchedList[i];
-		astring *pNewSched = to.add_crecsched();
-		*pNewSched = strid;
-	}
 	return TRUE;
 }
 

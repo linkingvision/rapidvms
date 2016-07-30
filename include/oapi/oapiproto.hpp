@@ -1704,13 +1704,13 @@ unsigned int bHWaccel;
 unsigned int bServerMotion;
 unsigned int nConnectType;
 unsigned int bHDFSRecord;
-std::vector<std::string> cRecSchedList;
 unsigned int nPreRecSec;
 unsigned int nPostRecSec;
+std::string strSched;
 unsigned int bOnline;
 unsigned int bRec;
 
-explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), cRecSchedList(), nPreRecSec(), nPostRecSec(), bOnline(), bRec() {  }
+explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), nPreRecSec(), nPostRecSec(), strSched(), bOnline(), bRec() {  }
 
 
  
@@ -1743,9 +1743,9 @@ SAXEventHandler< unsigned int > handler_13;
 SAXEventHandler< unsigned int > handler_14;
 SAXEventHandler< unsigned int > handler_15;
 SAXEventHandler< unsigned int > handler_16;
-SAXEventHandler< std::vector<std::string> > handler_17;
+SAXEventHandler< unsigned int > handler_17;
 SAXEventHandler< unsigned int > handler_18;
-SAXEventHandler< unsigned int > handler_19;
+SAXEventHandler< std::string > handler_19;
 SAXEventHandler< unsigned int > handler_20;
 SAXEventHandler< unsigned int > handler_21;bool has_strId;
 bool has_strName;
@@ -1766,6 +1766,7 @@ bool has_nConnectType;
 bool has_bHDFSRecord;
 bool has_nPreRecSec;
 bool has_nPostRecSec;
+bool has_strSched;
 bool has_bOnline;
 bool has_bRec;
 
@@ -1816,11 +1817,11 @@ case 15:
 case 16:
     return "bHDFSRecord";
 case 17:
-    return "cRecSchedList";
-case 18:
     return "nPreRecSec";
-case 19:
+case 18:
     return "nPostRecSec";
+case 19:
+    return "strSched";
 case 20:
     return "bOnline";
 case 21:
@@ -1868,9 +1869,9 @@ has_bHWaccel = false;
 has_bServerMotion = false;
 has_nConnectType = false;
 has_bHDFSRecord = false;
-
 has_nPreRecSec = false;
 has_nPostRecSec = false;
+has_strSched = false;
 has_bOnline = false;
 has_bRec = false;
     }
@@ -1896,9 +1897,9 @@ public:
 , handler_14(&obj->bServerMotion)
 , handler_15(&obj->nConnectType)
 , handler_16(&obj->bHDFSRecord)
-, handler_17(&obj->cRecSchedList)
-, handler_18(&obj->nPreRecSec)
-, handler_19(&obj->nPostRecSec)
+, handler_17(&obj->nPreRecSec)
+, handler_18(&obj->nPostRecSec)
+, handler_19(&obj->strSched)
 , handler_20(&obj->bOnline)
 , handler_21(&obj->bRec)
     {
@@ -2579,12 +2580,12 @@ else if (utility::string_equal(str, length, "\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x5
                          { state=15; has_nConnectType = true; }
 else if (utility::string_equal(str, length, "\x62\x48\x44\x46\x53\x52\x65\x63\x6f\x72\x64", 11))
                          { state=16; has_bHDFSRecord = true; }
-else if (utility::string_equal(str, length, "\x63\x52\x65\x63\x53\x63\x68\x65\x64\x4c\x69\x73\x74", 13))
-                         { state=17;  }
 else if (utility::string_equal(str, length, "\x6e\x50\x72\x65\x52\x65\x63\x53\x65\x63", 10))
-                         { state=18; has_nPreRecSec = true; }
+                         { state=17; has_nPreRecSec = true; }
 else if (utility::string_equal(str, length, "\x6e\x50\x6f\x73\x74\x52\x65\x63\x53\x65\x63", 11))
-                         { state=19; has_nPostRecSec = true; }
+                         { state=18; has_nPostRecSec = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x53\x63\x68\x65\x64", 8))
+                         { state=19; has_strSched = true; }
 else if (utility::string_equal(str, length, "\x62\x4f\x6e\x6c\x69\x6e\x65", 7))
                          { state=20; has_bOnline = true; }
 else if (utility::string_equal(str, length, "\x62\x52\x65\x63", 4))
@@ -3004,6 +3005,7 @@ if (!has_nConnectType) set_missing_required("nConnectType");
 if (!has_bHDFSRecord) set_missing_required("bHDFSRecord");
 if (!has_nPreRecSec) set_missing_required("nPreRecSec");
 if (!has_nPostRecSec) set_missing_required("nPostRecSec");
+if (!has_strSched) set_missing_required("strSched");
 if (!has_bOnline) set_missing_required("bOnline");
 if (!has_bRec) set_missing_required("bRec");
         }
@@ -3132,9 +3134,9 @@ w.Key("\x62\x48\x57\x61\x63\x63\x65\x6c", 8, false); Serializer< Writer91ba8496c
 w.Key("\x62\x53\x65\x72\x76\x65\x72\x4d\x6f\x74\x69\x6f\x6e", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bServerMotion);
 w.Key("\x6e\x43\x6f\x6e\x6e\x65\x63\x74\x54\x79\x70\x65", 12, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nConnectType);
 w.Key("\x62\x48\x44\x46\x53\x52\x65\x63\x6f\x72\x64", 11, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bHDFSRecord);
-w.Key("\x63\x52\x65\x63\x53\x63\x68\x65\x64\x4c\x69\x73\x74", 13, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::vector<std::string> >()(w, value.cRecSchedList);
 w.Key("\x6e\x50\x72\x65\x52\x65\x63\x53\x65\x63", 10, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nPreRecSec);
 w.Key("\x6e\x50\x6f\x73\x74\x52\x65\x63\x53\x65\x63", 11, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nPostRecSec);
+w.Key("\x73\x74\x72\x53\x63\x68\x65\x64", 8, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strSched);
 w.Key("\x62\x4f\x6e\x6c\x69\x6e\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bOnline);
 w.Key("\x62\x52\x65\x63", 4, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bRec);
 
