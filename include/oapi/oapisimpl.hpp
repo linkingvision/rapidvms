@@ -33,7 +33,13 @@ bool OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 
 	to.nConnectType = from.nconnecttype();
 
-	int cameraSize = from.crecsched_size();
+	to.bHDFSRecord = from.bhdfsrecord();
+
+	to.nPostRecSec = from.npostrecsec();
+	to.nPreRecSec = from.nprerecsec();
+
+	to.nRecordStream = from.nrecordstream();
+	to.nServerMotionStream = from.nservermotionstream();
 
 	to.strSched = from.strsched();
 	
@@ -63,6 +69,15 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_bservermotion(from.bServerMotion);
 
 	to.set_nconnecttype((VidConf::CameraConnectType)from.nConnectType);
+
+	to.set_bhdfsrecord(from.bHDFSRecord);
+	to.set_npostrecsec(from.nPostRecSec);
+	to.set_nprerecsec(from.nPreRecSec);
+
+	to.set_nrecordstream(from.nRecordStream);
+	to.set_nservermotionstream(from.nServerMotionStream);
+
+	to.set_nonvifevtlevel((VidConf::OnvifEventLevel)from.nOnvifEvtLevel);
 
 	to.set_strsched(from.strSched);
 

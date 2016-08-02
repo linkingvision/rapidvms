@@ -64,6 +64,7 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/vidview/vidviewconf.h \
     ../src/config/videmap/videmapconf.h \
     ../src/searchpb/vscvidsearchpb.h \
+    ../src/searchpb/vscvideventsearch.h \
     ../../include/oapi/oapic.hpp \
     ../../include/oapi/oapicimpl.hpp \
     ../../include/oapi/oapicmn.hpp \
@@ -145,6 +146,7 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/clientsetting/vscversion.cpp \
     ../src/config/vidview/vidviewconf.cpp \
     ../src/config/videmap/videmapconf.cpp \
+    ../src/searchpb/vscvideventsearch.cpp \
     ../src/searchpb/vscvidsearchpb.cpp
 FORMS += ../src/main/vscmainwindows.ui \
     ../src/main/vsctoolbar.ui \
@@ -178,6 +180,7 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/config/clientsetting/vsclicense.ui \
     ../src/config/clientsetting/vscuser.ui \
     ../src/config/vidview/vidviewconf.ui \
-    ../src/config/videmap/videmapconf.ui
+    ../src/config/videmap/videmapconf.ui \
+    ../src/searchpb/vscvideventsearch.ui
 TRANSLATIONS += ../src/main/translations/opencvr_zh.ts
 RESOURCES += ../src/main/vscmainwindows.qrc

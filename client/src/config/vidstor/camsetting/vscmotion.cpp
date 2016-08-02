@@ -54,7 +54,6 @@ void VSCMotion::applyConfig()
 	
 	syncInf.GetVidCamera(m_strCam, pCam);
 
-	pCam.set_bprofiletoken(ui.enable->isChecked());
 	int current = ui.stream->currentIndex();
 	current = current + 1;
 	if (current < 1 || current > 2)

@@ -24,11 +24,11 @@ set(libprotoc_files
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_message.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_message_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_primitive_field.cc
+  ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_reflection_class.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_repeated_enum_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_repeated_message_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_repeated_primitive_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_source_generator_base.cc
-  ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_umbrella_class.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/csharp/csharp_wrapper_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_context.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_doc_comment.cc
@@ -37,6 +37,7 @@ set(libprotoc_files
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_enum_field_lite.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_enum_lite.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_extension.cc
+  ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_extension_lite.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_file.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/java/java_generator.cc
@@ -70,6 +71,7 @@ set(libprotoc_files
   ${protobuf_source_dir}/src/google/protobuf/compiler/javanano/javanano_message.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/javanano/javanano_message_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/javanano/javanano_primitive_field.cc
+  ${protobuf_source_dir}/src/google/protobuf/compiler/js/js_generator.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_enum.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_enum_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_extension.cc

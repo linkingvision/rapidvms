@@ -19,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="VSchedConf" name="widget" native="true"/>
+    <widget class="VSchedConf" name="conf" native="true"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 #define DOCUMENT_ROOT "."
-#define PORT "9088"
+#define PORT "9081"
 #define EXAMPLE_URI "/example"
 #define EXIT_URI "/exit"
 

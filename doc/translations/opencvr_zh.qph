@@ -1,0 +1,488 @@
+<!DOCTYPE QPH>
+<QPH language="zh_CN">
+<phrase>
+    <source>Camera Add</source>
+    <target>摄像机添加</target>
+</phrase>
+<phrase>
+    <source>Client</source>
+    <target>客户端</target>
+</phrase>
+<phrase>
+    <source>Disk</source>
+    <target>磁盘</target>
+</phrase>
+<phrase>
+    <source>Emap</source>
+    <target>电子地图</target>
+</phrase>
+<phrase>
+    <source>Stor Add</source>
+    <target>存储添加</target>
+</phrase>
+<phrase>
+    <source>View</source>
+    <target>视图 </target>
+</phrase>
+<phrase>
+    <source>Configurations</source>
+    <target>配置</target>
+</phrase>
+<phrase>
+    <source>off</source>
+    <target>关闭</target>
+</phrase>
+<phrase>
+    <source>on</source>
+    <target>开启</target>
+</phrase>
+<phrase>
+    <source>Camera Name:</source>
+    <target>摄像机名称:</target>
+</phrase>
+<phrase>
+    <source>FILE</source>
+    <target>文件</target>
+</phrase>
+<phrase>
+    <source>File Name:</source>
+    <target>文件名:</target>
+</phrase>
+<phrase>
+    <source>IP Address:</source>
+    <target>IP地址:</target>
+</phrase>
+<phrase>
+    <source>MJPEG</source>
+    <target>MJPEG</target>
+</phrase>
+<phrase>
+    <source>ONVIF</source>
+    <target>ONVIF</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target>端口:</target>
+</phrase>
+<phrase>
+    <source>RTSP</source>
+    <target>RTSP</target>
+</phrase>
+<phrase>
+    <source>RTSP Address:</source>
+    <target>RTSP地址:</target>
+</phrase>
+<phrase>
+    <source>Task</source>
+    <target>任务</target>
+</phrase>
+<phrase>
+    <source>Update task list</source>
+    <target>更新任务列表</target>
+</phrase>
+<phrase>
+    <source>Description:</source>
+    <target>描述:</target>
+</phrase>
+<phrase>
+    <source>Free</source>
+    <target>空闲</target>
+</phrase>
+<phrase>
+    <source>Name</source>
+    <target>名字</target>
+</phrase>
+<phrase>
+    <source>Recording</source>
+    <target>录像</target>
+</phrase>
+<phrase>
+    <source>Total</source>
+    <target>全部</target>
+</phrase>
+<phrase>
+    <source>Apply</source>
+    <target>应用</target>
+</phrase>
+<phrase>
+    <source>Auto</source>
+    <target>自动</target>
+</phrase>
+<phrase>
+    <source>Cancel</source>
+    <target>取消</target>
+</phrase>
+<phrase>
+    <source>Channel</source>
+    <target>通道</target>
+</phrase>
+<phrase>
+    <source>Host ID</source>
+    <target>主机标识</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>类型</target>
+</phrase>
+<phrase>
+    <source>Welcome OpenCVR</source>
+    <target>欢迎 OpenCVR</target>
+</phrase>
+<phrase>
+    <source>Welcome</source>
+    <target>欢迎</target>
+</phrase>
+<phrase>
+    <source>Username</source>
+    <target>用户名</target>
+</phrase>
+<phrase>
+    <source>Password</source>
+    <target>密码</target>
+</phrase>
+<phrase>
+    <source>Login</source>
+    <target>登陆</target>
+</phrase>
+<phrase>
+    <source>Exit</source>
+    <target>退出</target>
+</phrase>
+<phrase>
+    <source>Dashboard</source>
+    <target>控制台</target>
+</phrase>
+<phrase>
+    <source>Console</source>
+    <target>终端</target>
+</phrase>
+<phrase>
+    <source>OpenCVR Exit ...</source>
+    <target>OpenCVR 退出...</target>
+</phrase>
+<phrase>
+    <source>About OpenCVR</source>
+    <target>关于 OpenCVR</target>
+</phrase>
+<phrase>
+    <source>Username or Password not correct ...</source>
+    <target>用户名或密码不正确...</target>
+</phrase>
+<phrase>
+    <source>Enable </source>
+    <target>开启</target>
+</phrase>
+<phrase>
+    <source>Server Based Motion</source>
+    <target>服务器运动检测</target>
+</phrase>
+<phrase>
+    <source>Change Password Failed ...</source>
+    <target>更改密码失败...</target>
+</phrase>
+<phrase>
+    <source>Current Password</source>
+    <target>当前密码</target>
+</phrase>
+<phrase>
+    <source>New Password</source>
+    <target>新密码</target>
+</phrase>
+<phrase>
+    <source>Repeat Password</source>
+    <target>重复密码</target>
+</phrase>
+<phrase>
+    <source>Info</source>
+    <target>信息</target>
+</phrase>
+<phrase>
+    <source>Version</source>
+    <target>版本</target>
+</phrase>
+<phrase>
+    <source>Auto login</source>
+    <target>自动登陆</target>
+</phrase>
+<phrase>
+    <source>Password not correct ...</source>
+    <target>密码不正确...</target>
+</phrase>
+<phrase>
+    <source>Logout</source>
+    <target>退出</target>
+</phrase>
+<phrase>
+    <source>Search</source>
+    <target>搜索</target>
+</phrase>
+<phrase>
+    <source>Filter</source>
+    <target>过滤</target>
+</phrase>
+<phrase>
+    <source>Playback %1</source>
+    <target>回放 %1</target>
+</phrase>
+<phrase>
+    <source>Event Search</source>
+    <target>事件搜索</target>
+</phrase>
+<phrase>
+    <source>1mins</source>
+    <target>1分钟</target>
+</phrase>
+<phrase>
+    <source>3mins</source>
+    <target>3分钟</target>
+</phrase>
+<phrase>
+    <source>40s</source>
+    <target>40秒</target>
+</phrase>
+<phrase>
+    <source>5mins</source>
+    <target>5分钟</target>
+</phrase>
+<phrase>
+    <source>New</source>
+    <target>新建</target>
+</phrase>
+<phrase>
+    <source>Save</source>
+    <target>保存</target>
+</phrase>
+<phrase>
+    <source>View Configuration</source>
+    <target>视图配置</target>
+</phrase>
+<phrase>
+    <source>View Name</source>
+    <target>视图名称</target>
+</phrase>
+<phrase>
+    <source>Language</source>
+    <target>语言</target>
+</phrase>
+<phrase>
+    <source>License</source>
+    <target>版权</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>删除</target>
+</phrase>
+<phrase>
+    <source> List</source>
+    <target>列表</target>
+</phrase>
+<phrase>
+    <source>Map Name</source>
+    <target>地图名称</target>
+</phrase>
+<phrase>
+    <source>IP Address</source>
+    <target>IP地址</target>
+</phrase>
+<phrase>
+    <source>Port</source>
+    <target>端口</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>状态</target>
+</phrase>
+<phrase>
+    <source>Stor List</source>
+    <target>存储列表</target>
+</phrase>
+<phrase>
+    <source>Layout</source>
+    <target>布局</target>
+</phrase>
+<phrase>
+    <source>View List</source>
+    <target>视图列表</target>
+</phrase>
+<phrase>
+    <source>Add</source>
+    <target>添加</target>
+</phrase>
+<phrase>
+    <source>Camera List</source>
+    <target>摄像机列表</target>
+</phrase>
+<phrase>
+    <source>Camera Search</source>
+    <target>摄像机搜索</target>
+</phrase>
+<phrase>
+    <source>Model</source>
+    <target>型号</target>
+</phrase>
+<phrase>
+    <source>Search is In Processing ...</source>
+    <target>搜索正在进行中...</target>
+</phrase>
+<phrase>
+    <source>Search is not Started ...</source>
+    <target>搜索没有开始</target>
+</phrase>
+<phrase>
+    <source>Select</source>
+    <target>选择</target>
+</phrase>
+<phrase>
+    <source>Start</source>
+    <target>开始</target>
+</phrase>
+<phrase>
+    <source>Stop</source>
+    <target>停止</target>
+</phrase>
+<phrase>
+    <source>  CPU: %1%  RAM: %2%</source>
+    <target>  处理器: %1%  内存: %2%</target>
+</phrase>
+<phrase>
+    <source>Records</source>
+    <target>录像记录</target>
+</phrase>
+<phrase>
+    <source>Close</source>
+    <target>关闭</target>
+</phrase>
+<phrase>
+    <source>Load eMap</source>
+    <target>加载电子地图</target>
+</phrase>
+<phrase>
+    <source>Help</source>
+    <target>帮助</target>
+</phrase>
+<phrase>
+    <source>Float</source>
+    <target>浮动</target>
+</phrase>
+<phrase>
+    <source>Tabbed</source>
+    <target>嵌入</target>
+</phrase>
+<phrase>
+    <source>DISPLAY 1</source>
+    <target>显示器1</target>
+</phrase>
+<phrase>
+    <source>DISPLAY 2</source>
+    <target>显示器2</target>
+</phrase>
+<phrase>
+    <source>DISPLAY 3</source>
+    <target>显示器2</target>
+</phrase>
+<phrase>
+    <source>DISPLAY 4</source>
+    <target>显示器4</target>
+</phrase>
+<phrase>
+    <source>Select Map</source>
+    <target>选择地图</target>
+</phrase>
+<phrase>
+    <source>Drag and drop camera to here ...
+</source>
+    <target>拖放到这里...</target>
+</phrase>
+<phrase>
+    <source>Video Files(*.jpg *.jpeg *.png)</source>
+    <target>文件</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>播放</target>
+</phrase>
+<phrase>
+    <source>Playback</source>
+    <target>回放</target>
+</phrase>
+<phrase>
+    <source>Export</source>
+    <target>导出</target>
+</phrase>
+<phrase>
+    <source>Export task is in the dashboard, you can view the process</source>
+    <target>可以在控制台中查看导出进度</target>
+</phrase>
+<phrase>
+    <source>Start time</source>
+    <target>开始时间</target>
+</phrase>
+<phrase>
+    <source>End time</source>
+    <target>结束时间</target>
+</phrase>
+<phrase>
+    <source>PTZ Panel</source>
+    <target>PTZ面板</target>
+</phrase>
+<phrase>
+    <source>Control</source>
+    <target>控制</target>
+</phrase>
+<phrase>
+    <source>Setting</source>
+    <target>设置</target>
+</phrase>
+<phrase>
+    <source>Sched</source>
+    <target>计划</target>
+</phrase>
+<phrase>
+    <source>Event</source>
+    <target>事件</target>
+</phrase>
+<phrase>
+    <source>All Day</source>
+    <target>全天</target>
+</phrase>
+<phrase>
+    <source>Work Day</source>
+    <target>工作日</target>
+</phrase>
+<phrase>
+    <source>Clear</source>
+    <target>清除</target>
+</phrase>
+<phrase>
+    <source>Mon</source>
+    <target>星期一</target>
+</phrase>
+<phrase>
+    <source>Tue</source>
+    <target>星期二</target>
+</phrase>
+<phrase>
+    <source>Wed</source>
+    <target>星期三</target>
+</phrase>
+<phrase>
+    <source>Thu</source>
+    <target>星期四</target>
+</phrase>
+<phrase>
+    <source>Fri</source>
+    <target>星期五</target>
+</phrase>
+<phrase>
+    <source>Sat</source>
+    <target>星期六</target>
+</phrase>
+<phrase>
+    <source>Sun</source>
+    <target>星期天</target>
+</phrase>
+<phrase>
+    <source>OpenCVR Playback</source>
+    <target>OpenCVR 回放</target>
+</phrase>
+</QPH>

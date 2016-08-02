@@ -14,8 +14,11 @@
    <string>User</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../main/vscmainwindows.qrc">
+   <iconset resource="vscmainwindows.qrc">
     <normaloff>:/logo/resources/vscsmall.png</normaloff>:/logo/resources/vscsmall.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(220, 220, 220);</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -147,7 +150,7 @@ QPushButton:pressed {
   </layout>
  </widget>
  <resources>
-  <include location="../main/vscmainwindows.qrc"/>
+  <include location="vscmainwindows.qrc"/>
  </resources>
  <connections>
   <connection>

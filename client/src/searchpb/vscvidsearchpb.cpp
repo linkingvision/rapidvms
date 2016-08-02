@@ -7,6 +7,7 @@ VSCVidSearchPB::VSCVidSearchPB(ClientFactory &pFactory, QTabWidget &pTab, QMainW
 {
 	m_pCameraTree = new VSCVidTreeCam(m_pFactory, parent);
 	m_pCameraTree->Init();
+	//m_pCameraTree->VidSetCheckedChild(NULL, true);
 	m_pCameraTree->VidSetCheckedChild(NULL, false);
 	m_pCameraTree->hide();
 }

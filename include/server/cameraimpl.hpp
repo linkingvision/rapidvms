@@ -419,6 +419,7 @@ bool Camera::UpdateRecSched(VidCamera &pCam)
 		m_cSchedMap[REC_SCHED_ALL_DAY] = sched;
 	}
 #endif
+	m_cSchedMap["default"] = sched;
 	
 	m_cRecordWrapper.UpdateSchedMap(m_cSchedMap);
 

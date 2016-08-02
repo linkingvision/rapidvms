@@ -2,50 +2,12 @@ ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g
 centos: sudo yum install nasm xorg-x11-server-devel zlib-devel gcc gcc-c++ gstreamer-devel   gstreamer-plugins-base-devel libxslt-devel
 
 
-64bit
-1. Install qt-opensource-linux-x64-5.4.0.run 
-http://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run   
-   ---> add below 2 line into /etc/profile
-	export  PATH=$PATH:/home/ubu/Qt5.4.0/5.4.0/gcc_64/bin:/home/ubu/Qt5.4.0/Tools/QtCreator/bin/
-	export  VE_QTDIR=/home/ubu/Qt5.4.0/5.4.0/gcc_64/
-	 
-2. edit the env.sh LD_LIBRARY_PATH for the current dir
-   ./root.sh
-   source ./env.sh
-   ./start.sh
-		
-32bit
-
 
 
 
 build:
 sudo mv /usr/bin/pod2man  /usr/bin/pod2man-org
 yum install redhat-lsb-core
-
-Install VAAPI
-ubuntu sudo apt-get install vainfo libva-intel-vaapi-driver libva1 libva-dev
-
-Install Ubuntu gcc 4.8
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
-sudo apt-get update 
-
-sudo apt-get install gcc-4.8 
-sudo apt-get install g++-4.8 
-sudo apt-get install gcc-4.8-multilib 
-sudo apt-get install g++-4.8-multilib 
-sudo apt-get install gcc-4.8-doc 
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20 
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20 
-sudo update-alternatives --config gcc 
-sudo update-alternatives --config g++ 
-
-sudo apt-get update 
-sudo apt-get upgrade -y 
-sudo apt-get dist-upgrade
-
-
-
 
 
 

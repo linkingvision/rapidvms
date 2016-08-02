@@ -18,32 +18,15 @@ VSCCamRec::VSCCamRec(ClientFactory &pFactory, VidStor &stor, astring strCam, QWi
 	astring strSched;
 	
 	syncInf.GetVidCamera(m_strCam, pCam);	
-#if 0
-	int nSchedSize = pCam.crecsched_size();
 
-	for (s32 i = 0; i < pCam.crecsched_size(); i ++)
+	int current = pCam.nrecordstream() -1 ;
+	if (current <= 0 || current > 1)
 	{
-		/* Current only use the first one */
-		strSched = pCam.crecsched(i);
-		bGetSched = true;
-		break;
-	}
-	if (bGetSched == false)
-	{
-		strSched = REC_SCHED_OFF;
+		current = 0;/* Default use the stream 2 */
 	}
 
-	if (strSched == REC_SCHED_ALL_DAY)
-	{
-		ui.recType->setCurrentIndex(0);
-	}else if (strSched == REC_SCHED_WORK_DAY)
-	{
-		ui.recType->setCurrentIndex(1);
-	}else if (strSched == REC_SCHED_OFF)
-	{
-		ui.recType->setCurrentIndex(2);
-	}
-#endif	
+	ui.stream->setCurrentIndex(current);
+
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 
 	delete pLoading;
@@ -62,39 +45,17 @@ void VSCCamRec::applyConfig()
 	astring strSched;
 	
 	syncInf.GetVidCamera(m_strCam, pCam);	
+	int current = ui.stream->currentIndex();
+	current = current + 1;
+	if (current < 1 || current > 2)
+	{
+		current = 2;
+	}
 
-	switch (ui.recType->currentIndex())
-	{
-		case 0:
-		{
-			strSched = REC_SCHED_ALL_DAY;
-			break;
-		}
-		case 1:
-		{
-			strSched = REC_SCHED_WORK_DAY;
-			break;
-		}
-		case 2:
-		{
-			strSched = REC_SCHED_OFF;
-			break;
-		}
-		default:
-		{
-			strSched = REC_SCHED_ALL_DAY;
-			break;
-		}
-	}
-#if 0
-	pCam.clear_crecsched();
-	int nSchedSize = pCam.crecsched_size();
-	if (nSchedSize == 0)
-	{
-		pCam.add_crecsched(strSched);
-	}
-#endif
-	syncInf.SetCamSched(pCam);
+	pCam.set_nrecordstream(current);
+
+	
+	syncInf.AddCam(pCam);
 	
 	delete pLoading;
 

@@ -1,6 +1,0 @@
-@SET_MAKE@
-
-all: firebird
-
-.DEFAULT:
-	$(MAKE) -C gen $@

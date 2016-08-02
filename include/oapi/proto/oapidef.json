@@ -67,6 +67,12 @@
 		["unsigned int", "nPreRecSec", {"required": true}],
 		["unsigned int", "nPostRecSec", {"required": true}],
 		
+		["unsigned int", "nRecordStream", {"required": true}],
+		
+		["unsigned int", "nServerMotionStream", {"required": true}],
+		
+		["unsigned int", "nOnvifEvtLevel", {"required": true}],
+		
 		["std::string", "strSched", {"required": true}],
 
 		["unsigned int", "bOnline", {"required": true}],

@@ -1,6 +1,6 @@
 # Version info variables
 set(PROTOBUF_VERSION        "3.0.0")
-set(PROTOBUF_VERSION_STRING "3.0.0-beta-1")
+set(PROTOBUF_VERSION_STRING "3.0.0-beta-3")
 
 # Current dir
 get_filename_component(_PROTOBUF_PACKAGE_PREFIX

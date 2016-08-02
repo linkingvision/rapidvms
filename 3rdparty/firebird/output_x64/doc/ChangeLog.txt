@@ -1,3 +1,0 @@
-Commits history for the v3.0 series can be found at GitHub:
-
-https://github.com/FirebirdSQL/firebird/commits/B3_0_Release
