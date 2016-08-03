@@ -1,6 +1,7 @@
 #ifndef _V_VIDEO_TYPE_H_
 #define _V_VIDEO_TYPE_H_
 #include "utility/type.hpp"
+#include <vector>
 
 #define MAKE_VE_RAW(a,b,c,d) (a | (b << 8) | (c << 16) | (d << 24))
 
@@ -285,5 +286,20 @@ typedef enum
     EVENT_TYPE_MOTION = 1,
     EVENT_TYPE_LAST
 } VscEventType;
+
+typedef struct __VBlob
+{	
+	__VBlob(s32 a0, s32 a1, s32 b0, s32 b1)
+	:x0(a0), y0(b0), x1(a1), y1(b1)
+	{
+	}
+	s32 x0;
+	s32 y0;
+	s32 x1;
+	s32 y1;
+} VBlob;
+typedef std::vector<VBlob> VBlobVec;
+
+
 
 #endif /* _V_VIDEO_TYPE_H_ */

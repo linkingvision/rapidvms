@@ -34,6 +34,7 @@ private slots:
 public:
 	bool StartPlay(astring strStorId, astring strCamId, 
 			astring strCamName,  u32 nPlaytime);
+	bool StopPlay();
 
 public:
 	Ui::VVidPB1 *p_ui;

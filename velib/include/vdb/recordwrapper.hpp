@@ -6,13 +6,13 @@
 #define VDB_DAYS_IN_WEEK 7
 #define VDB_HOURS_IN_DAY 24
 
-#define VDB_SUN 0
-#define VDB_MON 1
-#define VDB_TUE 2
-#define VDB_WEN 3
-#define VDB_THR 4
-#define VDB_FRI 5
-#define VDB_SAT 6
+#define VDB_MON 0
+#define VDB_TUE 1
+#define VDB_WEN 2
+#define VDB_THR 3
+#define VDB_FRI 4
+#define VDB_SAT 5
+#define VDB_SUN 6
 
 
 
@@ -51,7 +51,7 @@ public:
 		return dayType;
 	}
 public:
-	u32 type[VDB_HOURS_IN_DAY];
+	u8 type[VDB_HOURS_IN_DAY];
 };
 
 class RecordSchedWeek
@@ -78,6 +78,32 @@ public:
 		{
 			week[i] = pWeek.week[i];
 		}
+	}
+	RecordSchedWeek(std::string &pWeek)
+	{
+		for (int i = 0; i < VDB_DAYS_IN_WEEK; i ++)
+		{
+			for (int j = 0; j < VDB_HOURS_IN_DAY; j ++)
+			{
+				week[i].type[j] = pWeek[i * VDB_HOURS_IN_DAY + j];
+			}
+			
+		}
+	}
+	std::string ToString()
+	{
+		std::string sched;
+		for (int i = 0; i < VDB_DAYS_IN_WEEK; i ++)
+		{
+			for (int j = 0; j < VDB_HOURS_IN_DAY; j ++)
+			{
+				char c = week[i].type[j];
+				sched.push_back(c);
+			}
+			
+		}
+
+		return sched;
 	}
 	RecordSchedWeek  operator +  (const RecordSchedWeek& pWeek) const
 	{
@@ -114,6 +140,16 @@ public:
 		
 		RecordSchedWeek week(day);
 		return week;
+	}
+	static bool CheckStringForSched(std::string &pSched)
+	{
+		if (pSched.length() != VDB_DAYS_IN_WEEK * VDB_HOURS_IN_DAY)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
 	}
 public:
 	RecordSchedDay week[VDB_DAYS_IN_WEEK];
