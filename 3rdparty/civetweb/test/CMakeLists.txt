@@ -7,6 +7,15 @@ endif()
 
 # We use the check unit testing framework for our C unit tests
 include(ExternalProject)
+if(NOT WIN32)
+  # Apply the patch to check to fix CMake building on OS X
+  set(CHECK_PATCH_COMMAND patch
+     ${CIVETWEB_THIRD_PARTY_DIR}/src/check-unit-test-framework/CMakeLists.txt
+     ${CMAKE_SOURCE_DIR}/cmake/check/c82fe8888aacfe784476112edd3878256d2e30bc.patch
+   )
+else()
+  set(CHECK_PATCH_COMMAND "")
+endif()
 ExternalProject_Add(check-unit-test-framework
   DEPENDS c-library
   URL "https://codeload.github.com/libcheck/check/zip/${CIVETWEB_CHECK_VERSION}"
@@ -14,9 +23,7 @@ ExternalProject_Add(check-unit-test-framework
   URL_MD5 ${CIVETWEB_CHECK_MD5_HASH}
   PREFIX "${CIVETWEB_THIRD_PARTY_DIR}"
   BUILD_IN_SOURCE 1
-  PATCH_COMMAND patch
-     ${CIVETWEB_THIRD_PARTY_DIR}/src/check-unit-test-framework/CMakeLists.txt		
-     ${CMAKE_SOURCE_DIR}/cmake/check/c82fe8888aacfe784476112edd3878256d2e30bc.patch
+  PATCH_COMMAND ${CHECK_PATCH_COMMAND}
   CMAKE_ARGS
     "-DCMAKE_BUILD_TYPE=Release"
     "-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}"
@@ -33,7 +40,7 @@ set(CHECK_INSTALL_DIR ${INSTALL_DIR})
 unset(INSTALL_DIR)
 link_directories("${CHECK_INSTALL_DIR}/lib")
 include_directories("${CHECK_INSTALL_DIR}/include")
-if (WIN32 AND MINGW)
+if ((WIN32 AND MINGW) OR APPLE)
   set(CHECK_LIBRARIES "${CHECK_LIBRARIES};${CHECK_INSTALL_DIR}/lib/libcheck.a")
   set(CHECK_LIBRARIES "${CHECK_LIBRARIES};${CHECK_INSTALL_DIR}/lib/libcompat.a")
 elseif (WIN32)
@@ -56,7 +63,7 @@ add_library(shared-c-unit-tests STATIC shared.c)
 target_include_directories(
   shared-c-unit-tests PUBLIC
   ${PROJECT_SOURCE_DIR}/include)
-  
+
 add_library(public-func-c-unit-tests STATIC public_func.c)
 if (BUILD_SHARED_LIBS)
   target_compile_definitions(public-func-c-unit-tests PRIVATE CIVETWEB_DLL_IMPORTS)
@@ -94,20 +101,20 @@ target_include_directories(
 target_link_libraries(exe-c-unit-tests c-library ${CHECK_LIBRARIES})
 add_dependencies(exe-c-unit-tests check-unit-test-framework)
 
-add_executable(civetweb-c-unit-test main.c)
-target_link_libraries(civetweb-c-unit-test
+add_executable(main-c-unit-test main.c)
+target_link_libraries(main-c-unit-test
   shared-c-unit-tests
   public-func-c-unit-tests
   public-server-c-unit-tests
   private-c-unit-tests
   exe-c-unit-tests
   ${CHECK_LIBRARIES})
-add_dependencies(civetweb-c-unit-test check-unit-test-framework)
+add_dependencies(main-c-unit-test check-unit-test-framework)
 
 # Add a check command that builds the dependent test program
 add_custom_target(check
   COMMAND ${CMAKE_CTEST_COMMAND}
-  DEPENDS civetweb-c-unit-test)
+  DEPENDS main-c-unit-test)
 
 # A macro for adding tests
 macro(civetweb_add_test suite test_case)
@@ -116,7 +123,7 @@ macro(civetweb_add_test suite test_case)
   string(REGEX REPLACE "[^-A-Za-z0-9]" "-" test "${test}")
   add_test(
     NAME ${test}
-    COMMAND civetweb-c-unit-test "--test-dir=${CMAKE_CURRENT_SOURCE_DIR}" "--suite=${suite}" "--test-case=${test_case}")
+    COMMAND main-c-unit-test "--test-dir=${CMAKE_CURRENT_SOURCE_DIR}" "--suite=${suite}" "--test-case=${test_case}")
   if (WIN32)
     string(REPLACE ";" "\\;" test_path "$ENV{PATH}")
     set_tests_properties(${test} PROPERTIES
@@ -141,6 +148,7 @@ civetweb_add_test(PublicFunc "strcasecmp")
 civetweb_add_test(PublicFunc "URL encoding decoding")
 civetweb_add_test(PublicFunc "Cookies and variables")
 civetweb_add_test(PublicFunc "MD5")
+civetweb_add_test(PublicFunc "Aux functions")
 
 # Public API server tests
 civetweb_add_test(PublicServer "Check test environment")
@@ -149,9 +157,11 @@ civetweb_add_test(PublicServer "Start Stop HTTP Server")
 civetweb_add_test(PublicServer "Start Stop HTTPS Server")
 civetweb_add_test(PublicServer "TLS Server Client")
 civetweb_add_test(PublicServer "Server Requests")
+civetweb_add_test(PublicServer "Handle Form")
+civetweb_add_test(PublicServer "HTTP Authentication")
 
 # Tests with main.c
-civetweb_add_test(EXE "Helper funcs")
+#civetweb_add_test(EXE "Helper funcs")
 
 
 # Add the coverage command(s)
@@ -170,7 +180,7 @@ if (${CMAKE_BUILD_TYPE} MATCHES "[Cc]overage")
       COMMAND ${LCOV_EXECUTABLE} -q -a before.lcov -a after.lcov --output-file final.lcov
       COMMAND ${LCOV_EXECUTABLE} -q -r final.lcov "'${CMAKE_SOURCE_DIR}/test/*'" -o final.lcov
       COMMAND ${GENHTML_EXECUTABLE} final.lcov -o lcov --demangle-cpp --sort -p "${CMAKE_SOURCE_DIR}" -t benchmark
-      DEPENDS civetweb-c-unit-test
+      DEPENDS main-c-unit-test
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       COMMENT "Running LCOV"
     )

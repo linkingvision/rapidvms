@@ -185,11 +185,14 @@ struct mg_callbacks {
 	     lua_context: "lua_State *" pointer. */
 	void (*init_lua)(const struct mg_connection *, void *lua_context);
 
+#if defined(MG_LEGACY_INTERFACE)
 	/* Called when civetweb has uploaded a file to a temporary directory as a
 	   result of mg_upload() call.
+	   Note that mg_upload is deprecated. Use mg_handle_form_request instead.
 	   Parameters:
 	     file_name: full path name to the uploaded file. */
 	void (*upload)(struct mg_connection *, const char *file_name);
+#endif
 
 	/* Called when civetweb is about to send HTTP error to the client.
 	   Implementing this callback allows to create custom error pages.
@@ -205,6 +208,16 @@ struct mg_callbacks {
 	   Parameters:
 	     ctx: context handle */
 	void (*init_context)(const struct mg_context *ctx);
+
+	/* Called when a new worker thread is initialized.
+	   Parameters:
+	     ctx: context handle
+	     thread_type:
+	       0 indicates the master thread
+	       1 indicates a worker thread handling client connections
+	       2 indicates an internal helper thread (timer thread)
+	       */
+	void (*init_thread)(const struct mg_context *ctx, int thread_type);
 
 	/* Called when civetweb context is deleted.
 	   Parameters:
@@ -389,7 +402,7 @@ CIVETWEB_API void *mg_get_user_data(const struct mg_context *ctx);
 
 
 /* Set user data for the current connection. */
-CIVETWEB_API void mg_set_user_connection_data(const struct mg_connection *conn,
+CIVETWEB_API void mg_set_user_connection_data(struct mg_connection *conn,
                                               void *data);
 
 
@@ -731,12 +744,14 @@ mg_download(const char *host,
 CIVETWEB_API void mg_close_connection(struct mg_connection *conn);
 
 
+#if defined(MG_LEGACY_INTERFACE)
 /* File upload functionality. Each uploaded file gets saved into a temporary
    file and MG_UPLOAD event is sent.
    Return number of uploaded files.
    Deprecated: Use mg_handle_form_request instead. */
 CIVETWEB_API int mg_upload(struct mg_connection *conn,
                            const char *destination_dir);
+#endif
 
 
 /* This structure contains callback functions for handling form fields.
@@ -799,7 +814,7 @@ struct mg_form_data_handler {
 	 * Return value:
 	 *   TODO: Needs to be defined.
 	 */
-	int (*field_store)(const char *path, size_t file_size, void *user_data);
+	int (*field_store)(const char *path, long long file_size, void *user_data);
 
 	/* User supplied argument, passed to all callback functions. */
 	void *user_data;
@@ -843,7 +858,12 @@ CIVETWEB_API int mg_start_thread(mg_thread_func_t f, void *p);
 CIVETWEB_API const char *mg_get_builtin_mime_type(const char *file_name);
 
 
-/* Return Civetweb version. */
+/* Get text representation of HTTP status code. */
+CIVETWEB_API const char *mg_get_response_code_text(struct mg_connection *conn,
+                                                   int response_code);
+
+
+/* Return CivetWeb version. */
 CIVETWEB_API const char *mg_version(void);
 
 
@@ -887,7 +907,8 @@ CIVETWEB_API void mg_cry(const struct mg_connection *conn,
                          ...) PRINTF_ARGS(2, 3);
 
 
-/* utility method to compare two buffers, case incensitive. */
+/* utility methods to compare two buffers, case incensitive. */
+CIVETWEB_API int mg_strcasecmp(const char *s1, const char *s2);
 CIVETWEB_API int mg_strncasecmp(const char *s1, const char *s2, size_t len);
 
 
@@ -986,7 +1007,8 @@ CIVETWEB_API int mg_get_response(struct mg_connection *conn,
         16  support WebSocket (USE_WEBSOCKET set)
         32  support Lua scripts and Lua server pages (USE_LUA is set)
         64  support server side JavaScript (USE_DUKTAPE is set)
-        The result is undefined for all other feature values.
+       128  support caching (NO_CACHING not set)
+       The result is undefined for all other feature values.
 
    Return:
      If feature is available > 0

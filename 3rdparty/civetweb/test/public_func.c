@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 the Civetweb developers
+/* Copyright (c) 2015-2016 the Civetweb developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,9 +41,10 @@ START_TEST(test_mg_version)
 	const char *ver = mg_version();
 	unsigned major = 0, minor = 0;
 	unsigned feature_files, feature_https, feature_cgi, feature_ipv6,
-	    feature_websocket, feature_lua;
+	    feature_websocket, feature_lua, feature_duktape, feature_caching;
 	unsigned expect_files = 0, expect_https = 0, expect_cgi = 0,
-	         expect_ipv6 = 0, expect_websocket = 0, expect_lua = 0;
+	         expect_ipv6 = 0, expect_websocket = 0, expect_lua = 0,
+	         expect_duktape = 0, expect_caching = 0;
 	int ret;
 
 	ck_assert(ver != NULL);
@@ -53,6 +54,9 @@ START_TEST(test_mg_version)
 	ret = sscanf(ver, "%u.%u", &major, &minor);
 	ck_assert_int_eq(ret, 2);
 	ck_assert_uint_ge(major, 1);
+	if (major == 1) {
+		ck_assert_uint_ge(minor, 8); /* current version is 1.8 */
+	}
 
 	/* check feature */
 	feature_files = mg_check_feature(1);
@@ -61,6 +65,8 @@ START_TEST(test_mg_version)
 	feature_ipv6 = mg_check_feature(8);
 	feature_websocket = mg_check_feature(16);
 	feature_lua = mg_check_feature(32);
+	feature_duktape = mg_check_feature(64);
+	feature_caching = mg_check_feature(128);
 
 #if !defined(NO_FILES)
 	expect_files = 1;
@@ -80,6 +86,12 @@ START_TEST(test_mg_version)
 #if defined(USE_LUA)
 	expect_lua = 1;
 #endif
+#if defined(USE_DUKTAPE)
+	expect_duktape = 1;
+#endif
+#if !defined(NO_CACHING)
+	expect_caching = 1;
+#endif
 
 	ck_assert_uint_eq(expect_files, !!feature_files);
 	ck_assert_uint_eq(expect_https, !!feature_https);
@@ -87,8 +99,11 @@ START_TEST(test_mg_version)
 	ck_assert_uint_eq(expect_ipv6, !!feature_ipv6);
 	ck_assert_uint_eq(expect_websocket, !!feature_websocket);
 	ck_assert_uint_eq(expect_lua, !!feature_lua);
+	ck_assert_uint_eq(expect_duktape, !!feature_duktape);
+	ck_assert_uint_eq(expect_caching, !!feature_caching);
 }
 END_TEST
+
 
 START_TEST(test_mg_get_valid_options)
 {
@@ -107,6 +122,7 @@ START_TEST(test_mg_get_valid_options)
 }
 END_TEST
 
+
 START_TEST(test_mg_get_builtin_mime_type)
 {
 	ck_assert_str_eq(mg_get_builtin_mime_type("x.txt"), "text/plain");
@@ -118,6 +134,7 @@ START_TEST(test_mg_get_builtin_mime_type)
 	                 "text/plain");
 }
 END_TEST
+
 
 START_TEST(test_mg_strncasecmp)
 {
@@ -145,6 +162,7 @@ START_TEST(test_mg_strncasecmp)
 	ck_assert(mg_strncasecmp("xBx", "xax", 3) > 0);
 }
 END_TEST
+
 
 START_TEST(test_mg_get_cookie)
 {
@@ -211,6 +229,7 @@ START_TEST(test_mg_get_cookie)
 	/* TODO: mg_get_cookie and mg_get_var(2) should have the same behavior */
 }
 END_TEST
+
 
 START_TEST(test_mg_get_var)
 {
@@ -320,6 +339,7 @@ START_TEST(test_mg_get_var)
 }
 END_TEST
 
+
 START_TEST(test_mg_md5)
 {
 	char buf[33];
@@ -374,6 +394,7 @@ START_TEST(test_mg_md5)
 }
 END_TEST
 
+
 START_TEST(test_mg_url_encode)
 {
 	char buf[20];
@@ -395,6 +416,7 @@ START_TEST(test_mg_url_encode)
 	ck_assert_str_eq("%25", buf);
 }
 END_TEST
+
 
 START_TEST(test_mg_url_decode)
 {
@@ -423,6 +445,40 @@ START_TEST(test_mg_url_decode)
 }
 END_TEST
 
+
+START_TEST(test_mg_get_response_code_text)
+{
+	int i;
+	size_t j, len;
+	const char *resp;
+
+	for (i = 100; i < 600; i++) {
+		resp = mg_get_response_code_text(NULL, i);
+		ck_assert_ptr_ne(resp, NULL);
+		len = strlen(resp);
+		ck_assert_uint_gt(len, 1);
+		ck_assert_uint_lt(len, 32);
+		for (j = 0; j < len; j++) {
+			if (resp[j] == ' ') {
+				/* space is valid */
+			} else if (resp[j] == '-') {
+				/* hyphen is valid */
+			} else if (resp[j] >= 'A' && resp[j] <= 'Z') {
+				/* A-Z is valid */
+			} else if (resp[j] >= 'a' && resp[j] <= 'z') {
+				/* a-z is valid */
+			} else {
+				ck_abort_msg("Found letter %c (%02xh) in %s",
+				             resp[j],
+				             resp[j],
+				             resp);
+			}
+		}
+	}
+}
+END_TEST
+
+
 Suite *
 make_public_func_suite(void)
 {
@@ -436,6 +492,7 @@ make_public_func_suite(void)
 	    tcase_create("URL encoding decoding");
 	TCase *const tcase_cookies = tcase_create("Cookies and variables");
 	TCase *const tcase_md5 = tcase_create("MD5");
+	TCase *const tcase_aux = tcase_create("Aux functions");
 
 	tcase_add_test(tcase_version, test_mg_version);
 	tcase_set_timeout(tcase_version, civetweb_min_test_timeout);
@@ -466,6 +523,10 @@ make_public_func_suite(void)
 	tcase_add_test(tcase_md5, test_mg_md5);
 	tcase_set_timeout(tcase_md5, civetweb_min_test_timeout);
 	suite_add_tcase(suite, tcase_md5);
+
+	tcase_add_test(tcase_aux, test_mg_get_response_code_text);
+	tcase_set_timeout(tcase_aux, civetweb_min_test_timeout);
+	suite_add_tcase(suite, tcase_aux);
 
 	return suite;
 }

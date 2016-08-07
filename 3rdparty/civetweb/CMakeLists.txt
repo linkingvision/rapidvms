@@ -68,6 +68,10 @@ message(STATUS "Serve no static files - ${CIVETWEB_SERVE_NO_FILES}")
 option(CIVETWEB_DISABLE_CGI "Disables CGI, so theserver will not execute CGI scripts" OFF)
 message(STATUS "Disable CGI support - ${CIVETWEB_DISABLE_CGI}")
 
+# Disable caching
+option(CIVETWEB_DISABLE_CACHING "Disables caching, so that no timegm is used." OFF)
+message(STATUS "Disable caching support - ${CIVETWEB_DISABLE_CACHING}")
+
 # C++ wrappers
 option(CIVETWEB_ENABLE_CXX "Enables the C++ wrapper library" OFF)
 message(STATUS "C++ wrappers - ${CIVETWEB_ENABLE_CXX}")
@@ -278,7 +282,9 @@ if (HAVE_C_FLAG_FSANITIZE_ADDRESS)
   add_c_compiler_flag(-static-asan DEBUG)
 endif()
 add_c_compiler_flag(-fstack-protector-all DEBUG)
-add_c_compiler_flag(-mwindows)
+if (MINGW)
+  add_c_compiler_flag(-mwindows)
+endif()
 
 # Coverage build type
 set(CMAKE_C_FLAGS_COVERAGE "${CMAKE_C_FLAGS_DEBUG}" CACHE STRING
@@ -343,7 +349,9 @@ if (CIVETWEB_ENABLE_CXX)
     add_cxx_compiler_flag(-static-asan DEBUG)
   endif()
   add_cxx_compiler_flag(-fstack-protector-all DEBUG)
-  add_cxx_compiler_flag(-mwindows)
+  if (MINGW)
+    add_cxx_compiler_flag(-mwindows)
+  endif()
   set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_DEBUG}" CACHE STRING
       "Flags used by the C++ compiler during coverage builds."
       FORCE)
@@ -371,6 +379,9 @@ if (CIVETWEB_SERVE_NO_FILES)
 endif()
 if (CIVETWEB_DISABLE_CGI)
   add_definitions(-DNO_CGI)
+endif()
+if (CIVETWEB_DISABLE_CACHING)
+  add_definitions(-DNO_CACHING)
 endif()
 if (CIVETWEB_ENABLE_LUA)
   add_definitions(-DUSE_LUA)

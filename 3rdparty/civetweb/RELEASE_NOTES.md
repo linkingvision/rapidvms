@@ -1,10 +1,22 @@
-Release Notes v1.8 (work in progress)
+Release Notes v1.8
 ===
-### Objectives: *Support client certificates, CMake integration, bug fixes*
+### Objectives: *CMake integration and continuous integration tests, Support client certificates, bug fixes*
 
 Changes
 -------
 
+- Replace mg_upload by mg_handle_form_request
+- CGI-scripts must receive EOF if all POST data is read
+- Add API function to handle all kinds of HTML form data
+- Do not allow short file names in Windows
+- Callback when a new thread is initialized
+- Support for short lived certificates
+- Add NO_CACHING compile option
+- Update Visual Studio project files to VS2015; rename directory VS2012 to VS
+- Sec-Wesocket-Protocol must only return one protocol
+- Mark some examples and tests as obsolete
+- Remove no longer maintained test utils
+- Add some default MIME types and the mg_send_mime_file API function.
 - Client API using SSL certificates
 - Send "Cache-Control" headers
 - Add alternative to mg_upload
