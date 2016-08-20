@@ -4,6 +4,10 @@ ifeq ($(strip $(PRJ_CROSS)), )
 all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build curl_build
 endif
 
+ifeq ($(strip $(VE_OS)), OSX)
+all:poco_build ffmpeg_build openssl_build_osx leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build curl_build
+endif
+
 ifneq ($(strip $(PRJ_CROSS)), )
 all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build protobuf_build_cross curl_build_cross
 endif
@@ -31,6 +35,10 @@ ffmpeg_build_cross:
 openssl_build:
 	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
 	$(MAKE) -C openssl && $(MAKE) -C openssl install;
+
+openssl_build_osx:
+	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./Configure darwin64-x86_64-cc --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
+	$(MAKE) -C openssl && $(MAKE) -C openssl install_sw;
 
 openssl_build_cross:
 	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ os/compiler:$(VE_CROSS_COMPILER)gcc  -fPIC;
@@ -61,7 +69,7 @@ protobuf_build_cross:
 
 qt_build:
 	cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
-	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
+	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -release -make libs -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
 	$(MAKE) -C qt/qtbase-opensource-src-5.5.1; 
 	$(MAKE) -C qt/qtbase-opensource-src-5.5.1 install; 
 
