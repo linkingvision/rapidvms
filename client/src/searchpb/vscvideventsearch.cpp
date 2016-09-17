@@ -95,10 +95,10 @@ void VSCVidEventSearch::EventTableUpdate(VidEvent &cEvent)
 	QTableWidgetItem *pItem3 = new QTableWidgetItem(cEvent.strtime().c_str());
 	if (cEvent.bhandled() == false)
 	{
-		pItem0->setBackgroundColor(QColor(255,0,0));
-		pItem1->setBackgroundColor(QColor(255,0,0));
-		pItem2->setBackgroundColor(QColor(255,0,0));
-		pItem3->setBackgroundColor(QColor(255,0,0));
+		pItem0->setBackgroundColor(QColor(200,200,200));
+		pItem1->setBackgroundColor(QColor(200,200,200));
+		pItem2->setBackgroundColor(QColor(200,200,200));
+		pItem3->setBackgroundColor(QColor(200,200,200));
 	}
 	ui.tableWidget->setItem(nRowCnt, 0, pItem0);
 	ui.tableWidget->setItem(nRowCnt, 1, pItem1);

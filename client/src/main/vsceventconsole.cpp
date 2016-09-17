@@ -120,10 +120,10 @@ void VSCEventConsole::EventTableUpdate(VidEvent &cEvent)
 		QTableWidgetItem *pItem3 = new QTableWidgetItem(cEventCurrent.strtime().c_str());
 		if (cEventCurrent.bhandled() == false)
 		{
-			pItem0->setBackgroundColor(QColor(255,0,0));
-			pItem1->setBackgroundColor(QColor(255,0,0));
-			pItem2->setBackgroundColor(QColor(255,0,0));
-			pItem3->setBackgroundColor(QColor(255,0,0));
+			pItem0->setBackgroundColor(QColor(200,200,200));
+			pItem1->setBackgroundColor(QColor(200,200,200));
+			pItem2->setBackgroundColor(QColor(200,200,200));
+			pItem3->setBackgroundColor(QColor(200,200,200));
 		}
 		ui.tableWidget->setItem(insertRow, 0, pItem0);
 		ui.tableWidget->setItem(insertRow, 1, pItem1);

@@ -19,7 +19,8 @@ public:
 	void UpdateUI();
 
 public slots:   
-  void applyConfig();
+  void SlotImportLic();
+  void SlotDefaultLic();
 	
 public:
     Ui::VSCStorLicense ui;

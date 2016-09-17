@@ -39,6 +39,7 @@ void VSCUser::applyConfig()
 		VSCLoading *loading = new VSCLoading(this);
 		loading->Processing(3);
 		SimpleCrypt crypt;
+
 		QString strPassCrypt = strPasswd.c_str();
 		m_pFactory.SetAdminPasswd(crypt.encryptToString(strPassCrypt).toStdString());
 		

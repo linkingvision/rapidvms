@@ -219,6 +219,10 @@ void VSCVidTreeCam::StorAdd(VidCameraId cId)
 	
 	VSCVidItemVidStor *pItemStor = new  VSCVidItemVidStor(pStor, 
 							m_pFactory, m_pRoot);
+	if (m_bSetChecked == true)
+	{
+		VidSetCheckedChild(NULL, false);
+	}
 
 }
 void VSCVidTreeCam::StorDel(VidCameraId cId)
@@ -234,6 +238,10 @@ void VSCVidTreeCam::StorDel(VidCameraId cId)
 			m_pRoot->removeChild(pChild);
 			return;
 		}
+	}
+	if (m_bSetChecked == true)
+	{
+		VidSetCheckedChild(NULL, false);
 	}
 }
 

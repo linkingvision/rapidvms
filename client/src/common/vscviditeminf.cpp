@@ -12,6 +12,8 @@ VSCVidItemInf::~VSCVidItemInf()
 
 void VSCVidItemInf::VidSetChecked(QTreeWidgetItem * item, bool bChecked)
 {
+	setFlags(flags() | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
+	//setCheckState(Qt::Unchecked);
 	/* The event is send from myself */
 	if (item == this)
 	{
