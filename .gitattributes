@@ -1,3 +1,3 @@
 *.h linguist-language=C
 *.c linguist-language=C
-Makefile* linguist-language=C
+Makefile* linguist-language=C++
