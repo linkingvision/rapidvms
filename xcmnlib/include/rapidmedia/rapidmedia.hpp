@@ -16,6 +16,9 @@ public:
 	RapidMedia();
 	~RapidMedia();
 public:
+	/* The Decode one i frame  */
+	static bool DecodeiFrame(VideoFrame& packet, RawFrame& pRaw);
+public:
 	BOOL Init(BOOL bRealStream, string strUrl, string strUser, 
 				string strPass, BOOL bHWAccel = FALSE, VSCConnectType connectType = VSC_CONNECT_TCP);
 	BOOL PutData(VideoFrame& packet);
