@@ -23,6 +23,10 @@
 
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstor.png)
 
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/ivr/mobile.png)
+
+![](https://raw.githubusercontent.com/xsmart/ve-img/master/ivr/mobilemenu.png)
+
 
 
 #### Release Version ####
