@@ -39,6 +39,18 @@ inline string GetProgramRunningDir()
 #endif
 }
 
+static BOOL WebServerUserChangeNotify(void* pParam, astring strUser, astring strPasswd)
+{
+	astring strPasswdPath = GetProgramRunningDir() + ".htpasswd";
+	SimpleCrypt crypt;
+	QString strDePasswd = strPasswd.c_str();
+
+	mg_modify_passwords_file(strPasswdPath.c_str(), "opencvr.com", strUser.c_str(),
+		crypt.decryptToString(strDePasswd).toStdString().c_str());
+	return TRUE;
+	
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -67,7 +79,7 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
 	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
 
-    pFactory = new Factory;
+    	pFactory = new Factory;
 	gFactory = pFactory;
 
 	if (pFactory->Init() == FALSE)
@@ -78,16 +90,28 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	}
 	
 	astring docRoot = GetProgramRunningDir() + "www";
+	astring strPasswdPath = GetProgramRunningDir() + ".htpasswd";
+
+	/* set htpasswd, when start a  */
+	astring strPasswd = "admin";
+	pFactory->GetAdminPasswd(strPasswd);
+	WebServerUserChangeNotify(NULL, "admin", strPasswd);
 	
 	const char *options[] = {
-	    "document_root", docRoot.c_str(), "listening_ports", PORT, 0};
+		"document_root", docRoot.c_str(), 
+		"listening_ports", PORT, 
+		"global_auth_file", strPasswdPath.c_str(),
+		"authentication_domain", "opencvr.com",
+		0};
     
-    std::vector<std::string> cpp_options;
-    for (int i=0; i<(sizeof(options)/sizeof(options[0])-1); i++) {
-        cpp_options.push_back(options[i]);
-    }
+	std::vector<std::string> cpp_options;
+	for (int i=0; i<(sizeof(options)/sizeof(options[0])-1); i++) {
+	    cpp_options.push_back(options[i]);
+	}
 
-	VEWebServer server(cpp_options, *pFactory);
+	VEWebServer *  pWebServer = new VEWebServer(cpp_options, *pFactory);
+	
+	pFactory->RegUserChangeNotify(pWebServer, WebServerUserChangeNotify);
 	
 	/* Start RTSP server */
 	VRTSPServer *pRTSPServer = new VRTSPServer(*pFactory);
@@ -105,6 +129,7 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	pOAPIServer->start();
 
 	pFactory->start();
+
 	VDC_DEBUG("Start successfully !\n");
 	
 	return a.exec();
