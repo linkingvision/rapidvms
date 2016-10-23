@@ -98,20 +98,6 @@ public:
 	bool AddEmapCamera(astring strId, VidEmapCamera cCam);
 	bool DelEmapCamera(astring strId, astring strCamId);
 
-#if 0
-	/* Camera group */
-	BOOL GetVGroup(VSCVGroupData &pData);
-	s32 AddVGroup(VSCVGroupDataItem &pParam);
-	BOOL DelVGroup(s32 Id);
-	BOOL GetVGroupById(VSCVGroupDataItem &pParam, int nId);
-
-	/* Tour */
-	BOOL GetTour(VSCTourData &pData);
-	s32 AddTour(VSCTourDataItem &pParam);
-	BOOL DelTour(s32 Id);
-	BOOL GetTourById(VSCTourDataItem &pParam, int nId);
-#endif
-
 public:
 	void run();
 	

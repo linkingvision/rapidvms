@@ -371,6 +371,9 @@ m_cRecordWrapper(pVdb, pParam.m_Conf.strid(), m_cSchedMap, pCallback, pCallbackP
 	m_param = pParam;
 	m_param.UpdateDefaultUrl();
 	UpdateRecSched(m_param.m_Conf);
+
+	memset(&m_iFrameCache, 0, sizeof(m_iFrameCache));
+
 	return ;
 }
 
@@ -399,6 +402,12 @@ Camera::~Camera()
 
 	delete m_pvPlay;
 	delete m_pvPlaySubStream;
+
+	if (m_iFrameCache.dataBuf != NULL)
+	{
+		free(m_iFrameCache.dataBuf);
+		m_iFrameCache.dataBuf = NULL;
+	}
 }
 
 bool Camera::UpdateRecSched(VidCamera &pCam)
@@ -679,25 +688,30 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 
 BOOL Camera::GetInfoFrame(InfoFrame &pFrame)
 {
+	Lock();
 	if (m_bGotInfoData == TRUE)
 	{
 		memcpy(&pFrame, &m_infoData, sizeof(InfoFrame));
+		UnLock();
 		return TRUE;
-	}else
-	{
-		return FALSE;
 	}
+	
+	UnLock();
+	return FALSE;
 }
 BOOL Camera::GetSubInfoFrame(InfoFrame &pFrame)
 {
+	Lock();
+	
 	if (m_bGotInfoSubData == TRUE)
 	{
 		memcpy(&pFrame, &m_infoSubData, sizeof(InfoFrame));
+		UnLock();
 		return TRUE;
-	}else
-	{
-		return FALSE;
 	}
+	
+	UnLock();
+	return FALSE;
 }
 
  BOOL Camera::RegDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam)
@@ -771,6 +785,7 @@ BOOL Camera::StartData()
 		m_vPlay.StartGetData(this, (VPlayDataHandler)Camera::DataHandler);
 	}
 	m_nDataRef ++;
+	printf("%s m_nDataRef %d\n", __FUNCTION__, m_nDataRef);
 	UnLock();
 	return TRUE;
 }
@@ -778,6 +793,7 @@ BOOL Camera::StartData()
 {
 	Lock();
 	m_nDataRef --;
+	printf("%s m_nDataRef %d\n", __FUNCTION__, m_nDataRef);
 	if (m_nDataRef <= 0)
 	{
 		m_nDataRef = 0;
@@ -824,6 +840,32 @@ BOOL Camera::DataHandler(void* pData, VideoFrame& frame)
     }
 }
 
+
+/* the frame buffer is alloc here, need free by the application */
+inline BOOL Camera::GetiFrame(VideoFrame& frame)
+{
+	Lock();
+	if (m_iFrameCache.dataBuf == NULL)
+	{
+		UnLock();
+		return false;
+	}
+
+	frame.dataBuf = (u8 *)malloc(m_iFrameCache.bufLen);
+	frame.dataLen = m_iFrameCache.dataLen;
+
+	frame.streamType = m_iFrameCache.streamType;
+	frame.frameType = m_iFrameCache.frameType;
+	frame.dataLen = m_iFrameCache.dataLen;
+	memcpy(frame.dataBuf, m_iFrameCache.dataBuf, m_iFrameCache.dataLen);
+	frame.secs = m_iFrameCache.secs;
+	frame.msecs = m_iFrameCache.msecs;
+	
+	UnLock();
+
+	return true;
+}
+
 BOOL Camera::DataHandler1(VideoFrame& frame)
 {
 	//VDC_DEBUG( "%s  %d\n",__FUNCTION__, frame.dataLen);
@@ -833,6 +875,27 @@ BOOL Camera::DataHandler1(VideoFrame& frame)
 	{
 		memcpy(&m_infoData, frame.dataBuf, sizeof(InfoFrame));
 		m_bGotInfoData = TRUE;
+	}
+
+	/* Cache all the I frame */
+	if (frame.frameType == VIDEO_FRM_I)
+	{
+		if (m_iFrameCache.bufLen < frame.dataLen)
+		{
+			if (m_iFrameCache.dataBuf)
+			{
+				free(m_iFrameCache.dataBuf);
+				m_iFrameCache.dataBuf = NULL;
+			}
+			m_iFrameCache.dataBuf = (u8 *)malloc(frame.dataLen);
+			m_iFrameCache.bufLen = frame.dataLen;
+		}
+		m_iFrameCache.streamType = frame.streamType;
+		m_iFrameCache.frameType = frame.frameType;
+		m_iFrameCache.dataLen = frame.dataLen;
+		memcpy(m_iFrameCache.dataBuf, frame.dataBuf, frame.dataLen);
+		m_iFrameCache.secs = frame.secs;
+		m_iFrameCache.msecs = frame.msecs;
 	}
 	
 	/* 1. Send to network client */

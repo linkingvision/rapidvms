@@ -6,15 +6,16 @@
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
 
-#define VE_VERSION "r2.0.8-20160823"
-#define VE_INFO "OpenCVR r2.0.8 2016"
+#define VE_VERSION "r2.1.0-20160916"
+#define VE_INFO "OpenCVR r2.1.0 2016"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
 #define CONF_KEY_STR_MAX 16
 
+/* The length of key max < 16 !!! */
 #define VSC_CONF_KEY "ConfVSCSystem"
-#define VSC_CONF_STOR_SERVER_KEY "ConfVSCStorServer" /* server */
+#define VSC_CONF_STOR_SERVER_KEY "ConfVSCStorS" /* server */
 #define VSC_CONF_CLIENT_KEY "ConfVSCClient" /* Client */
 #define VSC_CONF_LIC_KEY "ConfVSCLicense"
 #define VSC_CONF_CAMERA_KEY "ConfVSCCAMERA"
@@ -24,7 +25,7 @@
 #define VSC_CONF_VGROUP_KEY "ConfVSCVGroup"
 #define VSC_CONF_HDFS_RECORD_KEY "ConfVSCHdfsRec"
 #define VSC_CONF_EMAP_KEY "ConfVSCEmap"
-#define VSC_CONF_USER_KEY "ConfVSCUserConf"
+#define VSC_CONF_USER_KEY "ConfVSCUserCnf"
 
 #ifdef WIN32
 #define VSC_DEFAULT_SYSPATH  "C:\\"

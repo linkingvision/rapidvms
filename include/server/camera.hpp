@@ -180,6 +180,7 @@ public:
 	inline BOOL UnRegDelCallback(void * pParam);
 	
 	inline BOOL GetInfoFrame(InfoFrame &pFrame);
+	inline BOOL GetiFrame(VideoFrame& frame);
 	inline BOOL GetSubInfoFrame(InfoFrame &pFrame);
 	
 	inline BOOL GetCameraOnline();
@@ -205,6 +206,7 @@ private:
 	CameraDataCallbackMap m_SubDataMap;
 
 	CameraDelCallbackMap m_DelMap;
+	VideoFrame m_iFrameCache;
 
 private:
 	CameraParam m_param;

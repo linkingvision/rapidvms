@@ -268,6 +268,37 @@ inline BOOL Factory::CallCameraChange(FactoryCameraChangeData data)
 	return TRUE;
 }
 
+inline BOOL Factory::RegUserChangeNotify(void * pData, FactoryUserChangeNotify callback)
+{
+	XGuard guard(m_cMutex);
+	m_UserChange[pData] = callback;
+
+	return TRUE;
+}
+
+inline BOOL Factory::UnRegUserChangeNotify(void * pData)
+{
+	XGuard guard(m_cMutex);
+	m_UserChange.erase(pData);
+
+	return TRUE;
+}
+
+inline BOOL Factory::CallUserChange(astring strUser, astring strPasswd)
+{
+	XGuard guard(m_cMutex);
+	UserChangeNofityMap::iterator it = m_UserChange.begin(); 
+	for(; it!=m_UserChange.end(); ++it)
+	{
+		if ((*it).second)
+		{
+			(*it).second((*it).first, strUser, strPasswd);
+		}
+	}
+
+	return TRUE;
+}
+
 inline BOOL Factory::RecChangeHandler(astring strId, bool bRec, void * pParam)
 {
 	int dummy = errno;
@@ -348,12 +379,15 @@ inline bool Factory::GetAdminPasswd(astring &strPasswd)
 	
 	return true;
 }
+
 inline bool Factory::SetAdminPasswd(astring strPasswd)
 {
 	VidStorServerConf  cData;
 	m_Conf.GetStorServerConf(cData);
 	cData.set_stradminpasswd(strPasswd);
 	m_Conf.SetStorServerConf(cData);
+
+	CallUserChange("admin", strPasswd);
 
 	return true;	
 }
@@ -546,6 +580,17 @@ inline BOOL Factory::GetStreamInfo(astring nIndex, VideoStreamInfo &pInfo)
 	return TRUE;
 }
 
+inline BOOL Factory::GetiFrame(astring strCamId, VideoFrame& frame)
+{
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[strCamId] != NULL)
+	{
+	    m_CameraMap[strCamId]->GetiFrame(frame);
+	}
+
+	return TRUE;
+}
+
 
 inline BOOL Factory::GetCamStreamList(astring strCamId, VidStreamList &pList)
 {
@@ -619,7 +664,7 @@ inline BOOL Factory::DelCamera(astring nIndex)
 
 	XGuard guard(m_cMutex);
 	delete m_CameraMap[nIndex];
-	m_CameraMap[nIndex] = NULL;
+	//m_CameraMap[nIndex] = NULL;
 	m_CameraOnlineMap.erase(nIndex);
 	m_CameraRecMap.erase(nIndex);
 	int size1 = m_CameraMap.size();

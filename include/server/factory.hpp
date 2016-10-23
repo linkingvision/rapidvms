@@ -51,6 +51,9 @@ public:
 typedef BOOL (*FactoryCameraChangeNotify)(void* pParam, 
 		FactoryCameraChangeData data);
 
+typedef BOOL (*FactoryUserChangeNotify)(void* pParam, 
+		astring strUser, astring strPasswd);
+
 typedef std::list<LPCamera> CameraList;
 typedef std::list<CameraParam> CameraParamList;
 typedef std::map<astring, LPCamera> CameraMap;
@@ -58,6 +61,7 @@ typedef std::map<astring, CameraParam> CameraParamMap;
 typedef std::map<astring, bool> CameraOnlineMap;
 typedef std::map<astring, bool> CameraRecMap;
 typedef std::map<void *, FactoryCameraChangeNotify> CameraChangeNofityMap;
+typedef std::map<void *, FactoryUserChangeNotify> UserChangeNofityMap;
 
 class Factory;
 class FactoryHddTask:public QThread
@@ -91,6 +95,11 @@ public:
 	BOOL CallCameraChange(FactoryCameraChangeData data);
 	static BOOL RecChangeHandler(astring strId, bool bRec, void * pParam);
 	BOOL RecChangeHandler1(astring strId, bool bRec);
+
+public:
+	BOOL RegUserChangeNotify(void * pData, FactoryUserChangeNotify callback);
+	BOOL UnRegUserChangeNotify(void * pData);
+	BOOL CallUserChange(astring strUser, astring strPasswd);
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
@@ -145,6 +154,7 @@ public:
 	BOOL RegDataCallback(astring strCamId, CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegDataCallback(astring strCamId, void * pParam);
 	BOOL GetInfoFrame(astring strCamId, InfoFrame &pFrame);
+	BOOL GetiFrame(astring strCamId, VideoFrame& frame);
 	BOOL RegSubDataCallback(astring strCamId, CameraDataCallbackFunctionPtr pCallback, void * pParam);
 	BOOL UnRegSubDataCallback(astring strCamId, void * pParam);
 	BOOL GetSubInfoFrame(astring strCamId, InfoFrame &pFrame);
@@ -164,6 +174,7 @@ private:
 
 private:
 	CameraChangeNofityMap m_CameraChange;
+	UserChangeNofityMap m_UserChange;
 
 private:
 	VDB *m_pVdb;
