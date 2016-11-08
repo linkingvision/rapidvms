@@ -1,4 +1,4 @@
-# OpenCVR include OpenCVRStor(server) and OpenCVRClient(client) #
+# OpenCVR(Content Video Recorder) include OpenCVRStor(server) and OpenCVRClient(client) #
 
 # Wiki #
 
@@ -6,14 +6,10 @@
 
 *  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/opencvrusermanual)
 
-[![Codewake](https://www.codewake.com/badges/codewake2.svg)](https://www.codewake.com/p/opencvr-c0873e2b-a1af-45e8-a64b-16145925ee99)
-
 [https://github.com/xsmart/opencvr/wiki](https://github.com/xsmart/opencvr/wiki)
 
 ----------
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrclient.png)
-
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/osx/osxview.png)
 
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/playback.png)
 
@@ -22,11 +18,6 @@
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstoradd.png)
 
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstor.png)
-
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/ivr/mobile.png)
-
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/ivr/mobilemenu.png)
-
 
 
 #### Release Version ####
