@@ -113,9 +113,7 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	connect(m_pToolBar->ui.pbVidEventSearch, SIGNAL(clicked()), m_pVidPb, 
 													SLOT(SlotNewEventSearch()));
 	connect(m_pToolBar->ui.pbVidMotionSearch, SIGNAL(clicked()), m_pVidPb, 
-													SLOT(SlotNewMotionSearch()));
-	connect(m_pToolBar->ui.pbVidPb, SIGNAL(clicked()), m_pVidLive, SLOT(SlotNewLivePB()));
-	
+													SLOT(SlotNewMotionSearch()));	
 	connect(m_pToolBar->ui.pbVidConf, SIGNAL(clicked()), this, SLOT(ShowVidConf()));
 	connect(m_pToolBar->ui.pbVidDashBoard, SIGNAL(clicked()), this, SLOT(ShowDashBoard()));
 	connect(m_pToolBar->ui.pbAlarm, SIGNAL(clicked()), this, SLOT(ShowEventConsole()));
