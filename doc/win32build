@@ -1,20 +1,11 @@
-1. Install VS2010
-2. Install QT 5.2.1 in the http://download.qt-project.org/official_releases/qt/5.2/5.2.1/qt-opensource-windows-x86-msvc2012-5.2.1.exe
-3. http://download.qt-project.org/official_releases/vsaddin/qt-vs-addin-1.2.3-opensource.exe 
-4. Open the vepro\prj_win32\VSCloudNode.sln to build, and the library for running in the 3rdparty\bin
+1. Install VS2013
+2. Install Qt 5.x.x in the http://download.qt-project.org/official_releases/qt/
+3. http://download.qt-project.org/official_releases/vsaddin/
+4. VS2013 and Qt5 Qt5-x64
 
-Intel Media SDK
+VS reset 
+devenv /resetuserdata
 
-https://software.intel.com/sites/default/files/Intel_Media_Developers_Guide_0.pdf
 
-The media acceleration DLLs are distributed with the graphics driver, not the Intel Media SDK.
-In many cases the default graphics driver may not provide all of the files and registry entries
-needed. For best results, please update to the latest driver available from
-http://downloadcenter.intel.com/ before attempting a new install. While some systems may
-require a vendor-approved driver, the Intel drivers are usually appropriate. These drivers can
-be found by selecting “Graphics” as the product family at the Download Center site. 
 
-The graphics driver installer populates the Intel Media SDK directories under “c:\program
-files\Intel\Media SDK”, or “c:\program files (x86)\Intel\Media SDK” on 64 bit OS installs. The
-Intel Media SDK hardware acceleration DLLs and certified HW Media Foundation Transforms
-can be found here. 
+

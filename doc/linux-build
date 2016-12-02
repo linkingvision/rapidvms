@@ -1,4 +1,5 @@
-ubuntu: sudo apt-get install libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev freeglut3-dev uuid-dev
+ubuntu: sudo apt-get install  "^libxcb.*" 
+ubuntu: sudo apt-get install  "^libxcb.*" libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev cmake libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev freeglut3-dev uuid-dev
 centos: sudo yum install nasm xorg-x11-server-devel zlib-devel gcc gcc-c++ gstreamer-devel   gstreamer-plugins-base-devel libxslt-devel
 
 
@@ -9,7 +10,8 @@ build:
 sudo mv /usr/bin/pod2man  /usr/bin/pod2man-org
 yum install redhat-lsb-core
 
-
+thread cpu
+ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
 
 
 
