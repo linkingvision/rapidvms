@@ -9,20 +9,12 @@
 #ifndef __VSC_CLIENT_FACTORY_IMPL_H_
 #define __VSC_CLIENT_FACTORY_IMPL_H_
 
-inline ClientFactory::ClientFactory()
+inline ClientFactory::ClientFactory(VidEnv &pEnv)
+:m_env(pEnv)
 {
-#ifdef WIN32
-#ifndef _WIN64
-    astring strSysPath = "C:\\vidstor\\clientsystem";
-#else
-    astring strSysPath = "C:\\vidstor64\\clientsystem";
-#endif
-#else
-    astring strSysPath = "ve/vidstor/clientsystem/";
-#endif
-    m_SysPath.Open(strSysPath);
+    m_SysPath.Open(m_env.GetAppConfPath("clientsystem"));
 	/* Create the stor factory */
-	m_StorFactory = new StorFactory(m_Conf);
+    m_StorFactory = new StorFactory(m_Conf);
 }
 
 inline ClientFactory::~ClientFactory()
@@ -39,25 +31,9 @@ inline BOOL ClientFactory::GetExportPath(astring &strPath)
 {
 	astring strKey = "ConfVideoExportKey";
 
-	astring strSysPath;
-	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
-	{
-	    return FALSE;
-	}
-
-#ifdef WIN32
-#ifndef _WIN64
-	astring strPathDefault = strSysPath + "vidstor\\export\\";
-#else
-	astring strPathDefault = strSysPath + "vidstor64\\export\\";
-#endif
-#else
-	astring strPathDefault = strSysPath + "vidstor/export/";
-#endif
-
 	if (m_Conf.GetCmnParam(strKey, strPath) == FALSE)
 	{
-		strPath = strPathDefault;
+		strPath = m_env.GetAppConfPath("export");
 		m_Conf.SetCmnParam(strKey, strPath);
 		Poco::File file1(strPath);
 		file1.createDirectories();
@@ -78,19 +54,11 @@ inline BOOL ClientFactory::Init()
 	astring strPath;
 	if (m_SysPath.GetSystemPath(strPath) == FALSE)
 	{
-	    return FALSE;
+	    SetSystemPath(m_env.GetConfDir());
 	}
 	printf("Sys path %s\n", strPath.c_str());
-#ifdef WIN32
-#ifndef _WIN64
-	astring strPathConf = strPath + "vidstor\\clientconfig";
-#else
-	astring strPathConf = strPath + "vidstor64\\clientconfig";
-#endif
-#else
-	astring strPathConf = strPath + "vidstor/clientconfig";
-#endif
-	m_Conf.Open(strPathConf);
+	
+	m_Conf.Open(m_env.GetAppConfPath("clientconfig"));
 
 	/* Init export path */
 	astring strExportPath;
@@ -120,10 +88,11 @@ inline BOOL ClientFactory::CallChange(ClientFactoryChangeData data)
 	 return TRUE;
 }
 
-inline BOOL ClientFactory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type, astring &expireTime)
+inline BOOL ClientFactory::GetLicense(astring &strLicense, astring &strHostId, int &ch, 
+	astring &type, astring &startTime, astring &expireTime)
 {
 	XGuard guard(m_cMutex);
-	VPlay::GetLicenseInfo(strHostId, ch, type, expireTime);
+	VPlay::GetLicenseInfo(strHostId, ch, type, startTime, expireTime);
 	return m_Conf.GetLicense(strLicense);
 }
 inline BOOL ClientFactory::SetLicense(astring &strLicense)

@@ -23,6 +23,7 @@
 #include "config/clientconfdb.hpp"
 #include "client/storfactory.hpp"
 #include "simplecrypt.hpp"
+#include "config/videnv.hpp"
 
 using namespace VidConf;
 
@@ -57,7 +58,7 @@ class ClientFactory: public QThread
 {
     Q_OBJECT
 public:
-    ClientFactory();
+    ClientFactory(VidEnv &pEnv);
     ~ClientFactory();
 public:
 	/* Init function */
@@ -73,7 +74,7 @@ signals:
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime);
+							int &ch, astring &type, astring &startTime, astring &expireTime);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
 	
@@ -98,6 +99,8 @@ public:
 	bool AddEmapCamera(astring strId, VidEmapCamera cCam);
 	bool DelEmapCamera(astring strId, astring strCamId);
 
+	VidEnv & GetEnv(){return m_env;}
+
 public:
 	void run();
 	
@@ -110,6 +113,7 @@ private:
 private:
 	ClientConfDB m_Conf;
 	SysDB m_SysPath;
+	VidEnv m_env;
 };
 
 typedef ClientFactory* LPClientFactory;
