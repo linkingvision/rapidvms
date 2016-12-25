@@ -40,7 +40,7 @@
 * **Professional Video(PV)**
 * **Enterprise Video(EV)**
 
-[https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
+[Learn More for Pricing](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
 
 # [Pay](http://veyesys.com/) #
 
