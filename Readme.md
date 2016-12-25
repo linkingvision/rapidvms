@@ -33,13 +33,21 @@
 	HW accel Decoding
 	MJPEG/MPEG4/H264/H265 support
 	Linux(ARM X64 X86) Windows MacOS(Coming sonn)support
-	Recloud and Mobile APP (Coming soon)
 
 #### License ####
-*  The source code which is opened is licnesed by MIT, and the whole application use the blow license
-*  OpenCVR enterprise license is for comany or organization users. 
-*  OpenCVR Individual license is for personal such as home users.
-*  The licnese is a yearly fee.
+* **Community Video(CV)**
+* **Home Video(HV)**
+* **Professional Video(PV)**
+* **Enterprise Video(EV)**
+
+|  | CV | HV | PV | EV |
+| -- | -- | -- | -- | -- |
+| Channel| 16 | 16 | 32 | 128 |
+| Disk retention | 20G | unlimit | unlimit | unlimit |
+| Server VMD | yes | yes | yes | yes |
+| HW Decode | no | no | yes | yes |
+| MacOS Client | yes | yes | yes| yes|
+| Web Client | yes | yes | yes | yes |
 
 # [Pay](http://veyesys.com/) #
 
