@@ -40,14 +40,7 @@
 * **Professional Video(PV)**
 * **Enterprise Video(EV)**
 
-|  | CV | HV | PV | EV |
-| -- | -- | -- | -- | -- |
-| Channel| 16 | 16 | 32 | 128 |
-| Disk retention | 20G | unlimit | unlimit | unlimit |
-| Server VMD | yes | yes | yes | yes |
-| HW Decode | no | no | yes | yes |
-| MacOS Client | yes | yes | yes| yes|
-| Web Client | yes | yes | yes | yes |
+[https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
 
 # [Pay](http://veyesys.com/) #
 
