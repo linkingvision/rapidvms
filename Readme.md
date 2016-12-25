@@ -2,9 +2,9 @@
 
 # Wiki #
 
-*  [Manual](https://xsmart.gitbooks.io/opencvrusermanual/content/)
+*  [Manual](https://xsmart.gitbooks.io/rapidvmsusermanual/content/)
 
-*  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/opencvrusermanual)
+*  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/rapidvmsusermanual)
 
 
 ----------
