@@ -1,4 +1,4 @@
-# OpenCVR(Content Video Recorder) include OpenCVRStor(server) and OpenCVRClient(client) #
+# Rapidvms include RapidStor(server) and RapidClient(client) #
 
 # Wiki #
 
@@ -6,7 +6,6 @@
 
 *  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/opencvrusermanual)
 
-[https://github.com/xsmart/opencvr/wiki](https://github.com/xsmart/opencvr/wiki)
 
 ----------
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrclient.png)

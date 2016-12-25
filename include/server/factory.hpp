@@ -21,6 +21,7 @@
 #include "Poco/File.h"
 #include "config/vidconf.pb.h"
 #include "XSDK/TimeUtils.h"
+#include "config/videnv.hpp"
 
 using namespace VidConf;
 using namespace XSDK;
@@ -81,7 +82,7 @@ class Factory: public QThread
 {
     Q_OBJECT
 public:
-    Factory();
+    Factory(VidEnv &pEnv);
     ~Factory();
 public:
 	/* Init function */
@@ -103,7 +104,7 @@ public:
 	
 public:
 	BOOL GetLicense(astring &strLicense, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime);
+							int &ch, astring &type, astring &startTime, astring &expireTime);
 	BOOL SetLicense(astring &strLicense);
 	BOOL InitLicense();
 
@@ -128,6 +129,7 @@ public:
 	BOOL GetCamera(astring strId, VidCamera & pCam);
 	BOOL PtzAction(astring strCamId, FPtzAction action, float speed);
 	BOOL UpdateRecSched(astring strCamId, VidCamera &pCam);
+	BOOL FireAlarm(astring strCamId, s64 nStartTime);
 
 public:
 	/* Disk function */
@@ -145,6 +147,7 @@ public:
 					u32 recordType);
 
 	VDB & GetVdb();
+	VidEnv & GetEnv(){return m_env;}
 
 
 public:
@@ -160,7 +163,7 @@ public:
 	BOOL GetSubInfoFrame(astring strCamId, InfoFrame &pFrame);
 
 	BOOL GetCameraOnline(astring strCamId, BOOL &bStatus);
-	BOOL SetSystemPath(astring &strPath);
+	BOOL SetSystemPath(astring strPath);
 
 public:
 	void run();
@@ -183,7 +186,8 @@ private:
 
 private:
 	ConfDB m_Conf;
-	SysDB m_SysPath;
+	//SysDB m_SysPath;
+	VidEnv &m_env;
 };
 
 typedef Factory* LPFactory;

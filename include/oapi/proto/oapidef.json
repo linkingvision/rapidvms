@@ -338,6 +338,7 @@
 		["std::string", "strHostId", {"required": true}],
 		["int", "nCh", {"required": true}],
 		["std::string", "strType", {"required": true}],
+		["std::string", "strStartTime", {"required": true}],
 		["std::string", "strExpireTime", {"required": true}]
     ]
 },

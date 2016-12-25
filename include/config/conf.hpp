@@ -5,9 +5,7 @@
 
 #include "utility.hpp"
 #include "oapi/oapicmn.hpp"
-
-#define VE_VERSION "r2.1.0-20160916"
-#define VE_INFO "OpenCVR r2.1.0 2016"
+#include "config/confver.hpp"
 
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF

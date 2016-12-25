@@ -359,7 +359,7 @@ bool OAPIServerPlayback::StartPlay()
 }
 bool OAPIServerPlayback::PausePlay()
 {
-	m_pbWrapper.StopPlay();
+	m_pbWrapper.PausePlay();
 	return true;
 }
 bool OAPIServerPlayback::QuitPlay()
@@ -1082,7 +1082,7 @@ BOOL OAPIServer::ProcessGetLic(s32 len)
 	oapi::OAPIGetLicRsp rsp;
 
 	m_pFactory.GetLicense(rsp.strLic, rsp.strHostId, rsp.nCh, rsp.strType,
-					rsp.strExpireTime);
+					rsp.strStartTime, rsp.strExpireTime);
 
 	std::string strJson = autojsoncxx::to_pretty_json_string(rsp);
 	s32 nJsonLen = strJson.length();

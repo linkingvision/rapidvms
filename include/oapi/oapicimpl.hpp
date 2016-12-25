@@ -772,7 +772,7 @@ bool OAPIClient::ParseSysDiskList(char *pRecv, int len, oapi::OAPISysDiskListRsp
 }
 
 bool OAPIClient::ParseLic(char *pRecv, int len, astring &strLic, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime)
+							int &ch, astring &type, astring &startTime, astring &expireTime)
 {	
 	oapi::OAPIGetLicRsp rsp;
 	autojsoncxx::ParsingResult result;
@@ -786,6 +786,7 @@ bool OAPIClient::ParseLic(char *pRecv, int len, astring &strLic, astring &strHos
 	ch = rsp.nCh;
 	type = rsp.strType;
 	expireTime = rsp.strExpireTime;
+	startTime = rsp.strStartTime;
 	return true;
 }
 

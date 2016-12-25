@@ -10,25 +10,6 @@
 #define __VSC_CAMERA_IMPL_H_
 
 
-inline string GetProgramDir()
-{
-#ifdef WIN32
-    char exeFullPath[MAX_PATH]; // Full path
-
-    string strPath = "";
-
-    GetModuleFileNameA(NULL,exeFullPath, MAX_PATH);
-    strPath=(string)exeFullPath;    // Get full path of the file
-
-    int pos = strPath.find_last_of('\\', strPath.length());
-
-    return strPath.substr(0, pos);  // Return the directory without the file name
-#else
-    return "ve/";
-#endif
-}
-
-
 CameraParam::CameraParam()
 {
 	Poco::UUIDGenerator uuidCreator;
@@ -45,7 +26,7 @@ CameraParam::CameraParam()
 
 	m_Conf.set_strrtspurl("rtsp://192.168.0.1:554/Streaming");
 
-	astring filePath = GetProgramDir() +  "camera.mp4";
+	astring filePath = "camera.mp4";
 
 	m_Conf.set_strfile(filePath.c_str());
 
@@ -684,6 +665,11 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		default:
 			break;
 	}
+}
+
+BOOL Camera::FireAlarm(s64 nStartTime)
+{	
+	return m_cRecordWrapper.FireAlarm(nStartTime);
 }
 
 BOOL Camera::GetInfoFrame(InfoFrame &pFrame)

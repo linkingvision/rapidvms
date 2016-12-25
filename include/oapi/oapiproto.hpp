@@ -13928,9 +13928,10 @@ namespace oapi { struct OAPIGetLicRsp {
 std::string strHostId;
 int nCh;
 std::string strType;
+std::string strStartTime;
 std::string strExpireTime;
 
-explicit OAPIGetLicRsp():strLic(), strHostId(), nCh(), strType(), strExpireTime() {  }
+explicit OAPIGetLicRsp():strLic(), strHostId(), nCh(), strType(), strStartTime(), strExpireTime() {  }
 
 
  
@@ -13950,10 +13951,12 @@ private:
 SAXEventHandler< std::string > handler_1;
 SAXEventHandler< int > handler_2;
 SAXEventHandler< std::string > handler_3;
-SAXEventHandler< std::string > handler_4;bool has_strLic;
+SAXEventHandler< std::string > handler_4;
+SAXEventHandler< std::string > handler_5;bool has_strLic;
 bool has_strHostId;
 bool has_nCh;
 bool has_strType;
+bool has_strStartTime;
 bool has_strExpireTime;
 
     bool check_depth(const char* type)
@@ -13977,6 +13980,8 @@ case 2:
 case 3:
     return "strType";
 case 4:
+    return "strStartTime";
+case 5:
     return "strExpireTime";
         default:
             break;
@@ -14008,6 +14013,7 @@ case 4:
 has_strHostId = false;
 has_nCh = false;
 has_strType = false;
+has_strStartTime = false;
 has_strExpireTime = false;
     }
 
@@ -14019,7 +14025,8 @@ public:
 , handler_1(&obj->strHostId)
 , handler_2(&obj->nCh)
 , handler_3(&obj->strType)
-, handler_4(&obj->strExpireTime)
+, handler_4(&obj->strStartTime)
+, handler_5(&obj->strExpireTime)
     {
         reset_flags();
     }
@@ -14045,6 +14052,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Null());
+
+case 5:
+    return checked_event_forwarding(handler_5.Null());
 
         default:
             break;
@@ -14074,6 +14084,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Bool(b));
 
+case 5:
+    return checked_event_forwarding(handler_5.Bool(b));
+
         default:
             break;
         }
@@ -14101,6 +14114,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Int(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int(i));
 
         default:
             break;
@@ -14130,6 +14146,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Uint(i));
 
+case 5:
+    return checked_event_forwarding(handler_5.Uint(i));
+
         default:
             break;
         }
@@ -14157,6 +14176,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Int64(i));
+
+case 5:
+    return checked_event_forwarding(handler_5.Int64(i));
 
         default:
             break;
@@ -14186,6 +14208,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.Uint64(i));
 
+case 5:
+    return checked_event_forwarding(handler_5.Uint64(i));
+
         default:
             break;
         }
@@ -14213,6 +14238,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Double(d));
+
+case 5:
+    return checked_event_forwarding(handler_5.Double(d));
 
         default:
             break;
@@ -14242,6 +14270,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.String(str, length, copy));
 
+case 5:
+    return checked_event_forwarding(handler_5.String(str, length, copy));
+
         default:
             break;
         }
@@ -14264,8 +14295,10 @@ else if (utility::string_equal(str, length, "\x6e\x43\x68", 3))
                          { state=2; has_nCh = true; }
 else if (utility::string_equal(str, length, "\x73\x74\x72\x54\x79\x70\x65", 7))
                          { state=3; has_strType = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x53\x74\x61\x72\x74\x54\x69\x6d\x65", 12))
+                         { state=4; has_strStartTime = true; }
 else if (utility::string_equal(str, length, "\x73\x74\x72\x45\x78\x70\x69\x72\x65\x54\x69\x6d\x65", 13))
-                         { state=4; has_strExpireTime = true; }
+                         { state=5; has_strExpireTime = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -14288,6 +14321,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.Key(str, length, copy));
+
+case 5:
+    return checked_event_forwarding(handler_5.Key(str, length, copy));
 
             default:
                 break;
@@ -14318,6 +14354,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.StartArray());
 
+case 5:
+    return checked_event_forwarding(handler_5.StartArray());
+
         default:
             break;
         }
@@ -14346,6 +14385,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.EndArray(length));
 
+case 5:
+    return checked_event_forwarding(handler_5.EndArray(length));
+
         default:
             break;
         }
@@ -14373,6 +14415,9 @@ case 3:
 
 case 4:
     return checked_event_forwarding(handler_4.StartObject());
+
+case 5:
+    return checked_event_forwarding(handler_5.StartObject());
 
             default:
                 break;
@@ -14403,6 +14448,9 @@ case 3:
 case 4:
     return checked_event_forwarding(handler_4.EndObject(length));
 
+case 5:
+    return checked_event_forwarding(handler_5.EndObject(length));
+
             default:
                 break;
             }
@@ -14411,6 +14459,7 @@ case 4:
 if (!has_strHostId) set_missing_required("strHostId");
 if (!has_nCh) set_missing_required("nCh");
 if (!has_strType) set_missing_required("strType");
+if (!has_strStartTime) set_missing_required("strStartTime");
 if (!has_strExpireTime) set_missing_required("strExpireTime");
         }
         return the_error.empty();
@@ -14440,6 +14489,8 @@ case 3:
      handler_3.ReapError(errs); break;
 case 4:
      handler_4.ReapError(errs); break;
+case 5:
+     handler_5.ReapError(errs); break;
 
         default:
             break;
@@ -14459,6 +14510,7 @@ handler_1.PrepareForReuse();
 handler_2.PrepareForReuse();
 handler_3.PrepareForReuse();
 handler_4.PrepareForReuse();
+handler_5.PrepareForReuse();
 
     }
 };
@@ -14474,9 +14526,10 @@ struct Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa7
 w.Key("\x73\x74\x72\x48\x6f\x73\x74\x49\x64", 9, false); Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa737d394739, std::string >()(w, value.strHostId);
 w.Key("\x6e\x43\x68", 3, false); Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa737d394739, int >()(w, value.nCh);
 w.Key("\x73\x74\x72\x54\x79\x70\x65", 7, false); Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa737d394739, std::string >()(w, value.strType);
+w.Key("\x73\x74\x72\x53\x74\x61\x72\x74\x54\x69\x6d\x65", 12, false); Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa737d394739, std::string >()(w, value.strStartTime);
 w.Key("\x73\x74\x72\x45\x78\x70\x69\x72\x65\x54\x69\x6d\x65", 13, false); Serializer< Writer95cb29573f97140abf14883af45569fa412ebd8482b249655904aa737d394739, std::string >()(w, value.strExpireTime);
 
-        w.EndObject(5);
+        w.EndObject(6);
     }
 
 };

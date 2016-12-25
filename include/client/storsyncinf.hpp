@@ -42,7 +42,7 @@ public:
 	bool UpdateVidDiskLimit(astring strId, s64 nLimit);
 	bool ConfAdminPasswd(astring strOldPasswd, astring strNewPasswd);
 	bool GetLic(astring &pLic, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime);
+							int &ch, astring &type, astring &startTime, astring &expireTime);
 	bool GetVer(astring &pVer, astring &strInfo);
 	bool ConfLic(astring &pLic);
 	bool AddCam(VidCamera &pParam);

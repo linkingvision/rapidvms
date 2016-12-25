@@ -106,8 +106,8 @@ inline s32 SysDB::Open(astring & pPath)
     leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);
     if (false == status.ok())
     {
-        //cerr << "Unable to open/create test database "<< pPath << endl;
-        //cerr << status.ToString() << endl;
+        cerr << "Unable to open/create test database "<< pPath << endl;
+        cerr << status.ToString() << endl;
         VDC_DEBUG( "Unable to open/create sys database %s\n", pPath.c_str());
 
         return FALSE;

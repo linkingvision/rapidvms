@@ -172,7 +172,7 @@ inline void StorStream::run()
 	
 			m_pSocket->SetRecvTimeout(1 * 300);
 			/* If 20s do not get data, and break the current connection */
-			while(m_Quit != true && nNoData <= 50)
+			while(m_Quit != true && (nNoData <= 50 || m_bPlayback == TRUE))
 			{
 				nRet = m_pSocket->Recv((void *)&header, sizeof(header));
 				if (nRet != sizeof(header))

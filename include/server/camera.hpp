@@ -194,6 +194,7 @@ public:
 	inline BOOL ShowAlarm(HWND hWnd);
 	inline BOOL PtzAction(FPtzAction action, float speed);
 	inline BOOL UpdatePTZConf();
+	inline BOOL FireAlarm(s64 nStartTime);
 
 private:
 	VPlay *m_pvPlay;

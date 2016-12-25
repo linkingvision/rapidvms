@@ -73,7 +73,7 @@ public:
 	inline bool ParseDiskList(char *pRecv, int len, oapi::OAPIDiskListRsp &list);
 	inline bool ParseSysDiskList(char *pRecv, int len, oapi::OAPISysDiskListRsp &list);
 	inline bool ParseLic(char *pRecv, int len, astring &strLic, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime);
+							int &ch, astring &type, astring &startTime, astring &expireTime);
 	inline bool ParseVer(char *pRecv, int len, astring &strVer, astring &strInfo);
 	inline bool ParseGetCam(char *pRecv, int len, oapi::OAPICameraGetRsp &pCam);
 	inline bool ParseSearchNotify(char *pRecv, int len, oapi::OAPICamSearchedNotify &pCam);

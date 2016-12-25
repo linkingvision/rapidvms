@@ -67,18 +67,11 @@ inline void OnvifLog(char * str)
 
 
 
-inline Factory::Factory()
+inline Factory::Factory(VidEnv &pEnv)
+:m_env(pEnv)
 {
-#ifdef WIN32
-#ifndef _WIN64
-    astring strSysPath = "C:\\vidstor\\system";
-#else
-    astring strSysPath = "C:\\vidstor64\\system";
-#endif
-#else
-    astring strSysPath = "ve/vidstor/system/";
-#endif
-    m_SysPath.Open(strSysPath);
+    astring strTemp = m_env.GetAppConfPath("system");    
+    //m_SysPath.Open(strTemp);
 }
 
 inline Factory::~Factory()
@@ -86,9 +79,10 @@ inline Factory::~Factory()
 
 }
 
-inline BOOL Factory::SetSystemPath(astring &strPath)
+inline BOOL Factory::SetSystemPath(astring strPath)
 {
-    return m_SysPath.SetSystemPath(strPath);
+    //return m_SysPath.SetSystemPath(strPath);
+    return TRUE;
 }
 
 inline BOOL Factory::GetExportPath(astring &strPath)
@@ -96,24 +90,14 @@ inline BOOL Factory::GetExportPath(astring &strPath)
 	astring strKey = "ConfVideoExportKey";
 
 	astring strSysPath;
-	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
-	{
-	    return FALSE;
-	}
-
-#ifdef WIN32
-#ifndef _WIN64
-	astring strPathDefault = strSysPath + "vidstor\\export\\";
-#else
-	astring strPathDefault = strSysPath + "vidstor64\\export\\";
-#endif
-#else
-	astring strPathDefault = strSysPath + "vidstor/export/";
-#endif
+	//if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
+	//{
+	//    return FALSE;
+	//}
 
 	if (m_Conf.GetCmnParam(strKey, strPath) == FALSE)
 	{
-		strPath = strPathDefault;
+		strPath = m_env.GetAppConfPath("export");
 		m_Conf.SetCmnParam(strKey, strPath);
 		Poco::File file1(strPath);
 		file1.createDirectories();
@@ -131,23 +115,7 @@ inline BOOL Factory::SetExportPath(astring &strPath)
 
 inline BOOL Factory::GetEventDBConf(VidEventDBConf &pConf)
 {
-	astring strSysPath;
-	if (m_SysPath.GetSystemPath(strSysPath) == FALSE)
-	{
-	    return FALSE;
-	}
-
-#ifdef WIN32
-#ifndef _WIN64
-	astring strPathDefault = strSysPath + "vidstor\\eventdb\\";
-#else
-	astring strPathDefault = strSysPath + "vidstor64\\eventdb\\";
-#endif
-#else
-	astring strPathDefault = strSysPath + "vidstor/eventdb/";
-#endif
-
-	astring strPath = strPathDefault;
+	astring strPath = m_env.GetAppConfPath("eventdb");
 	Poco::File file1(strPath);
 	file1.createDirectories();
 
@@ -161,28 +129,16 @@ inline BOOL Factory::GetEventDBConf(VidEventDBConf &pConf)
 inline BOOL Factory::Init()
 {
 	astring strPath;
-	if (m_SysPath.GetSystemPath(strPath) == FALSE)
-	{
-	    return FALSE;
-	}
+	//if (m_SysPath.GetSystemPath(strPath) == FALSE)
+	//{
+	//    astring strTemp = m_env.GetConfDir();
+	//    SetSystemPath(strTemp);
+	//}
 	printf("Sys path %s\n", strPath.c_str());
-#ifdef WIN32
-#ifndef _WIN64
-	astring strPathConf = strPath + "vidstor\\config";
-#else
-	astring strPathConf = strPath + "vidstor64\\config";
-#endif
-#else
-	astring strPathConf = strPath + "vidstor/config";
-#endif
-	m_Conf.Open(strPathConf);
 
-#ifndef _WIN64
-	astring strPathDb = strPath + "vidstor";
-#else
-	astring strPathDb = strPath + "vidstor64";
-#endif
-	m_pVdb = new VDB(strPathDb);
+	m_Conf.Open(m_env.GetAppConfPath("config"));
+ 	astring strDB = m_env.GetAppConfPath("");
+	m_pVdb = new VDB(strDB);
 
 	VidHDFSConf HdfsConf;
 	m_Conf.GetHdfsRecordConf(HdfsConf);
@@ -332,9 +288,10 @@ inline BOOL Factory::RecChangeHandler1(astring strId, bool bRec)
 	return TRUE;
 }
 
-inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, astring &type, astring &expireTime)
+inline BOOL Factory::GetLicense(astring &strLicense, astring &strHostId, int &ch, 
+				astring &type, astring &startTime, astring &expireTime)
 {
-	VPlay::GetLicenseInfo(strHostId, ch, type, expireTime);
+	VPlay::GetLicenseInfo(strHostId, ch, type, startTime, expireTime);
 	return m_Conf.GetLicense(strLicense);
 }
 inline BOOL Factory::SetLicense(astring &strLicense)
@@ -623,6 +580,17 @@ inline BOOL Factory::PtzAction(astring strCamId, FPtzAction action, float speed)
 	if (m_CameraMap[strCamId] != NULL)
 	{
 	    m_CameraMap[strCamId]->PtzAction(action, speed);
+	}
+
+	return TRUE;
+}
+
+inline BOOL Factory::FireAlarm(astring strCamId, s64 nStartTime)
+{
+	XGuard guard(m_cMutex);
+	if (m_CameraMap[strCamId] != NULL)
+	{
+	    m_CameraMap[strCamId]->FireAlarm(nStartTime);
 	}
 
 	return TRUE;

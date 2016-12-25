@@ -46,7 +46,12 @@ inline void VEventServerCallbackTask::run()
 	while(m_Queue.BlockingPeek() == true)
 	{
 		VEventData pData = m_Queue.Pop();
+
 		VDC_DEBUG( "%s Pop a Event \n",__FUNCTION__);
+		/* Fire alarm to the Factory */
+		
+		m_Factory.FireAlarm(pData.strDevice, pData.nTime);
+		
 		/* Call the callback */
 		XGuard guard(m_cMutex);
 		FunctionEventNotifyMap::iterator it = m_NotifyMap.begin(); 

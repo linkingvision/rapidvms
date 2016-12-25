@@ -12,7 +12,8 @@
 inline ClientFactory::ClientFactory(VidEnv &pEnv)
 :m_env(pEnv)
 {
-    m_SysPath.Open(m_env.GetAppConfPath("clientsystem"));
+    //astring strTemp = m_env.GetAppConfPath("clientsystem");
+    //m_SysPath.Open(strTemp);
 	/* Create the stor factory */
     m_StorFactory = new StorFactory(m_Conf);
 }
@@ -22,9 +23,10 @@ inline ClientFactory::~ClientFactory()
 	delete m_StorFactory;
 }
 
-inline BOOL ClientFactory::SetSystemPath(astring &strPath)
+inline BOOL ClientFactory::SetSystemPath(astring strPath)
 {
-    return m_SysPath.SetSystemPath(strPath);
+    //return m_SysPath.SetSystemPath(strPath);
+    return TRUE;
 }
 
 inline BOOL ClientFactory::GetExportPath(astring &strPath)
@@ -52,13 +54,13 @@ inline BOOL ClientFactory::SetExportPath(astring &strPath)
 inline BOOL ClientFactory::Init()
 {
 	astring strPath;
-	if (m_SysPath.GetSystemPath(strPath) == FALSE)
-	{
-	    SetSystemPath(m_env.GetConfDir());
-	}
+	//if (m_SysPath.GetSystemPath(strPath) == FALSE)
+	//{
+	//    SetSystemPath(m_env.GetConfDir());
+	//}
 	printf("Sys path %s\n", strPath.c_str());
-	
-	m_Conf.Open(m_env.GetAppConfPath("clientconfig"));
+	astring strConf = m_env.GetAppConfPath("clientconfig");
+	m_Conf.Open(strConf);
 
 	/* Init export path */
 	astring strExportPath;

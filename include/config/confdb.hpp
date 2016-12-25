@@ -33,7 +33,7 @@ public:
 
 	}
 
-	s32 Open(astring & pPath);
+	s32 Open(astring  pPath);
 public:
 	bool CameraRecordTemplSet(astring strCameraId, astring strTempl);
 	bool FindCamera(astring strCameraId);

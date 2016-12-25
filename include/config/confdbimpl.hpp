@@ -28,69 +28,7 @@ inline void VSCStorServerConfDefault(VidStorServerConf &pData)
 	return;
 }
 
-#if 0
-inline BOOL SysConfDataDefault(VSCConfData &pConf)
-{
-	pConf.data.conf.DeviceNum = 0;
-	for (s32 i = 0; i < CONF_MAP_MAX; i ++)
-	{
-		pConf.data.conf.DeviceMap[i] = CONF_MAP_INVALID_MIN;
-	}
-	for (s32 i = 0; i < CONF_MAP_MAX; i ++)
-	{
-		pConf.data.conf.VIPCMap[i] = CONF_MAP_INVALID_MIN;
-	}
-
-	pConf.data.conf.RTSPServerPort = VSC_RTSP_DEFAULT_PORT;
-	strcpy(pConf.data.conf.MulticastStartIPV4, "226.0.0.1");
-	pConf.data.conf.OAPIPort = VSC_OAPI_DEFAULT_PORT;
-	pConf.data.conf.VHTTPServerPort = VSC_VHTTPS_DEFAULT_PORT;
-	pConf.data.conf.VHLSServerPort = VSC_VHLSS_DEFAULT_PORT;
-	pConf.data.conf.VHTTPSSLServerPort = VSC_VHTTPS_SSL_DEFAULT_PORT;
-
-    return TRUE;
-}
-
-inline BOOL VmsConfDataDefault(VSCVmsData &pConf)
-{
-	memset(&pConf, 0, sizeof(VSCVmsData));
-
-	for (s32 i = 0; i < CONF_VMS_NUM_MAX; i ++)
-	{
-	    	pConf.data.conf.vms[i].nId = i;
-		pConf.data.conf.vms[i].Used = 0;
-	}
-
-    return TRUE;
-}
-
-inline BOOL ViewConfDataDefault(VSCViewData &pConf)
-{
-	memset(&pConf, 0, sizeof(VSCViewData));
-
-	for (s32 i = 0; i < CONF_VIEW_NUM_MAX; i ++)
-	{
-	    	pConf.data.conf.view[i].nId = i;
-		pConf.data.conf.view[i].Used = 0;
-	}
-
-    return TRUE;
-}
-
-inline BOOL VGroupConfDataDefault(VSCVGroupData &pConf)
-{
-	memset(&pConf, 0, sizeof(VSCVGroupData));
-
-	for (s32 i = 0; i < CONF_VGROUP_NUM_MAX; i ++)
-	{
-	    	pConf.data.conf.group[i].nId = i;
-			pConf.data.conf.group[i].Used = 0;
-	}
-
-    return TRUE;
-}
-#endif
-inline s32 ConfDB::Open(astring & pPath)
+inline s32 ConfDB::Open(astring  pPath)
 {
 	m_Options.create_if_missing = true;
 	leveldb::Status status = leveldb::DB::Open(m_Options, pPath, &m_pDb);

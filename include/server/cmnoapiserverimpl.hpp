@@ -27,7 +27,7 @@ void CmnOAPIServerSession::run()
 	while(1)
 	{
 		QCoreApplication::processEvents();
-		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header));
+		s32 nRet = m_pSocket->Recv((void *)&header, sizeof(header), XDuration(MSECS, 500));
 		if (nRet == sizeof(header) && server.Process(header) == TRUE)
 		{
 			//printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
@@ -37,7 +37,11 @@ void CmnOAPIServerSession::run()
 		{
 			if (m_pSocket->Valid() == true)
 			{
-				QCoreApplication::processEvents();
+				QCoreApplication::processEvents();				
+				if (nRet == 0)				
+				{					
+					ve_sleep(20);				
+				}
 				//printf("%s---%d %d\n", __FILE__, __LINE__, nRet);
 				continue;
 			}else

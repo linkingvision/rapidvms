@@ -63,7 +63,7 @@ public:
 public:
 	/* Init function */
 	BOOL Init();
-	BOOL SetSystemPath(astring &strPath);
+	BOOL SetSystemPath(astring strPath);
 	ClientConfDB &GetConfDB(){return m_Conf;};
 	
 public:
@@ -112,8 +112,8 @@ private:
 
 private:
 	ClientConfDB m_Conf;
-	SysDB m_SysPath;
-	VidEnv m_env;
+	//SysDB m_SysPath;
+	VidEnv &m_env;
 };
 
 typedef ClientFactory* LPClientFactory;

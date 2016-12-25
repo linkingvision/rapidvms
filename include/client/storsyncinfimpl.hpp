@@ -256,7 +256,7 @@ inline bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPas
 	return false;		
 }
 inline bool StorSyncInf::GetLic(astring &pLic, astring &strHostId, 
-							int &ch, astring &type, astring &expireTime)
+							int &ch, astring &type, astring &startTime, astring &expireTime)
 {
 	if (m_bConnected == false)
 	{
@@ -275,7 +275,7 @@ inline bool StorSyncInf::GetLic(astring &pLic, astring &strHostId,
 			&& header.cmd == OAPI_GET_LIC_RSP)
 	{
 
-		pClient.ParseLic(m_pRecv, header.length, pLic, strHostId, ch, type, expireTime);
+		pClient.ParseLic(m_pRecv, header.length, pLic, strHostId, ch, type, startTime, expireTime);
 
 		return true;
 	}
