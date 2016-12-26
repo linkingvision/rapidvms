@@ -20,7 +20,7 @@
 
 
 #### Release Version ####
-[https://sourceforge.net/projects/vscloud/](https://sourceforge.net/projects/vscloud/)
+[https://github.com/veyesys/version/tree/master/rapidvms](https://github.com/veyesys/version/tree/master/rapidvms)
 
 ### Features list ###
 	ONVIF profile S support.
