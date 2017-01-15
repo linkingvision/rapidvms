@@ -105,31 +105,19 @@ BOOL CameraParam::CheckOnline()
 
     astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
-     VDC_DEBUG( "%s  TryCheckDevice Begin \n",__FUNCTION__);
+     VDC_DEBUG( "%s  TryCheckDevice Begin \n", __FUNCTION__);
      if (TryCheckDevice(IP, Port) == false)
      {
-       VDC_DEBUG( "%s TryCheckDevice False \n",__FUNCTION__);    
+       VDC_DEBUG( "%s TryCheckDevice False \n", __FUNCTION__);    
 	return false;
      }
-     VDC_DEBUG( "%s  TryCheckDevice End \n",__FUNCTION__);
-    DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
-                            User.c_str(), Password.c_str());
-    
-    if (pDm  == NULL)
-    {
-        VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
-        return FALSE;
-    }
-    
-    Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
-    if (pMediaCap == NULL)
-    {
-        VDC_DEBUG( "%s getCapabilitiesMedia error \n",__FUNCTION__);
-        delete pDm;
-        return FALSE;
-    }
 
-    return TRUE;
+     if (VVidOnvifC::CheckOnline(User, Password, OnvifCameraService) == true)
+     {
+         return true;
+     }
+
+    return false;
 }
 
 BOOL CameraParam::UpdateUrlOnvif()
@@ -144,125 +132,87 @@ BOOL CameraParam::UpdateUrlOnvif()
 	astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 	astring url = "rtsp://" + IP + ":" + "554" + "/";
 	astring urlSubStream = "rtsp://" + IP + ":" + "554" + "/";
+	VVidOnvifProfileMap profileMap;
 
-	DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
-	                        User.c_str(), Password.c_str());
-
-	if (pDm  == NULL)
+	if (VVidOnvifC::GetProfiles(User, Password, OnvifCameraService, profileMap) == true)
 	{
-	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
-	    return FALSE;
-	}
-
-	Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
-	if (pMediaCap == NULL)
+		VDC_DEBUG( "%s new Got profiles size %d \n",__FUNCTION__, profileMap.size());
+	}else
 	{
-	    VDC_DEBUG( "%s getCapabilitiesMedia error \n",__FUNCTION__);
-	    delete pDm;
-	    return FALSE;
-	}
-
-	MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
-	                            User.c_str(), Password.c_str());
-	if (pMedia == NULL)
-	{
-	    VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    return FALSE;
-	}
-
-	Profiles *pProfileS = pMedia->getProfiles();
-	if (pProfileS == NULL)
-	{
-	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    delete pMedia;
-	    return FALSE;
-	}
-
-	if (pProfileS != NULL && pProfileS->m_toKenPro.size() <= 0)
-	{
-	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    delete pMedia;
-	    return FALSE;
+		VDC_DEBUG( "%s %s Get Stream url failed \n",__FUNCTION__, 
+					OnvifCameraService.c_str());
+		return false;
 	}
 	
-	if (pProfileS->m_toKenPro.size() > 0)
+	if (profileMap.size() > 0)
 	{
-	    VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
-		QString strToken;
+		astring strToken;
+	    	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, profileMap.size());
 		if (m_Conf.bprofiletoken() == true)
 		{
 			strToken = m_Conf.strprofiletoken1().c_str();
 			//Find which token is in the OnvifProfileToken, and then use the token
 		}else
 		{
-			strToken = pProfileS->m_toKenPro[0];
-			m_Conf.set_strprofiletoken1(pProfileS->m_toKenPro[0].toStdString().c_str());
+			strToken = profileMap.begin()->first;
+			m_Conf.set_strprofiletoken1(strToken.c_str());
 		}
-		StreamUri *pUri = pMedia->getStreamUri(strToken);
-		if (pUri)
+
+		VVidOnvifProfileMap::iterator it;
+		it = profileMap.find(strToken);
+		if (it != profileMap.end())
 		{
-			m_strUrl = pUri->uri().toStdString();
-			if (m_strUrl.length() <= 0)
+			if ((*it).second.bGotUrl == true)
 			{
-				bGotUrl = FALSE;
-			}else
-			{
-				bGotUrl = TRUE;
-				astring strRtsp = Poco::replace(m_strUrl, "&amp;", "&");
-				m_strUrl = strRtsp;
+				m_strUrl = (*it).second.strRtspUrl;
+				if (m_strUrl.size() > 0)
+				{
+					bGotUrl = TRUE;
+				}
 			}
-			delete pUri;
 		}
 	}
-	if (pProfileS->m_toKenPro.size() > 1)
+
+	if (profileMap.size() > 1)
 	{
-		VDC_DEBUG( "%s m_toKenPro SubStream size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
-		QString strToken;
+		astring strToken;
+	    	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, profileMap.size());
 		if (m_Conf.bprofiletoken() == true)
 		{
 			strToken = m_Conf.strprofiletoken2().c_str();
+			//Find which token is in the OnvifProfileToken, and then use the token
 		}else
 		{
-			strToken = pProfileS->m_toKenPro[1];
-			m_Conf.set_strprofiletoken2(pProfileS->m_toKenPro[1].toStdString().c_str());
+			VVidOnvifProfileMap::iterator it = profileMap.begin();
+			it ++;
+			strToken = (*it).first;
+			m_Conf.set_strprofiletoken2(strToken.c_str());
 		}
-		StreamUri *pUri = pMedia->getStreamUri(strToken);
-		if (pUri)
+
+		VVidOnvifProfileMap::iterator it;
+		it = profileMap.find(strToken);
+		if (it != profileMap.end())
 		{
-			m_strUrlSubStream = pUri->uri().toStdString();
-			
-			if (m_strUrl.length() <= 0)
+			if ((*it).second.bGotUrl == true)
 			{
-				bGotUrl = FALSE;
-			}else
-			{
-				m_bHasSubStream = TRUE;
-				bGotUrl = TRUE;
-				astring strRtsp = Poco::replace(m_strUrlSubStream, "&amp;", "&");
-				m_strUrlSubStream = strRtsp;
+				m_strUrlSubStream = (*it).second.strRtspUrl;
+				if (m_strUrlSubStream.size() > 0)
+				{
+					bGotUrl = TRUE;
+					m_bHasSubStream = TRUE;
+				}
 			}
-			delete pUri;
 		}
 	}
 
 	/* Cache the stream profile list */
-	
-	for ( int i=0; i!=pProfileS->m_toKenPro.size(); ++i )
+	VVidOnvifProfileMap::iterator it = profileMap.begin();
+	for ( int i=0; i!=profileMap.size(); ++i, ++ it)
 	{
 		VidStream *pNewStream = m_cStreamList.add_cvidstream();
-		s8 profileDisplay[1024];
-		sprintf(profileDisplay, "%s %dx%d %dfps %dbps", 
-				pProfileS->m_encodingVec.at(i).toStdString().c_str(), pProfileS->m_widthVec.at(i), 
-				pProfileS->m_heightVec.at(i), pProfileS->m_frameRateLimitVec.at(i), 
-				pProfileS->m_bitrateLimitVec.at(i));
-		pNewStream->set_strname( profileDisplay);
-		pNewStream->set_strtoken( pProfileS->m_toKenPro.at(i).toStdString());
+		
+		pNewStream->set_strname((*it).second.strNameDisplay);
+		pNewStream->set_strtoken((*it).first);
 	}
 
 	/* rtsp://admin:12345@192.168.1.1:554/Streaming/Channels/1\
@@ -270,15 +220,10 @@ BOOL CameraParam::UpdateUrlOnvif()
 	//astring urlWithUser = "rtsp://" + User + ":" + Password + "@";
 	//Replace(strUrl, "rtsp://", urlWithUser.c_str());
 
-	if (bGotUrl == TRUE)
+	if (bGotUrl == true)
 	{
 		m_bOnvifUrlGetted = TRUE;
 	}
-
-	delete pDm;
-	delete pMediaCap;
-	delete pMedia;
-	delete pProfileS;
 	
 	return bGotUrl;
 }
@@ -295,12 +240,6 @@ BOOL CameraParam::UpdateUrl()
     if (m_Conf.ntype()== VID_RTSP
 	|| m_Conf.ntype()== VID_MJPEG)
     {
-#if 0
-        char url[512];
-        sprintf(url, "rtsp://%s:%s%s",
-                m_Conf.data.conf.IP,
-                m_Conf.data.conf.Port, m_Conf.data.conf.RtspLocation);
-#endif
 	Poco::URI rtspUrl(m_Conf.strrtspurl());
 	astring strRtsp;
 	if (rtspUrl.empty() != true)
@@ -341,13 +280,12 @@ Camera::Camera(ConfDB &pConfDB, VDB &pVdb, VHdfsDB &pVHdfsdb,
 :m_bStarted(FALSE), m_param(pParam),
 m_pVdb(pVdb), 
 m_ptzInited(FALSE), 
-m_ptz(NULL), m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
+m_bGotInfoData(FALSE), m_nDataRef(0), m_bGotInfoSubData(FALSE),
 m_nSubDataRef(0), 
 m_pvPlay(new VPlay), m_pvPlaySubStream(new VPlay), 
 m_vPlay(*m_pvPlay), m_vPlaySubStream(*m_pvPlaySubStream), 
 m_pConfDB(pConfDB),
 m_cRecordWrapper(pVdb, pParam.m_Conf.strid(), m_cSchedMap, pCallback, pCallbackParam)
-
 {	
 	m_param = pParam;
 	m_param.UpdateDefaultUrl();
@@ -355,7 +293,7 @@ m_cRecordWrapper(pVdb, pParam.m_Conf.strid(), m_cSchedMap, pCallback, pCallbackP
 
 	memset(&m_iFrameCache, 0, sizeof(m_iFrameCache));
 
-	return ;
+	return;
 }
 
 Camera::~Camera()
@@ -403,12 +341,7 @@ bool Camera::UpdateRecSched(VidCamera &pCam)
 	}
 		
 	RecordSchedWeek sched(strSched);
-#if 0
-	if (m_pConfDB.GetRecSched(REC_SCHED_ALL_DAY, sched) == true)
-	{
-		m_cSchedMap[REC_SCHED_ALL_DAY] = sched;
-	}
-#endif
+
 	m_cSchedMap["default"] = sched;
 	
 	m_cRecordWrapper.UpdateSchedMap(m_cSchedMap);
@@ -501,7 +434,6 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 	{
 		return TRUE;
 	}
-	QString strToken;
 
 	astring IP = m_param.m_Conf.strip();
 	astring Port = m_param.m_Conf.strport();
@@ -511,84 +443,8 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 
 	astring OnvifCameraService = "http://" + IP + ":" + Port + OnvifAddress;
 
-	DeviceManagement *pDm = new DeviceManagement(OnvifCameraService.c_str(), 
-	                        User.c_str(), Password.c_str());
-    
-	if (pDm  == NULL)
-	{
-	    VDC_DEBUG( "%s new DeviceManagement error \n",__FUNCTION__);
-	    return FALSE;
-	}
+	m_ptz.Init(User, Password, OnvifCameraService);
 
-	Capabilities * pMediaCap = pDm->getCapabilitiesMedia();
-	if (pMediaCap == NULL)
-	{
-	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-	    delete pDm;
-	    return FALSE;
-	}
-
-	MediaManagement *pMedia = new MediaManagement(pMediaCap->mediaXAddr(), 
-	                            User.c_str(), Password.c_str());
-	if (pMedia == NULL)
-	{
-	    VDC_DEBUG( "%s new MediaManagement error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    return FALSE;
-	}
-
-	Profiles *pProfileS = pMedia->getProfiles();
-	if (pProfileS == NULL)
-	{
-	    VDC_DEBUG( "%s new getProfiles error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    delete pMedia;
-	    return FALSE;
-	}
-	if (pProfileS->m_toKenPro.size() > 0)
-	{
-	    	VDC_DEBUG( "%s m_toKenPro size %d \n",__FUNCTION__, pProfileS->m_toKenPro.size());
-		
-		if (m_param.m_Conf.bprofiletoken() == true)
-		{
-			strToken = m_param.m_Conf.strprofiletoken1().c_str();
-		}else
-		{
-			strToken = pProfileS->m_toKenPro[0];		
-		}
-	    
-	}else
-	{
-		return FALSE;
-	}
-
-	Capabilities * pPtz = pDm->getCapabilitiesPtz();
-	if (pPtz == NULL)
-	{
-	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-	    delete pDm;
-	    delete pMediaCap;
-	    delete pMedia;
-	    return FALSE;
-	}
-
-	string strPtz = pPtz->ptzXAddr().toStdString();
-	m_ptz  = new PtzManagement(pPtz->ptzXAddr(), 
-	                            User.c_str(), Password.c_str());
-	if (m_ptz == NULL)
-	{
-	    VDC_DEBUG( "%s getCapabilitiesPtz error \n",__FUNCTION__);
-	delete pDm;
-	delete pMediaCap;
-	delete pMedia;
-	delete pPtz;
-	return FALSE;
-	}
-
-	m_continuousMove.setProfileToken(strToken);
-	m_stop.setProfileToken(strToken);
 	m_ptzInited = TRUE;
 }
 
@@ -599,72 +455,9 @@ CameraStatus Camera::CheckCamera(astring strUrl, astring strUrlSubStream,
 		VDC_DEBUG( "%s PTZ Camera is Offline\n",__FUNCTION__);
 		return TRUE;
 	}
-	switch (action)
-	{
-		case F_PTZ_UP:	
-		{
-			m_continuousMove.setPanTiltX(0);
-			m_continuousMove.setPanTiltY(speed);
-			m_continuousMove.setZoomX(0);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_DOWN:	
-		{
-			m_continuousMove.setPanTiltX(0);
-			m_continuousMove.setPanTiltY(0 - speed);
-			m_continuousMove.setZoomX(0);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_LEFT:	
-		{
-			m_continuousMove.setPanTiltX(0 - speed);
-			m_continuousMove.setPanTiltY(0);
-			m_continuousMove.setZoomX(0);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_RIGHT:	
-		{
-			m_continuousMove.setPanTiltX(speed);
-			m_continuousMove.setPanTiltY(0);
-			m_continuousMove.setZoomX(0);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_ZOOM_IN:	
-		{
-			m_continuousMove.setPanTiltX(0);
-			m_continuousMove.setPanTiltY(0);
-			m_continuousMove.setZoomX(speed);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_ZOOM_OUT:	
-		{
-			m_continuousMove.setPanTiltX(0);
-			m_continuousMove.setPanTiltY(0);
-			m_continuousMove.setZoomX(0 - speed);
-			m_continuousMove.setTimeout("PT0H0M3.600S");
-			m_ptz->continuousMove(&m_continuousMove);
-			break;
-		}
-		case F_PTZ_STOP:	
-		{
-			m_stop.setPanTilt(true);
-			m_stop.setZoom(false);
-			m_ptz->stop(&m_stop);
-			break;
-		}
-		default:
-			break;
-	}
+	m_ptz.PtzAction((VVidOnvifCPtzAct)action, speed);
+
+	return true;
 }
 
 BOOL Camera::FireAlarm(s64 nStartTime)

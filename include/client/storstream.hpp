@@ -27,7 +27,7 @@ class StorStream: public QThread
 	Q_OBJECT
 public:
 	StorStream(VidStor &stor, astring strId, unsigned int nStream, 
-		bool bPlayback = false, u32 nPlaytime = 0);
+		bool bPlayback = false, u32 nPlaytime = 0, bool bHWAccel = false);
 	~StorStream();
 #ifdef WIN32
 	bool AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_D3D);

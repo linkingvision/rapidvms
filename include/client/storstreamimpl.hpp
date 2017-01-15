@@ -3,12 +3,12 @@
 #define __VSC_STOR_STREAM_IMPL_H_
 
 inline StorStream::StorStream(VidStor &stor, astring strId, unsigned int nStream, 
-		bool bPlayback, u32 nPlaytime)
+		bool bPlayback, u32 nPlaytime, bool bHWAccel)
 :m_strId(strId), m_nStream(nStream), m_pCallback(NULL), m_pParam(NULL), 
 m_Quit(false), m_pSocket(new XSocket), m_stor(stor), m_nLastTime(0), 
 m_bPlayback(bPlayback), m_nPlaytime(nPlaytime), m_bOnline(false), m_bPbPause(false)
 {
-	m_play.Init(FALSE, "fake", "fake", "fake", false, VSC_CONNECT_TCP);
+	m_play.Init(FALSE, "fake", "fake", "fake", bHWAccel, VSC_CONNECT_TCP);
 	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 inline StorStream::~StorStream()
@@ -170,7 +170,7 @@ inline void StorStream::run()
 			pClient.Setup(m_stor.struser(), m_stor.strpasswd(), "Nonce");
 			
 	
-			m_pSocket->SetRecvTimeout(1 * 300);
+			m_pSocket->SetRecvTimeout(1 * 1000);
 			/* If 20s do not get data, and break the current connection */
 			while(m_Quit != true && (nNoData <= 50 || m_bPlayback == TRUE))
 			{

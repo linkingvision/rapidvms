@@ -36,6 +36,8 @@
 #include "Poco/URI.h"
 #include "Poco/String.h"
 
+#include "vvidonvif/vvidonvifc.hpp"
+
 using namespace VidConf;
 using namespace UtilityLib;
 using namespace std;
@@ -221,9 +223,7 @@ private:
 	RecordWrapper m_cRecordWrapper;
 	
 private:
-	ContinuousMove m_continuousMove;
-	ONVIF::Stop m_stop;
-	PtzManagement *m_ptz;
+	VVidOnvifCPtz m_ptz;
 	BOOL m_ptzInited;
 
 	InfoFrame m_infoData;

@@ -105,7 +105,7 @@ public:
 		Poco::Environment::set("QT_QPA_FONTDIR", GetAppDir() + "/lib/fonts/");
 		Poco::Environment::set("QT_QPA_PLATFORM_PLUGIN_PATH", GetAppDir() + "/plugins/platforms/");
 #endif
-		PrintEnv();
+		//PrintEnv();
 		return true;
 	}
 	
