@@ -1,21 +1,38 @@
+$(eval version=$(shell grep "define VE_VERSION" include/config/confver.hpp | sed 's|.*VERSION "\(.*\)"|\1|g'))
+REL=Rapidvms-$(version)-$(VE_OS)-$(VE_ARCH)bit
+RELC=RapidClient-$(version)-$(VE_OS)-$(VE_ARCH)bit
 
-#Get OS version
-OS=`lsb_release -si`
-ARCH=`uname -m | sed 's/x86_//;s/i[3-6]86/32/'`
-VER=`lsb_release -sr`
-REL=OpenCVR-$(OS)-$(VER)-$(ARCH)bit
-
+ifeq ($(strip $(VE_CROSS_COMPILER)), )
 subdirs=3rdparty xcmnlib velib veuilib vecvr client
+else
+#embeded device only has the server
+subdirs=3rdparty xcmnlib velib veuilib vecvr 
+endif
 
-all:
-	chmod +x ./output/linux/*.sh
+
+all: prepare
 	for d in $(subdirs); do (cd $$d; (if  test -e "Makefile"; then $(MAKE) $(MFLAGS); fi;) ); done
-	strip ./output/$(VE_INSTALL_DIR)/lib/*.so
+ifeq ($(strip $(VE_OS)), macos)
+	$(VE_CROSS_COMPILER)strip ./output/$(VE_INSTALL_DIR)/lib/*.dylib
+else
+	$(VE_CROSS_COMPILER)strip ./output/$(VE_INSTALL_DIR)/lib/*.so
+endif
+
+prepare:
+	mkdir -p ./output/$(VE_INSTALL_DIR)/
+ifneq ($(strip $(VE_OS)), macos)
+	chmod +x ./output/linux/*.sh
 	cp -r ./output/linux/*.sh ./output/$(VE_INSTALL_DIR)/
 	cp -r ./output/linux/service/ ./output/$(VE_INSTALL_DIR)/
+else
+	chmod +x ./output/macos/*.sh
+	cp -r ./output/macos/* ./output/$(VE_INSTALL_DIR)/
+endif
+
 clean:
 	for d in $(subdirs); do (cd $$d; (if  test -e "Makefile"; then $(MAKE) clean; fi;) ); done
-	#rm -rf ./linux/*.so ./linux/bin ./linux/lib/ ./linux/share ./linux/ssl ./linux/include 
+	#rm -rf ./linux/*.so ./linux/bin ./linux/lib/ ./linux/share ./linux/ssl ./linux/include
+	rm -rf ./output/host/ 
 
 install:
 	for d in $(subdirs); do (cd $$d; (if  test -e "Makefile"; then $(MAKE) install; fi;) ); done
@@ -34,15 +51,29 @@ disttest:
 rel:
 	echo $(REL)
 	rm -rf ./$(REL)
-	cp -r ./output/$(VE_INSTALL_DIR) $(REL)
+	mkdir -p ./output/$(VE_INSTALL_DIR)/translations;
+	cp -rf client/src/main/translations/*.qm ./output/$(VE_INSTALL_DIR)/translations;
+	cp -rf veuilib/src/translations/*.qm ./output/$(VE_INSTALL_DIR)/translations;
+ifneq ($(strip $(VE_OS)), macos)
+	cp -r ./output/linux/*.sh ./output/$(VE_INSTALL_DIR)/
+	cp -r ./output/linux/service/ ./output/$(VE_INSTALL_DIR)/
+else
+	cp -r ./output/macos/* ./output/$(VE_INSTALL_DIR)/
+endif
+	cp -rf ./output/$(VE_INSTALL_DIR) $(REL)
 	rm -rf ./$(REL)/lib/x86_64-linux-gnu
 	rm -rf ./$(REL)/examples
 	rm -rf ./$(REL)/doc
 	rm -rf ./$(REL)/mkspecs
-	mv ./$(REL)/bin/OpenCVR* .
+	mv ./$(REL)/bin/openssl .
 	rm -rf ./$(REL)/bin/*
-	mv ./OpenCVRC* ./$(REL)/bin/
-	mv ./OpenCVRS* ./$(REL)/bin/
+ifeq ($(strip $(VE_CROSS_COMPILER)), )
+	rm -rf ./RapidS* 
+else
+	rm -rf ./$(REL)/lib/libcover.so
+	rm -rf ./$(REL)/*Client*
+endif
+	mv ./openssl ./$(REL)/bin/
 	rm -rf ./$(REL)/include
 	rm -rf ./$(REL)/share
 	rm -rf ./$(REL)/ssl
@@ -51,7 +82,28 @@ rel:
 	rm -rf ./$(REL)/lib/pkgconfig
 	rm -rf ./$(REL)/lib/*.dbg
 	rm -rf ./$(REL)/lib/libSDL*
-	strip ./$(REL)/bin/OpenCVR*
-	strip ./$(REL)/lib/*.so
-	strip ./$(REL)/lib/*.so.*
+ifeq ($(strip $(VE_OS)), macos)
+	$(VE_CROSS_COMPILER)strip ./$(REL)/RapidClient.app/Contents/MacOS/Rapid*
+	$(VE_CROSS_COMPILER)strip ./$(REL)/RapidStor.app/Contents/MacOS/Rapid*
+else
+	$(VE_CROSS_COMPILER)strip ./$(REL)/Rapid*
+	$(VE_CROSS_COMPILER)strip ./$(REL)/lib/*.so
+	$(VE_CROSS_COMPILER)strip ./$(REL)/lib/*.so.*
+endif
+
+#release client only for macos
+relc:
+ifeq ($(strip $(VE_OS)), macos)
+	mkdir -p ./$(RELC)/RapidClient.app;
+	cp -Rf ./output/$(VE_INSTALL_DIR)/RapidClient.app/ $(RELC)/RapidClient.app/;
+	cp -rf ./output/$(VE_INSTALL_DIR)/lib/*.* ./$(RELC)/RapidClient.app/Contents/MacOS/
+	#$(VE_CROSS_COMPILER)strip ./$(RELC)/RapidClient.app/Contents/MacOS/Rapid*
+	#$(VE_CROSS_COMPILER)strip ./$(RELC)/RapidClient.app/Contents/MacOS/*.so
+	#$(VE_CROSS_COMPILER)strip ./$(RELC)/RapidClient.app/Contents/MacOS/*.dynlib
+	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/*.a
+	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/pkgconfig
+	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/*.dbg
+	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/libSDL*
+endif
+	
 	

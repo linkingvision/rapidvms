@@ -1,4 +1,4 @@
-export VE_PATH=/home/user/work/opencvr/
+export VE_PATH=/home/user/opencvr/
 
 export VE_OS=`lsb_release -si`
 export VE_ARCH=`uname -m | sed 's/x86_//;s/i[3-6]86/32/'`

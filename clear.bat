@@ -8,6 +8,10 @@ rmdir  veuilib\onvifcpplib\win32\Release /s /q
 rmdir  veuilib\onvifcpplib\win32\Debug /s /q
 rmdir  veuilib\onvifcpplib\win32\x64 /s /q
 
+rmdir  veuilib\rtspserver\prj_win32\win32\Release /s /q
+rmdir  veuilib\rtspserver\prj_win32\win32\Debug /s /q
+rmdir  veuilib\rtspserver\prj_win32\win32\x64 /s /q
+
 
 FOR /D %%p IN ("xcmnlib\prj_win32\*.*") DO rmdir "%%p" /s /q
 FOR /D %%p IN ("veuilib\prj_win32\*.*") DO rmdir "%%p" /s /q

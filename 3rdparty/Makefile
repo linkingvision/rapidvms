@@ -1,15 +1,14 @@
 -include ../common.mk
 
 ifeq ($(strip $(PRJ_CROSS)), )
-all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build curl_build
+ifeq ($(strip $(VE_OS)), macos)
+all:poco_build ffmpeg_build openssl_build_macos leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build
+else
+all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build 
 endif
 
-ifeq ($(strip $(VE_OS)), OSX)
-all:poco_build ffmpeg_build openssl_build_osx leveldb_build qt_build  qtxmlpatterns_build  onvifc_build protobuf_build curl_build
-endif
-
-ifneq ($(strip $(PRJ_CROSS)), )
-all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build protobuf_build_cross curl_build_cross
+else
+all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build curl_build_cross protobuf_build_cross
 endif
 
 
@@ -33,11 +32,12 @@ ffmpeg_build_cross:
 	$(MAKE) -C ffmpeg && $(MAKE) -C ffmpeg install;
 
 openssl_build:
-	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
+	#cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
+	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ shared;
 	$(MAKE) -C openssl && $(MAKE) -C openssl install;
 
-openssl_build_osx:
-	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./Configure darwin64-x86_64-cc --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
+openssl_build_macos:
+	cd openssl; chmod +x ./Configure; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./Configure darwin64-x86_64-cc --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
 	$(MAKE) -C openssl && $(MAKE) -C openssl install_sw;
 
 openssl_build_cross:
@@ -68,10 +68,10 @@ protobuf_build_cross:
 	$(MAKE) -C protobuf install; 
 
 qt_build:
-	cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
-	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -release -make libs -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
-	$(MAKE) -C qt/qtbase-opensource-src-5.5.1; 
-	$(MAKE) -C qt/qtbase-opensource-src-5.5.1 install; 
+	cd qt && tar zxvf qtbase-opensource-src-5.7.1.tar.gz ; 
+	cd qt/qtbase-opensource-src-5.7.1; chmod +x ./configure ;./configure  -confirm-license -release -make libs -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
+	$(MAKE) -C qt/qtbase-opensource-src-5.7.1; 
+	$(MAKE) -C qt/qtbase-opensource-src-5.7.1 install; 
 
 qt_build_cross:
 	cd qt && rm -rf pcre-8.39
@@ -79,29 +79,29 @@ qt_build_cross:
 	cd qt/pcre-8.39; chmod +x ./configure ; ./configure --enable-pcre16  CC=$(VE_CROSS_COMPILER)gcc --host=$(VE_CROSS_TOOL)  --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
 	$(MAKE) -C qt/pcre-8.39;
 	$(MAKE) -C qt/pcre-8.39 install; 
-	cd qt && tar zxvf qtbase-opensource-src-5.5.1.tar.gz ; 
-	cp -r qt/linux-cross-g++ qt/qtbase-opensource-src-5.5.1/mkspecs/devices
-	cd qt/qtbase-opensource-src-5.5.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -device linux-cross-g++ -device-option CROSS_COMPILE=$(VE_CROSS_COMPILER) -hostprefix $(VE_PATH)/output/$(VE_INSTALL_DIR)/  -release -make libs -no-qpa-platform-guard -L $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/ -I $(VE_PATH)/output/$(VE_INSTALL_DIR)/include/ 
+	cd qt && tar zxvf qtbase-opensource-src-5.7.1.tar.gz ; 
+	cp -r qt/linux-cross-g++ qt/qtbase-opensource-src-5.7.1/mkspecs/devices
+	cd qt/qtbase-opensource-src-5.7.1; chmod +x ./configure ;./configure  -confirm-license -opensource --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -device linux-cross-g++ -device-option CROSS_COMPILE=$(VE_CROSS_COMPILER) -hostprefix $(VE_PATH)/output/$(VE_INSTALL_DIR)/  -release -make libs -no-qpa-platform-guard -L $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/ -I $(VE_PATH)/output/$(VE_INSTALL_DIR)/include/ 
 	#-system-pcre
-	$(MAKE) -C qt/qtbase-opensource-src-5.5.1; 
-	$(MAKE) -C qt/qtbase-opensource-src-5.5.1 install; 
+	$(MAKE) -C qt/qtbase-opensource-src-5.7.1; 
+	$(MAKE) -C qt/qtbase-opensource-src-5.7.1 install; 
 
 qtscript_build:
-	cd qt && tar zxvf qtscript-opensource-src-5.5.1.tar.gz ;
-	cd qt/qtscript-opensource-src-5.5.1; qmake PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
-	$(MAKE) -C qt/qtscript-opensource-src-5.5.1; 
-	$(MAKE) -C qt/qtscript-opensource-src-5.5.1 install; 
+	cd qt && tar zxvf qtscript-opensource-src-5.7.1.tar.gz ;
+	cd qt/qtscript-opensource-src-5.7.1; qmake PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/
+	$(MAKE) -C qt/qtscript-opensource-src-5.7.1; 
+	$(MAKE) -C qt/qtscript-opensource-src-5.7.1 install; 
 qtxmlpatterns_build:
-	cd qt && tar zxvf qtxmlpatterns-opensource-src-5.5.1.tar.gz ;
-	cd qt/qtxmlpatterns-opensource-src-5.5.1;qmake PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ 
-	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.5.1; 
-	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.5.1 install;
+	cd qt && tar zxvf qtxmlpatterns-opensource-src-5.7.1.tar.gz ;
+	cd qt/qtxmlpatterns-opensource-src-5.7.1;qmake PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ 
+	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.7.1; 
+	$(MAKE) -C qt/qtxmlpatterns-opensource-src-5.7.1 install;
 curl_build:
-	cd curl; chmod +x ./configure; ./configure --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
+	cd curl; chmod +x ./configure ./install-sh; ./configure --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ --with-ssl=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C curl && $(MAKE) -C curl install;
 
 curl_build_cross:
-	cd curl; chmod +x ./configure; ./configure --host=$(VE_CROSS_TOOL) --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
+	cd curl; chmod +x ./configure ./install-sh; ./configure --host=$(VE_CROSS_TOOL) --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C curl && $(MAKE) -C curl install;
 	
 poco_clean:
@@ -118,11 +118,11 @@ onvifc_clean:
 protobuf_clean:
 	rm -rf protobuf/cmake/linux/*.*
 qt_clean:
-	rm -rf qt/qtbase-opensource-src-5.5.1	
+	rm -rf qt/qtbase-opensource-src-5.7.1	
 qtxmlpatterns_clean:
-	rm -rf qt/qtxmlpatterns-opensource-src-5.5.1;
+	rm -rf qt/qtxmlpatterns-opensource-src-5.7.1;
 
 qtscript_clean:
-	rm -rf qt/qtscript-opensource-src-5.5.1;
+	rm -rf qt/qtscript-opensource-src-5.7.1;
 curl_clean:
 	$(MAKE) -C curl clean

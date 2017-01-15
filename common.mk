@@ -1,6 +1,5 @@
-ifeq ($(strip $(PRJ_CROSS)), )
-#PRJ_CROSS=
-endif
+
+PRJ_CROSS=$(VE_CROSS_COMPILER)
 
 AS              = $(PRJ_CROSS)as
 LD              = $(PRJ_CROSS)ld
