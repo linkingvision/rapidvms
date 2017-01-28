@@ -42,6 +42,7 @@ bool OAPIConverter::Converter(VidCamera &from, oapi::OAPICamera &to)
 	to.nServerMotionStream = from.nservermotionstream();
 
 	to.strSched = from.strsched();
+	to.strMotReg = from.strmotreg();
 	
 	return TRUE;
 }
@@ -80,6 +81,7 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_nonvifevtlevel((VidConf::OnvifEventLevel)from.nOnvifEvtLevel);
 
 	to.set_strsched(from.strSched);
+	to.set_strmotreg(from.strMotReg);
 
 	return TRUE;
 }

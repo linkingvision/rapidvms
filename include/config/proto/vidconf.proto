@@ -102,6 +102,7 @@ message VidCamera {
 	OnvifEventLevel nOnvifEvtLevel = 26;//ONVIF event level
 	
 	string strSched = 27;//Record Schedule 7 x 24
+	string strMotReg = 28;//Motion Detection Reg 320 * 240
 }
 
 message VidCameraList {

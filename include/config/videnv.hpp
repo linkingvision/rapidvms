@@ -24,6 +24,7 @@ using namespace Poco::Util;
 #endif
 
 
+
 //XGuard guard(m_cMutex);
 class VidEnv : public Application
 {

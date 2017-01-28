@@ -811,6 +811,17 @@ class VidCamera : public ::google::protobuf::Message {
   ::std::string* release_strsched();
   void set_allocated_strsched(::std::string* strsched);
 
+  // optional string strMotReg = 28;
+  void clear_strmotreg();
+  static const int kStrMotRegFieldNumber = 28;
+  const ::std::string& strmotreg() const;
+  void set_strmotreg(const ::std::string& value);
+  void set_strmotreg(const char* value);
+  void set_strmotreg(const char* value, size_t size);
+  ::std::string* mutable_strmotreg();
+  ::std::string* release_strmotreg();
+  void set_allocated_strmotreg(::std::string* strmotreg);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidCamera)
  private:
 
@@ -841,6 +852,7 @@ class VidCamera : public ::google::protobuf::Message {
   ::google::protobuf::int32 nrecordstream_;
   ::google::protobuf::int32 nservermotionstream_;
   ::google::protobuf::internal::ArenaStringPtr strsched_;
+  ::google::protobuf::internal::ArenaStringPtr strmotreg_;
   int nonvifevtlevel_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
@@ -4350,6 +4362,49 @@ inline void VidCamera::set_allocated_strsched(::std::string* strsched) {
   }
   strsched_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strsched);
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strSched)
+}
+
+// optional string strMotReg = 28;
+inline void VidCamera::clear_strmotreg() {
+  strmotreg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidCamera::strmotreg() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidCamera.strMotReg)
+  return strmotreg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_strmotreg(const ::std::string& value) {
+  
+  strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidConf.VidCamera.strMotReg)
+}
+inline void VidCamera::set_strmotreg(const char* value) {
+  
+  strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strMotReg)
+}
+inline void VidCamera::set_strmotreg(const char* value, size_t size) {
+  
+  strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strMotReg)
+}
+inline ::std::string* VidCamera::mutable_strmotreg() {
+  
+  // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strMotReg)
+  return strmotreg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidCamera::release_strmotreg() {
+  
+  return strmotreg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidCamera::set_allocated_strmotreg(::std::string* strmotreg) {
+  if (strmotreg != NULL) {
+    
+  } else {
+    
+  }
+  strmotreg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmotreg);
+  // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strMotReg)
 }
 
 // -------------------------------------------------------------------

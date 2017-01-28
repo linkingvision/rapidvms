@@ -74,6 +74,7 @@
 		["unsigned int", "nOnvifEvtLevel", {"required": true}],
 		
 		["std::string", "strSched", {"required": true}],
+		["std::string", "strMotReg", {"required": true}],
 
 		["unsigned int", "bOnline", {"required": true}],
 		["unsigned int", "bRec", {"required": true}]

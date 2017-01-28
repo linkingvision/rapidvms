@@ -1710,10 +1710,11 @@ unsigned int nRecordStream;
 unsigned int nServerMotionStream;
 unsigned int nOnvifEvtLevel;
 std::string strSched;
+std::string strMotReg;
 unsigned int bOnline;
 unsigned int bRec;
 
-explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), nPreRecSec(), nPostRecSec(), nRecordStream(), nServerMotionStream(), nOnvifEvtLevel(), strSched(), bOnline(), bRec() {  }
+explicit OAPICamera():strId(), strName(), nType(), strIP(), strPort(), strUser(), strPasswd(), strONVIFAddress(), bProfileToken(), strProfileToken1(), strProfileToken2(), strFile(), strRTSPUrl(), bHWaccel(), bServerMotion(), nConnectType(), bHDFSRecord(), nPreRecSec(), nPostRecSec(), nRecordStream(), nServerMotionStream(), nOnvifEvtLevel(), strSched(), strMotReg(), bOnline(), bRec() {  }
 
 
  
@@ -1752,8 +1753,9 @@ SAXEventHandler< unsigned int > handler_19;
 SAXEventHandler< unsigned int > handler_20;
 SAXEventHandler< unsigned int > handler_21;
 SAXEventHandler< std::string > handler_22;
-SAXEventHandler< unsigned int > handler_23;
-SAXEventHandler< unsigned int > handler_24;bool has_strId;
+SAXEventHandler< std::string > handler_23;
+SAXEventHandler< unsigned int > handler_24;
+SAXEventHandler< unsigned int > handler_25;bool has_strId;
 bool has_strName;
 bool has_nType;
 bool has_strIP;
@@ -1776,6 +1778,7 @@ bool has_nRecordStream;
 bool has_nServerMotionStream;
 bool has_nOnvifEvtLevel;
 bool has_strSched;
+bool has_strMotReg;
 bool has_bOnline;
 bool has_bRec;
 
@@ -1838,8 +1841,10 @@ case 21:
 case 22:
     return "strSched";
 case 23:
-    return "bOnline";
+    return "strMotReg";
 case 24:
+    return "bOnline";
+case 25:
     return "bRec";
         default:
             break;
@@ -1890,6 +1895,7 @@ has_nRecordStream = false;
 has_nServerMotionStream = false;
 has_nOnvifEvtLevel = false;
 has_strSched = false;
+has_strMotReg = false;
 has_bOnline = false;
 has_bRec = false;
     }
@@ -1921,8 +1927,9 @@ public:
 , handler_20(&obj->nServerMotionStream)
 , handler_21(&obj->nOnvifEvtLevel)
 , handler_22(&obj->strSched)
-, handler_23(&obj->bOnline)
-, handler_24(&obj->bRec)
+, handler_23(&obj->strMotReg)
+, handler_24(&obj->bOnline)
+, handler_25(&obj->bRec)
     {
         reset_flags();
     }
@@ -2008,6 +2015,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.Null());
+
+case 25:
+    return checked_event_forwarding(handler_25.Null());
 
         default:
             break;
@@ -2097,6 +2107,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.Bool(b));
 
+case 25:
+    return checked_event_forwarding(handler_25.Bool(b));
+
         default:
             break;
         }
@@ -2184,6 +2197,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.Int(i));
+
+case 25:
+    return checked_event_forwarding(handler_25.Int(i));
 
         default:
             break;
@@ -2273,6 +2289,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.Uint(i));
 
+case 25:
+    return checked_event_forwarding(handler_25.Uint(i));
+
         default:
             break;
         }
@@ -2360,6 +2379,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.Int64(i));
+
+case 25:
+    return checked_event_forwarding(handler_25.Int64(i));
 
         default:
             break;
@@ -2449,6 +2471,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.Uint64(i));
 
+case 25:
+    return checked_event_forwarding(handler_25.Uint64(i));
+
         default:
             break;
         }
@@ -2536,6 +2561,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.Double(d));
+
+case 25:
+    return checked_event_forwarding(handler_25.Double(d));
 
         default:
             break;
@@ -2625,6 +2653,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.String(str, length, copy));
 
+case 25:
+    return checked_event_forwarding(handler_25.String(str, length, copy));
+
         default:
             break;
         }
@@ -2685,10 +2716,12 @@ else if (utility::string_equal(str, length, "\x6e\x4f\x6e\x76\x69\x66\x45\x76\x7
                          { state=21; has_nOnvifEvtLevel = true; }
 else if (utility::string_equal(str, length, "\x73\x74\x72\x53\x63\x68\x65\x64", 8))
                          { state=22; has_strSched = true; }
+else if (utility::string_equal(str, length, "\x73\x74\x72\x4d\x6f\x74\x52\x65\x67", 9))
+                         { state=23; has_strMotReg = true; }
 else if (utility::string_equal(str, length, "\x62\x4f\x6e\x6c\x69\x6e\x65", 7))
-                         { state=23; has_bOnline = true; }
+                         { state=24; has_bOnline = true; }
 else if (utility::string_equal(str, length, "\x62\x52\x65\x63", 4))
-                         { state=24; has_bRec = true; }
+                         { state=25; has_bRec = true; }
             else {
                 state = -1;
                 the_error.reset(new error::UnknownFieldError(str, length)); return false;
@@ -2771,6 +2804,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.Key(str, length, copy));
+
+case 25:
+    return checked_event_forwarding(handler_25.Key(str, length, copy));
 
             default:
                 break;
@@ -2861,6 +2897,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.StartArray());
 
+case 25:
+    return checked_event_forwarding(handler_25.StartArray());
+
         default:
             break;
         }
@@ -2949,6 +2988,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.EndArray(length));
 
+case 25:
+    return checked_event_forwarding(handler_25.EndArray(length));
+
         default:
             break;
         }
@@ -3036,6 +3078,9 @@ case 23:
 
 case 24:
     return checked_event_forwarding(handler_24.StartObject());
+
+case 25:
+    return checked_event_forwarding(handler_25.StartObject());
 
             default:
                 break;
@@ -3126,6 +3171,9 @@ case 23:
 case 24:
     return checked_event_forwarding(handler_24.EndObject(length));
 
+case 25:
+    return checked_event_forwarding(handler_25.EndObject(length));
+
             default:
                 break;
             }
@@ -3153,6 +3201,7 @@ if (!has_nRecordStream) set_missing_required("nRecordStream");
 if (!has_nServerMotionStream) set_missing_required("nServerMotionStream");
 if (!has_nOnvifEvtLevel) set_missing_required("nOnvifEvtLevel");
 if (!has_strSched) set_missing_required("strSched");
+if (!has_strMotReg) set_missing_required("strMotReg");
 if (!has_bOnline) set_missing_required("bOnline");
 if (!has_bRec) set_missing_required("bRec");
         }
@@ -3223,6 +3272,8 @@ case 23:
      handler_23.ReapError(errs); break;
 case 24:
      handler_24.ReapError(errs); break;
+case 25:
+     handler_25.ReapError(errs); break;
 
         default:
             break;
@@ -3262,6 +3313,7 @@ handler_21.PrepareForReuse();
 handler_22.PrepareForReuse();
 handler_23.PrepareForReuse();
 handler_24.PrepareForReuse();
+handler_25.PrepareForReuse();
 
     }
 };
@@ -3296,10 +3348,11 @@ w.Key("\x6e\x52\x65\x63\x6f\x72\x64\x53\x74\x72\x65\x61\x6d", 13, false); Serial
 w.Key("\x6e\x53\x65\x72\x76\x65\x72\x4d\x6f\x74\x69\x6f\x6e\x53\x74\x72\x65\x61\x6d", 19, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nServerMotionStream);
 w.Key("\x6e\x4f\x6e\x76\x69\x66\x45\x76\x74\x4c\x65\x76\x65\x6c", 14, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.nOnvifEvtLevel);
 w.Key("\x73\x74\x72\x53\x63\x68\x65\x64", 8, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strSched);
+w.Key("\x73\x74\x72\x4d\x6f\x74\x52\x65\x67", 9, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, std::string >()(w, value.strMotReg);
 w.Key("\x62\x4f\x6e\x6c\x69\x6e\x65", 7, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bOnline);
 w.Key("\x62\x52\x65\x63", 4, false); Serializer< Writer91ba8496c1e21b152cd5e401ac4c405a5e2c5dbe074adee1dd87a9ffdeff4879, unsigned int >()(w, value.bRec);
 
-        w.EndObject(25);
+        w.EndObject(26);
     }
 
 };
