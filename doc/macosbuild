@@ -1,0 +1,22 @@
+MacPorts
+port default is in /opt/local/bin, change the /etc/paths
+
+port install makeicns
+
+in your info.plist add
+
+<key>CFBundleIconFile</key>
+<string>iconfile</string>
+
+makeicns -in vscsmall.png  -out iconfile.icns
+
+
+Install before build:
+1. Yasm http://yasm.tortall.net/Download.html 
+	./configure 
+	make
+	sudo make install 
+2. Install cmake
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	
+	brew install cmake
