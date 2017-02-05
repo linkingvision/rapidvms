@@ -366,7 +366,10 @@ int EC_KEY_set_public_key_affine_coordinates(EC_KEY *key, BIGNUM *x,
     BN_CTX *ctx = NULL;
     BIGNUM *tx, *ty;
     EC_POINT *point = NULL;
-    int ok = 0, tmp_nid, is_char_two = 0;
+    int ok = 0;
+#ifndef OPENSSL_NO_EC2M
+    int tmp_nid, is_char_two = 0;
+#endif
 
     if (!key || !key->group || !x || !y) {
         ECerr(EC_F_EC_KEY_SET_PUBLIC_KEY_AFFINE_COORDINATES,
@@ -374,22 +377,25 @@ int EC_KEY_set_public_key_affine_coordinates(EC_KEY *key, BIGNUM *x,
         return 0;
     }
     ctx = BN_CTX_new();
-    if (!ctx)
-        goto err;
-
+    if (ctx == NULL)
+        return 0;
+    BN_CTX_start(ctx);
     point = EC_POINT_new(key->group);
 
     if (!point)
         goto err;
 
+    tx = BN_CTX_get(ctx);
+    ty = BN_CTX_get(ctx);
+    if (ty == NULL)
+        goto err;
+
+#ifndef OPENSSL_NO_EC2M
     tmp_nid = EC_METHOD_get_field_type(EC_GROUP_method_of(key->group));
 
     if (tmp_nid == NID_X9_62_characteristic_two_field)
         is_char_two = 1;
 
-    tx = BN_CTX_get(ctx);
-    ty = BN_CTX_get(ctx);
-#ifndef OPENSSL_NO_EC2M
     if (is_char_two) {
         if (!EC_POINT_set_affine_coordinates_GF2m(key->group, point,
                                                   x, y, ctx))
@@ -426,10 +432,9 @@ int EC_KEY_set_public_key_affine_coordinates(EC_KEY *key, BIGNUM *x,
     ok = 1;
 
  err:
-    if (ctx)
-        BN_CTX_free(ctx);
-    if (point)
-        EC_POINT_free(point);
+    BN_CTX_end(ctx);
+    BN_CTX_free(ctx);
+    EC_POINT_free(point);
     return ok;
 
 }
