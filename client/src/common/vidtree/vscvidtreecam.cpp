@@ -9,7 +9,7 @@
 
 
 VSCVidTreeCam::VSCVidTreeCam(ClientFactory &pFactory, QWidget *parent)
-: VSCVidTreeInf(pFactory, parent), m_pRoot(NULL), m_bInit(false), m_bSetChecked(false)
+: VSCVidTreeInf(pFactory, parent), m_pRoot(NULL), m_bInit(false)
 {	
 
 }
@@ -264,14 +264,17 @@ void VSCVidTreeCam::StorOnline(VidCameraId cId, bool bOnline)
 
 void VSCVidTreeCam::VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked)
 {
-	int cnt = m_pRoot->childCount();
-	
-	for (int i = 0; i < cnt; i ++)
+	if (m_pRoot)
 	{
-		QTreeWidgetItem * pChild = m_pRoot->child(i);
-		VSCVidItemVidStor *pItem = dynamic_cast<VSCVidItemVidStor*>(pChild);
-		pItem->VidSetCheckedChild(item, bChecked);
-		/* Maybe need check the Stor itself for all stor process */
+		int cnt = m_pRoot->childCount();
+		
+		for (int i = 0; i < cnt; i ++)
+		{
+			QTreeWidgetItem * pChild = m_pRoot->child(i);
+			VSCVidItemVidStor *pItem = dynamic_cast<VSCVidItemVidStor*>(pChild);
+			pItem->VidSetCheckedChild(item, bChecked);
+			/* Maybe need check the Stor itself for all stor process */
+		}
 	}
 	m_bSetChecked = true;
 }

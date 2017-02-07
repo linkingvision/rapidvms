@@ -3,7 +3,7 @@
 
 
 VSCVidTreeInf::VSCVidTreeInf(ClientFactory &pFactory, QWidget *parent)
-: QTreeWidget(parent), m_pFactory(pFactory)
+: QTreeWidget(parent), m_pFactory(pFactory), m_bSetChecked(false)
 {
 	setHeaderHidden(true);
 	setIconSize(QSize(20, 20));

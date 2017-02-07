@@ -21,7 +21,7 @@ public:
     void setColors(const QColor on=Qt::darkGreen, const QColor off=Qt::gray);
 
     /** Set the labels for on and off status. */
-    void setLabels(const QString on=QString(tr("on")), const QString off=QString(tr("off")));
+    void setLabels(const QString on=QString(tr("ON")), const QString off=QString(tr("OFF")));
 
 protected:
 

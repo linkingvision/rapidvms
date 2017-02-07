@@ -37,6 +37,10 @@ protected:
 	ClientFactory &m_pFactory;
 	bool m_bOnline;
 	bool m_bRec;
+	/* if the check has been called 
+	    use for live and searchpb, search pb will call bsetchecked
+	*/
+	bool m_bSetChecked;
 
 };
 

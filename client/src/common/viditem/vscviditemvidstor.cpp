@@ -193,6 +193,7 @@ void VSCVidItemVidStor::VidSetCheckedChild(QTreeWidgetItem * item, bool bChecked
 		VSCVidItemInf *pItem = dynamic_cast<VSCVidItemInf*>(pChild);
 		pItem->VidSetChecked(item, bChecked);
 	}
+	m_bSetChecked = true;
 }
 
 void VSCVidItemVidStor::VidGetSelectedItems(VidCameraIdMap &pMap)
@@ -234,6 +235,10 @@ void VSCVidItemVidStor::TreeUpdated(bool bClear)
 			pItemCam->UpdateOnline(bOnline[pCam.strid()]);
 			pItemCam->UpdateRec(bRec[pCam.strid()]);
 		}
+	}
+	if (m_bSetChecked == true)
+	{
+		VidSetCheckedChild(NULL, false);
 	}
 
 }

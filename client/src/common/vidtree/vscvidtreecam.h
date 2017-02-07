@@ -38,7 +38,6 @@ public:
 private:
 	QTreeWidgetItem * m_pRoot;
 	bool m_bInit;
-	bool m_bSetChecked;
 };
 
 #endif

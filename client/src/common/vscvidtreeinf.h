@@ -33,6 +33,10 @@ public slots:
 	
 protected:
 	ClientFactory &m_pFactory;
+	/* if the check has been called 
+	    use for live and searchpb, search pb will call bsetchecked
+	*/
+	bool m_bSetChecked;
 };
 
 #endif

@@ -1,7 +1,8 @@
 #include "common/vscviditeminf.h"
 
 VSCVidItemInf::VSCVidItemInf(ClientFactory &pFactory, QTreeWidgetItem *parent)
-: QTreeWidgetItem(parent), m_pFactory(pFactory), m_bOnline(false), m_bRec(false)
+: QTreeWidgetItem(parent), m_pFactory(pFactory), m_bOnline(false), m_bRec(false), 
+m_bSetChecked(false)
 {
 	UpdateOnline(false);
 }

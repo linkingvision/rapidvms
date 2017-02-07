@@ -54,3 +54,4 @@ void SwitchButton::paintEvent(QPaintEvent* paint) {
     }
     p.restore();
 }
+
