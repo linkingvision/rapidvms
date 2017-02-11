@@ -748,7 +748,7 @@ inline void Factory::run()
 				}
 			}
 		}
-		ve_sleep(1000 * 30);
+		ve_sleep(1000 * 10);
 	}
 	
 }

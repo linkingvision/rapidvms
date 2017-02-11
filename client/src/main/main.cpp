@@ -19,6 +19,7 @@
 #include "vstyle.hpp"
 #include "vsclogin.h"
 #include "vtaskmgr.hpp"
+#include <QFileDialog>
 
 Q_DECLARE_METATYPE (std::string) 
 
@@ -50,43 +51,38 @@ int main(int argc, char *argv[])
 	int dummy = errno;
 	ClientFactory *pFactory = NULL;
 
-	QApplication a(argc, argv);
+	char *argv1[] = 
+		{"rapidclient", 
+		NULL};
+	int argc1 = sizeof(argv1) / sizeof(char*) - 1;
 
-	a.setStyle(new VStyle); 
-	astring strVSCDefaultPath = VSC_DEFAULT_SYSPATH;
-#ifdef WIN32
-#ifndef _WIN64
-	astring strLoggerPath = strVSCDefaultPath + "\\vidstor\\logs\\";
-#else
-	astring strLoggerPath = strVSCDefaultPath + "\\vidstor64\\logs\\";
+        char *argv2[] =
+                {"rapidclient",
+                NULL};
+    int argc2 = sizeof(argv2) / sizeof(char*) - 1;
+	VidEnv env;
+	env.init(argc2, argv2);
+	env.run();
+	
+	QApplication a(argc1, argv1);
+#if 0
+	QFileDialog *fileDialog = new QFileDialog();
+
+	if (fileDialog->exec() == QDialog::Accepted) {
+	}
 #endif
-#else
-	astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
-#endif
+	a.setStyle(new VStyle);
+	
+
+	astring strLoggerPath = env.GetAppConfPath("logs");
 	Poco::File file1(strLoggerPath);
 	file1.createDirectories();
-	astring strLoggerFile = strLoggerPath + "opencvrclient";
+	astring strLoggerFile = strLoggerPath + "rapidclient";
 	Debug::init(9200, strLoggerFile);
 
-	Debug::logger().info("opencvrclient started");
+	Debug::logger().info("rapidclient started");
 	//Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
 	//Debug::logger().info("opencvrclient started {} {}", __LINE__, __FUNCTION__);
-
-#ifdef WIN32
-	QFont font;
-	font.setPointSize(10); 
-	font.setFamily(("Î¢ÈíÑÅºÚ"));
-	font.setBold(false);
-
-	a.setFont(font);
-#else
-	QFont font;
-	font.setPointSize(10); 
-	font.setFamily(("WenQuanYi Zen Hei"));
-	font.setBold(false);
-
-	a.setFont(font);
-#endif
 
 	QPixmap pixmap(":/logo/resources/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
@@ -96,14 +92,25 @@ int main(int argc, char *argv[])
 	splash->setStyleSheet(QStringLiteral("color : white;"));    
 	splash->show();
 	
-    pFactory = new ClientFactory;
+    pFactory = new ClientFactory(env);
 
-	if (pFactory->Init() == FALSE)
-	{
-		astring strPath = VSC_DEFAULT_SYSPATH;
-		pFactory->SetSystemPath(strPath);
-		pFactory->Init();
-	}
+	pFactory->Init();
+
+#ifdef WIN32
+	QFont font;
+	font.setPointSize(10);
+	font.setFamily(("Î¢ÈíÑÅºÚ"));
+	font.setBold(false);
+
+	a.setFont(font);
+#else
+	QFont font;
+	font.setPointSize(10);
+	font.setFamily(("WenQuanYi Zen Hei"));
+	font.setBold(false);
+
+	a.setFont(font);
+#endif
 
 	VidLanguage m_lang;
 	pFactory->GetLang(m_lang);
@@ -124,23 +131,22 @@ int main(int argc, char *argv[])
 
 	VTaskMgr *pVTaskMgr = new VTaskMgr();
 
-	VSCMainWindows w(*pFactory);
+	VSCMainWindows * w = new VSCMainWindows(*pFactory);
 
 	//w.showMaximized();
-	w.hide();
+	w->hide();
 	//w.showFullScreen();
-	splash->finish(&w);
+	splash->finish(w);
 	/* Auto  */
 	if (pFactory->GetAutoLogin() == false)
 	{
-		w.ShowLogin();
+		w->ShowLogin();
 	}else
 	{
-		w.showMaximized();
+		w->showMaximized();
 	}
 
 	VDC_DEBUG("Start successfully !\n");
-
 	delete splash;
 	return a.exec();
 }

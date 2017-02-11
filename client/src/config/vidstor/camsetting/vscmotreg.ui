@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VSCMotRegConf</class>
+ <widget class="QWidget" name="VSCMotRegConf">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>636</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Motion Region</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../main/vscmainwindows.qrc">
+    <normaloff>:/logo/resources/vscsmall32.png</normaloff>:/logo/resources/vscsmall32.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="VMotConf" name="conf" native="true"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonApply">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/button.png);}
+</string>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonCancel">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+border:none;
+color:white;
+background-image: url(:/action/resources/button.png);}
+QPushButton:hover {
+	background-image: url(:/action/resources/buttonpress.png);}
+QPushButton:pressed {
+	background-image: url(:/action/resources/button.png);}
+</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>VMotConf</class>
+   <extends>QWidget</extends>
+   <header>vmotconf.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../main/vscmainwindows.qrc"/>
+ </resources>
+ <connections/>
+</ui>

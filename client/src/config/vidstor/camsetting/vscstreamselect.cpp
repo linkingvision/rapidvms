@@ -53,20 +53,20 @@ VSCStreamSelect::VSCStreamSelect(ClientFactory &pFactory, VidStor &stor, astring
 		/* If auto,  just disable it */
 		ui.stream1->setEnabled(false);
 		ui.stream2->setEnabled(false);
-		ui.autoSelect->setChecked(false);
+		ui.autoSelect->setToggle(false);
 	}else
 	{
-		ui.autoSelect->setChecked(true);
+		ui.autoSelect->setToggle(true);
 		ui.stream1->setEnabled(true);
 		ui.stream2->setEnabled(true);
 	}
 	if (pCam.ntype() != VID_ONVIF_S)
 	{
-		ui.autoSelect->setEnabled(false);
+		ui.autoSelect->setToggle(false);
 	}
 	
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
-	connect( this->ui.autoSelect, SIGNAL( clicked() ), this, SLOT(autoSelectClicked()));
+	connect( this->ui.autoSelect, SIGNAL( toggled(bool) ), this, SLOT(autoSelectClicked(bool)));
 
 	delete pLoading;
 }
@@ -83,8 +83,8 @@ void VSCStreamSelect::applyConfig()
 	
 	syncInf.GetVidCamera(m_strCam, pCam);
 
-	pCam.set_bprofiletoken(ui.autoSelect->isChecked());
-	if (ui.autoSelect->isChecked() == true)
+	pCam.set_bprofiletoken(ui.autoSelect->isToggled());
+	if (ui.autoSelect->isToggled() == true)
 	{
 		QVariant currentData1 = ui.stream1->currentData();
 		astring strToken1 = currentData1.toString().toStdString();
@@ -100,9 +100,9 @@ void VSCStreamSelect::applyConfig()
 
 }
 
-void VSCStreamSelect::autoSelectClicked()
+void VSCStreamSelect::autoSelectClicked(bool checked)
 {
-	if (ui.autoSelect->isChecked() == true)
+	if (ui.autoSelect->isToggled() == true)
 	{
 		ui.stream1->setEnabled(true);
 		ui.stream2->setEnabled(true);		

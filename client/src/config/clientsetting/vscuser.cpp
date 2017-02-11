@@ -8,11 +8,11 @@ VSCUser::VSCUser(ClientFactory &pFactory, QWidget *parent)
 {
 	ui.setupUi(this);
 	ui.user->setText("admin");
-	ui.autoLogin->setChecked(false);
+	ui.autoLogin->setToggle(false);
 	/* Setup the default value */
 	if (m_pFactory.GetAutoLogin() == true)
 	{
-	        ui.autoLogin->setChecked(true);
+	        ui.autoLogin->setToggle(true);
 	}
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
@@ -34,7 +34,7 @@ void VSCUser::applyConfig()
 	if (m_pFactory.AuthUser(strCurUser, strCurPasswd) == true
 		&& strPasswd == strPasswd2)
 	{
-		m_pFactory.SetAutoLogin(ui.autoLogin->isChecked());
+		m_pFactory.SetAutoLogin(ui.autoLogin->isToggled());
 
 		VSCLoading *loading = new VSCLoading(this);
 		loading->Processing(3);

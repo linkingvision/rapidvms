@@ -1771,6 +1771,12 @@ class VidViewWindow : public ::google::protobuf::Message {
   ::google::protobuf::int32 nwindowsid() const;
   void set_nwindowsid(::google::protobuf::int32 value);
 
+  // optional bool bHWAccel = 3;
+  void clear_bhwaccel();
+  static const int kBHWAccelFieldNumber = 3;
+  bool bhwaccel() const;
+  void set_bhwaccel(bool value);
+
   // @@protoc_insertion_point(class_scope:VidConf.VidViewWindow)
  private:
 
@@ -1778,6 +1784,7 @@ class VidViewWindow : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::VidConf::VidCameraId* cid_;
   ::google::protobuf::int32 nwindowsid_;
+  bool bhwaccel_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_vidconf_2eproto();
   friend void protobuf_AssignDesc_vidconf_2eproto();
@@ -5325,6 +5332,20 @@ inline void VidViewWindow::set_nwindowsid(::google::protobuf::int32 value) {
   
   nwindowsid_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidViewWindow.nWindowsId)
+}
+
+// optional bool bHWAccel = 3;
+inline void VidViewWindow::clear_bhwaccel() {
+  bhwaccel_ = false;
+}
+inline bool VidViewWindow::bhwaccel() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidViewWindow.bHWAccel)
+  return bhwaccel_;
+}
+inline void VidViewWindow::set_bhwaccel(bool value) {
+  
+  bhwaccel_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidViewWindow.bHWAccel)
 }
 
 // -------------------------------------------------------------------

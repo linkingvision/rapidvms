@@ -11,7 +11,7 @@
 #include "QTabWidget"
 //#include "vscplaycontrol.h"
 
-class VSCView : public QWidget
+class VSCView : public QWidget, public VVidGetHWDec
 {
     Q_OBJECT
 
@@ -25,6 +25,7 @@ public:
     bool event(QEvent *e);
 public:
     void SetupConnections();
+    virtual bool GetHWDec();
 	
 public slots:
 	void floatingClicked();

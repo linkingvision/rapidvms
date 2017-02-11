@@ -41,7 +41,7 @@ Q_DECLARE_METATYPE(QDockWidget::DockWidgetFeatures)
 
 VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
     : m_pFactory(pFactory), QMainWindow(parent), m_VidIdx(VSC_VID_IDX_LAST), 
-    m_pMainView(NULL), m_pDashBoard(NULL), m_pEventConsole(NULL)
+    m_pMainView(NULL), m_pDashBoard(NULL), m_pEventConsole(NULL), m_pToolBar(NULL)
 {
 
 	ui.setupUi(this);
@@ -123,7 +123,8 @@ VSCMainWindows::VSCMainWindows(ClientFactory &pFactory, QWidget *parent)
 	m_pEventConsole = new VSCEventConsole(m_pFactory, this);
 	m_pEventConsole->hide();
 	
-
+	//http://stackoverflow.com/questions/650889/qtoolbar-is-there-a-way-to-make-toolbar-unhidable
+	setContextMenuPolicy(Qt::NoContextMenu);
 }
 
 VSCMainWindows::~VSCMainWindows()
@@ -314,7 +315,7 @@ void VSCMainWindows::ExitOpenCVR()
 {
 	QMessageBox msgBox(this);
 	//Set text
-	msgBox.setText(tr("OpenCVR Exit ..."));
+	msgBox.setText(tr("Rapidvms Exit ..."));
 	    //Set predefined icon, icon is show on left side of text.
 	msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
 
@@ -341,17 +342,17 @@ void VSCMainWindows::ExitOpenCVR()
 
 void VSCMainWindows::SetupToolBar()
 {
-    QToolBar *pToolBar = new QToolBar();
-    pToolBar->addWidget(m_pToolBar);
-    addToolBar(Qt::TopToolBarArea, pToolBar);
+    m_pQToolBar = new QToolBar(this);
+    m_pQToolBar->addWidget(m_pToolBar);
+    addToolBar(Qt::TopToolBarArea, m_pQToolBar);
 
 }
 
 void VSCMainWindows::about()
 {
-   QMessageBox::about(this, tr("About OpenCVR"),
+   QMessageBox::about(this, tr("About Rapidvms"),
             tr("<b>License & Pricing</b> <br>"
-            "<a href=\"https://github.com/xsmart/opencvr\">https://github.com/xsmart/opencvr</a>"
+            "<a href=\"https://github.com/veyesys/rapidvms\">https://github.com/veyesys/rapidvms</a>"
             "  <br><a href=\"http://www.veyesys.com/\">http://www.veyesys.com/</a>"
 			"<br>"));
 }
@@ -430,12 +431,17 @@ again:
 	goto again;	
 }
 
+//http://www.qtforum.org/article/520/mac-os-x-full-screen.html
 void VSCMainWindows::SetFullScreen()
 {
     if(isFullScreen()) {
         this->setWindowState(Qt::WindowMaximized);
     } else {
-        this->setWindowState(Qt::WindowFullScreen);
+#ifdef __APPLE__
+		this->setWindowState(Qt::WindowMaximized);
+#else
+		this->setWindowState(Qt::WindowFullScreen);
+#endif
     }
 }
 

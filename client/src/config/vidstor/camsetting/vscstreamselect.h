@@ -18,7 +18,7 @@ public:
 
 public slots:   
 	void applyConfig();
-	void autoSelectClicked();
+	void autoSelectClicked(bool checked);
 	
 public:
 	Ui::VSCStreamSelect ui;

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Welcome OpenCVR</string>
+   <string>Welcome rapidvms</string>
   </property>
   <property name="windowIcon">
    <iconset resource="vscmainwindows.qrc">
@@ -105,7 +105,7 @@
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>OpenCVR </string>
+        <string>rapidvms</string>
        </property>
       </widget>
      </item>

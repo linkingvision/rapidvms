@@ -6,7 +6,10 @@
 #include <QDate>
 #include "vtaskmgr.hpp"
 
-
+//setContextMenuPolicy(Qt::NoContextMenu);
+//QT_MAC_USE_NSWINDOW
+//http://stackoverflow.com/questions/650889/qtoolbar-is-there-a-way-to-make-toolbar-unhidable
+//http://www.qtcentre.org/threads/31498-QToolBar-How-do-you-suppress-the-right-click-menu-that-allows-hiding-the-toolbar
 VSCToolBar::VSCToolBar(QWidget *parent)
     : QWidget(parent)
 {

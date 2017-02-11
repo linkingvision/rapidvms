@@ -17,7 +17,8 @@ public:
 	~VSCMotion(){}
 
 public slots:   
-	void applyConfig();	
+	void applyConfig();
+	void MotConf();
 public:
 	Ui::VSCMotion ui;
 	

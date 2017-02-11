@@ -194,6 +194,7 @@ message VidStorList {
 message VidViewWindow {
 	VidCameraId cId = 1;
 	int32 nWindowsId = 2;
+	bool bHWAccel = 3;
 }
 
 //View 

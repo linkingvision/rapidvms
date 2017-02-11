@@ -23,7 +23,7 @@ VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
 
 	this->setAttribute(Qt::WA_Hover,true);
 	QVBoxLayout* layout = new QVBoxLayout();
-	m_pVideo = new VSCVideoWall(m_pFactory, this->ui.widget);
+	m_pVideo = new VSCVideoWall(m_pFactory, this->ui.widget, this);
 	m_pVideo->hide();
 	//layout->setSpacing(10);
 
@@ -54,6 +54,24 @@ VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
 	/* Set the uuid to null */
 	m_ViewItem.set_strid(VVID_UUID_NULL);
 	m_ViewItem.set_strname("New View");
+
+#ifndef _WIN32
+	ui.hwdecode->hide();
+	ui.lbhwdecode->hide();
+#endif
+}
+
+bool VSCView::GetHWDec()
+{
+#ifdef __APPLE__
+	return false;
+#endif
+#ifndef _WIN32
+	return false;//linux here
+#endif
+	//bool bEnable = ui.hwdecode->isChecked();
+	bool bEnable = ui.hwdecode->isToggled();
+	return bEnable;
 }
 
 void VSCView::PlaybackClicked(std::string strStor, std::string strId, 

@@ -4,6 +4,8 @@
 #include "debug.hpp"
 #include "vscloading.hpp"
 #include "client/storsyncinf.hpp"
+#include "vmotconf.hpp"
+#include "config/vidstor/camsetting/vscmotreg.h"
 
 VSCMotion::VSCMotion(ClientFactory &pFactory, VidStor &stor, astring strCam, QWidget *parent)
 	: QWidget(parent), m_pFactory(pFactory), m_pStor(stor), m_strCam(strCam)
@@ -31,13 +33,16 @@ VSCMotion::VSCMotion(ClientFactory &pFactory, VidStor &stor, astring strCam, QWi
 
 	if (pCam.bservermotion()== false)
 	{
-		ui.enable->setChecked(false);
+		ui.enable->setToggle(false);
 	}else
 	{
-		ui.enable->setChecked(true);
+		ui.enable->setToggle(true);
 	}
 	
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
+	connect( this->ui.setupMot, SIGNAL( clicked() ), this, SLOT(MotConf()));
+
+	
 
 	delete pLoading;
 }
@@ -60,7 +65,7 @@ void VSCMotion::applyConfig()
 	{
 		current = 2;
 	}
-	if (ui.enable->isChecked() == true)
+	if (ui.enable->isToggled() == true)
 	{
 		pCam.set_bservermotion(true);
 	}else
@@ -73,6 +78,13 @@ void VSCMotion::applyConfig()
 	syncInf.AddCam(pCam);
 	return;
 
+}
+
+
+void VSCMotion::MotConf()
+{
+	VSCMotRegConf *pConf = new VSCMotRegConf(m_pFactory, m_pStor, m_strCam);
+	pConf->show();
 }
 
 

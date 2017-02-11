@@ -32,6 +32,23 @@ public:
 	void SetupToolBar();
 	void ViewHideFocus();
 	void closeEvent(QCloseEvent *event); 
+#ifdef __APPLE__
+	void changeEvent(QEvent *event) 
+	{ 
+		if(event->type() == QEvent::WindowStateChange) 
+		{ 
+			//if(windowState() & Qt::WindowMaximized) 
+
+			if(windowState() & Qt::WindowFullScreen)  
+			{ 
+				hide();
+				this->setWindowState(Qt::WindowMaximized);
+				show();
+			}
+		} 
+		QWidget::changeEvent(event);  	
+	} 
+#endif
 
 public slots:
 	void MainCloseTab(int index);
@@ -65,6 +82,8 @@ private:
 	QWidget *m_pMainView;
 	VSCDashBoard *m_pDashBoard;
 	VSCEventConsole *m_pEventConsole;
+	QToolBar *m_pQToolBar;
+	Qt::WindowFlags m_flag;
 
 private:
 	Ui::VSCMainWindowsClass ui;

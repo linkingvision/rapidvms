@@ -111,23 +111,10 @@
          </widget>
         </item>
         <item>
-         <widget class="SwitchButton" name="autoSelect">
+         <widget class="SwitchControl" name="autoSelect" native="true">
           <property name="maximumSize">
            <size>
-            <width>80</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../../../main/vscmainwindows.qrc">
-            <normaloff>:/action/resources/switchputton.png</normaloff>:/action/resources/switchputton.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>80</width>
+            <width>40</width>
             <height>25</height>
            </size>
           </property>
@@ -270,9 +257,10 @@ QPushButton:pressed {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SwitchButton</class>
-   <extends>QPushButton</extends>
-   <header>common/switchbutton.h</header>
+   <class>SwitchControl</class>
+   <extends>QWidget</extends>
+   <header>common/switchcontrol.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
