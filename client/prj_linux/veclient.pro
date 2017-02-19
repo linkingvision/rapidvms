@@ -3,16 +3,16 @@
 # ------------------------------------------------------
 
 TEMPLATE = app
-TARGET = OpenCVRClient
+TARGET = RapidClient
 QMAKE_CXXFLAGS += -std=c++11
 DESTDIR = ./
 QT += core sql network xml  xmlpatterns dbus widgets gui  printsupport  concurrent 
-CONFIG +=  debug console
+CONFIG +=  debug console c++11
 DEFINES += LINUX_OS  QT_DLL QT_MULTIMEDIA_LIB QT_MULTIMEDIAWIDGETS_LIB QT_NETWORK_LIB QT_QML_LIB QT_QUICK_LIB QT_SQL_LIB QT_CONCURRENT_LIB QT_HELP_LIB  QT_PRINTSUPPORT_LIB QT_SCRIPT_LIB QT_SVG_LIB QT_WEBKITWIDGETS_LIB QT_WIDGETS_LIB QT_XML_LIB QT_XMLPATTERNS_LIB QT_NO_BLUEZ QT_NO_UDEV WITH_OPENSSL WITH_DOM WITH_PURE_VIRTUAL
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/Debug \
-    ./../../3rdparty/leveldb/include \
+    ./../../3rdparty/leveldb-posix/include \
     ./../../3rdparty/poco/Foundation/include \
     ./../../3rdparty/poco/Net/include \
     ./../../3rdparty/poco/Util/include \
@@ -65,10 +65,21 @@ LIBS +=  \
     -lvelib \
     -lveuilib \
     -lPocoFoundation\
+    -lPocoDataSQLite\
+    -lPocoData\
+    -lPocoUtil\
     -lprotobuf\
     -lssl \
     -lcrypto\
-    -ldl
+    -ldl \
+    -lstdc++ 
+
+unix:macx {
+        LIBS += \
+        -lc++
+    }
+
+
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug

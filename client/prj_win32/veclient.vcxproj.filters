@@ -649,6 +649,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscvideventsearch.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\switchcontrol.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_switchcontrol.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_switchcontrol.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\vidstor\camsetting\vscmotreg.cpp">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmotreg.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmotreg.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\main\vscmainwindows.qrc">
@@ -938,6 +956,15 @@
     </CustomBuild>
     <CustomBuild Include="..\src\searchpb\vscvideventsearch.ui">
       <Filter>src\searchpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\common\switchcontrol.h">
+      <Filter>src\common</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscmotreg.h">
+      <Filter>src\config\vidstor\camsetting</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\config\vidstor\camsetting\vscmotreg.ui">
+      <Filter>src\config\vidstor\camsetting</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1322,6 +1349,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscvideventsearch.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscmotreg.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

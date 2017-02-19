@@ -20,6 +20,7 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/common/vscviditeminf.h \
     ../src/common/vscvidtreeinf.h \
     ../src/common/switchbutton.h \
+	../src/common/switchcontrol.h \
     ../src/common/vscvidinf.h \
     ../src/common/viditem/vscviditememap.h \
     ../src/common/viditem/vscviditemview.h \
@@ -57,6 +58,7 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/vidstor/camsetting/vscschedule.h \
     ../src/config/vidstor/camsetting/vsccaminfo.h \
     ../src/config/vidstor/camsetting/vsccamrec.h \
+	../src/config/vidstor/camsetting/vscmotreg.h \
     ../src/config/clientsetting/vscversion.h \
     ../src/config/clientsetting/vsclanguage.h \
     ../src/config/clientsetting/vsclicense.h \
@@ -101,6 +103,7 @@ SOURCES += ../src/main/main.cpp \
     ../src/main/vscvidlist.cpp \
     ../src/main/vscvidlistframe.cpp \
     ../src/common/switchbutton.cpp \
+	../src/common/switchcontrol.cpp \
     ../src/common/vscvidinf.cpp \
     ../src/common/vscviditeminf.cpp \
     ../src/common/vscvidtreeinf.cpp \
@@ -140,6 +143,7 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/vidstor/camsetting/vscmotion.cpp \
     ../src/config/vidstor/camsetting/vscschedule.cpp \
     ../src/config/vidstor/camsetting/vscstreamselect.cpp \
+	../src/config/vidstor/camsetting/vscmotreg.cpp \
     ../src/config/clientsetting/vsclanguage.cpp \
     ../src/config/clientsetting/vsclicense.cpp \
     ../src/config/clientsetting/vscuser.cpp \
@@ -175,6 +179,7 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/config/vidstor/camsetting/vscstreamselect.ui \
     ../src/config/vidstor/camsetting/vscmotion.ui \
     ../src/config/vidstor/camsetting/vscschedule.ui \
+	../src/config/vidstor/camsetting/vscmotreg.ui \
     ../src/config/clientsetting/vscversion.ui \
     ../src/config/clientsetting/vsclanguage.ui \
     ../src/config/clientsetting/vsclicense.ui \
