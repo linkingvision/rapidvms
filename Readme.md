@@ -37,14 +37,11 @@
 	Digital Zoom
 
 #### License ####
-* **Community Video(CV)**
-* **Home Video(HV)**
-* **Professional Video(PV)**
-* **Enterprise Video(EV)**
+* **All the open source Code is License LGPL 2.1**
 
-[Learn More for Pricing](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
+[Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
 
-# [Pay](http://veyesys.com/) #
+# [Donation](http://veyesys.com/) #
 
 
 For more guide
