@@ -43,7 +43,7 @@
 
 [Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
 
-# [Donation](http://veyesys.com/index.html#license) #
+# [Donate](http://veyesys.com/index.html#license) #
 
 
 For more guide
