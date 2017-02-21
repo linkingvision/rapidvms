@@ -37,7 +37,7 @@
 	Digital Zoom
 
 #### License ####
-* **All the open source Code is License LGPL 2.1**
+* **All the open source Code is License at Apache License 2.0**
 
 [Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
 
