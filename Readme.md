@@ -37,8 +37,7 @@
 	Digital Zoom
 
 #### License ####
-* **All the open source Code is License at Apache License 2.0.**
-* **You free to use for  non-commercial and  commercial.**
+* Licensing: dual licensed as open source GPL v3 and commercial-use license (available for purchase).
 
 
 [Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
