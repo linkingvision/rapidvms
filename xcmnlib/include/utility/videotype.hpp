@@ -1,8 +1,31 @@
+/** <!--
+ *
+ *  Copyright (C) 2017 veyesys support@veyesys.com
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *  If you would like this software to be made available to you under an 
+ *  alternate commercial license please email support@veyesys.com 
+ *  for more information.
+ *
+ * -->
+ */
 #ifndef _V_VIDEO_TYPE_H_
 #define _V_VIDEO_TYPE_H_
 #include "utility/type.hpp"
 #include <vector>
-
+#if 0
 #define MAKE_VE_RAW(a,b,c,d) (a | (b << 8) | (c << 16) | (d << 24))
 
 #define VE_PIX_FMT_YUV420P MAKE_VE_RAW('I','4','2','0') /* 16  YVU420 planar */
@@ -28,7 +51,7 @@
 #define VE_PIX_FMT_RGB32   MAKE_VE_RAW('R','G','B',32)  /* 32  RGB-8-8-8-8   */
 #define VE_PIX_FMT_BGR     (('B'<<24)|('G'<<16)|('R'<<8))
 #define VE_PIX_FMT_BGR8    (VE_PIX_FMT_BGR|8)
-
+#endif
 typedef enum __VideoRawType
 {
 	VIDEO_RAW_VIDEO = 1,
@@ -52,15 +75,15 @@ typedef enum __CodecType
         CODEC_LAST = 1000
 }CodecType;
 
+typedef enum __VideoHardwareCmd
+{
+	VIDEO_HW_NONE = 0,
+	VIDEO_HW_DATA = 1, 
+	VIDEO_HW_GET_D3D_DEV,
+	VIDEO_HW_LAST
+}VideoHardwareCmd;
+
 struct __RawFrame;
-/* HW Buffer Lock */
-#ifdef WIN32
-typedef bool (__cdecl * RawFrameHWLock)(struct __RawFrame & frame, void * pParam);
-typedef bool (__cdecl * RawFrameHWUnLock)(struct __RawFrame &frame, void * pParam);
-#else
-typedef bool ( * RawFrameHWLock)(struct __RawFrame &frame , void * pParam);
-typedef bool ( * RawFrameHWUnLock)(struct __RawFrame & frame, void * pParam);
-#endif
 
 typedef struct __RawFrame {
 	VideoRawType type;
@@ -72,16 +95,19 @@ typedef struct __RawFrame {
 	int linesize[VE_NUM_POINTERS];
 	int width, height;
 	int format;
-	bool hwData;
-	void * hwParam;
-	RawFrameHWLock hwLock;
-	RawFrameHWUnLock hwUnLock;
+
+	/* Hardware command */
+	VideoHardwareCmd hwCmd;
+	void * hwD3DDev;
 
 	__RawFrame()
 	{
-		hwData = false;
-		hwLock = NULL;
-		hwUnLock = NULL;
+		hwCmd = VIDEO_HW_NONE;
+		hwD3DDev = NULL;
+		codec = CODEC_NONE;
+		format = 0;
+		width = 0;
+		height = 0;
 	}
 } RawFrame;
 
@@ -217,6 +243,7 @@ typedef enum
 	R_OFF = 0,
 	R_ALARM = 1,
 	R_SCHED = 2,
+	R_MANUAL = 4,
 	R_LAST
 } RecordingType;
 
@@ -301,5 +328,7 @@ typedef struct __VBlob
 typedef std::vector<VBlob> VBlobVec;
 
 
+typedef BOOL (*RMDataHandler)(void* pContext, VideoFrame& packet);
+typedef BOOL (*RMRawVideoHandler)(void* pContext, RawFrame& packet);
 
 #endif /* _V_VIDEO_TYPE_H_ */
