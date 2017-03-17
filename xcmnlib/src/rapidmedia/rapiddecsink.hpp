@@ -21,38 +21,49 @@
  *
  * -->
  */
-#ifndef __RAPID_DEC_HPP__
-#define __RAPID_DEC_HPP__
-#include "utility/type.hpp"
-#include "utility/videotype.hpp"
-#include "stddef.h"
-#include "ffkit/ffoptions.h"
-#include "ffkit/av_demuxer.h"
-#include "ffkit/av_packet.h"
-#include "ffkit/av_packet_factory.h"
+#ifndef __RAPID_DEC_SINK_HPP__
+#define __RAPID_DEC_SINK_HPP__
+
+#include "rapidmedia/rapidmedia.hpp"
+#include "rapidmedia/rapidmediadata.hpp"
+#include "cppkit/ck_memory.h"
+#include "rapidrtsp.h"
+#include "XSDK/TimeUtils.h"
+#include "XSDK/XBlockingQueue.h"
+#include "rapidmedia/rapidaudiodec.hpp"
+#include "rapidmedia/rapidffmpegdec.hpp"
+
 #include "ffkit/fflocky.h"
 
-using namespace cppkit;
-using namespace std;
 using namespace ffkit;
 
-class RapidDec
+using namespace cppkit;
+using namespace XSDK;
+
+
+class RapidDecSink
 {
 public:
-	RapidDec(RMRawVideoHandler pHandler = NULL,  void * pVideoContext = NULL)
-	:m_Init(FALSE), m_rawVideoHandler(pHandler), m_pRawVideoContext(pVideoContext)
-	{
-	}
-	virtual ~RapidDec() {}
+	RapidDecSink(RMRawVideoHandler rawVideoHandler, 
+		void *pRawVideoContext, BOOL HWAccel);
+	~RapidDecSink() ;
+
 public:
-	virtual BOOL Init(){return FALSE;}
-	virtual BOOL Decode( uint8_t* pBuf, int nSize, RawFrame & pFrame){return FALSE;}
-
-protected:
-
-	BOOL m_Init;
+	BOOL DecodeFrame(VideoFrame & pFrame);
+	BOOL DecodeAFrame(VideoFrame & pFrame);
+	BOOL DecodeVFrame(VideoFrame & pFrame);
+private:
 	RMRawVideoHandler m_rawVideoHandler;
 	void *m_pRawVideoContext;
+
+	RapidDec *m_pVideoDec;
+	RapidAudioDec *m_pAudioDec;
+	CodecType m_AudioCodec;
+	CodecType m_VideoCodec;
+	BOOL m_HWAccel;
+
+	InfoFrameI m_FrameI;
+	BOOL m_bGotFrameI;
 };
 
-#endif /* __RAPID_DEC_HPP__ */
+#endif /* __RAPID_DEC_SINK_HPP__ */
