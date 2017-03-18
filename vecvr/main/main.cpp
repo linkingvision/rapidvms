@@ -1,10 +1,26 @@
-//------------------------------------------------------------------------------
-// File: main.cpp
-//
-// Desc: main - main.
-//
-// Copyright (c) 2014-2018. All rights reserved.
-//------------------------------------------------------------------------------
+/** <!--
+ *
+ *  Copyright (C) 2017 veyesys support@veyesys.com
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *  If you would like this software to be made available to you under an 
+ *  alternate commercial license please email support@veyesys.com 
+ *  for more information.
+ *
+ * -->
+ */
 #include <QtWidgets/QApplication>
 #include <QStyleFactory>
 #include "server/factory.hpp"
@@ -18,57 +34,50 @@
 #include "webserver.hpp"
 #include "vrtspserver.hpp"
 #include "server/eventserver.hpp"
+#include "vonvifdismgr.hpp"
+#include "devicesearcher.h"
 
 Factory *gFactory = NULL;
+astring gAppdir;
 
-inline string GetProgramRunningDir()
-{
-#ifdef WIN32
-    char exeFullPath[MAX_PATH]; // Full path
+#include <Poco/AutoPtr.h>
+#include <Poco/Util/SystemConfiguration.h>
+#include <Poco/Format.h>
+#include <Poco/Util/Application.h>
 
-    string strPath = "";
-
-    GetModuleFileNameA(NULL,exeFullPath, MAX_PATH);
-    strPath=(string)exeFullPath;    // Get full path of the file
-
-    int pos = strPath.find_last_of('\\', strPath.length());
-
-    return strPath.substr(0, pos) + "\\";  // Return the directory without the file name
-#else
-    return "ve/";
-#endif
-}
 
 static BOOL WebServerUserChangeNotify(void* pParam, astring strUser, astring strPasswd)
 {
-	astring strPasswdPath = GetProgramRunningDir() + ".htpasswd";
+	astring strPasswdPath = gAppdir + ".htpasswd";
 	SimpleCrypt crypt;
 	QString strDePasswd = strPasswd.c_str();
 
-	mg_modify_passwords_file(strPasswdPath.c_str(), "opencvr.com", strUser.c_str(),
+	mg_modify_passwords_file(strPasswdPath.c_str(), "rapidvms.com", strUser.c_str(),
 		crypt.decryptToString(strDePasswd).toStdString().c_str());
 	return TRUE;
 	
 }
-
 
 int main(int argc, char *argv[])
 {
 	int dummy = errno;
 	OAPIServerWrapper *pOAPIServer = NULL;
 	Factory *pFactory = NULL;
+	char *argv1[] = 
+		{"rapidstor", 
+		"-platform", 
+		"offscreen", 
+		NULL};
+	int argc1 = sizeof(argv1) / sizeof(char*) - 1;
+        char *argv2[] =
+                {"rapidstor",
+                NULL};
+        int argc2 = sizeof(argv2) / sizeof(char*) - 1;
+	VidEnv env;
+	env.init(argc2, argv2);
+	env.run();
 
-	QApplication a(argc, argv);
-	astring strVSCDefaultPath = VSC_DEFAULT_SYSPATH;
-#ifdef WIN32
-#ifndef _WIN64
-	astring strLoggerPath = strVSCDefaultPath + "\\vidstor\\logs\\";
-#else
-	astring strLoggerPath = strVSCDefaultPath + "\\vidstor64\\logs\\";
-#endif
-#else
-astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
-#endif
+	astring strLoggerPath = env.GetAppConfPath("logs");
 
 	Poco::File file1(strLoggerPath);
 	file1.createDirectories();
@@ -79,18 +88,16 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
 	//Debug::logger().info("vidstor started {} {}", __LINE__, __FUNCTION__);
 
-    	pFactory = new Factory;
+    	pFactory = new Factory(env);
 	gFactory = pFactory;
 
-	if (pFactory->Init() == FALSE)
-	{
-		astring strPath = VSC_DEFAULT_SYSPATH;
-		pFactory->SetSystemPath(strPath);
-		pFactory->Init();
-	}
+	pFactory->Init();
+	QApplication a(argc1, argv1);
+
+	gAppdir = env.GetAppDir();
 	
-	astring docRoot = GetProgramRunningDir() + "www";
-	astring strPasswdPath = GetProgramRunningDir() + ".htpasswd";
+	astring docRoot = env.GetAppDir()+ "www";
+	astring strPasswdPath = env.GetAppDir() + ".htpasswd";
 
 	/* set htpasswd, when start a  */
 	astring strPasswd = "admin";
@@ -101,7 +108,7 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 		"document_root", docRoot.c_str(), 
 		"listening_ports", PORT, 
 		"global_auth_file", strPasswdPath.c_str(),
-		"authentication_domain", "opencvr.com",
+		"authentication_domain", "rapidvms.com",
 		0};
     
 	std::vector<std::string> cpp_options;
@@ -129,7 +136,17 @@ astring strLoggerPath = strVSCDefaultPath + "/vidstor/logs/";
 	pOAPIServer->start();
 
 	pFactory->start();
+#if 0
+	VONVIFDisMgr *pDisMgr = new VONVIFDisMgr();
+	
+	QList<QHostAddress> hostAddr = DeviceSearcher::getHostAddress();
 
+	QList<QHostAddress>::iterator i;
+	for(i=hostAddr.begin();i!=hostAddr.end();i++)
+	{
+		pDisMgr->AddHost(((*i).toString()).toStdString(), "9081", "Network_Video_Storage");
+	}
+#endif
 	VDC_DEBUG("Start successfully !\n");
 	
 	return a.exec();
