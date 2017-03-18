@@ -24,7 +24,7 @@ extern "C"
 namespace AVKit
 {
 
-const int JPEG_ENCODE_ATTEMPTS = 16;
+const int JPEG_ENCODE_ATTEMPTS = 2;
 
 class JPEGEncoder
 {
@@ -33,9 +33,8 @@ public:
 
     X_API virtual ~JPEGEncoder() throw();
 
-    X_API size_t EncodeYUV420P( uint8_t* pic, uint8_t* output, size_t outputSize );
-
-    X_API XIRef<XSDK::XMemory> EncodeYUV420P( XIRef<XSDK::XMemory> pic );
+    X_API size_t EncodeYUV420P(  uint8_t* picy, uint8_t* picu, 
+	uint8_t* picv, uint8_t* output, size_t outputSize);
 
     X_API static void WriteJPEGFile( const XSDK::XString& fileName, XIRef<XSDK::XMemory> jpeg );
 

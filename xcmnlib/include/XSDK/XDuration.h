@@ -521,8 +521,11 @@ assert(XDuration(NSECS, 2007).Total(NSECS) == 2000);
     X_API int64_t Total(TimeUnits units) const { return convert(HNSECS, units, _hnsecs); }
 
     ///
+#ifndef __APPLE__
     X_API timeval ToTimeVal() const { timeval retval = { (long)Total(SECONDS), (long)FracSec().USecs() }; return retval; }
-
+#else
+    X_API timeval ToTimeVal() const { timeval retval = { (int)Total(SECONDS), (int)FracSec().USecs() }; return retval; }
+#endif
 
     /// Returns whether the length of this XDuration is negative.
     X_API bool IsNegative() const { return _hnsecs < 0; }

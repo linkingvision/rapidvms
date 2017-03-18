@@ -80,9 +80,10 @@
   #undef  IS_DEBUG
   #define IS_DEBUG
 #endif
-
+#ifndef __APPLE__
 #ifdef _NOEXCEPT
 #define noexcept _NOEXCEPT
+#endif
 #endif
 
 //==============================================================================

@@ -19,7 +19,9 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/syscall.h>
+#ifndef __APPLE__
 #include <sys/prctl.h>
+#endif
 #else
 #ifdef IS_64BIT
 #include <intrin.h>
@@ -36,6 +38,10 @@
 #include "XSDK/XException.h"
 #include "XSDK/XWeakRef.h"
 #include "XSDK/XMutex.h"
+
+#ifdef _WIN32
+#define pthread_t HANDLE
+#endif
 
 namespace XSDK
 {
@@ -121,7 +127,7 @@ class XTaskBase
     friend class XThreadPool::PseudoThread;
 
 public:
-    static const int invalidThreadID = 0;
+    static pthread_t invalidThreadID;
 
     /// Creates an XTaskBase which doesn't use a thread pool.
     X_API XTaskBase(const XString& threadName=DEFAULT_THREAD_NAME);
@@ -162,7 +168,9 @@ public:
 
    // Returns the CPU ID assigned to this thread
 #ifdef IS_LINUX
+#ifndef __APPLE__
     static X_API int GetCPU() { return sched_getcpu(); }
+#endif
 
 #elif defined(IS_WINDOWS)
 

@@ -17,7 +17,9 @@
 #else
 #include <sys/time.h>
 #include <sys/resource.h>
+#ifndef __APPLE__
 #include <sys/sysinfo.h>
+#endif
 #include <sys/statvfs.h>
 #include <unistd.h>
 #endif
