@@ -1,4 +1,26 @@
-
+/** <!--
+ *
+ *  Copyright (C) 2017 veyesys support@veyesys.com
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *  If you would like this software to be made available to you under an 
+ *  alternate commercial license please email support@veyesys.com 
+ *  for more information.
+ *
+ * -->
+ */
 #ifndef __VSC_STOR_CLIENT_IMPL_H_
 #define __VSC_STOR_CLIENT_IMPL_H_
 
@@ -49,6 +71,31 @@ inline StorClientRecMap StorClient::GetVidCameraRecList()
 
 	XGuard guard(m_cMutex);
 	return m_CamRecList;
+}
+
+
+inline bool StorClient::GetCameraConf(astring strCameraId, VidCamera &pCam)
+{
+	if (m_bOnline == false)
+	{
+		return false;
+	}
+
+	XGuard guard(m_cMutex);
+
+	int cameraSize = m_cCamList.cvidcamera_size();
+
+	for (s32 i = 0; i < m_cCamList.cvidcamera_size(); i ++)
+	{
+		const VidCamera &cam = m_cCamList.cvidcamera(i);
+		if (cam.strid() == strCameraId)
+		{
+			pCam = cam;
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 inline VidCameraList StorClient::GetVidCameraList()
