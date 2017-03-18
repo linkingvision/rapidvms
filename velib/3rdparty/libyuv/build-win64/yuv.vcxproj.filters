@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_common.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_neon.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_posix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_win.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_argb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_from.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_from_argb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_jpeg.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_to_argb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_to_i420.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\cpu_id.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\mjpeg_decoder.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\mjpeg_validate.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\planar_functions.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_argb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_mips.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_neon.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_any.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_common.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_mips.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_neon.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_posix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_win.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_argb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_common.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_mips.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_neon.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_posix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_win.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\video_common.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C5BDC65E-DE7E-4D76-9613-F1A823D3625C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

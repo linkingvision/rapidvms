@@ -1,0 +1,89 @@
+﻿Build started 2015-03-03 21:33:24.
+     1>Project "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\yuv.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/CMakeLists.txt
+         CMake does not need to re-run because C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\include" /Zi /nologo /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"yuv.dir\Debug\\" /Fd"yuv.dir\Debug\vc120.pdb" /Gd /TP /errorReport:prompt "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_common.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_neon.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_posix.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\compare_win.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_argb.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_from.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_from_argb.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_jpeg.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_to_argb.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\convert_to_i420.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\cpu_id.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\mjpeg_decoder.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\mjpeg_validate.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\planar_functions.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_argb.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_mips.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\rotate_neon.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_any.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_common.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_mips.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_neon.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_posix.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\row_win.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_argb.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_common.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_mips.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_neon.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_posix.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\scale_win.cc" "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\video_common.cc"
+         compare.cc
+         compare_common.cc
+         compare_neon.cc
+         compare_posix.cc
+         compare_win.cc
+         convert.cc
+         convert_argb.cc
+         convert_from.cc
+         convert_from_argb.cc
+         convert_jpeg.cc
+         convert_to_argb.cc
+         convert_to_i420.cc
+         cpu_id.cc
+     1>C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\cpu_id.cc(128): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\source\cpu_id.cc(183): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h(462) : see declaration of 'getenv'
+         mjpeg_decoder.cc
+         mjpeg_validate.cc
+         planar_functions.cc
+         rotate.cc
+         rotate_argb.cc
+         rotate_mips.cc
+         rotate_neon.cc
+         Generating Code...
+         Compiling...
+         row_any.cc
+         row_common.cc
+         row_mips.cc
+         row_neon.cc
+         row_posix.cc
+         row_win.cc
+         scale.cc
+         scale_argb.cc
+         scale_common.cc
+         scale_mips.cc
+         scale_neon.cc
+         scale_posix.cc
+         scale_win.cc
+         video_common.cc
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\Debug\yuv.lib" /NOLOGO /MACHINE:X64 yuv.dir\Debug\compare.obj
+         yuv.dir\Debug\compare_common.obj
+         yuv.dir\Debug\compare_neon.obj
+         yuv.dir\Debug\compare_posix.obj
+         yuv.dir\Debug\compare_win.obj
+         yuv.dir\Debug\convert.obj
+         yuv.dir\Debug\convert_argb.obj
+         yuv.dir\Debug\convert_from.obj
+         yuv.dir\Debug\convert_from_argb.obj
+         yuv.dir\Debug\convert_jpeg.obj
+         yuv.dir\Debug\convert_to_argb.obj
+         yuv.dir\Debug\convert_to_i420.obj
+         yuv.dir\Debug\cpu_id.obj
+         yuv.dir\Debug\mjpeg_decoder.obj
+         yuv.dir\Debug\mjpeg_validate.obj
+         yuv.dir\Debug\planar_functions.obj
+         yuv.dir\Debug\rotate.obj
+         yuv.dir\Debug\rotate_argb.obj
+         yuv.dir\Debug\rotate_mips.obj
+         yuv.dir\Debug\rotate_neon.obj
+         yuv.dir\Debug\row_any.obj
+         yuv.dir\Debug\row_common.obj
+         yuv.dir\Debug\row_mips.obj
+         yuv.dir\Debug\row_neon.obj
+         yuv.dir\Debug\row_posix.obj
+         yuv.dir\Debug\row_win.obj
+         yuv.dir\Debug\scale.obj
+         yuv.dir\Debug\scale_argb.obj
+         yuv.dir\Debug\scale_common.obj
+         yuv.dir\Debug\scale_mips.obj
+         yuv.dir\Debug\scale_neon.obj
+         yuv.dir\Debug\scale_posix.obj
+         yuv.dir\Debug\scale_win.obj
+         yuv.dir\Debug\video_common.obj
+         yuv.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\Debug\yuv.lib
+     1>Done Building Project "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\yuv.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.44

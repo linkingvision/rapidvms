@@ -1,3 +1,26 @@
+/** <!--
+ *
+ *  Copyright (C) 2017 veyesys support@veyesys.com
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *  If you would like this software to be made available to you under an 
+ *  alternate commercial license please email support@veyesys.com 
+ *  for more information.
+ *
+ * -->
+ */
 #ifndef __VDB_HPP__
 #define __VDB_HPP__
 #include "utility.hpp"
@@ -54,15 +77,20 @@ public:
     	BOOL SearchNextItem(astring deviceId, s64 LastId, VdbRecordItem &pItem);
 	BOOL RequestAMFRead(VdbRecordItem &pItem, astring & strPath);
 	BOOL FinishedAMFRead(VdbRecordItem &pItem, astring & strPath);
-	
-	
 public:
-	/* Event log function, video record and event record has a link */
-
+	/* The Task will merge type with real items, and pre record is based on the file */
+	BOOL AddSchedItem(astring deviceId, s64 startTime, s64 endTime, RecordingType recordType);
+	static void Run(void * pParam);
+	void Run1();
+	
 private:
-    IndexDB m_IndexDB;
-	//VEventDB m_EventDB;
-    RecordingMode m_Mode;
-    fast_mutex m_Lock;
+	IndexDB m_IndexDB;
+
+	RecordingMode m_Mode;
+	fast_mutex m_Lock;
+
+	tthread::thread *m_pThread;
+	bool m_bExit;
+	
 };
 #endif /* __VDB_HPP__ */

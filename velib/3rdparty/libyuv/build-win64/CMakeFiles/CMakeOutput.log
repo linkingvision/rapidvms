@@ -1,0 +1,249 @@
+The system is: Windows - 6.1 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:23。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdC\CompilerIdC.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdC.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdC.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /nologo /W0 /WX- /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdC\.\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdC.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdC\CompilerIdC.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:01.71
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/3.1.0-rc2/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:25。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdCXX.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /nologo /W0 /WX- /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdCXX\.\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\3.1.0-rc2\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.76
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/3.1.0-rc2/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec2481979805.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:26。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec2481979805.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec2481979805.dir\Debug\”。
+  正在创建目录“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec2481979805.dir\Debug\cmTryCom.EA166EAA.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec2481979805.dir\Debug\cmTryCom.EA166EAA.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec2481979805.dir\Debug\\" /Fd"cmTryCompileExec2481979805.dir\Debug\vc120.pdb" /Gd /TC /errorReport:queue "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\testCCompiler.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.31101 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec2481979805.dir\Debug\\" /Fd"cmTryCompileExec2481979805.dir\Debug\vc120.pdb" /Gd /TC /errorReport:queue "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\testCCompiler.c"
+  
+  testCCompiler.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2481979805.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2481979805.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2481979805.lib" /MACHINE:X64  /machine:x64 /debug cmTryCompileExec2481979805.dir\Debug\testCCompiler.obj
+  cmTryCompileExec2481979805.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2481979805.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec2481979805.dir\Debug\cmTryCom.EA166EAA.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec2481979805.dir\Debug\cmTryCom.EA166EAA.tlog\cmTryCompileExec2481979805.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec2481979805.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.92
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec1237002136.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:27。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1237002136.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec1237002136.dir\Debug\”。
+  正在创建目录“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec1237002136.dir\Debug\cmTryCom.ACB892AC.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec1237002136.dir\Debug\cmTryCom.ACB892AC.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec1237002136.dir\Debug\\" /Fd"cmTryCompileExec1237002136.dir\Debug\vc120.pdb" /Gd /TC /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.1\Modules\CMakeCCompilerABI.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.31101 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec1237002136.dir\Debug\\" /Fd"cmTryCompileExec1237002136.dir\Debug\vc120.pdb" /Gd /TC /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.1\Modules\CMakeCCompilerABI.c"
+  CMakeCCompilerABI.c
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1237002136.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1237002136.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1237002136.lib" /MACHINE:X64  /machine:x64 /debug cmTryCompileExec1237002136.dir\Debug\CMakeCCompilerABI.obj
+  cmTryCompileExec1237002136.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1237002136.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec1237002136.dir\Debug\cmTryCom.ACB892AC.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec1237002136.dir\Debug\cmTryCom.ACB892AC.tlog\cmTryCompileExec1237002136.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1237002136.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.75
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec1796032806.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:28。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1796032806.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec1796032806.dir\Debug\”。
+  正在创建目录“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec1796032806.dir\Debug\cmTryCom.C0C38B5F.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec1796032806.dir\Debug\cmTryCom.C0C38B5F.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1796032806.dir\Debug\\" /Fd"cmTryCompileExec1796032806.dir\Debug\vc120.pdb" /Gd /TP /errorReport:queue "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.31101 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1796032806.dir\Debug\\" /Fd"cmTryCompileExec1796032806.dir\Debug\vc120.pdb" /Gd /TP /errorReport:queue "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  
+  testCXXCompiler.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1796032806.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1796032806.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1796032806.lib" /MACHINE:X64  /machine:x64 /debug cmTryCompileExec1796032806.dir\Debug\testCXXCompiler.obj
+  cmTryCompileExec1796032806.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1796032806.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec1796032806.dir\Debug\cmTryCom.C0C38B5F.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec1796032806.dir\Debug\cmTryCom.C0C38B5F.tlog\cmTryCompileExec1796032806.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1796032806.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.67
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec1023815673.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.31101.0
+[Microsoft .NET Framework 版本 4.0.30319.34209]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015-03-03 21:30:29。
+节点 1 上的项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1023815673.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec1023815673.dir\Debug\”。
+  正在创建目录“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec1023815673.dir\Debug\cmTryCom.06FFF8B0.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec1023815673.dir\Debug\cmTryCom.06FFF8B0.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1023815673.dir\Debug\\" /Fd"cmTryCompileExec1023815673.dir\Debug\vc120.pdb" /Gd /TP /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.1\Modules\CMakeCXXCompilerABI.cpp"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.31101 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec1023815673.dir\Debug\\" /Fd"cmTryCompileExec1023815673.dir\Debug\vc120.pdb" /Gd /TP /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.1\Modules\CMakeCXXCompilerABI.cpp"
+  
+  CMakeCXXCompilerABI.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1023815673.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1023815673.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1023815673.lib" /MACHINE:X64  /machine:x64 /debug cmTryCompileExec1023815673.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTryCompileExec1023815673.vcxproj -> C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1023815673.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec1023815673.dir\Debug\cmTryCom.06FFF8B0.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec1023815673.dir\Debug\cmTryCom.06FFF8B0.tlog\cmTryCompileExec1023815673.lastbuildstate”执行 Touch 任务。
+已完成生成项目“C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\CMakeTmp\cmTryCompileExec1023815673.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.69
+
+

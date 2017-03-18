@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include\utility">
+      <UniqueIdentifier>{93080725-fbfb-42a2-a4d2-e2ee358e6c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vdb">
+      <UniqueIdentifier>{1bf475cb-1bca-4117-8ad0-0b5b3f472b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vplay">
+      <UniqueIdentifier>{6c7ca675-830d-4497-9b72-76548f62856a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vdb">
+      <UniqueIdentifier>{46bc73d1-2878-447f-b4ab-e63fcf61556d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vrender">
+      <UniqueIdentifier>{648a7630-58ac-4b34-80c9-d82f7d780d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{ea716c1c-298f-4294-8451-8d2ff0f44305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vplay">
+      <UniqueIdentifier>{b7b42456-f528-445a-9a0e-dec7317b4915}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\vplay\vplay.hpp">
+      <Filter>include\vplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\indexdb.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\mediafile.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\pbsession.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\recordsession.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\vdb.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\vdbfile.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\vdbtype.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utility\vpoco.hpp">
+      <Filter>include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\license.hpp">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\unistd.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\internal.h">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\render_wrapper.hpp">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\sdl_render.h">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\video_render.h">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\ffmpeg_scale.hpp">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\d3d_render.h">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\base64.hpp">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\vhdfsdb.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vdb\hdfswrapper.hpp">
+      <Filter>src\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\hdfsrecsession.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\pbwrapper.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\vehwcmd.hpp">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vdb\veventdb.hpp">
+      <Filter>include\vdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vplay\vsmotalgo.hpp">
+      <Filter>include\vplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vrender\vvideodraw.hpp">
+      <Filter>src\vrender</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\utility\license.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\indexdb.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\mediafile.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\pbsession.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\recordsession.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\vdb.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\vdbfile.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vplay\vplay.cpp">
+      <Filter>src\vplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vrender\sdl_render.cpp">
+      <Filter>src\vrender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vrender\d3d_render.cpp">
+      <Filter>src\vrender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utility\base64.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vrender\novideo.cpp">
+      <Filter>src\vrender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\hdfsrecsession.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\hdfswrapper.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\vhdfsdb.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\pbwrapper.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vrender\vehwcmd.cpp">
+      <Filter>src\vrender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\recordwrapper.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vdb\veventdb.cpp">
+      <Filter>src\vdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vplay\vsmotalgo.cpp">
+      <Filter>src\vplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vrender\vvideodraw.cpp">
+      <Filter>src\vrender</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

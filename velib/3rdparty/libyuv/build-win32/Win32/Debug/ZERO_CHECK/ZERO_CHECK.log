@@ -1,0 +1,10 @@
+﻿Build started 2015-03-03 21:32:35.
+     1>Project "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win32\ZERO_CHECK.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Checking Build System
+         CMake does not need to re-run because C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win32/CMakeFiles/generate.stamp is up-to-date.
+     1>Done Building Project "C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win32\ZERO_CHECK.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.41

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\work\60-video\ve\opencvr\velib\3rdparty\libyuv\build-win64\CMakeFiles\2f32541a8c682527a51373f92baafdd9\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{00BA2B43-BEBD-4C25-883C-3C66175E61B7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

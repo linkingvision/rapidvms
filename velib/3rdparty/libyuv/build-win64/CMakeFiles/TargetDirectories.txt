@@ -1,0 +1,4 @@
+C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/yuv.dir
+C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/convert.dir
+C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/ALL_BUILD.dir
+C:/work/60-video/ve/opencvr/velib/3rdparty/libyuv/build-win64/CMakeFiles/ZERO_CHECK.dir
