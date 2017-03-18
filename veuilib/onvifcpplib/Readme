@@ -1,0 +1,64 @@
+The latest version can be found in https://github.com/veyesys/rapidvms/
+
+
+Gsoap based ONVIF C++ lib: 
+including server and client, support ProfileS and ProfileG, support Event.
+This lib will be used by http://sourceforge.net/projects/onvifmanager/
+
+Testd Devices:
+ProfileS:
+	Hikvision
+ProfileG:
+	TODO Hikvision
+
+Windows: Please use VS2010
+Linux: TODO wirte the Makefile
+
+Client Example:
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int ret;
+	/* 192.168.1.1 is the NVT, 192.168.1.234 is the NVC */
+	string url = "http://192.168.1.1/onvif/device_service";
+	/* Below is where to receive the event */
+	string eventNotify = "http://192.168.1.234:9090/subscription-2";
+	string user = "admin";
+	string pass =  "admin";
+	OnvifClientDevice onvifDevice(url, user, pass);
+	_tds__GetCapabilitiesResponse capabilitiesResponse;
+
+	onvifDevice.GetCapabilities();
+
+	OnvifClientMedia media(onvifDevice);
+	_trt__GetProfilesResponse profiles;
+	media.GetProfiles(profiles);
+
+	OnvifClientEvent onvifEvent(onvifDevice);
+
+	onvifEvent.Subscribe(eventNotify);
+	
+	OnvifClientEventNotify notify(soap_new());
+	
+    if ((ret = soap_bind(&notify, NULL, 9090, 100) == SOAP_INVALID_SOCKET ) ) 
+	{
+        printf("OnvifClientEventNotify::soap_bind Binding on %d port failed", 9090);
+        return 0;
+    }
+	//Loop to recevie the event
+	while(1)
+	{
+        if( (ret = soap_accept(&notify)) == SOAP_INVALID_SOCKET) {
+            printf("soap_accept accepting failed");
+            return 0;
+        }
+
+        if ( (soap_begin_serve(&notify)) != SOAP_OK) {
+            printf("soap_begin_serve serve %d failed", ret);
+            continue;
+        }
+
+        ret = notify.dispatch();
+        continue;
+	}
+	return 0;
+}

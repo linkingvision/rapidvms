@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{e3841f0f-6351-40bb-84b8-6edd7e42c68f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{67a9ab1c-d143-4372-a0d4-59860580e4f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\event">
+      <UniqueIdentifier>{5648466f-1a46-460d-9a97-ca17f7244b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{d50785c8-185c-43ef-88c6-de8d2cb27598}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{6b96a0f7-d2d4-4123-ba5f-34602b6ed12c}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="src\vservice">
+      <UniqueIdentifier>{794dc6b1-f428-40be-a66a-d9fdfbf5612c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emap">
+      <UniqueIdentifier>{f2b59f17-06ad-4f84-aafb-b66edd409778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="src\vvidwidget">
+      <UniqueIdentifier>{8979f673-347f-4c0b-9143-90186d876adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cmnui">
+      <UniqueIdentifier>{d5b03b94-e8e5-4755-8428-8a3a5de2c766}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vvidpb">
+      <UniqueIdentifier>{86d1fd82-10b8-43c9-9bbc-306d9abd5a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\config">
+      <UniqueIdentifier>{004a92ba-44fa-4c25-8a88-141ed9a6c491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\client">
+      <UniqueIdentifier>{f36fef58-0570-46b1-85fc-12bcb912a7cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vvidonvif">
+      <UniqueIdentifier>{29dc0e3d-2be7-41da-b71c-8dd796c2d001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vvidonvif">
+      <UniqueIdentifier>{15213bab-cf8f-4312-a5a1-4a583d792909}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\qrc_velibui.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsccalculate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsccalculate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscloading.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscloading.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvideowall.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvideowall.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vsccontrolsoverlay.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsccontrolsoverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsccontrolsoverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscimageviewer.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscimageviewer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscimageviewer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscinfooverlay.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscinfooverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscinfooverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscmapoverlay.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscmapoverlay.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscmapoverlay.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscemapcam.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscemapcam.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscemapcam.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscemapbutton.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscemapbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscemapbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vtaskmgr.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vtaskmgr.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vservice\vtaskmgr.cpp">
+      <Filter>src\vservice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidwidget\videowidget.cpp">
+      <Filter>src\vvidwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_videowidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_videowidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidwidget\vscptzcontrol.cpp">
+      <Filter>src\vvidwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscptzcontrol.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscptzcontrol.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidwidget\vscvideoinfo.cpp">
+      <Filter>src\vvidwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscvideoinfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscvideoinfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidwidget\vscvideowall.cpp">
+      <Filter>src\vvidwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidwidget\vscvwidget.cpp">
+      <Filter>src\vvidwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vsccalculate.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vscloading.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vvidtimeline.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_clientfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storclient.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storclient.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storstream.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storstream.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\simplecrypt.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vstyle.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vscdateset.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscdateset.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscdateset.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vscexport.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscexport.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscexport.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vscpbexport.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscpbexport.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscpbexport.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vvidpbcontrol.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vvidpb1.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vvidpb1.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vvidpb1.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vvidpbcontrol.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vvidpbcontrol.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vvidpbwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vvidpbwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vvidpbwidget.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storsyncinf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storsyncinf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vvidpbwall.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vvidpbwall.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidpb\vvidpbwall.cpp">
+      <Filter>src\vvidpb</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vvidtimeline.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vvidtimeline.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vemap.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vemap.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\emap\vscemap.cpp">
+      <Filter>src\emap</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscemap.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscemap.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\vscevent.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vscevent.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vscevent.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\vsmartmotion.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vsmartmotion.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vsmartmotion.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vservice\vrtspserver.cpp">
+      <Filter>src\vservice</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschedconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschedconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vschedconf.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vschedtable.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vschedtable.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vschedtable.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vvidonvif\vvidonvifc.cpp">
+      <Filter>src\vvidonvif</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vmotconf.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vmotconf.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vmotconf.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cmnui\vmottable.cpp">
+      <Filter>src\cmnui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vmottable.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vmottable.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vservice\vonvifdismgr.cpp">
+      <Filter>src\vservice</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\velibui.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vsccalculate.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vscloading.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vscvideowall.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vscvwidget.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vsccontrolsoverlay.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscimageviewer.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscinfooverlay.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscmapoverlay.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscemapcam.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscemapcam.ui">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscemapbutton.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vtaskmgr.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\videowidget.h">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\vscptzcontrol.h">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\vscptzcontrol.ui">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\vscvideoinfo.h">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\vscvideoinfo.ui">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidwidget\vscvwidget.ui">
+      <Filter>src\vvidwidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\clientfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storclient.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storstream.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vscdateset.h">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vscdateset.ui">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vscexport.h">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vscexport.ui">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vscpbexport.h">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vvidpbcontrol.ui">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vvidpb1.ui">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vvidpb1.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vvidpbcontrol.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vvidpbwidget.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\vvidpb\vvidpbwidget.ui">
+      <Filter>src\vvidpb</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\client\storsyncinf.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vvidpbwall.h">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\cmnui\vvidtimeline.h">
+      <Filter>src\cmnui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vemap.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscemap.h">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\emap\vscemap.ui">
+      <Filter>src\emap</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\event\vscevent.h">
+      <Filter>src\event</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\event\vsmartmotion.h">
+      <Filter>src\event</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vschedconf.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\cmnui\vschedconf.ui">
+      <Filter>src\cmnui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\cmnui\vschedtable.hpp">
+      <Filter>src\cmnui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\vmotconf.hpp">
+      <Filter>include</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\cmnui\vmotconf.ui">
+      <Filter>src\cmnui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\cmnui\vmottable.hpp">
+      <Filter>src\cmnui</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_vscemapcam.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscptzcontrol.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvideoinfo.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscvwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\clientfactoryimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storclientimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storcmn.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storfactoryimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storstreamimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\simplecrypt.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vstyle.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscdateset.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscexport.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vvidpbcontrol.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vvidpb1.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vvidpbwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\client\storsyncinfimpl.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vscemap.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vevent.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vschedconf.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vvidonvif\vvidonvifc.hpp">
+      <Filter>include\vvidonvif</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_vmotconf.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vonvifdismgr.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\translations\veuilib_zh.ts">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
