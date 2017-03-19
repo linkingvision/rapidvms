@@ -37,7 +37,7 @@
 	Digital Zoom
 
 #### License ####
-* Licensing: dual licensed as open source GPL v3 and commercial-use license (available for purchase).
+* Licensing: dual licensed as open source Affero GPL and commercial-use license (available for purchase).
 
 
 [Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
