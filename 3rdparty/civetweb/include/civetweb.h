@@ -23,7 +23,7 @@
 #ifndef CIVETWEB_HEADER_INCLUDED
 #define CIVETWEB_HEADER_INCLUDED
 
-#define CIVETWEB_VERSION "1.8"
+#define CIVETWEB_VERSION "1.9"
 
 #ifndef CIVETWEB_API
 #if defined(_WIN32)
@@ -86,6 +86,20 @@ struct mg_request_info {
 		const char *name;  /* HTTP header name */
 		const char *value; /* HTTP header value */
 	} http_headers[64];    /* Maximum 64 headers */
+
+	struct client_cert *client_cert; /* Client certificate information */
+
+	const char *acceptedWebSocketSubprotocol; /* websocket subprotocol,
+	                                           * accepted during handshake */
+};
+
+
+/* Client certificate information (part of mg_request_info) */
+struct client_cert {
+	const char *subject;
+	const char *issuer;
+	const char *serial;
+	const char *finger;
 };
 
 
@@ -174,7 +188,7 @@ struct mg_callbacks {
 	   Return value:
 	     NULL: do not serve file from memory, proceed with normal file open.
 	     non-NULL: pointer to the file contents in memory. data_len must be
-	       initilized with the size of the memory block. */
+	       initialized with the size of the memory block. */
 	const char *(*open_file)(const struct mg_connection *,
 	                         const char *path,
 	                         size_t *data_len);
@@ -342,6 +356,14 @@ typedef int (*mg_websocket_data_handler)(struct mg_connection *,
 typedef void (*mg_websocket_close_handler)(const struct mg_connection *,
                                            void *);
 
+/* struct mg_websocket_subprotocols
+ *
+ * List of accepted subprotocols
+ */
+struct mg_websocket_subprotocols {
+	int nb_subprotocols;
+	char **subprotocols;
+};
 
 /* mg_set_websocket_handler
 
@@ -355,6 +377,20 @@ mg_set_websocket_handler(struct mg_context *ctx,
                          mg_websocket_data_handler data_handler,
                          mg_websocket_close_handler close_handler,
                          void *cbdata);
+
+/* mg_set_websocket_handler
+
+   Set or remove handler functions for websocket connections.
+   This function works similar to mg_set_request_handler - see there. */
+CIVETWEB_API void mg_set_websocket_handler_with_subprotocols(
+    struct mg_context *ctx,
+    const char *uri,
+    struct mg_websocket_subprotocols *subprotocols,
+    mg_websocket_connect_handler connect_handler,
+    mg_websocket_ready_handler ready_handler,
+    mg_websocket_data_handler data_handler,
+    mg_websocket_close_handler close_handler,
+    void *cbdata);
 
 
 /* mg_authorization_handler
@@ -612,10 +648,26 @@ CIVETWEB_API void mg_send_mime_file(struct mg_connection *conn,
                                     const char *path,
                                     const char *mime_type);
 
+/* Send contents of the entire file together with HTTP headers.
+   Parameters:
+     conn: Current connection information.
+     path: Full path to the file to send.
+     mime_type: Content-Type for file.  NULL will cause the type to be
+                looked up by the file extension.
+     additional_headers: Additional custom header fields appended to the header.
+                         Each header must start with an X- to ensure it is not
+   included twice.
+                         NULL does not append anything.
+*/
+CIVETWEB_API void mg_send_mime_file2(struct mg_connection *conn,
+                                     const char *path,
+                                     const char *mime_type,
+                                     const char *additional_headers);
+
 /* Store body data into a file. */
 CIVETWEB_API long long mg_store_body(struct mg_connection *conn,
                                      const char *path);
-/* Read entire request body and stor it in a file "path".
+/* Read entire request body and store it in a file "path".
    Return:
      < 0   Error
      >= 0  Number of bytes stored in file "path".
@@ -907,7 +959,7 @@ CIVETWEB_API void mg_cry(const struct mg_connection *conn,
                          ...) PRINTF_ARGS(2, 3);
 
 
-/* utility methods to compare two buffers, case incensitive. */
+/* utility methods to compare two buffers, case insensitive. */
 CIVETWEB_API int mg_strcasecmp(const char *s1, const char *s2);
 CIVETWEB_API int mg_strncasecmp(const char *s1, const char *s2, size_t len);
 
@@ -1016,6 +1068,14 @@ CIVETWEB_API int mg_get_response(struct mg_connection *conn,
 */
 CIVETWEB_API unsigned mg_check_feature(unsigned feature);
 
+
+/* Check which features where set when civetweb has been compiled.
+   Parameters:
+     To be defined - 0, 0 prints to stdout.
+   Return:
+     To be defined.
+*/
+CIVETWEB_API int mg_print_system_info(int prm1, char *prm2);
 
 #ifdef __cplusplus
 }

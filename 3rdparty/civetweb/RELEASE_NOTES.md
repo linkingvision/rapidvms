@@ -1,3 +1,37 @@
+Release Notes v1.9 (work in progress)
+===
+### Objectives: *Read client certificate information, bug fixes*
+
+Changes
+-------
+
+- Add option to set linger timeout
+- Update Duktape and Lua (third-party code)
+- Add continuous integration tests
+- Add API documentation
+- Limit recursions in .htpasswd files
+- Fix SCRIPT_NAME for CGI directory index files (index.php)
+- Use non-blocking sockets
+- stdint.h is now required and no longer optional
+- Rewrite connection close handling
+- Rewrite mg_fopen/mg_stat
+- Enhanced tray icon menu for Windows
+- Add subprotocol management for websocket connections
+- Partially rewrite timeout handling
+- Add option keep_alive_timeout_ms
+- Improve support for absolute URIs
+- Allow some additional compiler checks (higher warning level)
+- Add option for case sensitive file names for Windows
+- Short notation for listening_ports option when using IPv4 and IPv6 ports
+- Make usage of Linux sendfile configurable
+- Optimize build matrix for Travis CI
+- Retry failing TLS/HTTPS read/write operations
+- Read client certificate information
+- Do not tolerate URIs with invalid characters
+- Fix mg_get_cookie to ignore substrings
+- Fix bug in timer logic (for Lua Websockets)
+- Updated version number
+
 Release Notes v1.8
 ===
 ### Objectives: *CMake integration and continuous integration tests, Support client certificates, bug fixes*

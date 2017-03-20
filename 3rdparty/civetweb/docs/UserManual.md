@@ -140,7 +140,7 @@ Comma separated list of URI=PATH pairs, specifying that given
 URIs must be protected with password files specified by PATH.
 All Paths must be full file paths.
 
-### authentication_domain `mydomain.com`
+### authentication\_domain `mydomain.com`
 Authorization realm used for HTTP digest authentication. This domain is
 used in the encoding of the `.htpasswd` authorization files as well.
 Changing the domain retroactively will render the existing passwords useless.
@@ -241,6 +241,13 @@ For this to work when using request handlers it is important to add the
 correct Content-Length HTTP header for each request. If this is forgotten the
 client will time out.
 
+Note: If you set keep\_alive to `yes`, you should set keep\_alive\_timeout\_ms
+to some value > 0 (e.g. 500). If you set keep\_alive to `no`, you should set
+keep\_alive\_timeout\_ms to 0. Currently, this is done as a default value,
+but this configuration is redundant. In a future version, the keep\_alive 
+configuration option might be removed and automatically set to `yes` if 
+a timeout > 0 is set.
+
 ### access\_control\_list
 An Access Control List (ACL) allows restrictions to be put on the list of IP
 addresses which have access to the web server. In the case of the Civetweb
@@ -279,13 +286,29 @@ For example, to bind to a loopback interface on port 80 and to
 all interfaces on HTTPS port 443, use `127.0.0.1:80,443s`.
 
 If the server is built with IPv6 support, `[::]:8080` can be used to
-listen to connections to port 8080 from both, IPv4 and IPv6.
-IPv6 addresses of network interfaces can be specified as well,
+listen to IPv6 connections to port 8080. IPv6 addresses of network
+interfaces can be specified as well,
 e.g. `[::1]:8080` for the IPv6 loopback interface.
+
+[::]:80 will bind to port 80 IPv6 only. In order to use port 80 for
+all interfaces, both IPv4 and IPv6, use either the configuration
+`80,[::]:80` (create one socket for IPv4 and one for IPv6 only),
+or `+80` (create one socket for both, IPv4 and IPv6). 
+The `+`-notation to use IPv4 and IPv6 will only work in no network
+interface is specified. Depending on your IPv6 network environment,
+some configurations might not work (properly), so you have to test
+to find the configuration most suitable for your needs.
+
+It is possible to use network interface addresses (e.g., `192.0.2.3:80`,
+`[2001:0db8::1234]:80`). To get a list of available network interface
+addresses, use `ipconfig` (in a `cmd` window in Windows) or `ifconfig` 
+(in a Linux shell).
 
 ### document\_root `.`
 A directory to serve. By default, the current working directory is served.
 The current directory is commonly referenced as dot (`.`).
+It is recommended to use an absolute path for document\_root, in order to 
+avoid accidentally serving the wrong directory.
 
 ### ssl\_certificate
 Path to the SSL certificate file. This option is only required when at least
@@ -339,6 +362,37 @@ must be for a file name only, not including directory names. Example:
 Timeout for network read and network write operations, in milliseconds.
 If a client intends to keep long-running connection, either increase this
 value or (better) use keep-alive messages.
+
+### keep\_alive\_timeout\_ms `500` or `0`
+Idle timeout between two requests in one keep-alive connection.
+If keep alive is enabled, multiple requests using the same connection 
+are possible. This reduces the overhead for opening and closing connections
+when loading several resources from one server, but it also blocks one port
+and one thread at the server during the lifetime of this connection.
+Unfortunately, browsers do not close the keep-alive connection after loading
+all resources required to show a website.
+The server closes a keep-alive connection, if there is no additional request
+from the client during this timeout.
+
+Note: if enable\_keep\_alive is set to `no` the value of 
+keep\_alive\_timeout\_ms should be set to `0`, if enable\_keep\_alive is set 
+to `yes`, the value of keep\_alive\_timeout\_ms must be >0.
+Currently keep\_alive\_timeout\_ms is ignored if enable\_keep\_alive is no,
+but future versions my drop the enable\_keep\_alive configuration value and
+automatically use keep-alive if keep\_alive\_timeout\_ms is not 0.
+
+### linger\_timeout\_ms
+Set TCP socket linger timeout before closing sockets (SO\_LINGER option).
+The configured value is a timeout in milliseconds. Setting the value to 0
+will yield in abortive close (if the socket is closed from the server side).
+Setting the value to -1 will turn off linger.
+If the value is not set (or set to -2), CivetWeb will not set the linger
+option at all.
+
+Note: For consistency with other timeouts, the value is configured in
+milliseconds. However, the TCP socket layer usually only offers a timeout in 
+seconds, so the value should be an integer multiple of 1000.
+
 
 ### lua\_preload\_file
 This configuration option can be used to specify a Lua script file, which
@@ -408,28 +462,28 @@ For values <0 and values >31622400, the behavior is undefined.
 URL encoded request strings are decoded in the server, unless it is disabled
 by setting this option to `no`.
 
-### ssl_verify_peer `no`
+### ssl\_verify\_peer `no`
 Enable client's certificate verification by the server.
 
-### ssl_ca_path
+### ssl\_ca\_path
 Name of a directory containing trusted CA certificates. Each file in the
 directory must contain only a single CA certificate. The files must be named
 by the subject name’s hash and an extension of “.0”. If there is more than one
 certificate with the same subject name they should have extensions ".0", ".1",
 ".2" and so on respectively.
 
-### ssl_ca_file
+### ssl\_ca\_file
 Path to a .pem file containing trusted certificates. The file may contain
 more than one certificate.
 
-### ssl_verify_depth `9`
+### ssl\_verify\_depth `9`
 Sets maximum depth of certificate chain. If client's certificate chain is longer
 than the depth set here connection is refused.
 
-### ssl_default_verify_paths `yes`
+### ssl\_default\_verify\_paths `yes`
 Loads default trusted certificates locations set at openssl compile time.
 
-### ssl_cipher_list
+### ssl\_cipher\_list
 List of ciphers to present to the client. Entries should be separated by
 colons, commas or spaces.
 
@@ -440,7 +494,7 @@ colons, commas or spaces.
 See [this entry](https://www.openssl.org/docs/manmaster/apps/ciphers.html) in
 OpenSSL documentation for full list of options and additional examples.
 
-### ssl_protocol_version `0`
+### ssl\_protocol\_version `0`
 Sets the minimal accepted version of SSL/TLS protocol according to the table:
 
 Protocols | Value
@@ -451,7 +505,7 @@ TLS1.0+TLS1.1+TLS1.2 | 2
 TLS1.1+TLS1.2 | 3
 TLS1.2 | 4
 
-### ssl_short_trust `no`
+### ssl\_short\_trust `no`
 Enables the use of short lived certificates. This will allow for the certificates
 and keys specified in `ssl_certificate`, `ssl_ca_file` and `ssl_ca_path` to be
 exchanged and reloaded while the server is running.
@@ -462,6 +516,13 @@ increase performance while swapping the certificate.
 
 Disk IO performance can be improved when keeping the certificates and keys stored
 on a tmpfs (linux) on a system with very high throughput.
+
+### allow\_sendfile\_call `yes`
+This option can be used to enable or disable the use of the Linux `sendfile` system call. It is only available for Linux systems and only affecting HTTP (not HTTPS) connections if `throttle` is not enabled. While using the `sendfile` call will lead to a performance boost for HTTP connections, this call may be broken for some file systems and some operating system versions.
+
+### case\_sensitive `no`
+This option can be uset to enable case URLs for Windows servers. It is only available for Windows systems. Windows file systems are not case sensitive, but they still store the file name including case. If this option is set to `yes`, the comparison for URIs and Windows file names will be case sensitive.
+
 
 # Lua Scripts and Lua Server Pages
 Pre-built Windows and Mac civetweb binaries have built-in Lua scripting
@@ -615,6 +676,14 @@ An example is shown in
   the correct interpreter is `php-cgi.exe` (`php-cgi` on UNIX).
   Solution: specify the full path to the PHP interpreter, e.g.:
     `civetweb -cgi_interpreter /full/path/to/php-cgi`
+
+- `php-cgi` is unavailable, for example on Mac OS X. As long as the `php` binary is installed, you can run CGI programs in command line mode (see the example below). Note that in this mode, `$_GET` and friends will be unavailable, and you'll have to parse the query string manually using [parse_str](http://php.net/manual/en/function.parse-str.php) and the `QUERY_STRING` environmental variable.
+
+        #!/usr/bin/php
+        <?php
+        echo "Content-Type: text/html\r\n\r\n";
+        echo "Hello World!\n";
+        ?>
 
 - Civetweb fails to start. If Civetweb exits immediately when started, this
   usually indicates a syntax error in the configuration file

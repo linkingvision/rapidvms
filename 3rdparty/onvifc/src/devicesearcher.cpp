@@ -5,6 +5,8 @@
 #include "messageparser.h"
 #include <QCoreApplication>
 #include <QNetworkInterface>
+#include <QThread>
+#include <string>
 
 #ifdef WIN32
 #include <ws2tcpip.h>
@@ -55,6 +57,10 @@ DeviceSearcher::DeviceSearcher(QHostAddress &addr, QObject *parent) : QObject(pa
     //QHostAddress host("192.168.0.1");
     //mUdpSocket->bind(QHostAddress::Any, 0, QUdpSocket::ShareAddress);
     mUdpSocket->bind(addr, 0, QUdpSocket::ShareAddress);
+	//QThread * pCurrThread = QThread::currentThread();
+	//mUdpSocket->moveToThread(pCurrThread);
+    //this->moveToThread(pCurrThread);
+
     int opt=4 * 1024 * 1024;
     if (setsockopt(mUdpSocket->socketDescriptor(), SOL_SOCKET, 
         SO_RCVBUF, (char *)&opt, sizeof(int)) < 0)
@@ -63,7 +69,7 @@ DeviceSearcher::DeviceSearcher(QHostAddress &addr, QObject *parent) : QObject(pa
     }
     
     connect(mUdpSocket, SIGNAL(readyRead()),
-            this, SLOT(readPendingDatagrams()));
+		this, SLOT(readPendingDatagrams()), Qt::DirectConnection);
 }
 
 DeviceSearcher::~DeviceSearcher() {

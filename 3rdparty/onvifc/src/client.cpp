@@ -14,7 +14,7 @@ Client::Client(const QString &url) {
 QString Client::sendData(const QString &data) {
 //    qDebug() << "send to url => " << mUrl << " | data => " << data;
     QHttp http;
-    http.ignoreSslErrors();
+    //http.ignoreSslErrors();
     QUrl url(mUrl);
     if (url.port() >= 655535 || url.port() <= 0)
     {

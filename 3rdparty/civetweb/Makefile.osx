@@ -7,6 +7,9 @@
 # security unlock ~/Library/Keychains/login.keychain
 # See e.g. http://lists.apple.com/archives/apple-cdsa/2008/Jan/msg00027.html
 
+# Civetweb features
+WITH_LUA = 1
+
 PACKAGE = Civetweb
 BUILD_DIR = out
 
@@ -19,6 +22,7 @@ RESOURCES_DIR = $(CONTENTS_DIR)/Resources
 OSXBIN_DIR = $(CONTENTS_DIR)/MacOS
 
 CIVETWEB_VERSION = $(shell perl -lne '/define\s+CIVETWEB_VERSION\s+"(\S+)"/ and print $$1' include/civetweb.h)
+ZIPFILENAME = $(PACKAGE)-$(CIVETWEB_VERSION).zip
 
 include Makefile
 
@@ -32,8 +36,7 @@ package: build
 	install -m 755 $(CPROG) $(OSXBIN_DIR)/$(PACKAGE)
 	install -m 644 docs/Installing.md $(DMG_DIR)/Installing.txt
 	install -m 644 LICENSE.md $(DMG_DIR)/License.txt
-	ln -fs /Applications $(DMG_DIR)/
-	hdiutil create $(PACKAGE)-$(CIVETWEB_VERSION).dmg -volname "$(PACKAGE) $(CIVETWEB_VERSION)" -srcfolder $(DMG_DIR) -ov
-#	@rm -rf $(DMG_DIR)
+	rm -rf $(ZIPFILENAME)
+	cd $(DMG_DIR) && zip -r ../../$(ZIPFILENAME) .
 
 .PHONY: package

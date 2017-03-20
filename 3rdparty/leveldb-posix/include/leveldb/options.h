@@ -192,7 +192,7 @@ struct WriteOptions {
   bool sync;
 
   WriteOptions()
-      : sync(false) {
+      : sync(true) {
   }
 };
 

@@ -116,6 +116,7 @@ bool Hdfs::LoadSymbol() {
         if( _libraryInstance == 0 )
         {
 		LPVOID str = 0;
+		std::string _libraryName = "hdfs.dll";
 		DWORD_PTR args[1] = { (DWORD_PTR)_libraryName.c_str() };
 
 		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ARGUMENT_ARRAY,
@@ -127,7 +128,7 @@ bool Hdfs::LoadSymbol() {
 		               (va_list*)args );
 
 		LocalFree( str );
-    		fprintf(stderr, "resolve symbol from hdfs.dll error: %s\n", error);
+    		fprintf(stderr, "resolve symbol from hdfs.dll\n");
         }
 
 	*(void**)(&hdfsConnect) = ::GetProcAddress( (HMODULE)_libraryInstance, "hdfsConnect");

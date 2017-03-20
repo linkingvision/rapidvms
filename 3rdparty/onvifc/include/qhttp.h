@@ -47,6 +47,21 @@
 #include <QtCore/qmap.h>
 #include <QtCore/qpair.h>
 #include <QtCore/qscopedpointer.h>
+# include "qtimer.h"
+# include "qauthenticator.h"
+# include "qhttpauthenticator_p.h"
+# include "qtcpsocket.h"
+# include "qsslsocket.h"
+# include "qtextstream.h"
+# include "qmap.h"
+# include "qlist.h"
+# include "qstring.h"
+# include "qstringlist.h"
+# include "qbuffer.h"
+# include "qringbuffer_p.h"
+# include "qcoreevent.h"
+# include "qurl.h"
+# include "qnetworkproxy.h"
 
 QT_BEGIN_HEADER
 
@@ -269,7 +284,6 @@ Q_SIGNALS:
 #ifndef QT_NO_OPENSSL
     void sslErrors(const QList<QSslError> &errors);
 #endif
-
 private:
     Q_DISABLE_COPY(QHttp)
     QScopedPointer<QHttpPrivate> d;
@@ -295,6 +309,98 @@ private:
     friend class QHttpCloseRequest;
     friend class QHttpPGHRequest;
 };
+class QHttpRequest;
+class QHttpNormalRequest;
+class QHttpPrivate
+{
+public:
+    Q_DECLARE_PUBLIC(QHttp)
+
+    inline QHttpPrivate(QHttp* parent)
+        : socket(0), reconnectAttempts(2),
+          deleteSocket(0), state(QHttp::Unconnected),
+          error(QHttp::NoError), port(0), mode(QHttp::ConnectionModeHttp),
+          toDevice(0), postDevice(0), bytesDone(0), chunkedSize(-1),
+          repost(false), pendingPost(false), q_ptr(parent)
+    {
+    }
+
+    inline ~QHttpPrivate()
+    {
+        while (!pending.isEmpty())
+            delete pending.takeFirst();
+
+        if (deleteSocket)
+            delete socket;
+    }
+
+    // private slots
+    void _q_startNextRequest();
+    void _q_slotReadyRead();
+    void _q_slotConnected();
+    void _q_slotError(QAbstractSocket::SocketError);
+    void _q_slotClosed();
+    void _q_slotBytesWritten(qint64 numBytes);
+#ifndef QT_NO_OPENSSL
+    void _q_slotEncryptedBytesWritten(qint64 numBytes);
+#endif
+    void _q_slotDoFinished();
+    void _q_slotSendRequest();
+    void _q_continuePost();
+
+    int addRequest(QHttpNormalRequest *);
+    int addRequest(QHttpRequest *);
+    void finishedWithSuccess();
+    void finishedWithError(const QString &detail, int errorCode);
+
+    void init();
+    void setState(int);
+    void closeConn();
+    void setSock(QTcpSocket *sock);
+
+    void postMoreData();
+
+    QTcpSocket *socket;
+    int reconnectAttempts;
+    bool deleteSocket;
+    QList<QHttpRequest *> pending;
+
+    QHttp::State state;
+    QHttp::Error error;
+    QString errorString;
+
+    QString hostName;
+    quint16 port;
+    QHttp::ConnectionMode mode;
+
+    QByteArray buffer;
+    QIODevice *toDevice;
+    QIODevice *postDevice;
+
+    qint64 bytesDone;
+    qint64 bytesTotal;
+    qint64 chunkedSize;
+
+    QHttpRequestHeader header;
+
+    bool readHeader;
+    QString headerStr;
+    QHttpResponseHeader response;
+
+    QRingBuffer rba;
+
+#ifndef QT_NO_NETWORKPROXY
+    QNetworkProxy proxy;
+    QHttpAuthenticator proxyAuthenticator;
+#endif
+    QHttpAuthenticator authenticator;
+    bool repost;
+    bool hasFinishedWithError;
+    bool pendingPost;
+    QTimer post100ContinueTimer;
+    QHttp *q_ptr;
+};
+
 
 QT_END_HEADER
 

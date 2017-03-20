@@ -19,6 +19,7 @@ struct ttimers {
 	unsigned timer_count;             /* Current size of timer list */
 };
 
+
 static int
 timer_add(struct mg_context *ctx,
           double next_time,
@@ -30,15 +31,31 @@ timer_add(struct mg_context *ctx,
 	unsigned u, v;
 	int error = 0;
 	struct timespec now;
+	double dt; /* double time */
 
 	if (ctx->stop_flag) {
 		return 0;
 	}
 
+	clock_gettime(CLOCK_MONOTONIC, &now);
+	dt = (double)(now.tv_sec);
+	dt += (double)(now.tv_nsec) * 1.0E-9;
+
+	/* HCP24: if is_relative = 0 and next_time < now
+	 *        action will be called so fast as possible
+	 *        if additional period > 0
+	 *        action will be called so fast as possible
+	 *        n times until (next_time + (n * period)) > now
+	 *        then the period is working
+	 * Solution:
+	 *        if next_time < now then we set next_time = now.
+	 *        The first callback will be so fast as possible  (now)
+	 *        but the next callback on period
+	*/
 	if (is_relative) {
-		clock_gettime(CLOCK_MONOTONIC, &now);
-		next_time += now.tv_sec;
-		next_time += now.tv_nsec * 1.0E-9;
+		next_time += dt;
+	} else if (next_time < dt) {
+		next_time = dt;
 	}
 
 	pthread_mutex_lock(&ctx->timers->mutex);
@@ -46,7 +63,8 @@ timer_add(struct mg_context *ctx,
 		error = 1;
 	} else {
 		for (u = 0; u < ctx->timers->timer_count; u++) {
-			if (ctx->timers->timers[u].time < next_time) {
+			if (ctx->timers->timers[u].time > next_time) {
+				/* HCP24: moving all timers > next_time */
 				for (v = ctx->timers->timer_count; v > u; v--) {
 					ctx->timers->timers[v] = ctx->timers->timers[v - 1];
 				}
@@ -62,6 +80,7 @@ timer_add(struct mg_context *ctx,
 	pthread_mutex_unlock(&ctx->timers->mutex);
 	return error;
 }
+
 
 static void
 timer_thread_run(void *thread_func_param)
@@ -113,6 +132,7 @@ timer_thread_run(void *thread_func_param)
 #endif
 }
 
+
 #ifdef _WIN32
 static unsigned __stdcall timer_thread(void *thread_func_param)
 {
@@ -128,6 +148,7 @@ timer_thread(void *thread_func_param)
 }
 #endif /* _WIN32 */
 
+
 static int
 timers_init(struct mg_context *ctx)
 {
@@ -139,6 +160,7 @@ timers_init(struct mg_context *ctx)
 
 	return 0;
 }
+
 
 static void
 timers_exit(struct mg_context *ctx)

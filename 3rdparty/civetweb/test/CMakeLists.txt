@@ -25,7 +25,7 @@ ExternalProject_Add(check-unit-test-framework
   BUILD_IN_SOURCE 1
   PATCH_COMMAND ${CHECK_PATCH_COMMAND}
   CMAKE_ARGS
-    "-DCMAKE_BUILD_TYPE=Release"
+    "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
     "-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}"
     "-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>"
   LOG_DOWNLOAD ${THIRD_PARTY_LOGGING}
@@ -91,6 +91,13 @@ target_include_directories(
 target_link_libraries(private-c-unit-tests ${CHECK_LIBRARIES})
 add_dependencies(private-c-unit-tests check-unit-test-framework)
 
+add_library(timer-c-unit-tests STATIC timertest.c)
+target_include_directories(
+  timer-c-unit-tests PUBLIC
+  ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(timer-c-unit-tests ${CHECK_LIBRARIES})
+add_dependencies(timer-c-unit-tests check-unit-test-framework)
+
 add_library(exe-c-unit-tests STATIC private_exe.c)
 if (BUILD_SHARED_LIBS)
   target_compile_definitions(exe-c-unit-tests PRIVATE)
@@ -107,6 +114,7 @@ target_link_libraries(main-c-unit-test
   public-func-c-unit-tests
   public-server-c-unit-tests
   private-c-unit-tests
+  timer-c-unit-tests
   exe-c-unit-tests
   ${CHECK_LIBRARIES})
 add_dependencies(main-c-unit-test check-unit-test-framework)
@@ -139,6 +147,7 @@ civetweb_add_test(Private "Internal Parsing")
 civetweb_add_test(Private "Encode Decode")
 civetweb_add_test(Private "Mask Data")
 civetweb_add_test(Private "Date Parsing")
+civetweb_add_test(Private "SHA1")
 
 # Public API function tests
 civetweb_add_test(PublicFunc "Version")
@@ -159,6 +168,13 @@ civetweb_add_test(PublicServer "TLS Server Client")
 civetweb_add_test(PublicServer "Server Requests")
 civetweb_add_test(PublicServer "Handle Form")
 civetweb_add_test(PublicServer "HTTP Authentication")
+civetweb_add_test(PublicServer "HTTP Keep Alive")
+civetweb_add_test(PublicServer "Error handling")
+civetweb_add_test(PublicServer "Limit speed")
+
+# Timer tests
+civetweb_add_test(Timer "Timer Periodic")
+civetweb_add_test(Timer "Timer Single Shot")
 
 # Tests with main.c
 #civetweb_add_test(EXE "Helper funcs")

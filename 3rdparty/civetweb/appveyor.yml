@@ -1,11 +1,14 @@
 version: '{build}'
 
-configuration:
-  - Release
+
+build:
+# no automatic build in script mode
+
 
 platform:
   - x86
   - x64
+
 
 environment:
   enable_cxx: NO
@@ -15,7 +18,8 @@ environment:
   c_standard: auto
   cxx_standard: auto
   matrix:
-    - compiler: msvc-18-seh
+    - id: 1
+      compiler: msvc-18-seh
       build_shared: NO
       no_files: NO
       enable_ipv6: NO
@@ -23,7 +27,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: NO
-    - compiler: msvc-18-seh
+      configuration: Release
+    - id: 2
+      compiler: msvc-18-seh
       build_shared: YES
       no_files: NO
       enable_ipv6: NO
@@ -31,7 +37,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: NO
-    - compiler: msvc-18-seh
+      configuration: Release
+    - id: 3
+      compiler: msvc-18-seh
       build_shared: YES
       no_files: YES
       enable_ipv6: NO
@@ -39,7 +47,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: NO
-    - compiler: gcc-5.1.0-posix
+      configuration: Release
+    - id: 4
+      compiler: gcc-5.1.0-posix
       build_shared: NO
       no_files: YES
       enable_ipv6: NO
@@ -47,7 +57,9 @@ environment:
       enable_websockets: NO
       no_cgi: YES
       no_caching: YES
-    - compiler: gcc-5.1.0-posix
+      configuration: Release
+    - id: 5
+      compiler: gcc-5.1.0-posix
       build_shared: NO
       no_files: NO
       enable_ipv6: YES
@@ -55,7 +67,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: YES
-    - compiler: gcc-5.1.0-posix
+      configuration: Release
+    - id: 6
+      compiler: gcc-5.1.0-posix
       build_shared: NO
       no_files: NO
       enable_ipv6: NO
@@ -63,7 +77,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: YES
-    - compiler: gcc-5.1.0-posix
+      configuration: Release
+    - id: 7
+      compiler: gcc-5.1.0-posix
       build_shared: YES
       no_files: NO
       enable_ipv6: NO
@@ -71,7 +87,9 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: YES
-    - compiler: gcc-5.1.0-posix
+      configuration: Release
+    - id: 8
+      compiler: gcc-5.1.0-posix
       build_shared: YES
       no_files: YES
       enable_ipv6: NO
@@ -79,7 +97,17 @@ environment:
       enable_websockets: YES
       no_cgi: NO
       no_caching: YES
-
+      configuration: Release
+    - id: 9
+      compiler: msvc-18-seh
+      build_shared: NO
+      no_files: NO
+      enable_ipv6: YES
+      enable_ssl: YES
+      enable_websockets: YES
+      no_cgi: NO
+      no_caching: NO
+      configuration: Debug
 
 install:
   # Derive some extra information
@@ -207,8 +235,8 @@ after_test:
   - cd
   - dir
   - md dist
-  - cmake "-DCMAKE_INSTALL_PREFIX=%install_path%" -P "%build_path%/cmake_install.cmake"
-  - copy "%build_path%" dist\
+  - if "%build_type%"=="Release" (cmake "-DCMAKE_INSTALL_PREFIX=%install_path%" -P "%build_path%/cmake_install.cmake")
+  - if "%build_type%"=="Release" (copy "%build_path%" dist\)
   - dir dist\
 
 matrix:

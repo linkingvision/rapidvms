@@ -28,6 +28,9 @@
 #ifndef _CRT_SECURE_NO_DEPRECATE
 #define _CRT_SECURE_NO_DEPRECATE
 #endif
+#ifdef WIN32_LEAN_AND_MEAN
+#undef WIN32_LEAN_AND_MEAN /* Required for some functions (tray icons, ...) */
+#endif
 
 #else
 
@@ -53,14 +56,28 @@
 #define NO_RETURN
 #endif
 
+/* Use same defines as in civetweb.c before including system headers. */
+#ifndef _LARGEFILE_SOURCE
+#define _LARGEFILE_SOURCE /* For fseeko(), ftello() */
+#endif
+#ifndef _FILE_OFFSET_BITS
+#define _FILE_OFFSET_BITS 64 /* Use 64-bit file offsets by default */
+#endif
+#ifndef __STDC_FORMAT_MACROS
+#define __STDC_FORMAT_MACROS /* <inttypes.h> wants this for C++ */
+#endif
+#ifndef __STDC_LIMIT_MACROS
+#define __STDC_LIMIT_MACROS /* C++ wants that for INT64_MAX */
+#endif
+
+#include <string.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <limits.h>
 #include <stdlib.h>
 #include <signal.h>
-#include <string.h>
-#include <errno.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <ctype.h>
@@ -86,7 +103,7 @@
 #if !defined(__MINGW32__)
 extern char *_getcwd(char *buf, size_t size);
 #endif
-static int guard = 0; /* test if any dialog is already open */
+static int sGuard = 0; /* test if any dialog is already open */
 
 #ifndef PATH_MAX
 #define PATH_MAX MAX_PATH
@@ -106,9 +123,10 @@ static int guard = 0; /* test if any dialog is already open */
 #else /* defined(_WIN32) && !defined(__SYMBIAN32__) - WINDOWS / UNIX include   \
          block */
 
+#include <unistd.h>
 #include <sys/utsname.h>
 #include <sys/wait.h>
-#include <unistd.h>
+
 #define DIRSEP '/'
 #define WINCDECL
 #define abs_path(rel, abs, abs_size) (realpath((rel), (abs)))
@@ -131,6 +149,7 @@ static int g_exit_flag = 0;         /* Main loop should exit */
 static char g_server_base_name[40]; /* Set by init_server_name() */
 static const char *g_server_name;   /* Set by init_server_name() */
 static const char *g_icon_name;     /* Set by init_server_name() */
+static const char *g_lua_script;    /* Set by init_server_name() */
 static char g_config_file_name[PATH_MAX] =
     "";                          /* Set by process_command_line_arguments() */
 static struct mg_context *g_ctx; /* Set by start_civetweb() */
@@ -150,11 +169,20 @@ static struct tuser_data
 #define CONFIG_FILE2 "/usr/local/etc/civetweb.conf"
 #endif
 
-enum { OPTION_TITLE, OPTION_ICON, NUM_MAIN_OPTIONS };
+enum { OPTION_TITLE, 
+       OPTION_ICON, 
+#ifdef USE_LUA
+       OPTION_LUA_SCRIPT, 
+#endif
+       NUM_MAIN_OPTIONS };
 
 static struct mg_option main_config_options[] = {
     {"title", CONFIG_TYPE_STRING, NULL},
     {"icon", CONFIG_TYPE_STRING, NULL},
+#ifdef USE_LUA
+    /* TODO: Move from here to civetweb.c and stop with server */
+    {"lua_script", CONFIG_TYPE_STRING, NULL},
+#endif
     {NULL, CONFIG_TYPE_UNKNOWN, NULL}};
 
 
@@ -626,6 +654,17 @@ init_server_name(int argc, const char *argv[])
 			g_icon_name = (const char *)(argv[i + 1]);
 		}
 	}
+#ifdef USE_LUA
+	g_lua_script = NULL;
+	for (i = 0; i < argc - 1; i++) {
+		if ((argv[i][0] == '-')
+		    && (0 == strcmp(argv[i] + 1,
+		                    main_config_options[OPTION_LUA_SCRIPT].name))) {
+			g_lua_script = (const char *)(argv[i + 1]);
+		}
+	}
+#endif
+
 }
 
 
@@ -792,6 +831,14 @@ run_lua(const char *file_name)
 
 	return func_ret;
 }
+
+static void *
+run_lua_thread(void *file_name)
+{
+	run_lua((const char *)file_name);
+	return NULL;
+}
+
 #endif
 
 
@@ -845,152 +892,12 @@ start_civetweb(int argc, char *argv[])
 	 * Show system information and exit
 	 * This is very useful for diagnosis. */
 	if (argc > 1 && !strcmp(argv[1], "-I")) {
-		const char *version = mg_version();
-#if defined(_WIN32)
-#if !defined(__SYMBIAN32__)
-		DWORD dwVersion = 0;
-		DWORD dwMajorVersion = 0;
-		DWORD dwMinorVersion = 0;
-		SYSTEM_INFO si;
 
-		GetSystemInfo(&si);
-
-#ifdef _MSC_VER
-#pragma warning(push)
-// GetVersion was declared deprecated
-#pragma warning(disable : 4996)
-#endif
-		dwVersion = GetVersion();
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-
-		dwMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
-		dwMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
-
+#ifdef WIN32
 		(void)MakeConsole();
-		fprintf(stdout, "\n%s\n", g_server_name);
-		fprintf(stdout,
-		        "%s - Windows %u.%u\n",
-		        g_server_base_name,
-		        (unsigned)dwMajorVersion,
-		        (unsigned)dwMinorVersion);
-
-		fprintf(stdout,
-		        "CPU: type %u, cores %u, mask %x\n",
-		        (unsigned)si.wProcessorArchitecture,
-		        (unsigned)si.dwNumberOfProcessors,
-		        (unsigned)si.dwActiveProcessorMask);
-
-#else
-		fprintf(stdout, "\n%s\n", g_server_name);
-		fprintf(stdout, "%s - Symbian\n", g_server_base_name);
 #endif
-#else
-		struct utsname name;
-		memset(&name, 0, sizeof(name));
-		uname(&name);
-		fprintf(stdout, "\n%s\n", g_server_name);
-		fprintf(stdout,
-		        "%s - %s %s (%s) - %s\n",
-		        g_server_base_name,
-		        name.sysname,
-		        name.version,
-		        name.release,
-		        name.machine);
-#endif
-
-		fprintf(stdout, "Features:");
-		if (mg_check_feature(1)) {
-			fprintf(stdout, " Files");
-		}
-		if (mg_check_feature(2)) {
-			fprintf(stdout, " HTTPS");
-		}
-		if (mg_check_feature(4)) {
-			fprintf(stdout, " CGI");
-		}
-		if (mg_check_feature(8)) {
-			fprintf(stdout, " IPv6");
-		}
-		if (mg_check_feature(16)) {
-			fprintf(stdout, " WebSockets");
-		}
-		if (mg_check_feature(32)) {
-			fprintf(stdout, " Lua");
-		}
-		fprintf(stdout, "\n");
-
-#ifdef USE_LUA
-		fprintf(stdout,
-		        "Lua Version: %u (%s)\n",
-		        (unsigned)LUA_VERSION_NUM,
-		        LUA_RELEASE);
-#endif
-
-		fprintf(stdout, "Version: %s\n", version);
-
-		fprintf(stdout, "Build: %s\n", __DATE__);
-
-/* http://sourceforge.net/p/predef/wiki/Compilers/ */
-#if defined(_MSC_VER)
-		fprintf(stdout,
-		        "MSC: %u (%u)\n",
-		        (unsigned)_MSC_VER,
-		        (unsigned)_MSC_FULL_VER);
-#elif defined(__MINGW64__)
-		fprintf(stdout,
-		        "MinGW64: %u.%u\n",
-		        (unsigned)__MINGW64_VERSION_MAJOR,
-		        (unsigned)__MINGW64_VERSION_MINOR);
-		fprintf(stdout,
-		        "MinGW32: %u.%u\n",
-		        (unsigned)__MINGW32_MAJOR_VERSION,
-		        (unsigned)__MINGW32_MINOR_VERSION);
-#elif defined(__MINGW32__)
-		fprintf(stdout,
-		        "MinGW32: %u.%u\n",
-		        (unsigned)__MINGW32_MAJOR_VERSION,
-		        (unsigned)__MINGW32_MINOR_VERSION);
-#elif defined(__clang__)
-		fprintf(stdout,
-		        "clang: %u.%u.%u (%s)\n",
-		        __clang_major__,
-		        __clang_minor__,
-		        __clang_patchlevel__,
-		        __clang_version__);
-#elif defined(__GNUC__)
-		fprintf(stdout,
-		        "gcc: %u.%u.%u\n",
-		        (unsigned)__GNUC__,
-		        (unsigned)__GNUC_MINOR__,
-		        (unsigned)__GNUC_PATCHLEVEL__);
-#elif defined(__INTEL_COMPILER)
-		fprintf(stdout, "Intel C/C++: %u\n", (unsigned)__INTEL_COMPILER);
-#elif defined(__BORLANDC__)
-		fprintf(stdout, "Borland C: 0x%x\n", (unsigned)__BORLANDC__);
-#elif defined(__SUNPRO_C)
-		fprintf(stdout, "Solaris: 0x%x\n", (unsigned)__SUNPRO_C);
-#else
-		fprintf(stdout, "Other\n");
-#endif
-		/* Determine 32/64 bit data mode.
-		 * see https://en.wikipedia.org/wiki/64-bit_computing */
-		fprintf(stdout,
-		        "Data model: i:%u/%u/%u/%u, f:%u/%u/%u, c:%u/%u, "
-		        "p:%u, s:%u, t:%u\n",
-		        (unsigned)sizeof(short),
-		        (unsigned)sizeof(int),
-		        (unsigned)sizeof(long),
-		        (unsigned)sizeof(long long),
-		        (unsigned)sizeof(float),
-		        (unsigned)sizeof(double),
-		        (unsigned)sizeof(long double),
-		        (unsigned)sizeof(char),
-		        (unsigned)sizeof(wchar_t),
-		        (unsigned)sizeof(void *),
-		        (unsigned)sizeof(size_t),
-		        (unsigned)sizeof(time_t));
+		fprintf(stdout, "\n%s (%s)\n", g_server_base_name, g_server_name);
+		(void)mg_print_system_info(0, 0);
 
 		exit(EXIT_SUCCESS);
 	}
@@ -1079,6 +986,18 @@ start_civetweb(int argc, char *argv[])
 	verify_existence(options, "ssl_ca_file", 0);
 #ifdef USE_LUA
 	verify_existence(options, "lua_preload_file", 0);
+
+    if (g_lua_script) {
+        struct stat st;
+        if ((stat(g_lua_script, &st) != 0) || (S_ISDIR(st.st_mode))) {
+            fprintf(stderr, "\nError: lua_script not found\n");
+            exit(EXIT_FAILURE);
+        }
+	    if (0!=mg_start_thread(run_lua_thread, (void *)g_lua_script)) {
+            fprintf(stderr, "\nError: Cannot create thread for lua_script\n");
+            exit(EXIT_FAILURE);
+        }
+    }
 #endif
 
 	/* Setup signal handler: quit on Ctrl-C */
@@ -1142,6 +1061,7 @@ enum {
 	ID_ADD_USER_NAME,
 	ID_ADD_USER_REALM,
 	ID_INPUT_LINE,
+	ID_SYSINFO,
 
 	/* All dynamically created text boxes for options have IDs starting from
    ID_CONTROLS, incremented by one. */
@@ -1209,7 +1129,7 @@ show_error(void)
 
 
 static void *
-align(void *ptr, DWORD alig)
+align(void *ptr, uintptr_t alig)
 {
 	uintptr_t ul = (uintptr_t)ptr;
 	ul += alig;
@@ -1380,6 +1300,10 @@ SettingsDlgProc(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_INITDIALOG:
+		/* Store hWnd in a parameter accessible by the parent, so we can
+		 * bring this window to front if required. */
+		*((HWND *)lParam) = hDlg;
+		/* Initialize the dialog elements */
 		SendMessage(hDlg, WM_SETICON, (WPARAM)ICON_SMALL, (LPARAM)hIcon);
 		SendMessage(hDlg, WM_SETICON, (WPARAM)ICON_BIG, (LPARAM)hIcon);
 		title = malloc(strlen(g_server_name) + 16);
@@ -1536,8 +1460,8 @@ get_password(const char *user,
 
 	assert((user != NULL) && (realm != NULL) && (passwd != NULL));
 
-	if (guard < 100) {
-		guard += 100;
+	if (sGuard < 100) {
+		sGuard += 100;
 	} else {
 		return 0;
 	}
@@ -1648,7 +1572,7 @@ get_password(const char *user,
 	ok = (IDOK == DialogBoxIndirectParam(
 	                  NULL, dia, NULL, InputDlgProc, (LPARAM)&dlgprms));
 
-	guard -= 100;
+	sGuard -= 100;
 
 	return ok;
 
@@ -1778,12 +1702,13 @@ show_settings_dialog()
 #define WIDTH (460)
 #define LABEL_WIDTH (90)
 
-	unsigned char mem[8192], *p;
+	unsigned char mem[16 * 1024], *p;
 	const struct mg_option *options;
 	DWORD style;
 	DLGTEMPLATE *dia = (DLGTEMPLATE *)mem;
 	WORD i, cl, nelems = 0;
 	short width, x, y;
+	static HWND sDlgHWnd;
 
 	static struct {
 		DLGTEMPLATE template; /* 18 bytes */
@@ -1805,9 +1730,10 @@ show_settings_dialog()
 	                   8,
 	                   L"Tahoma"};
 
-	if (guard == 0) {
-		guard++;
+	if (sGuard == 0) {
+		sGuard++;
 	} else {
+		SetForegroundWindow(sDlgHWnd);
 		return;
 	}
 
@@ -1938,8 +1864,9 @@ show_settings_dialog()
 	assert(((intptr_t)p - (intptr_t)mem) < (intptr_t)sizeof(mem));
 
 	dia->cy = ((nelems + 1) / 2 + 1) * HEIGHT + 30;
-	DialogBoxIndirectParam(NULL, dia, NULL, SettingsDlgProc, (LPARAM)NULL);
-	guard--;
+	DialogBoxIndirectParam(NULL, dia, NULL, SettingsDlgProc, (LPARAM)&sDlgHWnd);
+	sGuard--;
+	sDlgHWnd = NULL;
 
 #undef HEIGHT
 #undef WIDTH
@@ -1984,8 +1911,8 @@ change_password_file()
 	                   8,
 	                   L"Tahoma"};
 
-	if (guard == 0) {
-		guard++;
+	if (sGuard == 0) {
+		sGuard++;
 	} else {
 		return;
 	}
@@ -1999,7 +1926,7 @@ change_password_file()
 	of.Flags = OFN_CREATEPROMPT | OFN_NOCHANGEDIR | OFN_HIDEREADONLY;
 
 	if (IDOK != GetSaveFileName(&of)) {
-		guard--;
+		sGuard--;
 		return;
 	}
 
@@ -2008,7 +1935,7 @@ change_password_file()
 		fclose(f);
 	} else {
 		MessageBox(NULL, path, "Can not open file", MB_ICONERROR);
-		guard--;
+		sGuard--;
 		return;
 	}
 
@@ -2020,7 +1947,7 @@ change_password_file()
 		f = fopen(path, "r+");
 		if (!f) {
 			MessageBox(NULL, path, "Can not open file", MB_ICONERROR);
-			guard--;
+			sGuard--;
 			return;
 		}
 
@@ -2145,11 +2072,26 @@ change_password_file()
 	                      NULL, dia, NULL, PasswordDlgProc, (LPARAM)path))
 	         && (!g_exit_flag));
 
-	guard--;
+	sGuard--;
 
 #undef HEIGHT
 #undef WIDTH
 #undef LABEL_WIDTH
+}
+
+
+static void
+show_system_info()
+{
+	if (sGuard == 0) {
+		sGuard++;
+	} else {
+		return;
+	}
+
+	/* TODO */
+
+	sGuard--;
 }
 
 
@@ -2258,6 +2200,9 @@ WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		case ID_PASSWORD:
 			change_password_file();
 			break;
+		case ID_SYSINFO:
+			show_system_info();
+			break;
 		case ID_INSTALL_SERVICE:
 		case ID_REMOVE_SERVICE:
 			manage_service(LOWORD(wParam));
@@ -2304,6 +2249,7 @@ WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			AppendMenu(hMenu, MF_STRING, ID_CONNECT, "Start browser");
 			AppendMenu(hMenu, MF_STRING, ID_SETTINGS, "Edit settings");
 			AppendMenu(hMenu, MF_STRING, ID_PASSWORD, "Modify password file");
+			AppendMenu(hMenu, MF_STRING, ID_SYSINFO, "Show system info");
 			AppendMenu(hMenu, MF_SEPARATOR, ID_SEPARATOR, "");
 			AppendMenu(hMenu, MF_STRING, ID_QUIT, "Exit");
 			GetCursorPos(&pt);
@@ -2374,76 +2320,8 @@ WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR cmdline, int show)
 	HWND hWnd;
 	MSG msg;
 
-	int i;
-	int dataLen = 4;
-	char data[256] = {0};
-	char masked_data[256] = {0};
-	uint32_t masking_key = 0x01020304;
-
-	for (i = 0; i < dataLen - 3; i += 4) {
-		*(uint32_t *)(void *)(masked_data + i) =
-		    *(uint32_t *)(void *)(data + i) ^ masking_key;
-	}
-	if (i != dataLen) {
-		/* convert 1-3 remaining bytes */
-		i -= 4;
-		while (i < dataLen) {
-			*(uint8_t *)(void *)(masked_data + i) =
-			    *(uint8_t *)(void *)(data + i)
-			    ^ *(((uint8_t *)&masking_key) + (i % 4));
-			i++;
-		}
-	}
-
-#if 0
-    /* http://lomont.org/Math/Papers/2008/Lomont_PRNG_2008.pdf */
-	/* initialize state to random bits
-	*/
-	static unsigned long state[16];
-	/* init should also reset this to 0 */
-	static unsigned int index = 0;
-	/* return 32 bit random number
-	*/
-	unsigned long WELLRN G512(void)
-	{
-		unsigned long a, b, c, d;
-		a = state[index];
-		c = state[(index + 13) & 15];
-		b = a ^ c ^ (a << 16) ^ (c << 15);
-		c = state[(index + 9) & 15];
-		c ^= (c >> 11);
-		a = state[index] = b ^ c;
-		d = a ^ ((a << 5) & 0xDA442D24 UL);
-		index = (index + 15) & 15;
-		a = state[index];
-		state[index] = a ^ b ^ d ^ (a << 2) ^ (b << 18) ^ (c << 28);
-		return state[index];
-	}
-
-	uint32_t x, y, z, w;
-
-	uint32_t xorshift128(void)
-	{
-		uint32_t t = x ^ (x << 11);
-		x = y;
-		y = z;
-		z = w;
-		return w = w ^ (w >> 19) ^ t ^ (t >> 8);
-	}
-
-	static uint64_t lfsr = 1;
-	static uint64_t lcg = 0;
-	uint64_t r = 0;
-
-	do {
-		lfsr = (lfsr >> 1)
-		       | ((((lfsr >> 0) ^ (lfsr >> 1) ^ (lfsr >> 3) ^ (lfsr >> 4)) & 1)
-		          << 63);
-		lcg = lcg * 6364136223846793005 + 1442695040888963407;
-		++r;
-	} while (lcg != 0);
-
-	fprintf(stdout, "lfsr = %I64u, lcg = %i64u, r = %i64u\n", lfsr, lcg, r);
+#if defined(DEBUG)
+	(void)MakeConsole();
 #endif
 
 	(void)hInst;

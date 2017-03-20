@@ -1,56 +1,14 @@
-﻿Build started 2015-03-29 15:55:44.
-     1>Project "C:\work\60-video\ve\opencvr\3rdparty\leveldb\win32_proj\leveldb.vcxproj" on node 2 (Build target(s)).
+﻿Build started 1/26/2016 9:09:34 AM.
+     1>Project "C:\work\20-video\ffvid\3rdparty\leveldb\win32_proj\leveldb.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (memenv.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.. /I..\include /I..\port\win /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _WIN32_WINNT=0x0501 /D LEVELDB_PLATFORM_WINDOWS /D OS_WIN /D COMPILER_MSVC /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /wd4996 /wd4800 /wd4355 /wd4244 /wd4018 /analyze- /errorReport:prompt ..\db\builder.cc ..\db\c.cc ..\db\db_impl.cc ..\db\db_iter.cc ..\db\dbformat.cc ..\db\filename.cc ..\db\log_reader.cc ..\db\log_writer.cc ..\db\memtable.cc ..\db\repair.cc ..\db\table_cache.cc ..\db\version_edit.cc ..\db\version_set.cc ..\db\write_batch.cc ..\table\block.cc ..\table\block_builder.cc ..\table\filter_block.cc ..\table\format.cc ..\table\iterator.cc ..\table\merger.cc ..\table\table.cc ..\table\table_builder.cc ..\table\two_level_iterator.cc ..\util\arena.cc ..\util\cache.cc ..\util\coding.cc ..\util\comparator.cc ..\util\crc32c.cc ..\util\env.cc ..\util\env_dfs.cc ..\util\env_win.cc ..\util\filter_policy.cc ..\util\hash.cc ..\util\hdfs.cc ..\util\hdfs2.cc ..\util\histogram.cc ..\util\logging.cc ..\util\options.cc ..\util\status.cc ..\util\testharness.cc ..\util\testutil.cc ..\port\port_win.cc
-         builder.cc
-         c.cc
-         db_impl.cc
-         db_iter.cc
-         dbformat.cc
-         filename.cc
-         log_reader.cc
-         log_writer.cc
-         memtable.cc
-         repair.cc
-         table_cache.cc
-         version_edit.cc
-         version_set.cc
-         write_batch.cc
-         block.cc
-         block_builder.cc
-         filter_block.cc
-         format.cc
-         iterator.cc
-         merger.cc
-         Compiling...
-         table.cc
-         table_builder.cc
-         two_level_iterator.cc
-         arena.cc
-         cache.cc
-         coding.cc
-         comparator.cc
-         crc32c.cc
-         env.cc
-         env_dfs.cc
-     1>c:\work\60-video\ve\opencvr\3rdparty\leveldb\util\timer.h(38): warning C4101: 'tt' : unreferenced local variable
-         env_win.cc
-         filter_policy.cc
-         hash.cc
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.. /I..\include /I..\port\win /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _WIN32_WINNT=0x0501 /D LEVELDB_PLATFORM_WINDOWS /D OS_WIN /D COMPILER_MSVC /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /wd4996 /wd4800 /wd4355 /wd4244 /wd4018 /analyze- /errorReport:prompt ..\util\hdfs.cc ..\util\hdfs2.cc
          hdfs.cc
-     1>c:\work\60-video\ve\opencvr\3rdparty\leveldb\util\timer.h(38): warning C4101: 'tt' : unreferenced local variable
+     1>c:\work\20-video\ffvid\3rdparty\leveldb\util\timer.h(38): warning C4101: 'tt' : unreferenced local variable
          hdfs2.cc
-     1>c:\work\60-video\ve\opencvr\3rdparty\leveldb\util\timer.h(38): warning C4101: 'tt' : unreferenced local variable
-         histogram.cc
-         logging.cc
-         options.cc
-         status.cc
-         testharness.cc
-         Compiling...
-         testutil.cc
-         port_win.cc
+     1>c:\work\20-video\ffvid\3rdparty\leveldb\util\timer.h(38): warning C4101: 'tt' : unreferenced local variable
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\work\60-video\ve\opencvr\3rdparty\leveldb\win32_proj\Release\leveldb.lib" /NOLOGO /LTCG Release\builder.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\work\20-video\ffvid\3rdparty\leveldb\win32_proj\Release\leveldb.lib" /NOLOGO /LTCG Release\builder.obj
          Release\c.obj
          Release\db_impl.obj
          Release\db_iter.obj
@@ -92,9 +50,9 @@
          Release\testharness.obj
          Release\testutil.obj
          Release\port_win.obj
-         leveldb.vcxproj -> C:\work\60-video\ve\opencvr\3rdparty\leveldb\win32_proj\Release\leveldb.lib
-     1>Done Building Project "C:\work\60-video\ve\opencvr\3rdparty\leveldb\win32_proj\leveldb.vcxproj" (Build target(s)).
+         leveldb.vcxproj -> C:\work\20-video\ffvid\3rdparty\leveldb\win32_proj\Release\leveldb.lib
+     1>Done Building Project "C:\work\20-video\ffvid\3rdparty\leveldb\win32_proj\leveldb.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:36.03
+Time Elapsed 00:00:04.31

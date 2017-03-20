@@ -16,11 +16,15 @@
 * Daniel Oaks
 * Daniel Rempel
 * Danny Al-Gaaf
+* Dave Brower
 * David Arnold
 * David Loffredo
 * Dialga
+* ehlertjd
 * Eric Tsau
+* Erik Beran
 * F-Secure Corporation
+* feneuilflo
 * Fernando G. Aranda
 * Grahack
 * grenclave
@@ -44,6 +48,7 @@
 * Keith Kyzivat
 * Kevin Wojniak
 * Kimmo Mustonen
+* Lammert Bies
 * Lawrence
 * Li Peng
 * Lianghui
@@ -60,16 +65,20 @@
 * Nigel Stewart
 * nihildeb
 * No Face Press
+* Patrick Trinkle
 * Paul Sokolovsky
 * Perttu Ahola
+* Peter Foerster
 * Philipp Friedenberger
 * Philipp Hasper
 * Red54
 * Richard Screene
 * Sage Weil
 * Sangwhan Moon
-* shantanugadgil
+* Saumitra Vikram
 * Scott Nations
+* shantanugadgil
+* SpaceLord
 * sunfch
 * thewaterymoon
 * Thomas Davis
@@ -78,6 +87,7 @@
 * Ulrich Hertlein
 * Walt Steverson
 * William Greathouse
+* xtne6f
 * Yehuda Sadeh
 
 # Mongoose Contributors

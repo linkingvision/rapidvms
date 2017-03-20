@@ -35,6 +35,8 @@ openssl_build:
 	#cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
 	cd openssl; chmod +x ./config; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./config --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ shared;
 	$(MAKE) -C openssl && $(MAKE) -C openssl install;
+	chmod 777 $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/libssl*;
+	chmod 777 $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/libcrypto*;
 
 openssl_build_macos:
 	cd openssl; chmod +x ./Configure; chmod +x ./util/pod2mantest; chmod +x ./util/point.sh; ./Configure darwin64-x86_64-cc --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -fPIC;
@@ -58,6 +60,7 @@ protobuf_build:
 	cd protobuf/cmake/linux && cmake -DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_C_FLAGS=-fPIC -Dprotobuf_MSVC_STATIC_RUNTIME=ON -DCMAKE_BUILD_TYPE=Release -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/  ../;
 	$(MAKE) -C protobuf/cmake/linux;
 	$(MAKE) -C protobuf/cmake/linux install;
+	if  test -e $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib64/libprotobuf.a; then cp $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib64/*  $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/; fi;
 
 protobuf_build_cross:
 	cd protobuf; chmod +x ./configure ; make distclean; ./configure --prefix=$(VE_PATH)/output/host/
