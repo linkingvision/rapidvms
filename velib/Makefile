@@ -56,7 +56,7 @@ IFLAGS 	= -I. -I./include/utility\
 		-I./src/vdb\
 		-I./src/vplay\
 		-I./src/vrender\
-		-I./3rdparty/SDL2-2.0.3/include/\
+		-I./3rdparty/SDL2/include/\
 		-I./3rdparty/libyuv/include/\
 		-I../3rdparty/spdlog/include/\
 		-I../3rdparty/poco/Data/include\
@@ -90,11 +90,7 @@ endif
 endif
  
 
-LIB_SOURCES = ./src/utility/debug.o \
-				./src/utility/libcli.o\
-				./src/utility/license.o\
-				./src/utility/utility.o\
-				./src/utility/rsa.o\
+LIB_SOURCES =   ./src/utility/license.o\
 				./src/utility/base64.o\
 				./src/vplay/vplay.o\
 				./src/vplay/vsmotalgo.o\

@@ -1,3 +1,11 @@
+Install xcode
+$. ./rules-macos.mk
+$make 
+
+The output have the platform build output
+
+
+Notes:
 MacPorts
 port default is in /opt/local/bin, change the /etc/paths
 
@@ -20,3 +28,4 @@ Install before build:
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	
 	brew install cmake
+
