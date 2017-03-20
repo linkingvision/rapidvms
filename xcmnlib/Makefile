@@ -67,6 +67,7 @@ IFLAGS 	= -I. -I./include/utility\
 		-I../3rdparty/poco/Data/include\
 		-I../3rdparty/poco/Foundation/include\
 		-I../3rdparty/poco/Data/SQLite/include\
+		-I../3rdparty/spdlog/include\
 		-I$(VE_PATH)/output/$(VE_INSTALL_DIR)/include\
 
 LDFLAGS += -L$(VE_PATH)/output/$(VE_INSTALL_DIR)/lib\
@@ -208,6 +209,9 @@ LIB_SOURCES =   ./src/ffkit/argb24_to_yuv420p.o\
 				./src/Webby/WebbyException.o\
 				./src/Webby/WebbyUtils.o\
 				./src/utility/tinythread.o\
+				./src/utility/debug.o\
+				./src/utility/libcli.o\
+				./src/utility/utility.o\
 				./src/rapidrtsp/rapidrtsp.o\
 				./src/rapidrtsp/rapidrtsplog.o\
 				./src/rapidmedia/rapidaudiodec.o\

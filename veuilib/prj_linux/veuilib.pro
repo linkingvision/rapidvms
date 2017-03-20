@@ -88,11 +88,7 @@ DEFINES +=ARM_LINUX
 {
     unix:!macx {
         LIBS += \
-        -lvideomodule\
-        -lStreamingServer\
-        -lvideomodule\
-        -lQTFileLib\
-        -lCommonUtilitiesLib
+
     }
 }
 

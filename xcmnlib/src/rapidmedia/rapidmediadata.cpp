@@ -314,7 +314,7 @@ void RapidMediaData::RapidRTSPDataHandle1(void *pdata, uint32_t dataSize,
 	int padding = 0;
 	char pad[RTP_MAX_PAD_SIZE];
 #ifdef RAPID_PERF_DEBUG
-	RRLOG(RRLOG_INFO, "%s data %d size:%u timestamp (%u, %du) frametype %d flag 0x%x", __FUNCTION__, 
+	RRLOG(RRLOG_INFO, "%s data %d size:%u timestamp (%u, %d) frametype %d flag 0x%x", __FUNCTION__, 
 					dataType, dataSize, sec, msec, frameType, flag);
 #endif
 	//printf("%s data %d (size:%u) (%d, %d) frametype %d flag 0x%x\n", __FUNCTION__, 
