@@ -1,6 +1,5 @@
 $(eval version=$(shell grep "define VE_VERSION" include/config/confver.hpp | sed 's|.*VERSION "\(.*\)"|\1|g'))
 REL=Rapidvms-$(version)-$(VE_OS)-$(VE_VER)-$(VE_ARCH)bit
-RELC=RapidClient-$(version)-$(VE_OS)-$(VE_VER)-$(VE_ARCH)bit
 
 ifeq ($(strip $(VE_CROSS_COMPILER)), )
 subdirs=3rdparty xcmnlib velib veuilib vecvr client
@@ -30,6 +29,17 @@ else
 	cp -r ./output/macos/* ./output/$(VE_INSTALL_DIR)/
 endif
 
+linkprocess:
+ifneq ($(strip $(VE_OS)), macos)	
+else
+	chmod +x ./maclink.sh
+	./maclink.sh
+endif
+
+
+cleanapp: 
+	for d in $(appsubdirs); do (cd $$d; (if  test -e "Makefile"; then $(MAKE) clean; fi;) ); done
+
 clean:
 	for d in $(subdirs); do (cd $$d; (if  test -e "Makefile"; then $(MAKE) clean; fi;) ); done
 	#rm -rf ./linux/*.so ./linux/bin ./linux/lib/ ./linux/share ./linux/ssl ./linux/include
@@ -49,7 +59,7 @@ disttest:
 	mv ./libve* libcmnlib.so libcover.so ./output/$(VE_INSTALL_DIR)/lib/
 	strip ./output/$(VE_INSTALL_DIR)/lib/*.so
 
-rel:
+rel: linkprocess
 	echo $(REL)
 	rm -rf ./$(REL)
 	mkdir -p ./output/$(VE_INSTALL_DIR)/translations;
@@ -65,6 +75,7 @@ endif
 	rm -rf ./$(REL)/lib/x86_64-linux-gnu
 	rm -rf ./$(REL)/examples
 	rm -rf ./$(REL)/doc
+	rm -rf ./$(REL)/lib64
 	rm -rf ./$(REL)/mkspecs
 	mv ./$(REL)/bin/openssl .
 	rm -rf ./$(REL)/bin/*
@@ -86,8 +97,9 @@ endif
 ifeq ($(strip $(VE_OS)), macos)
 	$(VE_CROSS_COMPILER)strip ./$(REL)/RapidClient.app/Contents/MacOS/Rapid*
 	$(VE_CROSS_COMPILER)strip ./$(REL)/RapidStor.app/Contents/MacOS/Rapid*
-	install_name_tool -add_rpath @loader_path/../../../lib ./$(REL)/RapidClient.app/Contents/MacOS/RapidClient
-	install_name_tool -add_rpath @loader_path/../../../lib ./$(REL)/RapidStor.app/Contents/MacOS/RapidStor
+	cp -r ./output/$(VE_INSTALL_DIR)/plugins/* ./$(REL)/RapidClient.app/Contents/MacOS/
+	cp -r ./output/$(VE_INSTALL_DIR)/plugins/* ./$(REL)/RapidStor.app/Contents/MacOS/
+	
 	#$(VE_CROSS_COMPILER)strip ./$(REL)/lib/libveuilib.dylib
 	#$(VE_CROSS_COMPILER)strip ./$(REL)/lib/*ve*.so
 	#$(VE_CROSS_COMPILER)strip ./$(REL)/lib/*cmn*.so
@@ -95,21 +107,8 @@ else
 	$(VE_CROSS_COMPILER)strip ./$(REL)/Rapid*
 	$(VE_CROSS_COMPILER)strip ./$(REL)/lib/*.so*
 endif
-
-#release client only for macos
-relc:
-ifeq ($(strip $(VE_OS)), macos)
-	mkdir -p ./$(RELC)/RapidClient.app;
-	cp -Rf ./output/$(VE_INSTALL_DIR)/RapidClient.app/ $(RELC)/RapidClient.app/;
-	cp -rf ./output/$(VE_INSTALL_DIR)/lib/*.* ./$(RELC)/RapidClient.app/Contents/MacOS/
-	$(VE_CROSS_COMPILER)strip ./$(RELC)/RapidClient.app/Contents/MacOS/Rapid*
-	#$(VE_CROSS_COMPILER)strip ./$(RELC)/lib/libveuilib.dylib
-	#$(VE_CROSS_COMPILER)strip ./$(RELC)/lib/*ve*.so
-	#$(VE_CROSS_COMPILER)strip ./$(RELC)/lib/*cmn*.so
-	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/*.a
-	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/pkgconfig
-	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/*.dbg
-	rm -rf ./$(RELC)/RapidClient.app/Contents/MacOS/libSDL*
-endif
+	echo "Create zip file"
+	#zip -r $(REL).zip $(REL) 
+	tar zcvf $(REL).tar.gz $(REL)
 	
 	

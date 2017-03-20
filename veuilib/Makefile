@@ -36,11 +36,6 @@ LIBS=libveuilib
 
 veuilib_build:
 	$(MAKE) -C ./onvifcpplib;
-ifneq ($(strip $(VE_OS)), macos)#macos do not build the server
-ifeq ($(strip $(PRJ_CROSS)), )
-	$(MAKE) -C ./rtspserver;
-endif
-endif
 ifeq ($(strip $(PRJ_CROSS)), )
 	cd ./prj_linux/ ; qmake .;
 else
