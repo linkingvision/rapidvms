@@ -20,3 +20,121 @@ Install before build:
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	
 	brew install cmake
+
+cp plugin/platform  to same with RapidClient
+	
+otool -l exe/lib
+export TOOL_PREF=/Users/user/rapidvms
+install_name_tool -add_path @loader_path/../../../lib RapidClient
+install_name_tool -change libcmnlib.so @rpath/libcmnlib.so RapidClient
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib RapidClient
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavformat.57.dylib @rpath/libavformat.57.dylib RapidClient
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib RapidClient
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavfilter.6.dylib @rpath/libavfilter.6.dylib RapidClient
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswscale.4.dylib @rpath/libswscale.4.dylib RapidClient
+install_name_tool -change libvelib.so @rpath/libvelib.so RapidClient
+install_name_tool -change libveuilib.dylib @rpath/libveuilib.dylib RapidClient
+
+
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib RapidClient
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoDataSQLite.24.dylib @rpath/libPocoDataSQLite.24.dylib RapidClient
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoData.24.dylib @rpath/libPocoData.24.dylib RapidClient
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoUtil.24.dylib @rpath/libPocoUtil.24.dylib RapidClient
+
+#libcmnlib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavformat.57.dylib @rpath/libavformat.57.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavfilter.6.dylib @rpath/libavfilter.6.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswscale.4.dylib @rpath/libswscale.4.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoDataSQLite.24.dylib @rpath/libPocoDataSQLite.24.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoData.24.dylib @rpath/libPocoData.24.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoUtil.24.dylib @rpath/libPocoUtil.24.dylib libcmnlib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoNet.24.dylib @rpath/libPocoNet.24.dylib libcmnlib.so
+
+
+#libvelib.so 
+install_name_tool -change libcmnlib.so @rpath/libcmnlib.so libvelib.so 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavformat.57.dylib @rpath/libavformat.57.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavfilter.6.dylib @rpath/libavfilter.6.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswscale.4.dylib @rpath/libswscale.4.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoDataSQLite.24.dylib @rpath/libPocoDataSQLite.24.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoData.24.dylib @rpath/libPocoData.24.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoUtil.24.dylib @rpath/libPocoUtil.24.dylib libvelib.so
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoNet.24.dylib @rpath/libPocoNet.24.dylib libvelib.so
+
+install_name_tool -change $TOOL_PREF/output/macos-64bit/lib/libcurl.4.dylib @rpath/libcurl.4.dylib libvelib.so
+
+#libveuilib.dylib 
+install_name_tool -change libcmnlib.so @rpath/libcmnlib.so libveuilib.dylib
+install_name_tool -change libvelib.so @rpath/libvelib.so libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavformat.57.dylib @rpath/libavformat.57.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavfilter.6.dylib @rpath/libavfilter.6.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswscale.4.dylib @rpath/libswscale.4.dylib libveuilib.dylib 
+
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoDataSQLite.24.dylib @rpath/libPocoDataSQLite.24.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoData.24.dylib @rpath/libPocoData.24.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoUtil.24.dylib @rpath/libPocoUtil.24.dylib libveuilib.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoNet.24.dylib @rpath/libPocoNet.24.dylib libveuilib.dylib 
+
+
+#libPocoDataSQLite.24.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoData.24.dylib @rpath/libPocoData.24.dylib libPocoDataSQLite.24.dylib 
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoDataSQLite.24.dylib 
+
+#libPocoData.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoData.24.dylib 
+
+#libPocoNet.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoNet.24.dylib 
+
+#libPocoUtil.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoUtil.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoXML.24.dylib @rpath/libPocoXML.24.dylib libPocoUtil.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoJSON.24.dylib @rpath/libPocoJSON.24.dylib libPocoUtil.24.dylib
+
+#libPocoXML.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoXML.24.dylib
+
+#libPocoJSON.24.dylib
+install_name_tool -change $TOOL_PREF/3rdparty/poco/lib/Darwin/x86_64/libPocoFoundation.24.dylib @rpath/libPocoFoundation.24.dylib libPocoJSON.24.dylib
+
+
+#libavfilter.6.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib libavfilter.6.dylib  
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswscale.4.dylib @rpath/libswscale.4.dylib libavfilter.6.dylib  
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavformat.57.dylib @rpath/libavformat.57.dylib libavfilter.6.dylib 
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libavfilter.6.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswresample.2.dylib @rpath/libswresample.2.dylib libavfilter.6.dylib
+
+#libswscale.4.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libswscale.4.dylib
+
+#libavformat.57.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavcodec.57.dylib @rpath/libavcodec.57.dylib libavformat.57.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswresample.2.dylib @rpath/libswresample.2.dylib libavformat.57.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libavformat.57.dylib
+
+#libavcodec.57.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswresample.2.dylib @rpath/libswresample.2.dylib libavcodec.57.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libavcodec.57.dylib
+
+#libavutil.55.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libswresample.2.dylib @rpath/libswresample.2.dylib libavutil.55.dylib
+
+#libswresample.2.dylib
+install_name_tool -change $TOOL_PREF/output/macos-64bit//lib/libavutil.55.dylib @rpath/libavutil.55.dylib libswresample.2.dylib
+
+
+
+
+
+
+

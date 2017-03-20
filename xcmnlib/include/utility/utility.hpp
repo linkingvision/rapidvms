@@ -126,7 +126,9 @@ VE_LIBRARY_API void ve_sleep(int ms);
 #ifdef WIN32
 VE_LIBRARY_API int gettimeofday(struct timeval* tp, int* /*tz*/);
 #endif
-
+#ifndef _WIN32
+VE_LIBRARY_API double GetTickCount(void);
+#endif
 }/* UtilityLib */
 
 /* Get the value for a given parameter,  */
