@@ -1,0 +1,6 @@
+int/enum use n prefix
+bool use b prefix
+class and struct use c prefix
+
+all the name use Vid prefix
+server use stor prefix

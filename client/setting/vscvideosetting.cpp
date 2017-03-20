@@ -39,6 +39,7 @@ void VSCVideoSetting::dirSelect()
 	QFileDialog *fileDialog = new QFileDialog(this); 
 	fileDialog->setWindowTitle(tr("Select Directory")); 
 	fileDialog->setDirectory(ui.fileLoc->text()); 
+	fileDialog->setOption( QFileDialog::DontUseNativeDialog, true );
 	fileDialog->setFileMode(QFileDialog::Directory);
 	QIcon icon;
 	icon.addFile(QStringLiteral(":/logo/resources/vscsmall.png"), QSize(), QIcon::Normal, QIcon::Off);

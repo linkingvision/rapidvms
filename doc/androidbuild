@@ -1,0 +1,16 @@
+
+QT
+http://doc.qt.io/qt-5/android-support.html
+1. sudo apt-get install openjdk-7-jdk
+
+ ./build/tools/make-standalone-toolchain.sh   --toolchain=arm-linux-androideabi-4.8
+ 
+poco:
+./configure --config=Android --no-samples --no-tests --omit=Crypto,Data/ODBC
+make
+
+openssl
+./config no-asm os/compiler:arm-linux-androideabi-gcc
+ffmpeg
+./configure  --disable-vaapi --disable-programs  --disable-static --enable-shared --cross-prefix=arm-linux-androideabi-  --target-os=linux --arch=arm --prefix=/hom/usr/install
+
