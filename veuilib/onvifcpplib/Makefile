@@ -102,6 +102,7 @@ all:  $(LIBS) example_
 $(LIB_SOURCES): $(HDRS)
 
 $(LIBS): $(LIB_SOURCES)
+	$(MKDIR) $(BUILD_DIR) 
 	$(AR) $(ARFLAGS) $(LIBS) $?
 
 example_:

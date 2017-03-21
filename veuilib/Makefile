@@ -43,6 +43,7 @@ else
 endif
 	$(MAKE) -C ./prj_linux;
 	rm -rf ../linux/lib/libveuilib*
+	mkdir -p ./lib/linux 
 	cp -f ./prj_linux/libveuilib* ./lib/linux/
 ifneq ($(strip $(VE_OS)), macos)
 	cd ./lib/linux && \
