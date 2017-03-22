@@ -5,13 +5,13 @@
 	ubuntu: sudo apt-get install  "^libxcb.*" shtool libtool automake autoconf libbsd-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev cmake libx11-dev yasm libxext-dev libgl1-mesa-dev  zlib1g-dev freeglut3-dev uuid-dev
 	centos 7: sudo yum install nasm xorg-x11-server-devel zlib-devel gcc gcc-c++ perl-version libxcb libxcb-devel xcb-util xcb-util-devel xcb-util-*-devel libX11-devel libXrender-devel libXi-devel redhat-lsb-core libxslt-devel cmake libuuid-devel
 	
-	Change path in the rules.mk
+	Change VE_PATH in the rules.mk
 	$source ./rules.mk
 	$make
 
 ### macOS ###
 	Install xcode
-	Change path in the rules.mk
+	Change VE_PATH in the rules.mk
 	$source ./rules-macos.mk
 	$make 
 
@@ -25,6 +25,11 @@
 	7. veuilib\prj_win32\veuilib.sln build
 	8. vecvr\prj_win32\vecvr.sln build
 	9. client\prj_win32\veclient.sln build
+	
+### Raspberry pi 3 ###
+	Change VE_PATH & VE_CROSS_COMPILER_PATH in the rules.mk
+	$source ./rules-pi3.mk
+	$make 
 
 # Wiki #
 
