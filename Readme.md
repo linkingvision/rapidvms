@@ -27,7 +27,7 @@
 	9. client\prj_win32\veclient.sln build
 	
 ### Raspberry pi 3 ###
-	Change VE_PATH & VE_CROSS_COMPILER_PATH in the rules.mk
+	Change VE_PATH & VE_CROSS_COMPILER_PATH in the rules-pi3.mk
 	$source ./rules-pi3.mk
 	$make 
 
