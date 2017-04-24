@@ -89,9 +89,15 @@ void VSCUser::applyConfig()
 			int ret = msgBox.exec();				
 		}
 	}
+
+	VSCLoading *loading = new VSCLoading(this);
+	loading->Processing(3);
+
+	
 	m_pFactory.SetAutoLogin(ui.autoLogin->isToggled());
 	m_pFactory.SetAutoFullScreen(ui.autoFullScreen->isToggled());
 	
+	delete loading;
 	return;
 
 }
