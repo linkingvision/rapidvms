@@ -1,2 +1,2 @@
-nssm.exe  install OpenCVRStor OpenCVRClient.exe
+nssm.exe  install RapidStor RapidStor.exe
 pause
