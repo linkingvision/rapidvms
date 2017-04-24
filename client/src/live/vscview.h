@@ -39,7 +39,8 @@ class VSCView : public QWidget, public VVidGetHWDec
     Q_OBJECT
 
 public:
-    VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName);
+    VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
+		QString strName, bool bMainView = false);
     ~VSCView();
 public:
     void mouseDoubleClickEvent(QMouseEvent *e);
@@ -69,56 +70,67 @@ public slots:
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/4x4.png")));
+		SlotUpdateMainView();
 	}
 	void SetLayoutMode3x3()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/3x3.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode2x2()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/2x2.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode6()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/6.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode12p1()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/12+1.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode1()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/1x1.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode5x5()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/5x5.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode6x6()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/6x6.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode8x8()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/8x8.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode1x3()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/1x3.png")));
+	 	SlotUpdateMainView();
 	}
 	void SetLayoutMode1p6()
 	{
 	    m_pTabbed.setTabIcon(m_pTabbed.indexOf(this), 
 		QIcon(tr(":/view/resources/1p6.png")));
+	 	SlotUpdateMainView();
 	}
 	void DeviceEvent(int deviceId, int type)
 	{
@@ -131,6 +143,8 @@ public slots:
 	void TourTimerFunction();
 
 	void CameraDoubleClicked(std::string strStor, std::string strCam, std::string strCamName);
+	void SlotUpdateMainView();
+	
 public:
 	Ui::VSCView ui;
 private:
@@ -159,6 +173,7 @@ private:
 	s32 m_TourIdx;
 
 	ClientFactory &m_pFactory;
+	bool m_bMainView;
     
 };
 

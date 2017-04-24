@@ -41,12 +41,14 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 {
 	
 #if 1	
-	m_pView = new VSCView(m_pFactory, &m_pMainArea, m_pMainArea, tr("Main View"));
+	m_pView = new VSCView(m_pFactory, &m_pMainArea, m_pMainArea, tr("Main View"), true);
 	m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
 	m_pMainArea.addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
 	m_pMainArea.setCurrentWidget(m_pView);
+	/* show the last view */
+	m_pView->ShowViewClicked(VVID_MAIN_VIEW);
 	//connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 		//	m_pView, SLOT(DeviceEvent(int, int)));
 #endif
@@ -74,6 +76,12 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 
 	m_pGroupTree->addTopLevelItem(pGroup);
 #endif
+	/* update the default view */
+	if (m_pFactory.GetAutoFullScreen() == true)
+	{
+		m_pView->floatingClicked();
+		m_pView->ShowDisplayClicked(0);
+	}
 	
 }
 VSCVidLive::~VSCVidLive()

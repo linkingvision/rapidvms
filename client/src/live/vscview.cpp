@@ -35,10 +35,11 @@
 
 using namespace Poco;
 
-VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, QString strName)
+VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
+	QString strName, bool bMainView)
     : m_pFactory(pFactory), QWidget(parent), m_pTabbed(pTabbed), m_currentFocus(-1), 
     m_bControlEnable(TRUE), m_strName(strName), m_bFloated(FALSE), 
-	m_TimerTour(NULL)
+	m_TimerTour(NULL), m_bMainView(bMainView)
 {
 	ui.setupUi(this);
 	m_pParent = parent;
@@ -82,6 +83,10 @@ VSCView::VSCView(ClientFactory &pFactory, QWidget *parent, QTabWidget &pTabbed, 
 	ui.hwdecode->hide();
 	ui.lbhwdecode->hide();
 #endif
+	if (m_pFactory.GetAutoFullScreen() == true && m_bMainView == true)
+	{
+		ControlPanelClicked();
+	}
 }
 
 bool VSCView::GetHWDec()
@@ -183,6 +188,9 @@ void VSCView::SetupConnections()
 	                                    SLOT(MotionDetectClicked(std::string, std::string, std::string)));
 	connect(m_pVideo, SIGNAL(ShowViewClicked(std::string)), this,
 	                                    SLOT(ShowViewClicked(std::string)));
+
+	connect(m_pVideo, SIGNAL(SignalUpdateMainView()), this,
+	                                    SLOT(SlotUpdateMainView()));	
 
 	connect(ui.pbTourPlay, SIGNAL(clicked()), this, SLOT(TourStart()));
 	connect(ui.pbTourStop, SIGNAL(clicked()), this, SLOT(TourStop()));
@@ -595,6 +603,39 @@ void VSCView::ViewClicked()
 	}
 	m_pFactory.AddView(NewView);
 	m_ViewItem = NewView;
+	
+	
+	SlotUpdateMainView();
+}
+
+
+/* update the main view  */
+void VSCView::SlotUpdateMainView()
+{
+	if (m_bMainView == false)
+	{
+		return;
+	}
+	VideoWallLayoutMode nMode;
+	m_pVideo->GetLayoutMode(nMode);	
+
+	VidView NewView;
+	NewView.set_clayout((VidLayout)nMode);
+
+	std::map<int, VidViewWindow> playMap;
+	m_pVideo->GetPlayMap(playMap);
+	std::map<int, VidViewWindow>::iterator it = playMap.begin(); 
+	for(; it!=playMap.end(); ++it)
+	{
+		VidViewWindow * pWinNew = NewView.add_cview();
+		*pWinNew = (*it).second;
+	}
+	
+	NewView.set_strname("Last View");
+	NewView.set_strid(VVID_MAIN_VIEW);
+	m_pFactory.DelView(VVID_MAIN_VIEW);
+
+	m_pFactory.AddView(NewView);
 }
 
 void VSCView::ShowViewClicked(std::string strView)

@@ -159,7 +159,13 @@ int main(int argc, char *argv[])
 		w->ShowLogin();
 	}else
 	{
-		w->showMaximized();
+		if (pFactory->GetAutoFullScreen() == false)
+		{
+			w->showMaximized();
+		}else
+		{
+			w->showMinimized();
+		}
 	}
 
 	VDC_DEBUG("Start successfully !\n");

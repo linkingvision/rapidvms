@@ -429,7 +429,13 @@ again:
 		login.GetUserPasswd(strUser, strPasswd);
 		if (m_pFactory.AuthUser(strUser, strPasswd) == TRUE)
 		{
-			showMaximized();
+			if (m_pFactory.GetAutoFullScreen() == false)
+			{
+				showMaximized();
+			}else
+			{
+				showMinimized();
+			}
 			return;
 		}
 		QMessageBox msgBox(this);

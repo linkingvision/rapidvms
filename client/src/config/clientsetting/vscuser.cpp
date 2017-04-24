@@ -37,6 +37,11 @@ VSCUser::VSCUser(ClientFactory &pFactory, QWidget *parent)
 	{
 	        ui.autoLogin->setToggle(true);
 	}
+
+	if (m_pFactory.GetAutoFullScreen() == true)
+	{
+	        ui.autoFullScreen->setToggle(true);
+	}
 	connect( this->ui.pushButtonApply, SIGNAL( clicked() ), this, SLOT(applyConfig()));
 }
 
@@ -49,39 +54,44 @@ void VSCUser::applyConfig()
 
 	astring oldPasswd;
 	m_pFactory.GetAdminPasswd(oldPasswd);
-
+	
 	strCurPasswd = ui.curPasswd->text().toStdString();
 	strPasswd = ui.newPasswd->text().toStdString();
 	strPasswd2 = ui.repeatPasswd->text().toStdString();
 
-	if (m_pFactory.AuthUser(strCurUser, strCurPasswd) == true
-		&& strPasswd == strPasswd2)
+	if (ui.changePasswd->isToggled())
 	{
-		m_pFactory.SetAutoLogin(ui.autoLogin->isToggled());
+		if (m_pFactory.AuthUser(strCurUser, strCurPasswd) == true
+			&& strPasswd == strPasswd2)
+		{
 
-		VSCLoading *loading = new VSCLoading(this);
-		loading->Processing(3);
-		SimpleCrypt crypt;
+			VSCLoading *loading = new VSCLoading(this);
+			loading->Processing(3);
+			SimpleCrypt crypt;
 
-		QString strPassCrypt = strPasswd.c_str();
-		m_pFactory.SetAdminPasswd(crypt.encryptToString(strPassCrypt).toStdString());
-		
-		delete loading;
-		return;
+			QString strPassCrypt = strPasswd.c_str();
+			m_pFactory.SetAdminPasswd(crypt.encryptToString(strPassCrypt).toStdString());
+			
+			delete loading;
+		}else
+		{
+			QMessageBox msgBox(this);
+			//Set text
+			msgBox.setText(tr("Password not correct ..."));
+			//Set predefined icon, icon is show on left side of text.
+			msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
+
+			msgBox.setStandardButtons(QMessageBox::Ok);
+			//Set focus of ok button
+			msgBox.setDefaultButton(QMessageBox::Ok);
+
+			//execute message box. method exec() return the button value of cliecke button
+			int ret = msgBox.exec();				
+		}
 	}
-
-	QMessageBox msgBox(this);
-	//Set text
-	msgBox.setText(tr("Password not correct ..."));
-	    //Set predefined icon, icon is show on left side of text.
-	msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
-
-	msgBox.setStandardButtons(QMessageBox::Ok);
-	    //Set focus of ok button
-	msgBox.setDefaultButton(QMessageBox::Ok);
-
-	    //execute message box. method exec() return the button value of cliecke button
-	int ret = msgBox.exec();	
+	m_pFactory.SetAutoLogin(ui.autoLogin->isToggled());
+	m_pFactory.SetAutoFullScreen(ui.autoFullScreen->isToggled());
+	
 	return;
 
 }
