@@ -62,6 +62,9 @@ VSCVideoWall::VSCVideoWall(ClientFactory &pFactory, QWidget *parent, VVidGetHWDe
                 SIGNAL(PlaybackClicked(std::string, std::string, std::string)));
         connect(m_VideoMap[i], SIGNAL(MotionDetectClicked(std::string, std::string, std::string)), this,
                 SIGNAL(MotionDetectClicked(std::string, std::string, std::string)));
+
+        connect(m_VideoMap[i], SIGNAL(SignalUpdateMainView()), this,
+                SIGNAL(SignalUpdateMainView()));
     }
 
     m_pLayout = new QGridLayout;

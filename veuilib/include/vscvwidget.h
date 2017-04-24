@@ -102,6 +102,7 @@ signals:
     void ShowViewClicked(std::string strId);
     void PlaybackClicked(std::string strStor, std::string strId, std::string strName);
     void MotionDetectClicked(std::string strStor, std::string strId, std::string strName);
+	void SignalUpdateMainView();
 
 
 public:

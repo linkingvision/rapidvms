@@ -222,6 +222,7 @@ void VSCVWidget::dropEvent(QDropEvent *event)
 		StopPlay();
 		StartPlay(pVidCam->m_strStorId, pVidCam->m_strCamId, pVidCam->m_strCamName);
 		emit ShowFocusClicked(m_nId);
+		emit SignalUpdateMainView();
 		return;		
 	}
 
