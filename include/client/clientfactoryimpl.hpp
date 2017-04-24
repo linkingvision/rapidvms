@@ -144,6 +144,23 @@ inline bool ClientFactory::SetAutoLogin(bool bAutoLogin)
 	return true;	
 }
 
+inline bool ClientFactory::GetAutoFullScreen()
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+
+	return cData.bautofullscreen();	
+}
+inline bool ClientFactory::SetAutoFullScreen(bool bAuto)
+{
+	VidClientConf  cData;
+	m_Conf.GetClientConf(cData);
+	cData.set_bautofullscreen(bAuto);
+	m_Conf.SetClientConf(cData);
+
+	return true;	
+}
+
 inline bool ClientFactory::GetLang(VidLanguage &nLang)
 {
 	VidClientConf  cData;

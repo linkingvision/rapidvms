@@ -102,6 +102,8 @@ public:
 public:
 	bool GetAutoLogin();
 	bool SetAutoLogin(bool bAutoLogin);
+	bool GetAutoFullScreen();
+	bool SetAutoFullScreen(bool bAuto);
 	bool AuthUser(astring &strUser, astring &strPasswd);
 	bool GetAdminPasswd(astring &strPasswd);
 	bool SetAdminPasswd(astring strPasswd);

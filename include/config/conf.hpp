@@ -57,6 +57,7 @@
 #define REC_SCHED_WORK_DAY "2010e075-f937-461f-a1a0-be39b385e0a5"
 #define VVID_UUID_NULL "a17bdf7d-9588-4bf3-8667-3fbaeaabe59e"
 #define VVID_UUID_ALL "a1947501-930e-476f-a8b1-9002b0a6ca66"
+#define VVID_MAIN_VIEW "18531236-e5df-415b-b547-2440115d1164"
 
 //------------------------------------------------------------------------------
 // Conf keys, for leveldb

@@ -172,6 +172,7 @@ message VidClientConf {
 	VidLanguage nLang = 1;
 	string strAdminPasswd = 2;
 	bool bAutoLogin = 3;
+	bool bAutoFullScreen = 4;
 }
 
 //Video Storage

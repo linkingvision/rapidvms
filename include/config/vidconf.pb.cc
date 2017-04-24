@@ -7,6 +7,7 @@
 #include <algorithm>
 
 #include <google/protobuf/stubs/common.h>
+#include <google/protobuf/stubs/port.h>
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
@@ -17,918 +18,604 @@
 // @@protoc_insertion_point(includes)
 
 namespace VidConf {
+class VidUserDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidUser> {
+} _VidUser_default_instance_;
+class VidUserListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidUserList> {
+} _VidUserList_default_instance_;
+class VidStorServerConfDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStorServerConf> {
+} _VidStorServerConf_default_instance_;
+class VidCameraDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidCamera> {
+} _VidCamera_default_instance_;
+class VidCameraListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidCameraList> {
+} _VidCameraList_default_instance_;
+class VidDiskDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidDisk> {
+} _VidDisk_default_instance_;
+class VidDiskListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidDiskList> {
+} _VidDiskList_default_instance_;
+class VidHDFSConfDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidHDFSConf> {
+} _VidHDFSConf_default_instance_;
+class VidCameraIdDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidCameraId> {
+} _VidCameraId_default_instance_;
+class VidClientConfDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidClientConf> {
+} _VidClientConf_default_instance_;
+class VidStorDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStor> {
+} _VidStor_default_instance_;
+class VidStorListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStorList> {
+} _VidStorList_default_instance_;
+class VidViewWindowDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidViewWindow> {
+} _VidViewWindow_default_instance_;
+class VidViewDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidView> {
+} _VidView_default_instance_;
+class VidViewListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidViewList> {
+} _VidViewList_default_instance_;
+class VidTourDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidTour> {
+} _VidTour_default_instance_;
+class VidTourListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidTourList> {
+} _VidTourList_default_instance_;
+class VidGroupDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidGroup> {
+} _VidGroup_default_instance_;
+class VidGroupListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidGroupList> {
+} _VidGroupList_default_instance_;
+class VidEmapCameraDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEmapCamera> {
+} _VidEmapCamera_default_instance_;
+class VidEmapDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEmap> {
+} _VidEmap_default_instance_;
+class VidEmapListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEmapList> {
+} _VidEmapList_default_instance_;
+class VidStreamDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStream> {
+} _VidStream_default_instance_;
+class VidStreamListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStreamList> {
+} _VidStreamList_default_instance_;
+class VidBlobDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidBlob> {
+} _VidBlob_default_instance_;
+class VidBlobListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidBlobList> {
+} _VidBlobList_default_instance_;
+class VidEventDBConfDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEventDBConf> {
+} _VidEventDBConf_default_instance_;
+class VidEventDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEvent> {
+} _VidEvent_default_instance_;
+
+namespace protobuf_vidconf_2eproto {
+
 
 namespace {
 
-const ::google::protobuf::Descriptor* VidUser_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidUser_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidUserList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidUserList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidStorServerConf_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidStorServerConf_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidCamera_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidCamera_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidCameraList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidCameraList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidDisk_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidDisk_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidDiskList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidDiskList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidHDFSConf_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidHDFSConf_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidCameraId_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidCameraId_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidClientConf_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidClientConf_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidStor_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidStor_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidStorList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidStorList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidViewWindow_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidViewWindow_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidView_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidView_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidViewList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidViewList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidTour_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidTour_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidTourList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidTourList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidGroup_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidGroup_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidGroupList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidGroupList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidEmapCamera_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidEmapCamera_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidEmap_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidEmap_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidEmapList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidEmapList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidStream_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidStream_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidStreamList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidStreamList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidBlob_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidBlob_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidBlobList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidBlobList_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidEventDBConf_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidEventDBConf_reflection_ = NULL;
-const ::google::protobuf::Descriptor* VidEvent_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  VidEvent_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* CameraType_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* VidRecType_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* OnvifEventLevel_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* VidLayout_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor_ = NULL;
+::google::protobuf::Metadata file_level_metadata[28];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[7];
 
 }  // namespace
 
+const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strpasswd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strroleid_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUserList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUserList, cviduser_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, noapiport_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, stradminpasswd_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bdisable_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, ntype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strip_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strport_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, struser_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strpasswd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, stronvifaddress_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bprofiletoken_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strprofiletoken1_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strprofiletoken2_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strfile_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strrtspurl_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bhwaccel_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bservermotion_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nconnecttype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bhdfsrecord_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, crecsched_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nprerecsec_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, npostrecsec_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bmotionjpeg_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nrecordstream_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nservermotionstream_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nonvifevtlevel_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strsched_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strmotreg_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, cvidcamera_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, strpath_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, ntotalsize_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nfreesize_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nstorlimit_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nstorused_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDiskList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDiskList, cviddisk_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strnamenode_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strport_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, struser_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strpasswd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, nfileinterval_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, strstorid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, strcameraid_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, nlang_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, stradminpasswd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, bautologin_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, bautofullscreen_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strip_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strport_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, struser_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strpasswd_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorList, cvidstor_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, cid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, nwindowsid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, bhwaccel_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, cview_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, clayout_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewList, cvidview_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strview_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTourList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTourList, cvidtour_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, cgroup_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroupList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroupList, cvidgroup_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, cid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, x_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, y_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, w_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, h_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, ccamera_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapList, cvidemap_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, strtoken_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, strname_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, cvidstream_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x0_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y0_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x1_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y1_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, cblob_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, ntype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, strdbpath_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevice_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevicename_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strtype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, ntime_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strtime_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdesc_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bhandled_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bsearched_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strcomments_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorname_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, nidx_),
+};
 
-void protobuf_AssignDesc_vidconf_2eproto() {
-  protobuf_AddDesc_vidconf_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "vidconf.proto");
-  GOOGLE_CHECK(file != NULL);
-  VidUser_descriptor_ = file->message_type(0);
-  static const int VidUser_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strpasswd_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, strroleid_),
-  };
-  VidUser_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidUser_descriptor_,
-      VidUser::default_instance_,
-      VidUser_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidUser),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUser, _is_default_instance_));
-  VidUserList_descriptor_ = file->message_type(1);
-  static const int VidUserList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUserList, cviduser_),
-  };
-  VidUserList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidUserList_descriptor_,
-      VidUserList::default_instance_,
-      VidUserList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidUserList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUserList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidUserList, _is_default_instance_));
-  VidStorServerConf_descriptor_ = file->message_type(2);
-  static const int VidStorServerConf_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, noapiport_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, stradminpasswd_),
-  };
-  VidStorServerConf_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidStorServerConf_descriptor_,
-      VidStorServerConf::default_instance_,
-      VidStorServerConf_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidStorServerConf),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorServerConf, _is_default_instance_));
-  VidCamera_descriptor_ = file->message_type(3);
-  static const int VidCamera_offsets_[27] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bdisable_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, ntype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strip_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strport_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, struser_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strpasswd_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, stronvifaddress_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bprofiletoken_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strprofiletoken1_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strprofiletoken2_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strfile_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strrtspurl_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bhwaccel_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bservermotion_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nconnecttype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bhdfsrecord_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, crecsched_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nprerecsec_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, npostrecsec_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bmotionjpeg_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nrecordstream_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nservermotionstream_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nonvifevtlevel_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strsched_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strmotreg_),
-  };
-  VidCamera_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidCamera_descriptor_,
-      VidCamera::default_instance_,
-      VidCamera_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidCamera),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, _is_default_instance_));
-  VidCameraList_descriptor_ = file->message_type(4);
-  static const int VidCameraList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, cvidcamera_),
-  };
-  VidCameraList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidCameraList_descriptor_,
-      VidCameraList::default_instance_,
-      VidCameraList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidCameraList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, _is_default_instance_));
-  VidDisk_descriptor_ = file->message_type(5);
-  static const int VidDisk_offsets_[6] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, strpath_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, ntotalsize_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nfreesize_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nstorlimit_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, nstorused_),
-  };
-  VidDisk_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidDisk_descriptor_,
-      VidDisk::default_instance_,
-      VidDisk_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidDisk),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDisk, _is_default_instance_));
-  VidDiskList_descriptor_ = file->message_type(6);
-  static const int VidDiskList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDiskList, cviddisk_),
-  };
-  VidDiskList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidDiskList_descriptor_,
-      VidDiskList::default_instance_,
-      VidDiskList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidDiskList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDiskList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidDiskList, _is_default_instance_));
-  VidHDFSConf_descriptor_ = file->message_type(7);
-  static const int VidHDFSConf_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strnamenode_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strport_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, struser_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, strpasswd_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, nfileinterval_),
-  };
-  VidHDFSConf_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidHDFSConf_descriptor_,
-      VidHDFSConf::default_instance_,
-      VidHDFSConf_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidHDFSConf),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidHDFSConf, _is_default_instance_));
-  VidCameraId_descriptor_ = file->message_type(8);
-  static const int VidCameraId_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, strstorid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, strcameraid_),
-  };
-  VidCameraId_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidCameraId_descriptor_,
-      VidCameraId::default_instance_,
-      VidCameraId_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidCameraId),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraId, _is_default_instance_));
-  VidClientConf_descriptor_ = file->message_type(9);
-  static const int VidClientConf_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, nlang_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, stradminpasswd_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, bautologin_),
-  };
-  VidClientConf_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidClientConf_descriptor_,
-      VidClientConf::default_instance_,
-      VidClientConf_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidClientConf),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidClientConf, _is_default_instance_));
-  VidStor_descriptor_ = file->message_type(10);
-  static const int VidStor_offsets_[6] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strip_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strport_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, struser_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, strpasswd_),
-  };
-  VidStor_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidStor_descriptor_,
-      VidStor::default_instance_,
-      VidStor_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidStor),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStor, _is_default_instance_));
-  VidStorList_descriptor_ = file->message_type(11);
-  static const int VidStorList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorList, cvidstor_),
-  };
-  VidStorList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidStorList_descriptor_,
-      VidStorList::default_instance_,
-      VidStorList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidStorList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStorList, _is_default_instance_));
-  VidViewWindow_descriptor_ = file->message_type(12);
-  static const int VidViewWindow_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, cid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, nwindowsid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, bhwaccel_),
-  };
-  VidViewWindow_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidViewWindow_descriptor_,
-      VidViewWindow::default_instance_,
-      VidViewWindow_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidViewWindow),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewWindow, _is_default_instance_));
-  VidView_descriptor_ = file->message_type(13);
-  static const int VidView_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, cview_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, clayout_),
-  };
-  VidView_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidView_descriptor_,
-      VidView::default_instance_,
-      VidView_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidView),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidView, _is_default_instance_));
-  VidViewList_descriptor_ = file->message_type(14);
-  static const int VidViewList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewList, cvidview_),
-  };
-  VidViewList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidViewList_descriptor_,
-      VidViewList::default_instance_,
-      VidViewList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidViewList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidViewList, _is_default_instance_));
-  VidTour_descriptor_ = file->message_type(15);
-  static const int VidTour_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, strview_),
-  };
-  VidTour_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidTour_descriptor_,
-      VidTour::default_instance_,
-      VidTour_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidTour),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTour, _is_default_instance_));
-  VidTourList_descriptor_ = file->message_type(16);
-  static const int VidTourList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTourList, cvidtour_),
-  };
-  VidTourList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidTourList_descriptor_,
-      VidTourList::default_instance_,
-      VidTourList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidTourList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTourList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidTourList, _is_default_instance_));
-  VidGroup_descriptor_ = file->message_type(17);
-  static const int VidGroup_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, cgroup_),
-  };
-  VidGroup_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidGroup_descriptor_,
-      VidGroup::default_instance_,
-      VidGroup_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidGroup),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroup, _is_default_instance_));
-  VidGroupList_descriptor_ = file->message_type(18);
-  static const int VidGroupList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroupList, cvidgroup_),
-  };
-  VidGroupList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidGroupList_descriptor_,
-      VidGroupList::default_instance_,
-      VidGroupList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidGroupList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroupList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidGroupList, _is_default_instance_));
-  VidEmapCamera_descriptor_ = file->message_type(19);
-  static const int VidEmapCamera_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, cid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, x_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, y_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, w_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, h_),
-  };
-  VidEmapCamera_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidEmapCamera_descriptor_,
-      VidEmapCamera::default_instance_,
-      VidEmapCamera_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidEmapCamera),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapCamera, _is_default_instance_));
-  VidEmap_descriptor_ = file->message_type(20);
-  static const int VidEmap_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, strname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, ccamera_),
-  };
-  VidEmap_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidEmap_descriptor_,
-      VidEmap::default_instance_,
-      VidEmap_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidEmap),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmap, _is_default_instance_));
-  VidEmapList_descriptor_ = file->message_type(21);
-  static const int VidEmapList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapList, cvidemap_),
-  };
-  VidEmapList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidEmapList_descriptor_,
-      VidEmapList::default_instance_,
-      VidEmapList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidEmapList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEmapList, _is_default_instance_));
-  VidStream_descriptor_ = file->message_type(22);
-  static const int VidStream_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, strtoken_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, strname_),
-  };
-  VidStream_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidStream_descriptor_,
-      VidStream::default_instance_,
-      VidStream_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidStream),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStream, _is_default_instance_));
-  VidStreamList_descriptor_ = file->message_type(23);
-  static const int VidStreamList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, cvidstream_),
-  };
-  VidStreamList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidStreamList_descriptor_,
-      VidStreamList::default_instance_,
-      VidStreamList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidStreamList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamList, _is_default_instance_));
-  VidBlob_descriptor_ = file->message_type(24);
-  static const int VidBlob_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x0_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y0_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, x1_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, y1_),
-  };
-  VidBlob_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidBlob_descriptor_,
-      VidBlob::default_instance_,
-      VidBlob_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidBlob),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlob, _is_default_instance_));
-  VidBlobList_descriptor_ = file->message_type(25);
-  static const int VidBlobList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, cblob_),
-  };
-  VidBlobList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidBlobList_descriptor_,
-      VidBlobList::default_instance_,
-      VidBlobList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidBlobList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidBlobList, _is_default_instance_));
-  VidEventDBConf_descriptor_ = file->message_type(26);
-  static const int VidEventDBConf_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, ntype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, strdbpath_),
-  };
-  VidEventDBConf_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidEventDBConf_descriptor_,
-      VidEventDBConf::default_instance_,
-      VidEventDBConf_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidEventDBConf),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEventDBConf, _is_default_instance_));
-  VidEvent_descriptor_ = file->message_type(27);
-  static const int VidEvent_offsets_[13] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevice_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdevicename_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strtype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, ntime_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strtime_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strdesc_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bhandled_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, bsearched_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strcomments_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, nidx_),
-  };
-  VidEvent_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      VidEvent_descriptor_,
-      VidEvent::default_instance_,
-      VidEvent_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(VidEvent),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, _is_default_instance_));
-  CameraType_descriptor_ = file->enum_type(0);
-  VidRecType_descriptor_ = file->enum_type(1);
-  CameraConnectType_descriptor_ = file->enum_type(2);
-  OnvifEventLevel_descriptor_ = file->enum_type(3);
-  VidLanguage_descriptor_ = file->enum_type(4);
-  VidLayout_descriptor_ = file->enum_type(5);
-  VidEventDBType_descriptor_ = file->enum_type(6);
-}
+static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+  { 0, -1, sizeof(VidUser)},
+  { 8, -1, sizeof(VidUserList)},
+  { 13, -1, sizeof(VidStorServerConf)},
+  { 19, -1, sizeof(VidCamera)},
+  { 50, -1, sizeof(VidCameraList)},
+  { 55, -1, sizeof(VidDisk)},
+  { 65, -1, sizeof(VidDiskList)},
+  { 70, -1, sizeof(VidHDFSConf)},
+  { 79, -1, sizeof(VidCameraId)},
+  { 85, -1, sizeof(VidClientConf)},
+  { 93, -1, sizeof(VidStor)},
+  { 103, -1, sizeof(VidStorList)},
+  { 108, -1, sizeof(VidViewWindow)},
+  { 115, -1, sizeof(VidView)},
+  { 123, -1, sizeof(VidViewList)},
+  { 128, -1, sizeof(VidTour)},
+  { 135, -1, sizeof(VidTourList)},
+  { 140, -1, sizeof(VidGroup)},
+  { 147, -1, sizeof(VidGroupList)},
+  { 152, -1, sizeof(VidEmapCamera)},
+  { 161, -1, sizeof(VidEmap)},
+  { 168, -1, sizeof(VidEmapList)},
+  { 173, -1, sizeof(VidStream)},
+  { 179, -1, sizeof(VidStreamList)},
+  { 184, -1, sizeof(VidBlob)},
+  { 192, -1, sizeof(VidBlobList)},
+  { 197, -1, sizeof(VidEventDBConf)},
+  { 203, -1, sizeof(VidEvent)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidUser_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidUserList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStorServerConf_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidCamera_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidCameraList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidDisk_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidDiskList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidHDFSConf_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidCameraId_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidClientConf_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStor_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStorList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidViewWindow_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidView_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidViewList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidTour_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidTourList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidGroup_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidGroupList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidEmapCamera_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidEmap_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidEmapList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStream_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStreamList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidBlob_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidBlobList_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidEventDBConf_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidEvent_default_instance_),
+};
 
 namespace {
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-inline void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_vidconf_2eproto);
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  ::google::protobuf::MessageFactory* factory = NULL;
+  AssignDescriptors(
+      "vidconf.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
+void protobuf_AssignDescriptorsOnce() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidUser_descriptor_, &VidUser::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidUserList_descriptor_, &VidUserList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidStorServerConf_descriptor_, &VidStorServerConf::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidCamera_descriptor_, &VidCamera::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidCameraList_descriptor_, &VidCameraList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidDisk_descriptor_, &VidDisk::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidDiskList_descriptor_, &VidDiskList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidHDFSConf_descriptor_, &VidHDFSConf::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidCameraId_descriptor_, &VidCameraId::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidClientConf_descriptor_, &VidClientConf::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidStor_descriptor_, &VidStor::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidStorList_descriptor_, &VidStorList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidViewWindow_descriptor_, &VidViewWindow::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidView_descriptor_, &VidView::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidViewList_descriptor_, &VidViewList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidTour_descriptor_, &VidTour::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidTourList_descriptor_, &VidTourList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidGroup_descriptor_, &VidGroup::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidGroupList_descriptor_, &VidGroupList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidEmapCamera_descriptor_, &VidEmapCamera::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidEmap_descriptor_, &VidEmap::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidEmapList_descriptor_, &VidEmapList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidStream_descriptor_, &VidStream::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidStreamList_descriptor_, &VidStreamList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidBlob_descriptor_, &VidBlob::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidBlobList_descriptor_, &VidBlobList::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidEventDBConf_descriptor_, &VidEventDBConf::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      VidEvent_descriptor_, &VidEvent::default_instance());
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 28);
 }
 
 }  // namespace
 
-void protobuf_ShutdownFile_vidconf_2eproto() {
-  delete VidUser::default_instance_;
-  delete VidUser_reflection_;
-  delete VidUserList::default_instance_;
-  delete VidUserList_reflection_;
-  delete VidStorServerConf::default_instance_;
-  delete VidStorServerConf_reflection_;
-  delete VidCamera::default_instance_;
-  delete VidCamera_reflection_;
-  delete VidCameraList::default_instance_;
-  delete VidCameraList_reflection_;
-  delete VidDisk::default_instance_;
-  delete VidDisk_reflection_;
-  delete VidDiskList::default_instance_;
-  delete VidDiskList_reflection_;
-  delete VidHDFSConf::default_instance_;
-  delete VidHDFSConf_reflection_;
-  delete VidCameraId::default_instance_;
-  delete VidCameraId_reflection_;
-  delete VidClientConf::default_instance_;
-  delete VidClientConf_reflection_;
-  delete VidStor::default_instance_;
-  delete VidStor_reflection_;
-  delete VidStorList::default_instance_;
-  delete VidStorList_reflection_;
-  delete VidViewWindow::default_instance_;
-  delete VidViewWindow_reflection_;
-  delete VidView::default_instance_;
-  delete VidView_reflection_;
-  delete VidViewList::default_instance_;
-  delete VidViewList_reflection_;
-  delete VidTour::default_instance_;
-  delete VidTour_reflection_;
-  delete VidTourList::default_instance_;
-  delete VidTourList_reflection_;
-  delete VidGroup::default_instance_;
-  delete VidGroup_reflection_;
-  delete VidGroupList::default_instance_;
-  delete VidGroupList_reflection_;
-  delete VidEmapCamera::default_instance_;
-  delete VidEmapCamera_reflection_;
-  delete VidEmap::default_instance_;
-  delete VidEmap_reflection_;
-  delete VidEmapList::default_instance_;
-  delete VidEmapList_reflection_;
-  delete VidStream::default_instance_;
-  delete VidStream_reflection_;
-  delete VidStreamList::default_instance_;
-  delete VidStreamList_reflection_;
-  delete VidBlob::default_instance_;
-  delete VidBlob_reflection_;
-  delete VidBlobList::default_instance_;
-  delete VidBlobList_reflection_;
-  delete VidEventDBConf::default_instance_;
-  delete VidEventDBConf_reflection_;
-  delete VidEvent::default_instance_;
-  delete VidEvent_reflection_;
+void TableStruct::Shutdown() {
+  _VidUser_default_instance_.Shutdown();
+  delete file_level_metadata[0].reflection;
+  _VidUserList_default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
+  _VidStorServerConf_default_instance_.Shutdown();
+  delete file_level_metadata[2].reflection;
+  _VidCamera_default_instance_.Shutdown();
+  delete file_level_metadata[3].reflection;
+  _VidCameraList_default_instance_.Shutdown();
+  delete file_level_metadata[4].reflection;
+  _VidDisk_default_instance_.Shutdown();
+  delete file_level_metadata[5].reflection;
+  _VidDiskList_default_instance_.Shutdown();
+  delete file_level_metadata[6].reflection;
+  _VidHDFSConf_default_instance_.Shutdown();
+  delete file_level_metadata[7].reflection;
+  _VidCameraId_default_instance_.Shutdown();
+  delete file_level_metadata[8].reflection;
+  _VidClientConf_default_instance_.Shutdown();
+  delete file_level_metadata[9].reflection;
+  _VidStor_default_instance_.Shutdown();
+  delete file_level_metadata[10].reflection;
+  _VidStorList_default_instance_.Shutdown();
+  delete file_level_metadata[11].reflection;
+  _VidViewWindow_default_instance_.Shutdown();
+  delete file_level_metadata[12].reflection;
+  _VidView_default_instance_.Shutdown();
+  delete file_level_metadata[13].reflection;
+  _VidViewList_default_instance_.Shutdown();
+  delete file_level_metadata[14].reflection;
+  _VidTour_default_instance_.Shutdown();
+  delete file_level_metadata[15].reflection;
+  _VidTourList_default_instance_.Shutdown();
+  delete file_level_metadata[16].reflection;
+  _VidGroup_default_instance_.Shutdown();
+  delete file_level_metadata[17].reflection;
+  _VidGroupList_default_instance_.Shutdown();
+  delete file_level_metadata[18].reflection;
+  _VidEmapCamera_default_instance_.Shutdown();
+  delete file_level_metadata[19].reflection;
+  _VidEmap_default_instance_.Shutdown();
+  delete file_level_metadata[20].reflection;
+  _VidEmapList_default_instance_.Shutdown();
+  delete file_level_metadata[21].reflection;
+  _VidStream_default_instance_.Shutdown();
+  delete file_level_metadata[22].reflection;
+  _VidStreamList_default_instance_.Shutdown();
+  delete file_level_metadata[23].reflection;
+  _VidBlob_default_instance_.Shutdown();
+  delete file_level_metadata[24].reflection;
+  _VidBlobList_default_instance_.Shutdown();
+  delete file_level_metadata[25].reflection;
+  _VidEventDBConf_default_instance_.Shutdown();
+  delete file_level_metadata[26].reflection;
+  _VidEvent_default_instance_.Shutdown();
+  delete file_level_metadata[27].reflection;
 }
 
-void protobuf_AddDesc_vidconf_2eproto() {
-  static bool already_here = false;
-  if (already_here) return;
-  already_here = true;
+void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\rvidconf.proto\022\007VidConf\"O\n\007VidUser\022\r\n\005s"
-    "trId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\021\n\tstrPasswd"
-    "\030\003 \001(\t\022\021\n\tstrRoleId\030\004 \001(\t\"1\n\013VidUserList"
-    "\022\"\n\010cVidUser\030\001 \003(\0132\020.VidConf.VidUser\">\n\021"
-    "VidStorServerConf\022\021\n\tnOapiPort\030\001 \001(\005\022\026\n\016"
-    "strAdminPasswd\030\002 \001(\t\"\372\004\n\tVidCamera\022\020\n\010bD"
-    "isable\030\001 \001(\010\022\r\n\005strId\030\002 \001(\t\022\017\n\007strName\030\003"
-    " \001(\t\022\"\n\005nType\030\004 \001(\0162\023.VidConf.CameraType"
-    "\022\r\n\005strIP\030\005 \001(\t\022\017\n\007strPort\030\006 \001(\t\022\017\n\007strU"
-    "ser\030\007 \001(\t\022\021\n\tstrPasswd\030\010 \001(\t\022\027\n\017strONVIF"
-    "Address\030\t \001(\t\022\025\n\rbProfileToken\030\n \001(\010\022\030\n\020"
-    "strProfileToken1\030\013 \001(\t\022\030\n\020strProfileToke"
-    "n2\030\014 \001(\t\022\017\n\007strFile\030\r \001(\t\022\022\n\nstrRTSPUrl\030"
-    "\016 \001(\t\022\020\n\010bHWaccel\030\017 \001(\010\022\025\n\rbServerMotion"
-    "\030\020 \001(\010\0220\n\014nConnectType\030\021 \001(\0162\032.VidConf.C"
-    "ameraConnectType\022\023\n\013bHDFSRecord\030\022 \001(\010\022\021\n"
-    "\tcRecSched\030\024 \003(\t\022\022\n\nnPreRecSec\030\025 \001(\005\022\023\n\013"
-    "nPostRecSec\030\026 \001(\005\022\023\n\013bMotionJPEG\030\027 \001(\010\022\025"
-    "\n\rnRecordStream\030\030 \001(\005\022\033\n\023nServerMotionSt"
-    "ream\030\031 \001(\005\0220\n\016nOnvifEvtLevel\030\032 \001(\0162\030.Vid"
-    "Conf.OnvifEventLevel\022\020\n\010strSched\030\033 \001(\t\022\021"
-    "\n\tstrMotReg\030\034 \001(\t\"7\n\rVidCameraList\022&\n\ncV"
-    "idCamera\030\001 \003(\0132\022.VidConf.VidCamera\"w\n\007Vi"
-    "dDisk\022\r\n\005strId\030\001 \001(\t\022\017\n\007strPath\030\002 \001(\t\022\022\n"
-    "\nnTotalSize\030\003 \001(\003\022\021\n\tnFreeSize\030\004 \001(\003\022\022\n\n"
-    "nStorLimit\030\005 \001(\003\022\021\n\tnStorUsed\030\006 \001(\003\"1\n\013V"
-    "idDiskList\022\"\n\010cVidDisk\030\001 \003(\0132\020.VidConf.V"
-    "idDisk\"n\n\013VidHDFSConf\022\023\n\013strNameNode\030\001 \001"
-    "(\t\022\017\n\007strPort\030\002 \001(\t\022\017\n\007strUser\030\003 \001(\t\022\021\n\t"
-    "strPasswd\030\004 \001(\t\022\025\n\rnFileInterval\030\005 \001(\005\"5"
-    "\n\013VidCameraId\022\021\n\tstrStorId\030\001 \001(\t\022\023\n\013strC"
-    "ameraId\030\002 \001(\t\"`\n\rVidClientConf\022#\n\005nLang\030"
-    "\001 \001(\0162\024.VidConf.VidLanguage\022\026\n\016strAdminP"
-    "asswd\030\002 \001(\t\022\022\n\nbAutoLogin\030\003 \001(\010\"m\n\007VidSt"
-    "or\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\r\n\005st"
-    "rIP\030\003 \001(\t\022\017\n\007strPort\030\004 \001(\t\022\017\n\007strUser\030\005 "
-    "\001(\t\022\021\n\tstrPasswd\030\006 \001(\t\"1\n\013VidStorList\022\"\n"
-    "\010cVidStor\030\001 \003(\0132\020.VidConf.VidStor\"X\n\rVid"
-    "ViewWindow\022!\n\003cId\030\001 \001(\0132\024.VidConf.VidCam"
-    "eraId\022\022\n\nnWindowsId\030\002 \001(\005\022\020\n\010bHWAccel\030\003 "
-    "\001(\010\"u\n\007VidView\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName"
-    "\030\002 \001(\t\022%\n\005cView\030\003 \003(\0132\026.VidConf.VidViewW"
-    "indow\022#\n\007cLayout\030\004 \001(\0162\022.VidConf.VidLayo"
-    "ut\"1\n\013VidViewList\022\"\n\010cVidView\030\001 \003(\0132\020.Vi"
-    "dConf.VidView\":\n\007VidTour\022\r\n\005strId\030\001 \001(\t\022"
-    "\017\n\007strName\030\002 \001(\t\022\017\n\007strView\030\003 \003(\t\"1\n\013Vid"
-    "TourList\022\"\n\010cVidTour\030\001 \003(\0132\020.VidConf.Vid"
-    "Tour\"P\n\010VidGroup\022\r\n\005strId\030\001 \001(\t\022\017\n\007strNa"
-    "me\030\002 \001(\t\022$\n\006cGroup\030\003 \003(\0132\024.VidConf.VidCa"
-    "meraId\"4\n\014VidGroupList\022$\n\tcVidGroup\030\001 \003("
-    "\0132\021.VidConf.VidGroup\"^\n\rVidEmapCamera\022!\n"
-    "\003cId\030\001 \001(\0132\024.VidConf.VidCameraId\022\t\n\001x\030\002 "
-    "\001(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"R\n\007"
-    "VidEmap\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022"
-    "\'\n\007cCamera\030\003 \003(\0132\026.VidConf.VidEmapCamera"
-    "\"1\n\013VidEmapList\022\"\n\010cVidEmap\030\001 \003(\0132\020.VidC"
-    "onf.VidEmap\".\n\tVidStream\022\020\n\010strToken\030\001 \001"
-    "(\t\022\017\n\007strName\030\002 \001(\t\"7\n\rVidStreamList\022&\n\n"
-    "cVidStream\030\001 \003(\0132\022.VidConf.VidStream\"9\n\007"
-    "VidBlob\022\n\n\002x0\030\001 \001(\005\022\n\n\002y0\030\002 \001(\005\022\n\n\002x1\030\003 "
-    "\001(\005\022\n\n\002y1\030\004 \001(\005\".\n\013VidBlobList\022\037\n\005cBlob\030"
-    "\001 \003(\0132\020.VidConf.VidBlob\"K\n\016VidEventDBCon"
-    "f\022&\n\005nType\030\001 \001(\0162\027.VidConf.VidEventDBTyp"
-    "e\022\021\n\tstrDBPath\030\002 \001(\t\"\365\001\n\010VidEvent\022\r\n\005str"
-    "Id\030\001 \001(\t\022\021\n\tstrDevice\030\002 \001(\t\022\025\n\rstrDevice"
-    "Name\030\003 \001(\t\022\017\n\007strType\030\004 \001(\t\022\r\n\005nTime\030\005 \001"
-    "(\003\022\017\n\007strTime\030\006 \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010"
-    "bHandled\030\010 \001(\010\022\021\n\tbSearched\030\t \001(\010\022\023\n\013str"
-    "Comments\030\n \001(\t\022\021\n\tstrStorId\030\013 \001(\t\022\023\n\013str"
-    "StorName\030\014 \001(\t\022\014\n\004nIdx\030\r \001(\003*q\n\nCameraTy"
-    "pe\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002"
-    "\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_G"
-    "B28181\020\005\022\r\n\tVID_MJPEG\020\006*=\n\nVidRecType\022\r\n"
-    "\tVID_R_OFF\020\000\022\017\n\013VID_R_ALARM\020\001\022\017\n\013VID_R_S"
-    "CHED\020\002*P\n\021CameraConnectType\022\021\n\rVID_CONNE"
-    "CT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONNE"
-    "CT_UDP\020\002*`\n\017OnvifEventLevel\022\027\n\023VID_ONVIF"
-    "_EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVENT_FULL\020\001\022\032"
-    "\n\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013VidLanguag"
-    "e\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_"
-    "ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOUT_MODE"
-    "_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID_LAYOU"
-    "T_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X3\020\003\022\027\n"
-    "\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYOUT_MOD"
-    "E_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VID_LAYO"
-    "UT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_5x5\020\010\022"
-    "\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LAYOUT_M"
-    "ODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027\n\023VI"
-    "D_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MODE_1"
-    "p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_SQLITE\020"
-    "\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3", 3632);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "vidconf.proto", &protobuf_RegisterTypes);
-  VidUser::default_instance_ = new VidUser();
-  VidUserList::default_instance_ = new VidUserList();
-  VidStorServerConf::default_instance_ = new VidStorServerConf();
-  VidCamera::default_instance_ = new VidCamera();
-  VidCameraList::default_instance_ = new VidCameraList();
-  VidDisk::default_instance_ = new VidDisk();
-  VidDiskList::default_instance_ = new VidDiskList();
-  VidHDFSConf::default_instance_ = new VidHDFSConf();
-  VidCameraId::default_instance_ = new VidCameraId();
-  VidClientConf::default_instance_ = new VidClientConf();
-  VidStor::default_instance_ = new VidStor();
-  VidStorList::default_instance_ = new VidStorList();
-  VidViewWindow::default_instance_ = new VidViewWindow();
-  VidView::default_instance_ = new VidView();
-  VidViewList::default_instance_ = new VidViewList();
-  VidTour::default_instance_ = new VidTour();
-  VidTourList::default_instance_ = new VidTourList();
-  VidGroup::default_instance_ = new VidGroup();
-  VidGroupList::default_instance_ = new VidGroupList();
-  VidEmapCamera::default_instance_ = new VidEmapCamera();
-  VidEmap::default_instance_ = new VidEmap();
-  VidEmapList::default_instance_ = new VidEmapList();
-  VidStream::default_instance_ = new VidStream();
-  VidStreamList::default_instance_ = new VidStreamList();
-  VidBlob::default_instance_ = new VidBlob();
-  VidBlobList::default_instance_ = new VidBlobList();
-  VidEventDBConf::default_instance_ = new VidEventDBConf();
-  VidEvent::default_instance_ = new VidEvent();
-  VidUser::default_instance_->InitAsDefaultInstance();
-  VidUserList::default_instance_->InitAsDefaultInstance();
-  VidStorServerConf::default_instance_->InitAsDefaultInstance();
-  VidCamera::default_instance_->InitAsDefaultInstance();
-  VidCameraList::default_instance_->InitAsDefaultInstance();
-  VidDisk::default_instance_->InitAsDefaultInstance();
-  VidDiskList::default_instance_->InitAsDefaultInstance();
-  VidHDFSConf::default_instance_->InitAsDefaultInstance();
-  VidCameraId::default_instance_->InitAsDefaultInstance();
-  VidClientConf::default_instance_->InitAsDefaultInstance();
-  VidStor::default_instance_->InitAsDefaultInstance();
-  VidStorList::default_instance_->InitAsDefaultInstance();
-  VidViewWindow::default_instance_->InitAsDefaultInstance();
-  VidView::default_instance_->InitAsDefaultInstance();
-  VidViewList::default_instance_->InitAsDefaultInstance();
-  VidTour::default_instance_->InitAsDefaultInstance();
-  VidTourList::default_instance_->InitAsDefaultInstance();
-  VidGroup::default_instance_->InitAsDefaultInstance();
-  VidGroupList::default_instance_->InitAsDefaultInstance();
-  VidEmapCamera::default_instance_->InitAsDefaultInstance();
-  VidEmap::default_instance_->InitAsDefaultInstance();
-  VidEmapList::default_instance_->InitAsDefaultInstance();
-  VidStream::default_instance_->InitAsDefaultInstance();
-  VidStreamList::default_instance_->InitAsDefaultInstance();
-  VidBlob::default_instance_->InitAsDefaultInstance();
-  VidBlobList::default_instance_->InitAsDefaultInstance();
-  VidEventDBConf::default_instance_->InitAsDefaultInstance();
-  VidEvent::default_instance_->InitAsDefaultInstance();
-  ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_vidconf_2eproto);
+  ::google::protobuf::internal::InitProtobufDefaults();
+  _VidUser_default_instance_.DefaultConstruct();
+  _VidUserList_default_instance_.DefaultConstruct();
+  _VidStorServerConf_default_instance_.DefaultConstruct();
+  _VidCamera_default_instance_.DefaultConstruct();
+  _VidCameraList_default_instance_.DefaultConstruct();
+  _VidDisk_default_instance_.DefaultConstruct();
+  _VidDiskList_default_instance_.DefaultConstruct();
+  _VidHDFSConf_default_instance_.DefaultConstruct();
+  _VidCameraId_default_instance_.DefaultConstruct();
+  _VidClientConf_default_instance_.DefaultConstruct();
+  _VidStor_default_instance_.DefaultConstruct();
+  _VidStorList_default_instance_.DefaultConstruct();
+  _VidViewWindow_default_instance_.DefaultConstruct();
+  _VidView_default_instance_.DefaultConstruct();
+  _VidViewList_default_instance_.DefaultConstruct();
+  _VidTour_default_instance_.DefaultConstruct();
+  _VidTourList_default_instance_.DefaultConstruct();
+  _VidGroup_default_instance_.DefaultConstruct();
+  _VidGroupList_default_instance_.DefaultConstruct();
+  _VidEmapCamera_default_instance_.DefaultConstruct();
+  _VidEmap_default_instance_.DefaultConstruct();
+  _VidEmapList_default_instance_.DefaultConstruct();
+  _VidStream_default_instance_.DefaultConstruct();
+  _VidStreamList_default_instance_.DefaultConstruct();
+  _VidBlob_default_instance_.DefaultConstruct();
+  _VidBlobList_default_instance_.DefaultConstruct();
+  _VidEventDBConf_default_instance_.DefaultConstruct();
+  _VidEvent_default_instance_.DefaultConstruct();
+  _VidViewWindow_default_instance_.get_mutable()->cid_ = const_cast< ::VidConf::VidCameraId*>(
+      ::VidConf::VidCameraId::internal_default_instance());
+  _VidEmapCamera_default_instance_.get_mutable()->cid_ = const_cast< ::VidConf::VidCameraId*>(
+      ::VidConf::VidCameraId::internal_default_instance());
 }
 
+void InitDefaults() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
+}
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] = {
+      "\n\rvidconf.proto\022\007VidConf\"O\n\007VidUser\022\r\n\005s"
+      "trId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\021\n\tstrPasswd"
+      "\030\003 \001(\t\022\021\n\tstrRoleId\030\004 \001(\t\"1\n\013VidUserList"
+      "\022\"\n\010cVidUser\030\001 \003(\0132\020.VidConf.VidUser\">\n\021"
+      "VidStorServerConf\022\021\n\tnOapiPort\030\001 \001(\005\022\026\n\016"
+      "strAdminPasswd\030\002 \001(\t\"\372\004\n\tVidCamera\022\020\n\010bD"
+      "isable\030\001 \001(\010\022\r\n\005strId\030\002 \001(\t\022\017\n\007strName\030\003"
+      " \001(\t\022\"\n\005nType\030\004 \001(\0162\023.VidConf.CameraType"
+      "\022\r\n\005strIP\030\005 \001(\t\022\017\n\007strPort\030\006 \001(\t\022\017\n\007strU"
+      "ser\030\007 \001(\t\022\021\n\tstrPasswd\030\010 \001(\t\022\027\n\017strONVIF"
+      "Address\030\t \001(\t\022\025\n\rbProfileToken\030\n \001(\010\022\030\n\020"
+      "strProfileToken1\030\013 \001(\t\022\030\n\020strProfileToke"
+      "n2\030\014 \001(\t\022\017\n\007strFile\030\r \001(\t\022\022\n\nstrRTSPUrl\030"
+      "\016 \001(\t\022\020\n\010bHWaccel\030\017 \001(\010\022\025\n\rbServerMotion"
+      "\030\020 \001(\010\0220\n\014nConnectType\030\021 \001(\0162\032.VidConf.C"
+      "ameraConnectType\022\023\n\013bHDFSRecord\030\022 \001(\010\022\021\n"
+      "\tcRecSched\030\024 \003(\t\022\022\n\nnPreRecSec\030\025 \001(\005\022\023\n\013"
+      "nPostRecSec\030\026 \001(\005\022\023\n\013bMotionJPEG\030\027 \001(\010\022\025"
+      "\n\rnRecordStream\030\030 \001(\005\022\033\n\023nServerMotionSt"
+      "ream\030\031 \001(\005\0220\n\016nOnvifEvtLevel\030\032 \001(\0162\030.Vid"
+      "Conf.OnvifEventLevel\022\020\n\010strSched\030\033 \001(\t\022\021"
+      "\n\tstrMotReg\030\034 \001(\t\"7\n\rVidCameraList\022&\n\ncV"
+      "idCamera\030\001 \003(\0132\022.VidConf.VidCamera\"w\n\007Vi"
+      "dDisk\022\r\n\005strId\030\001 \001(\t\022\017\n\007strPath\030\002 \001(\t\022\022\n"
+      "\nnTotalSize\030\003 \001(\003\022\021\n\tnFreeSize\030\004 \001(\003\022\022\n\n"
+      "nStorLimit\030\005 \001(\003\022\021\n\tnStorUsed\030\006 \001(\003\"1\n\013V"
+      "idDiskList\022\"\n\010cVidDisk\030\001 \003(\0132\020.VidConf.V"
+      "idDisk\"n\n\013VidHDFSConf\022\023\n\013strNameNode\030\001 \001"
+      "(\t\022\017\n\007strPort\030\002 \001(\t\022\017\n\007strUser\030\003 \001(\t\022\021\n\t"
+      "strPasswd\030\004 \001(\t\022\025\n\rnFileInterval\030\005 \001(\005\"5"
+      "\n\013VidCameraId\022\021\n\tstrStorId\030\001 \001(\t\022\023\n\013strC"
+      "ameraId\030\002 \001(\t\"y\n\rVidClientConf\022#\n\005nLang\030"
+      "\001 \001(\0162\024.VidConf.VidLanguage\022\026\n\016strAdminP"
+      "asswd\030\002 \001(\t\022\022\n\nbAutoLogin\030\003 \001(\010\022\027\n\017bAuto"
+      "FullScreen\030\004 \001(\010\"m\n\007VidStor\022\r\n\005strId\030\001 \001"
+      "(\t\022\017\n\007strName\030\002 \001(\t\022\r\n\005strIP\030\003 \001(\t\022\017\n\007st"
+      "rPort\030\004 \001(\t\022\017\n\007strUser\030\005 \001(\t\022\021\n\tstrPassw"
+      "d\030\006 \001(\t\"1\n\013VidStorList\022\"\n\010cVidStor\030\001 \003(\013"
+      "2\020.VidConf.VidStor\"X\n\rVidViewWindow\022!\n\003c"
+      "Id\030\001 \001(\0132\024.VidConf.VidCameraId\022\022\n\nnWindo"
+      "wsId\030\002 \001(\005\022\020\n\010bHWAccel\030\003 \001(\010\"u\n\007VidView\022"
+      "\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022%\n\005cView"
+      "\030\003 \003(\0132\026.VidConf.VidViewWindow\022#\n\007cLayou"
+      "t\030\004 \001(\0162\022.VidConf.VidLayout\"1\n\013VidViewLi"
+      "st\022\"\n\010cVidView\030\001 \003(\0132\020.VidConf.VidView\":"
+      "\n\007VidTour\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001("
+      "\t\022\017\n\007strView\030\003 \003(\t\"1\n\013VidTourList\022\"\n\010cVi"
+      "dTour\030\001 \003(\0132\020.VidConf.VidTour\"P\n\010VidGrou"
+      "p\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022$\n\006cGr"
+      "oup\030\003 \003(\0132\024.VidConf.VidCameraId\"4\n\014VidGr"
+      "oupList\022$\n\tcVidGroup\030\001 \003(\0132\021.VidConf.Vid"
+      "Group\"^\n\rVidEmapCamera\022!\n\003cId\030\001 \001(\0132\024.Vi"
+      "dConf.VidCameraId\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022"
+      "\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"R\n\007VidEmap\022\r\n\005strI"
+      "d\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\'\n\007cCamera\030\003 \003("
+      "\0132\026.VidConf.VidEmapCamera\"1\n\013VidEmapList"
+      "\022\"\n\010cVidEmap\030\001 \003(\0132\020.VidConf.VidEmap\".\n\t"
+      "VidStream\022\020\n\010strToken\030\001 \001(\t\022\017\n\007strName\030\002"
+      " \001(\t\"7\n\rVidStreamList\022&\n\ncVidStream\030\001 \003("
+      "\0132\022.VidConf.VidStream\"9\n\007VidBlob\022\n\n\002x0\030\001"
+      " \001(\005\022\n\n\002y0\030\002 \001(\005\022\n\n\002x1\030\003 \001(\005\022\n\n\002y1\030\004 \001(\005"
+      "\".\n\013VidBlobList\022\037\n\005cBlob\030\001 \003(\0132\020.VidConf"
+      ".VidBlob\"K\n\016VidEventDBConf\022&\n\005nType\030\001 \001("
+      "\0162\027.VidConf.VidEventDBType\022\021\n\tstrDBPath\030"
+      "\002 \001(\t\"\365\001\n\010VidEvent\022\r\n\005strId\030\001 \001(\t\022\021\n\tstr"
+      "Device\030\002 \001(\t\022\025\n\rstrDeviceName\030\003 \001(\t\022\017\n\007s"
+      "trType\030\004 \001(\t\022\r\n\005nTime\030\005 \001(\003\022\017\n\007strTime\030\006"
+      " \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010bHandled\030\010 \001(\010\022"
+      "\021\n\tbSearched\030\t \001(\010\022\023\n\013strComments\030\n \001(\t\022"
+      "\021\n\tstrStorId\030\013 \001(\t\022\023\n\013strStorName\030\014 \001(\t\022"
+      "\014\n\004nIdx\030\r \001(\003*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013"
+      "\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022"
+      "\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID"
+      "_MJPEG\020\006*=\n\nVidRecType\022\r\n\tVID_R_OFF\020\000\022\017\n"
+      "\013VID_R_ALARM\020\001\022\017\n\013VID_R_SCHED\020\002*P\n\021Camer"
+      "aConnectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID_C"
+      "ONNECT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*`\n\017Onv"
+      "ifEventLevel\022\027\n\023VID_ONVIF_EVENT_OFF\020\000\022\030\n"
+      "\024VID_ONVIF_EVENT_FULL\020\001\022\032\n\026VID_ONVIF_EVE"
+      "NT_MOTION\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_A"
+      "UTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVid"
+      "Layout\022\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAY"
+      "OUT_MODE_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n"
+      "\023VID_LAYOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MOD"
+      "E_4X4\020\004\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LA"
+      "YOUT_MODE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022"
+      "\027\n\023VID_LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_M"
+      "ODE_6x6\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VI"
+      "D_LAYOUT_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1"
+      "x3\020\014\022\027\n\023VID_LAYOUT_MODE_1p6\020\r*:\n\016VidEven"
+      "tDBType\022\021\n\rVID_DB_SQLITE\020\000\022\025\n\021VID_DB_POS"
+      "TGRESQL\020\001b\006proto3"
+  };
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+      descriptor, 3657);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "vidconf.proto", &protobuf_RegisterTypes);
+  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
+}
+
+void AddDescriptors() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
+}
 // Force AddDescriptors() to be called at static initialization time.
-struct StaticDescriptorInitializer_vidconf_2eproto {
-  StaticDescriptorInitializer_vidconf_2eproto() {
-    protobuf_AddDesc_vidconf_2eproto();
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
   }
-} static_descriptor_initializer_vidconf_2eproto_;
+} static_descriptor_initializer;
+
+}  // namespace protobuf_vidconf_2eproto
+
 const ::google::protobuf::EnumDescriptor* CameraType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return CameraType_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[0];
 }
 bool CameraType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -943,11 +630,11 @@ bool CameraType_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* VidRecType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidRecType_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[1];
 }
 bool VidRecType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -958,11 +645,11 @@ bool VidRecType_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return CameraConnectType_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[2];
 }
 bool CameraConnectType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -973,11 +660,11 @@ bool CameraConnectType_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* OnvifEventLevel_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return OnvifEventLevel_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[3];
 }
 bool OnvifEventLevel_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -988,11 +675,11 @@ bool OnvifEventLevel_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidLanguage_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[4];
 }
 bool VidLanguage_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -1003,11 +690,11 @@ bool VidLanguage_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* VidLayout_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidLayout_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[5];
 }
 bool VidLayout_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -1029,11 +716,11 @@ bool VidLayout_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEventDBType_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_enum_descriptors[6];
 }
 bool VidEventDBType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
       return true;
@@ -1043,51 +730,53 @@ bool VidEventDBType_IsValid(int value) {
 }
 
 
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
-static void MergeFromFail(int line) {
-  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
-}
-
-}  // namespace
-
-
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidUser::kStrIdFieldNumber;
 const int VidUser::kStrNameFieldNumber;
 const int VidUser::kStrPasswdFieldNumber;
 const int VidUser::kStrRoleIdFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidUser::VidUser()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidUser)
 }
-
-void VidUser::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidUser::VidUser(const VidUser& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
+  strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strpasswd().size() > 0) {
+    strpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strpasswd_);
+  }
+  strroleid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strroleid().size() > 0) {
+    strroleid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strroleid_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidUser)
 }
 
 void VidUser::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strroleid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidUser::~VidUser() {
@@ -1100,8 +789,6 @@ void VidUser::SharedDtor() {
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strroleid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidUser::SetCachedSize(int size) const {
@@ -1110,16 +797,14 @@ void VidUser::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidUser::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidUser_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[0].descriptor;
 }
 
 const VidUser& VidUser::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidUser* VidUser::default_instance_ = NULL;
 
 VidUser* VidUser::New(::google::protobuf::Arena* arena) const {
   VidUser* n = new VidUser;
@@ -1130,6 +815,7 @@ VidUser* VidUser::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidUser::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidUser)
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -1138,17 +824,17 @@ void VidUser::Clear() {
 
 bool VidUser::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidUser)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1158,14 +844,12 @@ bool VidUser::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1175,14 +859,12 @@ bool VidUser::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strPasswd;
         break;
       }
 
-      // optional string strPasswd = 3;
+      // string strPasswd = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strPasswd:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1192,14 +874,12 @@ bool VidUser::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_strRoleId;
         break;
       }
 
-      // optional string strRoleId = 4;
+      // string strRoleId = 4;
       case 4: {
-        if (tag == 34) {
-         parse_strRoleId:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strroleid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1209,7 +889,6 @@ bool VidUser::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1237,7 +916,7 @@ failure:
 void VidUser::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidUser)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -1247,7 +926,7 @@ void VidUser::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -1257,7 +936,7 @@ void VidUser::SerializeWithCachedSizes(
       2, this->strname(), output);
   }
 
-  // optional string strPasswd = 3;
+  // string strPasswd = 3;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -1267,7 +946,7 @@ void VidUser::SerializeWithCachedSizes(
       3, this->strpasswd(), output);
   }
 
-  // optional string strRoleId = 4;
+  // string strRoleId = 4;
   if (this->strroleid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strroleid().data(), this->strroleid().length(),
@@ -1280,10 +959,11 @@ void VidUser::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidUser)
 }
 
-::google::protobuf::uint8* VidUser::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidUser::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidUser)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -1294,7 +974,7 @@ void VidUser::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -1305,7 +985,7 @@ void VidUser::SerializeWithCachedSizes(
         2, this->strname(), target);
   }
 
-  // optional string strPasswd = 3;
+  // string strPasswd = 3;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -1316,7 +996,7 @@ void VidUser::SerializeWithCachedSizes(
         3, this->strpasswd(), target);
   }
 
-  // optional string strRoleId = 4;
+  // string strRoleId = 4;
   if (this->strroleid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strroleid().data(), this->strroleid().length(),
@@ -1331,57 +1011,64 @@ void VidUser::SerializeWithCachedSizes(
   return target;
 }
 
-int VidUser::ByteSize() const {
-  int total_size = 0;
+size_t VidUser::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidUser)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // optional string strPasswd = 3;
+  // string strPasswd = 3;
   if (this->strpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpasswd());
   }
 
-  // optional string strRoleId = 4;
+  // string strRoleId = 4;
   if (this->strroleid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strroleid());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidUser::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidUser* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidUser)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidUser* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidUser>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidUser)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidUser)
     MergeFrom(*source);
   }
 }
 
 void VidUser::MergeFrom(const VidUser& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidUser)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -1401,19 +1088,20 @@ void VidUser::MergeFrom(const VidUser& from) {
 }
 
 void VidUser::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidUser)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidUser::CopyFrom(const VidUser& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidUser)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidUser::IsInitialized() const {
-
   return true;
 }
 
@@ -1426,55 +1114,60 @@ void VidUser::InternalSwap(VidUser* other) {
   strname_.Swap(&other->strname_);
   strpasswd_.Swap(&other->strpasswd_);
   strroleid_.Swap(&other->strroleid_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidUser::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidUser_descriptor_;
-  metadata.reflection = VidUser_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[0];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidUser
 
-// optional string strId = 1;
+// string strId = 1;
 void VidUser::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidUser::strid() const {
+const ::std::string& VidUser::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidUser.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidUser::set_strid(const ::std::string& value) {
+void VidUser::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidUser.strId)
 }
- void VidUser::set_strid(const char* value) {
+#if LANG_CXX11
+void VidUser::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidUser.strId)
+}
+#endif
+void VidUser::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidUser.strId)
 }
- void VidUser::set_strid(const char* value, size_t size) {
+void VidUser::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidUser.strId)
 }
- ::std::string* VidUser::mutable_strid() {
+::std::string* VidUser::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidUser.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidUser::release_strid() {
+::std::string* VidUser::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidUser.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidUser::set_allocated_strid(::std::string* strid) {
+void VidUser::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -1484,40 +1177,49 @@ void VidUser::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidUser.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidUser::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidUser::strname() const {
+const ::std::string& VidUser::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidUser.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidUser::set_strname(const ::std::string& value) {
+void VidUser::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidUser.strName)
 }
- void VidUser::set_strname(const char* value) {
+#if LANG_CXX11
+void VidUser::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidUser.strName)
+}
+#endif
+void VidUser::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidUser.strName)
 }
- void VidUser::set_strname(const char* value, size_t size) {
+void VidUser::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidUser.strName)
 }
- ::std::string* VidUser::mutable_strname() {
+::std::string* VidUser::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidUser.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidUser::release_strname() {
+::std::string* VidUser::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidUser.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidUser::set_allocated_strname(::std::string* strname) {
+void VidUser::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -1527,40 +1229,49 @@ void VidUser::clear_strname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidUser.strName)
 }
 
-// optional string strPasswd = 3;
+// string strPasswd = 3;
 void VidUser::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidUser::strpasswd() const {
+const ::std::string& VidUser::strpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidUser.strPasswd)
-  return strpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strpasswd_.GetNoArena();
 }
- void VidUser::set_strpasswd(const ::std::string& value) {
+void VidUser::set_strpasswd(const ::std::string& value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidUser.strPasswd)
 }
- void VidUser::set_strpasswd(const char* value) {
+#if LANG_CXX11
+void VidUser::set_strpasswd(::std::string&& value) {
+  
+  strpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidUser.strPasswd)
+}
+#endif
+void VidUser::set_strpasswd(const char* value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidUser.strPasswd)
 }
- void VidUser::set_strpasswd(const char* value, size_t size) {
+void VidUser::set_strpasswd(const char* value, size_t size) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidUser.strPasswd)
 }
- ::std::string* VidUser::mutable_strpasswd() {
+::std::string* VidUser::mutable_strpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidUser.strPasswd)
   return strpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidUser::release_strpasswd() {
+::std::string* VidUser::release_strpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidUser.strPasswd)
   
   return strpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidUser::set_allocated_strpasswd(::std::string* strpasswd) {
+void VidUser::set_allocated_strpasswd(::std::string* strpasswd) {
   if (strpasswd != NULL) {
     
   } else {
@@ -1570,40 +1281,49 @@ void VidUser::clear_strpasswd() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidUser.strPasswd)
 }
 
-// optional string strRoleId = 4;
+// string strRoleId = 4;
 void VidUser::clear_strroleid() {
   strroleid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidUser::strroleid() const {
+const ::std::string& VidUser::strroleid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidUser.strRoleId)
-  return strroleid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strroleid_.GetNoArena();
 }
- void VidUser::set_strroleid(const ::std::string& value) {
+void VidUser::set_strroleid(const ::std::string& value) {
   
   strroleid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidUser.strRoleId)
 }
- void VidUser::set_strroleid(const char* value) {
+#if LANG_CXX11
+void VidUser::set_strroleid(::std::string&& value) {
+  
+  strroleid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidUser.strRoleId)
+}
+#endif
+void VidUser::set_strroleid(const char* value) {
   
   strroleid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidUser.strRoleId)
 }
- void VidUser::set_strroleid(const char* value, size_t size) {
+void VidUser::set_strroleid(const char* value, size_t size) {
   
   strroleid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidUser.strRoleId)
 }
- ::std::string* VidUser::mutable_strroleid() {
+::std::string* VidUser::mutable_strroleid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidUser.strRoleId)
   return strroleid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidUser::release_strroleid() {
+::std::string* VidUser::release_strroleid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidUser.strRoleId)
   
   return strroleid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidUser::set_allocated_strroleid(::std::string* strroleid) {
+void VidUser::set_allocated_strroleid(::std::string* strroleid) {
   if (strroleid != NULL) {
     
   } else {
@@ -1617,30 +1337,28 @@ void VidUser::clear_strroleid() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidUserList::kCVidUserFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidUserList::VidUserList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidUserList)
 }
-
-void VidUserList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidUserList::VidUserList(const VidUserList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cviduser_(from.cviduser_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidUserList)
 }
 
 void VidUserList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -1650,8 +1368,6 @@ VidUserList::~VidUserList() {
 }
 
 void VidUserList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidUserList::SetCachedSize(int size) const {
@@ -1660,16 +1376,14 @@ void VidUserList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidUserList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidUserList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[1].descriptor;
 }
 
 const VidUserList& VidUserList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidUserList* VidUserList::default_instance_ = NULL;
 
 VidUserList* VidUserList::New(::google::protobuf::Arena* arena) const {
   VidUserList* n = new VidUserList;
@@ -1680,32 +1394,30 @@ VidUserList* VidUserList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidUserList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidUserList)
   cviduser_.Clear();
 }
 
 bool VidUserList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidUserList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidUser cVidUser = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidUser:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cviduser()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidUser;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1742,68 +1454,80 @@ void VidUserList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidUserList)
 }
 
-::google::protobuf::uint8* VidUserList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidUserList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidUserList)
   // repeated .VidConf.VidUser cVidUser = 1;
   for (unsigned int i = 0, n = this->cviduser_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cviduser(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cviduser(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidUserList)
   return target;
 }
 
-int VidUserList::ByteSize() const {
-  int total_size = 0;
+size_t VidUserList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidUserList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidUser cVidUser = 1;
-  total_size += 1 * this->cviduser_size();
-  for (int i = 0; i < this->cviduser_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cviduser(i));
+  {
+    unsigned int count = this->cviduser_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cviduser(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidUserList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidUserList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidUserList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidUserList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidUserList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidUserList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidUserList)
     MergeFrom(*source);
   }
 }
 
 void VidUserList::MergeFrom(const VidUserList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidUserList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cviduser_.MergeFrom(from.cviduser_);
 }
 
 void VidUserList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidUserList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidUserList::CopyFrom(const VidUserList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidUserList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidUserList::IsInitialized() const {
-
   return true;
 }
 
@@ -1813,16 +1537,12 @@ void VidUserList::Swap(VidUserList* other) {
 }
 void VidUserList::InternalSwap(VidUserList* other) {
   cviduser_.UnsafeArenaSwap(&other->cviduser_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidUserList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidUserList_descriptor_;
-  metadata.reflection = VidUserList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[1];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1862,35 +1582,36 @@ VidUserList::cviduser() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidStorServerConf::kNOapiPortFieldNumber;
 const int VidStorServerConf::kStrAdminPasswdFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidStorServerConf::VidStorServerConf()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidStorServerConf)
 }
-
-void VidStorServerConf::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidStorServerConf::VidStorServerConf(const VidStorServerConf& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  stradminpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.stradminpasswd().size() > 0) {
+    stradminpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stradminpasswd_);
+  }
+  noapiport_ = from.noapiport_;
   // @@protoc_insertion_point(copy_constructor:VidConf.VidStorServerConf)
 }
 
 void VidStorServerConf::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  noapiport_ = 0;
   stradminpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  noapiport_ = 0;
+  _cached_size_ = 0;
 }
 
 VidStorServerConf::~VidStorServerConf() {
@@ -1900,8 +1621,6 @@ VidStorServerConf::~VidStorServerConf() {
 
 void VidStorServerConf::SharedDtor() {
   stradminpasswd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidStorServerConf::SetCachedSize(int size) const {
@@ -1910,16 +1629,14 @@ void VidStorServerConf::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidStorServerConf::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidStorServerConf_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[2].descriptor;
 }
 
 const VidStorServerConf& VidStorServerConf::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidStorServerConf* VidStorServerConf::default_instance_ = NULL;
 
 VidStorServerConf* VidStorServerConf::New(::google::protobuf::Arena* arena) const {
   VidStorServerConf* n = new VidStorServerConf;
@@ -1930,38 +1647,37 @@ VidStorServerConf* VidStorServerConf::New(::google::protobuf::Arena* arena) cons
 }
 
 void VidStorServerConf::Clear() {
-  noapiport_ = 0;
+// @@protoc_insertion_point(message_clear_start:VidConf.VidStorServerConf)
   stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  noapiport_ = 0;
 }
 
 bool VidStorServerConf::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidStorServerConf)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 nOapiPort = 1;
+      // int32 nOapiPort = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &noapiport_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strAdminPasswd;
         break;
       }
 
-      // optional string strAdminPasswd = 2;
+      // string strAdminPasswd = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strAdminPasswd:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_stradminpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1971,7 +1687,6 @@ bool VidStorServerConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1999,12 +1714,12 @@ failure:
 void VidStorServerConf::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidStorServerConf)
-  // optional int32 nOapiPort = 1;
+  // int32 nOapiPort = 1;
   if (this->noapiport() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->noapiport(), output);
   }
 
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stradminpasswd().data(), this->stradminpasswd().length(),
@@ -2017,15 +1732,16 @@ void VidStorServerConf::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidStorServerConf)
 }
 
-::google::protobuf::uint8* VidStorServerConf::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidStorServerConf::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidStorServerConf)
-  // optional int32 nOapiPort = 1;
+  // int32 nOapiPort = 1;
   if (this->noapiport() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->noapiport(), target);
   }
 
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stradminpasswd().data(), this->stradminpasswd().length(),
@@ -2040,66 +1756,74 @@ void VidStorServerConf::SerializeWithCachedSizes(
   return target;
 }
 
-int VidStorServerConf::ByteSize() const {
-  int total_size = 0;
+size_t VidStorServerConf::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidStorServerConf)
+  size_t total_size = 0;
 
-  // optional int32 nOapiPort = 1;
-  if (this->noapiport() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->noapiport());
-  }
-
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->stradminpasswd());
   }
 
+  // int32 nOapiPort = 1;
+  if (this->noapiport() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->noapiport());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidStorServerConf::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidStorServerConf* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidStorServerConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStorServerConf* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidStorServerConf>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidStorServerConf)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidStorServerConf)
     MergeFrom(*source);
   }
 }
 
 void VidStorServerConf::MergeFrom(const VidStorServerConf& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.noapiport() != 0) {
-    set_noapiport(from.noapiport());
-  }
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidStorServerConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.stradminpasswd().size() > 0) {
 
     stradminpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stradminpasswd_);
   }
+  if (from.noapiport() != 0) {
+    set_noapiport(from.noapiport());
+  }
 }
 
 void VidStorServerConf::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidStorServerConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidStorServerConf::CopyFrom(const VidStorServerConf& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidStorServerConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidStorServerConf::IsInitialized() const {
-
   return true;
 }
 
@@ -2108,71 +1832,76 @@ void VidStorServerConf::Swap(VidStorServerConf* other) {
   InternalSwap(other);
 }
 void VidStorServerConf::InternalSwap(VidStorServerConf* other) {
-  std::swap(noapiport_, other->noapiport_);
   stradminpasswd_.Swap(&other->stradminpasswd_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(noapiport_, other->noapiport_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidStorServerConf::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidStorServerConf_descriptor_;
-  metadata.reflection = VidStorServerConf_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[2];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidStorServerConf
 
-// optional int32 nOapiPort = 1;
+// int32 nOapiPort = 1;
 void VidStorServerConf::clear_noapiport() {
   noapiport_ = 0;
 }
- ::google::protobuf::int32 VidStorServerConf::noapiport() const {
+::google::protobuf::int32 VidStorServerConf::noapiport() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStorServerConf.nOapiPort)
   return noapiport_;
 }
- void VidStorServerConf::set_noapiport(::google::protobuf::int32 value) {
+void VidStorServerConf::set_noapiport(::google::protobuf::int32 value) {
   
   noapiport_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidStorServerConf.nOapiPort)
 }
 
-// optional string strAdminPasswd = 2;
+// string strAdminPasswd = 2;
 void VidStorServerConf::clear_stradminpasswd() {
   stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStorServerConf::stradminpasswd() const {
+const ::std::string& VidStorServerConf::stradminpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStorServerConf.strAdminPasswd)
-  return stradminpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return stradminpasswd_.GetNoArena();
 }
- void VidStorServerConf::set_stradminpasswd(const ::std::string& value) {
+void VidStorServerConf::set_stradminpasswd(const ::std::string& value) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStorServerConf.strAdminPasswd)
 }
- void VidStorServerConf::set_stradminpasswd(const char* value) {
+#if LANG_CXX11
+void VidStorServerConf::set_stradminpasswd(::std::string&& value) {
+  
+  stradminpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStorServerConf.strAdminPasswd)
+}
+#endif
+void VidStorServerConf::set_stradminpasswd(const char* value) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStorServerConf.strAdminPasswd)
 }
- void VidStorServerConf::set_stradminpasswd(const char* value, size_t size) {
+void VidStorServerConf::set_stradminpasswd(const char* value, size_t size) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStorServerConf.strAdminPasswd)
 }
- ::std::string* VidStorServerConf::mutable_stradminpasswd() {
+::std::string* VidStorServerConf::mutable_stradminpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStorServerConf.strAdminPasswd)
   return stradminpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStorServerConf::release_stradminpasswd() {
+::std::string* VidStorServerConf::release_stradminpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStorServerConf.strAdminPasswd)
   
   return stradminpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStorServerConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
+void VidStorServerConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
   if (stradminpasswd != NULL) {
     
   } else {
@@ -2186,7 +1915,7 @@ void VidStorServerConf::clear_stradminpasswd() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidCamera::kBDisableFieldNumber;
 const int VidCamera::kStrIdFieldNumber;
 const int VidCamera::kStrNameFieldNumber;
@@ -2214,56 +1943,97 @@ const int VidCamera::kNServerMotionStreamFieldNumber;
 const int VidCamera::kNOnvifEvtLevelFieldNumber;
 const int VidCamera::kStrSchedFieldNumber;
 const int VidCamera::kStrMotRegFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidCamera::VidCamera()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidCamera)
 }
-
-void VidCamera::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidCamera::VidCamera(const VidCamera& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      crecsched_(from.crecsched_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
+  strip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strip().size() > 0) {
+    strip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strip_);
+  }
+  strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strport().size() > 0) {
+    strport_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strport_);
+  }
+  struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.struser().size() > 0) {
+    struser_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.struser_);
+  }
+  strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strpasswd().size() > 0) {
+    strpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strpasswd_);
+  }
+  stronvifaddress_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.stronvifaddress().size() > 0) {
+    stronvifaddress_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stronvifaddress_);
+  }
+  strprofiletoken1_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strprofiletoken1().size() > 0) {
+    strprofiletoken1_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strprofiletoken1_);
+  }
+  strprofiletoken2_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strprofiletoken2().size() > 0) {
+    strprofiletoken2_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strprofiletoken2_);
+  }
+  strfile_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strfile().size() > 0) {
+    strfile_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strfile_);
+  }
+  strrtspurl_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strrtspurl().size() > 0) {
+    strrtspurl_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strrtspurl_);
+  }
+  strsched_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strsched().size() > 0) {
+    strsched_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strsched_);
+  }
+  strmotreg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strmotreg().size() > 0) {
+    strmotreg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strmotreg_);
+  }
+  ::memcpy(&ntype_, &from.ntype_,
+    reinterpret_cast<char*>(&nonvifevtlevel_) -
+    reinterpret_cast<char*>(&ntype_) + sizeof(nonvifevtlevel_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidCamera)
 }
 
 void VidCamera::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  bdisable_ = false;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ntype_ = 0;
   strip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   stronvifaddress_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  bprofiletoken_ = false;
   strprofiletoken1_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strprofiletoken2_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strfile_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strrtspurl_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  bhwaccel_ = false;
-  bservermotion_ = false;
-  nconnecttype_ = 0;
-  bhdfsrecord_ = false;
-  nprerecsec_ = 0;
-  npostrecsec_ = 0;
-  bmotionjpeg_ = false;
-  nrecordstream_ = 0;
-  nservermotionstream_ = 0;
-  nonvifevtlevel_ = 0;
   strsched_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strmotreg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&ntype_, 0, reinterpret_cast<char*>(&nonvifevtlevel_) -
+    reinterpret_cast<char*>(&ntype_) + sizeof(nonvifevtlevel_));
+  _cached_size_ = 0;
 }
 
 VidCamera::~VidCamera() {
@@ -2285,8 +2055,6 @@ void VidCamera::SharedDtor() {
   strrtspurl_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strsched_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strmotreg_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidCamera::SetCachedSize(int size) const {
@@ -2295,16 +2063,14 @@ void VidCamera::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidCamera::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidCamera_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[3].descriptor;
 }
 
 const VidCamera& VidCamera::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidCamera* VidCamera::default_instance_ = NULL;
 
 VidCamera* VidCamera::New(::google::protobuf::Arena* arena) const {
   VidCamera* n = new VidCamera;
@@ -2315,67 +2081,51 @@ VidCamera* VidCamera::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidCamera::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidCamera*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(ntype_, bdisable_);
+// @@protoc_insertion_point(message_clear_start:VidConf.VidCamera)
+  crecsched_.Clear();
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ZR_(bprofiletoken_, bservermotion_);
   stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strprofiletoken1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strprofiletoken2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strrtspurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ZR_(nconnecttype_, nprerecsec_);
-  ZR_(bhdfsrecord_, nservermotionstream_);
-  nonvifevtlevel_ = 0;
   strsched_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strmotreg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
-  crecsched_.Clear();
+  ::memset(&ntype_, 0, reinterpret_cast<char*>(&nonvifevtlevel_) -
+    reinterpret_cast<char*>(&ntype_) + sizeof(nonvifevtlevel_));
 }
 
 bool VidCamera::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidCamera)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(16383);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool bDisable = 1;
+      // bool bDisable = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bdisable_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strId;
         break;
       }
 
-      // optional string strId = 2;
+      // string strId = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strId:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2385,14 +2135,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 3;
+      // string strName = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strName:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2402,14 +2150,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_nType;
         break;
       }
 
-      // optional .VidConf.CameraType nType = 4;
+      // .VidConf.CameraType nType = 4;
       case 4: {
-        if (tag == 32) {
-         parse_nType:
+        if (tag == 32u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -2418,14 +2164,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_strIP;
         break;
       }
 
-      // optional string strIP = 5;
+      // string strIP = 5;
       case 5: {
-        if (tag == 42) {
-         parse_strIP:
+        if (tag == 42u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strip()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2435,14 +2179,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_strPort;
         break;
       }
 
-      // optional string strPort = 6;
+      // string strPort = 6;
       case 6: {
-        if (tag == 50) {
-         parse_strPort:
+        if (tag == 50u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strport()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2452,14 +2194,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_strUser;
         break;
       }
 
-      // optional string strUser = 7;
+      // string strUser = 7;
       case 7: {
-        if (tag == 58) {
-         parse_strUser:
+        if (tag == 58u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_struser()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2469,14 +2209,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(66)) goto parse_strPasswd;
         break;
       }
 
-      // optional string strPasswd = 8;
+      // string strPasswd = 8;
       case 8: {
-        if (tag == 66) {
-         parse_strPasswd:
+        if (tag == 66u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2486,14 +2224,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(74)) goto parse_strONVIFAddress;
         break;
       }
 
-      // optional string strONVIFAddress = 9;
+      // string strONVIFAddress = 9;
       case 9: {
-        if (tag == 74) {
-         parse_strONVIFAddress:
+        if (tag == 74u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_stronvifaddress()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2503,29 +2239,25 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(80)) goto parse_bProfileToken;
         break;
       }
 
-      // optional bool bProfileToken = 10;
+      // bool bProfileToken = 10;
       case 10: {
-        if (tag == 80) {
-         parse_bProfileToken:
+        if (tag == 80u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bprofiletoken_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(90)) goto parse_strProfileToken1;
         break;
       }
 
-      // optional string strProfileToken1 = 11;
+      // string strProfileToken1 = 11;
       case 11: {
-        if (tag == 90) {
-         parse_strProfileToken1:
+        if (tag == 90u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strprofiletoken1()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2535,14 +2267,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(98)) goto parse_strProfileToken2;
         break;
       }
 
-      // optional string strProfileToken2 = 12;
+      // string strProfileToken2 = 12;
       case 12: {
-        if (tag == 98) {
-         parse_strProfileToken2:
+        if (tag == 98u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strprofiletoken2()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2552,14 +2282,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(106)) goto parse_strFile;
         break;
       }
 
-      // optional string strFile = 13;
+      // string strFile = 13;
       case 13: {
-        if (tag == 106) {
-         parse_strFile:
+        if (tag == 106u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strfile()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2569,14 +2297,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(114)) goto parse_strRTSPUrl;
         break;
       }
 
-      // optional string strRTSPUrl = 14;
+      // string strRTSPUrl = 14;
       case 14: {
-        if (tag == 114) {
-         parse_strRTSPUrl:
+        if (tag == 114u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strrtspurl()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2586,44 +2312,38 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(120)) goto parse_bHWaccel;
         break;
       }
 
-      // optional bool bHWaccel = 15;
+      // bool bHWaccel = 15;
       case 15: {
-        if (tag == 120) {
-         parse_bHWaccel:
+        if (tag == 120u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bhwaccel_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(128)) goto parse_bServerMotion;
         break;
       }
 
-      // optional bool bServerMotion = 16;
+      // bool bServerMotion = 16;
       case 16: {
-        if (tag == 128) {
-         parse_bServerMotion:
+        if (tag == 128u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bservermotion_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(136)) goto parse_nConnectType;
         break;
       }
 
-      // optional .VidConf.CameraConnectType nConnectType = 17;
+      // .VidConf.CameraConnectType nConnectType = 17;
       case 17: {
-        if (tag == 136) {
-         parse_nConnectType:
+        if (tag == 136u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -2632,29 +2352,25 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(144)) goto parse_bHDFSRecord;
         break;
       }
 
-      // optional bool bHDFSRecord = 18;
+      // bool bHDFSRecord = 18;
       case 18: {
-        if (tag == 144) {
-         parse_bHDFSRecord:
+        if (tag == 144u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bhdfsrecord_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(162)) goto parse_cRecSched;
         break;
       }
 
       // repeated string cRecSched = 20;
       case 20: {
-        if (tag == 162) {
-         parse_cRecSched:
+        if (tag == 162u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->add_crecsched()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2665,90 +2381,77 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(162)) goto parse_cRecSched;
-        if (input->ExpectTag(168)) goto parse_nPreRecSec;
         break;
       }
 
-      // optional int32 nPreRecSec = 21;
+      // int32 nPreRecSec = 21;
       case 21: {
-        if (tag == 168) {
-         parse_nPreRecSec:
+        if (tag == 168u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nprerecsec_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(176)) goto parse_nPostRecSec;
         break;
       }
 
-      // optional int32 nPostRecSec = 22;
+      // int32 nPostRecSec = 22;
       case 22: {
-        if (tag == 176) {
-         parse_nPostRecSec:
+        if (tag == 176u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &npostrecsec_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(184)) goto parse_bMotionJPEG;
         break;
       }
 
-      // optional bool bMotionJPEG = 23;
+      // bool bMotionJPEG = 23;
       case 23: {
-        if (tag == 184) {
-         parse_bMotionJPEG:
+        if (tag == 184u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bmotionjpeg_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(192)) goto parse_nRecordStream;
         break;
       }
 
-      // optional int32 nRecordStream = 24;
+      // int32 nRecordStream = 24;
       case 24: {
-        if (tag == 192) {
-         parse_nRecordStream:
+        if (tag == 192u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nrecordstream_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(200)) goto parse_nServerMotionStream;
         break;
       }
 
-      // optional int32 nServerMotionStream = 25;
+      // int32 nServerMotionStream = 25;
       case 25: {
-        if (tag == 200) {
-         parse_nServerMotionStream:
+        if (tag == 200u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nservermotionstream_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(208)) goto parse_nOnvifEvtLevel;
         break;
       }
 
-      // optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+      // .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
       case 26: {
-        if (tag == 208) {
-         parse_nOnvifEvtLevel:
+        if (tag == 208u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -2757,14 +2460,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(218)) goto parse_strSched;
         break;
       }
 
-      // optional string strSched = 27;
+      // string strSched = 27;
       case 27: {
-        if (tag == 218) {
-         parse_strSched:
+        if (tag == 218u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strsched()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2774,14 +2475,12 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(226)) goto parse_strMotReg;
         break;
       }
 
-      // optional string strMotReg = 28;
+      // string strMotReg = 28;
       case 28: {
-        if (tag == 226) {
-         parse_strMotReg:
+        if (tag == 226u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strmotreg()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2791,7 +2490,6 @@ bool VidCamera::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -2819,12 +2517,12 @@ failure:
 void VidCamera::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidCamera)
-  // optional bool bDisable = 1;
+  // bool bDisable = 1;
   if (this->bdisable() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->bdisable(), output);
   }
 
-  // optional string strId = 2;
+  // string strId = 2;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -2834,7 +2532,7 @@ void VidCamera::SerializeWithCachedSizes(
       2, this->strid(), output);
   }
 
-  // optional string strName = 3;
+  // string strName = 3;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -2844,13 +2542,13 @@ void VidCamera::SerializeWithCachedSizes(
       3, this->strname(), output);
   }
 
-  // optional .VidConf.CameraType nType = 4;
+  // .VidConf.CameraType nType = 4;
   if (this->ntype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       4, this->ntype(), output);
   }
 
-  // optional string strIP = 5;
+  // string strIP = 5;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
@@ -2860,7 +2558,7 @@ void VidCamera::SerializeWithCachedSizes(
       5, this->strip(), output);
   }
 
-  // optional string strPort = 6;
+  // string strPort = 6;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -2870,7 +2568,7 @@ void VidCamera::SerializeWithCachedSizes(
       6, this->strport(), output);
   }
 
-  // optional string strUser = 7;
+  // string strUser = 7;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -2880,7 +2578,7 @@ void VidCamera::SerializeWithCachedSizes(
       7, this->struser(), output);
   }
 
-  // optional string strPasswd = 8;
+  // string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -2890,7 +2588,7 @@ void VidCamera::SerializeWithCachedSizes(
       8, this->strpasswd(), output);
   }
 
-  // optional string strONVIFAddress = 9;
+  // string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stronvifaddress().data(), this->stronvifaddress().length(),
@@ -2900,12 +2598,12 @@ void VidCamera::SerializeWithCachedSizes(
       9, this->stronvifaddress(), output);
   }
 
-  // optional bool bProfileToken = 10;
+  // bool bProfileToken = 10;
   if (this->bprofiletoken() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->bprofiletoken(), output);
   }
 
-  // optional string strProfileToken1 = 11;
+  // string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken1().data(), this->strprofiletoken1().length(),
@@ -2915,7 +2613,7 @@ void VidCamera::SerializeWithCachedSizes(
       11, this->strprofiletoken1(), output);
   }
 
-  // optional string strProfileToken2 = 12;
+  // string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken2().data(), this->strprofiletoken2().length(),
@@ -2925,7 +2623,7 @@ void VidCamera::SerializeWithCachedSizes(
       12, this->strprofiletoken2(), output);
   }
 
-  // optional string strFile = 13;
+  // string strFile = 13;
   if (this->strfile().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strfile().data(), this->strfile().length(),
@@ -2935,7 +2633,7 @@ void VidCamera::SerializeWithCachedSizes(
       13, this->strfile(), output);
   }
 
-  // optional string strRTSPUrl = 14;
+  // string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strrtspurl().data(), this->strrtspurl().length(),
@@ -2945,23 +2643,23 @@ void VidCamera::SerializeWithCachedSizes(
       14, this->strrtspurl(), output);
   }
 
-  // optional bool bHWaccel = 15;
+  // bool bHWaccel = 15;
   if (this->bhwaccel() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(15, this->bhwaccel(), output);
   }
 
-  // optional bool bServerMotion = 16;
+  // bool bServerMotion = 16;
   if (this->bservermotion() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(16, this->bservermotion(), output);
   }
 
-  // optional .VidConf.CameraConnectType nConnectType = 17;
+  // .VidConf.CameraConnectType nConnectType = 17;
   if (this->nconnecttype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       17, this->nconnecttype(), output);
   }
 
-  // optional bool bHDFSRecord = 18;
+  // bool bHDFSRecord = 18;
   if (this->bhdfsrecord() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(18, this->bhdfsrecord(), output);
   }
@@ -2976,38 +2674,38 @@ void VidCamera::SerializeWithCachedSizes(
       20, this->crecsched(i), output);
   }
 
-  // optional int32 nPreRecSec = 21;
+  // int32 nPreRecSec = 21;
   if (this->nprerecsec() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(21, this->nprerecsec(), output);
   }
 
-  // optional int32 nPostRecSec = 22;
+  // int32 nPostRecSec = 22;
   if (this->npostrecsec() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(22, this->npostrecsec(), output);
   }
 
-  // optional bool bMotionJPEG = 23;
+  // bool bMotionJPEG = 23;
   if (this->bmotionjpeg() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(23, this->bmotionjpeg(), output);
   }
 
-  // optional int32 nRecordStream = 24;
+  // int32 nRecordStream = 24;
   if (this->nrecordstream() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(24, this->nrecordstream(), output);
   }
 
-  // optional int32 nServerMotionStream = 25;
+  // int32 nServerMotionStream = 25;
   if (this->nservermotionstream() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(25, this->nservermotionstream(), output);
   }
 
-  // optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+  // .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
   if (this->nonvifevtlevel() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       26, this->nonvifevtlevel(), output);
   }
 
-  // optional string strSched = 27;
+  // string strSched = 27;
   if (this->strsched().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strsched().data(), this->strsched().length(),
@@ -3017,7 +2715,7 @@ void VidCamera::SerializeWithCachedSizes(
       27, this->strsched(), output);
   }
 
-  // optional string strMotReg = 28;
+  // string strMotReg = 28;
   if (this->strmotreg().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strmotreg().data(), this->strmotreg().length(),
@@ -3030,15 +2728,16 @@ void VidCamera::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidCamera)
 }
 
-::google::protobuf::uint8* VidCamera::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidCamera::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidCamera)
-  // optional bool bDisable = 1;
+  // bool bDisable = 1;
   if (this->bdisable() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->bdisable(), target);
   }
 
-  // optional string strId = 2;
+  // string strId = 2;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -3049,7 +2748,7 @@ void VidCamera::SerializeWithCachedSizes(
         2, this->strid(), target);
   }
 
-  // optional string strName = 3;
+  // string strName = 3;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -3060,13 +2759,13 @@ void VidCamera::SerializeWithCachedSizes(
         3, this->strname(), target);
   }
 
-  // optional .VidConf.CameraType nType = 4;
+  // .VidConf.CameraType nType = 4;
   if (this->ntype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       4, this->ntype(), target);
   }
 
-  // optional string strIP = 5;
+  // string strIP = 5;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
@@ -3077,7 +2776,7 @@ void VidCamera::SerializeWithCachedSizes(
         5, this->strip(), target);
   }
 
-  // optional string strPort = 6;
+  // string strPort = 6;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -3088,7 +2787,7 @@ void VidCamera::SerializeWithCachedSizes(
         6, this->strport(), target);
   }
 
-  // optional string strUser = 7;
+  // string strUser = 7;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -3099,7 +2798,7 @@ void VidCamera::SerializeWithCachedSizes(
         7, this->struser(), target);
   }
 
-  // optional string strPasswd = 8;
+  // string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -3110,7 +2809,7 @@ void VidCamera::SerializeWithCachedSizes(
         8, this->strpasswd(), target);
   }
 
-  // optional string strONVIFAddress = 9;
+  // string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stronvifaddress().data(), this->stronvifaddress().length(),
@@ -3121,12 +2820,12 @@ void VidCamera::SerializeWithCachedSizes(
         9, this->stronvifaddress(), target);
   }
 
-  // optional bool bProfileToken = 10;
+  // bool bProfileToken = 10;
   if (this->bprofiletoken() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(10, this->bprofiletoken(), target);
   }
 
-  // optional string strProfileToken1 = 11;
+  // string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken1().data(), this->strprofiletoken1().length(),
@@ -3137,7 +2836,7 @@ void VidCamera::SerializeWithCachedSizes(
         11, this->strprofiletoken1(), target);
   }
 
-  // optional string strProfileToken2 = 12;
+  // string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strprofiletoken2().data(), this->strprofiletoken2().length(),
@@ -3148,7 +2847,7 @@ void VidCamera::SerializeWithCachedSizes(
         12, this->strprofiletoken2(), target);
   }
 
-  // optional string strFile = 13;
+  // string strFile = 13;
   if (this->strfile().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strfile().data(), this->strfile().length(),
@@ -3159,7 +2858,7 @@ void VidCamera::SerializeWithCachedSizes(
         13, this->strfile(), target);
   }
 
-  // optional string strRTSPUrl = 14;
+  // string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strrtspurl().data(), this->strrtspurl().length(),
@@ -3170,23 +2869,23 @@ void VidCamera::SerializeWithCachedSizes(
         14, this->strrtspurl(), target);
   }
 
-  // optional bool bHWaccel = 15;
+  // bool bHWaccel = 15;
   if (this->bhwaccel() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(15, this->bhwaccel(), target);
   }
 
-  // optional bool bServerMotion = 16;
+  // bool bServerMotion = 16;
   if (this->bservermotion() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(16, this->bservermotion(), target);
   }
 
-  // optional .VidConf.CameraConnectType nConnectType = 17;
+  // .VidConf.CameraConnectType nConnectType = 17;
   if (this->nconnecttype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       17, this->nconnecttype(), target);
   }
 
-  // optional bool bHDFSRecord = 18;
+  // bool bHDFSRecord = 18;
   if (this->bhdfsrecord() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(18, this->bhdfsrecord(), target);
   }
@@ -3201,38 +2900,38 @@ void VidCamera::SerializeWithCachedSizes(
       WriteStringToArray(20, this->crecsched(i), target);
   }
 
-  // optional int32 nPreRecSec = 21;
+  // int32 nPreRecSec = 21;
   if (this->nprerecsec() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(21, this->nprerecsec(), target);
   }
 
-  // optional int32 nPostRecSec = 22;
+  // int32 nPostRecSec = 22;
   if (this->npostrecsec() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(22, this->npostrecsec(), target);
   }
 
-  // optional bool bMotionJPEG = 23;
+  // bool bMotionJPEG = 23;
   if (this->bmotionjpeg() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(23, this->bmotionjpeg(), target);
   }
 
-  // optional int32 nRecordStream = 24;
+  // int32 nRecordStream = 24;
   if (this->nrecordstream() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(24, this->nrecordstream(), target);
   }
 
-  // optional int32 nServerMotionStream = 25;
+  // int32 nServerMotionStream = 25;
   if (this->nservermotionstream() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(25, this->nservermotionstream(), target);
   }
 
-  // optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+  // .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
   if (this->nonvifevtlevel() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       26, this->nonvifevtlevel(), target);
   }
 
-  // optional string strSched = 27;
+  // string strSched = 27;
   if (this->strsched().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strsched().data(), this->strsched().length(),
@@ -3243,7 +2942,7 @@ void VidCamera::SerializeWithCachedSizes(
         27, this->strsched(), target);
   }
 
-  // optional string strMotReg = 28;
+  // string strMotReg = 28;
   if (this->strmotreg().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strmotreg().data(), this->strmotreg().length(),
@@ -3258,207 +2957,212 @@ void VidCamera::SerializeWithCachedSizes(
   return target;
 }
 
-int VidCamera::ByteSize() const {
-  int total_size = 0;
+size_t VidCamera::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidCamera)
+  size_t total_size = 0;
 
-  // optional bool bDisable = 1;
-  if (this->bdisable() != 0) {
-    total_size += 1 + 1;
+  // repeated string cRecSched = 20;
+  total_size += 2 *
+      ::google::protobuf::internal::FromIntSize(this->crecsched_size());
+  for (int i = 0; i < this->crecsched_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->crecsched(i));
   }
 
-  // optional string strId = 2;
+  // string strId = 2;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 3;
+  // string strName = 3;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // optional .VidConf.CameraType nType = 4;
-  if (this->ntype() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
-  }
-
-  // optional string strIP = 5;
+  // string strIP = 5;
   if (this->strip().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strip());
   }
 
-  // optional string strPort = 6;
+  // string strPort = 6;
   if (this->strport().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strport());
   }
 
-  // optional string strUser = 7;
+  // string strUser = 7;
   if (this->struser().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->struser());
   }
 
-  // optional string strPasswd = 8;
+  // string strPasswd = 8;
   if (this->strpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpasswd());
   }
 
-  // optional string strONVIFAddress = 9;
+  // string strONVIFAddress = 9;
   if (this->stronvifaddress().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->stronvifaddress());
   }
 
-  // optional bool bProfileToken = 10;
-  if (this->bprofiletoken() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional string strProfileToken1 = 11;
+  // string strProfileToken1 = 11;
   if (this->strprofiletoken1().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strprofiletoken1());
   }
 
-  // optional string strProfileToken2 = 12;
+  // string strProfileToken2 = 12;
   if (this->strprofiletoken2().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strprofiletoken2());
   }
 
-  // optional string strFile = 13;
+  // string strFile = 13;
   if (this->strfile().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strfile());
   }
 
-  // optional string strRTSPUrl = 14;
+  // string strRTSPUrl = 14;
   if (this->strrtspurl().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strrtspurl());
   }
 
-  // optional bool bHWaccel = 15;
-  if (this->bhwaccel() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional bool bServerMotion = 16;
-  if (this->bservermotion() != 0) {
-    total_size += 2 + 1;
-  }
-
-  // optional .VidConf.CameraConnectType nConnectType = 17;
-  if (this->nconnecttype() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nconnecttype());
-  }
-
-  // optional bool bHDFSRecord = 18;
-  if (this->bhdfsrecord() != 0) {
-    total_size += 2 + 1;
-  }
-
-  // optional int32 nPreRecSec = 21;
-  if (this->nprerecsec() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->nprerecsec());
-  }
-
-  // optional int32 nPostRecSec = 22;
-  if (this->npostrecsec() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->npostrecsec());
-  }
-
-  // optional bool bMotionJPEG = 23;
-  if (this->bmotionjpeg() != 0) {
-    total_size += 2 + 1;
-  }
-
-  // optional int32 nRecordStream = 24;
-  if (this->nrecordstream() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->nrecordstream());
-  }
-
-  // optional int32 nServerMotionStream = 25;
-  if (this->nservermotionstream() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->nservermotionstream());
-  }
-
-  // optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
-  if (this->nonvifevtlevel() != 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nonvifevtlevel());
-  }
-
-  // optional string strSched = 27;
+  // string strSched = 27;
   if (this->strsched().size() > 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strsched());
   }
 
-  // optional string strMotReg = 28;
+  // string strMotReg = 28;
   if (this->strmotreg().size() > 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strmotreg());
   }
 
-  // repeated string cRecSched = 20;
-  total_size += 2 * this->crecsched_size();
-  for (int i = 0; i < this->crecsched_size(); i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->crecsched(i));
+  // .VidConf.CameraType nType = 4;
+  if (this->ntype() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
   }
 
+  // bool bDisable = 1;
+  if (this->bdisable() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool bProfileToken = 10;
+  if (this->bprofiletoken() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool bHWaccel = 15;
+  if (this->bhwaccel() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool bServerMotion = 16;
+  if (this->bservermotion() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // .VidConf.CameraConnectType nConnectType = 17;
+  if (this->nconnecttype() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nconnecttype());
+  }
+
+  // int32 nPreRecSec = 21;
+  if (this->nprerecsec() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nprerecsec());
+  }
+
+  // bool bHDFSRecord = 18;
+  if (this->bhdfsrecord() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool bMotionJPEG = 23;
+  if (this->bmotionjpeg() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // int32 nPostRecSec = 22;
+  if (this->npostrecsec() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->npostrecsec());
+  }
+
+  // int32 nRecordStream = 24;
+  if (this->nrecordstream() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nrecordstream());
+  }
+
+  // int32 nServerMotionStream = 25;
+  if (this->nservermotionstream() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nservermotionstream());
+  }
+
+  // .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+  if (this->nonvifevtlevel() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nonvifevtlevel());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidCamera::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidCamera* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidCamera)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidCamera* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidCamera>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidCamera)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidCamera)
     MergeFrom(*source);
   }
 }
 
 void VidCamera::MergeFrom(const VidCamera& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidCamera)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   crecsched_.MergeFrom(from.crecsched_);
-  if (from.bdisable() != 0) {
-    set_bdisable(from.bdisable());
-  }
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -3466,9 +3170,6 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   if (from.strname().size() > 0) {
 
     strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
-  }
-  if (from.ntype() != 0) {
-    set_ntype(from.ntype());
   }
   if (from.strip().size() > 0) {
 
@@ -3490,9 +3191,6 @@ void VidCamera::MergeFrom(const VidCamera& from) {
 
     stronvifaddress_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stronvifaddress_);
   }
-  if (from.bprofiletoken() != 0) {
-    set_bprofiletoken(from.bprofiletoken());
-  }
   if (from.strprofiletoken1().size() > 0) {
 
     strprofiletoken1_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strprofiletoken1_);
@@ -3509,6 +3207,23 @@ void VidCamera::MergeFrom(const VidCamera& from) {
 
     strrtspurl_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strrtspurl_);
   }
+  if (from.strsched().size() > 0) {
+
+    strsched_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strsched_);
+  }
+  if (from.strmotreg().size() > 0) {
+
+    strmotreg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strmotreg_);
+  }
+  if (from.ntype() != 0) {
+    set_ntype(from.ntype());
+  }
+  if (from.bdisable() != 0) {
+    set_bdisable(from.bdisable());
+  }
+  if (from.bprofiletoken() != 0) {
+    set_bprofiletoken(from.bprofiletoken());
+  }
   if (from.bhwaccel() != 0) {
     set_bhwaccel(from.bhwaccel());
   }
@@ -3518,17 +3233,17 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   if (from.nconnecttype() != 0) {
     set_nconnecttype(from.nconnecttype());
   }
-  if (from.bhdfsrecord() != 0) {
-    set_bhdfsrecord(from.bhdfsrecord());
-  }
   if (from.nprerecsec() != 0) {
     set_nprerecsec(from.nprerecsec());
   }
-  if (from.npostrecsec() != 0) {
-    set_npostrecsec(from.npostrecsec());
+  if (from.bhdfsrecord() != 0) {
+    set_bhdfsrecord(from.bhdfsrecord());
   }
   if (from.bmotionjpeg() != 0) {
     set_bmotionjpeg(from.bmotionjpeg());
+  }
+  if (from.npostrecsec() != 0) {
+    set_npostrecsec(from.npostrecsec());
   }
   if (from.nrecordstream() != 0) {
     set_nrecordstream(from.nrecordstream());
@@ -3539,30 +3254,23 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   if (from.nonvifevtlevel() != 0) {
     set_nonvifevtlevel(from.nonvifevtlevel());
   }
-  if (from.strsched().size() > 0) {
-
-    strsched_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strsched_);
-  }
-  if (from.strmotreg().size() > 0) {
-
-    strmotreg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strmotreg_);
-  }
 }
 
 void VidCamera::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidCamera)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidCamera::CopyFrom(const VidCamera& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidCamera)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidCamera::IsInitialized() const {
-
   return true;
 }
 
@@ -3571,96 +3279,101 @@ void VidCamera::Swap(VidCamera* other) {
   InternalSwap(other);
 }
 void VidCamera::InternalSwap(VidCamera* other) {
-  std::swap(bdisable_, other->bdisable_);
+  crecsched_.UnsafeArenaSwap(&other->crecsched_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
-  std::swap(ntype_, other->ntype_);
   strip_.Swap(&other->strip_);
   strport_.Swap(&other->strport_);
   struser_.Swap(&other->struser_);
   strpasswd_.Swap(&other->strpasswd_);
   stronvifaddress_.Swap(&other->stronvifaddress_);
-  std::swap(bprofiletoken_, other->bprofiletoken_);
   strprofiletoken1_.Swap(&other->strprofiletoken1_);
   strprofiletoken2_.Swap(&other->strprofiletoken2_);
   strfile_.Swap(&other->strfile_);
   strrtspurl_.Swap(&other->strrtspurl_);
+  strsched_.Swap(&other->strsched_);
+  strmotreg_.Swap(&other->strmotreg_);
+  std::swap(ntype_, other->ntype_);
+  std::swap(bdisable_, other->bdisable_);
+  std::swap(bprofiletoken_, other->bprofiletoken_);
   std::swap(bhwaccel_, other->bhwaccel_);
   std::swap(bservermotion_, other->bservermotion_);
   std::swap(nconnecttype_, other->nconnecttype_);
-  std::swap(bhdfsrecord_, other->bhdfsrecord_);
-  crecsched_.UnsafeArenaSwap(&other->crecsched_);
   std::swap(nprerecsec_, other->nprerecsec_);
-  std::swap(npostrecsec_, other->npostrecsec_);
+  std::swap(bhdfsrecord_, other->bhdfsrecord_);
   std::swap(bmotionjpeg_, other->bmotionjpeg_);
+  std::swap(npostrecsec_, other->npostrecsec_);
   std::swap(nrecordstream_, other->nrecordstream_);
   std::swap(nservermotionstream_, other->nservermotionstream_);
   std::swap(nonvifevtlevel_, other->nonvifevtlevel_);
-  strsched_.Swap(&other->strsched_);
-  strmotreg_.Swap(&other->strmotreg_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidCamera::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidCamera_descriptor_;
-  metadata.reflection = VidCamera_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[3];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidCamera
 
-// optional bool bDisable = 1;
+// bool bDisable = 1;
 void VidCamera::clear_bdisable() {
   bdisable_ = false;
 }
- bool VidCamera::bdisable() const {
+bool VidCamera::bdisable() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bDisable)
   return bdisable_;
 }
- void VidCamera::set_bdisable(bool value) {
+void VidCamera::set_bdisable(bool value) {
   
   bdisable_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bDisable)
 }
 
-// optional string strId = 2;
+// string strId = 2;
 void VidCamera::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strid() const {
+const ::std::string& VidCamera::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidCamera::set_strid(const ::std::string& value) {
+void VidCamera::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strId)
 }
- void VidCamera::set_strid(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strId)
+}
+#endif
+void VidCamera::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strId)
 }
- void VidCamera::set_strid(const char* value, size_t size) {
+void VidCamera::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strId)
 }
- ::std::string* VidCamera::mutable_strid() {
+::std::string* VidCamera::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strid() {
+::std::string* VidCamera::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strid(::std::string* strid) {
+void VidCamera::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -3670,40 +3383,49 @@ void VidCamera::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strId)
 }
 
-// optional string strName = 3;
+// string strName = 3;
 void VidCamera::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strname() const {
+const ::std::string& VidCamera::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidCamera::set_strname(const ::std::string& value) {
+void VidCamera::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strName)
 }
- void VidCamera::set_strname(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strName)
+}
+#endif
+void VidCamera::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strName)
 }
- void VidCamera::set_strname(const char* value, size_t size) {
+void VidCamera::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strName)
 }
- ::std::string* VidCamera::mutable_strname() {
+::std::string* VidCamera::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strname() {
+::std::string* VidCamera::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strname(::std::string* strname) {
+void VidCamera::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -3713,54 +3435,63 @@ void VidCamera::clear_strname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strName)
 }
 
-// optional .VidConf.CameraType nType = 4;
+// .VidConf.CameraType nType = 4;
 void VidCamera::clear_ntype() {
   ntype_ = 0;
 }
- ::VidConf::CameraType VidCamera::ntype() const {
+::VidConf::CameraType VidCamera::ntype() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nType)
   return static_cast< ::VidConf::CameraType >(ntype_);
 }
- void VidCamera::set_ntype(::VidConf::CameraType value) {
+void VidCamera::set_ntype(::VidConf::CameraType value) {
   
   ntype_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nType)
 }
 
-// optional string strIP = 5;
+// string strIP = 5;
 void VidCamera::clear_strip() {
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strip() const {
+const ::std::string& VidCamera::strip() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strIP)
-  return strip_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strip_.GetNoArena();
 }
- void VidCamera::set_strip(const ::std::string& value) {
+void VidCamera::set_strip(const ::std::string& value) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strIP)
 }
- void VidCamera::set_strip(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strip(::std::string&& value) {
+  
+  strip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strIP)
+}
+#endif
+void VidCamera::set_strip(const char* value) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strIP)
 }
- void VidCamera::set_strip(const char* value, size_t size) {
+void VidCamera::set_strip(const char* value, size_t size) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strIP)
 }
- ::std::string* VidCamera::mutable_strip() {
+::std::string* VidCamera::mutable_strip() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strIP)
   return strip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strip() {
+::std::string* VidCamera::release_strip() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strIP)
   
   return strip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strip(::std::string* strip) {
+void VidCamera::set_allocated_strip(::std::string* strip) {
   if (strip != NULL) {
     
   } else {
@@ -3770,40 +3501,49 @@ void VidCamera::clear_strip() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strIP)
 }
 
-// optional string strPort = 6;
+// string strPort = 6;
 void VidCamera::clear_strport() {
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strport() const {
+const ::std::string& VidCamera::strport() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strPort)
-  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strport_.GetNoArena();
 }
- void VidCamera::set_strport(const ::std::string& value) {
+void VidCamera::set_strport(const ::std::string& value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strPort)
 }
- void VidCamera::set_strport(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strport(::std::string&& value) {
+  
+  strport_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strPort)
+}
+#endif
+void VidCamera::set_strport(const char* value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strPort)
 }
- void VidCamera::set_strport(const char* value, size_t size) {
+void VidCamera::set_strport(const char* value, size_t size) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strPort)
 }
- ::std::string* VidCamera::mutable_strport() {
+::std::string* VidCamera::mutable_strport() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strPort)
   return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strport() {
+::std::string* VidCamera::release_strport() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strPort)
   
   return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strport(::std::string* strport) {
+void VidCamera::set_allocated_strport(::std::string* strport) {
   if (strport != NULL) {
     
   } else {
@@ -3813,40 +3553,49 @@ void VidCamera::clear_strport() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPort)
 }
 
-// optional string strUser = 7;
+// string strUser = 7;
 void VidCamera::clear_struser() {
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::struser() const {
+const ::std::string& VidCamera::struser() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strUser)
-  return struser_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return struser_.GetNoArena();
 }
- void VidCamera::set_struser(const ::std::string& value) {
+void VidCamera::set_struser(const ::std::string& value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strUser)
 }
- void VidCamera::set_struser(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_struser(::std::string&& value) {
+  
+  struser_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strUser)
+}
+#endif
+void VidCamera::set_struser(const char* value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strUser)
 }
- void VidCamera::set_struser(const char* value, size_t size) {
+void VidCamera::set_struser(const char* value, size_t size) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strUser)
 }
- ::std::string* VidCamera::mutable_struser() {
+::std::string* VidCamera::mutable_struser() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strUser)
   return struser_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_struser() {
+::std::string* VidCamera::release_struser() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strUser)
   
   return struser_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_struser(::std::string* struser) {
+void VidCamera::set_allocated_struser(::std::string* struser) {
   if (struser != NULL) {
     
   } else {
@@ -3856,40 +3605,49 @@ void VidCamera::clear_struser() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strUser)
 }
 
-// optional string strPasswd = 8;
+// string strPasswd = 8;
 void VidCamera::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strpasswd() const {
+const ::std::string& VidCamera::strpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strPasswd)
-  return strpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strpasswd_.GetNoArena();
 }
- void VidCamera::set_strpasswd(const ::std::string& value) {
+void VidCamera::set_strpasswd(const ::std::string& value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strPasswd)
 }
- void VidCamera::set_strpasswd(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strpasswd(::std::string&& value) {
+  
+  strpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strPasswd)
+}
+#endif
+void VidCamera::set_strpasswd(const char* value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strPasswd)
 }
- void VidCamera::set_strpasswd(const char* value, size_t size) {
+void VidCamera::set_strpasswd(const char* value, size_t size) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strPasswd)
 }
- ::std::string* VidCamera::mutable_strpasswd() {
+::std::string* VidCamera::mutable_strpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strPasswd)
   return strpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strpasswd() {
+::std::string* VidCamera::release_strpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strPasswd)
   
   return strpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strpasswd(::std::string* strpasswd) {
+void VidCamera::set_allocated_strpasswd(::std::string* strpasswd) {
   if (strpasswd != NULL) {
     
   } else {
@@ -3899,40 +3657,49 @@ void VidCamera::clear_strpasswd() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strPasswd)
 }
 
-// optional string strONVIFAddress = 9;
+// string strONVIFAddress = 9;
 void VidCamera::clear_stronvifaddress() {
   stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::stronvifaddress() const {
+const ::std::string& VidCamera::stronvifaddress() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strONVIFAddress)
-  return stronvifaddress_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return stronvifaddress_.GetNoArena();
 }
- void VidCamera::set_stronvifaddress(const ::std::string& value) {
+void VidCamera::set_stronvifaddress(const ::std::string& value) {
   
   stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strONVIFAddress)
 }
- void VidCamera::set_stronvifaddress(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_stronvifaddress(::std::string&& value) {
+  
+  stronvifaddress_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strONVIFAddress)
+}
+#endif
+void VidCamera::set_stronvifaddress(const char* value) {
   
   stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strONVIFAddress)
 }
- void VidCamera::set_stronvifaddress(const char* value, size_t size) {
+void VidCamera::set_stronvifaddress(const char* value, size_t size) {
   
   stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strONVIFAddress)
 }
- ::std::string* VidCamera::mutable_stronvifaddress() {
+::std::string* VidCamera::mutable_stronvifaddress() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strONVIFAddress)
   return stronvifaddress_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_stronvifaddress() {
+::std::string* VidCamera::release_stronvifaddress() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strONVIFAddress)
   
   return stronvifaddress_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_stronvifaddress(::std::string* stronvifaddress) {
+void VidCamera::set_allocated_stronvifaddress(::std::string* stronvifaddress) {
   if (stronvifaddress != NULL) {
     
   } else {
@@ -3942,54 +3709,63 @@ void VidCamera::clear_stronvifaddress() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strONVIFAddress)
 }
 
-// optional bool bProfileToken = 10;
+// bool bProfileToken = 10;
 void VidCamera::clear_bprofiletoken() {
   bprofiletoken_ = false;
 }
- bool VidCamera::bprofiletoken() const {
+bool VidCamera::bprofiletoken() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bProfileToken)
   return bprofiletoken_;
 }
- void VidCamera::set_bprofiletoken(bool value) {
+void VidCamera::set_bprofiletoken(bool value) {
   
   bprofiletoken_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bProfileToken)
 }
 
-// optional string strProfileToken1 = 11;
+// string strProfileToken1 = 11;
 void VidCamera::clear_strprofiletoken1() {
   strprofiletoken1_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strprofiletoken1() const {
+const ::std::string& VidCamera::strprofiletoken1() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strProfileToken1)
-  return strprofiletoken1_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strprofiletoken1_.GetNoArena();
 }
- void VidCamera::set_strprofiletoken1(const ::std::string& value) {
+void VidCamera::set_strprofiletoken1(const ::std::string& value) {
   
   strprofiletoken1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strProfileToken1)
 }
- void VidCamera::set_strprofiletoken1(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strprofiletoken1(::std::string&& value) {
+  
+  strprofiletoken1_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strProfileToken1)
+}
+#endif
+void VidCamera::set_strprofiletoken1(const char* value) {
   
   strprofiletoken1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strProfileToken1)
 }
- void VidCamera::set_strprofiletoken1(const char* value, size_t size) {
+void VidCamera::set_strprofiletoken1(const char* value, size_t size) {
   
   strprofiletoken1_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strProfileToken1)
 }
- ::std::string* VidCamera::mutable_strprofiletoken1() {
+::std::string* VidCamera::mutable_strprofiletoken1() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strProfileToken1)
   return strprofiletoken1_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strprofiletoken1() {
+::std::string* VidCamera::release_strprofiletoken1() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strProfileToken1)
   
   return strprofiletoken1_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strprofiletoken1(::std::string* strprofiletoken1) {
+void VidCamera::set_allocated_strprofiletoken1(::std::string* strprofiletoken1) {
   if (strprofiletoken1 != NULL) {
     
   } else {
@@ -3999,40 +3775,49 @@ void VidCamera::clear_strprofiletoken1() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken1)
 }
 
-// optional string strProfileToken2 = 12;
+// string strProfileToken2 = 12;
 void VidCamera::clear_strprofiletoken2() {
   strprofiletoken2_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strprofiletoken2() const {
+const ::std::string& VidCamera::strprofiletoken2() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strProfileToken2)
-  return strprofiletoken2_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strprofiletoken2_.GetNoArena();
 }
- void VidCamera::set_strprofiletoken2(const ::std::string& value) {
+void VidCamera::set_strprofiletoken2(const ::std::string& value) {
   
   strprofiletoken2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strProfileToken2)
 }
- void VidCamera::set_strprofiletoken2(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strprofiletoken2(::std::string&& value) {
+  
+  strprofiletoken2_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strProfileToken2)
+}
+#endif
+void VidCamera::set_strprofiletoken2(const char* value) {
   
   strprofiletoken2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strProfileToken2)
 }
- void VidCamera::set_strprofiletoken2(const char* value, size_t size) {
+void VidCamera::set_strprofiletoken2(const char* value, size_t size) {
   
   strprofiletoken2_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strProfileToken2)
 }
- ::std::string* VidCamera::mutable_strprofiletoken2() {
+::std::string* VidCamera::mutable_strprofiletoken2() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strProfileToken2)
   return strprofiletoken2_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strprofiletoken2() {
+::std::string* VidCamera::release_strprofiletoken2() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strProfileToken2)
   
   return strprofiletoken2_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strprofiletoken2(::std::string* strprofiletoken2) {
+void VidCamera::set_allocated_strprofiletoken2(::std::string* strprofiletoken2) {
   if (strprofiletoken2 != NULL) {
     
   } else {
@@ -4042,40 +3827,49 @@ void VidCamera::clear_strprofiletoken2() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strProfileToken2)
 }
 
-// optional string strFile = 13;
+// string strFile = 13;
 void VidCamera::clear_strfile() {
   strfile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strfile() const {
+const ::std::string& VidCamera::strfile() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strFile)
-  return strfile_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strfile_.GetNoArena();
 }
- void VidCamera::set_strfile(const ::std::string& value) {
+void VidCamera::set_strfile(const ::std::string& value) {
   
   strfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strFile)
 }
- void VidCamera::set_strfile(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strfile(::std::string&& value) {
+  
+  strfile_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strFile)
+}
+#endif
+void VidCamera::set_strfile(const char* value) {
   
   strfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strFile)
 }
- void VidCamera::set_strfile(const char* value, size_t size) {
+void VidCamera::set_strfile(const char* value, size_t size) {
   
   strfile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strFile)
 }
- ::std::string* VidCamera::mutable_strfile() {
+::std::string* VidCamera::mutable_strfile() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strFile)
   return strfile_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strfile() {
+::std::string* VidCamera::release_strfile() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strFile)
   
   return strfile_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strfile(::std::string* strfile) {
+void VidCamera::set_allocated_strfile(::std::string* strfile) {
   if (strfile != NULL) {
     
   } else {
@@ -4085,40 +3879,49 @@ void VidCamera::clear_strfile() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strFile)
 }
 
-// optional string strRTSPUrl = 14;
+// string strRTSPUrl = 14;
 void VidCamera::clear_strrtspurl() {
   strrtspurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strrtspurl() const {
+const ::std::string& VidCamera::strrtspurl() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strRTSPUrl)
-  return strrtspurl_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strrtspurl_.GetNoArena();
 }
- void VidCamera::set_strrtspurl(const ::std::string& value) {
+void VidCamera::set_strrtspurl(const ::std::string& value) {
   
   strrtspurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strRTSPUrl)
 }
- void VidCamera::set_strrtspurl(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strrtspurl(::std::string&& value) {
+  
+  strrtspurl_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strRTSPUrl)
+}
+#endif
+void VidCamera::set_strrtspurl(const char* value) {
   
   strrtspurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strRTSPUrl)
 }
- void VidCamera::set_strrtspurl(const char* value, size_t size) {
+void VidCamera::set_strrtspurl(const char* value, size_t size) {
   
   strrtspurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strRTSPUrl)
 }
- ::std::string* VidCamera::mutable_strrtspurl() {
+::std::string* VidCamera::mutable_strrtspurl() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strRTSPUrl)
   return strrtspurl_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strrtspurl() {
+::std::string* VidCamera::release_strrtspurl() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strRTSPUrl)
   
   return strrtspurl_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strrtspurl(::std::string* strrtspurl) {
+void VidCamera::set_allocated_strrtspurl(::std::string* strrtspurl) {
   if (strrtspurl != NULL) {
     
   } else {
@@ -4128,57 +3931,57 @@ void VidCamera::clear_strrtspurl() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strRTSPUrl)
 }
 
-// optional bool bHWaccel = 15;
+// bool bHWaccel = 15;
 void VidCamera::clear_bhwaccel() {
   bhwaccel_ = false;
 }
- bool VidCamera::bhwaccel() const {
+bool VidCamera::bhwaccel() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bHWaccel)
   return bhwaccel_;
 }
- void VidCamera::set_bhwaccel(bool value) {
+void VidCamera::set_bhwaccel(bool value) {
   
   bhwaccel_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHWaccel)
 }
 
-// optional bool bServerMotion = 16;
+// bool bServerMotion = 16;
 void VidCamera::clear_bservermotion() {
   bservermotion_ = false;
 }
- bool VidCamera::bservermotion() const {
+bool VidCamera::bservermotion() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bServerMotion)
   return bservermotion_;
 }
- void VidCamera::set_bservermotion(bool value) {
+void VidCamera::set_bservermotion(bool value) {
   
   bservermotion_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bServerMotion)
 }
 
-// optional .VidConf.CameraConnectType nConnectType = 17;
+// .VidConf.CameraConnectType nConnectType = 17;
 void VidCamera::clear_nconnecttype() {
   nconnecttype_ = 0;
 }
- ::VidConf::CameraConnectType VidCamera::nconnecttype() const {
+::VidConf::CameraConnectType VidCamera::nconnecttype() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nConnectType)
   return static_cast< ::VidConf::CameraConnectType >(nconnecttype_);
 }
- void VidCamera::set_nconnecttype(::VidConf::CameraConnectType value) {
+void VidCamera::set_nconnecttype(::VidConf::CameraConnectType value) {
   
   nconnecttype_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nConnectType)
 }
 
-// optional bool bHDFSRecord = 18;
+// bool bHDFSRecord = 18;
 void VidCamera::clear_bhdfsrecord() {
   bhdfsrecord_ = false;
 }
- bool VidCamera::bhdfsrecord() const {
+bool VidCamera::bhdfsrecord() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bHDFSRecord)
   return bhdfsrecord_;
 }
- void VidCamera::set_bhdfsrecord(bool value) {
+void VidCamera::set_bhdfsrecord(bool value) {
   
   bhdfsrecord_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bHDFSRecord)
@@ -4191,171 +3994,181 @@ int VidCamera::crecsched_size() const {
 void VidCamera::clear_crecsched() {
   crecsched_.Clear();
 }
- const ::std::string& VidCamera::crecsched(int index) const {
+const ::std::string& VidCamera::crecsched(int index) const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.cRecSched)
   return crecsched_.Get(index);
 }
- ::std::string* VidCamera::mutable_crecsched(int index) {
+::std::string* VidCamera::mutable_crecsched(int index) {
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.cRecSched)
   return crecsched_.Mutable(index);
 }
- void VidCamera::set_crecsched(int index, const ::std::string& value) {
+void VidCamera::set_crecsched(int index, const ::std::string& value) {
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.cRecSched)
   crecsched_.Mutable(index)->assign(value);
 }
- void VidCamera::set_crecsched(int index, const char* value) {
+void VidCamera::set_crecsched(int index, const char* value) {
   crecsched_.Mutable(index)->assign(value);
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.cRecSched)
 }
- void VidCamera::set_crecsched(int index, const char* value, size_t size) {
+void VidCamera::set_crecsched(int index, const char* value, size_t size) {
   crecsched_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.cRecSched)
 }
- ::std::string* VidCamera::add_crecsched() {
+::std::string* VidCamera::add_crecsched() {
+  // @@protoc_insertion_point(field_add_mutable:VidConf.VidCamera.cRecSched)
   return crecsched_.Add();
 }
- void VidCamera::add_crecsched(const ::std::string& value) {
+void VidCamera::add_crecsched(const ::std::string& value) {
   crecsched_.Add()->assign(value);
   // @@protoc_insertion_point(field_add:VidConf.VidCamera.cRecSched)
 }
- void VidCamera::add_crecsched(const char* value) {
+void VidCamera::add_crecsched(const char* value) {
   crecsched_.Add()->assign(value);
   // @@protoc_insertion_point(field_add_char:VidConf.VidCamera.cRecSched)
 }
- void VidCamera::add_crecsched(const char* value, size_t size) {
+void VidCamera::add_crecsched(const char* value, size_t size) {
   crecsched_.Add()->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_add_pointer:VidConf.VidCamera.cRecSched)
 }
- const ::google::protobuf::RepeatedPtrField< ::std::string>&
+const ::google::protobuf::RepeatedPtrField< ::std::string>&
 VidCamera::crecsched() const {
   // @@protoc_insertion_point(field_list:VidConf.VidCamera.cRecSched)
   return crecsched_;
 }
- ::google::protobuf::RepeatedPtrField< ::std::string>*
+::google::protobuf::RepeatedPtrField< ::std::string>*
 VidCamera::mutable_crecsched() {
   // @@protoc_insertion_point(field_mutable_list:VidConf.VidCamera.cRecSched)
   return &crecsched_;
 }
 
-// optional int32 nPreRecSec = 21;
+// int32 nPreRecSec = 21;
 void VidCamera::clear_nprerecsec() {
   nprerecsec_ = 0;
 }
- ::google::protobuf::int32 VidCamera::nprerecsec() const {
+::google::protobuf::int32 VidCamera::nprerecsec() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPreRecSec)
   return nprerecsec_;
 }
- void VidCamera::set_nprerecsec(::google::protobuf::int32 value) {
+void VidCamera::set_nprerecsec(::google::protobuf::int32 value) {
   
   nprerecsec_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPreRecSec)
 }
 
-// optional int32 nPostRecSec = 22;
+// int32 nPostRecSec = 22;
 void VidCamera::clear_npostrecsec() {
   npostrecsec_ = 0;
 }
- ::google::protobuf::int32 VidCamera::npostrecsec() const {
+::google::protobuf::int32 VidCamera::npostrecsec() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nPostRecSec)
   return npostrecsec_;
 }
- void VidCamera::set_npostrecsec(::google::protobuf::int32 value) {
+void VidCamera::set_npostrecsec(::google::protobuf::int32 value) {
   
   npostrecsec_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nPostRecSec)
 }
 
-// optional bool bMotionJPEG = 23;
+// bool bMotionJPEG = 23;
 void VidCamera::clear_bmotionjpeg() {
   bmotionjpeg_ = false;
 }
- bool VidCamera::bmotionjpeg() const {
+bool VidCamera::bmotionjpeg() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.bMotionJPEG)
   return bmotionjpeg_;
 }
- void VidCamera::set_bmotionjpeg(bool value) {
+void VidCamera::set_bmotionjpeg(bool value) {
   
   bmotionjpeg_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.bMotionJPEG)
 }
 
-// optional int32 nRecordStream = 24;
+// int32 nRecordStream = 24;
 void VidCamera::clear_nrecordstream() {
   nrecordstream_ = 0;
 }
- ::google::protobuf::int32 VidCamera::nrecordstream() const {
+::google::protobuf::int32 VidCamera::nrecordstream() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nRecordStream)
   return nrecordstream_;
 }
- void VidCamera::set_nrecordstream(::google::protobuf::int32 value) {
+void VidCamera::set_nrecordstream(::google::protobuf::int32 value) {
   
   nrecordstream_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nRecordStream)
 }
 
-// optional int32 nServerMotionStream = 25;
+// int32 nServerMotionStream = 25;
 void VidCamera::clear_nservermotionstream() {
   nservermotionstream_ = 0;
 }
- ::google::protobuf::int32 VidCamera::nservermotionstream() const {
+::google::protobuf::int32 VidCamera::nservermotionstream() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nServerMotionStream)
   return nservermotionstream_;
 }
- void VidCamera::set_nservermotionstream(::google::protobuf::int32 value) {
+void VidCamera::set_nservermotionstream(::google::protobuf::int32 value) {
   
   nservermotionstream_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nServerMotionStream)
 }
 
-// optional .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
+// .VidConf.OnvifEventLevel nOnvifEvtLevel = 26;
 void VidCamera::clear_nonvifevtlevel() {
   nonvifevtlevel_ = 0;
 }
- ::VidConf::OnvifEventLevel VidCamera::nonvifevtlevel() const {
+::VidConf::OnvifEventLevel VidCamera::nonvifevtlevel() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.nOnvifEvtLevel)
   return static_cast< ::VidConf::OnvifEventLevel >(nonvifevtlevel_);
 }
- void VidCamera::set_nonvifevtlevel(::VidConf::OnvifEventLevel value) {
+void VidCamera::set_nonvifevtlevel(::VidConf::OnvifEventLevel value) {
   
   nonvifevtlevel_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.nOnvifEvtLevel)
 }
 
-// optional string strSched = 27;
+// string strSched = 27;
 void VidCamera::clear_strsched() {
   strsched_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strsched() const {
+const ::std::string& VidCamera::strsched() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strSched)
-  return strsched_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strsched_.GetNoArena();
 }
- void VidCamera::set_strsched(const ::std::string& value) {
+void VidCamera::set_strsched(const ::std::string& value) {
   
   strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strSched)
 }
- void VidCamera::set_strsched(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strsched(::std::string&& value) {
+  
+  strsched_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strSched)
+}
+#endif
+void VidCamera::set_strsched(const char* value) {
   
   strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strSched)
 }
- void VidCamera::set_strsched(const char* value, size_t size) {
+void VidCamera::set_strsched(const char* value, size_t size) {
   
   strsched_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strSched)
 }
- ::std::string* VidCamera::mutable_strsched() {
+::std::string* VidCamera::mutable_strsched() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strSched)
   return strsched_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strsched() {
+::std::string* VidCamera::release_strsched() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strSched)
   
   return strsched_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strsched(::std::string* strsched) {
+void VidCamera::set_allocated_strsched(::std::string* strsched) {
   if (strsched != NULL) {
     
   } else {
@@ -4365,40 +4178,49 @@ void VidCamera::clear_strsched() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCamera.strSched)
 }
 
-// optional string strMotReg = 28;
+// string strMotReg = 28;
 void VidCamera::clear_strmotreg() {
   strmotreg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCamera::strmotreg() const {
+const ::std::string& VidCamera::strmotreg() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCamera.strMotReg)
-  return strmotreg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strmotreg_.GetNoArena();
 }
- void VidCamera::set_strmotreg(const ::std::string& value) {
+void VidCamera::set_strmotreg(const ::std::string& value) {
   
   strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCamera.strMotReg)
 }
- void VidCamera::set_strmotreg(const char* value) {
+#if LANG_CXX11
+void VidCamera::set_strmotreg(::std::string&& value) {
+  
+  strmotreg_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCamera.strMotReg)
+}
+#endif
+void VidCamera::set_strmotreg(const char* value) {
   
   strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCamera.strMotReg)
 }
- void VidCamera::set_strmotreg(const char* value, size_t size) {
+void VidCamera::set_strmotreg(const char* value, size_t size) {
   
   strmotreg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCamera.strMotReg)
 }
- ::std::string* VidCamera::mutable_strmotreg() {
+::std::string* VidCamera::mutable_strmotreg() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCamera.strMotReg)
   return strmotreg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCamera::release_strmotreg() {
+::std::string* VidCamera::release_strmotreg() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCamera.strMotReg)
   
   return strmotreg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCamera::set_allocated_strmotreg(::std::string* strmotreg) {
+void VidCamera::set_allocated_strmotreg(::std::string* strmotreg) {
   if (strmotreg != NULL) {
     
   } else {
@@ -4412,30 +4234,28 @@ void VidCamera::clear_strmotreg() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidCameraList::kCVidCameraFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidCameraList::VidCameraList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidCameraList)
 }
-
-void VidCameraList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidCameraList::VidCameraList(const VidCameraList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidcamera_(from.cvidcamera_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidCameraList)
 }
 
 void VidCameraList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -4445,8 +4265,6 @@ VidCameraList::~VidCameraList() {
 }
 
 void VidCameraList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidCameraList::SetCachedSize(int size) const {
@@ -4455,16 +4273,14 @@ void VidCameraList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidCameraList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidCameraList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[4].descriptor;
 }
 
 const VidCameraList& VidCameraList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidCameraList* VidCameraList::default_instance_ = NULL;
 
 VidCameraList* VidCameraList::New(::google::protobuf::Arena* arena) const {
   VidCameraList* n = new VidCameraList;
@@ -4475,32 +4291,30 @@ VidCameraList* VidCameraList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidCameraList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidCameraList)
   cvidcamera_.Clear();
 }
 
 bool VidCameraList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidCameraList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidCamera cVidCamera = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidCamera:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidcamera()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidCamera;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -4537,68 +4351,80 @@ void VidCameraList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidCameraList)
 }
 
-::google::protobuf::uint8* VidCameraList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidCameraList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidCameraList)
   // repeated .VidConf.VidCamera cVidCamera = 1;
   for (unsigned int i = 0, n = this->cvidcamera_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidcamera(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidcamera(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidCameraList)
   return target;
 }
 
-int VidCameraList::ByteSize() const {
-  int total_size = 0;
+size_t VidCameraList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidCameraList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidCamera cVidCamera = 1;
-  total_size += 1 * this->cvidcamera_size();
-  for (int i = 0; i < this->cvidcamera_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidcamera(i));
+  {
+    unsigned int count = this->cvidcamera_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidcamera(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidCameraList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidCameraList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidCameraList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidCameraList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidCameraList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidCameraList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidCameraList)
     MergeFrom(*source);
   }
 }
 
 void VidCameraList::MergeFrom(const VidCameraList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidCameraList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidcamera_.MergeFrom(from.cvidcamera_);
 }
 
 void VidCameraList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidCameraList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidCameraList::CopyFrom(const VidCameraList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidCameraList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidCameraList::IsInitialized() const {
-
   return true;
 }
 
@@ -4608,16 +4434,12 @@ void VidCameraList::Swap(VidCameraList* other) {
 }
 void VidCameraList::InternalSwap(VidCameraList* other) {
   cvidcamera_.UnsafeArenaSwap(&other->cvidcamera_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidCameraList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidCameraList_descriptor_;
-  metadata.reflection = VidCameraList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[4];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4657,43 +4479,48 @@ VidCameraList::cvidcamera() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidDisk::kStrIdFieldNumber;
 const int VidDisk::kStrPathFieldNumber;
 const int VidDisk::kNTotalSizeFieldNumber;
 const int VidDisk::kNFreeSizeFieldNumber;
 const int VidDisk::kNStorLimitFieldNumber;
 const int VidDisk::kNStorUsedFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidDisk::VidDisk()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidDisk)
 }
-
-void VidDisk::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidDisk::VidDisk(const VidDisk& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strpath_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strpath().size() > 0) {
+    strpath_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strpath_);
+  }
+  ::memcpy(&ntotalsize_, &from.ntotalsize_,
+    reinterpret_cast<char*>(&nstorused_) -
+    reinterpret_cast<char*>(&ntotalsize_) + sizeof(nstorused_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidDisk)
 }
 
 void VidDisk::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpath_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ntotalsize_ = GOOGLE_LONGLONG(0);
-  nfreesize_ = GOOGLE_LONGLONG(0);
-  nstorlimit_ = GOOGLE_LONGLONG(0);
-  nstorused_ = GOOGLE_LONGLONG(0);
+  ::memset(&ntotalsize_, 0, reinterpret_cast<char*>(&nstorused_) -
+    reinterpret_cast<char*>(&ntotalsize_) + sizeof(nstorused_));
+  _cached_size_ = 0;
 }
 
 VidDisk::~VidDisk() {
@@ -4704,8 +4531,6 @@ VidDisk::~VidDisk() {
 void VidDisk::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpath_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidDisk::SetCachedSize(int size) const {
@@ -4714,16 +4539,14 @@ void VidDisk::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidDisk::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidDisk_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[5].descriptor;
 }
 
 const VidDisk& VidDisk::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidDisk* VidDisk::default_instance_ = NULL;
 
 VidDisk* VidDisk::New(::google::protobuf::Arena* arena) const {
   VidDisk* n = new VidDisk;
@@ -4734,36 +4557,26 @@ VidDisk* VidDisk::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidDisk::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidDisk*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(ntotalsize_, nstorused_);
+// @@protoc_insertion_point(message_clear_start:VidConf.VidDisk)
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&ntotalsize_, 0, reinterpret_cast<char*>(&nstorused_) -
+    reinterpret_cast<char*>(&ntotalsize_) + sizeof(nstorused_));
 }
 
 bool VidDisk::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidDisk)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -4773,14 +4586,12 @@ bool VidDisk::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strPath;
         break;
       }
 
-      // optional string strPath = 2;
+      // string strPath = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strPath:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpath()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -4790,67 +4601,58 @@ bool VidDisk::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_nTotalSize;
         break;
       }
 
-      // optional int64 nTotalSize = 3;
+      // int64 nTotalSize = 3;
       case 3: {
-        if (tag == 24) {
-         parse_nTotalSize:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &ntotalsize_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_nFreeSize;
         break;
       }
 
-      // optional int64 nFreeSize = 4;
+      // int64 nFreeSize = 4;
       case 4: {
-        if (tag == 32) {
-         parse_nFreeSize:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &nfreesize_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_nStorLimit;
         break;
       }
 
-      // optional int64 nStorLimit = 5;
+      // int64 nStorLimit = 5;
       case 5: {
-        if (tag == 40) {
-         parse_nStorLimit:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &nstorlimit_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_nStorUsed;
         break;
       }
 
-      // optional int64 nStorUsed = 6;
+      // int64 nStorUsed = 6;
       case 6: {
-        if (tag == 48) {
-         parse_nStorUsed:
+        if (tag == 48u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &nstorused_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -4878,7 +4680,7 @@ failure:
 void VidDisk::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidDisk)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -4888,7 +4690,7 @@ void VidDisk::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strPath = 2;
+  // string strPath = 2;
   if (this->strpath().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpath().data(), this->strpath().length(),
@@ -4898,22 +4700,22 @@ void VidDisk::SerializeWithCachedSizes(
       2, this->strpath(), output);
   }
 
-  // optional int64 nTotalSize = 3;
+  // int64 nTotalSize = 3;
   if (this->ntotalsize() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->ntotalsize(), output);
   }
 
-  // optional int64 nFreeSize = 4;
+  // int64 nFreeSize = 4;
   if (this->nfreesize() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->nfreesize(), output);
   }
 
-  // optional int64 nStorLimit = 5;
+  // int64 nStorLimit = 5;
   if (this->nstorlimit() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(5, this->nstorlimit(), output);
   }
 
-  // optional int64 nStorUsed = 6;
+  // int64 nStorUsed = 6;
   if (this->nstorused() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(6, this->nstorused(), output);
   }
@@ -4921,10 +4723,11 @@ void VidDisk::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidDisk)
 }
 
-::google::protobuf::uint8* VidDisk::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidDisk::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidDisk)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -4935,7 +4738,7 @@ void VidDisk::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strPath = 2;
+  // string strPath = 2;
   if (this->strpath().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpath().data(), this->strpath().length(),
@@ -4946,22 +4749,22 @@ void VidDisk::SerializeWithCachedSizes(
         2, this->strpath(), target);
   }
 
-  // optional int64 nTotalSize = 3;
+  // int64 nTotalSize = 3;
   if (this->ntotalsize() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->ntotalsize(), target);
   }
 
-  // optional int64 nFreeSize = 4;
+  // int64 nFreeSize = 4;
   if (this->nfreesize() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->nfreesize(), target);
   }
 
-  // optional int64 nStorLimit = 5;
+  // int64 nStorLimit = 5;
   if (this->nstorlimit() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(5, this->nstorlimit(), target);
   }
 
-  // optional int64 nStorUsed = 6;
+  // int64 nStorUsed = 6;
   if (this->nstorused() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(6, this->nstorused(), target);
   }
@@ -4970,71 +4773,78 @@ void VidDisk::SerializeWithCachedSizes(
   return target;
 }
 
-int VidDisk::ByteSize() const {
-  int total_size = 0;
+size_t VidDisk::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidDisk)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strPath = 2;
+  // string strPath = 2;
   if (this->strpath().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpath());
   }
 
-  // optional int64 nTotalSize = 3;
+  // int64 nTotalSize = 3;
   if (this->ntotalsize() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->ntotalsize());
   }
 
-  // optional int64 nFreeSize = 4;
+  // int64 nFreeSize = 4;
   if (this->nfreesize() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->nfreesize());
   }
 
-  // optional int64 nStorLimit = 5;
+  // int64 nStorLimit = 5;
   if (this->nstorlimit() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->nstorlimit());
   }
 
-  // optional int64 nStorUsed = 6;
+  // int64 nStorUsed = 6;
   if (this->nstorused() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->nstorused());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidDisk::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidDisk* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidDisk)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidDisk* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidDisk>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidDisk)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidDisk)
     MergeFrom(*source);
   }
 }
 
 void VidDisk::MergeFrom(const VidDisk& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidDisk)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -5058,19 +4868,20 @@ void VidDisk::MergeFrom(const VidDisk& from) {
 }
 
 void VidDisk::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidDisk)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidDisk::CopyFrom(const VidDisk& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidDisk)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidDisk::IsInitialized() const {
-
   return true;
 }
 
@@ -5085,55 +4896,60 @@ void VidDisk::InternalSwap(VidDisk* other) {
   std::swap(nfreesize_, other->nfreesize_);
   std::swap(nstorlimit_, other->nstorlimit_);
   std::swap(nstorused_, other->nstorused_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidDisk::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidDisk_descriptor_;
-  metadata.reflection = VidDisk_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[5];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidDisk
 
-// optional string strId = 1;
+// string strId = 1;
 void VidDisk::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidDisk::strid() const {
+const ::std::string& VidDisk::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidDisk::set_strid(const ::std::string& value) {
+void VidDisk::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.strId)
 }
- void VidDisk::set_strid(const char* value) {
+#if LANG_CXX11
+void VidDisk::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidDisk.strId)
+}
+#endif
+void VidDisk::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidDisk.strId)
 }
- void VidDisk::set_strid(const char* value, size_t size) {
+void VidDisk::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidDisk.strId)
 }
- ::std::string* VidDisk::mutable_strid() {
+::std::string* VidDisk::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidDisk.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidDisk::release_strid() {
+::std::string* VidDisk::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidDisk.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidDisk::set_allocated_strid(::std::string* strid) {
+void VidDisk::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -5143,40 +4959,49 @@ void VidDisk::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidDisk.strId)
 }
 
-// optional string strPath = 2;
+// string strPath = 2;
 void VidDisk::clear_strpath() {
   strpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidDisk::strpath() const {
+const ::std::string& VidDisk::strpath() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.strPath)
-  return strpath_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strpath_.GetNoArena();
 }
- void VidDisk::set_strpath(const ::std::string& value) {
+void VidDisk::set_strpath(const ::std::string& value) {
   
   strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.strPath)
 }
- void VidDisk::set_strpath(const char* value) {
+#if LANG_CXX11
+void VidDisk::set_strpath(::std::string&& value) {
+  
+  strpath_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidDisk.strPath)
+}
+#endif
+void VidDisk::set_strpath(const char* value) {
   
   strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidDisk.strPath)
 }
- void VidDisk::set_strpath(const char* value, size_t size) {
+void VidDisk::set_strpath(const char* value, size_t size) {
   
   strpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidDisk.strPath)
 }
- ::std::string* VidDisk::mutable_strpath() {
+::std::string* VidDisk::mutable_strpath() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidDisk.strPath)
   return strpath_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidDisk::release_strpath() {
+::std::string* VidDisk::release_strpath() {
+  // @@protoc_insertion_point(field_release:VidConf.VidDisk.strPath)
   
   return strpath_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidDisk::set_allocated_strpath(::std::string* strpath) {
+void VidDisk::set_allocated_strpath(::std::string* strpath) {
   if (strpath != NULL) {
     
   } else {
@@ -5186,57 +5011,57 @@ void VidDisk::clear_strpath() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidDisk.strPath)
 }
 
-// optional int64 nTotalSize = 3;
+// int64 nTotalSize = 3;
 void VidDisk::clear_ntotalsize() {
   ntotalsize_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidDisk::ntotalsize() const {
+::google::protobuf::int64 VidDisk::ntotalsize() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.nTotalSize)
   return ntotalsize_;
 }
- void VidDisk::set_ntotalsize(::google::protobuf::int64 value) {
+void VidDisk::set_ntotalsize(::google::protobuf::int64 value) {
   
   ntotalsize_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.nTotalSize)
 }
 
-// optional int64 nFreeSize = 4;
+// int64 nFreeSize = 4;
 void VidDisk::clear_nfreesize() {
   nfreesize_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidDisk::nfreesize() const {
+::google::protobuf::int64 VidDisk::nfreesize() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.nFreeSize)
   return nfreesize_;
 }
- void VidDisk::set_nfreesize(::google::protobuf::int64 value) {
+void VidDisk::set_nfreesize(::google::protobuf::int64 value) {
   
   nfreesize_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.nFreeSize)
 }
 
-// optional int64 nStorLimit = 5;
+// int64 nStorLimit = 5;
 void VidDisk::clear_nstorlimit() {
   nstorlimit_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidDisk::nstorlimit() const {
+::google::protobuf::int64 VidDisk::nstorlimit() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.nStorLimit)
   return nstorlimit_;
 }
- void VidDisk::set_nstorlimit(::google::protobuf::int64 value) {
+void VidDisk::set_nstorlimit(::google::protobuf::int64 value) {
   
   nstorlimit_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.nStorLimit)
 }
 
-// optional int64 nStorUsed = 6;
+// int64 nStorUsed = 6;
 void VidDisk::clear_nstorused() {
   nstorused_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidDisk::nstorused() const {
+::google::protobuf::int64 VidDisk::nstorused() const {
   // @@protoc_insertion_point(field_get:VidConf.VidDisk.nStorUsed)
   return nstorused_;
 }
- void VidDisk::set_nstorused(::google::protobuf::int64 value) {
+void VidDisk::set_nstorused(::google::protobuf::int64 value) {
   
   nstorused_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidDisk.nStorUsed)
@@ -5246,30 +5071,28 @@ void VidDisk::clear_nstorused() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidDiskList::kCVidDiskFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidDiskList::VidDiskList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidDiskList)
 }
-
-void VidDiskList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidDiskList::VidDiskList(const VidDiskList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cviddisk_(from.cviddisk_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidDiskList)
 }
 
 void VidDiskList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -5279,8 +5102,6 @@ VidDiskList::~VidDiskList() {
 }
 
 void VidDiskList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidDiskList::SetCachedSize(int size) const {
@@ -5289,16 +5110,14 @@ void VidDiskList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidDiskList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidDiskList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[6].descriptor;
 }
 
 const VidDiskList& VidDiskList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidDiskList* VidDiskList::default_instance_ = NULL;
 
 VidDiskList* VidDiskList::New(::google::protobuf::Arena* arena) const {
   VidDiskList* n = new VidDiskList;
@@ -5309,32 +5128,30 @@ VidDiskList* VidDiskList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidDiskList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidDiskList)
   cviddisk_.Clear();
 }
 
 bool VidDiskList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidDiskList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidDisk cVidDisk = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidDisk:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cviddisk()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidDisk;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -5371,68 +5188,80 @@ void VidDiskList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidDiskList)
 }
 
-::google::protobuf::uint8* VidDiskList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidDiskList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidDiskList)
   // repeated .VidConf.VidDisk cVidDisk = 1;
   for (unsigned int i = 0, n = this->cviddisk_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cviddisk(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cviddisk(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidDiskList)
   return target;
 }
 
-int VidDiskList::ByteSize() const {
-  int total_size = 0;
+size_t VidDiskList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidDiskList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidDisk cVidDisk = 1;
-  total_size += 1 * this->cviddisk_size();
-  for (int i = 0; i < this->cviddisk_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cviddisk(i));
+  {
+    unsigned int count = this->cviddisk_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cviddisk(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidDiskList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidDiskList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidDiskList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidDiskList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidDiskList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidDiskList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidDiskList)
     MergeFrom(*source);
   }
 }
 
 void VidDiskList::MergeFrom(const VidDiskList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidDiskList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cviddisk_.MergeFrom(from.cviddisk_);
 }
 
 void VidDiskList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidDiskList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidDiskList::CopyFrom(const VidDiskList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidDiskList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidDiskList::IsInitialized() const {
-
   return true;
 }
 
@@ -5442,16 +5271,12 @@ void VidDiskList::Swap(VidDiskList* other) {
 }
 void VidDiskList::InternalSwap(VidDiskList* other) {
   cviddisk_.UnsafeArenaSwap(&other->cviddisk_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidDiskList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidDiskList_descriptor_;
-  metadata.reflection = VidDiskList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[6];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5491,41 +5316,54 @@ VidDiskList::cviddisk() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidHDFSConf::kStrNameNodeFieldNumber;
 const int VidHDFSConf::kStrPortFieldNumber;
 const int VidHDFSConf::kStrUserFieldNumber;
 const int VidHDFSConf::kStrPasswdFieldNumber;
 const int VidHDFSConf::kNFileIntervalFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidHDFSConf::VidHDFSConf()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidHDFSConf)
 }
-
-void VidHDFSConf::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidHDFSConf::VidHDFSConf(const VidHDFSConf& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strnamenode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strnamenode().size() > 0) {
+    strnamenode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strnamenode_);
+  }
+  strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strport().size() > 0) {
+    strport_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strport_);
+  }
+  struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.struser().size() > 0) {
+    struser_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.struser_);
+  }
+  strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strpasswd().size() > 0) {
+    strpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strpasswd_);
+  }
+  nfileinterval_ = from.nfileinterval_;
   // @@protoc_insertion_point(copy_constructor:VidConf.VidHDFSConf)
 }
 
 void VidHDFSConf::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strnamenode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nfileinterval_ = 0;
+  _cached_size_ = 0;
 }
 
 VidHDFSConf::~VidHDFSConf() {
@@ -5538,8 +5376,6 @@ void VidHDFSConf::SharedDtor() {
   strport_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidHDFSConf::SetCachedSize(int size) const {
@@ -5548,16 +5384,14 @@ void VidHDFSConf::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidHDFSConf::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidHDFSConf_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[7].descriptor;
 }
 
 const VidHDFSConf& VidHDFSConf::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidHDFSConf* VidHDFSConf::default_instance_ = NULL;
 
 VidHDFSConf* VidHDFSConf::New(::google::protobuf::Arena* arena) const {
   VidHDFSConf* n = new VidHDFSConf;
@@ -5568,6 +5402,7 @@ VidHDFSConf* VidHDFSConf::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidHDFSConf::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidHDFSConf)
   strnamenode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -5577,17 +5412,17 @@ void VidHDFSConf::Clear() {
 
 bool VidHDFSConf::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidHDFSConf)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strNameNode = 1;
+      // string strNameNode = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strnamenode()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -5597,14 +5432,12 @@ bool VidHDFSConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strPort;
         break;
       }
 
-      // optional string strPort = 2;
+      // string strPort = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strPort:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strport()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -5614,14 +5447,12 @@ bool VidHDFSConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strUser;
         break;
       }
 
-      // optional string strUser = 3;
+      // string strUser = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strUser:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_struser()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -5631,14 +5462,12 @@ bool VidHDFSConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_strPasswd;
         break;
       }
 
-      // optional string strPasswd = 4;
+      // string strPasswd = 4;
       case 4: {
-        if (tag == 34) {
-         parse_strPasswd:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -5648,22 +5477,19 @@ bool VidHDFSConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_nFileInterval;
         break;
       }
 
-      // optional int32 nFileInterval = 5;
+      // int32 nFileInterval = 5;
       case 5: {
-        if (tag == 40) {
-         parse_nFileInterval:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nfileinterval_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -5691,7 +5517,7 @@ failure:
 void VidHDFSConf::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidHDFSConf)
-  // optional string strNameNode = 1;
+  // string strNameNode = 1;
   if (this->strnamenode().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strnamenode().data(), this->strnamenode().length(),
@@ -5701,7 +5527,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
       1, this->strnamenode(), output);
   }
 
-  // optional string strPort = 2;
+  // string strPort = 2;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -5711,7 +5537,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
       2, this->strport(), output);
   }
 
-  // optional string strUser = 3;
+  // string strUser = 3;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -5721,7 +5547,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
       3, this->struser(), output);
   }
 
-  // optional string strPasswd = 4;
+  // string strPasswd = 4;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -5731,7 +5557,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
       4, this->strpasswd(), output);
   }
 
-  // optional int32 nFileInterval = 5;
+  // int32 nFileInterval = 5;
   if (this->nfileinterval() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->nfileinterval(), output);
   }
@@ -5739,10 +5565,11 @@ void VidHDFSConf::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidHDFSConf)
 }
 
-::google::protobuf::uint8* VidHDFSConf::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidHDFSConf::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidHDFSConf)
-  // optional string strNameNode = 1;
+  // string strNameNode = 1;
   if (this->strnamenode().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strnamenode().data(), this->strnamenode().length(),
@@ -5753,7 +5580,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
         1, this->strnamenode(), target);
   }
 
-  // optional string strPort = 2;
+  // string strPort = 2;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -5764,7 +5591,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
         2, this->strport(), target);
   }
 
-  // optional string strUser = 3;
+  // string strUser = 3;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -5775,7 +5602,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
         3, this->struser(), target);
   }
 
-  // optional string strPasswd = 4;
+  // string strPasswd = 4;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -5786,7 +5613,7 @@ void VidHDFSConf::SerializeWithCachedSizes(
         4, this->strpasswd(), target);
   }
 
-  // optional int32 nFileInterval = 5;
+  // int32 nFileInterval = 5;
   if (this->nfileinterval() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->nfileinterval(), target);
   }
@@ -5795,64 +5622,71 @@ void VidHDFSConf::SerializeWithCachedSizes(
   return target;
 }
 
-int VidHDFSConf::ByteSize() const {
-  int total_size = 0;
+size_t VidHDFSConf::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidHDFSConf)
+  size_t total_size = 0;
 
-  // optional string strNameNode = 1;
+  // string strNameNode = 1;
   if (this->strnamenode().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strnamenode());
   }
 
-  // optional string strPort = 2;
+  // string strPort = 2;
   if (this->strport().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strport());
   }
 
-  // optional string strUser = 3;
+  // string strUser = 3;
   if (this->struser().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->struser());
   }
 
-  // optional string strPasswd = 4;
+  // string strPasswd = 4;
   if (this->strpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpasswd());
   }
 
-  // optional int32 nFileInterval = 5;
+  // int32 nFileInterval = 5;
   if (this->nfileinterval() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->nfileinterval());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidHDFSConf::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidHDFSConf* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidHDFSConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidHDFSConf* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidHDFSConf>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidHDFSConf)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidHDFSConf)
     MergeFrom(*source);
   }
 }
 
 void VidHDFSConf::MergeFrom(const VidHDFSConf& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidHDFSConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strnamenode().size() > 0) {
 
     strnamenode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strnamenode_);
@@ -5875,19 +5709,20 @@ void VidHDFSConf::MergeFrom(const VidHDFSConf& from) {
 }
 
 void VidHDFSConf::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidHDFSConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidHDFSConf::CopyFrom(const VidHDFSConf& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidHDFSConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidHDFSConf::IsInitialized() const {
-
   return true;
 }
 
@@ -5901,55 +5736,60 @@ void VidHDFSConf::InternalSwap(VidHDFSConf* other) {
   struser_.Swap(&other->struser_);
   strpasswd_.Swap(&other->strpasswd_);
   std::swap(nfileinterval_, other->nfileinterval_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidHDFSConf::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidHDFSConf_descriptor_;
-  metadata.reflection = VidHDFSConf_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[7];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidHDFSConf
 
-// optional string strNameNode = 1;
+// string strNameNode = 1;
 void VidHDFSConf::clear_strnamenode() {
   strnamenode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidHDFSConf::strnamenode() const {
+const ::std::string& VidHDFSConf::strnamenode() const {
   // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.strNameNode)
-  return strnamenode_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strnamenode_.GetNoArena();
 }
- void VidHDFSConf::set_strnamenode(const ::std::string& value) {
+void VidHDFSConf::set_strnamenode(const ::std::string& value) {
   
   strnamenode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.strNameNode)
 }
- void VidHDFSConf::set_strnamenode(const char* value) {
+#if LANG_CXX11
+void VidHDFSConf::set_strnamenode(::std::string&& value) {
+  
+  strnamenode_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidHDFSConf.strNameNode)
+}
+#endif
+void VidHDFSConf::set_strnamenode(const char* value) {
   
   strnamenode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidHDFSConf.strNameNode)
 }
- void VidHDFSConf::set_strnamenode(const char* value, size_t size) {
+void VidHDFSConf::set_strnamenode(const char* value, size_t size) {
   
   strnamenode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidHDFSConf.strNameNode)
 }
- ::std::string* VidHDFSConf::mutable_strnamenode() {
+::std::string* VidHDFSConf::mutable_strnamenode() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidHDFSConf.strNameNode)
   return strnamenode_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidHDFSConf::release_strnamenode() {
+::std::string* VidHDFSConf::release_strnamenode() {
+  // @@protoc_insertion_point(field_release:VidConf.VidHDFSConf.strNameNode)
   
   return strnamenode_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidHDFSConf::set_allocated_strnamenode(::std::string* strnamenode) {
+void VidHDFSConf::set_allocated_strnamenode(::std::string* strnamenode) {
   if (strnamenode != NULL) {
     
   } else {
@@ -5959,40 +5799,49 @@ void VidHDFSConf::clear_strnamenode() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strNameNode)
 }
 
-// optional string strPort = 2;
+// string strPort = 2;
 void VidHDFSConf::clear_strport() {
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidHDFSConf::strport() const {
+const ::std::string& VidHDFSConf::strport() const {
   // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.strPort)
-  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strport_.GetNoArena();
 }
- void VidHDFSConf::set_strport(const ::std::string& value) {
+void VidHDFSConf::set_strport(const ::std::string& value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.strPort)
 }
- void VidHDFSConf::set_strport(const char* value) {
+#if LANG_CXX11
+void VidHDFSConf::set_strport(::std::string&& value) {
+  
+  strport_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidHDFSConf.strPort)
+}
+#endif
+void VidHDFSConf::set_strport(const char* value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidHDFSConf.strPort)
 }
- void VidHDFSConf::set_strport(const char* value, size_t size) {
+void VidHDFSConf::set_strport(const char* value, size_t size) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidHDFSConf.strPort)
 }
- ::std::string* VidHDFSConf::mutable_strport() {
+::std::string* VidHDFSConf::mutable_strport() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidHDFSConf.strPort)
   return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidHDFSConf::release_strport() {
+::std::string* VidHDFSConf::release_strport() {
+  // @@protoc_insertion_point(field_release:VidConf.VidHDFSConf.strPort)
   
   return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidHDFSConf::set_allocated_strport(::std::string* strport) {
+void VidHDFSConf::set_allocated_strport(::std::string* strport) {
   if (strport != NULL) {
     
   } else {
@@ -6002,40 +5851,49 @@ void VidHDFSConf::clear_strport() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strPort)
 }
 
-// optional string strUser = 3;
+// string strUser = 3;
 void VidHDFSConf::clear_struser() {
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidHDFSConf::struser() const {
+const ::std::string& VidHDFSConf::struser() const {
   // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.strUser)
-  return struser_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return struser_.GetNoArena();
 }
- void VidHDFSConf::set_struser(const ::std::string& value) {
+void VidHDFSConf::set_struser(const ::std::string& value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.strUser)
 }
- void VidHDFSConf::set_struser(const char* value) {
+#if LANG_CXX11
+void VidHDFSConf::set_struser(::std::string&& value) {
+  
+  struser_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidHDFSConf.strUser)
+}
+#endif
+void VidHDFSConf::set_struser(const char* value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidHDFSConf.strUser)
 }
- void VidHDFSConf::set_struser(const char* value, size_t size) {
+void VidHDFSConf::set_struser(const char* value, size_t size) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidHDFSConf.strUser)
 }
- ::std::string* VidHDFSConf::mutable_struser() {
+::std::string* VidHDFSConf::mutable_struser() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidHDFSConf.strUser)
   return struser_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidHDFSConf::release_struser() {
+::std::string* VidHDFSConf::release_struser() {
+  // @@protoc_insertion_point(field_release:VidConf.VidHDFSConf.strUser)
   
   return struser_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidHDFSConf::set_allocated_struser(::std::string* struser) {
+void VidHDFSConf::set_allocated_struser(::std::string* struser) {
   if (struser != NULL) {
     
   } else {
@@ -6045,40 +5903,49 @@ void VidHDFSConf::clear_struser() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strUser)
 }
 
-// optional string strPasswd = 4;
+// string strPasswd = 4;
 void VidHDFSConf::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidHDFSConf::strpasswd() const {
+const ::std::string& VidHDFSConf::strpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.strPasswd)
-  return strpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strpasswd_.GetNoArena();
 }
- void VidHDFSConf::set_strpasswd(const ::std::string& value) {
+void VidHDFSConf::set_strpasswd(const ::std::string& value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.strPasswd)
 }
- void VidHDFSConf::set_strpasswd(const char* value) {
+#if LANG_CXX11
+void VidHDFSConf::set_strpasswd(::std::string&& value) {
+  
+  strpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidHDFSConf.strPasswd)
+}
+#endif
+void VidHDFSConf::set_strpasswd(const char* value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidHDFSConf.strPasswd)
 }
- void VidHDFSConf::set_strpasswd(const char* value, size_t size) {
+void VidHDFSConf::set_strpasswd(const char* value, size_t size) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidHDFSConf.strPasswd)
 }
- ::std::string* VidHDFSConf::mutable_strpasswd() {
+::std::string* VidHDFSConf::mutable_strpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidHDFSConf.strPasswd)
   return strpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidHDFSConf::release_strpasswd() {
+::std::string* VidHDFSConf::release_strpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidHDFSConf.strPasswd)
   
   return strpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidHDFSConf::set_allocated_strpasswd(::std::string* strpasswd) {
+void VidHDFSConf::set_allocated_strpasswd(::std::string* strpasswd) {
   if (strpasswd != NULL) {
     
   } else {
@@ -6088,15 +5955,15 @@ void VidHDFSConf::clear_strpasswd() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidHDFSConf.strPasswd)
 }
 
-// optional int32 nFileInterval = 5;
+// int32 nFileInterval = 5;
 void VidHDFSConf::clear_nfileinterval() {
   nfileinterval_ = 0;
 }
- ::google::protobuf::int32 VidHDFSConf::nfileinterval() const {
+::google::protobuf::int32 VidHDFSConf::nfileinterval() const {
   // @@protoc_insertion_point(field_get:VidConf.VidHDFSConf.nFileInterval)
   return nfileinterval_;
 }
- void VidHDFSConf::set_nfileinterval(::google::protobuf::int32 value) {
+void VidHDFSConf::set_nfileinterval(::google::protobuf::int32 value) {
   
   nfileinterval_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidHDFSConf.nFileInterval)
@@ -6106,35 +5973,39 @@ void VidHDFSConf::clear_nfileinterval() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidCameraId::kStrStorIdFieldNumber;
 const int VidCameraId::kStrCameraIdFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidCameraId::VidCameraId()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidCameraId)
 }
-
-void VidCameraId::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidCameraId::VidCameraId(const VidCameraId& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strstorid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strstorid().size() > 0) {
+    strstorid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorid_);
+  }
+  strcameraid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strcameraid().size() > 0) {
+    strcameraid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strcameraid_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidCameraId)
 }
 
 void VidCameraId::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strstorid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strcameraid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidCameraId::~VidCameraId() {
@@ -6145,8 +6016,6 @@ VidCameraId::~VidCameraId() {
 void VidCameraId::SharedDtor() {
   strstorid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strcameraid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidCameraId::SetCachedSize(int size) const {
@@ -6155,16 +6024,14 @@ void VidCameraId::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidCameraId::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidCameraId_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[8].descriptor;
 }
 
 const VidCameraId& VidCameraId::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidCameraId* VidCameraId::default_instance_ = NULL;
 
 VidCameraId* VidCameraId::New(::google::protobuf::Arena* arena) const {
   VidCameraId* n = new VidCameraId;
@@ -6175,23 +6042,24 @@ VidCameraId* VidCameraId::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidCameraId::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidCameraId)
   strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strcameraid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 bool VidCameraId::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidCameraId)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strStorId = 1;
+      // string strStorId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strstorid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -6201,14 +6069,12 @@ bool VidCameraId::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strCameraId;
         break;
       }
 
-      // optional string strCameraId = 2;
+      // string strCameraId = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strCameraId:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strcameraid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -6218,7 +6084,6 @@ bool VidCameraId::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -6246,7 +6111,7 @@ failure:
 void VidCameraId::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidCameraId)
-  // optional string strStorId = 1;
+  // string strStorId = 1;
   if (this->strstorid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorid().data(), this->strstorid().length(),
@@ -6256,7 +6121,7 @@ void VidCameraId::SerializeWithCachedSizes(
       1, this->strstorid(), output);
   }
 
-  // optional string strCameraId = 2;
+  // string strCameraId = 2;
   if (this->strcameraid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strcameraid().data(), this->strcameraid().length(),
@@ -6269,10 +6134,11 @@ void VidCameraId::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidCameraId)
 }
 
-::google::protobuf::uint8* VidCameraId::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidCameraId::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidCameraId)
-  // optional string strStorId = 1;
+  // string strStorId = 1;
   if (this->strstorid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorid().data(), this->strstorid().length(),
@@ -6283,7 +6149,7 @@ void VidCameraId::SerializeWithCachedSizes(
         1, this->strstorid(), target);
   }
 
-  // optional string strCameraId = 2;
+  // string strCameraId = 2;
   if (this->strcameraid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strcameraid().data(), this->strcameraid().length(),
@@ -6298,43 +6164,50 @@ void VidCameraId::SerializeWithCachedSizes(
   return target;
 }
 
-int VidCameraId::ByteSize() const {
-  int total_size = 0;
+size_t VidCameraId::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidCameraId)
+  size_t total_size = 0;
 
-  // optional string strStorId = 1;
+  // string strStorId = 1;
   if (this->strstorid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strstorid());
   }
 
-  // optional string strCameraId = 2;
+  // string strCameraId = 2;
   if (this->strcameraid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strcameraid());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidCameraId::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidCameraId* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidCameraId)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidCameraId* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidCameraId>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidCameraId)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidCameraId)
     MergeFrom(*source);
   }
 }
 
 void VidCameraId::MergeFrom(const VidCameraId& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidCameraId)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strstorid().size() > 0) {
 
     strstorid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorid_);
@@ -6346,19 +6219,20 @@ void VidCameraId::MergeFrom(const VidCameraId& from) {
 }
 
 void VidCameraId::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidCameraId)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidCameraId::CopyFrom(const VidCameraId& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidCameraId)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidCameraId::IsInitialized() const {
-
   return true;
 }
 
@@ -6369,55 +6243,60 @@ void VidCameraId::Swap(VidCameraId* other) {
 void VidCameraId::InternalSwap(VidCameraId* other) {
   strstorid_.Swap(&other->strstorid_);
   strcameraid_.Swap(&other->strcameraid_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidCameraId::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidCameraId_descriptor_;
-  metadata.reflection = VidCameraId_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[8];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidCameraId
 
-// optional string strStorId = 1;
+// string strStorId = 1;
 void VidCameraId::clear_strstorid() {
   strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCameraId::strstorid() const {
+const ::std::string& VidCameraId::strstorid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCameraId.strStorId)
-  return strstorid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strstorid_.GetNoArena();
 }
- void VidCameraId::set_strstorid(const ::std::string& value) {
+void VidCameraId::set_strstorid(const ::std::string& value) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCameraId.strStorId)
 }
- void VidCameraId::set_strstorid(const char* value) {
+#if LANG_CXX11
+void VidCameraId::set_strstorid(::std::string&& value) {
+  
+  strstorid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCameraId.strStorId)
+}
+#endif
+void VidCameraId::set_strstorid(const char* value) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCameraId.strStorId)
 }
- void VidCameraId::set_strstorid(const char* value, size_t size) {
+void VidCameraId::set_strstorid(const char* value, size_t size) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCameraId.strStorId)
 }
- ::std::string* VidCameraId::mutable_strstorid() {
+::std::string* VidCameraId::mutable_strstorid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCameraId.strStorId)
   return strstorid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCameraId::release_strstorid() {
+::std::string* VidCameraId::release_strstorid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCameraId.strStorId)
   
   return strstorid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCameraId::set_allocated_strstorid(::std::string* strstorid) {
+void VidCameraId::set_allocated_strstorid(::std::string* strstorid) {
   if (strstorid != NULL) {
     
   } else {
@@ -6427,40 +6306,49 @@ void VidCameraId::clear_strstorid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidCameraId.strStorId)
 }
 
-// optional string strCameraId = 2;
+// string strCameraId = 2;
 void VidCameraId::clear_strcameraid() {
   strcameraid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidCameraId::strcameraid() const {
+const ::std::string& VidCameraId::strcameraid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidCameraId.strCameraId)
-  return strcameraid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strcameraid_.GetNoArena();
 }
- void VidCameraId::set_strcameraid(const ::std::string& value) {
+void VidCameraId::set_strcameraid(const ::std::string& value) {
   
   strcameraid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidCameraId.strCameraId)
 }
- void VidCameraId::set_strcameraid(const char* value) {
+#if LANG_CXX11
+void VidCameraId::set_strcameraid(::std::string&& value) {
+  
+  strcameraid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidCameraId.strCameraId)
+}
+#endif
+void VidCameraId::set_strcameraid(const char* value) {
   
   strcameraid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidCameraId.strCameraId)
 }
- void VidCameraId::set_strcameraid(const char* value, size_t size) {
+void VidCameraId::set_strcameraid(const char* value, size_t size) {
   
   strcameraid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidCameraId.strCameraId)
 }
- ::std::string* VidCameraId::mutable_strcameraid() {
+::std::string* VidCameraId::mutable_strcameraid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidCameraId.strCameraId)
   return strcameraid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidCameraId::release_strcameraid() {
+::std::string* VidCameraId::release_strcameraid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidCameraId.strCameraId)
   
   return strcameraid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidCameraId::set_allocated_strcameraid(::std::string* strcameraid) {
+void VidCameraId::set_allocated_strcameraid(::std::string* strcameraid) {
   if (strcameraid != NULL) {
     
   } else {
@@ -6474,37 +6362,41 @@ void VidCameraId::clear_strcameraid() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidClientConf::kNLangFieldNumber;
 const int VidClientConf::kStrAdminPasswdFieldNumber;
 const int VidClientConf::kBAutoLoginFieldNumber;
-#endif  // !_MSC_VER
+const int VidClientConf::kBAutoFullScreenFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidClientConf::VidClientConf()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidClientConf)
 }
-
-void VidClientConf::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidClientConf::VidClientConf(const VidClientConf& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  stradminpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.stradminpasswd().size() > 0) {
+    stradminpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stradminpasswd_);
+  }
+  ::memcpy(&nlang_, &from.nlang_,
+    reinterpret_cast<char*>(&bautofullscreen_) -
+    reinterpret_cast<char*>(&nlang_) + sizeof(bautofullscreen_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidClientConf)
 }
 
 void VidClientConf::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  nlang_ = 0;
   stradminpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  bautologin_ = false;
+  ::memset(&nlang_, 0, reinterpret_cast<char*>(&bautofullscreen_) -
+    reinterpret_cast<char*>(&nlang_) + sizeof(bautofullscreen_));
+  _cached_size_ = 0;
 }
 
 VidClientConf::~VidClientConf() {
@@ -6514,8 +6406,6 @@ VidClientConf::~VidClientConf() {
 
 void VidClientConf::SharedDtor() {
   stradminpasswd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidClientConf::SetCachedSize(int size) const {
@@ -6524,16 +6414,14 @@ void VidClientConf::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidClientConf::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidClientConf_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[9].descriptor;
 }
 
 const VidClientConf& VidClientConf::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidClientConf* VidClientConf::default_instance_ = NULL;
 
 VidClientConf* VidClientConf::New(::google::protobuf::Arena* arena) const {
   VidClientConf* n = new VidClientConf;
@@ -6544,35 +6432,25 @@ VidClientConf* VidClientConf::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidClientConf::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidClientConf*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(nlang_, bautologin_);
+// @@protoc_insertion_point(message_clear_start:VidConf.VidClientConf)
   stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&nlang_, 0, reinterpret_cast<char*>(&bautofullscreen_) -
+    reinterpret_cast<char*>(&nlang_) + sizeof(bautofullscreen_));
 }
 
 bool VidClientConf::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidClientConf)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .VidConf.VidLanguage nLang = 1;
+      // .VidConf.VidLanguage nLang = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -6581,14 +6459,12 @@ bool VidClientConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strAdminPasswd;
         break;
       }
 
-      // optional string strAdminPasswd = 2;
+      // string strAdminPasswd = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strAdminPasswd:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_stradminpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -6598,22 +6474,32 @@ bool VidClientConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_bAutoLogin;
         break;
       }
 
-      // optional bool bAutoLogin = 3;
+      // bool bAutoLogin = 3;
       case 3: {
-        if (tag == 24) {
-         parse_bAutoLogin:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bautologin_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      // bool bAutoFullScreen = 4;
+      case 4: {
+        if (tag == 32u) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &bautofullscreen_)));
+        } else {
+          goto handle_unusual;
+        }
         break;
       }
 
@@ -6641,13 +6527,13 @@ failure:
 void VidClientConf::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidClientConf)
-  // optional .VidConf.VidLanguage nLang = 1;
+  // .VidConf.VidLanguage nLang = 1;
   if (this->nlang() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->nlang(), output);
   }
 
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stradminpasswd().data(), this->stradminpasswd().length(),
@@ -6657,24 +6543,30 @@ void VidClientConf::SerializeWithCachedSizes(
       2, this->stradminpasswd(), output);
   }
 
-  // optional bool bAutoLogin = 3;
+  // bool bAutoLogin = 3;
   if (this->bautologin() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->bautologin(), output);
+  }
+
+  // bool bAutoFullScreen = 4;
+  if (this->bautofullscreen() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->bautofullscreen(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:VidConf.VidClientConf)
 }
 
-::google::protobuf::uint8* VidClientConf::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidClientConf::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidClientConf)
-  // optional .VidConf.VidLanguage nLang = 1;
+  // .VidConf.VidLanguage nLang = 1;
   if (this->nlang() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->nlang(), target);
   }
 
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->stradminpasswd().data(), this->stradminpasswd().length(),
@@ -6685,82 +6577,103 @@ void VidClientConf::SerializeWithCachedSizes(
         2, this->stradminpasswd(), target);
   }
 
-  // optional bool bAutoLogin = 3;
+  // bool bAutoLogin = 3;
   if (this->bautologin() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->bautologin(), target);
+  }
+
+  // bool bAutoFullScreen = 4;
+  if (this->bautofullscreen() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->bautofullscreen(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidClientConf)
   return target;
 }
 
-int VidClientConf::ByteSize() const {
-  int total_size = 0;
+size_t VidClientConf::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidClientConf)
+  size_t total_size = 0;
 
-  // optional .VidConf.VidLanguage nLang = 1;
-  if (this->nlang() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nlang());
-  }
-
-  // optional string strAdminPasswd = 2;
+  // string strAdminPasswd = 2;
   if (this->stradminpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->stradminpasswd());
   }
 
-  // optional bool bAutoLogin = 3;
+  // .VidConf.VidLanguage nLang = 1;
+  if (this->nlang() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->nlang());
+  }
+
+  // bool bAutoLogin = 3;
   if (this->bautologin() != 0) {
     total_size += 1 + 1;
   }
 
+  // bool bAutoFullScreen = 4;
+  if (this->bautofullscreen() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidClientConf::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidClientConf* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidClientConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidClientConf* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidClientConf>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidClientConf)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidClientConf)
     MergeFrom(*source);
   }
 }
 
 void VidClientConf::MergeFrom(const VidClientConf& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.nlang() != 0) {
-    set_nlang(from.nlang());
-  }
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidClientConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.stradminpasswd().size() > 0) {
 
     stradminpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stradminpasswd_);
   }
+  if (from.nlang() != 0) {
+    set_nlang(from.nlang());
+  }
   if (from.bautologin() != 0) {
     set_bautologin(from.bautologin());
+  }
+  if (from.bautofullscreen() != 0) {
+    set_bautofullscreen(from.bautofullscreen());
   }
 }
 
 void VidClientConf::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidClientConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidClientConf::CopyFrom(const VidClientConf& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidClientConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidClientConf::IsInitialized() const {
-
   return true;
 }
 
@@ -6769,72 +6682,78 @@ void VidClientConf::Swap(VidClientConf* other) {
   InternalSwap(other);
 }
 void VidClientConf::InternalSwap(VidClientConf* other) {
-  std::swap(nlang_, other->nlang_);
   stradminpasswd_.Swap(&other->stradminpasswd_);
+  std::swap(nlang_, other->nlang_);
   std::swap(bautologin_, other->bautologin_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(bautofullscreen_, other->bautofullscreen_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidClientConf::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidClientConf_descriptor_;
-  metadata.reflection = VidClientConf_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[9];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidClientConf
 
-// optional .VidConf.VidLanguage nLang = 1;
+// .VidConf.VidLanguage nLang = 1;
 void VidClientConf::clear_nlang() {
   nlang_ = 0;
 }
- ::VidConf::VidLanguage VidClientConf::nlang() const {
+::VidConf::VidLanguage VidClientConf::nlang() const {
   // @@protoc_insertion_point(field_get:VidConf.VidClientConf.nLang)
   return static_cast< ::VidConf::VidLanguage >(nlang_);
 }
- void VidClientConf::set_nlang(::VidConf::VidLanguage value) {
+void VidClientConf::set_nlang(::VidConf::VidLanguage value) {
   
   nlang_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidClientConf.nLang)
 }
 
-// optional string strAdminPasswd = 2;
+// string strAdminPasswd = 2;
 void VidClientConf::clear_stradminpasswd() {
   stradminpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidClientConf::stradminpasswd() const {
+const ::std::string& VidClientConf::stradminpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidClientConf.strAdminPasswd)
-  return stradminpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return stradminpasswd_.GetNoArena();
 }
- void VidClientConf::set_stradminpasswd(const ::std::string& value) {
+void VidClientConf::set_stradminpasswd(const ::std::string& value) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidClientConf.strAdminPasswd)
 }
- void VidClientConf::set_stradminpasswd(const char* value) {
+#if LANG_CXX11
+void VidClientConf::set_stradminpasswd(::std::string&& value) {
+  
+  stradminpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidClientConf.strAdminPasswd)
+}
+#endif
+void VidClientConf::set_stradminpasswd(const char* value) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidClientConf.strAdminPasswd)
 }
- void VidClientConf::set_stradminpasswd(const char* value, size_t size) {
+void VidClientConf::set_stradminpasswd(const char* value, size_t size) {
   
   stradminpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidClientConf.strAdminPasswd)
 }
- ::std::string* VidClientConf::mutable_stradminpasswd() {
+::std::string* VidClientConf::mutable_stradminpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidClientConf.strAdminPasswd)
   return stradminpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidClientConf::release_stradminpasswd() {
+::std::string* VidClientConf::release_stradminpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidClientConf.strAdminPasswd)
   
   return stradminpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidClientConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
+void VidClientConf::set_allocated_stradminpasswd(::std::string* stradminpasswd) {
   if (stradminpasswd != NULL) {
     
   } else {
@@ -6844,61 +6763,95 @@ void VidClientConf::clear_stradminpasswd() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidClientConf.strAdminPasswd)
 }
 
-// optional bool bAutoLogin = 3;
+// bool bAutoLogin = 3;
 void VidClientConf::clear_bautologin() {
   bautologin_ = false;
 }
- bool VidClientConf::bautologin() const {
+bool VidClientConf::bautologin() const {
   // @@protoc_insertion_point(field_get:VidConf.VidClientConf.bAutoLogin)
   return bautologin_;
 }
- void VidClientConf::set_bautologin(bool value) {
+void VidClientConf::set_bautologin(bool value) {
   
   bautologin_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidClientConf.bAutoLogin)
+}
+
+// bool bAutoFullScreen = 4;
+void VidClientConf::clear_bautofullscreen() {
+  bautofullscreen_ = false;
+}
+bool VidClientConf::bautofullscreen() const {
+  // @@protoc_insertion_point(field_get:VidConf.VidClientConf.bAutoFullScreen)
+  return bautofullscreen_;
+}
+void VidClientConf::set_bautofullscreen(bool value) {
+  
+  bautofullscreen_ = value;
+  // @@protoc_insertion_point(field_set:VidConf.VidClientConf.bAutoFullScreen)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidStor::kStrIdFieldNumber;
 const int VidStor::kStrNameFieldNumber;
 const int VidStor::kStrIPFieldNumber;
 const int VidStor::kStrPortFieldNumber;
 const int VidStor::kStrUserFieldNumber;
 const int VidStor::kStrPasswdFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidStor::VidStor()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidStor)
 }
-
-void VidStor::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidStor::VidStor(const VidStor& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
+  strip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strip().size() > 0) {
+    strip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strip_);
+  }
+  strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strport().size() > 0) {
+    strport_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strport_);
+  }
+  struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.struser().size() > 0) {
+    struser_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.struser_);
+  }
+  strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strpasswd().size() > 0) {
+    strpasswd_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strpasswd_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidStor)
 }
 
 void VidStor::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strport_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidStor::~VidStor() {
@@ -6913,8 +6866,6 @@ void VidStor::SharedDtor() {
   strport_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   struser_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strpasswd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidStor::SetCachedSize(int size) const {
@@ -6923,16 +6874,14 @@ void VidStor::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidStor::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidStor_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[10].descriptor;
 }
 
 const VidStor& VidStor::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidStor* VidStor::default_instance_ = NULL;
 
 VidStor* VidStor::New(::google::protobuf::Arena* arena) const {
   VidStor* n = new VidStor;
@@ -6943,6 +6892,7 @@ VidStor* VidStor::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidStor::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidStor)
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -6953,17 +6903,17 @@ void VidStor::Clear() {
 
 bool VidStor::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidStor)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -6973,14 +6923,12 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -6990,14 +6938,12 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strIP;
         break;
       }
 
-      // optional string strIP = 3;
+      // string strIP = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strIP:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strip()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -7007,14 +6953,12 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_strPort;
         break;
       }
 
-      // optional string strPort = 4;
+      // string strPort = 4;
       case 4: {
-        if (tag == 34) {
-         parse_strPort:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strport()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -7024,14 +6968,12 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_strUser;
         break;
       }
 
-      // optional string strUser = 5;
+      // string strUser = 5;
       case 5: {
-        if (tag == 42) {
-         parse_strUser:
+        if (tag == 42u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_struser()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -7041,14 +6983,12 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_strPasswd;
         break;
       }
 
-      // optional string strPasswd = 6;
+      // string strPasswd = 6;
       case 6: {
-        if (tag == 50) {
-         parse_strPasswd:
+        if (tag == 50u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strpasswd()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -7058,7 +6998,6 @@ bool VidStor::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -7086,7 +7025,7 @@ failure:
 void VidStor::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidStor)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -7096,7 +7035,7 @@ void VidStor::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -7106,7 +7045,7 @@ void VidStor::SerializeWithCachedSizes(
       2, this->strname(), output);
   }
 
-  // optional string strIP = 3;
+  // string strIP = 3;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
@@ -7116,7 +7055,7 @@ void VidStor::SerializeWithCachedSizes(
       3, this->strip(), output);
   }
 
-  // optional string strPort = 4;
+  // string strPort = 4;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -7126,7 +7065,7 @@ void VidStor::SerializeWithCachedSizes(
       4, this->strport(), output);
   }
 
-  // optional string strUser = 5;
+  // string strUser = 5;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -7136,7 +7075,7 @@ void VidStor::SerializeWithCachedSizes(
       5, this->struser(), output);
   }
 
-  // optional string strPasswd = 6;
+  // string strPasswd = 6;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -7149,10 +7088,11 @@ void VidStor::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidStor)
 }
 
-::google::protobuf::uint8* VidStor::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidStor::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidStor)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -7163,7 +7103,7 @@ void VidStor::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -7174,7 +7114,7 @@ void VidStor::SerializeWithCachedSizes(
         2, this->strname(), target);
   }
 
-  // optional string strIP = 3;
+  // string strIP = 3;
   if (this->strip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strip().data(), this->strip().length(),
@@ -7185,7 +7125,7 @@ void VidStor::SerializeWithCachedSizes(
         3, this->strip(), target);
   }
 
-  // optional string strPort = 4;
+  // string strPort = 4;
   if (this->strport().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strport().data(), this->strport().length(),
@@ -7196,7 +7136,7 @@ void VidStor::SerializeWithCachedSizes(
         4, this->strport(), target);
   }
 
-  // optional string strUser = 5;
+  // string strUser = 5;
   if (this->struser().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->struser().data(), this->struser().length(),
@@ -7207,7 +7147,7 @@ void VidStor::SerializeWithCachedSizes(
         5, this->struser(), target);
   }
 
-  // optional string strPasswd = 6;
+  // string strPasswd = 6;
   if (this->strpasswd().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strpasswd().data(), this->strpasswd().length(),
@@ -7222,71 +7162,78 @@ void VidStor::SerializeWithCachedSizes(
   return target;
 }
 
-int VidStor::ByteSize() const {
-  int total_size = 0;
+size_t VidStor::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidStor)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // optional string strIP = 3;
+  // string strIP = 3;
   if (this->strip().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strip());
   }
 
-  // optional string strPort = 4;
+  // string strPort = 4;
   if (this->strport().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strport());
   }
 
-  // optional string strUser = 5;
+  // string strUser = 5;
   if (this->struser().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->struser());
   }
 
-  // optional string strPasswd = 6;
+  // string strPasswd = 6;
   if (this->strpasswd().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strpasswd());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidStor::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidStor* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidStor)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStor* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidStor>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidStor)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidStor)
     MergeFrom(*source);
   }
 }
 
 void VidStor::MergeFrom(const VidStor& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidStor)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -7314,19 +7261,20 @@ void VidStor::MergeFrom(const VidStor& from) {
 }
 
 void VidStor::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidStor)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidStor::CopyFrom(const VidStor& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidStor)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidStor::IsInitialized() const {
-
   return true;
 }
 
@@ -7341,55 +7289,60 @@ void VidStor::InternalSwap(VidStor* other) {
   strport_.Swap(&other->strport_);
   struser_.Swap(&other->struser_);
   strpasswd_.Swap(&other->strpasswd_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidStor::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidStor_descriptor_;
-  metadata.reflection = VidStor_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[10];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidStor
 
-// optional string strId = 1;
+// string strId = 1;
 void VidStor::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::strid() const {
+const ::std::string& VidStor::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidStor::set_strid(const ::std::string& value) {
+void VidStor::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strId)
 }
- void VidStor::set_strid(const char* value) {
+#if LANG_CXX11
+void VidStor::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strId)
+}
+#endif
+void VidStor::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strId)
 }
- void VidStor::set_strid(const char* value, size_t size) {
+void VidStor::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strId)
 }
- ::std::string* VidStor::mutable_strid() {
+::std::string* VidStor::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_strid() {
+::std::string* VidStor::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_strid(::std::string* strid) {
+void VidStor::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -7399,40 +7352,49 @@ void VidStor::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidStor::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::strname() const {
+const ::std::string& VidStor::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidStor::set_strname(const ::std::string& value) {
+void VidStor::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strName)
 }
- void VidStor::set_strname(const char* value) {
+#if LANG_CXX11
+void VidStor::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strName)
+}
+#endif
+void VidStor::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strName)
 }
- void VidStor::set_strname(const char* value, size_t size) {
+void VidStor::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strName)
 }
- ::std::string* VidStor::mutable_strname() {
+::std::string* VidStor::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_strname() {
+::std::string* VidStor::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_strname(::std::string* strname) {
+void VidStor::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -7442,40 +7404,49 @@ void VidStor::clear_strname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strName)
 }
 
-// optional string strIP = 3;
+// string strIP = 3;
 void VidStor::clear_strip() {
   strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::strip() const {
+const ::std::string& VidStor::strip() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strIP)
-  return strip_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strip_.GetNoArena();
 }
- void VidStor::set_strip(const ::std::string& value) {
+void VidStor::set_strip(const ::std::string& value) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strIP)
 }
- void VidStor::set_strip(const char* value) {
+#if LANG_CXX11
+void VidStor::set_strip(::std::string&& value) {
+  
+  strip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strIP)
+}
+#endif
+void VidStor::set_strip(const char* value) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strIP)
 }
- void VidStor::set_strip(const char* value, size_t size) {
+void VidStor::set_strip(const char* value, size_t size) {
   
   strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strIP)
 }
- ::std::string* VidStor::mutable_strip() {
+::std::string* VidStor::mutable_strip() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strIP)
   return strip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_strip() {
+::std::string* VidStor::release_strip() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strIP)
   
   return strip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_strip(::std::string* strip) {
+void VidStor::set_allocated_strip(::std::string* strip) {
   if (strip != NULL) {
     
   } else {
@@ -7485,40 +7456,49 @@ void VidStor::clear_strip() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strIP)
 }
 
-// optional string strPort = 4;
+// string strPort = 4;
 void VidStor::clear_strport() {
   strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::strport() const {
+const ::std::string& VidStor::strport() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strPort)
-  return strport_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strport_.GetNoArena();
 }
- void VidStor::set_strport(const ::std::string& value) {
+void VidStor::set_strport(const ::std::string& value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strPort)
 }
- void VidStor::set_strport(const char* value) {
+#if LANG_CXX11
+void VidStor::set_strport(::std::string&& value) {
+  
+  strport_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strPort)
+}
+#endif
+void VidStor::set_strport(const char* value) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strPort)
 }
- void VidStor::set_strport(const char* value, size_t size) {
+void VidStor::set_strport(const char* value, size_t size) {
   
   strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strPort)
 }
- ::std::string* VidStor::mutable_strport() {
+::std::string* VidStor::mutable_strport() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strPort)
   return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_strport() {
+::std::string* VidStor::release_strport() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strPort)
   
   return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_strport(::std::string* strport) {
+void VidStor::set_allocated_strport(::std::string* strport) {
   if (strport != NULL) {
     
   } else {
@@ -7528,40 +7508,49 @@ void VidStor::clear_strport() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strPort)
 }
 
-// optional string strUser = 5;
+// string strUser = 5;
 void VidStor::clear_struser() {
   struser_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::struser() const {
+const ::std::string& VidStor::struser() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strUser)
-  return struser_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return struser_.GetNoArena();
 }
- void VidStor::set_struser(const ::std::string& value) {
+void VidStor::set_struser(const ::std::string& value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strUser)
 }
- void VidStor::set_struser(const char* value) {
+#if LANG_CXX11
+void VidStor::set_struser(::std::string&& value) {
+  
+  struser_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strUser)
+}
+#endif
+void VidStor::set_struser(const char* value) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strUser)
 }
- void VidStor::set_struser(const char* value, size_t size) {
+void VidStor::set_struser(const char* value, size_t size) {
   
   struser_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strUser)
 }
- ::std::string* VidStor::mutable_struser() {
+::std::string* VidStor::mutable_struser() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strUser)
   return struser_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_struser() {
+::std::string* VidStor::release_struser() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strUser)
   
   return struser_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_struser(::std::string* struser) {
+void VidStor::set_allocated_struser(::std::string* struser) {
   if (struser != NULL) {
     
   } else {
@@ -7571,40 +7560,49 @@ void VidStor::clear_struser() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStor.strUser)
 }
 
-// optional string strPasswd = 6;
+// string strPasswd = 6;
 void VidStor::clear_strpasswd() {
   strpasswd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStor::strpasswd() const {
+const ::std::string& VidStor::strpasswd() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStor.strPasswd)
-  return strpasswd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strpasswd_.GetNoArena();
 }
- void VidStor::set_strpasswd(const ::std::string& value) {
+void VidStor::set_strpasswd(const ::std::string& value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStor.strPasswd)
 }
- void VidStor::set_strpasswd(const char* value) {
+#if LANG_CXX11
+void VidStor::set_strpasswd(::std::string&& value) {
+  
+  strpasswd_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStor.strPasswd)
+}
+#endif
+void VidStor::set_strpasswd(const char* value) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStor.strPasswd)
 }
- void VidStor::set_strpasswd(const char* value, size_t size) {
+void VidStor::set_strpasswd(const char* value, size_t size) {
   
   strpasswd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStor.strPasswd)
 }
- ::std::string* VidStor::mutable_strpasswd() {
+::std::string* VidStor::mutable_strpasswd() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStor.strPasswd)
   return strpasswd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStor::release_strpasswd() {
+::std::string* VidStor::release_strpasswd() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStor.strPasswd)
   
   return strpasswd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStor::set_allocated_strpasswd(::std::string* strpasswd) {
+void VidStor::set_allocated_strpasswd(::std::string* strpasswd) {
   if (strpasswd != NULL) {
     
   } else {
@@ -7618,30 +7616,28 @@ void VidStor::clear_strpasswd() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidStorList::kCVidStorFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidStorList::VidStorList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidStorList)
 }
-
-void VidStorList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidStorList::VidStorList(const VidStorList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidstor_(from.cvidstor_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidStorList)
 }
 
 void VidStorList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -7651,8 +7647,6 @@ VidStorList::~VidStorList() {
 }
 
 void VidStorList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidStorList::SetCachedSize(int size) const {
@@ -7661,16 +7655,14 @@ void VidStorList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidStorList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidStorList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[11].descriptor;
 }
 
 const VidStorList& VidStorList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidStorList* VidStorList::default_instance_ = NULL;
 
 VidStorList* VidStorList::New(::google::protobuf::Arena* arena) const {
   VidStorList* n = new VidStorList;
@@ -7681,32 +7673,30 @@ VidStorList* VidStorList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidStorList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidStorList)
   cvidstor_.Clear();
 }
 
 bool VidStorList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidStorList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidStor cVidStor = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidStor:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidstor()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidStor;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -7743,68 +7733,80 @@ void VidStorList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidStorList)
 }
 
-::google::protobuf::uint8* VidStorList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidStorList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidStorList)
   // repeated .VidConf.VidStor cVidStor = 1;
   for (unsigned int i = 0, n = this->cvidstor_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidstor(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidstor(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidStorList)
   return target;
 }
 
-int VidStorList::ByteSize() const {
-  int total_size = 0;
+size_t VidStorList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidStorList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidStor cVidStor = 1;
-  total_size += 1 * this->cvidstor_size();
-  for (int i = 0; i < this->cvidstor_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidstor(i));
+  {
+    unsigned int count = this->cvidstor_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidstor(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidStorList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidStorList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidStorList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStorList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidStorList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidStorList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidStorList)
     MergeFrom(*source);
   }
 }
 
 void VidStorList::MergeFrom(const VidStorList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidStorList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidstor_.MergeFrom(from.cvidstor_);
 }
 
 void VidStorList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidStorList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidStorList::CopyFrom(const VidStorList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidStorList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidStorList::IsInitialized() const {
-
   return true;
 }
 
@@ -7814,16 +7816,12 @@ void VidStorList::Swap(VidStorList* other) {
 }
 void VidStorList::InternalSwap(VidStorList* other) {
   cvidstor_.UnsafeArenaSwap(&other->cvidstor_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidStorList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidStorList_descriptor_;
-  metadata.reflection = VidStorList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[11];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -7863,37 +7861,40 @@ VidStorList::cvidstor() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidViewWindow::kCIdFieldNumber;
 const int VidViewWindow::kNWindowsIdFieldNumber;
 const int VidViewWindow::kBHWAccelFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidViewWindow::VidViewWindow()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidViewWindow)
 }
-
-void VidViewWindow::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-  cid_ = const_cast< ::VidConf::VidCameraId*>(&::VidConf::VidCameraId::default_instance());
-}
-
 VidViewWindow::VidViewWindow(const VidViewWindow& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_cid()) {
+    cid_ = new ::VidConf::VidCameraId(*from.cid_);
+  } else {
+    cid_ = NULL;
+  }
+  ::memcpy(&nwindowsid_, &from.nwindowsid_,
+    reinterpret_cast<char*>(&bhwaccel_) -
+    reinterpret_cast<char*>(&nwindowsid_) + sizeof(bhwaccel_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidViewWindow)
 }
 
 void VidViewWindow::SharedCtor() {
-    _is_default_instance_ = false;
+  ::memset(&cid_, 0, reinterpret_cast<char*>(&bhwaccel_) -
+    reinterpret_cast<char*>(&cid_) + sizeof(bhwaccel_));
   _cached_size_ = 0;
-  cid_ = NULL;
-  nwindowsid_ = 0;
-  bhwaccel_ = false;
 }
 
 VidViewWindow::~VidViewWindow() {
@@ -7902,7 +7903,7 @@ VidViewWindow::~VidViewWindow() {
 }
 
 void VidViewWindow::SharedDtor() {
-  if (this != default_instance_) {
+  if (this != internal_default_instance()) {
     delete cid_;
   }
 }
@@ -7913,16 +7914,14 @@ void VidViewWindow::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidViewWindow::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidViewWindow_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[12].descriptor;
 }
 
 const VidViewWindow& VidViewWindow::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidViewWindow* VidViewWindow::default_instance_ = NULL;
 
 VidViewWindow* VidViewWindow::New(::google::protobuf::Arena* arena) const {
   VidViewWindow* n = new VidViewWindow;
@@ -7933,72 +7932,59 @@ VidViewWindow* VidViewWindow::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidViewWindow::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidViewWindow*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(nwindowsid_, bhwaccel_);
-  if (GetArenaNoVirtual() == NULL && cid_ != NULL) delete cid_;
+// @@protoc_insertion_point(message_clear_start:VidConf.VidViewWindow)
+  if (GetArenaNoVirtual() == NULL && cid_ != NULL) {
+    delete cid_;
+  }
   cid_ = NULL;
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&nwindowsid_, 0, reinterpret_cast<char*>(&bhwaccel_) -
+    reinterpret_cast<char*>(&nwindowsid_) + sizeof(bhwaccel_));
 }
 
 bool VidViewWindow::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidViewWindow)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .VidConf.VidCameraId cId = 1;
+      // .VidConf.VidCameraId cId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_cid()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_nWindowsId;
         break;
       }
 
-      // optional int32 nWindowsId = 2;
+      // int32 nWindowsId = 2;
       case 2: {
-        if (tag == 16) {
-         parse_nWindowsId:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nwindowsid_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_bHWAccel;
         break;
       }
 
-      // optional bool bHWAccel = 3;
+      // bool bHWAccel = 3;
       case 3: {
-        if (tag == 24) {
-         parse_bHWAccel:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bhwaccel_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -8026,18 +8012,18 @@ failure:
 void VidViewWindow::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidViewWindow)
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cid_, output);
   }
 
-  // optional int32 nWindowsId = 2;
+  // int32 nWindowsId = 2;
   if (this->nwindowsid() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->nwindowsid(), output);
   }
 
-  // optional bool bHWAccel = 3;
+  // bool bHWAccel = 3;
   if (this->bhwaccel() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->bhwaccel(), output);
   }
@@ -8045,22 +8031,23 @@ void VidViewWindow::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidViewWindow)
 }
 
-::google::protobuf::uint8* VidViewWindow::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidViewWindow::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidViewWindow)
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, *this->cid_, target);
+      InternalWriteMessageNoVirtualToArray(
+        1, *this->cid_, false, target);
   }
 
-  // optional int32 nWindowsId = 2;
+  // int32 nWindowsId = 2;
   if (this->nwindowsid() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->nwindowsid(), target);
   }
 
-  // optional bool bHWAccel = 3;
+  // bool bHWAccel = 3;
   if (this->bhwaccel() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->bhwaccel(), target);
   }
@@ -8069,48 +8056,55 @@ void VidViewWindow::SerializeWithCachedSizes(
   return target;
 }
 
-int VidViewWindow::ByteSize() const {
-  int total_size = 0;
+size_t VidViewWindow::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidViewWindow)
+  size_t total_size = 0;
 
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->cid_);
   }
 
-  // optional int32 nWindowsId = 2;
+  // int32 nWindowsId = 2;
   if (this->nwindowsid() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->nwindowsid());
   }
 
-  // optional bool bHWAccel = 3;
+  // bool bHWAccel = 3;
   if (this->bhwaccel() != 0) {
     total_size += 1 + 1;
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidViewWindow::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidViewWindow* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidViewWindow)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidViewWindow* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidViewWindow>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidViewWindow)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidViewWindow)
     MergeFrom(*source);
   }
 }
 
 void VidViewWindow::MergeFrom(const VidViewWindow& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidViewWindow)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cid()) {
     mutable_cid()->::VidConf::VidCameraId::MergeFrom(from.cid());
   }
@@ -8123,19 +8117,20 @@ void VidViewWindow::MergeFrom(const VidViewWindow& from) {
 }
 
 void VidViewWindow::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidViewWindow)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidViewWindow::CopyFrom(const VidViewWindow& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidViewWindow)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidViewWindow::IsInitialized() const {
-
   return true;
 }
 
@@ -8147,24 +8142,20 @@ void VidViewWindow::InternalSwap(VidViewWindow* other) {
   std::swap(cid_, other->cid_);
   std::swap(nwindowsid_, other->nwindowsid_);
   std::swap(bhwaccel_, other->bhwaccel_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidViewWindow::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidViewWindow_descriptor_;
-  metadata.reflection = VidViewWindow_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[12];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidViewWindow
 
-// optional .VidConf.VidCameraId cId = 1;
+// .VidConf.VidCameraId cId = 1;
 bool VidViewWindow::has_cid() const {
-  return !_is_default_instance_ && cid_ != NULL;
+  return this != internal_default_instance() && cid_ != NULL;
 }
 void VidViewWindow::clear_cid() {
   if (GetArenaNoVirtual() == NULL && cid_ != NULL) delete cid_;
@@ -8172,7 +8163,8 @@ void VidViewWindow::clear_cid() {
 }
 const ::VidConf::VidCameraId& VidViewWindow::cid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidViewWindow.cId)
-  return cid_ != NULL ? *cid_ : *default_instance_->cid_;
+  return cid_ != NULL ? *cid_
+                         : *::VidConf::VidCameraId::internal_default_instance();
 }
 ::VidConf::VidCameraId* VidViewWindow::mutable_cid() {
   
@@ -8183,6 +8175,7 @@ const ::VidConf::VidCameraId& VidViewWindow::cid() const {
   return cid_;
 }
 ::VidConf::VidCameraId* VidViewWindow::release_cid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidViewWindow.cId)
   
   ::VidConf::VidCameraId* temp = cid_;
   cid_ = NULL;
@@ -8199,29 +8192,29 @@ void VidViewWindow::set_allocated_cid(::VidConf::VidCameraId* cid) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidViewWindow.cId)
 }
 
-// optional int32 nWindowsId = 2;
+// int32 nWindowsId = 2;
 void VidViewWindow::clear_nwindowsid() {
   nwindowsid_ = 0;
 }
- ::google::protobuf::int32 VidViewWindow::nwindowsid() const {
+::google::protobuf::int32 VidViewWindow::nwindowsid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidViewWindow.nWindowsId)
   return nwindowsid_;
 }
- void VidViewWindow::set_nwindowsid(::google::protobuf::int32 value) {
+void VidViewWindow::set_nwindowsid(::google::protobuf::int32 value) {
   
   nwindowsid_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidViewWindow.nWindowsId)
 }
 
-// optional bool bHWAccel = 3;
+// bool bHWAccel = 3;
 void VidViewWindow::clear_bhwaccel() {
   bhwaccel_ = false;
 }
- bool VidViewWindow::bhwaccel() const {
+bool VidViewWindow::bhwaccel() const {
   // @@protoc_insertion_point(field_get:VidConf.VidViewWindow.bHWAccel)
   return bhwaccel_;
 }
- void VidViewWindow::set_bhwaccel(bool value) {
+void VidViewWindow::set_bhwaccel(bool value) {
   
   bhwaccel_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidViewWindow.bHWAccel)
@@ -8231,38 +8224,44 @@ void VidViewWindow::clear_bhwaccel() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidView::kStrIdFieldNumber;
 const int VidView::kStrNameFieldNumber;
 const int VidView::kCViewFieldNumber;
 const int VidView::kCLayoutFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidView::VidView()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidView)
 }
-
-void VidView::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidView::VidView(const VidView& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cview_(from.cview_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
+  clayout_ = from.clayout_;
   // @@protoc_insertion_point(copy_constructor:VidConf.VidView)
 }
 
 void VidView::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   clayout_ = 0;
+  _cached_size_ = 0;
 }
 
 VidView::~VidView() {
@@ -8273,8 +8272,6 @@ VidView::~VidView() {
 void VidView::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidView::SetCachedSize(int size) const {
@@ -8283,16 +8280,14 @@ void VidView::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidView::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidView_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[13].descriptor;
 }
 
 const VidView& VidView::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidView* VidView::default_instance_ = NULL;
 
 VidView* VidView::New(::google::protobuf::Arena* arena) const {
   VidView* n = new VidView;
@@ -8303,25 +8298,26 @@ VidView* VidView::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidView::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidView)
+  cview_.Clear();
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   clayout_ = 0;
-  cview_.Clear();
 }
 
 bool VidView::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidView)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -8331,14 +8327,12 @@ bool VidView::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -8348,31 +8342,25 @@ bool VidView::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_cView;
         break;
       }
 
       // repeated .VidConf.VidViewWindow cView = 3;
       case 3: {
-        if (tag == 26) {
-         parse_cView:
+        if (tag == 26u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cView:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cview()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_loop_cView;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectTag(32)) goto parse_cLayout;
         break;
       }
 
-      // optional .VidConf.VidLayout cLayout = 4;
+      // .VidConf.VidLayout cLayout = 4;
       case 4: {
-        if (tag == 32) {
-         parse_cLayout:
+        if (tag == 32u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -8381,7 +8369,6 @@ bool VidView::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -8409,7 +8396,7 @@ failure:
 void VidView::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidView)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -8419,7 +8406,7 @@ void VidView::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -8435,7 +8422,7 @@ void VidView::SerializeWithCachedSizes(
       3, this->cview(i), output);
   }
 
-  // optional .VidConf.VidLayout cLayout = 4;
+  // .VidConf.VidLayout cLayout = 4;
   if (this->clayout() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       4, this->clayout(), output);
@@ -8444,10 +8431,11 @@ void VidView::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidView)
 }
 
-::google::protobuf::uint8* VidView::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidView::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidView)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -8458,7 +8446,7 @@ void VidView::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -8472,11 +8460,11 @@ void VidView::SerializeWithCachedSizes(
   // repeated .VidConf.VidViewWindow cView = 3;
   for (unsigned int i = 0, n = this->cview_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        3, this->cview(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        3, this->cview(i), false, target);
   }
 
-  // optional .VidConf.VidLayout cLayout = 4;
+  // .VidConf.VidLayout cLayout = 4;
   if (this->clayout() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       4, this->clayout(), target);
@@ -8486,57 +8474,67 @@ void VidView::SerializeWithCachedSizes(
   return target;
 }
 
-int VidView::ByteSize() const {
-  int total_size = 0;
+size_t VidView::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidView)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // repeated .VidConf.VidViewWindow cView = 3;
+  {
+    unsigned int count = this->cview_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cview(i));
+    }
+  }
+
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // optional .VidConf.VidLayout cLayout = 4;
+  // .VidConf.VidLayout cLayout = 4;
   if (this->clayout() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->clayout());
   }
 
-  // repeated .VidConf.VidViewWindow cView = 3;
-  total_size += 1 * this->cview_size();
-  for (int i = 0; i < this->cview_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cview(i));
-  }
-
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidView::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidView* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidView)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidView* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidView>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidView)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidView)
     MergeFrom(*source);
   }
 }
 
 void VidView::MergeFrom(const VidView& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidView)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cview_.MergeFrom(from.cview_);
   if (from.strid().size() > 0) {
 
@@ -8552,19 +8550,20 @@ void VidView::MergeFrom(const VidView& from) {
 }
 
 void VidView::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidView)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidView::CopyFrom(const VidView& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidView)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidView::IsInitialized() const {
-
   return true;
 }
 
@@ -8573,59 +8572,64 @@ void VidView::Swap(VidView* other) {
   InternalSwap(other);
 }
 void VidView::InternalSwap(VidView* other) {
+  cview_.UnsafeArenaSwap(&other->cview_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
-  cview_.UnsafeArenaSwap(&other->cview_);
   std::swap(clayout_, other->clayout_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidView::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidView_descriptor_;
-  metadata.reflection = VidView_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[13];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidView
 
-// optional string strId = 1;
+// string strId = 1;
 void VidView::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidView::strid() const {
+const ::std::string& VidView::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidView.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidView::set_strid(const ::std::string& value) {
+void VidView::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidView.strId)
 }
- void VidView::set_strid(const char* value) {
+#if LANG_CXX11
+void VidView::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidView.strId)
+}
+#endif
+void VidView::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidView.strId)
 }
- void VidView::set_strid(const char* value, size_t size) {
+void VidView::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidView.strId)
 }
- ::std::string* VidView::mutable_strid() {
+::std::string* VidView::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidView.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidView::release_strid() {
+::std::string* VidView::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidView.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidView::set_allocated_strid(::std::string* strid) {
+void VidView::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -8635,40 +8639,49 @@ void VidView::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidView.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidView::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidView::strname() const {
+const ::std::string& VidView::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidView.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidView::set_strname(const ::std::string& value) {
+void VidView::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidView.strName)
 }
- void VidView::set_strname(const char* value) {
+#if LANG_CXX11
+void VidView::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidView.strName)
+}
+#endif
+void VidView::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidView.strName)
 }
- void VidView::set_strname(const char* value, size_t size) {
+void VidView::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidView.strName)
 }
- ::std::string* VidView::mutable_strname() {
+::std::string* VidView::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidView.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidView::release_strname() {
+::std::string* VidView::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidView.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidView::set_allocated_strname(::std::string* strname) {
+void VidView::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -8708,15 +8721,15 @@ VidView::cview() const {
   return cview_;
 }
 
-// optional .VidConf.VidLayout cLayout = 4;
+// .VidConf.VidLayout cLayout = 4;
 void VidView::clear_clayout() {
   clayout_ = 0;
 }
- ::VidConf::VidLayout VidView::clayout() const {
+::VidConf::VidLayout VidView::clayout() const {
   // @@protoc_insertion_point(field_get:VidConf.VidView.cLayout)
   return static_cast< ::VidConf::VidLayout >(clayout_);
 }
- void VidView::set_clayout(::VidConf::VidLayout value) {
+void VidView::set_clayout(::VidConf::VidLayout value) {
   
   clayout_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidView.cLayout)
@@ -8726,30 +8739,28 @@ void VidView::clear_clayout() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidViewList::kCVidViewFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidViewList::VidViewList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidViewList)
 }
-
-void VidViewList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidViewList::VidViewList(const VidViewList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidview_(from.cvidview_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidViewList)
 }
 
 void VidViewList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -8759,8 +8770,6 @@ VidViewList::~VidViewList() {
 }
 
 void VidViewList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidViewList::SetCachedSize(int size) const {
@@ -8769,16 +8778,14 @@ void VidViewList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidViewList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidViewList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[14].descriptor;
 }
 
 const VidViewList& VidViewList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidViewList* VidViewList::default_instance_ = NULL;
 
 VidViewList* VidViewList::New(::google::protobuf::Arena* arena) const {
   VidViewList* n = new VidViewList;
@@ -8789,32 +8796,30 @@ VidViewList* VidViewList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidViewList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidViewList)
   cvidview_.Clear();
 }
 
 bool VidViewList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidViewList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidView cVidView = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidView:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidview()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidView;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -8851,68 +8856,80 @@ void VidViewList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidViewList)
 }
 
-::google::protobuf::uint8* VidViewList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidViewList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidViewList)
   // repeated .VidConf.VidView cVidView = 1;
   for (unsigned int i = 0, n = this->cvidview_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidview(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidview(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidViewList)
   return target;
 }
 
-int VidViewList::ByteSize() const {
-  int total_size = 0;
+size_t VidViewList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidViewList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidView cVidView = 1;
-  total_size += 1 * this->cvidview_size();
-  for (int i = 0; i < this->cvidview_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidview(i));
+  {
+    unsigned int count = this->cvidview_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidview(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidViewList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidViewList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidViewList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidViewList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidViewList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidViewList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidViewList)
     MergeFrom(*source);
   }
 }
 
 void VidViewList::MergeFrom(const VidViewList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidViewList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidview_.MergeFrom(from.cvidview_);
 }
 
 void VidViewList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidViewList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidViewList::CopyFrom(const VidViewList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidViewList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidViewList::IsInitialized() const {
-
   return true;
 }
 
@@ -8922,16 +8939,12 @@ void VidViewList::Swap(VidViewList* other) {
 }
 void VidViewList::InternalSwap(VidViewList* other) {
   cvidview_.UnsafeArenaSwap(&other->cvidview_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidViewList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidViewList_descriptor_;
-  metadata.reflection = VidViewList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[14];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -8971,36 +8984,41 @@ VidViewList::cvidview() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidTour::kStrIdFieldNumber;
 const int VidTour::kStrNameFieldNumber;
 const int VidTour::kStrViewFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidTour::VidTour()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidTour)
 }
-
-void VidTour::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidTour::VidTour(const VidTour& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      strview_(from.strview_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidTour)
 }
 
 void VidTour::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidTour::~VidTour() {
@@ -9011,8 +9029,6 @@ VidTour::~VidTour() {
 void VidTour::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidTour::SetCachedSize(int size) const {
@@ -9021,16 +9037,14 @@ void VidTour::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidTour::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidTour_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[15].descriptor;
 }
 
 const VidTour& VidTour::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidTour* VidTour::default_instance_ = NULL;
 
 VidTour* VidTour::New(::google::protobuf::Arena* arena) const {
   VidTour* n = new VidTour;
@@ -9041,24 +9055,25 @@ VidTour* VidTour::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidTour::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidTour)
+  strview_.Clear();
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strview_.Clear();
 }
 
 bool VidTour::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidTour)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -9068,14 +9083,12 @@ bool VidTour::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -9085,14 +9098,12 @@ bool VidTour::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strView;
         break;
       }
 
       // repeated string strView = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strView:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->add_strview()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -9103,8 +9114,6 @@ bool VidTour::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strView;
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -9132,7 +9141,7 @@ failure:
 void VidTour::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidTour)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -9142,7 +9151,7 @@ void VidTour::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -9165,10 +9174,11 @@ void VidTour::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidTour)
 }
 
-::google::protobuf::uint8* VidTour::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidTour::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidTour)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -9179,7 +9189,7 @@ void VidTour::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -9204,50 +9214,58 @@ void VidTour::SerializeWithCachedSizes(
   return target;
 }
 
-int VidTour::ByteSize() const {
-  int total_size = 0;
+size_t VidTour::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidTour)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // repeated string strView = 3;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->strview_size());
+  for (int i = 0; i < this->strview_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->strview(i));
+  }
+
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // repeated string strView = 3;
-  total_size += 1 * this->strview_size();
-  for (int i = 0; i < this->strview_size(); i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->strview(i));
-  }
-
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidTour::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidTour* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidTour)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidTour* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidTour>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidTour)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidTour)
     MergeFrom(*source);
   }
 }
 
 void VidTour::MergeFrom(const VidTour& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidTour)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   strview_.MergeFrom(from.strview_);
   if (from.strid().size() > 0) {
 
@@ -9260,19 +9278,20 @@ void VidTour::MergeFrom(const VidTour& from) {
 }
 
 void VidTour::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidTour)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidTour::CopyFrom(const VidTour& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidTour)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidTour::IsInitialized() const {
-
   return true;
 }
 
@@ -9281,58 +9300,63 @@ void VidTour::Swap(VidTour* other) {
   InternalSwap(other);
 }
 void VidTour::InternalSwap(VidTour* other) {
+  strview_.UnsafeArenaSwap(&other->strview_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
-  strview_.UnsafeArenaSwap(&other->strview_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidTour::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidTour_descriptor_;
-  metadata.reflection = VidTour_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[15];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidTour
 
-// optional string strId = 1;
+// string strId = 1;
 void VidTour::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidTour::strid() const {
+const ::std::string& VidTour::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidTour.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidTour::set_strid(const ::std::string& value) {
+void VidTour::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidTour.strId)
 }
- void VidTour::set_strid(const char* value) {
+#if LANG_CXX11
+void VidTour::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidTour.strId)
+}
+#endif
+void VidTour::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidTour.strId)
 }
- void VidTour::set_strid(const char* value, size_t size) {
+void VidTour::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidTour.strId)
 }
- ::std::string* VidTour::mutable_strid() {
+::std::string* VidTour::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidTour.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidTour::release_strid() {
+::std::string* VidTour::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidTour.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidTour::set_allocated_strid(::std::string* strid) {
+void VidTour::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -9342,40 +9366,49 @@ void VidTour::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidTour.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidTour::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidTour::strname() const {
+const ::std::string& VidTour::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidTour.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidTour::set_strname(const ::std::string& value) {
+void VidTour::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidTour.strName)
 }
- void VidTour::set_strname(const char* value) {
+#if LANG_CXX11
+void VidTour::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidTour.strName)
+}
+#endif
+void VidTour::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidTour.strName)
 }
- void VidTour::set_strname(const char* value, size_t size) {
+void VidTour::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidTour.strName)
 }
- ::std::string* VidTour::mutable_strname() {
+::std::string* VidTour::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidTour.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidTour::release_strname() {
+::std::string* VidTour::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidTour.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidTour::set_allocated_strname(::std::string* strname) {
+void VidTour::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -9392,48 +9425,49 @@ int VidTour::strview_size() const {
 void VidTour::clear_strview() {
   strview_.Clear();
 }
- const ::std::string& VidTour::strview(int index) const {
+const ::std::string& VidTour::strview(int index) const {
   // @@protoc_insertion_point(field_get:VidConf.VidTour.strView)
   return strview_.Get(index);
 }
- ::std::string* VidTour::mutable_strview(int index) {
+::std::string* VidTour::mutable_strview(int index) {
   // @@protoc_insertion_point(field_mutable:VidConf.VidTour.strView)
   return strview_.Mutable(index);
 }
- void VidTour::set_strview(int index, const ::std::string& value) {
+void VidTour::set_strview(int index, const ::std::string& value) {
   // @@protoc_insertion_point(field_set:VidConf.VidTour.strView)
   strview_.Mutable(index)->assign(value);
 }
- void VidTour::set_strview(int index, const char* value) {
+void VidTour::set_strview(int index, const char* value) {
   strview_.Mutable(index)->assign(value);
   // @@protoc_insertion_point(field_set_char:VidConf.VidTour.strView)
 }
- void VidTour::set_strview(int index, const char* value, size_t size) {
+void VidTour::set_strview(int index, const char* value, size_t size) {
   strview_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidTour.strView)
 }
- ::std::string* VidTour::add_strview() {
+::std::string* VidTour::add_strview() {
+  // @@protoc_insertion_point(field_add_mutable:VidConf.VidTour.strView)
   return strview_.Add();
 }
- void VidTour::add_strview(const ::std::string& value) {
+void VidTour::add_strview(const ::std::string& value) {
   strview_.Add()->assign(value);
   // @@protoc_insertion_point(field_add:VidConf.VidTour.strView)
 }
- void VidTour::add_strview(const char* value) {
+void VidTour::add_strview(const char* value) {
   strview_.Add()->assign(value);
   // @@protoc_insertion_point(field_add_char:VidConf.VidTour.strView)
 }
- void VidTour::add_strview(const char* value, size_t size) {
+void VidTour::add_strview(const char* value, size_t size) {
   strview_.Add()->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_add_pointer:VidConf.VidTour.strView)
 }
- const ::google::protobuf::RepeatedPtrField< ::std::string>&
+const ::google::protobuf::RepeatedPtrField< ::std::string>&
 VidTour::strview() const {
   // @@protoc_insertion_point(field_list:VidConf.VidTour.strView)
   return strview_;
 }
- ::google::protobuf::RepeatedPtrField< ::std::string>*
+::google::protobuf::RepeatedPtrField< ::std::string>*
 VidTour::mutable_strview() {
   // @@protoc_insertion_point(field_mutable_list:VidConf.VidTour.strView)
   return &strview_;
@@ -9443,30 +9477,28 @@ VidTour::mutable_strview() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidTourList::kCVidTourFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidTourList::VidTourList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidTourList)
 }
-
-void VidTourList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidTourList::VidTourList(const VidTourList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidtour_(from.cvidtour_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidTourList)
 }
 
 void VidTourList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -9476,8 +9508,6 @@ VidTourList::~VidTourList() {
 }
 
 void VidTourList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidTourList::SetCachedSize(int size) const {
@@ -9486,16 +9516,14 @@ void VidTourList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidTourList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidTourList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[16].descriptor;
 }
 
 const VidTourList& VidTourList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidTourList* VidTourList::default_instance_ = NULL;
 
 VidTourList* VidTourList::New(::google::protobuf::Arena* arena) const {
   VidTourList* n = new VidTourList;
@@ -9506,32 +9534,30 @@ VidTourList* VidTourList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidTourList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidTourList)
   cvidtour_.Clear();
 }
 
 bool VidTourList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidTourList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidTour cVidTour = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidTour:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidtour()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidTour;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -9568,68 +9594,80 @@ void VidTourList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidTourList)
 }
 
-::google::protobuf::uint8* VidTourList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidTourList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidTourList)
   // repeated .VidConf.VidTour cVidTour = 1;
   for (unsigned int i = 0, n = this->cvidtour_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidtour(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidtour(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidTourList)
   return target;
 }
 
-int VidTourList::ByteSize() const {
-  int total_size = 0;
+size_t VidTourList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidTourList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidTour cVidTour = 1;
-  total_size += 1 * this->cvidtour_size();
-  for (int i = 0; i < this->cvidtour_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidtour(i));
+  {
+    unsigned int count = this->cvidtour_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidtour(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidTourList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidTourList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidTourList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidTourList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidTourList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidTourList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidTourList)
     MergeFrom(*source);
   }
 }
 
 void VidTourList::MergeFrom(const VidTourList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidTourList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidtour_.MergeFrom(from.cvidtour_);
 }
 
 void VidTourList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidTourList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidTourList::CopyFrom(const VidTourList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidTourList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidTourList::IsInitialized() const {
-
   return true;
 }
 
@@ -9639,16 +9677,12 @@ void VidTourList::Swap(VidTourList* other) {
 }
 void VidTourList::InternalSwap(VidTourList* other) {
   cvidtour_.UnsafeArenaSwap(&other->cvidtour_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidTourList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidTourList_descriptor_;
-  metadata.reflection = VidTourList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[16];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -9688,36 +9722,41 @@ VidTourList::cvidtour() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidGroup::kStrIdFieldNumber;
 const int VidGroup::kStrNameFieldNumber;
 const int VidGroup::kCGroupFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidGroup::VidGroup()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidGroup)
 }
-
-void VidGroup::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidGroup::VidGroup(const VidGroup& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cgroup_(from.cgroup_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidGroup)
 }
 
 void VidGroup::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidGroup::~VidGroup() {
@@ -9728,8 +9767,6 @@ VidGroup::~VidGroup() {
 void VidGroup::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidGroup::SetCachedSize(int size) const {
@@ -9738,16 +9775,14 @@ void VidGroup::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidGroup::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidGroup_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[17].descriptor;
 }
 
 const VidGroup& VidGroup::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidGroup* VidGroup::default_instance_ = NULL;
 
 VidGroup* VidGroup::New(::google::protobuf::Arena* arena) const {
   VidGroup* n = new VidGroup;
@@ -9758,24 +9793,25 @@ VidGroup* VidGroup::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidGroup::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidGroup)
+  cgroup_.Clear();
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  cgroup_.Clear();
 }
 
 bool VidGroup::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidGroup)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -9785,14 +9821,12 @@ bool VidGroup::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -9802,24 +9836,19 @@ bool VidGroup::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_cGroup;
         break;
       }
 
       // repeated .VidConf.VidCameraId cGroup = 3;
       case 3: {
-        if (tag == 26) {
-         parse_cGroup:
+        if (tag == 26u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cGroup:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cgroup()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_loop_cGroup;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -9847,7 +9876,7 @@ failure:
 void VidGroup::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidGroup)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -9857,7 +9886,7 @@ void VidGroup::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -9876,10 +9905,11 @@ void VidGroup::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidGroup)
 }
 
-::google::protobuf::uint8* VidGroup::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidGroup::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidGroup)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -9890,7 +9920,7 @@ void VidGroup::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -9904,59 +9934,69 @@ void VidGroup::SerializeWithCachedSizes(
   // repeated .VidConf.VidCameraId cGroup = 3;
   for (unsigned int i = 0, n = this->cgroup_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        3, this->cgroup(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        3, this->cgroup(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidGroup)
   return target;
 }
 
-int VidGroup::ByteSize() const {
-  int total_size = 0;
+size_t VidGroup::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidGroup)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // repeated .VidConf.VidCameraId cGroup = 3;
+  {
+    unsigned int count = this->cgroup_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cgroup(i));
+    }
+  }
+
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // repeated .VidConf.VidCameraId cGroup = 3;
-  total_size += 1 * this->cgroup_size();
-  for (int i = 0; i < this->cgroup_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cgroup(i));
-  }
-
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidGroup::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidGroup* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidGroup)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidGroup* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidGroup>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidGroup)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidGroup)
     MergeFrom(*source);
   }
 }
 
 void VidGroup::MergeFrom(const VidGroup& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidGroup)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cgroup_.MergeFrom(from.cgroup_);
   if (from.strid().size() > 0) {
 
@@ -9969,19 +10009,20 @@ void VidGroup::MergeFrom(const VidGroup& from) {
 }
 
 void VidGroup::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidGroup)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidGroup::CopyFrom(const VidGroup& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidGroup)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidGroup::IsInitialized() const {
-
   return true;
 }
 
@@ -9990,58 +10031,63 @@ void VidGroup::Swap(VidGroup* other) {
   InternalSwap(other);
 }
 void VidGroup::InternalSwap(VidGroup* other) {
+  cgroup_.UnsafeArenaSwap(&other->cgroup_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
-  cgroup_.UnsafeArenaSwap(&other->cgroup_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidGroup::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidGroup_descriptor_;
-  metadata.reflection = VidGroup_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[17];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidGroup
 
-// optional string strId = 1;
+// string strId = 1;
 void VidGroup::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidGroup::strid() const {
+const ::std::string& VidGroup::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidGroup.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidGroup::set_strid(const ::std::string& value) {
+void VidGroup::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidGroup.strId)
 }
- void VidGroup::set_strid(const char* value) {
+#if LANG_CXX11
+void VidGroup::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidGroup.strId)
+}
+#endif
+void VidGroup::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidGroup.strId)
 }
- void VidGroup::set_strid(const char* value, size_t size) {
+void VidGroup::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidGroup.strId)
 }
- ::std::string* VidGroup::mutable_strid() {
+::std::string* VidGroup::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidGroup.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidGroup::release_strid() {
+::std::string* VidGroup::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidGroup.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidGroup::set_allocated_strid(::std::string* strid) {
+void VidGroup::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -10051,40 +10097,49 @@ void VidGroup::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidGroup.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidGroup::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidGroup::strname() const {
+const ::std::string& VidGroup::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidGroup.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidGroup::set_strname(const ::std::string& value) {
+void VidGroup::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidGroup.strName)
 }
- void VidGroup::set_strname(const char* value) {
+#if LANG_CXX11
+void VidGroup::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidGroup.strName)
+}
+#endif
+void VidGroup::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidGroup.strName)
 }
- void VidGroup::set_strname(const char* value, size_t size) {
+void VidGroup::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidGroup.strName)
 }
- ::std::string* VidGroup::mutable_strname() {
+::std::string* VidGroup::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidGroup.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidGroup::release_strname() {
+::std::string* VidGroup::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidGroup.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidGroup::set_allocated_strname(::std::string* strname) {
+void VidGroup::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -10128,30 +10183,28 @@ VidGroup::cgroup() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidGroupList::kCVidGroupFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidGroupList::VidGroupList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidGroupList)
 }
-
-void VidGroupList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidGroupList::VidGroupList(const VidGroupList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidgroup_(from.cvidgroup_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidGroupList)
 }
 
 void VidGroupList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -10161,8 +10214,6 @@ VidGroupList::~VidGroupList() {
 }
 
 void VidGroupList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidGroupList::SetCachedSize(int size) const {
@@ -10171,16 +10222,14 @@ void VidGroupList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidGroupList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidGroupList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[18].descriptor;
 }
 
 const VidGroupList& VidGroupList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidGroupList* VidGroupList::default_instance_ = NULL;
 
 VidGroupList* VidGroupList::New(::google::protobuf::Arena* arena) const {
   VidGroupList* n = new VidGroupList;
@@ -10191,32 +10240,30 @@ VidGroupList* VidGroupList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidGroupList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidGroupList)
   cvidgroup_.Clear();
 }
 
 bool VidGroupList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidGroupList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidGroup cVidGroup = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidGroup:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidgroup()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidGroup;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -10253,68 +10300,80 @@ void VidGroupList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidGroupList)
 }
 
-::google::protobuf::uint8* VidGroupList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidGroupList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidGroupList)
   // repeated .VidConf.VidGroup cVidGroup = 1;
   for (unsigned int i = 0, n = this->cvidgroup_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidgroup(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidgroup(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidGroupList)
   return target;
 }
 
-int VidGroupList::ByteSize() const {
-  int total_size = 0;
+size_t VidGroupList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidGroupList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidGroup cVidGroup = 1;
-  total_size += 1 * this->cvidgroup_size();
-  for (int i = 0; i < this->cvidgroup_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidgroup(i));
+  {
+    unsigned int count = this->cvidgroup_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidgroup(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidGroupList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidGroupList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidGroupList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidGroupList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidGroupList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidGroupList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidGroupList)
     MergeFrom(*source);
   }
 }
 
 void VidGroupList::MergeFrom(const VidGroupList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidGroupList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidgroup_.MergeFrom(from.cvidgroup_);
 }
 
 void VidGroupList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidGroupList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidGroupList::CopyFrom(const VidGroupList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidGroupList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidGroupList::IsInitialized() const {
-
   return true;
 }
 
@@ -10324,16 +10383,12 @@ void VidGroupList::Swap(VidGroupList* other) {
 }
 void VidGroupList::InternalSwap(VidGroupList* other) {
   cvidgroup_.UnsafeArenaSwap(&other->cvidgroup_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidGroupList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidGroupList_descriptor_;
-  metadata.reflection = VidGroupList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[18];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -10373,41 +10428,42 @@ VidGroupList::cvidgroup() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidEmapCamera::kCIdFieldNumber;
 const int VidEmapCamera::kXFieldNumber;
 const int VidEmapCamera::kYFieldNumber;
 const int VidEmapCamera::kWFieldNumber;
 const int VidEmapCamera::kHFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidEmapCamera::VidEmapCamera()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidEmapCamera)
 }
-
-void VidEmapCamera::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-  cid_ = const_cast< ::VidConf::VidCameraId*>(&::VidConf::VidCameraId::default_instance());
-}
-
 VidEmapCamera::VidEmapCamera(const VidEmapCamera& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_cid()) {
+    cid_ = new ::VidConf::VidCameraId(*from.cid_);
+  } else {
+    cid_ = NULL;
+  }
+  ::memcpy(&x_, &from.x_,
+    reinterpret_cast<char*>(&h_) -
+    reinterpret_cast<char*>(&x_) + sizeof(h_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidEmapCamera)
 }
 
 void VidEmapCamera::SharedCtor() {
-    _is_default_instance_ = false;
+  ::memset(&cid_, 0, reinterpret_cast<char*>(&h_) -
+    reinterpret_cast<char*>(&cid_) + sizeof(h_));
   _cached_size_ = 0;
-  cid_ = NULL;
-  x_ = 0;
-  y_ = 0;
-  w_ = 0;
-  h_ = 0;
 }
 
 VidEmapCamera::~VidEmapCamera() {
@@ -10416,7 +10472,7 @@ VidEmapCamera::~VidEmapCamera() {
 }
 
 void VidEmapCamera::SharedDtor() {
-  if (this != default_instance_) {
+  if (this != internal_default_instance()) {
     delete cid_;
   }
 }
@@ -10427,16 +10483,14 @@ void VidEmapCamera::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidEmapCamera::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEmapCamera_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[19].descriptor;
 }
 
 const VidEmapCamera& VidEmapCamera::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidEmapCamera* VidEmapCamera::default_instance_ = NULL;
 
 VidEmapCamera* VidEmapCamera::New(::google::protobuf::Arena* arena) const {
   VidEmapCamera* n = new VidEmapCamera;
@@ -10447,102 +10501,85 @@ VidEmapCamera* VidEmapCamera::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidEmapCamera::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidEmapCamera*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(x_, h_);
-  if (GetArenaNoVirtual() == NULL && cid_ != NULL) delete cid_;
+// @@protoc_insertion_point(message_clear_start:VidConf.VidEmapCamera)
+  if (GetArenaNoVirtual() == NULL && cid_ != NULL) {
+    delete cid_;
+  }
   cid_ = NULL;
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&x_, 0, reinterpret_cast<char*>(&h_) -
+    reinterpret_cast<char*>(&x_) + sizeof(h_));
 }
 
 bool VidEmapCamera::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidEmapCamera)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .VidConf.VidCameraId cId = 1;
+      // .VidConf.VidCameraId cId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_cid()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_x;
         break;
       }
 
-      // optional int32 x = 2;
+      // int32 x = 2;
       case 2: {
-        if (tag == 16) {
-         parse_x:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &x_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_y;
         break;
       }
 
-      // optional int32 y = 3;
+      // int32 y = 3;
       case 3: {
-        if (tag == 24) {
-         parse_y:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &y_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_w;
         break;
       }
 
-      // optional int32 w = 4;
+      // int32 w = 4;
       case 4: {
-        if (tag == 32) {
-         parse_w:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &w_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_h;
         break;
       }
 
-      // optional int32 h = 5;
+      // int32 h = 5;
       case 5: {
-        if (tag == 40) {
-         parse_h:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &h_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -10570,28 +10607,28 @@ failure:
 void VidEmapCamera::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidEmapCamera)
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cid_, output);
   }
 
-  // optional int32 x = 2;
+  // int32 x = 2;
   if (this->x() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->x(), output);
   }
 
-  // optional int32 y = 3;
+  // int32 y = 3;
   if (this->y() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->y(), output);
   }
 
-  // optional int32 w = 4;
+  // int32 w = 4;
   if (this->w() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->w(), output);
   }
 
-  // optional int32 h = 5;
+  // int32 h = 5;
   if (this->h() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->h(), output);
   }
@@ -10599,32 +10636,33 @@ void VidEmapCamera::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidEmapCamera)
 }
 
-::google::protobuf::uint8* VidEmapCamera::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidEmapCamera::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEmapCamera)
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, *this->cid_, target);
+      InternalWriteMessageNoVirtualToArray(
+        1, *this->cid_, false, target);
   }
 
-  // optional int32 x = 2;
+  // int32 x = 2;
   if (this->x() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->x(), target);
   }
 
-  // optional int32 y = 3;
+  // int32 y = 3;
   if (this->y() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->y(), target);
   }
 
-  // optional int32 w = 4;
+  // int32 w = 4;
   if (this->w() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->w(), target);
   }
 
-  // optional int32 h = 5;
+  // int32 h = 5;
   if (this->h() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->h(), target);
   }
@@ -10633,64 +10671,71 @@ void VidEmapCamera::SerializeWithCachedSizes(
   return target;
 }
 
-int VidEmapCamera::ByteSize() const {
-  int total_size = 0;
+size_t VidEmapCamera::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidEmapCamera)
+  size_t total_size = 0;
 
-  // optional .VidConf.VidCameraId cId = 1;
+  // .VidConf.VidCameraId cId = 1;
   if (this->has_cid()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->cid_);
   }
 
-  // optional int32 x = 2;
+  // int32 x = 2;
   if (this->x() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->x());
   }
 
-  // optional int32 y = 3;
+  // int32 y = 3;
   if (this->y() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->y());
   }
 
-  // optional int32 w = 4;
+  // int32 w = 4;
   if (this->w() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->w());
   }
 
-  // optional int32 h = 5;
+  // int32 h = 5;
   if (this->h() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->h());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidEmapCamera::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidEmapCamera* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidEmapCamera)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidEmapCamera* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidEmapCamera>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidEmapCamera)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidEmapCamera)
     MergeFrom(*source);
   }
 }
 
 void VidEmapCamera::MergeFrom(const VidEmapCamera& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidEmapCamera)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cid()) {
     mutable_cid()->::VidConf::VidCameraId::MergeFrom(from.cid());
   }
@@ -10709,19 +10754,20 @@ void VidEmapCamera::MergeFrom(const VidEmapCamera& from) {
 }
 
 void VidEmapCamera::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidEmapCamera)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidEmapCamera::CopyFrom(const VidEmapCamera& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidEmapCamera)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidEmapCamera::IsInitialized() const {
-
   return true;
 }
 
@@ -10735,24 +10781,20 @@ void VidEmapCamera::InternalSwap(VidEmapCamera* other) {
   std::swap(y_, other->y_);
   std::swap(w_, other->w_);
   std::swap(h_, other->h_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidEmapCamera::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidEmapCamera_descriptor_;
-  metadata.reflection = VidEmapCamera_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[19];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidEmapCamera
 
-// optional .VidConf.VidCameraId cId = 1;
+// .VidConf.VidCameraId cId = 1;
 bool VidEmapCamera::has_cid() const {
-  return !_is_default_instance_ && cid_ != NULL;
+  return this != internal_default_instance() && cid_ != NULL;
 }
 void VidEmapCamera::clear_cid() {
   if (GetArenaNoVirtual() == NULL && cid_ != NULL) delete cid_;
@@ -10760,7 +10802,8 @@ void VidEmapCamera::clear_cid() {
 }
 const ::VidConf::VidCameraId& VidEmapCamera::cid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmapCamera.cId)
-  return cid_ != NULL ? *cid_ : *default_instance_->cid_;
+  return cid_ != NULL ? *cid_
+                         : *::VidConf::VidCameraId::internal_default_instance();
 }
 ::VidConf::VidCameraId* VidEmapCamera::mutable_cid() {
   
@@ -10771,6 +10814,7 @@ const ::VidConf::VidCameraId& VidEmapCamera::cid() const {
   return cid_;
 }
 ::VidConf::VidCameraId* VidEmapCamera::release_cid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEmapCamera.cId)
   
   ::VidConf::VidCameraId* temp = cid_;
   cid_ = NULL;
@@ -10787,57 +10831,57 @@ void VidEmapCamera::set_allocated_cid(::VidConf::VidCameraId* cid) {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEmapCamera.cId)
 }
 
-// optional int32 x = 2;
+// int32 x = 2;
 void VidEmapCamera::clear_x() {
   x_ = 0;
 }
- ::google::protobuf::int32 VidEmapCamera::x() const {
+::google::protobuf::int32 VidEmapCamera::x() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmapCamera.x)
   return x_;
 }
- void VidEmapCamera::set_x(::google::protobuf::int32 value) {
+void VidEmapCamera::set_x(::google::protobuf::int32 value) {
   
   x_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEmapCamera.x)
 }
 
-// optional int32 y = 3;
+// int32 y = 3;
 void VidEmapCamera::clear_y() {
   y_ = 0;
 }
- ::google::protobuf::int32 VidEmapCamera::y() const {
+::google::protobuf::int32 VidEmapCamera::y() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmapCamera.y)
   return y_;
 }
- void VidEmapCamera::set_y(::google::protobuf::int32 value) {
+void VidEmapCamera::set_y(::google::protobuf::int32 value) {
   
   y_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEmapCamera.y)
 }
 
-// optional int32 w = 4;
+// int32 w = 4;
 void VidEmapCamera::clear_w() {
   w_ = 0;
 }
- ::google::protobuf::int32 VidEmapCamera::w() const {
+::google::protobuf::int32 VidEmapCamera::w() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmapCamera.w)
   return w_;
 }
- void VidEmapCamera::set_w(::google::protobuf::int32 value) {
+void VidEmapCamera::set_w(::google::protobuf::int32 value) {
   
   w_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEmapCamera.w)
 }
 
-// optional int32 h = 5;
+// int32 h = 5;
 void VidEmapCamera::clear_h() {
   h_ = 0;
 }
- ::google::protobuf::int32 VidEmapCamera::h() const {
+::google::protobuf::int32 VidEmapCamera::h() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmapCamera.h)
   return h_;
 }
- void VidEmapCamera::set_h(::google::protobuf::int32 value) {
+void VidEmapCamera::set_h(::google::protobuf::int32 value) {
   
   h_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEmapCamera.h)
@@ -10847,36 +10891,41 @@ void VidEmapCamera::clear_h() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidEmap::kStrIdFieldNumber;
 const int VidEmap::kStrNameFieldNumber;
 const int VidEmap::kCCameraFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidEmap::VidEmap()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidEmap)
 }
-
-void VidEmap::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidEmap::VidEmap(const VidEmap& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      ccamera_(from.ccamera_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidEmap)
 }
 
 void VidEmap::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidEmap::~VidEmap() {
@@ -10887,8 +10936,6 @@ VidEmap::~VidEmap() {
 void VidEmap::SharedDtor() {
   strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidEmap::SetCachedSize(int size) const {
@@ -10897,16 +10944,14 @@ void VidEmap::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidEmap::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEmap_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[20].descriptor;
 }
 
 const VidEmap& VidEmap::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidEmap* VidEmap::default_instance_ = NULL;
 
 VidEmap* VidEmap::New(::google::protobuf::Arena* arena) const {
   VidEmap* n = new VidEmap;
@@ -10917,24 +10962,25 @@ VidEmap* VidEmap::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidEmap::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidEmap)
+  ccamera_.Clear();
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ccamera_.Clear();
 }
 
 bool VidEmap::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidEmap)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -10944,14 +10990,12 @@ bool VidEmap::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -10961,24 +11005,19 @@ bool VidEmap::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_cCamera;
         break;
       }
 
       // repeated .VidConf.VidEmapCamera cCamera = 3;
       case 3: {
-        if (tag == 26) {
-         parse_cCamera:
+        if (tag == 26u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cCamera:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_ccamera()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_loop_cCamera;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -11006,7 +11045,7 @@ failure:
 void VidEmap::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidEmap)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -11016,7 +11055,7 @@ void VidEmap::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -11035,10 +11074,11 @@ void VidEmap::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidEmap)
 }
 
-::google::protobuf::uint8* VidEmap::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidEmap::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEmap)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -11049,7 +11089,7 @@ void VidEmap::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -11063,59 +11103,69 @@ void VidEmap::SerializeWithCachedSizes(
   // repeated .VidConf.VidEmapCamera cCamera = 3;
   for (unsigned int i = 0, n = this->ccamera_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        3, this->ccamera(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        3, this->ccamera(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEmap)
   return target;
 }
 
-int VidEmap::ByteSize() const {
-  int total_size = 0;
+size_t VidEmap::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidEmap)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // repeated .VidConf.VidEmapCamera cCamera = 3;
+  {
+    unsigned int count = this->ccamera_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ccamera(i));
+    }
+  }
+
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
-  // repeated .VidConf.VidEmapCamera cCamera = 3;
-  total_size += 1 * this->ccamera_size();
-  for (int i = 0; i < this->ccamera_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->ccamera(i));
-  }
-
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidEmap::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidEmap* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidEmap)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidEmap* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidEmap>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidEmap)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidEmap)
     MergeFrom(*source);
   }
 }
 
 void VidEmap::MergeFrom(const VidEmap& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidEmap)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   ccamera_.MergeFrom(from.ccamera_);
   if (from.strid().size() > 0) {
 
@@ -11128,19 +11178,20 @@ void VidEmap::MergeFrom(const VidEmap& from) {
 }
 
 void VidEmap::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidEmap)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidEmap::CopyFrom(const VidEmap& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidEmap)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidEmap::IsInitialized() const {
-
   return true;
 }
 
@@ -11149,58 +11200,63 @@ void VidEmap::Swap(VidEmap* other) {
   InternalSwap(other);
 }
 void VidEmap::InternalSwap(VidEmap* other) {
+  ccamera_.UnsafeArenaSwap(&other->ccamera_);
   strid_.Swap(&other->strid_);
   strname_.Swap(&other->strname_);
-  ccamera_.UnsafeArenaSwap(&other->ccamera_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidEmap::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidEmap_descriptor_;
-  metadata.reflection = VidEmap_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[20];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidEmap
 
-// optional string strId = 1;
+// string strId = 1;
 void VidEmap::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEmap::strid() const {
+const ::std::string& VidEmap::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmap.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidEmap::set_strid(const ::std::string& value) {
+void VidEmap::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEmap.strId)
 }
- void VidEmap::set_strid(const char* value) {
+#if LANG_CXX11
+void VidEmap::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEmap.strId)
+}
+#endif
+void VidEmap::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEmap.strId)
 }
- void VidEmap::set_strid(const char* value, size_t size) {
+void VidEmap::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEmap.strId)
 }
- ::std::string* VidEmap::mutable_strid() {
+::std::string* VidEmap::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEmap.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEmap::release_strid() {
+::std::string* VidEmap::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEmap.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEmap::set_allocated_strid(::std::string* strid) {
+void VidEmap::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -11210,40 +11266,49 @@ void VidEmap::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEmap.strId)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidEmap::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEmap::strname() const {
+const ::std::string& VidEmap::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEmap.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidEmap::set_strname(const ::std::string& value) {
+void VidEmap::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEmap.strName)
 }
- void VidEmap::set_strname(const char* value) {
+#if LANG_CXX11
+void VidEmap::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEmap.strName)
+}
+#endif
+void VidEmap::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEmap.strName)
 }
- void VidEmap::set_strname(const char* value, size_t size) {
+void VidEmap::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEmap.strName)
 }
- ::std::string* VidEmap::mutable_strname() {
+::std::string* VidEmap::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEmap.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEmap::release_strname() {
+::std::string* VidEmap::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEmap.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEmap::set_allocated_strname(::std::string* strname) {
+void VidEmap::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -11287,30 +11352,28 @@ VidEmap::ccamera() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidEmapList::kCVidEmapFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidEmapList::VidEmapList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidEmapList)
 }
-
-void VidEmapList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidEmapList::VidEmapList(const VidEmapList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidemap_(from.cvidemap_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidEmapList)
 }
 
 void VidEmapList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -11320,8 +11383,6 @@ VidEmapList::~VidEmapList() {
 }
 
 void VidEmapList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidEmapList::SetCachedSize(int size) const {
@@ -11330,16 +11391,14 @@ void VidEmapList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidEmapList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEmapList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[21].descriptor;
 }
 
 const VidEmapList& VidEmapList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidEmapList* VidEmapList::default_instance_ = NULL;
 
 VidEmapList* VidEmapList::New(::google::protobuf::Arena* arena) const {
   VidEmapList* n = new VidEmapList;
@@ -11350,32 +11409,30 @@ VidEmapList* VidEmapList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidEmapList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidEmapList)
   cvidemap_.Clear();
 }
 
 bool VidEmapList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidEmapList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidEmap cVidEmap = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidEmap:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidemap()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidEmap;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -11412,68 +11469,80 @@ void VidEmapList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidEmapList)
 }
 
-::google::protobuf::uint8* VidEmapList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidEmapList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEmapList)
   // repeated .VidConf.VidEmap cVidEmap = 1;
   for (unsigned int i = 0, n = this->cvidemap_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidemap(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidemap(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidEmapList)
   return target;
 }
 
-int VidEmapList::ByteSize() const {
-  int total_size = 0;
+size_t VidEmapList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidEmapList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidEmap cVidEmap = 1;
-  total_size += 1 * this->cvidemap_size();
-  for (int i = 0; i < this->cvidemap_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidemap(i));
+  {
+    unsigned int count = this->cvidemap_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidemap(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidEmapList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidEmapList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidEmapList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidEmapList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidEmapList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidEmapList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidEmapList)
     MergeFrom(*source);
   }
 }
 
 void VidEmapList::MergeFrom(const VidEmapList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidEmapList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidemap_.MergeFrom(from.cvidemap_);
 }
 
 void VidEmapList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidEmapList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidEmapList::CopyFrom(const VidEmapList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidEmapList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidEmapList::IsInitialized() const {
-
   return true;
 }
 
@@ -11483,16 +11552,12 @@ void VidEmapList::Swap(VidEmapList* other) {
 }
 void VidEmapList::InternalSwap(VidEmapList* other) {
   cvidemap_.UnsafeArenaSwap(&other->cvidemap_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidEmapList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidEmapList_descriptor_;
-  metadata.reflection = VidEmapList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[21];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -11532,35 +11597,39 @@ VidEmapList::cvidemap() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidStream::kStrTokenFieldNumber;
 const int VidStream::kStrNameFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidStream::VidStream()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidStream)
 }
-
-void VidStream::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidStream::VidStream(const VidStream& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strtoken_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strtoken().size() > 0) {
+    strtoken_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtoken_);
+  }
+  strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strname().size() > 0) {
+    strname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strname_);
+  }
   // @@protoc_insertion_point(copy_constructor:VidConf.VidStream)
 }
 
 void VidStream::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strtoken_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 VidStream::~VidStream() {
@@ -11571,8 +11640,6 @@ VidStream::~VidStream() {
 void VidStream::SharedDtor() {
   strtoken_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidStream::SetCachedSize(int size) const {
@@ -11581,16 +11648,14 @@ void VidStream::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidStream::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidStream_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[22].descriptor;
 }
 
 const VidStream& VidStream::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidStream* VidStream::default_instance_ = NULL;
 
 VidStream* VidStream::New(::google::protobuf::Arena* arena) const {
   VidStream* n = new VidStream;
@@ -11601,23 +11666,24 @@ VidStream* VidStream::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidStream::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidStream)
   strtoken_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 bool VidStream::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidStream)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strToken = 1;
+      // string strToken = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strtoken()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -11627,14 +11693,12 @@ bool VidStream::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strName;
         break;
       }
 
-      // optional string strName = 2;
+      // string strName = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strName:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -11644,7 +11708,6 @@ bool VidStream::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -11672,7 +11735,7 @@ failure:
 void VidStream::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidStream)
-  // optional string strToken = 1;
+  // string strToken = 1;
   if (this->strtoken().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtoken().data(), this->strtoken().length(),
@@ -11682,7 +11745,7 @@ void VidStream::SerializeWithCachedSizes(
       1, this->strtoken(), output);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -11695,10 +11758,11 @@ void VidStream::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidStream)
 }
 
-::google::protobuf::uint8* VidStream::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidStream::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidStream)
-  // optional string strToken = 1;
+  // string strToken = 1;
   if (this->strtoken().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtoken().data(), this->strtoken().length(),
@@ -11709,7 +11773,7 @@ void VidStream::SerializeWithCachedSizes(
         1, this->strtoken(), target);
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strname().data(), this->strname().length(),
@@ -11724,43 +11788,50 @@ void VidStream::SerializeWithCachedSizes(
   return target;
 }
 
-int VidStream::ByteSize() const {
-  int total_size = 0;
+size_t VidStream::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidStream)
+  size_t total_size = 0;
 
-  // optional string strToken = 1;
+  // string strToken = 1;
   if (this->strtoken().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strtoken());
   }
 
-  // optional string strName = 2;
+  // string strName = 2;
   if (this->strname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strname());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidStream::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidStream* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidStream)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStream* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidStream>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidStream)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidStream)
     MergeFrom(*source);
   }
 }
 
 void VidStream::MergeFrom(const VidStream& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidStream)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strtoken().size() > 0) {
 
     strtoken_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtoken_);
@@ -11772,19 +11843,20 @@ void VidStream::MergeFrom(const VidStream& from) {
 }
 
 void VidStream::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidStream)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidStream::CopyFrom(const VidStream& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidStream)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidStream::IsInitialized() const {
-
   return true;
 }
 
@@ -11795,55 +11867,60 @@ void VidStream::Swap(VidStream* other) {
 void VidStream::InternalSwap(VidStream* other) {
   strtoken_.Swap(&other->strtoken_);
   strname_.Swap(&other->strname_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidStream::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidStream_descriptor_;
-  metadata.reflection = VidStream_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[22];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidStream
 
-// optional string strToken = 1;
+// string strToken = 1;
 void VidStream::clear_strtoken() {
   strtoken_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStream::strtoken() const {
+const ::std::string& VidStream::strtoken() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStream.strToken)
-  return strtoken_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strtoken_.GetNoArena();
 }
- void VidStream::set_strtoken(const ::std::string& value) {
+void VidStream::set_strtoken(const ::std::string& value) {
   
   strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStream.strToken)
 }
- void VidStream::set_strtoken(const char* value) {
+#if LANG_CXX11
+void VidStream::set_strtoken(::std::string&& value) {
+  
+  strtoken_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStream.strToken)
+}
+#endif
+void VidStream::set_strtoken(const char* value) {
   
   strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStream.strToken)
 }
- void VidStream::set_strtoken(const char* value, size_t size) {
+void VidStream::set_strtoken(const char* value, size_t size) {
   
   strtoken_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStream.strToken)
 }
- ::std::string* VidStream::mutable_strtoken() {
+::std::string* VidStream::mutable_strtoken() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStream.strToken)
   return strtoken_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStream::release_strtoken() {
+::std::string* VidStream::release_strtoken() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStream.strToken)
   
   return strtoken_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStream::set_allocated_strtoken(::std::string* strtoken) {
+void VidStream::set_allocated_strtoken(::std::string* strtoken) {
   if (strtoken != NULL) {
     
   } else {
@@ -11853,40 +11930,49 @@ void VidStream::clear_strtoken() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidStream.strToken)
 }
 
-// optional string strName = 2;
+// string strName = 2;
 void VidStream::clear_strname() {
   strname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidStream::strname() const {
+const ::std::string& VidStream::strname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidStream.strName)
-  return strname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strname_.GetNoArena();
 }
- void VidStream::set_strname(const ::std::string& value) {
+void VidStream::set_strname(const ::std::string& value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidStream.strName)
 }
- void VidStream::set_strname(const char* value) {
+#if LANG_CXX11
+void VidStream::set_strname(::std::string&& value) {
+  
+  strname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidStream.strName)
+}
+#endif
+void VidStream::set_strname(const char* value) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidStream.strName)
 }
- void VidStream::set_strname(const char* value, size_t size) {
+void VidStream::set_strname(const char* value, size_t size) {
   
   strname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidStream.strName)
 }
- ::std::string* VidStream::mutable_strname() {
+::std::string* VidStream::mutable_strname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidStream.strName)
   return strname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidStream::release_strname() {
+::std::string* VidStream::release_strname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidStream.strName)
   
   return strname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidStream::set_allocated_strname(::std::string* strname) {
+void VidStream::set_allocated_strname(::std::string* strname) {
   if (strname != NULL) {
     
   } else {
@@ -11900,30 +11986,28 @@ void VidStream::clear_strname() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidStreamList::kCVidStreamFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidStreamList::VidStreamList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidStreamList)
 }
-
-void VidStreamList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidStreamList::VidStreamList(const VidStreamList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cvidstream_(from.cvidstream_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidStreamList)
 }
 
 void VidStreamList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -11933,8 +12017,6 @@ VidStreamList::~VidStreamList() {
 }
 
 void VidStreamList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidStreamList::SetCachedSize(int size) const {
@@ -11943,16 +12025,14 @@ void VidStreamList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidStreamList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidStreamList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[23].descriptor;
 }
 
 const VidStreamList& VidStreamList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidStreamList* VidStreamList::default_instance_ = NULL;
 
 VidStreamList* VidStreamList::New(::google::protobuf::Arena* arena) const {
   VidStreamList* n = new VidStreamList;
@@ -11963,32 +12043,30 @@ VidStreamList* VidStreamList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidStreamList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidStreamList)
   cvidstream_.Clear();
 }
 
 bool VidStreamList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidStreamList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidStream cVidStream = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cVidStream:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cvidstream()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cVidStream;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -12025,68 +12103,80 @@ void VidStreamList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidStreamList)
 }
 
-::google::protobuf::uint8* VidStreamList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidStreamList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidStreamList)
   // repeated .VidConf.VidStream cVidStream = 1;
   for (unsigned int i = 0, n = this->cvidstream_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cvidstream(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cvidstream(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidStreamList)
   return target;
 }
 
-int VidStreamList::ByteSize() const {
-  int total_size = 0;
+size_t VidStreamList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidStreamList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidStream cVidStream = 1;
-  total_size += 1 * this->cvidstream_size();
-  for (int i = 0; i < this->cvidstream_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cvidstream(i));
+  {
+    unsigned int count = this->cvidstream_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cvidstream(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidStreamList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidStreamList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidStreamList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStreamList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidStreamList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidStreamList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidStreamList)
     MergeFrom(*source);
   }
 }
 
 void VidStreamList::MergeFrom(const VidStreamList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidStreamList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cvidstream_.MergeFrom(from.cvidstream_);
 }
 
 void VidStreamList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidStreamList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidStreamList::CopyFrom(const VidStreamList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidStreamList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidStreamList::IsInitialized() const {
-
   return true;
 }
 
@@ -12096,16 +12186,12 @@ void VidStreamList::Swap(VidStreamList* other) {
 }
 void VidStreamList::InternalSwap(VidStreamList* other) {
   cvidstream_.UnsafeArenaSwap(&other->cvidstream_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidStreamList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidStreamList_descriptor_;
-  metadata.reflection = VidStreamList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[23];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -12145,38 +12231,36 @@ VidStreamList::cvidstream() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidBlob::kX0FieldNumber;
 const int VidBlob::kY0FieldNumber;
 const int VidBlob::kX1FieldNumber;
 const int VidBlob::kY1FieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidBlob::VidBlob()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidBlob)
 }
-
-void VidBlob::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidBlob::VidBlob(const VidBlob& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&x0_, &from.x0_,
+    reinterpret_cast<char*>(&y1_) -
+    reinterpret_cast<char*>(&x0_) + sizeof(y1_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidBlob)
 }
 
 void VidBlob::SharedCtor() {
-    _is_default_instance_ = false;
+  ::memset(&x0_, 0, reinterpret_cast<char*>(&y1_) -
+    reinterpret_cast<char*>(&x0_) + sizeof(y1_));
   _cached_size_ = 0;
-  x0_ = 0;
-  y0_ = 0;
-  x1_ = 0;
-  y1_ = 0;
 }
 
 VidBlob::~VidBlob() {
@@ -12185,8 +12269,6 @@ VidBlob::~VidBlob() {
 }
 
 void VidBlob::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidBlob::SetCachedSize(int size) const {
@@ -12195,16 +12277,14 @@ void VidBlob::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidBlob::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidBlob_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[24].descriptor;
 }
 
 const VidBlob& VidBlob::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidBlob* VidBlob::default_instance_ = NULL;
 
 VidBlob* VidBlob::New(::google::protobuf::Arena* arena) const {
   VidBlob* n = new VidBlob;
@@ -12215,87 +12295,70 @@ VidBlob* VidBlob::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidBlob::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<VidBlob*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(x0_, y1_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
+// @@protoc_insertion_point(message_clear_start:VidConf.VidBlob)
+  ::memset(&x0_, 0, reinterpret_cast<char*>(&y1_) -
+    reinterpret_cast<char*>(&x0_) + sizeof(y1_));
 }
 
 bool VidBlob::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidBlob)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 x0 = 1;
+      // int32 x0 = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &x0_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_y0;
         break;
       }
 
-      // optional int32 y0 = 2;
+      // int32 y0 = 2;
       case 2: {
-        if (tag == 16) {
-         parse_y0:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &y0_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_x1;
         break;
       }
 
-      // optional int32 x1 = 3;
+      // int32 x1 = 3;
       case 3: {
-        if (tag == 24) {
-         parse_x1:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &x1_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_y1;
         break;
       }
 
-      // optional int32 y1 = 4;
+      // int32 y1 = 4;
       case 4: {
-        if (tag == 32) {
-         parse_y1:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &y1_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -12323,22 +12386,22 @@ failure:
 void VidBlob::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidBlob)
-  // optional int32 x0 = 1;
+  // int32 x0 = 1;
   if (this->x0() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->x0(), output);
   }
 
-  // optional int32 y0 = 2;
+  // int32 y0 = 2;
   if (this->y0() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->y0(), output);
   }
 
-  // optional int32 x1 = 3;
+  // int32 x1 = 3;
   if (this->x1() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->x1(), output);
   }
 
-  // optional int32 y1 = 4;
+  // int32 y1 = 4;
   if (this->y1() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->y1(), output);
   }
@@ -12346,25 +12409,26 @@ void VidBlob::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidBlob)
 }
 
-::google::protobuf::uint8* VidBlob::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidBlob::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidBlob)
-  // optional int32 x0 = 1;
+  // int32 x0 = 1;
   if (this->x0() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->x0(), target);
   }
 
-  // optional int32 y0 = 2;
+  // int32 y0 = 2;
   if (this->y0() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->y0(), target);
   }
 
-  // optional int32 x1 = 3;
+  // int32 x1 = 3;
   if (this->x1() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->x1(), target);
   }
 
-  // optional int32 y1 = 4;
+  // int32 y1 = 4;
   if (this->y1() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->y1(), target);
   }
@@ -12373,57 +12437,64 @@ void VidBlob::SerializeWithCachedSizes(
   return target;
 }
 
-int VidBlob::ByteSize() const {
-  int total_size = 0;
+size_t VidBlob::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidBlob)
+  size_t total_size = 0;
 
-  // optional int32 x0 = 1;
+  // int32 x0 = 1;
   if (this->x0() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->x0());
   }
 
-  // optional int32 y0 = 2;
+  // int32 y0 = 2;
   if (this->y0() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->y0());
   }
 
-  // optional int32 x1 = 3;
+  // int32 x1 = 3;
   if (this->x1() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->x1());
   }
 
-  // optional int32 y1 = 4;
+  // int32 y1 = 4;
   if (this->y1() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->y1());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidBlob::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidBlob* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidBlob)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidBlob* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidBlob>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidBlob)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidBlob)
     MergeFrom(*source);
   }
 }
 
 void VidBlob::MergeFrom(const VidBlob& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidBlob)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.x0() != 0) {
     set_x0(from.x0());
   }
@@ -12439,19 +12510,20 @@ void VidBlob::MergeFrom(const VidBlob& from) {
 }
 
 void VidBlob::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidBlob)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidBlob::CopyFrom(const VidBlob& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidBlob)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidBlob::IsInitialized() const {
-
   return true;
 }
 
@@ -12464,72 +12536,68 @@ void VidBlob::InternalSwap(VidBlob* other) {
   std::swap(y0_, other->y0_);
   std::swap(x1_, other->x1_);
   std::swap(y1_, other->y1_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidBlob::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidBlob_descriptor_;
-  metadata.reflection = VidBlob_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[24];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidBlob
 
-// optional int32 x0 = 1;
+// int32 x0 = 1;
 void VidBlob::clear_x0() {
   x0_ = 0;
 }
- ::google::protobuf::int32 VidBlob::x0() const {
+::google::protobuf::int32 VidBlob::x0() const {
   // @@protoc_insertion_point(field_get:VidConf.VidBlob.x0)
   return x0_;
 }
- void VidBlob::set_x0(::google::protobuf::int32 value) {
+void VidBlob::set_x0(::google::protobuf::int32 value) {
   
   x0_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidBlob.x0)
 }
 
-// optional int32 y0 = 2;
+// int32 y0 = 2;
 void VidBlob::clear_y0() {
   y0_ = 0;
 }
- ::google::protobuf::int32 VidBlob::y0() const {
+::google::protobuf::int32 VidBlob::y0() const {
   // @@protoc_insertion_point(field_get:VidConf.VidBlob.y0)
   return y0_;
 }
- void VidBlob::set_y0(::google::protobuf::int32 value) {
+void VidBlob::set_y0(::google::protobuf::int32 value) {
   
   y0_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidBlob.y0)
 }
 
-// optional int32 x1 = 3;
+// int32 x1 = 3;
 void VidBlob::clear_x1() {
   x1_ = 0;
 }
- ::google::protobuf::int32 VidBlob::x1() const {
+::google::protobuf::int32 VidBlob::x1() const {
   // @@protoc_insertion_point(field_get:VidConf.VidBlob.x1)
   return x1_;
 }
- void VidBlob::set_x1(::google::protobuf::int32 value) {
+void VidBlob::set_x1(::google::protobuf::int32 value) {
   
   x1_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidBlob.x1)
 }
 
-// optional int32 y1 = 4;
+// int32 y1 = 4;
 void VidBlob::clear_y1() {
   y1_ = 0;
 }
- ::google::protobuf::int32 VidBlob::y1() const {
+::google::protobuf::int32 VidBlob::y1() const {
   // @@protoc_insertion_point(field_get:VidConf.VidBlob.y1)
   return y1_;
 }
- void VidBlob::set_y1(::google::protobuf::int32 value) {
+void VidBlob::set_y1(::google::protobuf::int32 value) {
   
   y1_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidBlob.y1)
@@ -12539,30 +12607,28 @@ void VidBlob::clear_y1() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidBlobList::kCBlobFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidBlobList::VidBlobList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidBlobList)
 }
-
-void VidBlobList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidBlobList::VidBlobList(const VidBlobList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      cblob_(from.cblob_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:VidConf.VidBlobList)
 }
 
 void VidBlobList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -12572,8 +12638,6 @@ VidBlobList::~VidBlobList() {
 }
 
 void VidBlobList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void VidBlobList::SetCachedSize(int size) const {
@@ -12582,16 +12646,14 @@ void VidBlobList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidBlobList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidBlobList_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[25].descriptor;
 }
 
 const VidBlobList& VidBlobList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidBlobList* VidBlobList::default_instance_ = NULL;
 
 VidBlobList* VidBlobList::New(::google::protobuf::Arena* arena) const {
   VidBlobList* n = new VidBlobList;
@@ -12602,32 +12664,30 @@ VidBlobList* VidBlobList::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidBlobList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidBlobList)
   cblob_.Clear();
 }
 
 bool VidBlobList::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidBlobList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .VidConf.VidBlob cBlob = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_cBlob:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_cblob()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_cBlob;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -12664,68 +12724,80 @@ void VidBlobList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidBlobList)
 }
 
-::google::protobuf::uint8* VidBlobList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidBlobList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidBlobList)
   // repeated .VidConf.VidBlob cBlob = 1;
   for (unsigned int i = 0, n = this->cblob_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->cblob(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->cblob(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:VidConf.VidBlobList)
   return target;
 }
 
-int VidBlobList::ByteSize() const {
-  int total_size = 0;
+size_t VidBlobList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidBlobList)
+  size_t total_size = 0;
 
   // repeated .VidConf.VidBlob cBlob = 1;
-  total_size += 1 * this->cblob_size();
-  for (int i = 0; i < this->cblob_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->cblob(i));
+  {
+    unsigned int count = this->cblob_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->cblob(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidBlobList::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidBlobList* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidBlobList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidBlobList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidBlobList>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidBlobList)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidBlobList)
     MergeFrom(*source);
   }
 }
 
 void VidBlobList::MergeFrom(const VidBlobList& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidBlobList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   cblob_.MergeFrom(from.cblob_);
 }
 
 void VidBlobList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidBlobList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidBlobList::CopyFrom(const VidBlobList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidBlobList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidBlobList::IsInitialized() const {
-
   return true;
 }
 
@@ -12735,16 +12807,12 @@ void VidBlobList::Swap(VidBlobList* other) {
 }
 void VidBlobList::InternalSwap(VidBlobList* other) {
   cblob_.UnsafeArenaSwap(&other->cblob_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidBlobList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidBlobList_descriptor_;
-  metadata.reflection = VidBlobList_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[25];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -12784,35 +12852,36 @@ VidBlobList::cblob() const {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidEventDBConf::kNTypeFieldNumber;
 const int VidEventDBConf::kStrDBPathFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidEventDBConf::VidEventDBConf()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidEventDBConf)
 }
-
-void VidEventDBConf::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidEventDBConf::VidEventDBConf(const VidEventDBConf& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strdbpath_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strdbpath().size() > 0) {
+    strdbpath_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdbpath_);
+  }
+  ntype_ = from.ntype_;
   // @@protoc_insertion_point(copy_constructor:VidConf.VidEventDBConf)
 }
 
 void VidEventDBConf::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  ntype_ = 0;
   strdbpath_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ntype_ = 0;
+  _cached_size_ = 0;
 }
 
 VidEventDBConf::~VidEventDBConf() {
@@ -12822,8 +12891,6 @@ VidEventDBConf::~VidEventDBConf() {
 
 void VidEventDBConf::SharedDtor() {
   strdbpath_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidEventDBConf::SetCachedSize(int size) const {
@@ -12832,16 +12899,14 @@ void VidEventDBConf::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidEventDBConf::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEventDBConf_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[26].descriptor;
 }
 
 const VidEventDBConf& VidEventDBConf::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidEventDBConf* VidEventDBConf::default_instance_ = NULL;
 
 VidEventDBConf* VidEventDBConf::New(::google::protobuf::Arena* arena) const {
   VidEventDBConf* n = new VidEventDBConf;
@@ -12852,23 +12917,24 @@ VidEventDBConf* VidEventDBConf::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidEventDBConf::Clear() {
-  ntype_ = 0;
+// @@protoc_insertion_point(message_clear_start:VidConf.VidEventDBConf)
   strdbpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ntype_ = 0;
 }
 
 bool VidEventDBConf::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidEventDBConf)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .VidConf.VidEventDBType nType = 1;
+      // .VidConf.VidEventDBType nType = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -12877,14 +12943,12 @@ bool VidEventDBConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strDBPath;
         break;
       }
 
-      // optional string strDBPath = 2;
+      // string strDBPath = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strDBPath:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strdbpath()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -12894,7 +12958,6 @@ bool VidEventDBConf::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -12922,13 +12985,13 @@ failure:
 void VidEventDBConf::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidEventDBConf)
-  // optional .VidConf.VidEventDBType nType = 1;
+  // .VidConf.VidEventDBType nType = 1;
   if (this->ntype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->ntype(), output);
   }
 
-  // optional string strDBPath = 2;
+  // string strDBPath = 2;
   if (this->strdbpath().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdbpath().data(), this->strdbpath().length(),
@@ -12941,16 +13004,17 @@ void VidEventDBConf::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidEventDBConf)
 }
 
-::google::protobuf::uint8* VidEventDBConf::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidEventDBConf::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEventDBConf)
-  // optional .VidConf.VidEventDBType nType = 1;
+  // .VidConf.VidEventDBType nType = 1;
   if (this->ntype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->ntype(), target);
   }
 
-  // optional string strDBPath = 2;
+  // string strDBPath = 2;
   if (this->strdbpath().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdbpath().data(), this->strdbpath().length(),
@@ -12965,65 +13029,73 @@ void VidEventDBConf::SerializeWithCachedSizes(
   return target;
 }
 
-int VidEventDBConf::ByteSize() const {
-  int total_size = 0;
+size_t VidEventDBConf::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidEventDBConf)
+  size_t total_size = 0;
 
-  // optional .VidConf.VidEventDBType nType = 1;
-  if (this->ntype() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
-  }
-
-  // optional string strDBPath = 2;
+  // string strDBPath = 2;
   if (this->strdbpath().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strdbpath());
   }
 
+  // .VidConf.VidEventDBType nType = 1;
+  if (this->ntype() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ntype());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidEventDBConf::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidEventDBConf* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidEventDBConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidEventDBConf* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidEventDBConf>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidEventDBConf)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidEventDBConf)
     MergeFrom(*source);
   }
 }
 
 void VidEventDBConf::MergeFrom(const VidEventDBConf& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.ntype() != 0) {
-    set_ntype(from.ntype());
-  }
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidEventDBConf)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strdbpath().size() > 0) {
 
     strdbpath_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdbpath_);
   }
+  if (from.ntype() != 0) {
+    set_ntype(from.ntype());
+  }
 }
 
 void VidEventDBConf::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidEventDBConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidEventDBConf::CopyFrom(const VidEventDBConf& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidEventDBConf)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidEventDBConf::IsInitialized() const {
-
   return true;
 }
 
@@ -13032,71 +13104,76 @@ void VidEventDBConf::Swap(VidEventDBConf* other) {
   InternalSwap(other);
 }
 void VidEventDBConf::InternalSwap(VidEventDBConf* other) {
-  std::swap(ntype_, other->ntype_);
   strdbpath_.Swap(&other->strdbpath_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(ntype_, other->ntype_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidEventDBConf::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidEventDBConf_descriptor_;
-  metadata.reflection = VidEventDBConf_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[26];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidEventDBConf
 
-// optional .VidConf.VidEventDBType nType = 1;
+// .VidConf.VidEventDBType nType = 1;
 void VidEventDBConf::clear_ntype() {
   ntype_ = 0;
 }
- ::VidConf::VidEventDBType VidEventDBConf::ntype() const {
+::VidConf::VidEventDBType VidEventDBConf::ntype() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEventDBConf.nType)
   return static_cast< ::VidConf::VidEventDBType >(ntype_);
 }
- void VidEventDBConf::set_ntype(::VidConf::VidEventDBType value) {
+void VidEventDBConf::set_ntype(::VidConf::VidEventDBType value) {
   
   ntype_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEventDBConf.nType)
 }
 
-// optional string strDBPath = 2;
+// string strDBPath = 2;
 void VidEventDBConf::clear_strdbpath() {
   strdbpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEventDBConf::strdbpath() const {
+const ::std::string& VidEventDBConf::strdbpath() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEventDBConf.strDBPath)
-  return strdbpath_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strdbpath_.GetNoArena();
 }
- void VidEventDBConf::set_strdbpath(const ::std::string& value) {
+void VidEventDBConf::set_strdbpath(const ::std::string& value) {
   
   strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEventDBConf.strDBPath)
 }
- void VidEventDBConf::set_strdbpath(const char* value) {
+#if LANG_CXX11
+void VidEventDBConf::set_strdbpath(::std::string&& value) {
+  
+  strdbpath_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEventDBConf.strDBPath)
+}
+#endif
+void VidEventDBConf::set_strdbpath(const char* value) {
   
   strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEventDBConf.strDBPath)
 }
- void VidEventDBConf::set_strdbpath(const char* value, size_t size) {
+void VidEventDBConf::set_strdbpath(const char* value, size_t size) {
   
   strdbpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEventDBConf.strDBPath)
 }
- ::std::string* VidEventDBConf::mutable_strdbpath() {
+::std::string* VidEventDBConf::mutable_strdbpath() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEventDBConf.strDBPath)
   return strdbpath_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEventDBConf::release_strdbpath() {
+::std::string* VidEventDBConf::release_strdbpath() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEventDBConf.strDBPath)
   
   return strdbpath_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEventDBConf::set_allocated_strdbpath(::std::string* strdbpath) {
+void VidEventDBConf::set_allocated_strdbpath(::std::string* strdbpath) {
   if (strdbpath != NULL) {
     
   } else {
@@ -13110,7 +13187,7 @@ void VidEventDBConf::clear_strdbpath() {
 
 // ===================================================================
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int VidEvent::kStrIdFieldNumber;
 const int VidEvent::kStrDeviceFieldNumber;
 const int VidEvent::kStrDeviceNameFieldNumber;
@@ -13124,43 +13201,76 @@ const int VidEvent::kStrCommentsFieldNumber;
 const int VidEvent::kStrStorIdFieldNumber;
 const int VidEvent::kStrStorNameFieldNumber;
 const int VidEvent::kNIdxFieldNumber;
-#endif  // !_MSC_VER
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidEvent::VidEvent()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:VidConf.VidEvent)
 }
-
-void VidEvent::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 VidEvent::VidEvent(const VidEvent& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  strdevice_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strdevice().size() > 0) {
+    strdevice_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdevice_);
+  }
+  strdevicename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strdevicename().size() > 0) {
+    strdevicename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdevicename_);
+  }
+  strtype_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strtype().size() > 0) {
+    strtype_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtype_);
+  }
+  strtime_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strtime().size() > 0) {
+    strtime_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtime_);
+  }
+  strdesc_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strdesc().size() > 0) {
+    strdesc_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdesc_);
+  }
+  strcomments_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strcomments().size() > 0) {
+    strcomments_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strcomments_);
+  }
+  strstorid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strstorid().size() > 0) {
+    strstorid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorid_);
+  }
+  strstorname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strstorname().size() > 0) {
+    strstorname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorname_);
+  }
+  ::memcpy(&ntime_, &from.ntime_,
+    reinterpret_cast<char*>(&bsearched_) -
+    reinterpret_cast<char*>(&ntime_) + sizeof(bsearched_));
   // @@protoc_insertion_point(copy_constructor:VidConf.VidEvent)
 }
 
 void VidEvent::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdevice_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdevicename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strtype_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ntime_ = GOOGLE_LONGLONG(0);
   strtime_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdesc_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  bhandled_ = false;
-  bsearched_ = false;
   strcomments_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nidx_ = GOOGLE_LONGLONG(0);
+  ::memset(&ntime_, 0, reinterpret_cast<char*>(&bsearched_) -
+    reinterpret_cast<char*>(&ntime_) + sizeof(bsearched_));
+  _cached_size_ = 0;
 }
 
 VidEvent::~VidEvent() {
@@ -13178,8 +13288,6 @@ void VidEvent::SharedDtor() {
   strcomments_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void VidEvent::SetCachedSize(int size) const {
@@ -13188,16 +13296,14 @@ void VidEvent::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* VidEvent::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return VidEvent_descriptor_;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[27].descriptor;
 }
 
 const VidEvent& VidEvent::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_vidconf_2eproto();
-  return *default_instance_;
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-VidEvent* VidEvent::default_instance_ = NULL;
 
 VidEvent* VidEvent::New(::google::protobuf::Arena* arena) const {
   VidEvent* n = new VidEvent;
@@ -13208,34 +13314,33 @@ VidEvent* VidEvent::New(::google::protobuf::Arena* arena) const {
 }
 
 void VidEvent::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidConf.VidEvent)
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdevice_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdevicename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strtype_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ntime_ = GOOGLE_LONGLONG(0);
   strtime_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  bhandled_ = false;
-  bsearched_ = false;
   strcomments_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nidx_ = GOOGLE_LONGLONG(0);
+  ::memset(&ntime_, 0, reinterpret_cast<char*>(&bsearched_) -
+    reinterpret_cast<char*>(&ntime_) + sizeof(bsearched_));
 }
 
 bool VidEvent::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:VidConf.VidEvent)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string strId = 1;
+      // string strId = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13245,14 +13350,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_strDevice;
         break;
       }
 
-      // optional string strDevice = 2;
+      // string strDevice = 2;
       case 2: {
-        if (tag == 18) {
-         parse_strDevice:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strdevice()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13262,14 +13365,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_strDeviceName;
         break;
       }
 
-      // optional string strDeviceName = 3;
+      // string strDeviceName = 3;
       case 3: {
-        if (tag == 26) {
-         parse_strDeviceName:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strdevicename()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13279,14 +13380,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_strType;
         break;
       }
 
-      // optional string strType = 4;
+      // string strType = 4;
       case 4: {
-        if (tag == 34) {
-         parse_strType:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strtype()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13296,29 +13395,25 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_nTime;
         break;
       }
 
-      // optional int64 nTime = 5;
+      // int64 nTime = 5;
       case 5: {
-        if (tag == 40) {
-         parse_nTime:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &ntime_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_strTime;
         break;
       }
 
-      // optional string strTime = 6;
+      // string strTime = 6;
       case 6: {
-        if (tag == 50) {
-         parse_strTime:
+        if (tag == 50u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strtime()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13328,14 +13423,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_strDesc;
         break;
       }
 
-      // optional string strDesc = 7;
+      // string strDesc = 7;
       case 7: {
-        if (tag == 58) {
-         parse_strDesc:
+        if (tag == 58u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strdesc()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13345,44 +13438,38 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(64)) goto parse_bHandled;
         break;
       }
 
-      // optional bool bHandled = 8;
+      // bool bHandled = 8;
       case 8: {
-        if (tag == 64) {
-         parse_bHandled:
+        if (tag == 64u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bhandled_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(72)) goto parse_bSearched;
         break;
       }
 
-      // optional bool bSearched = 9;
+      // bool bSearched = 9;
       case 9: {
-        if (tag == 72) {
-         parse_bSearched:
+        if (tag == 72u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bsearched_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(82)) goto parse_strComments;
         break;
       }
 
-      // optional string strComments = 10;
+      // string strComments = 10;
       case 10: {
-        if (tag == 82) {
-         parse_strComments:
+        if (tag == 82u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strcomments()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13392,14 +13479,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(90)) goto parse_strStorId;
         break;
       }
 
-      // optional string strStorId = 11;
+      // string strStorId = 11;
       case 11: {
-        if (tag == 90) {
-         parse_strStorId:
+        if (tag == 90u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strstorid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13409,14 +13494,12 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(98)) goto parse_strStorName;
         break;
       }
 
-      // optional string strStorName = 12;
+      // string strStorName = 12;
       case 12: {
-        if (tag == 98) {
-         parse_strStorName:
+        if (tag == 98u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_strstorname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -13426,22 +13509,19 @@ bool VidEvent::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(104)) goto parse_nIdx;
         break;
       }
 
-      // optional int64 nIdx = 13;
+      // int64 nIdx = 13;
       case 13: {
-        if (tag == 104) {
-         parse_nIdx:
+        if (tag == 104u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &nidx_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -13469,7 +13549,7 @@ failure:
 void VidEvent::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:VidConf.VidEvent)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -13479,7 +13559,7 @@ void VidEvent::SerializeWithCachedSizes(
       1, this->strid(), output);
   }
 
-  // optional string strDevice = 2;
+  // string strDevice = 2;
   if (this->strdevice().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdevice().data(), this->strdevice().length(),
@@ -13489,7 +13569,7 @@ void VidEvent::SerializeWithCachedSizes(
       2, this->strdevice(), output);
   }
 
-  // optional string strDeviceName = 3;
+  // string strDeviceName = 3;
   if (this->strdevicename().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdevicename().data(), this->strdevicename().length(),
@@ -13499,7 +13579,7 @@ void VidEvent::SerializeWithCachedSizes(
       3, this->strdevicename(), output);
   }
 
-  // optional string strType = 4;
+  // string strType = 4;
   if (this->strtype().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtype().data(), this->strtype().length(),
@@ -13509,12 +13589,12 @@ void VidEvent::SerializeWithCachedSizes(
       4, this->strtype(), output);
   }
 
-  // optional int64 nTime = 5;
+  // int64 nTime = 5;
   if (this->ntime() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(5, this->ntime(), output);
   }
 
-  // optional string strTime = 6;
+  // string strTime = 6;
   if (this->strtime().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtime().data(), this->strtime().length(),
@@ -13524,7 +13604,7 @@ void VidEvent::SerializeWithCachedSizes(
       6, this->strtime(), output);
   }
 
-  // optional string strDesc = 7;
+  // string strDesc = 7;
   if (this->strdesc().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdesc().data(), this->strdesc().length(),
@@ -13534,17 +13614,17 @@ void VidEvent::SerializeWithCachedSizes(
       7, this->strdesc(), output);
   }
 
-  // optional bool bHandled = 8;
+  // bool bHandled = 8;
   if (this->bhandled() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->bhandled(), output);
   }
 
-  // optional bool bSearched = 9;
+  // bool bSearched = 9;
   if (this->bsearched() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->bsearched(), output);
   }
 
-  // optional string strComments = 10;
+  // string strComments = 10;
   if (this->strcomments().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strcomments().data(), this->strcomments().length(),
@@ -13554,7 +13634,7 @@ void VidEvent::SerializeWithCachedSizes(
       10, this->strcomments(), output);
   }
 
-  // optional string strStorId = 11;
+  // string strStorId = 11;
   if (this->strstorid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorid().data(), this->strstorid().length(),
@@ -13564,7 +13644,7 @@ void VidEvent::SerializeWithCachedSizes(
       11, this->strstorid(), output);
   }
 
-  // optional string strStorName = 12;
+  // string strStorName = 12;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
@@ -13574,7 +13654,7 @@ void VidEvent::SerializeWithCachedSizes(
       12, this->strstorname(), output);
   }
 
-  // optional int64 nIdx = 13;
+  // int64 nIdx = 13;
   if (this->nidx() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(13, this->nidx(), output);
   }
@@ -13582,10 +13662,11 @@ void VidEvent::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:VidConf.VidEvent)
 }
 
-::google::protobuf::uint8* VidEvent::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* VidEvent::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:VidConf.VidEvent)
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strid().data(), this->strid().length(),
@@ -13596,7 +13677,7 @@ void VidEvent::SerializeWithCachedSizes(
         1, this->strid(), target);
   }
 
-  // optional string strDevice = 2;
+  // string strDevice = 2;
   if (this->strdevice().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdevice().data(), this->strdevice().length(),
@@ -13607,7 +13688,7 @@ void VidEvent::SerializeWithCachedSizes(
         2, this->strdevice(), target);
   }
 
-  // optional string strDeviceName = 3;
+  // string strDeviceName = 3;
   if (this->strdevicename().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdevicename().data(), this->strdevicename().length(),
@@ -13618,7 +13699,7 @@ void VidEvent::SerializeWithCachedSizes(
         3, this->strdevicename(), target);
   }
 
-  // optional string strType = 4;
+  // string strType = 4;
   if (this->strtype().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtype().data(), this->strtype().length(),
@@ -13629,12 +13710,12 @@ void VidEvent::SerializeWithCachedSizes(
         4, this->strtype(), target);
   }
 
-  // optional int64 nTime = 5;
+  // int64 nTime = 5;
   if (this->ntime() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(5, this->ntime(), target);
   }
 
-  // optional string strTime = 6;
+  // string strTime = 6;
   if (this->strtime().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strtime().data(), this->strtime().length(),
@@ -13645,7 +13726,7 @@ void VidEvent::SerializeWithCachedSizes(
         6, this->strtime(), target);
   }
 
-  // optional string strDesc = 7;
+  // string strDesc = 7;
   if (this->strdesc().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strdesc().data(), this->strdesc().length(),
@@ -13656,17 +13737,17 @@ void VidEvent::SerializeWithCachedSizes(
         7, this->strdesc(), target);
   }
 
-  // optional bool bHandled = 8;
+  // bool bHandled = 8;
   if (this->bhandled() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->bhandled(), target);
   }
 
-  // optional bool bSearched = 9;
+  // bool bSearched = 9;
   if (this->bsearched() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->bsearched(), target);
   }
 
-  // optional string strComments = 10;
+  // string strComments = 10;
   if (this->strcomments().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strcomments().data(), this->strcomments().length(),
@@ -13677,7 +13758,7 @@ void VidEvent::SerializeWithCachedSizes(
         10, this->strcomments(), target);
   }
 
-  // optional string strStorId = 11;
+  // string strStorId = 11;
   if (this->strstorid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorid().data(), this->strstorid().length(),
@@ -13688,7 +13769,7 @@ void VidEvent::SerializeWithCachedSizes(
         11, this->strstorid(), target);
   }
 
-  // optional string strStorName = 12;
+  // string strStorName = 12;
   if (this->strstorname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->strstorname().data(), this->strstorname().length(),
@@ -13699,7 +13780,7 @@ void VidEvent::SerializeWithCachedSizes(
         12, this->strstorname(), target);
   }
 
-  // optional int64 nIdx = 13;
+  // int64 nIdx = 13;
   if (this->nidx() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(13, this->nidx(), target);
   }
@@ -13708,116 +13789,123 @@ void VidEvent::SerializeWithCachedSizes(
   return target;
 }
 
-int VidEvent::ByteSize() const {
-  int total_size = 0;
+size_t VidEvent::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidConf.VidEvent)
+  size_t total_size = 0;
 
-  // optional string strId = 1;
+  // string strId = 1;
   if (this->strid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strid());
   }
 
-  // optional string strDevice = 2;
+  // string strDevice = 2;
   if (this->strdevice().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strdevice());
   }
 
-  // optional string strDeviceName = 3;
+  // string strDeviceName = 3;
   if (this->strdevicename().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strdevicename());
   }
 
-  // optional string strType = 4;
+  // string strType = 4;
   if (this->strtype().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strtype());
   }
 
-  // optional int64 nTime = 5;
-  if (this->ntime() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->ntime());
-  }
-
-  // optional string strTime = 6;
+  // string strTime = 6;
   if (this->strtime().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strtime());
   }
 
-  // optional string strDesc = 7;
+  // string strDesc = 7;
   if (this->strdesc().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strdesc());
   }
 
-  // optional bool bHandled = 8;
-  if (this->bhandled() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional bool bSearched = 9;
-  if (this->bsearched() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional string strComments = 10;
+  // string strComments = 10;
   if (this->strcomments().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strcomments());
   }
 
-  // optional string strStorId = 11;
+  // string strStorId = 11;
   if (this->strstorid().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strstorid());
   }
 
-  // optional string strStorName = 12;
+  // string strStorName = 12;
   if (this->strstorname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->strstorname());
   }
 
-  // optional int64 nIdx = 13;
+  // int64 nTime = 5;
+  if (this->ntime() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->ntime());
+  }
+
+  // int64 nIdx = 13;
   if (this->nidx() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->nidx());
   }
 
+  // bool bHandled = 8;
+  if (this->bhandled() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool bSearched = 9;
+  if (this->bsearched() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void VidEvent::MergeFrom(const ::google::protobuf::Message& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const VidEvent* source = 
+// @@protoc_insertion_point(generalized_merge_from_start:VidConf.VidEvent)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidEvent* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const VidEvent>(
           &from);
   if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidConf.VidEvent)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidConf.VidEvent)
     MergeFrom(*source);
   }
 }
 
 void VidEvent::MergeFrom(const VidEvent& from) {
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+// @@protoc_insertion_point(class_specific_merge_from_start:VidConf.VidEvent)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.strid().size() > 0) {
 
     strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
@@ -13834,9 +13922,6 @@ void VidEvent::MergeFrom(const VidEvent& from) {
 
     strtype_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtype_);
   }
-  if (from.ntime() != 0) {
-    set_ntime(from.ntime());
-  }
   if (from.strtime().size() > 0) {
 
     strtime_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strtime_);
@@ -13844,12 +13929,6 @@ void VidEvent::MergeFrom(const VidEvent& from) {
   if (from.strdesc().size() > 0) {
 
     strdesc_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strdesc_);
-  }
-  if (from.bhandled() != 0) {
-    set_bhandled(from.bhandled());
-  }
-  if (from.bsearched() != 0) {
-    set_bsearched(from.bsearched());
   }
   if (from.strcomments().size() > 0) {
 
@@ -13863,25 +13942,35 @@ void VidEvent::MergeFrom(const VidEvent& from) {
 
     strstorname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strstorname_);
   }
+  if (from.ntime() != 0) {
+    set_ntime(from.ntime());
+  }
   if (from.nidx() != 0) {
     set_nidx(from.nidx());
+  }
+  if (from.bhandled() != 0) {
+    set_bhandled(from.bhandled());
+  }
+  if (from.bsearched() != 0) {
+    set_bsearched(from.bsearched());
   }
 }
 
 void VidEvent::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidConf.VidEvent)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void VidEvent::CopyFrom(const VidEvent& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidConf.VidEvent)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 bool VidEvent::IsInitialized() const {
-
   return true;
 }
 
@@ -13894,64 +13983,69 @@ void VidEvent::InternalSwap(VidEvent* other) {
   strdevice_.Swap(&other->strdevice_);
   strdevicename_.Swap(&other->strdevicename_);
   strtype_.Swap(&other->strtype_);
-  std::swap(ntime_, other->ntime_);
   strtime_.Swap(&other->strtime_);
   strdesc_.Swap(&other->strdesc_);
-  std::swap(bhandled_, other->bhandled_);
-  std::swap(bsearched_, other->bsearched_);
   strcomments_.Swap(&other->strcomments_);
   strstorid_.Swap(&other->strstorid_);
   strstorname_.Swap(&other->strstorname_);
+  std::swap(ntime_, other->ntime_);
   std::swap(nidx_, other->nidx_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(bhandled_, other->bhandled_);
+  std::swap(bsearched_, other->bsearched_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VidEvent::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = VidEvent_descriptor_;
-  metadata.reflection = VidEvent_reflection_;
-  return metadata;
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[27];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // VidEvent
 
-// optional string strId = 1;
+// string strId = 1;
 void VidEvent::clear_strid() {
   strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strid() const {
+const ::std::string& VidEvent::strid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strId)
-  return strid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strid_.GetNoArena();
 }
- void VidEvent::set_strid(const ::std::string& value) {
+void VidEvent::set_strid(const ::std::string& value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strId)
 }
- void VidEvent::set_strid(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strId)
+}
+#endif
+void VidEvent::set_strid(const char* value) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strId)
 }
- void VidEvent::set_strid(const char* value, size_t size) {
+void VidEvent::set_strid(const char* value, size_t size) {
   
   strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strId)
 }
- ::std::string* VidEvent::mutable_strid() {
+::std::string* VidEvent::mutable_strid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strId)
   return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strid() {
+::std::string* VidEvent::release_strid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strId)
   
   return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strid(::std::string* strid) {
+void VidEvent::set_allocated_strid(::std::string* strid) {
   if (strid != NULL) {
     
   } else {
@@ -13961,40 +14055,49 @@ void VidEvent::clear_strid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strId)
 }
 
-// optional string strDevice = 2;
+// string strDevice = 2;
 void VidEvent::clear_strdevice() {
   strdevice_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strdevice() const {
+const ::std::string& VidEvent::strdevice() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDevice)
-  return strdevice_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strdevice_.GetNoArena();
 }
- void VidEvent::set_strdevice(const ::std::string& value) {
+void VidEvent::set_strdevice(const ::std::string& value) {
   
   strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDevice)
 }
- void VidEvent::set_strdevice(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strdevice(::std::string&& value) {
+  
+  strdevice_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strDevice)
+}
+#endif
+void VidEvent::set_strdevice(const char* value) {
   
   strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDevice)
 }
- void VidEvent::set_strdevice(const char* value, size_t size) {
+void VidEvent::set_strdevice(const char* value, size_t size) {
   
   strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDevice)
 }
- ::std::string* VidEvent::mutable_strdevice() {
+::std::string* VidEvent::mutable_strdevice() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDevice)
   return strdevice_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strdevice() {
+::std::string* VidEvent::release_strdevice() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strDevice)
   
   return strdevice_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strdevice(::std::string* strdevice) {
+void VidEvent::set_allocated_strdevice(::std::string* strdevice) {
   if (strdevice != NULL) {
     
   } else {
@@ -14004,40 +14107,49 @@ void VidEvent::clear_strdevice() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDevice)
 }
 
-// optional string strDeviceName = 3;
+// string strDeviceName = 3;
 void VidEvent::clear_strdevicename() {
   strdevicename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strdevicename() const {
+const ::std::string& VidEvent::strdevicename() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDeviceName)
-  return strdevicename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strdevicename_.GetNoArena();
 }
- void VidEvent::set_strdevicename(const ::std::string& value) {
+void VidEvent::set_strdevicename(const ::std::string& value) {
   
   strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDeviceName)
 }
- void VidEvent::set_strdevicename(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strdevicename(::std::string&& value) {
+  
+  strdevicename_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strDeviceName)
+}
+#endif
+void VidEvent::set_strdevicename(const char* value) {
   
   strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDeviceName)
 }
- void VidEvent::set_strdevicename(const char* value, size_t size) {
+void VidEvent::set_strdevicename(const char* value, size_t size) {
   
   strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDeviceName)
 }
- ::std::string* VidEvent::mutable_strdevicename() {
+::std::string* VidEvent::mutable_strdevicename() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDeviceName)
   return strdevicename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strdevicename() {
+::std::string* VidEvent::release_strdevicename() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strDeviceName)
   
   return strdevicename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strdevicename(::std::string* strdevicename) {
+void VidEvent::set_allocated_strdevicename(::std::string* strdevicename) {
   if (strdevicename != NULL) {
     
   } else {
@@ -14047,40 +14159,49 @@ void VidEvent::clear_strdevicename() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDeviceName)
 }
 
-// optional string strType = 4;
+// string strType = 4;
 void VidEvent::clear_strtype() {
   strtype_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strtype() const {
+const ::std::string& VidEvent::strtype() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strType)
-  return strtype_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strtype_.GetNoArena();
 }
- void VidEvent::set_strtype(const ::std::string& value) {
+void VidEvent::set_strtype(const ::std::string& value) {
   
   strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strType)
 }
- void VidEvent::set_strtype(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strtype(::std::string&& value) {
+  
+  strtype_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strType)
+}
+#endif
+void VidEvent::set_strtype(const char* value) {
   
   strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strType)
 }
- void VidEvent::set_strtype(const char* value, size_t size) {
+void VidEvent::set_strtype(const char* value, size_t size) {
   
   strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strType)
 }
- ::std::string* VidEvent::mutable_strtype() {
+::std::string* VidEvent::mutable_strtype() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strType)
   return strtype_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strtype() {
+::std::string* VidEvent::release_strtype() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strType)
   
   return strtype_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strtype(::std::string* strtype) {
+void VidEvent::set_allocated_strtype(::std::string* strtype) {
   if (strtype != NULL) {
     
   } else {
@@ -14090,54 +14211,63 @@ void VidEvent::clear_strtype() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strType)
 }
 
-// optional int64 nTime = 5;
+// int64 nTime = 5;
 void VidEvent::clear_ntime() {
   ntime_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidEvent::ntime() const {
+::google::protobuf::int64 VidEvent::ntime() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.nTime)
   return ntime_;
 }
- void VidEvent::set_ntime(::google::protobuf::int64 value) {
+void VidEvent::set_ntime(::google::protobuf::int64 value) {
   
   ntime_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.nTime)
 }
 
-// optional string strTime = 6;
+// string strTime = 6;
 void VidEvent::clear_strtime() {
   strtime_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strtime() const {
+const ::std::string& VidEvent::strtime() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strTime)
-  return strtime_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strtime_.GetNoArena();
 }
- void VidEvent::set_strtime(const ::std::string& value) {
+void VidEvent::set_strtime(const ::std::string& value) {
   
   strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strTime)
 }
- void VidEvent::set_strtime(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strtime(::std::string&& value) {
+  
+  strtime_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strTime)
+}
+#endif
+void VidEvent::set_strtime(const char* value) {
   
   strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strTime)
 }
- void VidEvent::set_strtime(const char* value, size_t size) {
+void VidEvent::set_strtime(const char* value, size_t size) {
   
   strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strTime)
 }
- ::std::string* VidEvent::mutable_strtime() {
+::std::string* VidEvent::mutable_strtime() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strTime)
   return strtime_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strtime() {
+::std::string* VidEvent::release_strtime() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strTime)
   
   return strtime_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strtime(::std::string* strtime) {
+void VidEvent::set_allocated_strtime(::std::string* strtime) {
   if (strtime != NULL) {
     
   } else {
@@ -14147,40 +14277,49 @@ void VidEvent::clear_strtime() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strTime)
 }
 
-// optional string strDesc = 7;
+// string strDesc = 7;
 void VidEvent::clear_strdesc() {
   strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strdesc() const {
+const ::std::string& VidEvent::strdesc() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strDesc)
-  return strdesc_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strdesc_.GetNoArena();
 }
- void VidEvent::set_strdesc(const ::std::string& value) {
+void VidEvent::set_strdesc(const ::std::string& value) {
   
   strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strDesc)
 }
- void VidEvent::set_strdesc(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strdesc(::std::string&& value) {
+  
+  strdesc_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strDesc)
+}
+#endif
+void VidEvent::set_strdesc(const char* value) {
   
   strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strDesc)
 }
- void VidEvent::set_strdesc(const char* value, size_t size) {
+void VidEvent::set_strdesc(const char* value, size_t size) {
   
   strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strDesc)
 }
- ::std::string* VidEvent::mutable_strdesc() {
+::std::string* VidEvent::mutable_strdesc() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strDesc)
   return strdesc_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strdesc() {
+::std::string* VidEvent::release_strdesc() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strDesc)
   
   return strdesc_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strdesc(::std::string* strdesc) {
+void VidEvent::set_allocated_strdesc(::std::string* strdesc) {
   if (strdesc != NULL) {
     
   } else {
@@ -14190,68 +14329,77 @@ void VidEvent::clear_strdesc() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strDesc)
 }
 
-// optional bool bHandled = 8;
+// bool bHandled = 8;
 void VidEvent::clear_bhandled() {
   bhandled_ = false;
 }
- bool VidEvent::bhandled() const {
+bool VidEvent::bhandled() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.bHandled)
   return bhandled_;
 }
- void VidEvent::set_bhandled(bool value) {
+void VidEvent::set_bhandled(bool value) {
   
   bhandled_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.bHandled)
 }
 
-// optional bool bSearched = 9;
+// bool bSearched = 9;
 void VidEvent::clear_bsearched() {
   bsearched_ = false;
 }
- bool VidEvent::bsearched() const {
+bool VidEvent::bsearched() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.bSearched)
   return bsearched_;
 }
- void VidEvent::set_bsearched(bool value) {
+void VidEvent::set_bsearched(bool value) {
   
   bsearched_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.bSearched)
 }
 
-// optional string strComments = 10;
+// string strComments = 10;
 void VidEvent::clear_strcomments() {
   strcomments_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strcomments() const {
+const ::std::string& VidEvent::strcomments() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strComments)
-  return strcomments_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strcomments_.GetNoArena();
 }
- void VidEvent::set_strcomments(const ::std::string& value) {
+void VidEvent::set_strcomments(const ::std::string& value) {
   
   strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strComments)
 }
- void VidEvent::set_strcomments(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strcomments(::std::string&& value) {
+  
+  strcomments_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strComments)
+}
+#endif
+void VidEvent::set_strcomments(const char* value) {
   
   strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strComments)
 }
- void VidEvent::set_strcomments(const char* value, size_t size) {
+void VidEvent::set_strcomments(const char* value, size_t size) {
   
   strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strComments)
 }
- ::std::string* VidEvent::mutable_strcomments() {
+::std::string* VidEvent::mutable_strcomments() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strComments)
   return strcomments_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strcomments() {
+::std::string* VidEvent::release_strcomments() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strComments)
   
   return strcomments_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strcomments(::std::string* strcomments) {
+void VidEvent::set_allocated_strcomments(::std::string* strcomments) {
   if (strcomments != NULL) {
     
   } else {
@@ -14261,40 +14409,49 @@ void VidEvent::clear_strcomments() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strComments)
 }
 
-// optional string strStorId = 11;
+// string strStorId = 11;
 void VidEvent::clear_strstorid() {
   strstorid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strstorid() const {
+const ::std::string& VidEvent::strstorid() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strStorId)
-  return strstorid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strstorid_.GetNoArena();
 }
- void VidEvent::set_strstorid(const ::std::string& value) {
+void VidEvent::set_strstorid(const ::std::string& value) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strStorId)
 }
- void VidEvent::set_strstorid(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strstorid(::std::string&& value) {
+  
+  strstorid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strStorId)
+}
+#endif
+void VidEvent::set_strstorid(const char* value) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strStorId)
 }
- void VidEvent::set_strstorid(const char* value, size_t size) {
+void VidEvent::set_strstorid(const char* value, size_t size) {
   
   strstorid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strStorId)
 }
- ::std::string* VidEvent::mutable_strstorid() {
+::std::string* VidEvent::mutable_strstorid() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strStorId)
   return strstorid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strstorid() {
+::std::string* VidEvent::release_strstorid() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strStorId)
   
   return strstorid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strstorid(::std::string* strstorid) {
+void VidEvent::set_allocated_strstorid(::std::string* strstorid) {
   if (strstorid != NULL) {
     
   } else {
@@ -14304,40 +14461,49 @@ void VidEvent::clear_strstorid() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorId)
 }
 
-// optional string strStorName = 12;
+// string strStorName = 12;
 void VidEvent::clear_strstorname() {
   strstorname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& VidEvent::strstorname() const {
+const ::std::string& VidEvent::strstorname() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.strStorName)
-  return strstorname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return strstorname_.GetNoArena();
 }
- void VidEvent::set_strstorname(const ::std::string& value) {
+void VidEvent::set_strstorname(const ::std::string& value) {
   
   strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.strStorName)
 }
- void VidEvent::set_strstorname(const char* value) {
+#if LANG_CXX11
+void VidEvent::set_strstorname(::std::string&& value) {
+  
+  strstorname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidConf.VidEvent.strStorName)
+}
+#endif
+void VidEvent::set_strstorname(const char* value) {
   
   strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:VidConf.VidEvent.strStorName)
 }
- void VidEvent::set_strstorname(const char* value, size_t size) {
+void VidEvent::set_strstorname(const char* value, size_t size) {
   
   strstorname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:VidConf.VidEvent.strStorName)
 }
- ::std::string* VidEvent::mutable_strstorname() {
+::std::string* VidEvent::mutable_strstorname() {
   
   // @@protoc_insertion_point(field_mutable:VidConf.VidEvent.strStorName)
   return strstorname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* VidEvent::release_strstorname() {
+::std::string* VidEvent::release_strstorname() {
+  // @@protoc_insertion_point(field_release:VidConf.VidEvent.strStorName)
   
   return strstorname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void VidEvent::set_allocated_strstorname(::std::string* strstorname) {
+void VidEvent::set_allocated_strstorname(::std::string* strstorname) {
   if (strstorname != NULL) {
     
   } else {
@@ -14347,15 +14513,15 @@ void VidEvent::clear_strstorname() {
   // @@protoc_insertion_point(field_set_allocated:VidConf.VidEvent.strStorName)
 }
 
-// optional int64 nIdx = 13;
+// int64 nIdx = 13;
 void VidEvent::clear_nidx() {
   nidx_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 VidEvent::nidx() const {
+::google::protobuf::int64 VidEvent::nidx() const {
   // @@protoc_insertion_point(field_get:VidConf.VidEvent.nIdx)
   return nidx_;
 }
- void VidEvent::set_nidx(::google::protobuf::int64 value) {
+void VidEvent::set_nidx(::google::protobuf::int64 value) {
   
   nidx_ = value;
   // @@protoc_insertion_point(field_set:VidConf.VidEvent.nIdx)
