@@ -1,0 +1,26 @@
+$ diff playCommon-orig.cpp playCommon.cpp
+85a86
+> char* initialAbsoluteSeekEndTime = NULL;
+141c142
+<        << " [-s <initial-seek-time>]|[-U <absolute-seek-time>] [-z <scale>] [-g user-agent]"
+---
+>        << " [-s <initial-seek-time>]|[-U <absolute-seek-time>] [-E <absolute-seek-end-time>] [-z <scale>] [-g user-agent]"
+495a497,503
+>     case 'E': {
+>       // specify initial absolute seek END time (trick play), using a string of the form "YYYYMMDDTHHMMSSZ" or "YYYYMMDDTHHMMSS.<frac>Z"
+>       initialAbsoluteSeekEndTime = argv[2];
+>       ++argv; --argc;
+>       break;
+>     }
+>
+572a581,584
+>   if (initialAbsoluteSeekTime == NULL && initialAbsoluteSeekEndTime != NULL) {
+>     *env << "The -E option requires the -U option!\n";
+>     usage();
+>   }
+1008a1021
+>   char const* absEndTime = initialAbsoluteSeekEndTime != NULL ? initialAbsoluteSeekEndTime : session->absEndTime();
+1011c1024
+<     startPlayingSession(session, absStartTime, session->absEndTime(), scale, continueAfterPLAY);
+---
+>     startPlayingSession(session, absStartTime, absEndTime, scale, continueAfterPLAY);

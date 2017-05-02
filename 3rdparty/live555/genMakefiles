@@ -1,0 +1,25 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 <os-platform>"
+    exit 1
+}
+
+if [ $# -ne 1 ]
+then
+    usage $*
+fi
+
+platform=$1
+subdirs="liveMedia groupsock UsageEnvironment BasicUsageEnvironment testProgs mediaServer proxyServer"
+    
+for subdir in $subdirs
+do
+    /bin/rm -f $subdir/Makefile
+    cat $subdir/Makefile.head config.$platform $subdir/Makefile.tail > $subdir/Makefile
+    chmod a-w $subdir/Makefile
+done
+
+/bin/rm -f Makefile
+cat Makefile.head config.$1 Makefile.tail > Makefile
+chmod a-w Makefile
