@@ -653,7 +653,7 @@ BOOL RapidMediaData::StartRapidRTSP()
 		transport = RapidRTSP_TRANSPORT_AUTO;
 	}
 	
-	m_pRTSP = new CRapidRTSP(m_strUrl, transport, 
+	m_pRTSP = new CRapidRTSPLive555(m_strUrl, transport, 
 					m_strUser, m_strPass, true);
 	m_pRTSP->set_data_handle(RapidMediaData::RapidRTSPDataHandle, 
 			(void *)this);

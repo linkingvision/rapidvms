@@ -55,7 +55,7 @@ static char *h264GetStartcode(char *start, char *end)
 static void fRapidRTSP_DEFAULT_DATA_HANDLE(void *pdata, unsigned int dataSize, 
 	unsigned int sec, unsigned int msec,
 	int dataType, VideoStreamType streamType, 
-	VideoFrameType frameType, unsigned int flag,CRapidRTSPAVInfo &pAVInfo, void *context)
+	VideoFrameType frameType, unsigned int flag,CRapidRTSPFFMPEGAVInfo &pAVInfo, void *context)
 {
 	printf("RapidRTSP Got %d data (size:%u timestamp:%u)  ===> \n", dataType, dataSize, sec);
 	//DumpHexData((unsigned char *)pdata, 20);
@@ -82,7 +82,7 @@ static char *_get_stream_name(int dataType)
 }
 
 
-CRapidRTSP::CRapidRTSP(std::string streamUrl, int transport, 
+CRapidRTSPFFMPEG::CRapidRTSPFFMPEG(std::string streamUrl, int transport, 
 	std::string userName, std::string userPwd, 
 	bool bEnableAudio)
 : m_bEnableAudio(bEnableAudio), m_dataHandle(NULL), m_dataContext(NULL), m_bExit(false), 
@@ -120,7 +120,7 @@ CRapidRTSP::CRapidRTSP(std::string streamUrl, int transport,
 	return;
 }
 
-CRapidRTSP::~CRapidRTSP()
+CRapidRTSPFFMPEG::~CRapidRTSPFFMPEG()
 {
 	m_bExit = true;
 	
@@ -136,34 +136,34 @@ CRapidRTSP::~CRapidRTSP()
 	m_pThread = NULL;
 }
 
-int CRapidRTSP::start()
+int CRapidRTSPFFMPEG::start()
 {
-	m_pThread = new std::thread(CRapidRTSP::proc, this);
+	m_pThread = new std::thread(CRapidRTSPFFMPEG::proc, this);
 
 	return true;
 }
 
-void CRapidRTSP::proc(void *param)
+void CRapidRTSPFFMPEG::proc(void *param)
 {
 	if (param != NULL)
 	{
-		CRapidRTSP * pRapidRTSP = (CRapidRTSP *)param;
+		CRapidRTSPFFMPEG * pRapidRTSP = (CRapidRTSPFFMPEG *)param;
 		pRapidRTSP->proc1();
 	}
 }
 
-int CRapidRTSP::CheckInterruptCallback(void * param)
+int CRapidRTSPFFMPEG::CheckInterruptCallback(void * param)
 {
 	if (param != NULL)
 	{
-		CRapidRTSP * pRapidRTSP = (CRapidRTSP *)param;
+		CRapidRTSPFFMPEG * pRapidRTSP = (CRapidRTSPFFMPEG *)param;
 		return pRapidRTSP->CheckInterruptCallback1();
 	}
 
 	return 0;
 }
 
-int CRapidRTSP::CheckInterruptCallback1()
+int CRapidRTSPFFMPEG::CheckInterruptCallback1()
 {	
 	/* Check if the thread exit */
 	if (m_bExit == true)
@@ -215,9 +215,9 @@ int CRapidRTSP::CheckInterruptCallback1()
 	return 0;
 }
 
-void CRapidRTSP::proc1()
+void CRapidRTSPFFMPEG::proc1()
 {
-	RRLOG(RRLOG_INFO, "%s CRapidRTSP Start", __FUNCTION__);
+	RRLOG(RRLOG_INFO, "%s CRapidRTSPFFMPEG Start", __FUNCTION__);
 	int ret;
 	AVRational timeBase;
 	timeBase.num = 1;
@@ -250,7 +250,7 @@ void CRapidRTSP::proc1()
 		AVDictionary *opts = 0;
 		ret = av_dict_set(&opts, "rtsp_transport", "tcp", 0);
 
-		m_pContext->interrupt_callback.callback = CRapidRTSP::CheckInterruptCallback;
+		m_pContext->interrupt_callback.callback = CRapidRTSPFFMPEG::CheckInterruptCallback;
 		m_pContext->interrupt_callback.opaque = this;
 		if ((ret = avformat_open_input(&m_pContext, m_streamFullUrl.c_str(), 0, &opts)) < 0) 
 		{
@@ -432,7 +432,7 @@ void CRapidRTSP::proc1()
 	return;
 }
 
-void CRapidRTSP::set_data_handle(fRapidRTSP_DATA_HANDLE handle, void *context)
+void CRapidRTSPFFMPEG::set_data_handle(fRapidRTSP_DATA_HANDLE handle, void *context)
 {
 	if (1) {
 		m_dataContext = context;
