@@ -30,6 +30,7 @@
 #include <chrono>
 #include "Poco/URI.h"
 #include "Poco/String.h"
+#include "h5slib.hpp"
 #ifdef __cplusplus
 extern "C"
 {
@@ -101,12 +102,12 @@ class CRapidRTSP
 public:
 	CRapidRTSP(std::string streamUrl, int transport, 
 				std::string userName, std::string userPwd, 
-				bool bEnableAudio){}
-	virtual ~CRapidRTSP(){}
+				bool bEnableAudio);
+	virtual ~CRapidRTSP();
 public:
 	void set_data_handle(fRapidRTSP_DATA_HANDLE handle, 
 				void *context);
-	virtual int start();
+	virtual int start(){return true;}
 protected:
 	std::string m_userName;
 	std::string m_userPwd;
@@ -155,7 +156,7 @@ private:
 	double m_nLastGetDataTime;
 };
 
-class CRapidRTSPLive555 :public CRapidRTSP
+class CRapidRTSPLive555 :public CRapidRTSP , public H5SCallback
 {
 public:
 	CRapidRTSPLive555(std::string streamUrl, int transport, 
@@ -163,28 +164,14 @@ public:
 				bool bEnableAudio);
 	~CRapidRTSPLive555();
 public:
-	static int  CheckInterruptCallback(void *param);
-	int CheckInterruptCallback1();
-public:
-	static void  proc(void *param);
-	void proc1();
 	virtual int start();
+	virtual bool   onH5SData(unsigned char* buffer, int size, unsigned long long secs, 
+			unsigned long long msecs, H5SCodecType codec, H5SStreamType stream, 
+			H5SFrameType frm);
 private:
-	
-	std::thread *m_pThread;
+	H5SLibRTSP m_rtsp;
 	CRapidRTSPAVInfo m_AVinfo;
-	AVFormatContext *m_pContext;
-	bool m_bExit;
-	RapidRTSPState m_nState;
-	s64 m_nStartConnectTime;
-	
-	struct timeval m_currVidTime;
-	s64 m_LastVidPts;
-	unsigned int m_VidFlag; 
-	double m_ConnectingStart;
 
-	/* Last receive time */
-	double m_nLastGetDataTime;
 };
 
 typedef struct CRapidRTSP stCRapidRTSP, *lpCRapidRTSP;

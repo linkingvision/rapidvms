@@ -81,16 +81,12 @@ static char *_get_stream_name(int dataType)
 	}
 }
 
-
-CRapidRTSPFFMPEG::CRapidRTSPFFMPEG(std::string streamUrl, int transport, 
+CRapidRTSP::CRapidRTSP(std::string streamUrl, int transport, 
 	std::string userName, std::string userPwd, 
 	bool bEnableAudio)
-: m_bEnableAudio(bEnableAudio), m_dataHandle(NULL), m_dataContext(NULL), m_bExit(false), 
-  m_userName(userName), m_userPwd(userPwd), m_streamUrl(streamUrl), 
-  m_pContext(NULL), m_nState(RapidRTSP_INIT),m_nStartConnectTime(0), 
-  m_nLastGetDataTime(0), m_LastVidPts(0), m_VidFlag(0), m_ConnectingStart(0)
+: m_bEnableAudio(bEnableAudio), m_dataHandle(NULL), m_dataContext(NULL),
+  m_userName(userName), m_userPwd(userPwd), m_streamUrl(streamUrl)
 {
-	memset(&m_currVidTime, 0, sizeof(m_currVidTime));
 	Poco::URI rtspUrl(m_streamUrl);
 	astring strRtsp;
 	if (rtspUrl.empty() != true)
@@ -109,13 +105,34 @@ CRapidRTSPFFMPEG::CRapidRTSPFFMPEG(std::string streamUrl, int transport,
 	}
 
 	m_streamFullUrl = strRtsp;
-	
-#if 0
-	if (!((transport == RapidRTSP_TRANSPORT_AUTO) || (transport == RapidRTSP_TRANSPORT_UDP)
-		|| (transport == RapidRTSP_TRANSPORT_OVER_RTSP))) {
-		return;
+
+	return;
+}
+
+CRapidRTSP::~CRapidRTSP()
+{
+	m_dataContext = NULL;
+	m_dataHandle = NULL;
+}
+
+void CRapidRTSP::set_data_handle(fRapidRTSP_DATA_HANDLE handle, void *context)
+{
+	if (1) {
+		m_dataContext = context;
+				
+		m_dataHandle = handle;
 	}
-#endif
+}
+
+
+CRapidRTSPFFMPEG::CRapidRTSPFFMPEG(std::string streamUrl, int transport, 
+	std::string userName, std::string userPwd, 
+	bool bEnableAudio)
+: CRapidRTSP(streamUrl, transport, userName, userPwd, bEnableAudio), 
+  m_bExit(false),  m_pContext(NULL), m_nState(RapidRTSP_INIT),m_nStartConnectTime(0), 
+  m_nLastGetDataTime(0), m_LastVidPts(0), m_VidFlag(0), m_ConnectingStart(0)
+{
+	memset(&m_currVidTime, 0, sizeof(m_currVidTime));
 
 	return;
 }
@@ -132,7 +149,6 @@ CRapidRTSPFFMPEG::~CRapidRTSPFFMPEG()
 	}
 
 	delete m_pThread;
-	m_dataContext = NULL;
 	m_pThread = NULL;
 }
 
@@ -432,12 +448,38 @@ void CRapidRTSPFFMPEG::proc1()
 	return;
 }
 
-void CRapidRTSPFFMPEG::set_data_handle(fRapidRTSP_DATA_HANDLE handle, void *context)
+CRapidRTSPLive555::CRapidRTSPLive555(std::string streamUrl, int transport, 
+	std::string userName, std::string userPwd, 
+	bool bEnableAudio)
+: CRapidRTSP(streamUrl, transport, userName, userPwd, bEnableAudio), 
+m_rtsp(streamUrl, userName, userPwd)
 {
-	if (1) {
-		m_dataContext = context;
-				
-		m_dataHandle = handle;
+	return;
+}
+
+CRapidRTSPLive555::~CRapidRTSPLive555()
+{
+	m_rtsp.Stop();
+}
+
+int CRapidRTSPLive555::start()
+{
+	/* Register the data callback */
+	m_rtsp.RegCallback(this, this)
+	m_rtsp.Start();
+	return true;
+}
+
+bool   CRapidRTSPLive555::onH5SData(unsigned char* buffer, int size, unsigned long long secs, 
+	unsigned long long msecs, H5SCodecType codec, H5SStreamType stream, 
+	H5SFrameType frm)
+{
+	if (m_dataHandle)
+	{
+		m_dataHandle(buffer, size, secs, msecs, 
+			(int)codec, (VideoStreamType)stream, (VideoFrameType)frm, 
+			RTP_FLAG_HAS_SPS_PPS, m_AVinfo, m_dataContext);		
 	}
+	return true;
 }
 
