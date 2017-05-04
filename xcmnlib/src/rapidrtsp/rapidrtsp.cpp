@@ -55,7 +55,7 @@ static char *h264GetStartcode(char *start, char *end)
 static void fRapidRTSP_DEFAULT_DATA_HANDLE(void *pdata, unsigned int dataSize, 
 	unsigned int sec, unsigned int msec,
 	int dataType, VideoStreamType streamType, 
-	VideoFrameType frameType, unsigned int flag,CRapidRTSPFFMPEGAVInfo &pAVInfo, void *context)
+	VideoFrameType frameType, unsigned int flag,CRapidRTSPAVInfo &pAVInfo, void *context)
 {
 	printf("RapidRTSP Got %d data (size:%u timestamp:%u)  ===> \n", dataType, dataSize, sec);
 	//DumpHexData((unsigned char *)pdata, 20);
@@ -465,7 +465,7 @@ CRapidRTSPLive555::~CRapidRTSPLive555()
 int CRapidRTSPLive555::start()
 {
 	/* Register the data callback */
-	m_rtsp.RegCallback(this, this)
+	m_rtsp.RegCallback(this, this);
 	m_rtsp.Start();
 	return true;
 }

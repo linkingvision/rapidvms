@@ -8,7 +8,6 @@
 #define MEDIA_FILTERS_H264_BIT_READER_H_
 
 #include <sys/types.h>
-#include "h5s_type.hpp"
 
 //#include "types.h"
 
@@ -25,7 +24,7 @@ namespace media {
 	// This is not a generic bit reader class, as it takes into account
 	// H.264 stream-specific constraints, such as skipping emulation-prevention
 	// bytes and stop bits. See spec for more details.
-	class H5S_LIBRARY_API H264BitReader {
+	class H264BitReader {
 	public:
 		H264BitReader();
 		~H264BitReader();

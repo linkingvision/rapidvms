@@ -20,7 +20,7 @@ namespace media {
 
 	// For explanations of each struct and its members, see H.264 specification
 	// at http://www.itu.int/rec/T-REC-H.264.
-	struct H5S_LIBRARY_API H264NALU {
+	struct H264NALU {
 		H264NALU();
 
 		enum Type {
@@ -61,7 +61,7 @@ namespace media {
 		kH264ScalingList8x8Length = 64,
 	};
 
-	struct H5S_LIBRARY_API H264SPS {
+	struct H264SPS {
 		H264SPS();
 
   enum H264ProfileIDC {
@@ -162,7 +162,7 @@ namespace media {
 		int chroma_array_type;
 	};
 
-	struct H5S_LIBRARY_API H264PPS {
+	struct H264PPS {
 		H264PPS();
 
 		int pic_parameter_set_id;
@@ -190,7 +190,7 @@ namespace media {
 		int second_chroma_qp_index_offset;
 	};
 
-	struct H5S_LIBRARY_API H264ModificationOfPicNum {
+	struct  H264ModificationOfPicNum {
 		int modification_of_pic_nums_idc;
 		union {
 			int abs_diff_pic_num_minus1;
@@ -198,7 +198,7 @@ namespace media {
 		};
 	};
 
-	struct H5S_LIBRARY_API H264WeightingFactors {
+	struct  H264WeightingFactors {
 		bool luma_weight_flag;
 		bool chroma_weight_flag;
 		int luma_weight[32];
@@ -207,7 +207,7 @@ namespace media {
 		int chroma_offset[32][2];
 	};
 
-	struct H5S_LIBRARY_API H264DecRefPicMarking {
+	struct  H264DecRefPicMarking {
 		int memory_mgmnt_control_operation;
 		int difference_of_pic_nums_minus1;
 		int long_term_pic_num;
@@ -215,7 +215,7 @@ namespace media {
 		int max_long_term_frame_idx_plus1;
 	};
 
-	struct H5S_LIBRARY_API H264SliceHeader {
+	struct  H264SliceHeader {
 		H264SliceHeader();
 
 		enum {
@@ -304,7 +304,7 @@ namespace media {
 		int changing_slice_group_idc;
 	};
 
-	struct H5S_LIBRARY_API H264SEIMessage {
+	struct  H264SEIMessage {
 		H264SEIMessage();
 
 		enum Type {
@@ -322,7 +322,7 @@ namespace media {
 
 	// Class to parse an Annex-B H.264 stream,
 	// as specified in chapters 7 and Annex B of the H.264 spec.
-	class H5S_LIBRARY_API H264Parser {
+	class  H264Parser {
 	public:
 		enum Result {
 			kOk,
