@@ -575,12 +575,15 @@ BOOL Camera::UnRegDelCallback(void * pParam)
 BOOL Camera::StartData()
 {
 	Lock();
-	if (m_nDataRef == 0)
+	if (m_param.m_OnlineUrl == TRUE)
 	{
-		m_vPlay.StartGetData(this, (VPlayDataHandler)Camera::DataHandler);
+		if (m_nDataRef == 0)
+		{
+			m_vPlay.StartGetData(this, (VPlayDataHandler)Camera::DataHandler);
+		}
+		m_nDataRef ++;
+		printf("%s m_nDataRef %d\n", __FUNCTION__, m_nDataRef);
 	}
-	m_nDataRef ++;
-	printf("%s m_nDataRef %d\n", __FUNCTION__, m_nDataRef);
 	UnLock();
 	return TRUE;
 }
@@ -602,11 +605,14 @@ BOOL Camera::StartData()
  BOOL Camera::StartSubData()
 {
 	Lock();
-	if (m_nSubDataRef == 0)
+	if (m_param.m_OnlineUrl == TRUE)
 	{
-		m_vPlaySubStream.StartGetData(this, (VPlayDataHandler)Camera::SubDataHandler);
-	}
-	m_nSubDataRef ++;
+		if (m_nSubDataRef == 0)
+		{
+			m_vPlaySubStream.StartGetData(this, (VPlayDataHandler)Camera::SubDataHandler);
+		}
+		m_nSubDataRef ++;
+ 	}
 	UnLock();
 	return TRUE;
 }
