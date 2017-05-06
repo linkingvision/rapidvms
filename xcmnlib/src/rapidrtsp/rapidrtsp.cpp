@@ -454,10 +454,9 @@ CRapidRTSPLive555::CRapidRTSPLive555(std::string streamUrl, int transport,
 	std::string userName, std::string userPwd, 
 	bool bEnableAudio)
 : CRapidRTSP(streamUrl, transport, userName, userPwd, bEnableAudio), 
-m_rtsp(streamUrl, userName, userPwd), m_currRecv(0), m_lastRecv(0), m_bExit(false), m_bStarted(false)
+m_rtsp(NULL), m_currRecv(0), m_lastRecv(0), m_bExit(false), m_bStarted(false)
 {
-	/* Register the data callback */
-	m_rtsp.RegCallback(this, this);
+	memset(&m_AVinfo, 0, sizeof(m_AVinfo));
 	m_pWatchThread = new std::thread(CRapidRTSPLive555::WatchThread, this);
 	return;
 }
@@ -469,7 +468,11 @@ CRapidRTSPLive555::~CRapidRTSPLive555()
 	m_pWatchThread->join();
 	delete m_pWatchThread;
 	
-	m_rtsp.Stop();
+	if (m_rtsp)
+	{
+		delete m_rtsp;
+		m_rtsp = NULL;
+	}
 	m_bStarted = false;
 }
 
@@ -516,9 +519,15 @@ bool CRapidRTSPLive555::CheckRTSPClient()
 
 	if (nCurrRecv <= m_lastRecv)
 	{
-		
-		m_rtsp.Stop();
-		m_rtsp.Start();
+		if (m_rtsp)
+		{
+			delete m_rtsp;
+			m_rtsp = NULL;
+		}
+		m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd);
+		/* Register the data callback */
+		m_rtsp->RegCallback(this, this);
+		m_rtsp->Start();
 	}
 	m_lastRecv = nCurrRecv;
 	return true;
@@ -527,7 +536,15 @@ bool CRapidRTSPLive555::CheckRTSPClient()
 int CRapidRTSPLive555::start()
 {
 	std::lock_guard<std::mutex> guard(m_Mutex);
-	m_rtsp.Start();
+	if (m_rtsp)
+	{
+		delete m_rtsp;
+		m_rtsp = NULL;
+	}
+	m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd);
+	/* Register the data callback */
+	m_rtsp->RegCallback(this, this);
+	m_rtsp->Start();
 	m_bStarted = true;
 
 	return true;
@@ -543,6 +560,7 @@ bool   CRapidRTSPLive555::onH5SData(unsigned char* buffer, int size, unsigned lo
 		std::lock_guard<std::mutex> guard(m_MutexData);
 		m_currRecv = m_currRecv + size;
 	}
+	m_AVinfo.video.codec = (CodecType)codec;
 	if (m_dataHandle)
 	{
 		m_dataHandle(buffer, size, secs, msecs, 

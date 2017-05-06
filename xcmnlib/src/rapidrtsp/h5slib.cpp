@@ -93,7 +93,7 @@ bool H5SLibRTSP::onParameter(std::string strKey, std::string strValue)
 bool H5SLibRTSP::onData(unsigned char* buffer, int size, unsigned long long secs, 
 									unsigned long long msecs, Live555CodecType codec)
 {
-	std::cout << "onData" << "  " << codec << "  " << "  " << secs << "  " << msecs  << "  " << size << std::endl;
+	//std::cout << "onData" << "  " << codec << "  " << "  " << secs << "  " << msecs  << "  " << size << std::endl;
 
 	/* Just callback none H264 & H265 & MPEG4 */
 	if (codec != LIVE555_CODEC_H264 && codec != LIVE555_CODEC_H265

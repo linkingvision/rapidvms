@@ -172,7 +172,7 @@ public:
 	bool WatchThreadRun();
 	bool CheckRTSPClient();
 private:
-	H5SLibRTSP m_rtsp;
+	H5SLibRTSP *m_rtsp;
 	CRapidRTSPAVInfo m_AVinfo;
 	std::mutex  m_Mutex;
 	std::mutex  m_MutexData;
