@@ -34,6 +34,7 @@
 #include "Poco/URI.h"
 #include "Poco/String.h"
 #include "rtspdef.h"
+#include "utility/utilitytimer.hpp"
 
 
 using namespace UtilityLib;
@@ -448,38 +449,107 @@ void CRapidRTSPFFMPEG::proc1()
 	return;
 }
 
+
 CRapidRTSPLive555::CRapidRTSPLive555(std::string streamUrl, int transport, 
 	std::string userName, std::string userPwd, 
 	bool bEnableAudio)
 : CRapidRTSP(streamUrl, transport, userName, userPwd, bEnableAudio), 
-m_rtsp(streamUrl, userName, userPwd)
+m_rtsp(streamUrl, userName, userPwd), m_currRecv(0), m_lastRecv(0), m_bExit(false), m_bStarted(false)
 {
+	/* Register the data callback */
+	m_rtsp.RegCallback(this, this);
+	m_pWatchThread = new std::thread(CRapidRTSPLive555::WatchThread, this);
 	return;
 }
 
 CRapidRTSPLive555::~CRapidRTSPLive555()
 {
+	/* Stop the watch thread */
+	m_bExit = true;
+	m_pWatchThread->join();
+	delete m_pWatchThread;
+	
 	m_rtsp.Stop();
+	m_bStarted = false;
+}
+
+bool CRapidRTSPLive555::WatchThread(void* pData)
+{
+	CRapidRTSPLive555 * pThread = (CRapidRTSPLive555 *)pData;
+
+	if (pThread)
+	{
+		return pThread->WatchThreadRun();
+	}
+	return false;
+}
+bool CRapidRTSPLive555::WatchThreadRun()
+{
+	int i = 0;
+	while(!m_bExit)
+	{
+		std::chrono::milliseconds dura(500);
+		std::this_thread::sleep_for( dura );
+		if (i ++ >= 40)
+		{
+			CheckRTSPClient();
+			i = 0;
+		}
+	}
+	return true;
+}
+
+bool CRapidRTSPLive555::CheckRTSPClient()
+{
+	s64 nCurrRecv = 0;
+
+	{
+		std::lock_guard<std::mutex> guard(m_MutexData);
+		nCurrRecv = m_currRecv;
+	}
+
+	std::lock_guard<std::mutex> guard(m_Mutex);
+	if (m_bStarted == false)
+	{
+		return true;
+	}
+
+	if (nCurrRecv <= m_lastRecv)
+	{
+		
+		m_rtsp.Stop();
+		m_rtsp.Start();
+	}
+	m_lastRecv = nCurrRecv;
+	return true;
 }
 
 int CRapidRTSPLive555::start()
 {
-	/* Register the data callback */
-	m_rtsp.RegCallback(this, this);
+	std::lock_guard<std::mutex> guard(m_Mutex);
 	m_rtsp.Start();
+	m_bStarted = true;
+
 	return true;
 }
+
 
 bool   CRapidRTSPLive555::onH5SData(unsigned char* buffer, int size, unsigned long long secs, 
 	unsigned long long msecs, H5SCodecType codec, H5SStreamType stream, 
 	H5SFrameType frm)
 {
+	/* update receive */
+	{
+		std::lock_guard<std::mutex> guard(m_MutexData);
+		m_currRecv = m_currRecv + size;
+	}
 	if (m_dataHandle)
 	{
 		m_dataHandle(buffer, size, secs, msecs, 
 			(int)codec, (VideoStreamType)stream, (VideoFrameType)frm, 
 			RTP_FLAG_HAS_SPS_PPS, m_AVinfo, m_dataContext);		
 	}
+	
 	return true;
 }
 

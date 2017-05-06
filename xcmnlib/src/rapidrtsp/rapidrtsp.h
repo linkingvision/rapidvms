@@ -168,9 +168,19 @@ public:
 	virtual bool   onH5SData(unsigned char* buffer, int size, unsigned long long secs, 
 			unsigned long long msecs, H5SCodecType codec, H5SStreamType stream, 
 			H5SFrameType frm);
+	static bool WatchThread(void* pData);
+	bool WatchThreadRun();
+	bool CheckRTSPClient();
 private:
 	H5SLibRTSP m_rtsp;
 	CRapidRTSPAVInfo m_AVinfo;
+	std::mutex  m_Mutex;
+	std::mutex  m_MutexData;
+	s64 m_lastRecv;
+	s64 m_currRecv;
+	bool m_bExit ;
+	bool m_bStarted;
+	std::thread * m_pWatchThread;
 
 };
 

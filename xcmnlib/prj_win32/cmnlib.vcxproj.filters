@@ -668,6 +668,21 @@
     <ClInclude Include="..\src\utility\libcli.h">
       <Filter>src\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\rapidrtsp\h5s_h264_sink.hpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidrtsp\h5s_sink.hpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidrtsp\h5slib.hpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidrtsp\h264_bit_reader.h">
+      <Filter>src\rapidrtsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rapidrtsp\h264_parser.h">
+      <Filter>src\rapidrtsp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ffkit\argb24_to_yuv420p.cpp">
@@ -1107,6 +1122,18 @@
     </ClCompile>
     <ClCompile Include="..\src\utility\libcli.c">
       <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rapidrtsp\h5s_h264_sink.cpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rapidrtsp\h5slib.cpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rapidrtsp\h264_bit_reader.cpp">
+      <Filter>src\rapidrtsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rapidrtsp\h264_parser.cpp">
+      <Filter>src\rapidrtsp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

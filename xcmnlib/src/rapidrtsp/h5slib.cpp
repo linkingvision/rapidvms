@@ -54,7 +54,7 @@ bool H5SLibRTSP::Stop()
 	RTSPStop();
 	m_pThread->join();
 	delete m_pThread;
-	m_bStarted = NULL;
+	m_bStarted = false;
 
 	return true;
 }

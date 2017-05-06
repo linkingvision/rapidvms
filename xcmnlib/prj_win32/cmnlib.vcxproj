@@ -210,6 +210,11 @@
     <ClInclude Include="..\src\rapidmedia\rapiddxva2dec.hpp" />
     <ClInclude Include="..\src\rapidmedia\rapidffmpegdec.hpp" />
     <ClInclude Include="..\src\rapidmedia\rapidmediadata.hpp" />
+    <ClInclude Include="..\src\rapidrtsp\h264_bit_reader.h" />
+    <ClInclude Include="..\src\rapidrtsp\h264_parser.h" />
+    <ClInclude Include="..\src\rapidrtsp\h5slib.hpp" />
+    <ClInclude Include="..\src\rapidrtsp\h5s_h264_sink.hpp" />
+    <ClInclude Include="..\src\rapidrtsp\h5s_sink.hpp" />
     <ClInclude Include="..\src\rapidrtsp\rapidrtsp.h" />
     <ClInclude Include="..\src\rapidrtsp\rapidrtsplog.h" />
     <ClInclude Include="..\src\rapidrtsp\ros.h" />
@@ -297,6 +302,10 @@
     <ClCompile Include="..\src\rapidmedia\rapidffmpegdec.cpp" />
     <ClCompile Include="..\src\rapidmedia\rapidmedia.cpp" />
     <ClCompile Include="..\src\rapidmedia\rapidmediadata.cpp" />
+    <ClCompile Include="..\src\rapidrtsp\h264_bit_reader.cpp" />
+    <ClCompile Include="..\src\rapidrtsp\h264_parser.cpp" />
+    <ClCompile Include="..\src\rapidrtsp\h5slib.cpp" />
+    <ClCompile Include="..\src\rapidrtsp\h5s_h264_sink.cpp" />
     <ClCompile Include="..\src\rapidrtsp\rapidrtsp.cpp" />
     <ClCompile Include="..\src\rapidrtsp\rapidrtsplog.cpp" />
     <ClCompile Include="..\src\utility\debug.cpp" />
@@ -426,15 +435,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WIN32__;VE_EXPORTS;_WIN32;_XKEYCHECK_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BufferSecurityCheck>true</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib\;..\medialib\MediaLib\bin\Debug;..\3rdparty\SDL2\VisualC\SDL\Win32\Debug_static;..\src\vrender\lib;..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-win32d\lib\;..\3rdparty\libyuv\build-win32\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;avfilter.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib\;..\medialib\MediaLib\bin\Debug;..\3rdparty\SDL2\VisualC\SDL\Win32\Debug_static;..\src\vrender\lib;..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-win32d\lib\;..\3rdparty\libyuv\build-win32\Debug\;..\..\3rdparty\live555\output\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;avfilter.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -449,7 +458,7 @@ copy /y ..\lib\win32\Debug\cmnlib.pdb  ..\..\client\prj_win32\Win32\Debug</Comma
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win64\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win64\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;__WIN32__;VE_EXPORTS;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -474,7 +483,7 @@ copy /y ..\lib\x64\Debug\cmnlib.pdb  ..\..\client\prj_win32\x64\Debug</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;__WIN32__;VE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
@@ -482,8 +491,8 @@ copy /y ..\lib\x64\Debug\cmnlib.pdb  ..\..\client\prj_win32\x64\Debug</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib\;..\medialib\MediaLib\bin\Release;..\3rdparty\SDL2\VisualC\SDL\Win32\Release_static;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-win32\lib\;..\..\3rdparty\openssl-win\openssl-win32\lib\;..\3rdparty\libyuv\build-win32\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib\;..\medialib\MediaLib\bin\Release;..\3rdparty\SDL2\VisualC\SDL\Win32\Release_static;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-win32\lib\;..\..\3rdparty\openssl-win\openssl-win32\lib\;..\3rdparty\libyuv\build-win32\Release\;..\..\3rdparty\live555\output\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -499,7 +508,7 @@ copy /y ..\lib\win32\Release\cmnlib.pdb  ..\..\client\prj_win32\Win32\Release</C
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;__WIN32__;VE_EXPORTS;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
