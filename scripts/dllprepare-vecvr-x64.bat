@@ -1,6 +1,6 @@
 REM ============================================VECVR
 REM =============================
-set QT_WIN64=C:\Qt\Qt5.5.1-64\5.5\msvc2013_64\
+set QT_WIN64=C:\Qt\Qt5.7.0-x64\5.7\msvc2013_64\
 REM x64 Debug
 xcopy /y /e 3rdparty\ffmpeg-win\ffmpeg-x64\bin  vecvr\prj_win32\x64\Debug
 
@@ -15,6 +15,7 @@ xcopy /y /e 3rdparty\poco\bin64\PocoZip64d.dll  vecvr\prj_win32\x64\Debug
 
 xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\libeay32.dll  vecvr\prj_win32\x64\Debug
 xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\ssleay32.dll  vecvr\prj_win32\x64\Debug
+xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\openssl.exe  vecvr\prj_win32\x64\Debug
 
 xcopy /y /e 3rdparty\protobuf\cmake\x64\bin\libprotobufd.dll  vecvr\prj_win32\x64\Debug
 
@@ -34,6 +35,7 @@ xcopy /y /e 3rdparty\poco\bin64\PocoZip64.dll  vecvr\prj_win32\x64\Release
 
 xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\libeay32.dll  vecvr\prj_win32\x64\Release
 xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\ssleay32.dll  vecvr\prj_win32\x64\Release
+xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\openssl.exe  vecvr\prj_win32\x64\Release
 
 xcopy /y /e 3rdparty\protobuf\cmake\x64\bin\libprotobuf.dll  vecvr\prj_win32\x64\Release
 

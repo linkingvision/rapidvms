@@ -1,6 +1,6 @@
 REM ============================================client
 REM =============================
-set QT_WIN32=C:\Qt\Qt5.5.1\5.5\msvc2013\
+set QT_WIN32=C:\Qt\Qt5.7.0\5.7\msvc2013\
 REM Win32 Debug
 xcopy /y /e 3rdparty\ffmpeg-win\ffmpeg-win32\bin  client\prj_win32\Win32\Debug
 
@@ -15,8 +15,11 @@ xcopy /y /e 3rdparty\poco\bin\PocoZipd.dll  client\prj_win32\Win32\Debug
 
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  client\prj_win32\Win32\Debug
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  client\prj_win32\Win32\Debug
+xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\openssl.exe  client\prj_win32\Win32\Debug
 
 xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobufd.dll  client\prj_win32\Win32\Debug
+
+xcopy /y /e 3rdparty\live555\output\Debug\live555.dll  client\prj_win32\Win32\Debug
 
 
 REM Win32 Release
@@ -33,6 +36,10 @@ xcopy /y /e 3rdparty\poco\bin\PocoZip.dll  client\prj_win32\Win32\Release
 
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  client\prj_win32\Win32\Release
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  client\prj_win32\Win32\Release
+xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\openssl.exe  client\prj_win32\Win32\Release
+
+xcopy /y /e 3rdparty\live555\output\Release\live555.dll  client\prj_win32\Win32\Release
+
 
 REM xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  client\prj_win32\Win32\Release
 
