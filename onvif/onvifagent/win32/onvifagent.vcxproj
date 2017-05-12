@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\CivetServer.cpp" />
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\civetweb.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifcli.pb.cc" />
+    <ClCompile Include="..\..\include\onvifclidevice.pb.cc" />
+    <ClCompile Include="..\..\include\onvifclimedia.pb.cc" />
+    <ClCompile Include="..\..\include\onvifcliptz.pb.cc" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\dom.cpp" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\duration.c" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\smdevp.c" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\stdsoap2.cpp" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\threads.c" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\wsaapi.c" />
+    <ClCompile Include="..\gsoap\gsoap\runtime\wsseapi.cpp" />
+    <ClCompile Include="..\onvifgen\soapC.cpp" />
+    <ClCompile Include="..\onvifgen\soapCreatePullPointBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapCreatePullPointBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapDeviceBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapDeviceBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapDeviceIOBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapDeviceIOBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapDiscoveryLookupBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapDiscoveryLookupBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapDisplayBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapDisplayBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapEventBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapEventBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapImagingBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapImagingBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapMediaBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapMediaBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapNotificationConsumerBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapNotificationConsumerBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapNotificationProducerBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapNotificationProducerBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapPausableSubscriptionManagerBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapPausableSubscriptionManagerBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapPTZBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapPTZBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapPullPointBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapPullPointBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapPullPointSubscriptionBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapPullPointSubscriptionBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapReceiverBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapReceiverBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapRecordingBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapRecordingBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapRemoteDiscoveryBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapRemoteDiscoveryBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapReplayBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapReplayBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapSearchBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapSearchBindingService.cpp" />
+    <ClCompile Include="..\onvifgen\soapSubscriptionManagerBindingProxy.cpp" />
+    <ClCompile Include="..\onvifgen\soapSubscriptionManagerBindingService.cpp" />
+    <ClCompile Include="..\src\onvifagent.cpp" />
+    <ClCompile Include="..\src\webserver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\onvifagentcli.hpp" />
+    <ClInclude Include="..\..\include\onvifcli.pb.h" />
+    <ClInclude Include="..\..\include\onvifclidevice.pb.h" />
+    <ClInclude Include="..\..\include\onvifclimedia.pb.h" />
+    <ClInclude Include="..\..\include\onvifcliptz.pb.h" />
+    <ClInclude Include="..\..\include\wsclient.hpp" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\duration.h" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\smdevp.h" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\stdsoap2.h" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\threads.h" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\wsaapi.h" />
+    <ClInclude Include="..\gsoap\gsoap\runtime\wsseapi.h" />
+    <ClInclude Include="..\include\onvifclient.hpp" />
+    <ClInclude Include="..\include\onvifclientdevice.hpp" />
+    <ClInclude Include="..\include\onvifclientevent.hpp" />
+    <ClInclude Include="..\include\onvifclientimaging.hpp" />
+    <ClInclude Include="..\include\onvifclientmedia.hpp" />
+    <ClInclude Include="..\include\onvifclientptz.hpp" />
+    <ClInclude Include="..\include\onvifclientreceiver.hpp" />
+    <ClInclude Include="..\include\onvifclientrecording.hpp" />
+    <ClInclude Include="..\include\onvifclientremotediscovery.hpp" />
+    <ClInclude Include="..\include\onvifclientreplay.hpp" />
+    <ClInclude Include="..\include\onvifclientsearch.hpp" />
+    <ClInclude Include="..\include\onvifserver.hpp" />
+    <ClInclude Include="..\include\onvifserverdevice.hpp" />
+    <ClInclude Include="..\include\onvifserverdiscover.hpp" />
+    <ClInclude Include="..\include\onvifserverevent.hpp" />
+    <ClInclude Include="..\include\onvifservermedia.hpp" />
+    <ClInclude Include="..\include\onvifserverreceiver.hpp" />
+    <ClInclude Include="..\onvifgen\soapCreatePullPointBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapCreatePullPointBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapDeviceBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapDeviceBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapDeviceIOBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapDeviceIOBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapDiscoveryLookupBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapDiscoveryLookupBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapDisplayBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapDisplayBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapEventBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapEventBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapH.h" />
+    <ClInclude Include="..\onvifgen\soapImagingBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapImagingBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapMediaBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapMediaBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapNotificationConsumerBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapNotificationConsumerBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapNotificationProducerBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapNotificationProducerBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapPausableSubscriptionManagerBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapPausableSubscriptionManagerBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapPTZBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapPTZBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapPullPointBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapPullPointBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapPullPointSubscriptionBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapPullPointSubscriptionBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapReceiverBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapReceiverBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapRecordingBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapRecordingBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapRemoteDiscoveryBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapRemoteDiscoveryBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapReplayBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapReplayBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapSearchBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapSearchBindingService.h" />
+    <ClInclude Include="..\onvifgen\soapStub.h" />
+    <ClInclude Include="..\onvifgen\soapSubscriptionManagerBindingProxy.h" />
+    <ClInclude Include="..\onvifgen\soapSubscriptionManagerBindingService.h" />
+    <ClInclude Include="..\src\webserver.hpp" />
+    <ClInclude Include="..\src\ws\onvifchandler.hpp" />
+    <ClInclude Include="..\src\ws\wsonvifc.hpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F1570905-1363-469F-B370-82D3B7588F1F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>onvifagent</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\output\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\output\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;WITH_NONAMESPACES;USE_WEBSOCKET;USE_IPV6;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\gsoap\gsoap\runtime;..\onvifgen\;..\include\;..\..\include;..\..\..\3rdparty\civetweb\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\win32\Debug;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;WITH_NONAMESPACES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\gsoap\gsoap\runtime;..\onvifgen\;..\include\;..\..\..\3rdparty\openssl-win\openssl-win64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;WITH_NONAMESPACES;USE_WEBSOCKET;USE_IPV6;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\gsoap\gsoap\runtime;..\onvifgen\;..\include\;..\..\include;..\..\..\3rdparty\civetweb\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\win32\Release;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;WITH_NONAMESPACES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\gsoap\gsoap\runtime;..\onvifgen\;..\include\;..\..\..\3rdparty\openssl-win\openssl-win64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="onvifgen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="gsoap">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="gsoap\runtime">
+      <UniqueIdentifier>{c323e013-4cfb-466f-adef-4e6496aa9506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{37c65457-78f9-4ab0-a220-6ac22318e432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ws">
+      <UniqueIdentifier>{d50b69f2-40c1-44e6-beb1-90a362c4c372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="civetweb">
+      <UniqueIdentifier>{66025d5c-d186-41c5-bf5c-31e27734f7b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="../include">
+      <UniqueIdentifier>{c1c2baa9-abb9-42eb-9c5a-5595f68c9d1f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\gsoap\gsoap\runtime\stdsoap2.cpp">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\duration.c">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\wsseapi.cpp">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\smdevp.c">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\threads.c">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\wsaapi.c">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gsoap\gsoap\runtime\dom.cpp">
+      <Filter>gsoap\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapC.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapCreatePullPointBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapCreatePullPointBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDeviceBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDeviceIOBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDiscoveryLookupBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDiscoveryLookupBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDisplayBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapEventBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapEventBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapImagingBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapMediaBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapNotificationConsumerBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapNotificationConsumerBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapNotificationProducerBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapNotificationProducerBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPausableSubscriptionManagerBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPausableSubscriptionManagerBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPTZBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPullPointBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPullPointBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPullPointSubscriptionBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPullPointSubscriptionBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapReceiverBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapRecordingBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapRemoteDiscoveryBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapRemoteDiscoveryBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapReplayBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapSearchBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapSubscriptionManagerBindingProxy.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapSubscriptionManagerBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDeviceBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDeviceIOBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapDisplayBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapImagingBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapMediaBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapPTZBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapReceiverBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapRecordingBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapReplayBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\onvifgen\soapSearchBindingService.cpp">
+      <Filter>onvifgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\onvifagent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\webserver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\CivetServer.cpp">
+      <Filter>civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\civetweb.c">
+      <Filter>civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifcli.pb.cc">
+      <Filter>../include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifclidevice.pb.cc">
+      <Filter>../include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifclimedia.pb.cc">
+      <Filter>../include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifcliptz.pb.cc">
+      <Filter>../include</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\gsoap\gsoap\runtime\stdsoap2.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gsoap\gsoap\runtime\duration.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gsoap\gsoap\runtime\wsseapi.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gsoap\gsoap\runtime\smdevp.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gsoap\gsoap\runtime\threads.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gsoap\gsoap\runtime\wsaapi.h">
+      <Filter>gsoap\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclient.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientdevice.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientevent.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientimaging.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientmedia.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientptz.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientreceiver.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientrecording.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientremotediscovery.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientreplay.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifclientsearch.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifserver.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifserverdevice.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifserverdiscover.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifserverevent.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifservermedia.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\onvifserverreceiver.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapCreatePullPointBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapCreatePullPointBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDeviceBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDeviceIOBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDiscoveryLookupBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDiscoveryLookupBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDisplayBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapEventBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapEventBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapH.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapImagingBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapMediaBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapNotificationConsumerBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapNotificationConsumerBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapNotificationProducerBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapNotificationProducerBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPausableSubscriptionManagerBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPausableSubscriptionManagerBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPTZBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPullPointBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPullPointBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPullPointSubscriptionBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPullPointSubscriptionBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapReceiverBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapRecordingBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapRemoteDiscoveryBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapRemoteDiscoveryBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapReplayBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapSearchBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapStub.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapSubscriptionManagerBindingProxy.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapSubscriptionManagerBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDeviceBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDeviceIOBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapDisplayBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapImagingBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapMediaBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapPTZBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapReceiverBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapRecordingBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapReplayBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\onvifgen\soapSearchBindingService.h">
+      <Filter>onvifgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\webserver.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ws\wsonvifc.hpp">
+      <Filter>src\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifagentcli.hpp">
+      <Filter>../include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifcli.pb.h">
+      <Filter>../include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifclidevice.pb.h">
+      <Filter>../include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wsclient.hpp">
+      <Filter>../include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ws\onvifchandler.hpp">
+      <Filter>src\ws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifclimedia.pb.h">
+      <Filter>../include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifcliptz.pb.h">
+      <Filter>../include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

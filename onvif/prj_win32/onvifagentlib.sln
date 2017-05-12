@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "onvifagentcli", "..\example\onvifagentcliwin32\onvifagentcli.vcxproj", "{C663D861-7C1A-43C8-81FE-2B04B41DDF8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C663D861-7C1A-43C8-81FE-2B04B41DDF8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C663D861-7C1A-43C8-81FE-2B04B41DDF8B}.Debug|Win32.Build.0 = Debug|Win32
+		{C663D861-7C1A-43C8-81FE-2B04B41DDF8B}.Release|Win32.ActiveCfg = Release|Win32
+		{C663D861-7C1A-43C8-81FE-2B04B41DDF8B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

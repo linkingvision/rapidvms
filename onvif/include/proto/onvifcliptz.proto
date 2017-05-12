@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+enum OnvifCliPTZCmdType {
+	CLI_PTZ_UP = 0;
+	CLI_PTZ_DOWN = 1;
+	CLI_PTZ_LEFT = 2;
+	CLI_PTZ_RIGHT = 3;
+	CLI_PTZ_ZOOM_IN = 4;
+	CLI_PTZ_ZOOM_OUT = 5;
+	CLI_PTZ_STOP = 6;
+}
+
+message OnvifCliPTZReq {
+	string token = 1;
+	OnvifCliPTZCmdType cmd = 2;
+	float speed = 3;
+}
+
+message OnvifCliPTZResp {
+	bool bRet = 1;
+}

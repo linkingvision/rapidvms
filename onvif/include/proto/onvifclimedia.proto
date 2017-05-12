@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message OnvifCliProfile {
+	string strToken = 1;
+	string strCodecName = 2;
+	string strRTSPUrl = 3;
+	int32 nWidth = 4;
+	int32 nHeight = 5;
+	int32 nFps = 6;
+	int32 nBandWidth = 7;
+	bool bGotUrl = 8;
+}
+
+message OnvifCliMediaGetProfilesReq {
+	string strstrHandle = 1;
+}
+
+message OnvifCliMediaGetProfilesResp {
+	bool bGotProfiles = 1;
+	repeated OnvifCliProfile cProfiles = 2;
+	
+}

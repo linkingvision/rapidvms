@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\onvif\include\video\h264_bit_reader.h" />
+    <ClInclude Include="..\..\onvif\include\video\h264_parser.h" />
+    <ClInclude Include="..\..\onvif\include\video\h5slib.hpp" />
+    <ClInclude Include="..\..\onvif\include\video\h5s_h264_sink.hpp" />
+    <ClInclude Include="..\..\onvif\include\video\h5s_sink.hpp" />
     <ClInclude Include="..\include\AVKit\ARGB24ToYUV420P.h" />
     <ClInclude Include="..\include\AVKit\AVDeMuxer.h" />
     <ClInclude Include="..\include\AVKit\AVMuxer.h" />
@@ -210,11 +215,6 @@
     <ClInclude Include="..\src\rapidmedia\rapiddxva2dec.hpp" />
     <ClInclude Include="..\src\rapidmedia\rapidffmpegdec.hpp" />
     <ClInclude Include="..\src\rapidmedia\rapidmediadata.hpp" />
-    <ClInclude Include="..\src\rapidrtsp\h264_bit_reader.h" />
-    <ClInclude Include="..\src\rapidrtsp\h264_parser.h" />
-    <ClInclude Include="..\src\rapidrtsp\h5slib.hpp" />
-    <ClInclude Include="..\src\rapidrtsp\h5s_h264_sink.hpp" />
-    <ClInclude Include="..\src\rapidrtsp\h5s_sink.hpp" />
     <ClInclude Include="..\src\rapidrtsp\rapidrtsp.h" />
     <ClInclude Include="..\src\rapidrtsp\rapidrtsplog.h" />
     <ClInclude Include="..\src\rapidrtsp\ros.h" />
@@ -222,6 +222,10 @@
     <ClInclude Include="..\src\utility\libcli.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\onvif\include\video\h264_bit_reader.cpp" />
+    <ClCompile Include="..\..\onvif\include\video\h264_parser.cpp" />
+    <ClCompile Include="..\..\onvif\include\video\h5slib.cpp" />
+    <ClCompile Include="..\..\onvif\include\video\h5s_h264_sink.cpp" />
     <ClCompile Include="..\src\AVKit\ARGB24ToYUV420P.cpp" />
     <ClCompile Include="..\src\AVKit\AVDeMuxer.cpp" />
     <ClCompile Include="..\src\AVKit\AVMuxer.cpp" />
@@ -302,10 +306,6 @@
     <ClCompile Include="..\src\rapidmedia\rapidffmpegdec.cpp" />
     <ClCompile Include="..\src\rapidmedia\rapidmedia.cpp" />
     <ClCompile Include="..\src\rapidmedia\rapidmediadata.cpp" />
-    <ClCompile Include="..\src\rapidrtsp\h264_bit_reader.cpp" />
-    <ClCompile Include="..\src\rapidrtsp\h264_parser.cpp" />
-    <ClCompile Include="..\src\rapidrtsp\h5slib.cpp" />
-    <ClCompile Include="..\src\rapidrtsp\h5s_h264_sink.cpp" />
     <ClCompile Include="..\src\rapidrtsp\rapidrtsp.cpp" />
     <ClCompile Include="..\src\rapidrtsp\rapidrtsplog.cpp" />
     <ClCompile Include="..\src\utility\debug.cpp" />
@@ -435,7 +435,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;..\..\onvif\include\video;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;__WIN32__;VE_EXPORTS;_WIN32;_XKEYCHECK_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -458,7 +458,7 @@ copy /y ..\lib\win32\Debug\cmnlib.pdb  ..\..\client\prj_win32\Win32\Debug</Comma
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win64\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win64\include\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper\;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;..\..\onvif\include\video;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;__WIN32__;VE_EXPORTS;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -483,7 +483,7 @@ copy /y ..\lib\x64\Debug\cmnlib.pdb  ..\..\client\prj_win32\x64\Debug</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\..\3rdparty\openssl-win\openssl-win32\include;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;..\..\onvif\include\video;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;__WIN32__;VE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
@@ -508,7 +508,7 @@ copy /y ..\lib\win32\Release\cmnlib.pdb  ..\..\client\prj_win32\Win32\Release</C
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\3rdparty\poco\Foundation\include\;..\..\3rdparty\poco\Net\include\;..\..\3rdparty\poco\Util\include;..\..\3rdparty\poco\Data\include\;..\..\3rdparty\poco\Data\SQLite\include\;..\..\3rdparty\ffmpeg\;..\include\ffkit\;..\include\cppkit\os\;..\include\cppkit\;..\include\hyper;..\include\;..\src\rapidmedia\;..\src\rapidrtsp\;..\src\;..\..\3rdparty\openssl-win\openssl-win64\include;..\..\3rdparty\spdlog\include\;..\..\3rdparty\live555\live555\include\;..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\3rdparty\live555\groupsock\include\;..\..\3rdparty\live555\liveMedia\include\;..\..\3rdparty\live555\UsageEnvironment\include;..\..\onvif\include\video;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;__WIN32__;VE_EXPORTS;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>

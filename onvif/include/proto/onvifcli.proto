@@ -1,0 +1,31 @@
+syntax = "proto3";
+package OnvifCli;
+
+import "onvifclidevice.proto";
+import "onvifclimedia.proto";
+import "onvifcliptz.proto";
+
+
+
+enum OnvifCliCmdType {
+	CLI_CMD_DEV_ZERO = 0;
+	CLI_CMD_DEV_LOGIN_REQ = 1;
+	CLI_CMD_DEV_LOGIN_RESP = 2;
+	CLI_CMD_MEDIA_GET_PROFILES_REQ = 3;
+	CLI_CMD_MEDIA_GET_PROFILES_RESP = 4;
+	CLI_CMD_PTZ_REQ = 5;
+	CLI_CMD_PTZ_RESP = 6;
+
+}
+
+message OnvifCliCmd {
+	OnvifCliCmdType type = 1;
+	oneof cmd {
+		OnvifCliDeviceLoginReq loginReq = 2;
+		OnvifCliDeviceLoginResp loginResp = 3;
+		OnvifCliMediaGetProfilesReq getProfileReq = 4;
+		OnvifCliMediaGetProfilesResp getProfileResp = 5;
+		OnvifCliPTZReq ptzReq = 6;
+		OnvifCliPTZResp ptzResp = 7;
+	}
+}

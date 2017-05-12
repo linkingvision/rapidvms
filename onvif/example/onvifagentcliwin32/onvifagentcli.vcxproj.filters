@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{a090e72e-2d0a-49b7-80f5-c24f62ad7060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="civetweb">
+      <UniqueIdentifier>{2872a50c-7d02-4ed0-afd6-be8b0f2388f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tinyprocess">
+      <UniqueIdentifier>{bbf7bf08-05e1-4d43-9ed2-f16b5a53357d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifagentcli.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifcli.pb.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wsclient.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifclidevice.pb.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifagentlib.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifclimedia.pb.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\onvifcliptz.pb.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="onvifagentcli.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifcli.pb.cc">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\CivetServer.cpp">
+      <Filter>civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\civetweb\src\civetweb.c">
+      <Filter>civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifclidevice.pb.cc">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tinyprocess\process.cpp">
+      <Filter>Source Files\tinyprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tinyprocess\process_win.cpp">
+      <Filter>Source Files\tinyprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\onvifagentlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifclimedia.pb.cc">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\onvifcliptz.pb.cc">
+      <Filter>include</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -78,6 +78,12 @@
     <Filter Include="src\rapidmedia\dxva2">
       <UniqueIdentifier>{c3ddfb1b-ea95-4018-be0b-7a82016b88ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="onvif">
+      <UniqueIdentifier>{e8b08154-13cb-450f-a903-bafe700fefb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="onvif\video">
+      <UniqueIdentifier>{bfeacc6f-5817-4fd8-ab57-76ce7da1854a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\ffkit\argb24_to_yuv420p.h">
@@ -668,20 +674,20 @@
     <ClInclude Include="..\src\utility\libcli.h">
       <Filter>src\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rapidrtsp\h5s_h264_sink.hpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClInclude Include="..\..\onvif\include\video\h5s_h264_sink.hpp">
+      <Filter>onvif\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rapidrtsp\h5s_sink.hpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClInclude Include="..\..\onvif\include\video\h5s_sink.hpp">
+      <Filter>onvif\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rapidrtsp\h5slib.hpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClInclude Include="..\..\onvif\include\video\h5slib.hpp">
+      <Filter>onvif\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rapidrtsp\h264_bit_reader.h">
-      <Filter>src\rapidrtsp</Filter>
+    <ClInclude Include="..\..\onvif\include\video\h264_bit_reader.h">
+      <Filter>onvif\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rapidrtsp\h264_parser.h">
-      <Filter>src\rapidrtsp</Filter>
+    <ClInclude Include="..\..\onvif\include\video\h264_parser.h">
+      <Filter>onvif\video</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1123,17 +1129,17 @@
     <ClCompile Include="..\src\utility\libcli.c">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rapidrtsp\h5s_h264_sink.cpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClCompile Include="..\..\onvif\include\video\h5s_h264_sink.cpp">
+      <Filter>onvif\video</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rapidrtsp\h5slib.cpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClCompile Include="..\..\onvif\include\video\h5slib.cpp">
+      <Filter>onvif\video</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rapidrtsp\h264_bit_reader.cpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClCompile Include="..\..\onvif\include\video\h264_bit_reader.cpp">
+      <Filter>onvif\video</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rapidrtsp\h264_parser.cpp">
-      <Filter>src\rapidrtsp</Filter>
+    <ClCompile Include="..\..\onvif\include\video\h264_parser.cpp">
+      <Filter>onvif\video</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
