@@ -1,2 +1,2 @@
-#define VE_INFO "Rapidvms r3.2 2017"
-#define VE_VERSION "r3.2.0219.17"
+#define VE_INFO "Rapidvms r3.5 2017"
+#define VE_VERSION "r3.5.0512.17"
