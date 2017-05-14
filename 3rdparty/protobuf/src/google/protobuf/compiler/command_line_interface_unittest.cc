@@ -57,6 +57,7 @@
 #include <google/protobuf/io/printer.h>
 #include <google/protobuf/unittest.pb.h>
 #include <google/protobuf/testing/file.h>
+#include <google/protobuf/stubs/stringprintf.h>
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/stubs/substitute.h>
 
@@ -100,6 +101,7 @@ class CommandLineInterfaceTest : public testing::Test {
   // command is automatically split on spaces, and the string "$tmpdir"
   // is replaced with TestTempDir().
   void Run(const string& command);
+  void RunWithArgs(vector<string> args);
 
   // -----------------------------------------------------------------
   // Methods to set up the test (called before Run()).
@@ -217,7 +219,7 @@ class CommandLineInterfaceTest : public testing::Test {
   string captured_stdout_;
 
   // Pointers which need to be deleted later.
-  vector<CodeGenerator*> mock_generators_to_delete_;
+  std::vector<CodeGenerator*> mock_generators_to_delete_;
 
   NullCodeGenerator* null_generator_;
 };
@@ -291,8 +293,10 @@ void CommandLineInterfaceTest::TearDown() {
 }
 
 void CommandLineInterfaceTest::Run(const string& command) {
-  vector<string> args = Split(command, " ", true);
+  RunWithArgs(Split(command, " ", true));
+}
 
+void CommandLineInterfaceTest::RunWithArgs(vector<string> args) {
   if (!disallow_plugins_) {
     cli_.AllowPlugins("prefix-");
 #ifndef GOOGLE_THIRD_PARTY_PROTOBUF
@@ -653,6 +657,44 @@ TEST_F(CommandLineInterfaceTest, ExtraGeneratorParameters) {
       "test_generator", "baz,foo1,foo2,foo3", "foo.proto", "Foo", "b");
 }
 
+TEST_F(CommandLineInterfaceTest, ExtraPluginParameters) {
+  // Test that generator parameters specified with the option flag are
+  // correctly passed to the code generator.
+
+  CreateTempFile("foo.proto",
+    "syntax = \"proto2\";\n"
+    "message Foo {}\n");
+  // Create the "a" and "b" sub-directories.
+  CreateTempDir("a");
+  CreateTempDir("b");
+
+  Run("protocol_compiler "
+      "--plug_opt=foo1 "
+      "--plug_out=bar:$tmpdir/a "
+      "--plug_opt=foo2 "
+      "--plug_out=baz:$tmpdir/b "
+      "--plug_opt=foo3 "
+      "--proto_path=$tmpdir foo.proto");
+
+  ExpectNoErrors();
+  ExpectGenerated(
+      "test_plugin", "bar,foo1,foo2,foo3", "foo.proto", "Foo", "a");
+  ExpectGenerated(
+      "test_plugin", "baz,foo1,foo2,foo3", "foo.proto", "Foo", "b");
+}
+
+TEST_F(CommandLineInterfaceTest, UnrecognizedExtraParameters) {
+  CreateTempFile("foo.proto",
+    "syntax = \"proto2\";\n"
+    "message Foo {}\n");
+
+  Run("protocol_compiler --plug_out=TestParameter:$tmpdir "
+      "--unknown_plug_opt=Foo "
+      "--proto_path=$tmpdir foo.proto");
+
+  ExpectErrorSubstring("Unknown flag: --unknown_plug_opt");
+}
+
 TEST_F(CommandLineInterfaceTest, Insert) {
   // Test running a generator that inserts code into another's output.
 
@@ -717,6 +759,11 @@ TEST_F(CommandLineInterfaceTest, TrailingBackslash) {
 
   ExpectNoErrors();
   ExpectGenerated("test_generator", "", "foo.proto", "Foo");
+}
+
+TEST_F(CommandLineInterfaceTest, Win32ErrorMessage) {
+  EXPECT_EQ("The system cannot find the file specified.\r\n",
+            Subprocess::Win32ErrorMessage(ERROR_FILE_NOT_FOUND));
 }
 
 #endif  // defined(_WIN32) || defined(__CYGWIN__)
@@ -786,6 +833,21 @@ TEST_F(CommandLineInterfaceTest, NonRootMapping) {
   ExpectGenerated("test_generator", "", "bar/foo.proto", "Foo");
 }
 
+TEST_F(CommandLineInterfaceTest, PathWithEqualsSign) {
+  // Test setting up a search path which happens to have '=' in it.
+
+  CreateTempDir("with=sign");
+  CreateTempFile("with=sign/foo.proto",
+    "syntax = \"proto2\";\n"
+    "message Foo {}\n");
+
+  Run("protocol_compiler --test_out=$tmpdir "
+      "--proto_path=$tmpdir/with=sign foo.proto");
+
+  ExpectNoErrors();
+  ExpectGenerated("test_generator", "", "foo.proto", "Foo");
+}
+
 TEST_F(CommandLineInterfaceTest, MultipleGenerators) {
   // Test that we can have multiple generators and use both in one invocation,
   // each with a different output directory.
@@ -849,6 +911,113 @@ TEST_F(CommandLineInterfaceTest, AllowServicesHasService) {
 
   ExpectNoErrors();
   ExpectGenerated("test_generator", "", "foo.proto", "Foo");
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_Missing_EmptyList) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "message Foo { optional Bar bar = 1; }");
+  CreateTempFile("bar.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bar { optional string text = 1; }");
+
+  Run("protocol_compiler --test_out=$tmpdir --proto_path=$tmpdir "
+      "--direct_dependencies= foo.proto");
+
+  ExpectErrorText(
+      "foo.proto: File is imported but not declared in --direct_dependencies: "
+      "bar.proto\n");
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_Missing) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "import \"bla.proto\";\n"
+                 "message Foo { optional Bar bar = 1; optional Bla bla = 2; }");
+  CreateTempFile("bar.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bar { optional string text = 1; }");
+  CreateTempFile("bla.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bla { optional int64 number = 1; }");
+
+  Run("protocol_compiler --test_out=$tmpdir --proto_path=$tmpdir "
+      "--direct_dependencies=bla.proto foo.proto");
+
+  ExpectErrorText(
+      "foo.proto: File is imported but not declared in --direct_dependencies: "
+      "bar.proto\n");
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_NoViolation) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "message Foo { optional Bar bar = 1; }");
+  CreateTempFile("bar.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bar { optional string text = 1; }");
+
+  Run("protocol_compiler --test_out=$tmpdir --proto_path=$tmpdir "
+      "--direct_dependencies=bar.proto foo.proto");
+
+  ExpectNoErrors();
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_NoViolation_MultiImports) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "import \"bla.proto\";\n"
+                 "message Foo { optional Bar bar = 1; optional Bla bla = 2; }");
+  CreateTempFile("bar.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bar { optional string text = 1; }");
+  CreateTempFile("bla.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bla { optional int64 number = 1; }");
+
+  Run("protocol_compiler --test_out=$tmpdir --proto_path=$tmpdir "
+      "--direct_dependencies=bar.proto:bla.proto foo.proto");
+
+  ExpectNoErrors();
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_ProvidedMultipleTimes) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n");
+
+  Run("protocol_compiler --test_out=$tmpdir --proto_path=$tmpdir "
+      "--direct_dependencies=bar.proto --direct_dependencies=bla.proto "
+      "foo.proto");
+
+  ExpectErrorText(
+      "--direct_dependencies may only be passed once. To specify multiple "
+      "direct dependencies, pass them all as a single parameter separated by "
+      "':'.\n");
+}
+
+TEST_F(CommandLineInterfaceTest, DirectDependencies_CustomErrorMessage) {
+  CreateTempFile("foo.proto",
+                 "syntax = \"proto2\";\n"
+                 "import \"bar.proto\";\n"
+                 "message Foo { optional Bar bar = 1; }");
+  CreateTempFile("bar.proto",
+                 "syntax = \"proto2\";\n"
+                 "message Bar { optional string text = 1; }");
+
+  vector<string> commands;
+  commands.push_back("protocol_compiler");
+  commands.push_back("--test_out=$tmpdir");
+  commands.push_back("--proto_path=$tmpdir");
+  commands.push_back("--direct_dependencies=");
+  commands.push_back("--direct_dependencies_violation_msg=Bla \"%s\" Bla");
+  commands.push_back("foo.proto");
+  RunWithArgs(commands);
+
+  ExpectErrorText("foo.proto: Bla \"bar.proto\" Bla\n");
 }
 
 TEST_F(CommandLineInterfaceTest, CwdRelativeInputs) {
@@ -1136,6 +1305,19 @@ TEST_F(CommandLineInterfaceTest, ParseErrorsMultipleFiles) {
     "baz.proto: Import \"bar.proto\" was not found or had errors.\n"
     "foo.proto: Import \"bar.proto\" was not found or had errors.\n"
     "foo.proto: Import \"baz.proto\" was not found or had errors.\n");
+}
+
+TEST_F(CommandLineInterfaceTest, RecursiveImportFails) {
+  // Create a proto file that imports itself.
+  CreateTempFile("foo.proto",
+    "syntax = \"proto2\";\n"
+    "import \"foo.proto\";\n");
+
+  Run("protocol_compiler --test_out=$tmpdir "
+      "--proto_path=$tmpdir foo.proto");
+
+  ExpectErrorSubstring(
+    "foo.proto: File recursively imports itself: foo.proto -> foo.proto\n");
 }
 
 TEST_F(CommandLineInterfaceTest, InputNotFoundError) {
@@ -1438,6 +1620,21 @@ TEST_F(CommandLineInterfaceTest, PluginReceivesJsonName) {
   ExpectErrorSubstring("Saw json_name: 1");
 }
 
+TEST_F(CommandLineInterfaceTest, PluginReceivesCompilerVersion) {
+  CreateTempFile("foo.proto",
+    "syntax = \"proto2\";\n"
+    "message MockCodeGenerator_ShowVersionNumber {\n"
+    "  optional int32 value = 1;\n"
+    "}\n");
+
+  Run("protocol_compiler --plug_out=$tmpdir --proto_path=$tmpdir foo.proto");
+
+  ExpectErrorSubstring(
+      StringPrintf("Saw compiler_version: %d %s",
+                   GOOGLE_PROTOBUF_VERSION,
+                   GOOGLE_PROTOBUF_VERSION_SUFFIX));
+}
+
 TEST_F(CommandLineInterfaceTest, GeneratorPluginNotFound) {
   // Test what happens if the plugin isn't found.
 
@@ -1712,7 +1909,7 @@ class EncodeDecodeTest : public testing::Test {
   enum ReturnCode { SUCCESS, ERROR };
 
   bool Run(const string& command) {
-    vector<string> args;
+    std::vector<string> args;
     args.push_back("protoc");
     SplitStringUsing(command, " ", &args);
     args.push_back("--proto_path=" + TestSourceDir());

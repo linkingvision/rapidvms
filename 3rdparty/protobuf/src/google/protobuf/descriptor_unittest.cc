@@ -41,8 +41,11 @@
 #include <vector>
 
 #include <google/protobuf/compiler/importer.h>
+#include <google/protobuf/compiler/parser.h>
 #include <google/protobuf/unittest.pb.h>
 #include <google/protobuf/unittest_custom_options.pb.h>
+#include <google/protobuf/unittest_proto3_arena.pb.h>
+#include <google/protobuf/io/tokenizer.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/descriptor.h>
@@ -55,7 +58,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/stubs/logging.h>
-#include <google/protobuf/stubs/scoped_ptr.h>
+#include <google/protobuf/stubs/stringprintf.h>
 #include <google/protobuf/testing/googletest.h>
 #include <gtest/gtest.h>
 
@@ -489,6 +492,65 @@ TEST_F(FileDescriptorTest, Syntax) {
   }
 }
 
+void ExtractDebugString(
+    const FileDescriptor* file, std::set<string>* visited,
+    std::vector<std::pair<string, string> >* debug_strings) {
+  if (!visited->insert(file->name()).second) {
+    return;
+  }
+  for (int i = 0; i < file->dependency_count(); ++i) {
+    ExtractDebugString(file->dependency(i), visited, debug_strings);
+  }
+  debug_strings->push_back(make_pair(file->name(), file->DebugString()));
+}
+
+class SimpleErrorCollector : public google::protobuf::io::ErrorCollector {
+ public:
+  // implements ErrorCollector ---------------------------------------
+  void AddError(int line, int column, const string& message) {
+    last_error_ = StringPrintf("%d:%d:", line, column) + message;
+  }
+
+  const string& last_error() { return last_error_; }
+
+ private:
+  string last_error_;
+};
+// Test that the result of FileDescriptor::DebugString() can be used to create
+// the original descriptors.
+TEST_F(FileDescriptorTest, DebugStringRoundTrip) {
+  std::set<string> visited;
+  std::vector<std::pair<string, string> > debug_strings;
+  ExtractDebugString(protobuf_unittest::TestAllTypes::descriptor()->file(),
+                     &visited, &debug_strings);
+  ExtractDebugString(
+      protobuf_unittest::TestMessageWithCustomOptions::descriptor()->file(),
+      &visited, &debug_strings);
+  ExtractDebugString(proto3_arena_unittest::TestAllTypes::descriptor()->file(),
+                     &visited, &debug_strings);
+  ASSERT_GE(debug_strings.size(), 3);
+
+  DescriptorPool pool;
+  for (int i = 0; i < debug_strings.size(); ++i) {
+    const string& name = debug_strings[i].first;
+    const string& content = debug_strings[i].second;
+    google::protobuf::io::ArrayInputStream input_stream(content.data(), content.size());
+    SimpleErrorCollector error_collector;
+    google::protobuf::io::Tokenizer tokenizer(&input_stream, &error_collector);
+    google::protobuf::compiler::Parser parser;
+    parser.RecordErrorsTo(&error_collector);
+    FileDescriptorProto proto;
+    ASSERT_TRUE(parser.Parse(&tokenizer, &proto))
+        << error_collector.last_error() << "\n"
+        << content;
+    ASSERT_EQ("", error_collector.last_error());
+    proto.set_name(name);
+    const FileDescriptor* descriptor = pool.BuildFile(proto);
+    ASSERT_TRUE(descriptor != NULL) << proto.DebugString();
+    EXPECT_EQ(content, descriptor->DebugString());
+  }
+}
+
 // ===================================================================
 
 // Test simple flat messages and fields.
@@ -774,9 +836,9 @@ TEST_F(DescriptorTest, FieldFullName) {
 TEST_F(DescriptorTest, FieldJsonName) {
   EXPECT_EQ("fieldName1", message4_->field(0)->json_name());
   EXPECT_EQ("fieldName2", message4_->field(1)->json_name());
-  EXPECT_EQ("fieldName3", message4_->field(2)->json_name());
-  EXPECT_EQ("fieldName4", message4_->field(3)->json_name());
-  EXPECT_EQ("fIELDNAME5", message4_->field(4)->json_name());
+  EXPECT_EQ("FieldName3", message4_->field(2)->json_name());
+  EXPECT_EQ("FieldName4", message4_->field(3)->json_name());
+  EXPECT_EQ("FIELDNAME5", message4_->field(4)->json_name());
   EXPECT_EQ("@type", message4_->field(5)->json_name());
 
   DescriptorProto proto;
@@ -794,10 +856,20 @@ TEST_F(DescriptorTest, FieldJsonName) {
   ASSERT_EQ(6, proto.field_size());
   EXPECT_EQ("fieldName1", proto.field(0).json_name());
   EXPECT_EQ("fieldName2", proto.field(1).json_name());
-  EXPECT_EQ("fieldName3", proto.field(2).json_name());
-  EXPECT_EQ("fieldName4", proto.field(3).json_name());
-  EXPECT_EQ("fIELDNAME5", proto.field(4).json_name());
+  EXPECT_EQ("FieldName3", proto.field(2).json_name());
+  EXPECT_EQ("FieldName4", proto.field(3).json_name());
+  EXPECT_EQ("FIELDNAME5", proto.field(4).json_name());
   EXPECT_EQ("@type", proto.field(5).json_name());
+
+  // Test generated descriptor.
+  const Descriptor* generated = protobuf_unittest::TestJsonName::descriptor();
+  ASSERT_EQ(6, generated->field_count());
+  EXPECT_EQ("fieldName1", generated->field(0)->json_name());
+  EXPECT_EQ("fieldName2", generated->field(1)->json_name());
+  EXPECT_EQ("FieldName3", generated->field(2)->json_name());
+  EXPECT_EQ("FieldName4", generated->field(3)->json_name());
+  EXPECT_EQ("FIELDNAME5", generated->field(4)->json_name());
+  EXPECT_EQ("@type", generated->field(5)->json_name());
 }
 
 TEST_F(DescriptorTest, FieldFile) {
@@ -1852,7 +1924,7 @@ TEST_F(ExtensionDescriptorTest, FindExtensionByName) {
 }
 
 TEST_F(ExtensionDescriptorTest, FindAllExtensions) {
-  vector<const FieldDescriptor*> extensions;
+  std::vector<const FieldDescriptor*> extensions;
   pool_.FindAllExtensions(foo_, &extensions);
   ASSERT_EQ(4, extensions.size());
   EXPECT_EQ(10, extensions[0]->number());
@@ -2616,7 +2688,7 @@ TEST_P(AllowUnknownDependenciesTest, CustomOption) {
 
   // Verify that no extension options were set, but they were left as
   // uninterpreted_options.
-  vector<const FieldDescriptor*> fields;
+  std::vector<const FieldDescriptor*> fields;
   file->options().GetReflection()->ListFields(file->options(), &fields);
   ASSERT_EQ(2, fields.size());
   EXPECT_TRUE(file->options().has_optimize_for());
@@ -2705,6 +2777,7 @@ TEST(CustomOptions, OptionLocations) {
       protobuf_unittest::TestMessageWithCustomOptions::descriptor();
   const FileDescriptor* file = message->file();
   const FieldDescriptor* field = message->FindFieldByName("field1");
+  const OneofDescriptor* oneof = message->FindOneofByName("AnOneof");
   const EnumDescriptor* enm = message->FindEnumTypeByName("AnEnum");
   // TODO(benjy): Support EnumValue options, once the compiler does.
   const ServiceDescriptor* service =
@@ -2719,6 +2792,8 @@ TEST(CustomOptions, OptionLocations) {
             field->options().GetExtension(protobuf_unittest::field_opt1));
   EXPECT_EQ(42,  // Check that we get the default for an option we don't set.
             field->options().GetExtension(protobuf_unittest::field_opt2));
+  EXPECT_EQ(-99,
+            oneof->options().GetExtension(protobuf_unittest::oneof_opt1));
   EXPECT_EQ(-789,
             enm->options().GetExtension(protobuf_unittest::enum_opt1));
   EXPECT_EQ(123,
@@ -3262,6 +3337,85 @@ TEST(CustomOptions, OptionsWithRequiredEnums) {
   EXPECT_TRUE(old_enum_opt.AppendPartialToString(&buf));
   EXPECT_TRUE(new_enum_opt.ParseFromString(buf));
   EXPECT_EQ(protobuf_unittest::NewOptionType::NEW_VALUE, new_enum_opt.value());
+}
+
+// Test that FileDescriptor::DebugString() formats custom options correctly.
+TEST(CustomOptions, DebugString) {
+  DescriptorPool pool;
+
+  FileDescriptorProto file_proto;
+  MessageOptions::descriptor()->file()->CopyTo(&file_proto);
+  ASSERT_TRUE(pool.BuildFile(file_proto) != NULL);
+
+  // Add "foo.proto":
+  //   import "google/protobuf/descriptor.proto";
+  //   package "protobuf_unittest";
+  //   option (protobuf_unittest.cc_option1) = 1;
+  //   option (protobuf_unittest.cc_option2) = 2;
+  //   extend google.protobuf.FieldOptions {
+  //     optional int32 cc_option1 = 7736974;
+  //     optional int32 cc_option2 = 7736975;
+  //   }
+  ASSERT_TRUE(TextFormat::ParseFromString(
+      "name: \"foo.proto\" "
+      "package: \"protobuf_unittest\" "
+      "dependency: \"google/protobuf/descriptor.proto\" "
+      "options { "
+      "  uninterpreted_option { "
+      "    name { "
+      "      name_part: \"protobuf_unittest.cc_option1\" "
+      "      is_extension: true "
+      "    } "
+      "    positive_int_value: 1 "
+      "  } "
+      "  uninterpreted_option { "
+      "    name { "
+      "      name_part: \"protobuf_unittest.cc_option2\" "
+      "      is_extension: true "
+      "    } "
+      "    positive_int_value: 2 "
+      "  } "
+      "} "
+      "extension { "
+      "  name: \"cc_option1\" "
+      "  extendee: \".google.protobuf.FileOptions\" "
+      // This field number is intentionally chosen to be the same as
+      // (.fileopt1) defined in unittest_custom_options.proto (linked
+      // in this test binary). This is to test whether we are messing
+      // generated pool with custom descriptor pools when dealing with
+      // custom options.
+      "  number: 7736974 "
+      "  label: LABEL_OPTIONAL "
+      "  type: TYPE_INT32 "
+      "}"
+      "extension { "
+      "  name: \"cc_option2\" "
+      "  extendee: \".google.protobuf.FileOptions\" "
+      "  number: 7736975 "
+      "  label: LABEL_OPTIONAL "
+      "  type: TYPE_INT32 "
+      "}",
+      &file_proto));
+  const FileDescriptor* descriptor = pool.BuildFile(file_proto);
+  ASSERT_TRUE(descriptor != NULL);
+
+  EXPECT_EQ(2, descriptor->extension_count());
+
+  ASSERT_EQ(
+      "syntax = \"proto2\";\n"
+      "\n"
+      "import \"google/protobuf/descriptor.proto\";\n"
+      "package protobuf_unittest;\n"
+      "\n"
+      "option (.protobuf_unittest.cc_option1) = 1;\n"
+      "option (.protobuf_unittest.cc_option2) = 2;\n"
+      "\n"
+      "extend .google.protobuf.FileOptions {\n"
+      "  optional int32 cc_option1 = 7736974;\n"
+      "  optional int32 cc_option2 = 7736975;\n"
+      "}\n"
+      "\n",
+      descriptor->DebugString());
 }
 
 // ===================================================================
@@ -5027,7 +5181,7 @@ TEST_F(ValidationErrorTest, AggregateValueParseError) {
   BuildFileWithErrors(
       EmbedAggregateValue("aggregate_value: \"1+2\""),
       "foo.proto: foo.proto: OPTION_VALUE: Error while parsing option "
-      "value for \"foo\": Expected identifier.\n");
+      "value for \"foo\": Expected identifier, got: 1\n");
 }
 
 TEST_F(ValidationErrorTest, AggregateValueUnknownFields) {
@@ -5157,7 +5311,7 @@ TEST_F(ValidationErrorTest, ErrorsReportedToLogError) {
     "message_type { name: \"Foo\" } ",
     &file_proto));
 
-  vector<string> errors;
+  std::vector<string> errors;
 
   {
     ScopedMemoryLog log;
@@ -5551,6 +5705,69 @@ TEST_F(ValidationErrorTest, MapEntryConflictsWithEnum) {
       "with an existing enum type.\n");
 }
 
+TEST_F(ValidationErrorTest, EnumValuesConflictWhenPrefixesStripped) {
+  BuildFileWithErrors(
+      "syntax: 'proto3'"
+      "name: 'foo.proto' "
+      "enum_type {"
+      "  name: 'FooEnum' "
+      "  value { name: 'FOO_ENUM_BAZ' number: 0 }"
+      "  value { name: 'BAZ' number: 1 }"
+      "}",
+      "foo.proto: BAZ: NAME: When enum name is stripped and label is "
+      "PascalCased (Baz), this value label conflicts with FOO_ENUM_BAZ. This "
+      "will make the proto fail to compile for some languages, such as C#.\n");
+
+  BuildFileWithErrors(
+      "syntax: 'proto3'"
+      "name: 'foo.proto' "
+      "enum_type {"
+      "  name: 'FooEnum' "
+      "  value { name: 'FOOENUM_BAZ' number: 0 }"
+      "  value { name: 'BAZ' number: 1 }"
+      "}",
+      "foo.proto: BAZ: NAME: When enum name is stripped and label is "
+      "PascalCased (Baz), this value label conflicts with FOOENUM_BAZ. This "
+      "will make the proto fail to compile for some languages, such as C#.\n");
+
+  BuildFileWithErrors(
+      "syntax: 'proto3'"
+      "name: 'foo.proto' "
+      "enum_type {"
+      "  name: 'FooEnum' "
+      "  value { name: 'FOO_ENUM_BAR_BAZ' number: 0 }"
+      "  value { name: 'BAR__BAZ' number: 1 }"
+      "}",
+      "foo.proto: BAR__BAZ: NAME: When enum name is stripped and label is "
+      "PascalCased (BarBaz), this value label conflicts with "
+      "FOO_ENUM_BAR_BAZ. This will make the proto fail to compile for some "
+      "languages, such as C#.\n");
+
+  BuildFileWithErrors(
+      "syntax: 'proto3'"
+      "name: 'foo.proto' "
+      "enum_type {"
+      "  name: 'FooEnum' "
+      "  value { name: 'FOO_ENUM__BAR_BAZ' number: 0 }"
+      "  value { name: 'BAR_BAZ' number: 1 }"
+      "}",
+      "foo.proto: BAR_BAZ: NAME: When enum name is stripped and label is "
+      "PascalCased (BarBaz), this value label conflicts with "
+      "FOO_ENUM__BAR_BAZ. This will make the proto fail to compile for some "
+      "languages, such as C#.\n");
+
+  // This isn't an error because the underscore will cause the PascalCase to
+  // differ by case (BarBaz vs. Barbaz).
+  BuildFile(
+      "syntax: 'proto3'"
+      "name: 'foo.proto' "
+      "enum_type {"
+      "  name: 'FooEnum' "
+      "  value { name: 'BAR_BAZ' number: 0 }"
+      "  value { name: 'BARBAZ' number: 1 }"
+      "}");
+}
+
 TEST_F(ValidationErrorTest, MapEntryConflictsWithOneof) {
   FileDescriptorProto file_proto;
   FillValidMapEntry(&file_proto);
@@ -5834,7 +6051,7 @@ TEST_F(ValidationErrorTest, ValidateProto3JsonName) {
       "  field { name:'name' number:1 label:LABEL_OPTIONAL type:TYPE_INT32 }"
       "  field { name:'Name' number:2 label:LABEL_OPTIONAL type:TYPE_INT32 }"
       "}",
-      "foo.proto: Foo: OTHER: The JSON camcel-case name of field \"Name\" "
+      "foo.proto: Foo: OTHER: The JSON camel-case name of field \"Name\" "
       "conflicts with field \"name\". This is not allowed in proto3.\n");
   // Underscores are ignored.
   BuildFileWithErrors(
@@ -5845,7 +6062,7 @@ TEST_F(ValidationErrorTest, ValidateProto3JsonName) {
       "  field { name:'ab' number:1 label:LABEL_OPTIONAL type:TYPE_INT32 }"
       "  field { name:'_a__b_' number:2 label:LABEL_OPTIONAL type:TYPE_INT32 }"
       "}",
-      "foo.proto: Foo: OTHER: The JSON camcel-case name of field \"_a__b_\" "
+      "foo.proto: Foo: OTHER: The JSON camel-case name of field \"_a__b_\" "
       "conflicts with field \"ab\". This is not allowed in proto3.\n");
 }
 
@@ -6084,7 +6301,7 @@ TEST_F(DatabaseBackedPoolTest, FindAllExtensions) {
   for (int i = 0; i < 2; ++i) {
     // Repeat the lookup twice, to check that we get consistent
     // results despite the fallback database lookup mutating the pool.
-    vector<const FieldDescriptor*> extensions;
+    std::vector<const FieldDescriptor*> extensions;
     pool.FindAllExtensions(foo, &extensions);
     ASSERT_EQ(1, extensions.size());
     EXPECT_EQ(5, extensions[0]->number());
@@ -6095,7 +6312,7 @@ TEST_F(DatabaseBackedPoolTest, ErrorWithoutErrorCollector) {
   ErrorDescriptorDatabase error_database;
   DescriptorPool pool(&error_database);
 
-  vector<string> errors;
+  std::vector<string> errors;
 
   {
     ScopedMemoryLog log;

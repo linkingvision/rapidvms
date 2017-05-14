@@ -2,6 +2,8 @@
 
 licenses(["notice"])
 
+exports_files(["LICENSE"])
+
 ################################################################################
 # Protobuf Runtime Library
 ################################################################################
@@ -12,7 +14,7 @@ COPTS = [
     "-Wwrite-strings",
     "-Woverloaded-virtual",
     "-Wno-sign-compare",
-    "-Wno-error=unused-function",
+    "-Wno-unused-function",
 ]
 
 config_setting(
@@ -32,6 +34,7 @@ load(
     "protobuf",
     "cc_proto_library",
     "py_proto_library",
+    "internal_copied_filegroup",
     "internal_gen_well_known_protos_java",
     "internal_protobuf_py_tests",
 )
@@ -224,6 +227,24 @@ cc_proto_library(
 # Protocol Buffers Compiler
 ################################################################################
 
+cc_binary(
+    name = "js_embed",
+    srcs = ["src/google/protobuf/compiler/js/embed.cc"],
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "generate_js_well_known_types_embed",
+    srcs = [
+        "src/google/protobuf/compiler/js/well_known_types/any.js",
+        "src/google/protobuf/compiler/js/well_known_types/struct.js",
+        "src/google/protobuf/compiler/js/well_known_types/timestamp.js",
+    ],
+    outs = ["src/google/protobuf/compiler/js/well_known_types_embed.cc"],
+    cmd = "$(location :js_embed) $(SRCS) > $@",
+    tools = [":js_embed"],
+)
+
 cc_library(
     name = "protoc_lib",
     srcs = [
@@ -301,6 +322,7 @@ cc_library(
         "src/google/protobuf/compiler/javanano/javanano_message_field.cc",
         "src/google/protobuf/compiler/javanano/javanano_primitive_field.cc",
         "src/google/protobuf/compiler/js/js_generator.cc",
+        "src/google/protobuf/compiler/js/well_known_types_embed.cc",
         "src/google/protobuf/compiler/objectivec/objectivec_enum.cc",
         "src/google/protobuf/compiler/objectivec/objectivec_enum_field.cc",
         "src/google/protobuf/compiler/objectivec/objectivec_extension.cc",
@@ -313,6 +335,7 @@ cc_library(
         "src/google/protobuf/compiler/objectivec/objectivec_message_field.cc",
         "src/google/protobuf/compiler/objectivec/objectivec_oneof.cc",
         "src/google/protobuf/compiler/objectivec/objectivec_primitive_field.cc",
+        "src/google/protobuf/compiler/php/php_generator.cc",
         "src/google/protobuf/compiler/plugin.cc",
         "src/google/protobuf/compiler/plugin.pb.cc",
         "src/google/protobuf/compiler/python/python_generator.cc",
@@ -387,8 +410,10 @@ RELATIVE_TEST_PROTOS = [
     "google/protobuf/util/internal/testdata/field_mask.proto",
     "google/protobuf/util/internal/testdata/maps.proto",
     "google/protobuf/util/internal/testdata/oneofs.proto",
+    "google/protobuf/util/internal/testdata/proto3.proto",
     "google/protobuf/util/internal/testdata/struct.proto",
     "google/protobuf/util/internal/testdata/timestamp_duration.proto",
+    "google/protobuf/util/internal/testdata/wrappers.proto",
     "google/protobuf/util/json_format_proto3.proto",
     "google/protobuf/util/message_differencer_unittest.proto",
 ]
@@ -560,6 +585,8 @@ py_library(
             "python/google/protobuf/**/*.py",
         ],
         exclude = [
+            "python/google/protobuf/__init__.py",
+            "python/google/protobuf/**/__init__.py",
             "python/google/protobuf/internal/*_test.py",
             "python/google/protobuf/internal/test_util.py",
         ],
@@ -569,7 +596,7 @@ py_library(
 )
 
 cc_binary(
-    name = "internal/_api_implementation.so",
+    name = "python/google/protobuf/internal/_api_implementation.so",
     srcs = ["python/google/protobuf/internal/api_implementation.cc"],
     copts = COPTS + [
         "-DPYTHON_PROTO2_CPP_IMPL_V2",
@@ -583,7 +610,7 @@ cc_binary(
 )
 
 cc_binary(
-    name = "pyext/_message.so",
+    name = "python/google/protobuf/pyext/_message.so",
     srcs = glob([
         "python/google/protobuf/pyext/*.cc",
         "python/google/protobuf/pyext/*.h",
@@ -622,15 +649,31 @@ config_setting(
     },
 )
 
+# Copy the builtin proto files from src/google/protobuf to
+# python/google/protobuf. This way, the generated Python sources will be in the
+# same directory as the Python runtime sources. This is necessary for the
+# modules to be imported correctly since they are all part of the same Python
+# package.
+internal_copied_filegroup(
+    name = "protos_python",
+    srcs = WELL_KNOWN_PROTOS,
+    strip_prefix = "src",
+    dest = "python",
+)
+
+# TODO(dzc): Remove this once py_proto_library can have labels in srcs, in
+# which case we can simply add :protos_python in srcs.
+COPIED_WELL_KNOWN_PROTOS = ["python/" + s for s in RELATIVE_WELL_KNOWN_PROTOS]
+
 py_proto_library(
     name = "protobuf_python",
-    srcs = WELL_KNOWN_PROTOS,
-    include = "src",
+    srcs = COPIED_WELL_KNOWN_PROTOS,
+    include = "python",
     data = select({
         "//conditions:default": [],
         ":use_fast_cpp_protos": [
-            ":internal/_api_implementation.so",
-            ":pyext/_message.so",
+            ":python/google/protobuf/internal/_api_implementation.so",
+            ":python/google/protobuf/pyext/_message.so",
         ],
     }),
     default_runtime = "",
@@ -643,10 +686,27 @@ py_proto_library(
     visibility = ["//visibility:public"],
 )
 
+# Copy the test proto files from src/google/protobuf to
+# python/google/protobuf. This way, the generated Python sources will be in the
+# same directory as the Python runtime sources. This is necessary for the
+# modules to be imported correctly by the tests since they are all part of the
+# same Python package.
+internal_copied_filegroup(
+    name = "protos_python_test",
+    srcs = LITE_TEST_PROTOS + TEST_PROTOS,
+    strip_prefix = "src",
+    dest = "python",
+)
+
+# TODO(dzc): Remove this once py_proto_library can have labels in srcs, in
+# which case we can simply add :protos_python_test in srcs.
+COPIED_LITE_TEST_PROTOS = ["python/" + s for s in RELATIVE_LITE_TEST_PROTOS]
+COPIED_TEST_PROTOS = ["python/" + s for s in RELATIVE_TEST_PROTOS]
+
 py_proto_library(
     name = "python_common_test_protos",
-    srcs = LITE_TEST_PROTOS + TEST_PROTOS,
-    include = "src",
+    srcs = COPIED_LITE_TEST_PROTOS + COPIED_TEST_PROTOS,
+    include = "python",
     default_runtime = "",
     protoc = ":protoc",
     srcs_version = "PY2AND3",
@@ -672,6 +732,7 @@ py_library(
         [
             "python/google/protobuf/internal/*_test.py",
             "python/google/protobuf/internal/test_util.py",
+            "python/google/protobuf/internal/import_test_package/__init__.py",
         ],
     ),
     imports = ["python"],
@@ -706,4 +767,11 @@ internal_protobuf_py_tests(
         "wire_format_test",
     ],
     deps = [":python_tests"],
+)
+
+proto_lang_toolchain(
+  name = "cc_toolchain",
+  runtime = ":protobuf",
+  command_line = "--cpp_out=$(OUT)",
+  visibility = ["//visibility:public"],
 )

@@ -38,7 +38,7 @@ namespace google {
 namespace protobuf {
 namespace internal {
 
-// This class provides accesss to map field using generated api. It is used for
+// This class provides access to map field using generated api. It is used for
 // internal generated message implentation only. Users should never use this
 // directly.
 template <typename Key, typename T,
@@ -68,13 +68,14 @@ class MapFieldLite {
   // Set default enum value only for proto2 map field whose value is enum type.
   void SetDefaultEnumValue();
 
-  // Used in the implementation of parsing. Caller should take the ownership.
+  // Used in the implementation of parsing. Caller should take the ownership iff
+  // arena_ is NULL.
   EntryType* NewEntry() const;
   // Used in the implementation of serializing enum value type. Caller should
-  // take the ownership.
+  // take the ownership iff arena_ is NULL.
   EntryType* NewEnumEntryWrapper(const Key& key, const T t) const;
   // Used in the implementation of serializing other value types. Caller should
-  // take the ownership.
+  // take the ownership iff arena_ is NULL.
   EntryType* NewEntryWrapper(const Key& key, const T& t) const;
 
  protected:

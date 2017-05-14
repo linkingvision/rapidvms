@@ -42,6 +42,7 @@
 
 #include <string>
 #include <google/protobuf/stubs/common.h>
+#include <google/protobuf/repeated_field.h>
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/io/coded_stream.h>  // for CodedOutputStream::Varint32Size
 
@@ -155,7 +156,8 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
 
   // Compute the byte size of a tag.  For groups, this includes both the start
   // and end tags.
-  static inline int TagSize(int field_number, WireFormatLite::FieldType type);
+  static inline size_t TagSize(int field_number,
+                               WireFormatLite::FieldType type);
 
   // Skips a field value with the given tag.  The input should start
   // positioned immediately after the tag.  Skipped values are simply discarded,
@@ -212,7 +214,7 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
                                 WireFormatLite::WIRETYPE_LENGTH_DELIMITED);
 
   // Byte size of all tags of a MessageSet::Item combined.
-  static const int kMessageSetItemTagsSize;
+  static const size_t kMessageSetItemTagsSize;
 
   // Helper functions for converting between floats/doubles and IEEE-754
   // uint32s/uint64s so that they can be written.  (Assumes your platform
@@ -242,7 +244,15 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
 #define input  io::CodedInputStream*  input_arg
 #define output io::CodedOutputStream* output_arg
 #define field_number int field_number_arg
+#ifdef NDEBUG
 #define INL GOOGLE_ATTRIBUTE_ALWAYS_INLINE
+#else
+// Avoid excessive inlining in non-optimized builds. Without other optimizations
+// the inlining is not going to provide benefits anyway and the huge resulting
+// functions, especially in the proto-generated serialization functions, produce
+// stack frames so large that many tests run into stack overflows (b/32192897).
+#define INL
+#endif
 
   // Read fields, not including tags.  The assumption is that you already
   // read the tag to determine what field to read.
@@ -370,6 +380,15 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   INL static void WriteBoolNoTag    (bool value, output);
   INL static void WriteEnumNoTag    (int value, output);
 
+  // Write array of primitive fields, without tags
+  static void WriteFloatArray   (const float* a, int n, output);
+  static void WriteDoubleArray  (const double* a, int n, output);
+  static void WriteFixed32Array (const uint32* a, int n, output);
+  static void WriteFixed64Array (const uint64* a, int n, output);
+  static void WriteSFixed32Array(const int32* a, int n, output);
+  static void WriteSFixed64Array(const int64* a, int n, output);
+  static void WriteBoolArray    (const bool* a, int n, output);
+
   // Write fields, including tags.
   static void WriteInt32   (field_number,  int32 value, output);
   static void WriteInt64   (field_number,  int64 value, output);
@@ -457,20 +476,48 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   INL static uint8* WriteBytesToArray(
     field_number, const string& value, output);
 
-  INL static uint8* WriteGroupToArray(
-      field_number, const MessageLite& value, output);
-  INL static uint8* WriteMessageToArray(
-      field_number, const MessageLite& value, output);
+  // Whether to serialize deterministically (e.g., map keys are
+  // sorted) is a property of a CodedOutputStream, and in the process
+  // of serialization, the "ToArray" variants may be invoked.  But they don't
+  // have a CodedOutputStream available, so they get an additional parameter
+  // telling them whether to serialize deterministically.
+  INL static uint8* InternalWriteGroupToArray(
+      field_number, const MessageLite& value, bool deterministic, output);
+  INL static uint8* InternalWriteMessageToArray(
+      field_number, const MessageLite& value, bool deterministic, output);
 
   // Like above, but de-virtualize the call to SerializeWithCachedSizes().  The
   // pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override SerializeWithCachedSizes()).
   template<typename MessageType>
+  INL static uint8* InternalWriteGroupNoVirtualToArray(
+    field_number, const MessageType& value, bool deterministic, output);
+  template<typename MessageType>
+  INL static uint8* InternalWriteMessageNoVirtualToArray(
+    field_number, const MessageType& value, bool deterministic, output);
+
+  // For backward-compatibility, the last four methods also have versions
+  // that are non-deterministic always.
+  INL static uint8* WriteGroupToArray(
+      field_number, const MessageLite& value, output) {
+    return InternalWriteGroupToArray(field_number_arg, value, false, target);
+  }
+  INL static uint8* WriteMessageToArray(
+      field_number, const MessageLite& value, output) {
+    return InternalWriteMessageToArray(field_number_arg, value, false, target);
+  }
+  template<typename MessageType>
   INL static uint8* WriteGroupNoVirtualToArray(
-    field_number, const MessageType& value, output);
+      field_number, const MessageType& value, output) {
+    return InternalWriteGroupNoVirtualToArray(field_number_arg, value, false,
+                                              target);
+  }
   template<typename MessageType>
   INL static uint8* WriteMessageNoVirtualToArray(
-    field_number, const MessageType& value, output);
+      field_number, const MessageType& value, output) {
+    return InternalWriteMessageNoVirtualToArray(field_number_arg, value, false,
+                                                target);
+  }
 
 #undef output
 #undef input
@@ -482,40 +529,48 @@ class LIBPROTOBUF_EXPORT WireFormatLite {
   // the tag, so you must also call TagSize().  (This is because, for repeated
   // fields, you should only call TagSize() once and multiply it by the element
   // count, but you may have to call XxSize() for each individual element.)
-  static inline int Int32Size   ( int32 value);
-  static inline int Int64Size   ( int64 value);
-  static inline int UInt32Size  (uint32 value);
-  static inline int UInt64Size  (uint64 value);
-  static inline int SInt32Size  ( int32 value);
-  static inline int SInt64Size  ( int64 value);
-  static inline int EnumSize    (   int value);
+  static inline size_t Int32Size   ( int32 value);
+  static inline size_t Int64Size   ( int64 value);
+  static inline size_t UInt32Size  (uint32 value);
+  static inline size_t UInt64Size  (uint64 value);
+  static inline size_t SInt32Size  ( int32 value);
+  static inline size_t SInt64Size  ( int64 value);
+  static inline size_t EnumSize    (   int value);
+
+  static        size_t Int32Size (const RepeatedField< int32>& value);
+  static inline size_t Int64Size (const RepeatedField< int64>& value);
+  static        size_t UInt32Size(const RepeatedField<uint32>& value);
+  static inline size_t UInt64Size(const RepeatedField<uint64>& value);
+  static        size_t SInt32Size(const RepeatedField< int32>& value);
+  static inline size_t SInt64Size(const RepeatedField< int64>& value);
+  static        size_t EnumSize  (const RepeatedField<   int>& value);
 
   // These types always have the same size.
-  static const int kFixed32Size  = 4;
-  static const int kFixed64Size  = 8;
-  static const int kSFixed32Size = 4;
-  static const int kSFixed64Size = 8;
-  static const int kFloatSize    = 4;
-  static const int kDoubleSize   = 8;
-  static const int kBoolSize     = 1;
+  static const size_t kFixed32Size  = 4;
+  static const size_t kFixed64Size  = 8;
+  static const size_t kSFixed32Size = 4;
+  static const size_t kSFixed64Size = 8;
+  static const size_t kFloatSize    = 4;
+  static const size_t kDoubleSize   = 8;
+  static const size_t kBoolSize     = 1;
 
-  static inline int StringSize(const string& value);
-  static inline int BytesSize (const string& value);
+  static inline size_t StringSize(const string& value);
+  static inline size_t BytesSize (const string& value);
 
-  static inline int GroupSize  (const MessageLite& value);
-  static inline int MessageSize(const MessageLite& value);
+  static inline size_t GroupSize  (const MessageLite& value);
+  static inline size_t MessageSize(const MessageLite& value);
 
   // Like above, but de-virtualize the call to ByteSize().  The
   // pointer must point at an instance of MessageType, *not* a subclass (or
   // the subclass must not override ByteSize()).
   template<typename MessageType>
-  static inline int GroupSizeNoVirtual  (const MessageType& value);
+  static inline size_t GroupSizeNoVirtual  (const MessageType& value);
   template<typename MessageType>
-  static inline int MessageSizeNoVirtual(const MessageType& value);
+  static inline size_t MessageSizeNoVirtual(const MessageType& value);
 
   // Given the length of data, calculate the byte size of the data on the
   // wire if we encode the data as a length delimited field.
-  static inline int LengthDelimitedSize(int length);
+  static inline size_t LengthDelimitedSize(size_t length);
 
  private:
   // A helper method for the repeated primitive reader. This method has
@@ -598,9 +653,9 @@ inline int WireFormatLite::GetTagFieldNumber(uint32 tag) {
   return static_cast<int>(tag >> kTagTypeBits);
 }
 
-inline int WireFormatLite::TagSize(int field_number,
-                                   WireFormatLite::FieldType type) {
-  int result = io::CodedOutputStream::VarintSize32(
+inline size_t WireFormatLite::TagSize(int field_number,
+                                      WireFormatLite::FieldType type) {
+  size_t result = io::CodedOutputStream::VarintSize32(
     field_number << kTagTypeBits);
   if (type == TYPE_GROUP) {
     // Groups have both a start and an end tag.

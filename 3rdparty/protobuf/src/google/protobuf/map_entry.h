@@ -83,7 +83,7 @@ class LIBPROTOBUF_EXPORT MapEntryBase : public Message {
 // reflection, its in-memory type is the same as generated message with the same
 // fields. However, in order to decide the in-memory type of key/value, we need
 // to know both their cpp type in generated api and proto type. In
-// implmentation, all in-memory types have related wire format functions to
+// implementation, all in-memory types have related wire format functions to
 // support except ArenaStringPtr. Therefore, we need to define another type with
 // supporting wire format functions. Since this type is only used as return type
 // of MapEntry accessors, it's named MapEntry accessor type.
@@ -158,16 +158,18 @@ class MapEntry : public MapEntryBase {
     return entry_lite_.MergePartialFromCodedStream(input);
   }
 
-  int ByteSize() const {
-    return entry_lite_.ByteSize();
+  size_t ByteSizeLong() const {
+    return entry_lite_.ByteSizeLong();
   }
 
   void SerializeWithCachedSizes(::google::protobuf::io::CodedOutputStream* output) const {
     entry_lite_.SerializeWithCachedSizes(output);
   }
 
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return entry_lite_.SerializeWithCachedSizesToArray(output);
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(bool deterministic,
+                                                   ::google::protobuf::uint8* output) const {
+    return entry_lite_.InternalSerializeWithCachedSizesToArray(deterministic,
+                                                               output);
   }
 
   int GetCachedSize() const {
@@ -242,14 +244,18 @@ class MapEntry : public MapEntryBase {
   // to distinguish instances of the same MapEntry class.
   static MapEntry* CreateDefaultInstance(const Descriptor* descriptor) {
     MapEntry* entry = new MapEntry;
-    const Reflection* reflection = new GeneratedMessageReflection(
-        descriptor, entry, offsets_,
+    ReflectionSchema schema = {
+        entry,
+        offsets_,
+        has_bits_,
         GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, entry_lite_._has_bits_),
-        GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, _unknown_fields_), -1,
-        DescriptorPool::generated_pool(),
-        ::google::protobuf::MessageFactory::generated_factory(),
-        sizeof(MapEntry),
-        GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, _internal_metadata_));
+        GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, _internal_metadata_),
+        -1,
+        -1,
+        sizeof(MapEntry)};
+    const Reflection* reflection = new GeneratedMessageReflection(
+        descriptor, schema, DescriptorPool::generated_pool(),
+        MessageFactory::generated_factory());
     entry->descriptor_ = descriptor;
     entry->reflection_ = reflection;
     entry->set_default_instance(entry);
@@ -276,8 +282,8 @@ class MapEntry : public MapEntryBase {
     entry_lite_.set_default_instance(&default_instance->entry_lite_);
   }
 
-  static int offsets_[2];
-  UnknownFieldSet _unknown_fields_;
+  static uint32 offsets_[2];
+  static uint32 has_bits_[2];
   InternalMetadataWithArena _internal_metadata_;
   MapEntry* default_instance_;
   EntryLiteType entry_lite_;
@@ -295,11 +301,16 @@ class MapEntry : public MapEntryBase {
 
 template <typename Key, typename Value, WireFormatLite::FieldType kKeyFieldType,
           WireFormatLite::FieldType kValueFieldType, int default_enum_value>
-int MapEntry<Key, Value, kKeyFieldType, kValueFieldType,
+uint32 MapEntry<Key, Value, kKeyFieldType, kValueFieldType,
              default_enum_value>::offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, entry_lite_.key_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MapEntry, entry_lite_.value_),
 };
+
+template <typename Key, typename Value, WireFormatLite::FieldType kKeyFieldType,
+          WireFormatLite::FieldType kValueFieldType, int default_enum_value>
+uint32 MapEntry<Key, Value, kKeyFieldType, kValueFieldType,
+             default_enum_value>::has_bits_[2] = {0, 1};
 
 }  // namespace internal
 }  // namespace protobuf

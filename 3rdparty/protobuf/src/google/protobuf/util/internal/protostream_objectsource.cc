@@ -85,7 +85,7 @@ const google::protobuf::EnumValue* FindEnumValueByNumber(
     const google::protobuf::Enum& tech_enum, int number);
 
 // Utility function to format nanos.
-const string FormatNanos(uint32 nanos);
+const string FormatNanos(uint32 nanos, bool with_trailing_zeros);
 
 StatusOr<string> MapKeyDefaultValueAsString(
     const google::protobuf::Field& field) {
@@ -121,7 +121,9 @@ ProtoStreamObjectSource::ProtoStreamObjectSource(
       type_(type),
       use_lower_camel_for_enums_(false),
       recursion_depth_(0),
-      max_recursion_depth_(kDefaultMaxRecursionDepth) {
+      max_recursion_depth_(kDefaultMaxRecursionDepth),
+      render_unknown_fields_(false),
+      add_trailing_zeros_for_timestamp_and_duration_(false) {
   GOOGLE_LOG_IF(DFATAL, stream == NULL) << "Input stream is NULL.";
 }
 
@@ -134,7 +136,9 @@ ProtoStreamObjectSource::ProtoStreamObjectSource(
       type_(type),
       use_lower_camel_for_enums_(false),
       recursion_depth_(0),
-      max_recursion_depth_(kDefaultMaxRecursionDepth) {
+      max_recursion_depth_(kDefaultMaxRecursionDepth),
+      render_unknown_fields_(false),
+      add_trailing_zeros_for_timestamp_and_duration_(false) {
   GOOGLE_LOG_IF(DFATAL, stream == NULL) << "Input stream is NULL.";
 }
 
@@ -184,6 +188,7 @@ Status ProtoStreamObjectSource::WriteMessage(const google::protobuf::Type& type,
   string field_name;
   // last_tag set to dummy value that is different from tag.
   uint32 tag = stream_->ReadTag(), last_tag = tag + 1;
+  google::protobuf::UnknownFieldSet unknown_fields;
 
   if (include_start_and_end) {
     ow->StartObject(name);
@@ -199,7 +204,8 @@ Status ProtoStreamObjectSource::WriteMessage(const google::protobuf::Type& type,
     if (field == NULL) {
       // If we didn't find a field, skip this unknown tag.
       // TODO(wpoon): Check return boolean value.
-      WireFormat::SkipField(stream_, tag, NULL);
+      WireFormat::SkipField(stream_, tag,
+                            render_unknown_fields_ ? &unknown_fields : NULL);
       tag = stream_->ReadTag();
       continue;
     }
@@ -221,6 +227,8 @@ Status ProtoStreamObjectSource::WriteMessage(const google::protobuf::Type& type,
       tag = stream_->ReadTag();
     }
   }
+
+
   if (include_start_and_end) {
     ow->EndObject();
   }
@@ -282,6 +290,8 @@ StatusOr<uint32> ProtoStreamObjectSource::RenderMap(
             return Status(util::error::INTERNAL, "Invalid map entry.");
           }
           ASSIGN_OR_RETURN(map_key, MapKeyDefaultValueAsString(*key_field));
+          // Key is empty, force it to render as empty (for string values).
+          ow->empty_name_ok_for_next_key();
         }
         RETURN_IF_ERROR(RenderField(field, map_key, ow));
       } else {
@@ -310,7 +320,7 @@ Status ProtoStreamObjectSource::RenderPacked(
 Status ProtoStreamObjectSource::RenderTimestamp(
     const ProtoStreamObjectSource* os, const google::protobuf::Type& type,
     StringPiece field_name, ObjectWriter* ow) {
-  pair<int64, int32> p = os->ReadSecondsAndNanos(type);
+  std::pair<int64, int32> p = os->ReadSecondsAndNanos(type);
   int64 seconds = p.first;
   int32 nanos = p.second;
   if (seconds > kTimestampMaxSeconds || seconds < kTimestampMinSeconds) {
@@ -334,7 +344,7 @@ Status ProtoStreamObjectSource::RenderTimestamp(
 Status ProtoStreamObjectSource::RenderDuration(
     const ProtoStreamObjectSource* os, const google::protobuf::Type& type,
     StringPiece field_name, ObjectWriter* ow) {
-  pair<int64, int32> p = os->ReadSecondsAndNanos(type);
+  std::pair<int64, int32> p = os->ReadSecondsAndNanos(type);
   int64 seconds = p.first;
   int32 nanos = p.second;
   if (seconds > kDurationMaxSeconds || seconds < kDurationMinSeconds) {
@@ -364,8 +374,10 @@ Status ProtoStreamObjectSource::RenderDuration(
     sign = "-";
     nanos = -nanos;
   }
-  string formatted_duration = StringPrintf("%s%lld%ss", sign.c_str(), seconds,
-                                           FormatNanos(nanos).c_str());
+  string formatted_duration = StringPrintf(
+      "%s%lld%ss", sign.c_str(), seconds,
+      FormatNanos(nanos, os->add_trailing_zeros_for_timestamp_and_duration_)
+          .c_str());
   ow->RenderString(field_name, formatted_duration);
   return Status::OK;
 }
@@ -851,7 +863,8 @@ Status ProtoStreamObjectSource::RenderNonMessageField(
       // up.
       const google::protobuf::Enum* en =
           typeinfo_->GetEnumByTypeUrl(field->type_url());
-      // Lookup the name of the enum, and render that. Skips unknown enums.
+      // Lookup the name of the enum, and render that. Unknown enum values
+      // are printed as integers.
       if (en != NULL) {
         const google::protobuf::EnumValue* enum_value =
             FindEnumValueByNumber(*en, buffer32);
@@ -860,9 +873,11 @@ Status ProtoStreamObjectSource::RenderNonMessageField(
             ow->RenderString(field_name, ToCamelCase(enum_value->name()));
           else
             ow->RenderString(field_name, enum_value->name());
+        } else {
+          ow->RenderInt32(field_name, buffer32);
         }
       } else {
-        GOOGLE_LOG(INFO) << "Unknown enum skipped: " << field->type_url();
+        ow->RenderInt32(field_name, buffer32);
       }
       break;
     }
@@ -1009,12 +1024,8 @@ bool ProtoStreamObjectSource::IsMap(
     const google::protobuf::Field& field) const {
   const google::protobuf::Type* field_type =
       typeinfo_->GetTypeByTypeUrl(field.type_url());
-
-  // TODO(xiaofeng): Unify option names.
   return field.kind() == google::protobuf::Field_Kind_TYPE_MESSAGE &&
-         (GetBoolOptionOrDefault(field_type->options(),
-                                 "google.protobuf.MessageOptions.map_entry", false) ||
-          GetBoolOptionOrDefault(field_type->options(), "map_entry", false));
+         google::protobuf::util::converter::IsMap(field, *field_type);
 }
 
 std::pair<int64, int32> ProtoStreamObjectSource::ReadSecondsAndNanos(
@@ -1092,7 +1103,11 @@ const google::protobuf::EnumValue* FindEnumValueByNumber(
 
 // TODO(skarvaje): Look into optimizing this by not doing computation on
 // double.
-const string FormatNanos(uint32 nanos) {
+const string FormatNanos(uint32 nanos, bool with_trailing_zeros) {
+  if (nanos == 0) {
+    return with_trailing_zeros ? ".000" : "";
+  }
+
   const char* format =
       (nanos % 1000 != 0) ? "%.9f" : (nanos % 1000000 != 0) ? "%.6f" : "%.3f";
   string formatted =

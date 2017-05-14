@@ -48,15 +48,13 @@ double NaN() {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-const ::std::string* empty_string_;
+ExplicitlyConstructed< ::std::string> fixed_address_empty_string;
 GOOGLE_PROTOBUF_DECLARE_ONCE(empty_string_once_init_);
 
-void DeleteEmptyString() {
-  delete empty_string_;
-}
+void DeleteEmptyString() { fixed_address_empty_string.Shutdown(); }
 
 void InitEmptyString() {
-  empty_string_ = new string;
+  fixed_address_empty_string.DefaultConstruct();
   OnShutdown(&DeleteEmptyString);
 }
 
@@ -72,6 +70,10 @@ int StringSpaceUsedExcludingSelf(const string& str) {
 }
 
 
+
+void InitProtobufDefaults() {
+  GetEmptyString();
+}
 
 }  // namespace internal
 }  // namespace protobuf

@@ -50,7 +50,6 @@
 #include <google/protobuf/stubs/casts.h>
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/scoped_ptr.h>
 #include <google/protobuf/stubs/stringprintf.h>
 #include <google/protobuf/testing/file.h>
 #include <google/protobuf/arena_test_util.h>
@@ -75,8 +74,10 @@
 #include <google/protobuf/io/tokenizer.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 #include <google/protobuf/util/time_util.h>
+#include <google/protobuf/util/message_differencer.h>
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/stubs/substitute.h>
+#include <gmock/gmock.h>
 #include <google/protobuf/testing/googletest.h>
 #include <gtest/gtest.h>
 
@@ -89,6 +90,10 @@ using google::protobuf::unittest::TestRecursiveMapMessage;
 
 namespace protobuf {
 namespace internal {
+
+void MapTestForceDeterministic() {
+  ::google::protobuf::io::CodedOutputStream::SetDefaultSerializationDeterministic();
+}
 
 // Map API Test =====================================================
 
@@ -297,7 +302,7 @@ TEST_P(MapImplTest, IteratorBasic) {
 
 template <typename Iterator>
 static int64 median(Iterator i0, Iterator i1) {
-  vector<int64> v(i0, i1);
+  std::vector<int64> v(i0, i1);
   std::nth_element(v.begin(), v.begin() + v.size() / 2, v.end());
   return v[v.size() / 2];
 }
@@ -333,7 +338,7 @@ TEST_P(MapImplTest, BeginIsFast) {
     GOOGLE_DCHECK_GE(last_key, 0);
     map[last_key] = last_key ^ 1;
   }
-  vector<int64> times;
+  std::vector<int64> times;
   // We're going to do map.erase(map.begin()) over and over again.  But,
   // just in case one iteration is fast compared to the granularity of
   // our time keeping, we measure kChunkSize iterations per outer-loop iter.
@@ -378,7 +383,7 @@ TEST_P(MapImplTest, HashFlood) {
   // 1024 (or 512 or 2048 or ...) entries.  This assumes that map_ uses powers
   // of 2 for table sizes, and that it's sufficient to "flood" with respect to
   // the low bits of the output of map_.hash_function().
-  vector<int64> times;
+  std::vector<int64> times;
   std::set<int>::iterator it = s.begin();
   int count = 0;
   do {
@@ -502,10 +507,10 @@ static void StressTestIterators(int n, bool test_old_style_proto2_maps) {
   // Test old iterator vs new iterator, with table modification in between.
   TestOldVersusNewIterator<Map<int, int>::const_iterator>(n % 3, &m);
   TestOldVersusNewIterator<Map<int, int>::iterator>(n % (1 + (n / 40)), &m);
-  // Finally, ensure erase(iterator) doesn't reorder anything, becuase that is
+  // Finally, ensure erase(iterator) doesn't reorder anything, because that is
   // what its documentation says.
   m[last_key] = m[last_key ^ 999] = 0;
-  vector<Map<int, int>::iterator> v;
+  std::vector<Map<int, int>::iterator> v;
   v.reserve(m.size());
   int position_of_last_key = 0;
   for (Map<int, int>::iterator it = m.begin(); it != m.end(); ++it) {
@@ -562,7 +567,7 @@ TEST_P(MapImplTest, EraseRevalidates) {
   map_[3] = map_[13] = map_[20] = 0;
   const int initial_size = map_.size();
   EXPECT_EQ(3, initial_size);
-  vector<Map<int, int>::iterator> v;
+  std::vector<Map<int, int>::iterator> v;
   for (Map<int, int>::iterator it = map_.begin(); it != map_.end(); ++it) {
     v.push_back(it);
   }
@@ -913,6 +918,55 @@ TEST_P(MapImplTest, ConvertToStdVectorOfPairs) {
   EXPECT_EQ(1, std_vec.size());
   EXPECT_EQ(100, std_vec[0].first);
   EXPECT_EQ(101, std_vec[0].second);
+}
+
+TEST_P(MapImplTest, SwapSameStyle) {
+  Map<int32, int32> another(GetParam());  // same old_style_ value
+  map_[9398] = 41999;
+  another[9398] = 41999;
+  another[8070] = 42056;
+  another.swap(map_);
+  EXPECT_THAT(another, testing::UnorderedElementsAre(
+      testing::Pair(9398, 41999)));
+  EXPECT_THAT(map_, testing::UnorderedElementsAre(
+      testing::Pair(8070, 42056),
+      testing::Pair(9398, 41999)));
+}
+
+TEST_P(MapImplTest, SwapDifferentStyle) {
+  Map<int32, int32> another(!GetParam());  // different old_style_ value
+  map_[9398] = 41999;
+  another[9398] = 41999;
+  another[8070] = 42056;
+  another.swap(map_);
+  EXPECT_THAT(another, testing::UnorderedElementsAre(
+      testing::Pair(9398, 41999)));
+  EXPECT_THAT(map_, testing::UnorderedElementsAre(
+      testing::Pair(8070, 42056),
+      testing::Pair(9398, 41999)));
+}
+
+TEST_P(MapImplTest, SwapArena) {
+  Arena arena1, arena2;
+  Map<int32, int32> m1(&arena1, false);
+  Map<int32, int32> m2(&arena2, false);
+  map_[9398] = 41999;
+  m1[9398] = 41999;
+  m1[8070] = 42056;
+  m2[10244] = 10247;
+  m2[8070] = 42056;
+  m1.swap(map_);
+  EXPECT_THAT(m1, testing::UnorderedElementsAre(
+      testing::Pair(9398, 41999)));
+  EXPECT_THAT(map_, testing::UnorderedElementsAre(
+      testing::Pair(8070, 42056),
+      testing::Pair(9398, 41999)));
+  m2.swap(m1);
+  EXPECT_THAT(m1, testing::UnorderedElementsAre(
+      testing::Pair(8070, 42056),
+      testing::Pair(10244, 10247)));
+  EXPECT_THAT(m2, testing::UnorderedElementsAre(
+      testing::Pair(9398, 41999)));
 }
 
 INSTANTIATE_TEST_CASE_P(BoolSequence, MapImplTest, testing::Bool());
@@ -2106,6 +2160,76 @@ TEST(GeneratedMapFieldTest, DuplicatedKeyWireFormat) {
   EXPECT_TRUE(message.ParseFromString(data));
   EXPECT_EQ(1, message.map_int32_int32().size());
   EXPECT_EQ(1, message.map_int32_int32().at(2));
+
+  // A similar test, but with a map from int to a message type.
+  // Again, we want to be sure that the "second one wins" when
+  // there are two separate entries with the same key.
+  const int key = 99;
+  unittest::TestRequiredMessageMap map_message;
+  unittest::TestRequired with_dummy4;
+  with_dummy4.set_a(0);
+  with_dummy4.set_b(0);
+  with_dummy4.set_c(0);
+  with_dummy4.set_dummy4(11);
+  (*map_message.mutable_map_field())[key] = with_dummy4;
+  string s = map_message.SerializeAsString();
+  unittest::TestRequired with_dummy5;
+  with_dummy5.set_a(0);
+  with_dummy5.set_b(0);
+  with_dummy5.set_c(0);
+  with_dummy5.set_dummy5(12);
+  (*map_message.mutable_map_field())[key] = with_dummy5;
+  string both = s + map_message.SerializeAsString();
+  // We don't expect a merge now.  The "second one wins."
+  ASSERT_TRUE(map_message.ParseFromString(both));
+  ASSERT_EQ(1, map_message.map_field().size());
+  ASSERT_EQ(1, map_message.map_field().count(key));
+  EXPECT_EQ(0, map_message.map_field().find(key)->second.a());
+  EXPECT_EQ(0, map_message.map_field().find(key)->second.b());
+  EXPECT_EQ(0, map_message.map_field().find(key)->second.c());
+  EXPECT_FALSE(map_message.map_field().find(key)->second.has_dummy4());
+  ASSERT_TRUE(map_message.map_field().find(key)->second.has_dummy5());
+  EXPECT_EQ(12, map_message.map_field().find(key)->second.dummy5());
+}
+
+// Exhaustive combinations of keys, values, and junk in any order.
+// This re-tests some of the things tested above, but if it fails
+// it's more work to determine what went wrong, so it isn't necessarily
+// bad that we have the simpler tests too.
+TEST(GeneratedMapFieldTest, KeysValuesUnknownsWireFormat) {
+  unittest::TestMap message;
+  const int kMaxNumKeysAndValuesAndJunk = 4;
+  const char kKeyTag = 0x08;
+  const char kValueTag = 0x10;
+  const char kJunkTag = 0x20;
+  for (int items = 0; items <= kMaxNumKeysAndValuesAndJunk; items++) {
+    string data = "\x0A";
+    // Encode length of what will follow.
+    data.push_back(items * 2);
+    static const int kBitsOfIPerItem = 4;
+    static const int mask = (1 << kBitsOfIPerItem) - 1;
+    // Each iteration of the following is a test.  It uses i as bit vector
+    // encoding the keys and values to put in the wire format.
+    for (int i = 0; i < (1 << (items * kBitsOfIPerItem)); i++) {
+      string wire_format = data;
+      int expected_key = 0;
+      int expected_value = 0;
+      for (int k = i, j = 0; j < items; j++, k >>= kBitsOfIPerItem) {
+        bool is_key = k & 0x1;
+        bool is_value = !is_key && (k & 0x2);
+        wire_format.push_back(is_key ? kKeyTag :
+                              is_value ? kValueTag : kJunkTag);
+        char c = static_cast<char>(k & mask) >> 2;  // One char after the tag.
+        wire_format.push_back(c);
+        if (is_key) expected_key = static_cast<int>(c);
+        if (is_value) expected_value = static_cast<int>(c);
+        ASSERT_TRUE(message.ParseFromString(wire_format));
+        ASSERT_EQ(1, message.map_int32_int32().size());
+        ASSERT_EQ(expected_key, message.map_int32_int32().begin()->first);
+        ASSERT_EQ(expected_value, message.map_int32_int32().begin()->second);
+      }
+    }
+  }
 }
 
 TEST(GeneratedMapFieldTest, DuplicatedValueWireFormat) {
@@ -2189,6 +2313,74 @@ TEST(GeneratedMapFieldTest, IsInitialized) {
   EXPECT_TRUE(map_message.IsInitialized());
 }
 
+TEST(GeneratedMapFieldTest, MessagesMustMerge) {
+  unittest::TestRequiredMessageMap map_message;
+  unittest::TestRequired with_dummy4;
+  with_dummy4.set_a(97);
+  with_dummy4.set_b(0);
+  with_dummy4.set_c(0);
+  with_dummy4.set_dummy4(98);
+
+  EXPECT_TRUE(with_dummy4.IsInitialized());
+  (*map_message.mutable_map_field())[0] = with_dummy4;
+  EXPECT_TRUE(map_message.IsInitialized());
+  string s = map_message.SerializeAsString();
+
+  // Modify s so that there are two values in the entry for key 0.
+  // The first will have no value for c.  The second will have no value for a.
+  // Those are required fields.  Also, make some other little changes, to
+  // ensure we are merging the two values (because they're messages).
+  ASSERT_EQ(s.size() - 2, s[1]);  // encoding of the length of what follows
+  string encoded_val(s.data() + 4, s.data() + s.size());
+  // In s, change the encoding of c to an encoding of dummy32.
+  s[s.size() - 3] -= 8;
+  // Make encoded_val slightly different from what's in s.
+  encoded_val[encoded_val.size() - 1] += 33;  // Encode c = 33.
+  for (int i = 0; i < encoded_val.size(); i++) {
+    if (encoded_val[i] == 97) {
+      // Encode b = 91 instead of a = 97.  But this won't matter, because
+      // we also encode b = 0 right after this.  The point is to leave out
+      // a required field, and make sure the parser doesn't complain, because
+      // every required field is set after the merge of the two values.
+      encoded_val[i - 1] += 16;
+      encoded_val[i] = 91;
+    } else if (encoded_val[i] == 98) {
+      // Encode dummy5 = 99 instead of dummy4 = 98.
+      encoded_val[i - 1] += 8;  // The tag for dummy5 is 8 more.
+      encoded_val[i]++;
+      break;
+    }
+  }
+
+  s += encoded_val;            // Add the second message.
+  s[1] += encoded_val.size();  // Adjust encoded size.
+
+  // Test key then value then value.
+  int key = 0;
+  ASSERT_TRUE(map_message.ParseFromString(s));
+  ASSERT_EQ(1, map_message.map_field().size());
+  ASSERT_EQ(1, map_message.map_field().count(key));
+  EXPECT_EQ(97, map_message.map_field().find(key)->second.a());
+  EXPECT_EQ(0, map_message.map_field().find(key)->second.b());
+  EXPECT_EQ(33, map_message.map_field().find(key)->second.c());
+  EXPECT_EQ(98, map_message.map_field().find(key)->second.dummy4());
+  EXPECT_EQ(99, map_message.map_field().find(key)->second.dummy5());
+
+  // Test key then value then value then key.
+  s.push_back(s[2]);       // Copy the key's tag.
+  key = 19;
+  s.push_back(key);        // Second key is 19 instead of 0.
+  s[1] += 2;               // Adjust encoded size.
+  ASSERT_TRUE(map_message.ParseFromString(s));
+  ASSERT_EQ(1, map_message.map_field().size());
+  ASSERT_EQ(1, map_message.map_field().count(key));
+  EXPECT_EQ(97, map_message.map_field().find(key)->second.a());
+  EXPECT_EQ(0, map_message.map_field().find(key)->second.b());
+  EXPECT_EQ(33, map_message.map_field().find(key)->second.c());
+  EXPECT_EQ(98, map_message.map_field().find(key)->second.dummy4());
+  EXPECT_EQ(99, map_message.map_field().find(key)->second.dummy5());
+}
+
 // Generated Message Reflection Test ================================
 
 TEST(GeneratedMapFieldReflectionTest, SpaceUsed) {
@@ -2249,7 +2441,7 @@ TEST(GeneratedMapFieldReflectionTest, SwapFields) {
 
   MapTestUtil::SetMapFields(&message2);
 
-  vector<const FieldDescriptor*> fields;
+  std::vector<const FieldDescriptor*> fields;
   const Reflection* reflection = message1.GetReflection();
   reflection->ListFields(message2, &fields);
   reflection->SwapFields(&message1, &message2, fields);
@@ -2656,7 +2848,7 @@ TEST(WireFormatForMapFieldTest, MapParseHelpers) {
   {
     // Test ParseFromIstream.
     protobuf_unittest::TestMap message;
-    stringstream stream(data);
+    std::stringstream stream(data);
     EXPECT_TRUE(message.ParseFromIstream(&stream));
     EXPECT_TRUE(stream.eof());
     MapTestUtil::ExpectMapFieldsSet(message);
@@ -2680,6 +2872,112 @@ TEST(WireFormatForMapFieldTest, MapParseHelpers) {
     EXPECT_FALSE(
       message.ParseFromBoundedZeroCopyStream(&stream, data.size() + 1));
   }
+}
+
+// Deterministic Serialization Test ==========================================
+
+template <typename T>
+static string DeterministicSerializationWithSerializePartialToCodedStream(
+    const T& t) {
+  const int size = t.ByteSize();
+  string result(size, '\0');
+  io::ArrayOutputStream array_stream(string_as_array(&result), size);
+  io::CodedOutputStream output_stream(&array_stream);
+  output_stream.SetSerializationDeterministic(true);
+  t.SerializePartialToCodedStream(&output_stream);
+  EXPECT_FALSE(output_stream.HadError());
+  EXPECT_EQ(size, output_stream.ByteCount());
+  return result;
+}
+
+template <typename T>
+static string DeterministicSerializationWithSerializeToCodedStream(const T& t) {
+  const int size = t.ByteSize();
+  string result(size, '\0');
+  io::ArrayOutputStream array_stream(string_as_array(&result), size);
+  io::CodedOutputStream output_stream(&array_stream);
+  output_stream.SetSerializationDeterministic(true);
+  t.SerializeToCodedStream(&output_stream);
+  EXPECT_FALSE(output_stream.HadError());
+  EXPECT_EQ(size, output_stream.ByteCount());
+  return result;
+}
+
+template <typename T>
+static string DeterministicSerialization(const T& t) {
+  const int size = t.ByteSize();
+  string result(size, '\0');
+  io::ArrayOutputStream array_stream(string_as_array(&result), size);
+  io::CodedOutputStream output_stream(&array_stream);
+  output_stream.SetSerializationDeterministic(true);
+  t.SerializeWithCachedSizes(&output_stream);
+  EXPECT_FALSE(output_stream.HadError());
+  EXPECT_EQ(size, output_stream.ByteCount());
+  EXPECT_EQ(result, DeterministicSerializationWithSerializeToCodedStream(t));
+  EXPECT_EQ(result,
+            DeterministicSerializationWithSerializePartialToCodedStream(t));
+  return result;
+}
+
+// Helper to test the serialization of the first arg against a golden file.
+static void TestDeterministicSerialization(const protobuf_unittest::TestMaps& t,
+                                           const string& filename) {
+  string expected;
+  GOOGLE_CHECK_OK(File::GetContents(
+      TestSourceDir() + "/google/protobuf/testdata/" + filename,
+      &expected, true));
+  const string actual = DeterministicSerialization(t);
+  EXPECT_EQ(expected, actual);
+  protobuf_unittest::TestMaps u;
+  EXPECT_TRUE(u.ParseFromString(actual));
+  EXPECT_TRUE(google::protobuf::util::MessageDifferencer::Equals(u, t));
+}
+
+// Helper for MapSerializationTest.  Return a 7-bit ASCII string.
+static string ConstructKey(uint64 n) {
+  string s(n % static_cast<uint64>(9), '\0');
+  if (s.empty()) {
+    return StrCat(n);
+  } else {
+    while (n != 0) {
+      s[n % s.size()] = (n >> 10) & 0x7f;
+      n /= 888;
+    }
+    return s;
+  }
+}
+
+TEST(MapSerializationTest, Deterministic) {
+  const int kIters = 25;
+  protobuf_unittest::TestMaps t;
+  protobuf_unittest::TestIntIntMap inner;
+  (*inner.mutable_m())[0] = (*inner.mutable_m())[10] =
+      (*inner.mutable_m())[-200] = 0;
+  uint64 frog = 9;
+  const uint64 multiplier = 0xa29cd16f;
+  for (int i = 0; i < kIters; i++) {
+    const int32 i32 = static_cast<int32>(frog & 0xffffffff);
+    const uint32 u32 = static_cast<uint32>(i32) * 91919;
+    const int64 i64 = static_cast<int64>(frog);
+    const uint64 u64 = frog * static_cast<uint64>(187321);
+    const bool b = i32 > 0;
+    const string s = ConstructKey(frog);
+    (*inner.mutable_m())[i] = i32;
+    (*t.mutable_m_int32())[i32] = (*t.mutable_m_sint32())[i32] =
+        (*t.mutable_m_sfixed32())[i32] = inner;
+    (*t.mutable_m_uint32())[u32] = (*t.mutable_m_fixed32())[u32] = inner;
+    (*t.mutable_m_int64())[i64] = (*t.mutable_m_sint64())[i64] =
+        (*t.mutable_m_sfixed64())[i64] = inner;
+    (*t.mutable_m_uint64())[u64] = (*t.mutable_m_fixed64())[u64] = inner;
+    (*t.mutable_m_bool())[b] = inner;
+    (*t.mutable_m_string())[s] = inner;
+    (*t.mutable_m_string())[s + string(1 << (u32 % static_cast<uint32>(9)),
+                                       b)] = inner;
+    inner.mutable_m()->erase(i);
+    frog = frog * multiplier + i;
+    frog ^= (frog >> 41);
+  }
+  TestDeterministicSerialization(t, "golden_message_maps");
 }
 
 // Text Format Test =================================================
@@ -2717,6 +3015,18 @@ TEST(TextFormatMapTest, Sorted) {
   tester.SetMapFieldsViaReflection(&message2);
   tester.SwapMapsViaReflection(&message2);
   EXPECT_EQ(message2.DebugString(), expected_text);
+}
+
+TEST(TextFormatMapTest, ParseCorruptedString) {
+  string serialized_message;
+  GOOGLE_CHECK_OK(File::GetContents(
+      TestSourceDir() +
+          "/google/protobuf/testdata/golden_message_maps",
+      &serialized_message, true));
+  protobuf_unittest::TestMaps message;
+  GOOGLE_CHECK(message.ParseFromString(serialized_message));
+  TestParseCorruptedString<protobuf_unittest::TestMaps, true>(message);
+  TestParseCorruptedString<protobuf_unittest::TestMaps, false>(message);
 }
 
 
@@ -2781,6 +3091,21 @@ TEST(ArenaTest, StringMapNoLeak) {
   (*message->mutable_map_string_string())[data] = data;
   // We rely on heap checkers to detect memory leak for us.
   ASSERT_FALSE(message == NULL);
+}
+
+TEST(ArenaTest, IsInitialized) {
+  // Allocate a large initial polluted block.
+  std::vector<char> arena_block(128 * 1024);
+  std::fill(arena_block.begin(), arena_block.end(), '\xff');
+
+  ArenaOptions options;
+  options.initial_block = &arena_block[0];
+  options.initial_block_size = arena_block.size();
+  Arena arena(options);
+
+  unittest::TestArenaMap* message =
+      Arena::CreateMessage<unittest::TestArenaMap>(&arena);
+  EXPECT_EQ(0, (*message->mutable_map_int32_int32())[0]);
 }
 
 }  // namespace internal

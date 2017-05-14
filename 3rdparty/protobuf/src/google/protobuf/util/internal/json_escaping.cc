@@ -255,7 +255,7 @@ StringPiece ToHex(uint16 cp, char* buffer) {
   buffer[3] = kHex[cp & 0x0f];
   cp >>= 4;
   buffer[2] = kHex[cp & 0x0f];
-  return StringPiece(buffer, 0, 6);
+  return StringPiece(buffer).substr(0, 6);
 }
 
 // Stores the 32-bit unicode code point as its hexadecimal digits in buffer
@@ -336,19 +336,19 @@ StringPiece EscapeCodePoint(uint32 cp, char* buffer, bool force_output) {
     cp >>= 6;
     if (cp <= 0x1f) {
       buffer[4] = cp | 0xc0;
-      sp.set(buffer + 4, 2);
+      sp = StringPiece(buffer + 4, 2);
       return sp;
     }
     buffer[4] = (cp & 0x3f) | 0x80;
     cp >>= 6;
     if (cp <= 0x0f) {
       buffer[3] = cp | 0xe0;
-      sp.set(buffer + 3, 3);
+      sp = StringPiece(buffer + 3, 3);
       return sp;
     }
     buffer[3] = (cp & 0x3f) | 0x80;
     buffer[2] = ((cp >> 6) & 0x07) | 0xf0;
-    sp.set(buffer + 2, 4);
+    sp = StringPiece(buffer + 2, 4);
   }
   return sp;
 }

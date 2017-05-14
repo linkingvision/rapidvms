@@ -45,7 +45,7 @@ namespace cpp {
 namespace {
 
 void SetMessageVariables(const FieldDescriptor* descriptor,
-                         map<string, string>* variables,
+                         std::map<string, string>* variables,
                          const Options& options) {
   SetCommonFieldVariables(descriptor, variables, options);
   (*variables)["type"] = FieldMessageTypeName(descriptor);
@@ -161,8 +161,7 @@ void MessageFieldGenerator::GenerateNonInlineAccessorDefinitions(
       "  if ($name$_ == NULL) {\n"
       "    return NULL;\n"
       "  } else {\n"
-      "    $type$* temp = new $type$;\n"
-      "    temp->MergeFrom(*$name$_);\n"
+      "    $type$* temp = new $type$(*$name$_);\n"
       "    $name$_ = NULL;\n"
       "    return temp;\n"
       "  }\n"
@@ -219,7 +218,7 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
     return;
   }
 
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   // For the CRTP base class, all mutation methods are dependent, and so
   // they must be in the header.
   variables["dependent_classname"] =
@@ -346,23 +345,29 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
 void MessageFieldGenerator::
 GenerateInlineAccessorDefinitions(io::Printer* printer,
                                   bool is_inline) const {
-  map<string, string> variables(variables_);
+  if (dependent_field_) {
+    // for dependent fields we cannot access its internal_default_instance,
+    // because the type is incomplete.
+    // TODO(gerbens) deprecate dependent base class.
+    std::map<string, string> variables(variables_);
+    variables["inline"] = is_inline ? "inline " : "";
+    printer->Print(variables,
+      "$inline$const $type$& $classname$::$name$() const {\n"
+      "  // @@protoc_insertion_point(field_get:$full_name$)\n"
+      "  return $name$_ != NULL ? *$name$_\n"
+      "                         : *internal_default_instance()->$name$_;\n"
+      "}\n");
+    return;
+  }
+
+  std::map<string, string> variables(variables_);
   variables["inline"] = is_inline ? "inline " : "";
   printer->Print(variables,
     "$inline$const $type$& $classname$::$name$() const {\n"
-    "  // @@protoc_insertion_point(field_get:$full_name$)\n");
-
-  PrintHandlingOptionalStaticInitializers(
-      variables, descriptor_->file(), options_, printer,
-      // With static initializers.
-      "  return $name$_ != NULL ? *$name$_ : *default_instance_->$name$_;\n",
-      // Without.
-      "  return $name$_ != NULL ? *$name$_ : *default_instance().$name$_;\n");
-  printer->Print(variables, "}\n");
-
-  if (dependent_field_) {
-    return;
-  }
+    "  // @@protoc_insertion_point(field_get:$full_name$)\n"
+    "  return $name$_ != NULL ? *$name$_\n"
+    "                         : *$type$::internal_default_instance();\n"
+    "}\n");
 
   if (SupportsArenas(descriptor_)) {
     printer->Print(variables,
@@ -464,7 +469,7 @@ GenerateInlineAccessorDefinitions(io::Printer* printer,
 
 void MessageFieldGenerator::
 GenerateClearingCode(io::Printer* printer) const {
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["this_message"] = dependent_field_ ? DependentBaseDownCast() : "";
   if (!HasFieldPresence(descriptor_->file())) {
     // If we don't have has-bits, message presence is indicated only by ptr !=
@@ -481,6 +486,23 @@ GenerateClearingCode(io::Printer* printer) const {
 }
 
 void MessageFieldGenerator::
+GenerateMessageClearingCode(io::Printer* printer) const {
+  if (!HasFieldPresence(descriptor_->file())) {
+    // If we don't have has-bits, message presence is indicated only by ptr !=
+    // NULL. Thus on clear, we need to delete the object.
+    printer->Print(variables_,
+      "if (GetArenaNoVirtual() == NULL && $name$_ != NULL) {\n"
+      "  delete $name$_;\n"
+      "}\n"
+      "$name$_ = NULL;\n");
+  } else {
+    printer->Print(variables_,
+      "GOOGLE_DCHECK($name$_ != NULL);\n"
+      "$name$_->$type$::Clear();\n");
+  }
+}
+
+void MessageFieldGenerator::
 GenerateMergingCode(io::Printer* printer) const {
   printer->Print(variables_,
     "mutable_$name$()->$type$::MergeFrom(from.$name$());\n");
@@ -492,8 +514,48 @@ GenerateSwappingCode(io::Printer* printer) const {
 }
 
 void MessageFieldGenerator::
+GenerateDestructorCode(io::Printer* printer) const {
+  // In google3 a default instance will never get deleted so we don't need to
+  // worry about that but in opensource protobuf default instances are deleted
+  // in shutdown process and we need to take special care when handling them.
+  printer->Print(variables_,
+    "if (this != internal_default_instance()) {\n"
+    "  delete $name$_;\n"
+    "}\n");
+}
+
+void MessageFieldGenerator::
 GenerateConstructorCode(io::Printer* printer) const {
   printer->Print(variables_, "$name$_ = NULL;\n");
+}
+
+void MessageFieldGenerator::
+GenerateCopyConstructorCode(io::Printer* printer) const {
+  // For non-Arena enabled messages, everything always goes on the heap.
+  //
+  // For Arena enabled messages, the logic is a bit more convoluted.
+  //
+  // In the copy constructor, we call InternalMetadataWithArena::MergeFrom,
+  // which does *not* copy the Arena pointer.  In the generated MergeFrom
+  // (see MessageFieldGenerator::GenerateMergingCode), we:
+  // -> copy the has bits (but this is done in bulk by a memcpy in the copy
+  //    constructor)
+  // -> check whether the destination field pointer is NULL (it will be, since
+  //    we're initializing it and would have called SharedCtor) and if so:
+  // -> call _slow_mutable_$name$(), which calls either
+  //    ::google::protobuf::Arena::CreateMessage<>(GetArenaNoVirtual()), or
+  //    ::google::protobuf::Arena::Create<>(GetArenaNoVirtual())
+  //
+  // At this point, GetArenaNoVirtual returns NULL since the Arena pointer
+  // wasn't copied, so both of these methods allocate the submessage on the
+  // heap.
+
+  printer->Print(variables_,
+    "if (from.has_$name$()) {\n"
+    "  $name$_ = new $type$(*from.$name$_);\n"
+    "} else {\n"
+    "  $name$_ = NULL;\n"
+    "}\n");
 }
 
 void MessageFieldGenerator::
@@ -520,8 +582,8 @@ void MessageFieldGenerator::
 GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const {
   printer->Print(variables_,
     "target = ::google::protobuf::internal::WireFormatLite::\n"
-    "  Write$declared_type$NoVirtualToArray(\n"
-    "    $number$, *$non_null_ptr_to_name$, target);\n");
+    "  InternalWrite$declared_type$NoVirtualToArray(\n"
+    "    $number$, *$non_null_ptr_to_name$, false, target);\n");
 }
 
 void MessageFieldGenerator::
@@ -576,7 +638,7 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
   if (!dependent_base_) {
     return;
   }
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["inline"] = "inline ";
   variables["dependent_classname"] =
       DependentBaseClassTemplateName(descriptor_->containing_type()) + "<T>";
@@ -596,7 +658,7 @@ GenerateInlineAccessorDefinitions(io::Printer* printer,
   if (dependent_base_) {
     return;
   }
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["inline"] = is_inline ? "inline " : "";
   variables["dependent_classname"] = variables["classname"];
   variables["this_message"] = "";
@@ -610,16 +672,15 @@ GenerateInlineAccessorDefinitions(io::Printer* printer,
 
 void MessageOneofFieldGenerator::
 GenerateNonInlineAccessorDefinitions(io::Printer* printer) const {
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["field_member"] =
       variables["oneof_prefix"] + variables["name"] + "_";
 
   //printer->Print(variables,
 }
 
-void MessageOneofFieldGenerator::
-InternalGenerateInlineAccessorDefinitions(const map<string, string>& variables,
-                                          io::Printer* printer) const {
+void MessageOneofFieldGenerator::InternalGenerateInlineAccessorDefinitions(
+    const std::map<string, string>& variables, io::Printer* printer) const {
   printer->Print(variables,
     "$tmpl$"
     "$inline$ "
@@ -663,8 +724,8 @@ InternalGenerateInlineAccessorDefinitions(const map<string, string>& variables,
       "    if ($this_message$GetArenaNoVirtual() != NULL) {\n"
       // N.B.: safe to use the underlying field pointer here because we are sure
       // that it is non-NULL (because has_$name$() returned true).
-      "      $dependent_typename$* temp = new $dependent_typename$;\n"
-      "      temp->MergeFrom(*$field_member$);\n"
+      "      $dependent_typename$* temp = "
+      "new $dependent_typename$(*$field_member$);\n"
       "      $field_member$ = NULL;\n"
       "      return temp;\n"
       "    } else {\n"
@@ -789,7 +850,7 @@ InternalGenerateInlineAccessorDefinitions(const map<string, string>& variables,
 
 void MessageOneofFieldGenerator::
 GenerateClearingCode(io::Printer* printer) const {
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["this_message"] = dependent_field_ ? DependentBaseDownCast() : "";
   if (SupportsArenas(descriptor_)) {
     printer->Print(variables,
@@ -803,8 +864,19 @@ GenerateClearingCode(io::Printer* printer) const {
 }
 
 void MessageOneofFieldGenerator::
+GenerateMessageClearingCode(io::Printer* printer) const {
+  GenerateClearingCode(printer);
+}
+
+void MessageOneofFieldGenerator::
 GenerateSwappingCode(io::Printer* printer) const {
   // Don't print any swapping code. Swapping the union will swap this field.
+}
+
+void MessageOneofFieldGenerator::
+GenerateDestructorCode(io::Printer* printer) const {
+  // We inherit from MessageFieldGenerator, so we need to override the default
+  // behavior.
 }
 
 void MessageOneofFieldGenerator::
@@ -879,7 +951,7 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
   if (!dependent_field_) {
     return;
   }
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   // For the CRTP base class, all mutation methods are dependent, and so
   // they must be in the header.
   variables["dependent_classname"] =
@@ -910,7 +982,6 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
     "  return $this_message$$name$_.Add();\n"
     "}\n");
 
-
   if (dependent_getter_) {
     printer->Print(variables,
       "template <class T>\n"
@@ -934,7 +1005,7 @@ GenerateDependentInlineAccessorDefinitions(io::Printer* printer) const {
 void RepeatedMessageFieldGenerator::
 GenerateInlineAccessorDefinitions(io::Printer* printer,
                                   bool is_inline) const {
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["inline"] = is_inline ? "inline " : "";
 
   if (!dependent_getter_) {
@@ -961,7 +1032,6 @@ GenerateInlineAccessorDefinitions(io::Printer* printer,
       "}\n");
   }
 
-
   if (!dependent_field_) {
     printer->Print(variables,
       "$inline$"
@@ -984,7 +1054,7 @@ GenerateInlineAccessorDefinitions(io::Printer* printer,
 
 void RepeatedMessageFieldGenerator::
 GenerateClearingCode(io::Printer* printer) const {
-  map<string, string> variables(variables_);
+  std::map<string, string> variables(variables_);
   variables["this_message"] = dependent_field_ ? DependentBaseDownCast() : "";
   printer->Print(variables, "$this_message$$name$_.Clear();\n");
 }
@@ -1033,20 +1103,26 @@ GenerateSerializeWithCachedSizesToArray(io::Printer* printer) const {
   printer->Print(variables_,
     "for (unsigned int i = 0, n = this->$name$_size(); i < n; i++) {\n"
     "  target = ::google::protobuf::internal::WireFormatLite::\n"
-    "    Write$declared_type$NoVirtualToArray(\n"
-    "      $number$, this->$name$(i), target);\n"
+    "    InternalWrite$declared_type$NoVirtualToArray(\n"
+    "      $number$, this->$name$(i), false, target);\n"
     "}\n");
 }
 
 void RepeatedMessageFieldGenerator::
 GenerateByteSize(io::Printer* printer) const {
   printer->Print(variables_,
-    "total_size += $tag_size$ * this->$name$_size();\n"
-    "for (int i = 0; i < this->$name$_size(); i++) {\n"
+    "{\n"
+    "  unsigned int count = this->$name$_size();\n");
+  printer->Indent();
+  printer->Print(variables_,
+    "total_size += $tag_size$UL * count;\n"
+    "for (unsigned int i = 0; i < count; i++) {\n"
     "  total_size +=\n"
     "    ::google::protobuf::internal::WireFormatLite::$declared_type$SizeNoVirtual(\n"
     "      this->$name$(i));\n"
     "}\n");
+  printer->Outdent();
+  printer->Print("}\n");
 }
 
 }  // namespace cpp

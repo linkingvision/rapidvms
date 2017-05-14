@@ -62,7 +62,7 @@
 #include <string>
 #include <vector>
 #include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/scoped_ptr.h>
+#include <google/protobuf/stubs/mutex.h>
 
 // TYPE_BOOL is defined in the MacOS's ConditionalMacros.h.
 #ifdef TYPE_BOOL
@@ -95,6 +95,7 @@ class MethodDescriptorProto;
 class FileDescriptorProto;
 class MessageOptions;
 class FieldOptions;
+class OneofOptions;
 class EnumOptions;
 class EnumValueOptions;
 class ServiceOptions;
@@ -143,7 +144,7 @@ struct SourceLocation {
   // See the comments in SourceCodeInfo.Location (descriptor.proto) for details.
   string leading_comments;
   string trailing_comments;
-  vector<string> leading_detached_comments;
+  std::vector<string> leading_detached_comments;
 };
 
 // Options when generating machine-parsable output from a descriptor with
@@ -558,6 +559,10 @@ class LIBPROTOBUF_EXPORT FieldDescriptor {
   // Does this field have an explicitly-declared default value?
   bool has_default_value() const;
 
+  // Whether the user has specified the json_name field option in the .proto
+  // file.
+  bool has_json_name() const;
+
   // Get the field default value if cpp_type() == CPPTYPE_INT32.  If no
   // explicit default was defined, the default is 0.
   int32 default_value_int32() const;
@@ -683,7 +688,7 @@ class LIBPROTOBUF_EXPORT FieldDescriptor {
   // file.
   bool has_json_name_;
   // If has_json_name_ is true, it's the value specified by the user.
-  // Otherwise, it has the same value as lowercase_name_.
+  // Otherwise, it has the same value as camelcase_name_.
   const string* json_name_;
   const FileDescriptor* file_;
   int number_;
@@ -750,6 +755,8 @@ class LIBPROTOBUF_EXPORT OneofDescriptor {
   // .proto file.  Does not include extensions.
   const FieldDescriptor* field(int index) const;
 
+  const OneofOptions& options() const;
+
   // See Descriptor::CopyTo().
   void CopyTo(OneofDescriptorProto* proto) const;
 
@@ -767,6 +774,8 @@ class LIBPROTOBUF_EXPORT OneofDescriptor {
   bool GetSourceLocation(SourceLocation* out_location) const;
 
  private:
+  typedef OneofOptions OptionsType;
+
   // Allows access to GetLocationPath for annotations.
   friend class ::google::protobuf::io::Printer;
 
@@ -784,6 +793,8 @@ class LIBPROTOBUF_EXPORT OneofDescriptor {
   bool is_extendable_;
   int field_count_;
   const FieldDescriptor** fields_;
+  const OneofOptions* options_;
+
   // IMPORTANT:  If you add a new field, make sure to search for all instances
   // of Allocate<OneofDescriptor>() and AllocateArray<OneofDescriptor>()
   // in descriptor.cc and update them to initialize the field.
@@ -1693,6 +1704,7 @@ PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, message_type, const Descriptor*)
 PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, enum_type, const EnumDescriptor*)
 PROTOBUF_DEFINE_OPTIONS_ACCESSOR(FieldDescriptor, FieldOptions)
 PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, has_default_value, bool)
+PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, has_json_name, bool)
 PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, default_value_int32 , int32 )
 PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, default_value_int64 , int64 )
 PROTOBUF_DEFINE_ACCESSOR(FieldDescriptor, default_value_uint32, uint32)
@@ -1708,6 +1720,7 @@ PROTOBUF_DEFINE_STRING_ACCESSOR(OneofDescriptor, name)
 PROTOBUF_DEFINE_STRING_ACCESSOR(OneofDescriptor, full_name)
 PROTOBUF_DEFINE_ACCESSOR(OneofDescriptor, containing_type, const Descriptor*)
 PROTOBUF_DEFINE_ACCESSOR(OneofDescriptor, field_count, int)
+PROTOBUF_DEFINE_OPTIONS_ACCESSOR(OneofDescriptor, OneofOptions)
 
 PROTOBUF_DEFINE_STRING_ACCESSOR(EnumDescriptor, name)
 PROTOBUF_DEFINE_STRING_ACCESSOR(EnumDescriptor, full_name)

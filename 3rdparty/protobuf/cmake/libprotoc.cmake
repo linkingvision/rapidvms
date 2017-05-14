@@ -72,6 +72,7 @@ set(libprotoc_files
   ${protobuf_source_dir}/src/google/protobuf/compiler/javanano/javanano_message_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/javanano/javanano_primitive_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/js/js_generator.cc
+  ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types_embed.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_enum.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_enum_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_extension.cc
@@ -84,12 +85,25 @@ set(libprotoc_files
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_message_field.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_oneof.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/objectivec/objectivec_primitive_field.cc
+  ${protobuf_source_dir}/src/google/protobuf/compiler/php/php_generator.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/plugin.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/plugin.pb.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/python/python_generator.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/ruby/ruby_generator.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/subprocess.cc
   ${protobuf_source_dir}/src/google/protobuf/compiler/zip_writer.cc
+)
+
+set(js_well_known_types_sources,
+  ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types/any.js
+  ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types/struct.js
+  ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types/timestamp.js
+)
+add_executable(js_embed ${protobuf_source_dir}/src/google/protobuf/compiler/js/embed.cc)
+add_custom_command(
+  OUTPUT ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types_embed.cc
+  DEPENDS js_embed ${js_well_known_types_sources}
+  COMMAND js_embed ${js_well_known_types_sources} > ${protobuf_source_dir}/src/google/protobuf/compiler/js/well_known_types_embed.cc
 )
 
 add_library(libprotoc ${protobuf_SHARED_OR_STATIC}

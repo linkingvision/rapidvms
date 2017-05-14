@@ -12,11 +12,11 @@
 LINKMODE          ?= SHARED
 POCO_TARGET_OSNAME = Linux
 POCO_TARGET_OSARCH = ARM
-STLPORT_INCLUDE    = /usr/local/include/stlport
-STLPORT_LIB        = /usr/local/lib
-OPENSSL_INCLUDE    = /usr/local/arm/2.95.3/include
-OPENSSL_LIB        = /usr/local/arm/2.95.3/lib
-TOOL               = arm-linux
+#STLPORT_INCLUDE    = /usr/local/include/stlport
+#STLPORT_LIB        = /usr/local/lib
+#OPENSSL_INCLUDE    = /usr/local/arm/2.95.3/include
+#OPENSSL_LIB        = /usr/local/arm/2.95.3/lib
+TOOL               = $(VE_CROSS_TOOL)
 
 #
 # Define Tools
@@ -74,4 +74,4 @@ SYSFLAGS = -I$(STLPORT_INCLUDE) -I$(OPENSSL_INCLUDE) -D_XOPEN_SOURCE=500 -D_BSD_
 #
 # System Specific Libraries
 #
-SYSLIBS  = -L$(STLPORT_LIB) -L$(OPENSSL_LIB) -lstlport_arm-linux-gcc -lpthread -ldl -lrt
+SYSLIBS  = -L$(STLPORT_LIB) -L$(OPENSSL_LIB)  -lpthread -ldl -lrt
