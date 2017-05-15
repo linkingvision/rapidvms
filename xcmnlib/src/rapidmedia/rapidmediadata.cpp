@@ -640,20 +640,8 @@ BOOL RapidMediaData::StartRapidRTSP()
 	{
 		return TRUE;
 	}
-
-	int transport;
-	if (m_connectType == VSC_CONNECT_TCP)
-	{
-		transport = RapidRTSP_TRANSPORT_OVER_RTSP;
-	}else if (m_connectType == VSC_CONNECT_UDP)
-	{
-		transport = RapidRTSP_TRANSPORT_UDP;
-	}else
-	{
-		transport = RapidRTSP_TRANSPORT_AUTO;
-	}
 	
-	m_pRTSP = new CRapidRTSPLive555(m_strUrl, transport, 
+	m_pRTSP = new CRapidRTSPLive555(m_strUrl, (int)m_connectType, 
 					m_strUser, m_strPass, true);
 	m_pRTSP->set_data_handle(RapidMediaData::RapidRTSPDataHandle, 
 			(void *)this);

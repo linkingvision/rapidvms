@@ -118,10 +118,9 @@ protected:
 
 	bool m_bEnableAudio;
 
-	int m_transport;
-
 	fRapidRTSP_DATA_HANDLE m_dataHandle;
 	void *m_dataContext;
+	VSCConnectType m_connectType;
 };
 	
 class CRapidRTSPFFMPEG :public CRapidRTSP

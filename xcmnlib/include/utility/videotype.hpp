@@ -138,6 +138,8 @@ typedef enum
 {
     VSC_CONNECT_TCP = 1,
     VSC_CONNECT_UDP,
+    VSC_CONNECT_HTTP,
+    VSC_CONNECT_HTTPS,
     VSC_CONNECT_LAST
 } VSCConnectType;
 

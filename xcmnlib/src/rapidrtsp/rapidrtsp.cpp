@@ -86,7 +86,8 @@ CRapidRTSP::CRapidRTSP(std::string streamUrl, int transport,
 	std::string userName, std::string userPwd, 
 	bool bEnableAudio)
 : m_bEnableAudio(bEnableAudio), m_dataHandle(NULL), m_dataContext(NULL),
-  m_userName(userName), m_userPwd(userPwd), m_streamUrl(streamUrl)
+  m_userName(userName), m_userPwd(userPwd), m_streamUrl(streamUrl), 
+  m_connectType((VSCConnectType)transport)
 {
 	Poco::URI rtspUrl(m_streamUrl);
 	astring strRtsp;
@@ -524,7 +525,12 @@ bool CRapidRTSPLive555::CheckRTSPClient()
 			delete m_rtsp;
 			m_rtsp = NULL;
 		}
-		m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd);
+		bool bTCP = true;
+		if (m_connectType == VSC_CONNECT_UDP)
+		{
+			bTCP = false;
+		}
+		m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd, bTCP);
 		/* Register the data callback */
 		m_rtsp->RegCallback(this, this);
 		m_rtsp->Start();
@@ -541,7 +547,12 @@ int CRapidRTSPLive555::start()
 		delete m_rtsp;
 		m_rtsp = NULL;
 	}
-	m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd);
+	bool bTCP = true;
+	if (m_connectType == VSC_CONNECT_UDP)
+	{
+		bTCP = false;
+	}
+	m_rtsp = new H5SLibRTSP(m_streamUrl, m_userName, m_userPwd, bTCP);
 	/* Register the data callback */
 	m_rtsp->RegCallback(this, this);
 	m_rtsp->Start();
