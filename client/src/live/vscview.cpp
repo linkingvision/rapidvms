@@ -650,11 +650,14 @@ void VSCView::ShowViewClicked(std::string strView)
 
 	std::map<int, VidViewWindow> playMap;
 	int nViewSize = pView.cview_size();
+	//printf("%s %d view size %d layout %d\n", __FILE__, __LINE__, nViewSize, 
+	//	(VideoWallLayoutMode)(pView.clayout()));
 	
 	for (s32 i = 0; i < pView.cview_size(); i ++)
 	{
 		const VidViewWindow &win = pView.cview(i);
 		playMap[win.nwindowsid()] = win;
+		//printf("%s %d view id %d\n", __FILE__, __LINE__, win.nwindowsid());
 	}
 
 	m_pVideo->SetPlayMap(playMap, (VideoWallLayoutMode)(pView.clayout()));

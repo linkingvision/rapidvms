@@ -235,8 +235,8 @@ are additional default index files, ordered before `index.cgi`.
 ### enable\_keep\_alive `no`
 Enable connection keep alive, either `yes` or `no`.
 
-Experimental feature. Allows clients to reuse TCP connection for subsequent
-HTTP requests, which improves performance.
+Allows clients to reuse TCP connection for subsequent HTTP requests, 
+which improves performance.
 For this to work when using request handlers it is important to add the
 correct Content-Length HTTP header for each request. If this is forgotten the
 client will time out.
@@ -356,7 +356,11 @@ A pattern for the files to hide. Files that match the pattern will not
 show up in directory listing and return `404 Not Found` if requested. Pattern
 must be for a file name only, not including directory names. Example:
 
-    civetweb -hide_files_patterns secret.txt|*.hide
+    civetweb -hide_files_patterns secret.txt|**.hide
+
+Note: hide\_file\_patterns uses the pattern described above. If you want to
+hide all files with a certain extension, make sure to use **.extension
+(not just *.extension).
 
 ### request\_timeout\_ms `30000`
 Timeout for network read and network write operations, in milliseconds.
@@ -393,7 +397,6 @@ Note: For consistency with other timeouts, the value is configured in
 milliseconds. However, the TCP socket layer usually only offers a timeout in 
 seconds, so the value should be an integer multiple of 1000.
 
-
 ### lua\_preload\_file
 This configuration option can be used to specify a Lua script file, which
 is executed before the actual web page script (Lua script, Lua server page
@@ -414,6 +417,18 @@ In contrast to Lua scripts, the content of a Lua server pages is delivered
 directly to the client. Lua script parts are delimited from the standard
 content by including them between <? and ?> tags.
 An example can be found in the test directory.
+
+### lua\_background\_script
+Experimental feature, and subject to change.
+Run a Lua script in the background, independent from any connection.
+The script is started before network access to the server is available.
+It can be used to prepare the document root (e.g., update files, compress
+files, ...), check for external resources, remove old log files, etc.
+
+The Lua state remains open until the server is stopped.
+In the future, some callback functions will be available to notify the
+script on changes of the server state.
+
 
 ### websocket\_root
 In case civetweb is built with Lua and websocket support, Lua scripts may
@@ -589,7 +604,7 @@ mg (table):
 
     mg.read()                  -- reads a chunk from POST data, returns it as a string
     mg.write(str)              -- writes string to the client
-    mg.include(path)           -- sources another Lua file
+    mg.include(filename)       -- include another Lua Page file (Lua Pages only)
     mg.redirect(uri)           -- internal redirect to a given URI
     mg.onerror(msg)            -- error handler, can be overridden
     mg.version                 -- a string that holds Civetweb version
@@ -637,10 +652,13 @@ connect (function):
     end
 
 
+All filename arguments are either absolute or relative to the civetweb working
+directory (not the document root or the Lua script/page file).
+    
 **IMPORTANT: Civetweb does not send HTTP headers for Lua pages. Therefore,
 every Lua Page must begin with a HTTP reply line and headers**, like this:
 
-    <? print('HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n') ?>
+    <? mg.write('HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n') ?>
     <html><body>
       ... the rest of the web page ...
 

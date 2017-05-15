@@ -1306,7 +1306,7 @@
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <Link>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Debug;..\..\3rdparty\poco\lib\;..\..\3rdparty\libcli\Debug\;..\..\3rdparty\onvifc\lib\Debug\;..\..\velib\lib\win32\Debug;.\Debug\;..\..\3rdparty\openssl-win\openssl-win32\lib;..\3rdparty\vlcsdk\win32\lib\;..\rtspserver\lib\win32\Debug\;..\..\xcmnlib\lib\win32\Debug;..\..\3rdparty\libmicrohttpd\w32\VS2013\Output;..\..\3rdparty\jsoncpp\makefiles\msvc2013\Debug;..\3rdparty\libjson-rpc-cpp\prj_win32\Debug;..\3rdparty\libstreaming\media-server\Debug;..\..\3rdparty\protobuf\cmake\win32\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Debug;..\..\3rdparty\poco\lib\;..\..\3rdparty\libcli\Debug\;..\..\3rdparty\onvifc\lib\Debug\;..\..\velib\lib\win32\Debug;.\Debug\;..\..\3rdparty\openssl-win\openssl-win32\lib;..\3rdparty\vlcsdk\win32\lib\;..\rtspserver\lib\win32\Debug\;..\..\xcmnlib\lib\win32\Debug;..\..\3rdparty\libmicrohttpd\w32\VS2013\Output;..\..\3rdparty\jsoncpp\makefiles\msvc2013\Debug;..\3rdparty\libjson-rpc-cpp\prj_win32\Debug;..\3rdparty\libstreaming\media-server\Debug;..\..\3rdparty\protobuf\cmake\win32\lib\;..\onvifcpplib\win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Sqld.lib;Qt5Concurrentd.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5PrintSupportd.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;Qt5AxBase.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;onvifcpplib.lib;libeay32.lib;ssleay32.lib;odbc32.lib;odbccp32.lib;winmm.lib;cmnlib.lib;Dbghelp.lib;Rpcrt4.lib;IPHLPAPI.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <StackReserveSize>10485760</StackReserveSize>
@@ -1332,7 +1332,7 @@ copy /y ..\lib\win32\Debug\veuilib.pdb  ..\..\client\prj_win32\Win32\Debug</Comm
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <Link>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Debug\;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Debug\;..\..\velib\lib\x64\Debug;.\x64\Debug\;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\rtspserver\lib\x64\Debug\;..\..\xcmnlib\lib\x64\Debug\;..\..\3rdparty\protobuf\cmake\x64\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Debug\;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Debug\;..\..\velib\lib\x64\Debug;.\x64\Debug\;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\rtspserver\lib\x64\Debug\;..\..\xcmnlib\lib\x64\Debug\;..\..\3rdparty\protobuf\cmake\x64\lib\;..\onvifcpplib\win32\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Sqld.lib;Qt5Concurrentd.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5PrintSupportd.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;Qt5AxBase.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;onvifcpplib.lib;libeay32.lib;ssleay32.lib;odbc32.lib;odbccp32.lib;winmm.lib;cmnlib.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <StackReserveSize>10485760</StackReserveSize>
@@ -1359,7 +1359,7 @@ copy /y ..\lib\x64\Debug\veuilib.pdb  ..\..\client\prj_win32\x64\Debug</Command>
     </Lib>
     <Link>
       <AdditionalDependencies>qtmaind.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Sql.lib;Qt5Concurrent.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5PrintSupport.lib;Qt5Svg.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5XmlPatterns.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;onvifcpplib.lib;libeay32.lib;ssleay32.lib;odbc32.lib;odbccp32.lib;winmm.lib;cmnlib.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Release;..\..\3rdparty\poco\lib\;..\..\3rdparty\onvifc\lib\Release;..\..\velib\lib\win32\Release;.\Release;..\..\3rdparty\openssl-win\openssl-win32\lib;..\3rdparty\vlcsdk\win32\lib\;..\rtspserver\lib\win32\Release;..\..\xcmnlib\lib\Win32\Release;..\..\3rdparty\protobuf\cmake\win32\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\ffmpeg-54\lib;..\..\3rdparty\leveldb\win32_proj\Release;..\..\3rdparty\poco\lib\;..\..\3rdparty\onvifc\lib\Release;..\..\velib\lib\win32\Release;.\Release;..\..\3rdparty\openssl-win\openssl-win32\lib;..\3rdparty\vlcsdk\win32\lib\;..\rtspserver\lib\win32\Release;..\..\xcmnlib\lib\Win32\Release;..\..\3rdparty\protobuf\cmake\win32\lib\;..\onvifcpplib\win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>false</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -1386,7 +1386,7 @@ copy /y ..\lib\win32\Release\veuilib.pdb  ..\..\client\prj_win32\Win32\Release
     </Lib>
     <Link>
       <AdditionalDependencies>qtmaind.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Sql.lib;Qt5Concurrent.lib;Qt5OpenGL.lib;opengl32.lib;glu32.lib;Qt5PrintSupport.lib;Qt5Svg.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5XmlPatterns.lib;wsock32.lib;leveldb.lib;memenv.lib;onvifc.lib;ws2_32.lib;dsound.lib;ole32.lib;comsupp.lib;velib.lib;onvifcpplib.lib;libeay32.lib;ssleay32.lib;odbc32.lib;odbccp32.lib;winmm.lib;cmnlib.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Release;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Release\;..\..\velib\lib\x64\Release;.\x64\Release;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\rtspserver\lib\x64\Release\;..\..\xcmnlib\lib\x64\Release\;..\..\3rdparty\protobuf\cmake\x64\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\3rdparty\leveldb\win32_proj\x64\Release;..\..\3rdparty\poco\lib64\;..\..\3rdparty\onvifc\lib64\Release\;..\..\velib\lib\x64\Release;.\x64\Release;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\rtspserver\lib\x64\Release\;..\..\xcmnlib\lib\x64\Release\;..\..\3rdparty\protobuf\cmake\x64\lib\;..\onvifcpplib\win32\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OptimizeReferences>false</OptimizeReferences>
       <SubSystem>NotSet</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -111,6 +111,7 @@ int main(int argc, char *argv[])
     pFactory = new ClientFactory(env);
 
 	pFactory->Init();
+	
 
 #ifdef WIN32
 	QFont font;
@@ -144,7 +145,7 @@ int main(int argc, char *argv[])
 
 	
 	splash->showMessage(QObject::tr("Starting ..."));
-
+	ve_sleep(3000);
 	VTaskMgr *pVTaskMgr = new VTaskMgr();
 
 	VSCMainWindows * w = new VSCMainWindows(*pFactory);

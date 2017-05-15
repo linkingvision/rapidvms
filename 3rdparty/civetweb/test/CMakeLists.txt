@@ -7,15 +7,15 @@ endif()
 
 # We use the check unit testing framework for our C unit tests
 include(ExternalProject)
-if(NOT WIN32)
-  # Apply the patch to check to fix CMake building on OS X
-  set(CHECK_PATCH_COMMAND patch
-     ${CIVETWEB_THIRD_PARTY_DIR}/src/check-unit-test-framework/CMakeLists.txt
-     ${CMAKE_SOURCE_DIR}/cmake/check/c82fe8888aacfe784476112edd3878256d2e30bc.patch
-   )
-else()
-  set(CHECK_PATCH_COMMAND "")
-endif()
+#if(NOT WIN32)
+#  # Apply the patch to check to fix CMake building on OS X
+#  set(CHECK_PATCH_COMMAND patch
+#     ${CIVETWEB_THIRD_PARTY_DIR}/src/check-unit-test-framework/CMakeLists.txt
+#     ${CMAKE_SOURCE_DIR}/cmake/check/c82fe8888aacfe784476112edd3878256d2e30bc.patch
+#   )
+#else()
+#  set(CHECK_PATCH_COMMAND "")
+#endif()
 ExternalProject_Add(check-unit-test-framework
   DEPENDS c-library
   URL "https://codeload.github.com/libcheck/check/zip/${CIVETWEB_CHECK_VERSION}"
@@ -161,8 +161,11 @@ civetweb_add_test(PublicFunc "Aux functions")
 
 # Public API server tests
 civetweb_add_test(PublicServer "Check test environment")
+civetweb_add_test(PublicServer "Init library")
 civetweb_add_test(PublicServer "Start threads")
+civetweb_add_test(PublicServer "Minimal")
 civetweb_add_test(PublicServer "Start Stop HTTP Server")
+civetweb_add_test(PublicServer "Start Stop HTTP Server IPv6")
 civetweb_add_test(PublicServer "Start Stop HTTPS Server")
 civetweb_add_test(PublicServer "TLS Server Client")
 civetweb_add_test(PublicServer "Server Requests")
@@ -171,10 +174,13 @@ civetweb_add_test(PublicServer "HTTP Authentication")
 civetweb_add_test(PublicServer "HTTP Keep Alive")
 civetweb_add_test(PublicServer "Error handling")
 civetweb_add_test(PublicServer "Limit speed")
+civetweb_add_test(PublicServer "Large file")
+civetweb_add_test(PublicServer "File in memory")
 
 # Timer tests
-civetweb_add_test(Timer "Timer Periodic")
 civetweb_add_test(Timer "Timer Single Shot")
+civetweb_add_test(Timer "Timer Periodic")
+civetweb_add_test(Timer "Timer Mixed")
 
 # Tests with main.c
 #civetweb_add_test(EXE "Helper funcs")

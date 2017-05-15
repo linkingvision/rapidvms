@@ -361,7 +361,7 @@ BOOL VSCVWidget::StartPlay(astring strStorId, astring strCamId,
 				astring strCamName, bool bMotion, bool bByView, bool bWithHWAccel)
 {
 
-	m_pStarted = TRUE;
+	
 	//m_pProxy->StartPlayLive(ui.video->width(), ui.video->height());
 	//ui.video->width();
 	VidStor sStor;
@@ -406,6 +406,8 @@ BOOL VSCVWidget::StartPlay(astring strStorId, astring strCamId,
 		m_StorStream->EnableMot(m_videoWindow, true, sCam.strmotreg());
 	}
 	m_StorStream->StartStorStream();
+
+	m_pStarted = TRUE;
 	
 
 	astring strName;

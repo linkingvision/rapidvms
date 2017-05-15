@@ -465,8 +465,8 @@ copy /y ..\lib\win32\Debug\cmnlib.pdb  ..\..\client\prj_win32\Win32\Debug</Comma
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\3rdparty\SDL2\VisualC\SDL\x64\Debug_static;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64d\lib;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\3rdparty\libyuv\build-win64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;avfilter.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\3rdparty\SDL2\VisualC\SDL\x64\Debug_static;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64d\lib;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\3rdparty\libyuv\build-win64\Debug\;..\..\3rdparty\live555\output\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;avfilter.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -519,8 +519,8 @@ copy /y ..\lib\win32\Release\cmnlib.pdb  ..\..\client\prj_win32\Win32\Release</C
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d9.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;IPHLPAPI.lib;avformat.lib;libeay32.lib;dsound.lib;msvcrt.lib;libcmt.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64\lib\;..\..\3rdparty\openssl-win64\lib;..\..\3rdparty\openssl-win\openssl-win64\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;IPHLPAPI.lib;avformat.lib;libeay32.lib;dsound.lib;msvcrt.lib;libcmt.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64\lib\;..\..\3rdparty\openssl-win64\lib;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\..\3rdparty\live555\output\x64\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>NotSet</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>

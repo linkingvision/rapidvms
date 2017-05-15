@@ -19,6 +19,8 @@ xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\openssl.exe  vecvr\prj_win32\
 
 xcopy /y /e 3rdparty\protobuf\cmake\x64\bin\libprotobufd.dll  vecvr\prj_win32\x64\Debug
 
+xcopy /y /e 3rdparty\live555\output\x64\Debug\live555.dll  vecvr\prj_win32\x64\Debug
+
 
 
 REM x64 Release
@@ -38,6 +40,7 @@ xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\ssleay32.dll  vecvr\prj_win32
 xcopy /y /e 3rdparty\openssl-win\openssl-win64\lib\openssl.exe  vecvr\prj_win32\x64\Release
 
 xcopy /y /e 3rdparty\protobuf\cmake\x64\bin\libprotobuf.dll  vecvr\prj_win32\x64\Release
+xcopy /y /e 3rdparty\live555\output\x64\Release\live555.dll  vecvr\prj_win32\x64\Release
 
 REM QT_WIN32
 xcopy /y /e %QT_WIN32%\plugins\imageformats\*.dll  vecvr\prj_win32\x64\Debug\imageformats\

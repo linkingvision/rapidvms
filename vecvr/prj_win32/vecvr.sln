@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vecvr", "vecvr.vcxproj", "{B174A790-305F-4097-9536-439C2B39527E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vecvr", "vecvr.vcxproj", "{FC6208ED-0A1B-4B20-8545-60EE3113552E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B174A790-305F-4097-9536-439C2B39527E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B174A790-305F-4097-9536-439C2B39527E}.Debug|Win32.Build.0 = Debug|Win32
-		{B174A790-305F-4097-9536-439C2B39527E}.Debug|x64.ActiveCfg = Debug|x64
-		{B174A790-305F-4097-9536-439C2B39527E}.Debug|x64.Build.0 = Debug|x64
-		{B174A790-305F-4097-9536-439C2B39527E}.Release|Win32.ActiveCfg = Release|Win32
-		{B174A790-305F-4097-9536-439C2B39527E}.Release|Win32.Build.0 = Release|Win32
-		{B174A790-305F-4097-9536-439C2B39527E}.Release|x64.ActiveCfg = Release|x64
-		{B174A790-305F-4097-9536-439C2B39527E}.Release|x64.Build.0 = Release|x64
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Debug|Win32.Build.0 = Debug|Win32
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Debug|x64.ActiveCfg = Debug|x64
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Debug|x64.Build.0 = Debug|x64
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Release|Win32.ActiveCfg = Release|Win32
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Release|Win32.Build.0 = Release|Win32
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Release|x64.ActiveCfg = Release|x64
+		{FC6208ED-0A1B-4B20-8545-60EE3113552E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

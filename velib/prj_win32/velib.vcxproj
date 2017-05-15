@@ -162,7 +162,7 @@ copy /y ..\lib\win32\Debug\velib.pdb  ..\..\client\prj_win32\Win32\Debug</Comman
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\3rdparty\SDL2\VisualC\x64\Debug;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64d\lib;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\3rdparty\libyuv\build-win64\Debug\;..\..\xcmnlib\lib\x64\Debug\;..\3rdparty\cover\;..\..\3rdparty\curl\build\Win64\VC12\LIB Debug - DLL OpenSSL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;SDL2.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;yuv.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;cover64.lib;libcurld.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;SDL2.lib;dsound.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avfilter.lib;avutil.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;libeay32.lib;IPHLPAPI.lib;avformat.lib;yuv.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;libcurld.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -215,7 +215,7 @@ copy /y ..\lib\win32\Release\velib.pdb  ..\..\client\prj_win32\Win32\Release</Co
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;d3d9.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;avfilter.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;IPHLPAPI.lib;avformat.lib;libeay32.lib;dsound.lib;msvcrt.lib;libcmt.lib;yuv.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;cover64.lib;libcurl.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;d3d9.lib;ws2_32.lib;ole32.lib;comsupp.lib;avcodec.lib;avutil.lib;avfilter.lib;swscale.lib;winmm.lib;imm32.lib;oleaut32.lib;version.lib;IPHLPAPI.lib;avformat.lib;libeay32.lib;dsound.lib;msvcrt.lib;libcmt.lib;yuv.lib;ssleay32.lib;Dbghelp.lib;Rpcrt4.lib;cmnlib.lib;libcurl.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\3rdparty\poco\lib64\;..\3rdparty\SDL2\VisualC\x64\Release;..\src\vrender\lib;..\..\3rdparty\ffmpeg-win\ffmpeg-x64\lib\;..\..\3rdparty\openssl-win\openssl-win64\lib\;..\3rdparty\libyuv\build-win64\Release\;..\..\xcmnlib\lib\x64\Release\;..\3rdparty\cover\;..\..\3rdparty\curl\build\Win64\VC12\LIB Release - DLL OpenSSL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>NotSet</SubSystem>
       <EntryPointSymbol>

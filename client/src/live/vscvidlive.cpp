@@ -47,8 +47,7 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 
 	m_pMainArea.addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
 	m_pMainArea.setCurrentWidget(m_pView);
-	/* show the last view */
-	m_pView->ShowViewClicked(VVID_MAIN_VIEW);
+
 	//connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
 		//	m_pView, SLOT(DeviceEvent(int, int)));
 #endif
@@ -82,6 +81,10 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 		m_pView->floatingClicked();
 		m_pView->ShowDisplayClicked(0);
 	}
+	/* show the last view */
+	ve_sleep(300);
+	m_pView->ShowViewClicked(VVID_MAIN_VIEW);
+
 	
 }
 VSCVidLive::~VSCVidLive()
@@ -92,7 +95,6 @@ VSCVidLive::~VSCVidLive()
 void VSCVidLive::VidShow()
 {
 	//m_parent->addDockWidget(Qt::LeftDockWidgetArea, m_pDockDevicelist);
-
 }
 void VSCVidLive::VidHide()
 {

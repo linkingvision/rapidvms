@@ -211,7 +211,8 @@ inline int OnvifClientPTZ::ContinuousMove(_tptz__ContinuousMoveResponse &ContMov
 	_tptz__ContinuousMove ContMoveReq;
 	ContMoveReq.ProfileToken = profileToken;
 	ContMoveReq.Velocity = &Speed;
-	ContMoveReq.Timeout = &Timeout;
+	//ContMoveReq.Timeout = &Timeout;
+	ContMoveReq.Timeout = NULL;
 
 	return ptzProxy.ContinuousMove(&ContMoveReq,&ContMoveResponse);
 }
