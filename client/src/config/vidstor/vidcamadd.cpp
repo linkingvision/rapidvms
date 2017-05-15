@@ -138,6 +138,8 @@ void VidCamAdd::SlotNewCam()
 	pCam.set_struser("admin");
 	pCam.set_strpasswd("admin");
 	pCam.set_ntype(VID_ONVIF_S);
+	pCam.set_nconnecttype(VID_CONNECT_TCP);
+
 	pCam.set_stronvifaddress("/onvif/device_service");
 	pCam.set_bmotionjpeg(false);
 
@@ -515,6 +517,7 @@ void VidCamAdd::SlotAddAll()
 		pCam.set_struser(ui.tableSearch->item(i, 6)->text().toStdString());
 		pCam.set_strpasswd(ui.tableSearch->item(i, 7)->text().toStdString());
 		pCam.set_ntype(VID_ONVIF_S);
+		pCam.set_nconnecttype(VID_CONNECT_TCP);
 		pCam.set_stronvifaddress(ui.tableSearch->item(i, 4)->text().toStdString());
 
 
