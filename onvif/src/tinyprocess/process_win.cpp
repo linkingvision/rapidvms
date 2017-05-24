@@ -29,9 +29,11 @@ namespace {
     HANDLE handle;
   };
   
+
+}
+
   //Based on the discussion thread: https://www.reddit.com/r/cpp/comments/3vpjqg/a_new_platform_independent_process_library_for_c11/cxq1wsj
   std::mutex create_process_mutex;
-}
 
 //Based on the example at https://msdn.microsoft.com/en-us/library/windows/desktop/ms682499(v=vs.85).aspx.
 Process::id_type Process::open(const string_type &command, const string_type &path) {
@@ -55,7 +57,7 @@ Process::id_type Process::open(const string_type &command, const string_type &pa
   security_attributes.bInheritHandle = TRUE;
   security_attributes.lpSecurityDescriptor = nullptr;
 
-  std::lock_guard<std::mutex> lock(create_process_mutex);
+  //std::lock_guard<std::mutex> lock(create_process_mutex);
   if(stdin_fd) {
     if (!CreatePipe(&stdin_rd_p, &stdin_wr_p, &security_attributes, 0) ||
         !SetHandleInformation(stdin_wr_p, HANDLE_FLAG_INHERIT, 0))
@@ -217,7 +219,7 @@ void Process::close_stdin() {
 
 //Based on http://stackoverflow.com/a/1173396
 void Process::kill(bool force) {
-  std::lock_guard<std::mutex> lock(close_mutex);
+  //std::lock_guard<std::mutex> lock(close_mutex);
   if(data.id>0 && !closed) {
     HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if(snapshot) {

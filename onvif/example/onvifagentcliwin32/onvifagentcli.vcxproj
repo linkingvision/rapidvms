@@ -52,18 +52,19 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;USE_WEBSOCKET;USE_IPV6;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include;..\..\..\3rdparty\civetweb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include;..\..\..\3rdparty\civetweb\include;..\..\include\video;..\..\..\3rdparty\live555\live555\include\;..\..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\..\3rdparty\live555\groupsock\include\;..\..\..\3rdparty\live555\liveMedia\include\;..\..\..\3rdparty\live555\UsageEnvironment\include;..\..\example;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\win32\Debug;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\win32\Debug;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;..\..\..\3rdparty\live555\output\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobufd.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy /y ..\..\..\3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  ..\..\prj_win32\Debug\
 copy /y ..\..\..\3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  ..\..\prj_win32\Debug\
-copy /y ..\..\output\Debug\onvifagent.exe  ..\..\prj_win32\Debug\</Command>
+copy /y ..\..\output\Debug\onvifagent.exe  ..\..\prj_win32\Debug\
+copy /y ..\..\..\3rdparty\live555\output\Debug\live555.dll  ..\..\prj_win32\Debug\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,20 +76,21 @@ copy /y ..\..\output\Debug\onvifagent.exe  ..\..\prj_win32\Debug\</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;WITH_OPENSSL;WITH_DOM;WITH_PURE_VIRTUAL;USE_WEBSOCKET;USE_IPV6;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include;..\..\..\3rdparty\civetweb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\3rdparty\openssl-win\openssl-win32\include\;..\..\..\3rdparty\protobuf\cmake\win32\include;..\..\..\3rdparty\civetweb\include;..\..\include\video;..\..\..\3rdparty\live555\live555\include\;..\..\..\3rdparty\live555\BasicUsageEnvironment\include\;..\..\..\3rdparty\live555\groupsock\include\;..\..\..\3rdparty\live555\liveMedia\include\;..\..\..\3rdparty\live555\UsageEnvironment\include;..\..\example;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\..\win32\Release;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\win32\Release;..\..\..\3rdparty\openssl-win\openssl-win32\lib;..\..\..\3rdparty\protobuf\cmake\win32\lib;..\..\..\3rdparty\live555\output\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libprotobuf.lib;live555.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy /y ..\..\..\3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  ..\..\prj_win32\Release\
 copy /y ..\..\..\3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  ..\..\prj_win32\Release\
-copy /y ..\..\output\Release\onvifagent.exe  ..\..\prj_win32\Release\</Command>
+copy /y ..\..\output\Release\onvifagent.exe  ..\..\prj_win32\Release\
+copy /y ..\..\..\3rdparty\live555\output\Release\live555.dll  ..\..\prj_win32\Release\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -98,6 +100,11 @@ copy /y ..\..\output\Release\onvifagent.exe  ..\..\prj_win32\Release\</Command>
     <ClInclude Include="..\..\include\onvifclidevice.pb.h" />
     <ClInclude Include="..\..\include\onvifclimedia.pb.h" />
     <ClInclude Include="..\..\include\onvifcliptz.pb.h" />
+    <ClInclude Include="..\..\include\video\h264_bit_reader.h" />
+    <ClInclude Include="..\..\include\video\h264_parser.h" />
+    <ClInclude Include="..\..\include\video\h5slib.hpp" />
+    <ClInclude Include="..\..\include\video\h5s_h264_sink.hpp" />
+    <ClInclude Include="..\..\include\video\h5s_sink.hpp" />
     <ClInclude Include="..\..\include\wsclient.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -109,6 +116,10 @@ copy /y ..\..\output\Release\onvifagent.exe  ..\..\prj_win32\Release\</Command>
     <ClCompile Include="..\..\include\onvifclidevice.pb.cc" />
     <ClCompile Include="..\..\include\onvifclimedia.pb.cc" />
     <ClCompile Include="..\..\include\onvifcliptz.pb.cc" />
+    <ClCompile Include="..\..\include\video\h264_bit_reader.cpp" />
+    <ClCompile Include="..\..\include\video\h264_parser.cpp" />
+    <ClCompile Include="..\..\include\video\h5slib.cpp" />
+    <ClCompile Include="..\..\include\video\h5s_h264_sink.cpp" />
     <ClCompile Include="..\..\src\onvifagentlib.cpp" />
     <ClCompile Include="..\..\src\tinyprocess\process.cpp" />
     <ClCompile Include="..\..\src\tinyprocess\process_win.cpp" />

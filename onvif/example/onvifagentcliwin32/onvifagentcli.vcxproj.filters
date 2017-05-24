@@ -22,6 +22,9 @@
     <Filter Include="Source Files\tinyprocess">
       <UniqueIdentifier>{bbf7bf08-05e1-4d43-9ed2-f16b5a53357d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\video">
+      <UniqueIdentifier>{d7f7bf18-eef9-4aa5-be2d-593f60ce63c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -50,6 +53,21 @@
     </ClInclude>
     <ClInclude Include="..\..\include\onvifcliptz.pb.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\video\h5s_h264_sink.hpp">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\video\h5s_sink.hpp">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\video\h5slib.hpp">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\video\h264_bit_reader.h">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\video\h264_parser.h">
+      <Filter>include\video</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +103,18 @@
     </ClCompile>
     <ClCompile Include="..\..\include\onvifcliptz.pb.cc">
       <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\video\h5s_h264_sink.cpp">
+      <Filter>include\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\video\h5slib.cpp">
+      <Filter>include\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\video\h264_bit_reader.cpp">
+      <Filter>include\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\video\h264_parser.cpp">
+      <Filter>include\video</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,10 @@
 #include <windows.h>
 #endif
 
+#ifndef _WIN32
+#include <unistd.h>
+#endif
+
 #include <string.h>
 #include <vector>
 #include <iostream>
@@ -20,33 +24,23 @@ class  OnvifAgentLib
 {
 public:
 	OnvifAgentLib()
-	:m_process(NULL), m_watch(NULL)
+	:m_process(NULL), m_watch(NULL), m_bExit(false)
 	{
 		Initialize();
+#ifndef _WIN32
+		usleep(500 * 1000);
+#endif
 	}
 	~OnvifAgentLib()
 	{	
 		UnInitialize();
 	}
 public:
-	bool Initialize()
+	bool Initialize();
+	bool UnInitialize();
+	bool SetExit()
 	{
-#if defined(_WIN32) && !defined(__SYMBIAN32__)
-		WSADATA data;
-		WSAStartup(MAKEWORD(2, 2), &data);
-#endif 	/* _WIN32 && !__SYMBIAN32__ */
-		/* Start the agent process */
-		m_watch = new std::thread(OnvifAgentLib::WatchThread, this);
-
-		return true;
-	}
-	bool UnInitialize()
-	{
-		std::lock_guard<std::mutex> guard(m_lock);
-		if (m_process)
-		{
-			m_process->kill(true);
-		}
+		m_bExit = true;
 		return true;
 	}
 public:
@@ -63,7 +57,7 @@ public:
 	void WatchThread1()
 
 	{
-		while(1)
+		while(!m_bExit)
 		{
 			{
 				std::lock_guard<std::mutex> guard(m_lock);
@@ -71,13 +65,17 @@ public:
 				{
 					delete m_process;
 				}
+#ifdef _WIN32
 				Process::string_type strCmd = L"onvifagent.exe";
+#else
+				Process::string_type strCmd = "onvifagent";
+#endif
 				m_process = new Process(strCmd);
 			}
 		
-			while(1)
+			while(!m_bExit)
 			{
-				std::chrono::milliseconds dura( 1000 );
+				std::chrono::milliseconds dura(20);
 				std::this_thread::sleep_for( dura );
 
 				if (m_process->get_exit_status() == 0)
@@ -97,6 +95,7 @@ private:
 	Process *m_process;
 	std::thread *m_watch;
 	std::mutex m_lock;
+	bool m_bExit;
 };
 
 

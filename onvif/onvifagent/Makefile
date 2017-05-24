@@ -32,8 +32,11 @@ ifeq ($(TARGET_OS),)
 endif
 
 BUILD_DIR     = ./lib/linux/
-CFLAGS	=  -DLINUX -fPIC 
+CFLAGS	=  -DLINUX -Os -fPIC -DUSE_WEBSOCKET 
 CFLAGS	+= -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DWITH_NONAMESPACES 
+
+CPPFLAGS += -std=c++11
+
 LIBS	= $(BUILD_DIR)/$(CPROG).a
 
 # build tools
@@ -92,25 +95,55 @@ endif
 IFLAGS 	= -I. -I./include/ -I./onvifgen/ 
 IFLAGS += -I../../3rdparty/openssl/include
 IFLAGS += -I./gsoap/gsoap/runtime
+IFLAGS += -I../include -I../include/ 
+IFLAGS += -I../../3rdparty/civetweb/include
+IFLAGS += -I$(VE_PATH)/output/$(VE_INSTALL_DIR)/include
+IFLAGS += -I./src/
+
+LDFLAGS+= -L$(VE_PATH)/output/$(VE_INSTALL_DIR)/lib
+
+LDFLAGS +=  -g -L../../3rdparty/openssl-linux/ -lprotobuf  -lssl -lcrypto -lpthread -ldl -lstdc++ -lm
+
+ifneq ($(strip $(VE_OS)), macos)
+LDFLAGS += -Wl,-Bdynamic -lcrypt 
+endif
+
+LIB_SOURCES += ../../3rdparty/civetweb/src/CivetServer.o\
+		src/onvifagent.o\
+		../include/onvifcli.pb.o\
+		../include/onvifclidevice.pb.o\
+		../include/onvifclimedia.pb.o\
+		../include/onvifcliptz.pb.o\
+		../../3rdparty/civetweb/src/civetweb.o
+		
+	
+	
+APP_SOURCES = src/webserver.o
 
 
-LDFLAGS +=  -g -L../../3rdparty/openssl-linux/  -lssl -lcrypto -lpthread -ldl -lstdc++ -lm -lcrypt 
+CAPP = onvifagent
 
-
-all:  $(LIBS) example_
+all:  $(LIBS) $(CAPP)
 
 $(LIB_SOURCES): $(HDRS)
+
+../../3rdparty/civetweb/src/civetweb.o:../../3rdparty/civetweb/src/civetweb.c
+	$(CC) -c $(CFLAGS) $(IFLAGS) $< -o $@
 
 $(LIBS): $(LIB_SOURCES)
 	$(MKDIR) $(BUILD_DIR) 
 	$(AR) $(ARFLAGS) $(LIBS) $?
+	
+$(CAPP): $(APP_SOURCES) 
+	$(CPP) -o $@ $(CFLAGS)  $(APP_SOURCES) $(LIBS) $(LDFLAGS)
+	cp $(CAPP) $(VE_PATH)/output/$(VE_INSTALL_DIR)/bin/
 
 example_:
 	#make -C example/server/onvifserverlinux
 	#make -C example/client/onvifclientlinux		
 
 clean:
-	rm -f $(LIBS)  $(LIB_SOURCES)
+	rm -f $(LIBS)  $(LIB_SOURCES) $(APP_SOURCES) $(CAPP)
 	#make -C example/server/onvifserverlinux clean
 	#make -C example/client/onvifclientlinux clean
 
@@ -122,6 +155,9 @@ install:
 
 
 .cpp.o:
-	$(CPP) -c -o $@ $(DEBUG) $(CFLAGS) $(IFLAGS) $<
+	$(CPP) -c -o $@ $(DEBUG) $(CFLAGS) $(CPPFLAGS) $(IFLAGS) $<
+.cc.o:
+	$(CPP) -c -o $@ $(DEBUG) $(CFLAGS) $(CPPFLAGS) $(IFLAGS) $<
 .c.o:
 	$(CPP) -c -o $@ $(DEBUG) $(CFLAGS) $(IFLAGS) $<
+	

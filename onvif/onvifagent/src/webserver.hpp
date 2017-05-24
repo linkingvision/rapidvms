@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 #define DOCUMENT_ROOT "."
-#define PORT "10000"
+#define PORT "10080"
 
 
 class OnvifAgentWebServer 

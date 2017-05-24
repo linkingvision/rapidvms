@@ -54,7 +54,7 @@ CFLAGS += -Wall -Wextra -Wshadow -Wformat-security -Winit-self -Wmissing-prototy
 CFLAGS +=
 CXXFLAGS+= -I../BasicUsageEnvironment/include  -I../groupsock/include -I../liveMedia/include -I../UsageEnvironment/include
 LDFLAGS+= -L../BasicUsageEnvironment/  -L../groupsock/ -L../liveMedia/ -L../UsageEnvironment/
-LDFLAGS+= -lliveMedia -lUsageEnvironment -lBasicUsageEnvironment  -lgroupsock
+LDFLAGS+= -lliveMedia -lUsageEnvironment -lBasicUsageEnvironment  -lgroupsock 
 
 LIBS = -lpthread -lm
 
@@ -104,7 +104,7 @@ lib$(CPROG).a: $(LIB_OBJECTS)
 
 lib$(CPROG).so: CFLAGS += -fPIC
 lib$(CPROG).so: $(LIB_OBJECTS)
-	$(CPP) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(LIB_OBJECTS)
+	$(CPP) -shared -o $@ $(CFLAGS) $(LIB_OBJECTS) $(LDFLAGS) 
 
 
 $(CPROG): $(BUILD_OBJECTS) $(BUILD_RESOURCES)

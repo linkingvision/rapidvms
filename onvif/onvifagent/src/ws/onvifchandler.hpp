@@ -190,6 +190,16 @@ public:
 						pro->set_nbandwidth(pEnc->RateControl->BitrateLimit);
 						pro->set_nfps(pEnc->RateControl->FrameRateLimit);
 					}
+
+					_trt__GetStreamUriResponse url;
+					if (m_pMedia->GetStreamUrl(pProfile->token, url) == SOAP_OK)
+					{
+						if (url.MediaUri)
+						{
+							pro->set_strrtspurl(url.MediaUri->Uri);
+							pro->set_bgoturl(true);
+						}
+					}
 				}
 				
 			}

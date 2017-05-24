@@ -11,6 +11,7 @@
 
 #include <map>
 #include <vector>
+#include <string.h>
 
 #include "h264_bit_reader.h"
 

@@ -2,18 +2,18 @@
 
 ifeq ($(strip $(PRJ_CROSS)), )
 ifeq ($(strip $(VE_OS)), macos)
-all:poco_build ffmpeg_build openssl_build_macos leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build
+all:poco_build ffmpeg_build openssl_build_macos leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build live555_build 
 else
-all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build 
+all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build  live555_build 
 endif
 
 else
-all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build curl_build_cross protobuf_build_cross
+all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build curl_build_cross protobuf_build_cross live555_build_cross
 endif
 
 
 clean:distclean
-distclean:poco_clean ffmpeg_clean openssl_clean leveldb_clean qt_clean qtxmlpatterns_clean  onvifc_clean protobuf_clean curl_clean
+distclean:poco_clean ffmpeg_clean openssl_clean leveldb_clean qt_clean qtxmlpatterns_clean  onvifc_clean protobuf_clean curl_clean live555_clean
 
 poco_build:
 	cd poco; chmod +x ./configure; chmod +x ./build/script/*; ./configure --no-tests --no-samples --omit=Data/ODBC,Data/MySQL,Crypto,MongoDB,NetSSL_OpenSSL,CppUnit,PDF --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
@@ -107,6 +107,18 @@ curl_build_cross:
 	cd curl; chmod +x ./configure ./install-sh; ./configure --host=$(VE_CROSS_TOOL) --prefix=$(VE_PATH)/output/$(VE_INSTALL_DIR)/;
 	$(MAKE) -C curl && $(MAKE) -C curl install;
 	
+live555_build:
+	cd live555; chmod +x genMakefiles; ./genMakefiles linux-64bit; 
+	$(MAKE) -C live555;
+	$(MAKE) -C live555/live555
+	cp ./live555/live555/liblive555.so $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib
+	
+live555_build_cross:
+	cd live555; chmod +x genMakefiles; ./genMakefiles armlinux; 
+	$(MAKE) -C live555 CROSS_COMPILE=$(VE_CROSS_COMPILER);
+	$(MAKE) -C live555/live555
+	cp ./live555/live555/liblive555.so $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib
+	
 poco_clean:
 	$(MAKE) -C poco clean
 ffmpeg_clean:
@@ -129,3 +141,8 @@ qtscript_clean:
 	rm -rf qt/qtscript-opensource-src-5.7.1;
 curl_clean:
 	$(MAKE) -C curl clean
+	
+	
+live555_clean:
+	$(MAKE) -C live555 clean
+	$(MAKE) -C live555/live555 clean

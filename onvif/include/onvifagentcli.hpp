@@ -53,7 +53,7 @@ class  OnvifAgentC : public WebSocketClient
 {
 public:
 	OnvifAgentC(std::string strUser, std::string strPasswd, std::string strUrl)
-	:WebSocketClient("localhost", "10000", "/onvifagentcli"), m_bLogin(false), 
+	:WebSocketClient("localhost", "10080", "/onvifagentcli"), m_bLogin(false), 
 	m_strUser(strUser), m_strPasswd(strPasswd), m_strUrl(strUrl), m_bHasPTZ(false)
 	{
 		/* Connect to the remote server */
@@ -139,7 +139,7 @@ public:
 	}
 	bool GetRespMsg(long long lastId, OnvifCli::OnvifCliCmd & respCmd)
 	{
-		int i = 20;
+		int i = 30;
 		while(i --)
 		{
 			std::chrono::milliseconds dura(100);
