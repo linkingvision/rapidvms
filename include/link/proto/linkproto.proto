@@ -1,0 +1,310 @@
+
+syntax = "proto3";
+
+package VidConf;
+//=========================video server client common
+message VidUser {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	string strPasswd = 3;
+	
+	string strRoleId = 4; //Role id for role
+}
+
+message VidUserList {
+	repeated VidUser cVidUser = 1;
+}
+
+//=========================video stor
+
+//Service Stor configure
+message VidStorServerConf {
+	int32 nOapiPort = 1;
+	string strAdminPasswd = 2;
+}
+
+//Camera config
+enum CameraType {
+	VID_0 = 0;
+	VID_USB = 1;
+	VID_FILE = 2;
+	VID_RTSP = 3;
+	VID_ONVIF_S = 4;
+	VID_GB28181 =5;
+	VID_MJPEG = 6; //Http JPEG
+}
+
+//Record Type
+enum VidRecType {
+	VID_R_OFF = 0;
+	VID_R_ALARM = 1;
+	VID_R_SCHED = 2;
+}
+
+//Camera config
+enum CameraConnectType {
+	VID_CONNECT_0 = 0;
+	VID_CONNECT_TCP = 1;
+	VID_CONNECT_UDP = 2;
+}
+
+enum OnvifEventLevel {
+	VID_ONVIF_EVENT_OFF = 0;
+	VID_ONVIF_EVENT_FULL = 1;
+	VID_ONVIF_EVENT_MOTION = 2;
+}
+
+message VidCamera {
+	bool bDisable = 1;
+	//use uuid for id of the camera
+	string strId = 2;
+	string strName = 3;
+	CameraType nType = 4;
+	
+	//ONVIF
+	string strIP = 5;
+	string strPort = 6;
+	string strUser = 7;
+	string strPasswd = 8;
+
+	string strONVIFAddress = 9;
+	bool bProfileToken = 10;
+	string strProfileToken1 = 11;
+	string strProfileToken2 = 12;
+	
+	//File
+	string strFile = 13;
+	
+	//RTSP
+	string strRTSPUrl = 14;
+	
+	//Motion and if use HW accel for motion
+	bool bHWaccel = 15;
+	bool bServerMotion = 16;
+	
+	CameraConnectType nConnectType = 17;
+	
+	//Enable HDFS Record on x64 CPU
+	bool bHDFSRecord = 18;
+	
+	//Recording
+	repeated string cRecSched = 20;//deprecated
+	int32 nPreRecSec = 21;
+	int32 nPostRecSec = 22;
+	
+	//Motion JPEG Stream
+	bool bMotionJPEG = 23;//deprecated
+	
+	/* Stream select */
+	int32 nRecordStream = 24;//Recording streaming NO.
+	int32 nServerMotionStream = 25;//Server based Motion Stream.
+	
+	OnvifEventLevel nOnvifEvtLevel = 26;//ONVIF event level
+	
+	string strSched = 27;//Record Schedule 7 x 24
+	string strMotReg = 28;//Motion Detection Reg 320 * 240
+}
+
+message VidCameraList {
+	repeated VidCamera cVidCamera = 1;
+}
+
+message VidDisk {
+	string strId = 1;
+	string strPath = 2;
+	int64 nTotalSize = 3;
+	int64 nFreeSize = 4;
+	int64 nStorLimit = 5;
+	int64 nStorUsed = 6;
+}
+
+message VidDiskList {
+	repeated VidDisk cVidDisk = 1;
+}
+
+//Recording schedule?
+
+//HDFS config
+message VidHDFSConf {
+	string strNameNode = 1;
+	string strPort = 2;
+	
+	string strUser = 3;
+	string strPasswd = 4;
+	int32 nFileInterval = 5;
+}
+
+//=========================client
+
+//Vid Client configure
+
+//Language
+enum VidLanguage {
+	VID_LANG_AUTO = 0;
+	VID_EN = 1;
+	VID_ZH_CN = 2;
+}
+
+enum VidLayout {
+	VID_LAYOUT_MODE_0 = 0;
+    VID_LAYOUT_MODE_1 = 1;
+    VID_LAYOUT_MODE_2X2 = 2;
+    VID_LAYOUT_MODE_3X3 = 3;
+    VID_LAYOUT_MODE_4X4 = 4;
+    VID_LAYOUT_MODE_6 = 5;
+    VID_LAYOUT_MODE_8 = 6;
+    VID_LAYOUT_MODE_12p1 = 7;
+    VID_LAYOUT_MODE_5x5 = 8;
+    VID_LAYOUT_MODE_6x6 = 9;
+    VID_LAYOUT_MODE_8x8 = 10;
+    VID_LAYOUT_MODE_ONE = 11;
+    VID_LAYOUT_MODE_1x3 = 12;
+    VID_LAYOUT_MODE_1p6 = 13;
+}
+
+message VidCameraId {
+	string strStorId = 1;//ID of the VidStor
+	string strCameraId = 2;
+}
+
+
+message VidClientConf {
+	VidLanguage nLang = 1;
+	string strAdminPasswd = 2;
+	bool bAutoLogin = 3;
+	bool bAutoFullScreen = 4;
+}
+
+//Video Storage
+message VidStor {
+	//use uuid for id of VidStor
+	string strId = 1;
+	string strName = 2;
+	
+	string strIP = 3;
+	string strPort = 4;
+	string strUser = 5;
+	string strPasswd = 6;
+}
+
+message VidStorList {
+	repeated VidStor cVidStor = 1;
+}
+
+//View Window
+message VidViewWindow {
+	VidCameraId cId = 1;
+	int32 nWindowsId = 2;
+	bool bHWAccel = 3;
+}
+
+//View 
+message VidView {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidViewWindow cView = 3;
+	VidLayout cLayout = 4;
+}
+
+message VidViewList {
+	repeated VidView cVidView = 1;
+}
+
+//Tour 
+message VidTour {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated string strView = 3;
+}
+
+message VidTourList {
+	repeated VidTour cVidTour = 1;
+}
+
+//Group 
+message VidGroup {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidCameraId cGroup = 3;
+}
+
+message VidGroupList {
+	repeated VidGroup cVidGroup = 1;
+}
+
+
+//Emap 
+//Emap Camera
+message VidEmapCamera {
+	VidCameraId cId = 1;
+	int32 x = 2;
+	int32 y = 3;
+	int32 w = 4;
+	int32 h = 5;
+}
+
+//View 
+message VidEmap {
+	string strId = 1;//ID is a uuid
+	string strName = 2;
+	repeated VidEmapCamera cCamera = 3;
+}
+
+message VidEmapList {
+	repeated VidEmap cVidEmap = 1;
+}
+
+//Stream List
+message VidStream {
+	string strToken = 1;//Token of the Stream
+	string strName = 2;
+}
+
+message VidStreamList {
+	repeated VidStream cVidStream = 1;
+}
+
+//Below Is VA part
+//Blob
+message VidBlob{
+	int32 x0 = 1;
+	int32 y0 = 2;
+	int32 x1 = 3;
+	int32 y1 = 4;
+}
+
+message VidBlobList {
+	repeated VidBlob cBlob = 1;
+}
+
+//DataBase configuration
+enum VidEventDBType {
+	VID_DB_SQLITE = 0;
+    VID_DB_POSTGRESQL = 1;
+}
+
+message VidEventDBConf {
+	VidEventDBType nType = 1;
+	string strDBPath = 2;
+}
+
+message VidEvent {
+	string strId = 1;
+	string strDevice = 2;
+	string strDeviceName = 3;
+	string strType = 4;
+	int64 nTime = 5;
+	string strTime = 6;
+	string strDesc = 7;
+	bool bHandled = 8;
+	bool bSearched = 9;
+	string strComments = 10;
+	string strStorId = 11;//Used for Client display
+	string strStorName=12;//Used for Client display
+	int64 nIdx = 13;//For Count in UI
+}
+
+
+
+
+

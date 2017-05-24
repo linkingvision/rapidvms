@@ -1,0 +1,13 @@
+aux_source_directory(. TEST_SRC_LIST)
+foreach(TEST_SRC ${TEST_SRC_LIST})
+STRING(REGEX REPLACE ".cpp" "" TEST_EXE_NAME ${TEST_SRC})
+STRING(REGEX REPLACE "./" "" TEST_EXE_NAME ${TEST_EXE_NAME})
+message(STATUS "add test program:${TEST_EXE_NAME}")
+add_executable(${TEST_EXE_NAME} ${TEST_SRC})
+if(ANDROID)
+target_link_libraries(${TEST_EXE_NAME} ${CMAKE_PROJECT_NAME}_shared ${LINK_LIB_LIST})
+else(ANDROID)
+target_link_libraries(${TEST_EXE_NAME} ${CMAKE_PROJECT_NAME}_shared ${LINK_LIB_LIST} pthread)
+endif(ANDROID)
+
+endforeach(TEST_SRC ${TEST_SRC_LIST})
