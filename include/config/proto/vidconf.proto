@@ -1,7 +1,6 @@
 
 syntax = "proto3";
 
-package VidConf;
 //=========================video server client common
 message VidUser {
 	string strId = 1;//ID is a uuid

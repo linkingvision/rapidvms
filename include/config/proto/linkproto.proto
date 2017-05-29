@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "linksystem.proto";
+
+enum LinkCmdType {
+	LINK_CMD_ZERO = 0;
+	LINK_CMD_LOGIN_REQ = 1;
+	LINK_CMD_LOGIN_RESP = 2;
+	LINK_CMD_CAM_LIST_REQ = 3;
+	LINK_CMD_CAM_LIST_RESP = 4;
+}
+
+message LinkCmd {
+	LinkCmdType type = 1;
+	oneof cmd {
+		LinkLoginReq loginReq = 2;
+		LinkLoginResp loginResp = 3;
+	}
+}

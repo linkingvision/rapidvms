@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+import "vidconf.proto";
+
+message LinkLoginReq {
+	string strUserName = 1;
+	string strPasswd = 2;
+}
+
+message LinkLoginResp {
+	string strNonce = 1;
+	bool bRetNonce = 2;
+	bool bRet = 3;
+}
+
+message LinkListCamReq {
+	string strId = 1;
+	bool bAll = 2;
+}
+
+message LinkListCamResp {
+	VidCameraList cList = 1;
+}
+
+
