@@ -31,9 +31,6 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "linksystem.pb.h"
 // @@protoc_insertion_point(includes)
-class LinkCmd;
-class LinkCmdDefaultTypeInternal;
-extern LinkCmdDefaultTypeInternal _LinkCmd_default_instance_;
 class LinkListCamReq;
 class LinkListCamReqDefaultTypeInternal;
 extern LinkListCamReqDefaultTypeInternal _LinkListCamReq_default_instance_;
@@ -46,6 +43,13 @@ extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_instance_;
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+namespace Link {
+class LinkCmd;
+class LinkCmdDefaultTypeInternal;
+extern LinkCmdDefaultTypeInternal _LinkCmd_default_instance_;
+}  // namespace Link
+
+namespace Link {
 
 namespace protobuf_linkproto_2eproto {
 // Internal implementation detail -- do not call these.
@@ -84,7 +88,7 @@ inline bool LinkCmdType_Parse(
 }
 // ===================================================================
 
-class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCmd) */ {
+class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Link.LinkCmd) */ {
  public:
   LinkCmd();
   virtual ~LinkCmd();
@@ -102,6 +106,8 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   enum CmdCase {
     kLoginReq = 2,
     kLoginResp = 3,
+    kCamListReq = 4,
+    kCamListResp = 5,
     CMD_NOT_SET = 0,
   };
 
@@ -157,11 +163,11 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // .LinkCmdType type = 1;
+  // .Link.LinkCmdType type = 1;
   void clear_type();
   static const int kTypeFieldNumber = 1;
-  ::LinkCmdType type() const;
-  void set_type(::LinkCmdType value);
+  ::Link::LinkCmdType type() const;
+  void set_type(::Link::LinkCmdType value);
 
   // .LinkLoginReq loginReq = 2;
   bool has_loginreq() const;
@@ -181,11 +187,31 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::LinkLoginResp* release_loginresp();
   void set_allocated_loginresp(::LinkLoginResp* loginresp);
 
+  // .LinkListCamReq camListReq = 4;
+  bool has_camlistreq() const;
+  void clear_camlistreq();
+  static const int kCamListReqFieldNumber = 4;
+  const ::LinkListCamReq& camlistreq() const;
+  ::LinkListCamReq* mutable_camlistreq();
+  ::LinkListCamReq* release_camlistreq();
+  void set_allocated_camlistreq(::LinkListCamReq* camlistreq);
+
+  // .LinkListCamResp camListResp = 5;
+  bool has_camlistresp() const;
+  void clear_camlistresp();
+  static const int kCamListRespFieldNumber = 5;
+  const ::LinkListCamResp& camlistresp() const;
+  ::LinkListCamResp* mutable_camlistresp();
+  ::LinkListCamResp* release_camlistresp();
+  void set_allocated_camlistresp(::LinkListCamResp* camlistresp);
+
   CmdCase cmd_case() const;
-  // @@protoc_insertion_point(class_scope:LinkCmd)
+  // @@protoc_insertion_point(class_scope:Link.LinkCmd)
  private:
   void set_has_loginreq();
   void set_has_loginresp();
+  void set_has_camlistreq();
+  void set_has_camlistresp();
 
   inline bool has_cmd() const;
   void clear_cmd();
@@ -197,6 +223,8 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     CmdUnion() {}
     ::LinkLoginReq* loginreq_;
     ::LinkLoginResp* loginresp_;
+    ::LinkListCamReq* camlistreq_;
+    ::LinkListCamResp* camlistresp_;
   } cmd_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -211,18 +239,18 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
 // LinkCmd
 
-// .LinkCmdType type = 1;
+// .Link.LinkCmdType type = 1;
 inline void LinkCmd::clear_type() {
   type_ = 0;
 }
-inline ::LinkCmdType LinkCmd::type() const {
-  // @@protoc_insertion_point(field_get:LinkCmd.type)
-  return static_cast< ::LinkCmdType >(type_);
+inline ::Link::LinkCmdType LinkCmd::type() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.type)
+  return static_cast< ::Link::LinkCmdType >(type_);
 }
-inline void LinkCmd::set_type(::LinkCmdType value) {
+inline void LinkCmd::set_type(::Link::LinkCmdType value) {
   
   type_ = value;
-  // @@protoc_insertion_point(field_set:LinkCmd.type)
+  // @@protoc_insertion_point(field_set:Link.LinkCmd.type)
 }
 
 // .LinkLoginReq loginReq = 2;
@@ -239,7 +267,7 @@ inline void LinkCmd::clear_loginreq() {
   }
 }
 inline  const ::LinkLoginReq& LinkCmd::loginreq() const {
-  // @@protoc_insertion_point(field_get:LinkCmd.loginReq)
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.loginReq)
   return has_loginreq()
       ? *cmd_.loginreq_
       : ::LinkLoginReq::default_instance();
@@ -250,11 +278,11 @@ inline ::LinkLoginReq* LinkCmd::mutable_loginreq() {
     set_has_loginreq();
     cmd_.loginreq_ = new ::LinkLoginReq;
   }
-  // @@protoc_insertion_point(field_mutable:LinkCmd.loginReq)
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.loginReq)
   return cmd_.loginreq_;
 }
 inline ::LinkLoginReq* LinkCmd::release_loginreq() {
-  // @@protoc_insertion_point(field_release:LinkCmd.loginReq)
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.loginReq)
   if (has_loginreq()) {
     clear_has_cmd();
     ::LinkLoginReq* temp = cmd_.loginreq_;
@@ -270,7 +298,7 @@ inline void LinkCmd::set_allocated_loginreq(::LinkLoginReq* loginreq) {
     set_has_loginreq();
     cmd_.loginreq_ = loginreq;
   }
-  // @@protoc_insertion_point(field_set_allocated:LinkCmd.loginReq)
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.loginReq)
 }
 
 // .LinkLoginResp loginResp = 3;
@@ -287,7 +315,7 @@ inline void LinkCmd::clear_loginresp() {
   }
 }
 inline  const ::LinkLoginResp& LinkCmd::loginresp() const {
-  // @@protoc_insertion_point(field_get:LinkCmd.loginResp)
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.loginResp)
   return has_loginresp()
       ? *cmd_.loginresp_
       : ::LinkLoginResp::default_instance();
@@ -298,11 +326,11 @@ inline ::LinkLoginResp* LinkCmd::mutable_loginresp() {
     set_has_loginresp();
     cmd_.loginresp_ = new ::LinkLoginResp;
   }
-  // @@protoc_insertion_point(field_mutable:LinkCmd.loginResp)
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.loginResp)
   return cmd_.loginresp_;
 }
 inline ::LinkLoginResp* LinkCmd::release_loginresp() {
-  // @@protoc_insertion_point(field_release:LinkCmd.loginResp)
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.loginResp)
   if (has_loginresp()) {
     clear_has_cmd();
     ::LinkLoginResp* temp = cmd_.loginresp_;
@@ -318,7 +346,103 @@ inline void LinkCmd::set_allocated_loginresp(::LinkLoginResp* loginresp) {
     set_has_loginresp();
     cmd_.loginresp_ = loginresp;
   }
-  // @@protoc_insertion_point(field_set_allocated:LinkCmd.loginResp)
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.loginResp)
+}
+
+// .LinkListCamReq camListReq = 4;
+inline bool LinkCmd::has_camlistreq() const {
+  return cmd_case() == kCamListReq;
+}
+inline void LinkCmd::set_has_camlistreq() {
+  _oneof_case_[0] = kCamListReq;
+}
+inline void LinkCmd::clear_camlistreq() {
+  if (has_camlistreq()) {
+    delete cmd_.camlistreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkListCamReq& LinkCmd::camlistreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camListReq)
+  return has_camlistreq()
+      ? *cmd_.camlistreq_
+      : ::LinkListCamReq::default_instance();
+}
+inline ::LinkListCamReq* LinkCmd::mutable_camlistreq() {
+  if (!has_camlistreq()) {
+    clear_cmd();
+    set_has_camlistreq();
+    cmd_.camlistreq_ = new ::LinkListCamReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camListReq)
+  return cmd_.camlistreq_;
+}
+inline ::LinkListCamReq* LinkCmd::release_camlistreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camListReq)
+  if (has_camlistreq()) {
+    clear_has_cmd();
+    ::LinkListCamReq* temp = cmd_.camlistreq_;
+    cmd_.camlistreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camlistreq(::LinkListCamReq* camlistreq) {
+  clear_cmd();
+  if (camlistreq) {
+    set_has_camlistreq();
+    cmd_.camlistreq_ = camlistreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListReq)
+}
+
+// .LinkListCamResp camListResp = 5;
+inline bool LinkCmd::has_camlistresp() const {
+  return cmd_case() == kCamListResp;
+}
+inline void LinkCmd::set_has_camlistresp() {
+  _oneof_case_[0] = kCamListResp;
+}
+inline void LinkCmd::clear_camlistresp() {
+  if (has_camlistresp()) {
+    delete cmd_.camlistresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkListCamResp& LinkCmd::camlistresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camListResp)
+  return has_camlistresp()
+      ? *cmd_.camlistresp_
+      : ::LinkListCamResp::default_instance();
+}
+inline ::LinkListCamResp* LinkCmd::mutable_camlistresp() {
+  if (!has_camlistresp()) {
+    clear_cmd();
+    set_has_camlistresp();
+    cmd_.camlistresp_ = new ::LinkListCamResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camListResp)
+  return cmd_.camlistresp_;
+}
+inline ::LinkListCamResp* LinkCmd::release_camlistresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camListResp)
+  if (has_camlistresp()) {
+    clear_has_cmd();
+    ::LinkListCamResp* temp = cmd_.camlistresp_;
+    cmd_.camlistresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camlistresp(::LinkListCamResp* camlistresp) {
+  clear_cmd();
+  if (camlistresp) {
+    set_has_camlistresp();
+    cmd_.camlistresp_ = camlistresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListResp)
 }
 
 inline bool LinkCmd::has_cmd() const {
@@ -335,14 +459,16 @@ inline LinkCmd::CmdCase LinkCmd::cmd_case() const {
 // @@protoc_insertion_point(namespace_scope)
 
 
+}  // namespace Link
+
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
-template <> struct is_proto_enum< ::LinkCmdType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::Link::LinkCmdType> : ::google::protobuf::internal::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::LinkCmdType>() {
-  return ::LinkCmdType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Link::LinkCmdType>() {
+  return ::Link::LinkCmdType_descriptor();
 }
 
 }  // namespace protobuf

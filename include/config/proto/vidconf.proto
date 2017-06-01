@@ -102,6 +102,10 @@ message VidCamera {
 	
 	string strSched = 27;//Record Schedule 7 x 24
 	string strMotReg = 28;//Motion Detection Reg 320 * 240
+	
+	
+	bool bOnline = 29;
+	bool bRec = 30;
 }
 
 message VidCameraList {

@@ -28,6 +28,9 @@
 #include "oapi/oapicmn.hpp"
 #include "config/confver.hpp"
 
+#define LINK_PROTO_WS_PATH "/linkproto"
+#define LINK_PROTO_WS_STREAM_PATH "/linkstream"
+
 /* 0xFF FFFF to 0xFFFF FFFF is for status for the map */
 #define CONF_MAP_INVALID_MIN 0xFFFFFF
 #define CONF_KEY_STR_MAX 16

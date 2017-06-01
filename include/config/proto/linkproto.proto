@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package Link;
+
 import "linksystem.proto";
 
 enum LinkCmdType {
@@ -15,5 +17,7 @@ message LinkCmd {
 	oneof cmd {
 		LinkLoginReq loginReq = 2;
 		LinkLoginResp loginResp = 3;
+		LinkListCamReq camListReq = 4;
+		LinkListCamResp camListResp = 5;
 	}
 }

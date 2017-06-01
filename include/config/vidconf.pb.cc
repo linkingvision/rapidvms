@@ -134,6 +134,8 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, nonvifevtlevel_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strsched_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, strmotreg_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, bonline_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCamera, brec_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidCameraList, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -311,30 +313,30 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 8, -1, sizeof(VidUserList)},
   { 13, -1, sizeof(VidStorServerConf)},
   { 19, -1, sizeof(VidCamera)},
-  { 50, -1, sizeof(VidCameraList)},
-  { 55, -1, sizeof(VidDisk)},
-  { 65, -1, sizeof(VidDiskList)},
-  { 70, -1, sizeof(VidHDFSConf)},
-  { 79, -1, sizeof(VidCameraId)},
-  { 85, -1, sizeof(VidClientConf)},
-  { 93, -1, sizeof(VidStor)},
-  { 103, -1, sizeof(VidStorList)},
-  { 108, -1, sizeof(VidViewWindow)},
-  { 115, -1, sizeof(VidView)},
-  { 123, -1, sizeof(VidViewList)},
-  { 128, -1, sizeof(VidTour)},
-  { 135, -1, sizeof(VidTourList)},
-  { 140, -1, sizeof(VidGroup)},
-  { 147, -1, sizeof(VidGroupList)},
-  { 152, -1, sizeof(VidEmapCamera)},
-  { 161, -1, sizeof(VidEmap)},
-  { 168, -1, sizeof(VidEmapList)},
-  { 173, -1, sizeof(VidStream)},
-  { 179, -1, sizeof(VidStreamList)},
-  { 184, -1, sizeof(VidBlob)},
-  { 192, -1, sizeof(VidBlobList)},
-  { 197, -1, sizeof(VidEventDBConf)},
-  { 203, -1, sizeof(VidEvent)},
+  { 52, -1, sizeof(VidCameraList)},
+  { 57, -1, sizeof(VidDisk)},
+  { 67, -1, sizeof(VidDiskList)},
+  { 72, -1, sizeof(VidHDFSConf)},
+  { 81, -1, sizeof(VidCameraId)},
+  { 87, -1, sizeof(VidClientConf)},
+  { 95, -1, sizeof(VidStor)},
+  { 105, -1, sizeof(VidStorList)},
+  { 110, -1, sizeof(VidViewWindow)},
+  { 117, -1, sizeof(VidView)},
+  { 125, -1, sizeof(VidViewList)},
+  { 130, -1, sizeof(VidTour)},
+  { 137, -1, sizeof(VidTourList)},
+  { 142, -1, sizeof(VidGroup)},
+  { 149, -1, sizeof(VidGroupList)},
+  { 154, -1, sizeof(VidEmapCamera)},
+  { 163, -1, sizeof(VidEmap)},
+  { 170, -1, sizeof(VidEmapList)},
+  { 175, -1, sizeof(VidStream)},
+  { 181, -1, sizeof(VidStreamList)},
+  { 186, -1, sizeof(VidBlob)},
+  { 194, -1, sizeof(VidBlobList)},
+  { 199, -1, sizeof(VidEventDBConf)},
+  { 205, -1, sizeof(VidEvent)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -500,7 +502,7 @@ void AddDescriptorsImpl() {
       "\tstrRoleId\030\004 \001(\t\")\n\013VidUserList\022\032\n\010cVidU"
       "ser\030\001 \003(\0132\010.VidUser\">\n\021VidStorServerConf"
       "\022\021\n\tnOapiPort\030\001 \001(\005\022\026\n\016strAdminPasswd\030\002 "
-      "\001(\t\"\342\004\n\tVidCamera\022\020\n\010bDisable\030\001 \001(\010\022\r\n\005s"
+      "\001(\t\"\201\005\n\tVidCamera\022\020\n\010bDisable\030\001 \001(\010\022\r\n\005s"
       "trId\030\002 \001(\t\022\017\n\007strName\030\003 \001(\t\022\032\n\005nType\030\004 \001"
       "(\0162\013.CameraType\022\r\n\005strIP\030\005 \001(\t\022\017\n\007strPor"
       "t\030\006 \001(\t\022\017\n\007strUser\030\007 \001(\t\022\021\n\tstrPasswd\030\010 "
@@ -515,76 +517,77 @@ void AddDescriptorsImpl() {
       "\027 \001(\010\022\025\n\rnRecordStream\030\030 \001(\005\022\033\n\023nServerM"
       "otionStream\030\031 \001(\005\022(\n\016nOnvifEvtLevel\030\032 \001("
       "\0162\020.OnvifEventLevel\022\020\n\010strSched\030\033 \001(\t\022\021\n"
-      "\tstrMotReg\030\034 \001(\t\"/\n\rVidCameraList\022\036\n\ncVi"
-      "dCamera\030\001 \003(\0132\n.VidCamera\"w\n\007VidDisk\022\r\n\005"
-      "strId\030\001 \001(\t\022\017\n\007strPath\030\002 \001(\t\022\022\n\nnTotalSi"
-      "ze\030\003 \001(\003\022\021\n\tnFreeSize\030\004 \001(\003\022\022\n\nnStorLimi"
-      "t\030\005 \001(\003\022\021\n\tnStorUsed\030\006 \001(\003\")\n\013VidDiskLis"
-      "t\022\032\n\010cVidDisk\030\001 \003(\0132\010.VidDisk\"n\n\013VidHDFS"
-      "Conf\022\023\n\013strNameNode\030\001 \001(\t\022\017\n\007strPort\030\002 \001"
-      "(\t\022\017\n\007strUser\030\003 \001(\t\022\021\n\tstrPasswd\030\004 \001(\t\022\025"
-      "\n\rnFileInterval\030\005 \001(\005\"5\n\013VidCameraId\022\021\n\t"
-      "strStorId\030\001 \001(\t\022\023\n\013strCameraId\030\002 \001(\t\"q\n\r"
-      "VidClientConf\022\033\n\005nLang\030\001 \001(\0162\014.VidLangua"
-      "ge\022\026\n\016strAdminPasswd\030\002 \001(\t\022\022\n\nbAutoLogin"
-      "\030\003 \001(\010\022\027\n\017bAutoFullScreen\030\004 \001(\010\"m\n\007VidSt"
-      "or\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\r\n\005st"
-      "rIP\030\003 \001(\t\022\017\n\007strPort\030\004 \001(\t\022\017\n\007strUser\030\005 "
-      "\001(\t\022\021\n\tstrPasswd\030\006 \001(\t\")\n\013VidStorList\022\032\n"
-      "\010cVidStor\030\001 \003(\0132\010.VidStor\"P\n\rVidViewWind"
-      "ow\022\031\n\003cId\030\001 \001(\0132\014.VidCameraId\022\022\n\nnWindow"
-      "sId\030\002 \001(\005\022\020\n\010bHWAccel\030\003 \001(\010\"e\n\007VidView\022\r"
-      "\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\035\n\005cView\030"
-      "\003 \003(\0132\016.VidViewWindow\022\033\n\007cLayout\030\004 \001(\0162\n"
-      ".VidLayout\")\n\013VidViewList\022\032\n\010cVidView\030\001 "
-      "\003(\0132\010.VidView\":\n\007VidTour\022\r\n\005strId\030\001 \001(\t\022"
-      "\017\n\007strName\030\002 \001(\t\022\017\n\007strView\030\003 \003(\t\")\n\013Vid"
-      "TourList\022\032\n\010cVidTour\030\001 \003(\0132\010.VidTour\"H\n\010"
-      "VidGroup\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t"
-      "\022\034\n\006cGroup\030\003 \003(\0132\014.VidCameraId\",\n\014VidGro"
-      "upList\022\034\n\tcVidGroup\030\001 \003(\0132\t.VidGroup\"V\n\r"
-      "VidEmapCamera\022\031\n\003cId\030\001 \001(\0132\014.VidCameraId"
-      "\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005"
-      " \001(\005\"J\n\007VidEmap\022\r\n\005strId\030\001 \001(\t\022\017\n\007strNam"
-      "e\030\002 \001(\t\022\037\n\007cCamera\030\003 \003(\0132\016.VidEmapCamera"
-      "\")\n\013VidEmapList\022\032\n\010cVidEmap\030\001 \003(\0132\010.VidE"
-      "map\".\n\tVidStream\022\020\n\010strToken\030\001 \001(\t\022\017\n\007st"
-      "rName\030\002 \001(\t\"/\n\rVidStreamList\022\036\n\ncVidStre"
-      "am\030\001 \003(\0132\n.VidStream\"9\n\007VidBlob\022\n\n\002x0\030\001 "
-      "\001(\005\022\n\n\002y0\030\002 \001(\005\022\n\n\002x1\030\003 \001(\005\022\n\n\002y1\030\004 \001(\005\""
-      "&\n\013VidBlobList\022\027\n\005cBlob\030\001 \003(\0132\010.VidBlob\""
-      "C\n\016VidEventDBConf\022\036\n\005nType\030\001 \001(\0162\017.VidEv"
-      "entDBType\022\021\n\tstrDBPath\030\002 \001(\t\"\365\001\n\010VidEven"
-      "t\022\r\n\005strId\030\001 \001(\t\022\021\n\tstrDevice\030\002 \001(\t\022\025\n\rs"
-      "trDeviceName\030\003 \001(\t\022\017\n\007strType\030\004 \001(\t\022\r\n\005n"
-      "Time\030\005 \001(\003\022\017\n\007strTime\030\006 \001(\t\022\017\n\007strDesc\030\007"
-      " \001(\t\022\020\n\010bHandled\030\010 \001(\010\022\021\n\tbSearched\030\t \001("
-      "\010\022\023\n\013strComments\030\n \001(\t\022\021\n\tstrStorId\030\013 \001("
-      "\t\022\023\n\013strStorName\030\014 \001(\t\022\014\n\004nIdx\030\r \001(\003*q\n\n"
-      "CameraType\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VI"
-      "D_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022"
-      "\017\n\013VID_GB28181\020\005\022\r\n\tVID_MJPEG\020\006*=\n\nVidRe"
-      "cType\022\r\n\tVID_R_OFF\020\000\022\017\n\013VID_R_ALARM\020\001\022\017\n"
-      "\013VID_R_SCHED\020\002*P\n\021CameraConnectType\022\021\n\rV"
-      "ID_CONNECT_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017V"
-      "ID_CONNECT_UDP\020\002*`\n\017OnvifEventLevel\022\027\n\023V"
-      "ID_ONVIF_EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVENT_"
-      "FULL\020\001\022\032\n\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013Vi"
-      "dLanguage\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001"
-      "\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAY"
-      "OUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023V"
-      "ID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_"
-      "3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LA"
-      "YOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024"
-      "VID_LAYOUT_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MOD"
-      "E_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_"
-      "LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE"
-      "\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOU"
-      "T_MODE_1p6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB"
-      "_SQLITE\020\000\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3"
+      "\tstrMotReg\030\034 \001(\t\022\017\n\007bOnline\030\035 \001(\010\022\014\n\004bRe"
+      "c\030\036 \001(\010\"/\n\rVidCameraList\022\036\n\ncVidCamera\030\001"
+      " \003(\0132\n.VidCamera\"w\n\007VidDisk\022\r\n\005strId\030\001 \001"
+      "(\t\022\017\n\007strPath\030\002 \001(\t\022\022\n\nnTotalSize\030\003 \001(\003\022"
+      "\021\n\tnFreeSize\030\004 \001(\003\022\022\n\nnStorLimit\030\005 \001(\003\022\021"
+      "\n\tnStorUsed\030\006 \001(\003\")\n\013VidDiskList\022\032\n\010cVid"
+      "Disk\030\001 \003(\0132\010.VidDisk\"n\n\013VidHDFSConf\022\023\n\013s"
+      "trNameNode\030\001 \001(\t\022\017\n\007strPort\030\002 \001(\t\022\017\n\007str"
+      "User\030\003 \001(\t\022\021\n\tstrPasswd\030\004 \001(\t\022\025\n\rnFileIn"
+      "terval\030\005 \001(\005\"5\n\013VidCameraId\022\021\n\tstrStorId"
+      "\030\001 \001(\t\022\023\n\013strCameraId\030\002 \001(\t\"q\n\rVidClient"
+      "Conf\022\033\n\005nLang\030\001 \001(\0162\014.VidLanguage\022\026\n\016str"
+      "AdminPasswd\030\002 \001(\t\022\022\n\nbAutoLogin\030\003 \001(\010\022\027\n"
+      "\017bAutoFullScreen\030\004 \001(\010\"m\n\007VidStor\022\r\n\005str"
+      "Id\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\r\n\005strIP\030\003 \001(\t"
+      "\022\017\n\007strPort\030\004 \001(\t\022\017\n\007strUser\030\005 \001(\t\022\021\n\tst"
+      "rPasswd\030\006 \001(\t\")\n\013VidStorList\022\032\n\010cVidStor"
+      "\030\001 \003(\0132\010.VidStor\"P\n\rVidViewWindow\022\031\n\003cId"
+      "\030\001 \001(\0132\014.VidCameraId\022\022\n\nnWindowsId\030\002 \001(\005"
+      "\022\020\n\010bHWAccel\030\003 \001(\010\"e\n\007VidView\022\r\n\005strId\030\001"
+      " \001(\t\022\017\n\007strName\030\002 \001(\t\022\035\n\005cView\030\003 \003(\0132\016.V"
+      "idViewWindow\022\033\n\007cLayout\030\004 \001(\0162\n.VidLayou"
+      "t\")\n\013VidViewList\022\032\n\010cVidView\030\001 \003(\0132\010.Vid"
+      "View\":\n\007VidTour\022\r\n\005strId\030\001 \001(\t\022\017\n\007strNam"
+      "e\030\002 \001(\t\022\017\n\007strView\030\003 \003(\t\")\n\013VidTourList\022"
+      "\032\n\010cVidTour\030\001 \003(\0132\010.VidTour\"H\n\010VidGroup\022"
+      "\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\034\n\006cGrou"
+      "p\030\003 \003(\0132\014.VidCameraId\",\n\014VidGroupList\022\034\n"
+      "\tcVidGroup\030\001 \003(\0132\t.VidGroup\"V\n\rVidEmapCa"
+      "mera\022\031\n\003cId\030\001 \001(\0132\014.VidCameraId\022\t\n\001x\030\002 \001"
+      "(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001w\030\004 \001(\005\022\t\n\001h\030\005 \001(\005\"J\n\007V"
+      "idEmap\022\r\n\005strId\030\001 \001(\t\022\017\n\007strName\030\002 \001(\t\022\037"
+      "\n\007cCamera\030\003 \003(\0132\016.VidEmapCamera\")\n\013VidEm"
+      "apList\022\032\n\010cVidEmap\030\001 \003(\0132\010.VidEmap\".\n\tVi"
+      "dStream\022\020\n\010strToken\030\001 \001(\t\022\017\n\007strName\030\002 \001"
+      "(\t\"/\n\rVidStreamList\022\036\n\ncVidStream\030\001 \003(\0132"
+      "\n.VidStream\"9\n\007VidBlob\022\n\n\002x0\030\001 \001(\005\022\n\n\002y0"
+      "\030\002 \001(\005\022\n\n\002x1\030\003 \001(\005\022\n\n\002y1\030\004 \001(\005\"&\n\013VidBlo"
+      "bList\022\027\n\005cBlob\030\001 \003(\0132\010.VidBlob\"C\n\016VidEve"
+      "ntDBConf\022\036\n\005nType\030\001 \001(\0162\017.VidEventDBType"
+      "\022\021\n\tstrDBPath\030\002 \001(\t\"\365\001\n\010VidEvent\022\r\n\005strI"
+      "d\030\001 \001(\t\022\021\n\tstrDevice\030\002 \001(\t\022\025\n\rstrDeviceN"
+      "ame\030\003 \001(\t\022\017\n\007strType\030\004 \001(\t\022\r\n\005nTime\030\005 \001("
+      "\003\022\017\n\007strTime\030\006 \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010b"
+      "Handled\030\010 \001(\010\022\021\n\tbSearched\030\t \001(\010\022\023\n\013strC"
+      "omments\030\n \001(\t\022\021\n\tstrStorId\030\013 \001(\t\022\023\n\013strS"
+      "torName\030\014 \001(\t\022\014\n\004nIdx\030\r \001(\003*q\n\nCameraTyp"
+      "e\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022"
+      "\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB"
+      "28181\020\005\022\r\n\tVID_MJPEG\020\006*=\n\nVidRecType\022\r\n\t"
+      "VID_R_OFF\020\000\022\017\n\013VID_R_ALARM\020\001\022\017\n\013VID_R_SC"
+      "HED\020\002*P\n\021CameraConnectType\022\021\n\rVID_CONNEC"
+      "T_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONNEC"
+      "T_UDP\020\002*`\n\017OnvifEventLevel\022\027\n\023VID_ONVIF_"
+      "EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVENT_FULL\020\001\022\032\n"
+      "\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013VidLanguage"
+      "\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_Z"
+      "H_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOUT_MODE_"
+      "0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID_LAYOUT"
+      "_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X3\020\003\022\027\n\023"
+      "VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYOUT_MODE"
+      "_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VID_LAYOU"
+      "T_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_5x5\020\010\022\027"
+      "\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LAYOUT_MO"
+      "DE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027\n\023VID"
+      "_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MODE_1p"
+      "6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_SQLITE\020\000"
+      "\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 3480);
+      descriptor, 3511);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -1936,6 +1939,8 @@ const int VidCamera::kNServerMotionStreamFieldNumber;
 const int VidCamera::kNOnvifEvtLevelFieldNumber;
 const int VidCamera::kStrSchedFieldNumber;
 const int VidCamera::kStrMotRegFieldNumber;
+const int VidCamera::kBOnlineFieldNumber;
+const int VidCamera::kBRecFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 VidCamera::VidCamera()
@@ -2486,6 +2491,32 @@ bool VidCamera::MergePartialFromCodedStream(
         break;
       }
 
+      // bool bOnline = 29;
+      case 29: {
+        if (tag == 232u) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &bonline_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool bRec = 30;
+      case 30: {
+        if (tag == 240u) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &brec_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -2718,6 +2749,16 @@ void VidCamera::SerializeWithCachedSizes(
       28, this->strmotreg(), output);
   }
 
+  // bool bOnline = 29;
+  if (this->bonline() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(29, this->bonline(), output);
+  }
+
+  // bool bRec = 30;
+  if (this->brec() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(30, this->brec(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:VidCamera)
 }
 
@@ -2946,6 +2987,16 @@ void VidCamera::SerializeWithCachedSizes(
         28, this->strmotreg(), target);
   }
 
+  // bool bOnline = 29;
+  if (this->bonline() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(29, this->bonline(), target);
+  }
+
+  // bool bRec = 30;
+  if (this->brec() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(30, this->brec(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:VidCamera)
   return target;
 }
@@ -3092,16 +3143,6 @@ size_t VidCamera::ByteSizeLong() const {
         this->nprerecsec());
   }
 
-  // bool bHDFSRecord = 18;
-  if (this->bhdfsrecord() != 0) {
-    total_size += 2 + 1;
-  }
-
-  // bool bMotionJPEG = 23;
-  if (this->bmotionjpeg() != 0) {
-    total_size += 2 + 1;
-  }
-
   // int32 nPostRecSec = 22;
   if (this->npostrecsec() != 0) {
     total_size += 2 +
@@ -3121,6 +3162,26 @@ size_t VidCamera::ByteSizeLong() const {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->nservermotionstream());
+  }
+
+  // bool bHDFSRecord = 18;
+  if (this->bhdfsrecord() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool bMotionJPEG = 23;
+  if (this->bmotionjpeg() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool bOnline = 29;
+  if (this->bonline() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool bRec = 30;
+  if (this->brec() != 0) {
+    total_size += 2 + 1;
   }
 
   // .OnvifEventLevel nOnvifEvtLevel = 26;
@@ -3229,12 +3290,6 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   if (from.nprerecsec() != 0) {
     set_nprerecsec(from.nprerecsec());
   }
-  if (from.bhdfsrecord() != 0) {
-    set_bhdfsrecord(from.bhdfsrecord());
-  }
-  if (from.bmotionjpeg() != 0) {
-    set_bmotionjpeg(from.bmotionjpeg());
-  }
   if (from.npostrecsec() != 0) {
     set_npostrecsec(from.npostrecsec());
   }
@@ -3243,6 +3298,18 @@ void VidCamera::MergeFrom(const VidCamera& from) {
   }
   if (from.nservermotionstream() != 0) {
     set_nservermotionstream(from.nservermotionstream());
+  }
+  if (from.bhdfsrecord() != 0) {
+    set_bhdfsrecord(from.bhdfsrecord());
+  }
+  if (from.bmotionjpeg() != 0) {
+    set_bmotionjpeg(from.bmotionjpeg());
+  }
+  if (from.bonline() != 0) {
+    set_bonline(from.bonline());
+  }
+  if (from.brec() != 0) {
+    set_brec(from.brec());
   }
   if (from.nonvifevtlevel() != 0) {
     set_nonvifevtlevel(from.nonvifevtlevel());
@@ -3293,11 +3360,13 @@ void VidCamera::InternalSwap(VidCamera* other) {
   std::swap(bservermotion_, other->bservermotion_);
   std::swap(nconnecttype_, other->nconnecttype_);
   std::swap(nprerecsec_, other->nprerecsec_);
-  std::swap(bhdfsrecord_, other->bhdfsrecord_);
-  std::swap(bmotionjpeg_, other->bmotionjpeg_);
   std::swap(npostrecsec_, other->npostrecsec_);
   std::swap(nrecordstream_, other->nrecordstream_);
   std::swap(nservermotionstream_, other->nservermotionstream_);
+  std::swap(bhdfsrecord_, other->bhdfsrecord_);
+  std::swap(bmotionjpeg_, other->bmotionjpeg_);
+  std::swap(bonline_, other->bonline_);
+  std::swap(brec_, other->brec_);
   std::swap(nonvifevtlevel_, other->nonvifevtlevel_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -4221,6 +4290,34 @@ void VidCamera::set_allocated_strmotreg(::std::string* strmotreg) {
   }
   strmotreg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmotreg);
   // @@protoc_insertion_point(field_set_allocated:VidCamera.strMotReg)
+}
+
+// bool bOnline = 29;
+void VidCamera::clear_bonline() {
+  bonline_ = false;
+}
+bool VidCamera::bonline() const {
+  // @@protoc_insertion_point(field_get:VidCamera.bOnline)
+  return bonline_;
+}
+void VidCamera::set_bonline(bool value) {
+  
+  bonline_ = value;
+  // @@protoc_insertion_point(field_set:VidCamera.bOnline)
+}
+
+// bool bRec = 30;
+void VidCamera::clear_brec() {
+  brec_ = false;
+}
+bool VidCamera::brec() const {
+  // @@protoc_insertion_point(field_get:VidCamera.bRec)
+  return brec_;
+}
+void VidCamera::set_brec(bool value) {
+  
+  brec_ = value;
+  // @@protoc_insertion_point(field_set:VidCamera.bRec)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

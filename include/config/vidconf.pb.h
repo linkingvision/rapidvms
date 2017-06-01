@@ -926,18 +926,6 @@ class VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::int32 nprerecsec() const;
   void set_nprerecsec(::google::protobuf::int32 value);
 
-  // bool bHDFSRecord = 18;
-  void clear_bhdfsrecord();
-  static const int kBHDFSRecordFieldNumber = 18;
-  bool bhdfsrecord() const;
-  void set_bhdfsrecord(bool value);
-
-  // bool bMotionJPEG = 23;
-  void clear_bmotionjpeg();
-  static const int kBMotionJPEGFieldNumber = 23;
-  bool bmotionjpeg() const;
-  void set_bmotionjpeg(bool value);
-
   // int32 nPostRecSec = 22;
   void clear_npostrecsec();
   static const int kNPostRecSecFieldNumber = 22;
@@ -955,6 +943,30 @@ class VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point
   static const int kNServerMotionStreamFieldNumber = 25;
   ::google::protobuf::int32 nservermotionstream() const;
   void set_nservermotionstream(::google::protobuf::int32 value);
+
+  // bool bHDFSRecord = 18;
+  void clear_bhdfsrecord();
+  static const int kBHDFSRecordFieldNumber = 18;
+  bool bhdfsrecord() const;
+  void set_bhdfsrecord(bool value);
+
+  // bool bMotionJPEG = 23;
+  void clear_bmotionjpeg();
+  static const int kBMotionJPEGFieldNumber = 23;
+  bool bmotionjpeg() const;
+  void set_bmotionjpeg(bool value);
+
+  // bool bOnline = 29;
+  void clear_bonline();
+  static const int kBOnlineFieldNumber = 29;
+  bool bonline() const;
+  void set_bonline(bool value);
+
+  // bool bRec = 30;
+  void clear_brec();
+  static const int kBRecFieldNumber = 30;
+  bool brec() const;
+  void set_brec(bool value);
 
   // .OnvifEventLevel nOnvifEvtLevel = 26;
   void clear_nonvifevtlevel();
@@ -987,11 +999,13 @@ class VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point
   bool bservermotion_;
   int nconnecttype_;
   ::google::protobuf::int32 nprerecsec_;
-  bool bhdfsrecord_;
-  bool bmotionjpeg_;
   ::google::protobuf::int32 npostrecsec_;
   ::google::protobuf::int32 nrecordstream_;
   ::google::protobuf::int32 nservermotionstream_;
+  bool bhdfsrecord_;
+  bool bmotionjpeg_;
+  bool bonline_;
+  bool brec_;
   int nonvifevtlevel_;
   mutable int _cached_size_;
   friend struct  protobuf_vidconf_2eproto::TableStruct;
@@ -4941,6 +4955,34 @@ inline void VidCamera::set_allocated_strmotreg(::std::string* strmotreg) {
   }
   strmotreg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmotreg);
   // @@protoc_insertion_point(field_set_allocated:VidCamera.strMotReg)
+}
+
+// bool bOnline = 29;
+inline void VidCamera::clear_bonline() {
+  bonline_ = false;
+}
+inline bool VidCamera::bonline() const {
+  // @@protoc_insertion_point(field_get:VidCamera.bOnline)
+  return bonline_;
+}
+inline void VidCamera::set_bonline(bool value) {
+  
+  bonline_ = value;
+  // @@protoc_insertion_point(field_set:VidCamera.bOnline)
+}
+
+// bool bRec = 30;
+inline void VidCamera::clear_brec() {
+  brec_ = false;
+}
+inline bool VidCamera::brec() const {
+  // @@protoc_insertion_point(field_get:VidCamera.bRec)
+  return brec_;
+}
+inline void VidCamera::set_brec(bool value) {
+  
+  brec_ = value;
+  // @@protoc_insertion_point(field_set:VidCamera.bRec)
 }
 
 // -------------------------------------------------------------------
