@@ -67,7 +67,7 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 {
 	to.set_strid(from.strId);
 	to.set_strname(from.strName);
-	to.set_ntype((VidConf::CameraType)from.nType);
+	to.set_ntype((::CameraType)from.nType);
 
 	to.set_strip(from.strIP);
 	to.set_strport(from.strPort);
@@ -85,7 +85,7 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_bhwaccel(from.bHWaccel);
 	to.set_bservermotion(from.bServerMotion);
 
-	to.set_nconnecttype((VidConf::CameraConnectType)from.nConnectType);
+	to.set_nconnecttype((::CameraConnectType)from.nConnectType);
 
 	to.set_bhdfsrecord(from.bHDFSRecord);
 	to.set_npostrecsec(from.nPostRecSec);
@@ -94,7 +94,7 @@ bool OAPIConverter::Converter(oapi::OAPICamera &from, VidCamera &to)
 	to.set_nrecordstream(from.nRecordStream);
 	to.set_nservermotionstream(from.nServerMotionStream);
 
-	to.set_nonvifevtlevel((VidConf::OnvifEventLevel)from.nOnvifEvtLevel);
+	to.set_nonvifevtlevel((::OnvifEventLevel)from.nOnvifEvtLevel);
 
 	to.set_strsched(from.strSched);
 	to.set_strmotreg(from.strMotReg);

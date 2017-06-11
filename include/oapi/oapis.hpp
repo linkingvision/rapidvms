@@ -45,8 +45,6 @@
 #include "pbwrapper.hpp"
 #include <QTimer>
 
-using namespace VidConf;
-
 using namespace XSDK;
 using namespace std;
 using namespace oapi;

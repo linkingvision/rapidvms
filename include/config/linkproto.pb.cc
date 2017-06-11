@@ -22,8 +22,12 @@ class LinkCmdDefaultTypeInternal : public ::google::protobuf::internal::Explicit
   public:
   const ::LinkLoginReq* loginreq_;
   const ::LinkLoginResp* loginresp_;
+  const ::LinkKeepaliveReq* keepalivereq_;
+  const ::LinkKeepaliveResp* keepaliveresp_;
   const ::LinkListCamReq* camlistreq_;
   const ::LinkListCamResp* camlistresp_;
+  const ::LinkListCamReq* camreq_;
+  const ::LinkListCamResp* camresp_;
 } _LinkCmd_default_instance_;
 
 namespace protobuf_linkproto_2eproto {
@@ -44,8 +48,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCmd, type_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), loginreq_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), loginresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), keepalivereq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), keepaliveresp_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camlistreq_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camlistresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camresp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCmd, cmd_),
 };
 
@@ -95,9 +103,17 @@ void TableStruct::InitDefaultsImpl() {
       ::LinkLoginReq::internal_default_instance());
   _LinkCmd_default_instance_.loginresp_ = const_cast< ::LinkLoginResp*>(
       ::LinkLoginResp::internal_default_instance());
+  _LinkCmd_default_instance_.keepalivereq_ = const_cast< ::LinkKeepaliveReq*>(
+      ::LinkKeepaliveReq::internal_default_instance());
+  _LinkCmd_default_instance_.keepaliveresp_ = const_cast< ::LinkKeepaliveResp*>(
+      ::LinkKeepaliveResp::internal_default_instance());
   _LinkCmd_default_instance_.camlistreq_ = const_cast< ::LinkListCamReq*>(
       ::LinkListCamReq::internal_default_instance());
   _LinkCmd_default_instance_.camlistresp_ = const_cast< ::LinkListCamResp*>(
+      ::LinkListCamResp::internal_default_instance());
+  _LinkCmd_default_instance_.camreq_ = const_cast< ::LinkListCamReq*>(
+      ::LinkListCamReq::internal_default_instance());
+  _LinkCmd_default_instance_.camresp_ = const_cast< ::LinkListCamResp*>(
       ::LinkListCamResp::internal_default_instance());
 }
 
@@ -109,18 +125,25 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
       "\n\017linkproto.proto\022\004Link\032\020linksystem.prot"
-      "o\"\311\001\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
+      "o\"\351\002\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
       "mdType\022!\n\010loginReq\030\002 \001(\0132\r.LinkLoginReqH"
-      "\000\022#\n\tloginResp\030\003 \001(\0132\016.LinkLoginRespH\000\022%"
-      "\n\ncamListReq\030\004 \001(\0132\017.LinkListCamReqH\000\022\'\n"
-      "\013camListResp\030\005 \001(\0132\020.LinkListCamRespH\000B\005"
-      "\n\003cmd*\210\001\n\013LinkCmdType\022\021\n\rLINK_CMD_ZERO\020\000"
+      "\000\022#\n\tloginResp\030\003 \001(\0132\016.LinkLoginRespH\000\022)"
+      "\n\014keepaliveReq\030\004 \001(\0132\021.LinkKeepaliveReqH"
+      "\000\022+\n\rkeepaliveResp\030\005 \001(\0132\022.LinkKeepalive"
+      "RespH\000\022%\n\ncamListReq\030\006 \001(\0132\017.LinkListCam"
+      "ReqH\000\022\'\n\013camListResp\030\007 \001(\0132\020.LinkListCam"
+      "RespH\000\022!\n\006camReq\030\010 \001(\0132\017.LinkListCamReqH"
+      "\000\022#\n\007camResp\030\t \001(\0132\020.LinkListCamRespH\000B\005"
+      "\n\003cmd*\356\001\n\013LinkCmdType\022\021\n\rLINK_CMD_ZERO\020\000"
       "\022\026\n\022LINK_CMD_LOGIN_REQ\020\001\022\027\n\023LINK_CMD_LOG"
-      "IN_RESP\020\002\022\031\n\025LINK_CMD_CAM_LIST_REQ\020\003\022\032\n\026"
-      "LINK_CMD_CAM_LIST_RESP\020\004b\006proto3"
+      "IN_RESP\020\002\022\032\n\026LINK_CMD_KEEPALIVE_REQ\020\003\022\033\n"
+      "\027LINK_CMD_KEEPALIVE_RESP\020\004\022\031\n\025LINK_CMD_C"
+      "AM_LIST_REQ\020\005\022\032\n\026LINK_CMD_CAM_LIST_RESP\020"
+      "\006\022\024\n\020LINK_CMD_CAM_REQ\020\007\022\025\n\021LINK_CMD_CAM_"
+      "RESP\020\010b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 392);
+      descriptor, 654);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "linkproto.proto", &protobuf_RegisterTypes);
   ::protobuf_linksystem_2eproto::AddDescriptors();
@@ -151,6 +174,10 @@ bool LinkCmdType_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
       return true;
     default:
       return false;
@@ -164,8 +191,12 @@ bool LinkCmdType_IsValid(int value) {
 const int LinkCmd::kTypeFieldNumber;
 const int LinkCmd::kLoginReqFieldNumber;
 const int LinkCmd::kLoginRespFieldNumber;
+const int LinkCmd::kKeepaliveReqFieldNumber;
+const int LinkCmd::kKeepaliveRespFieldNumber;
 const int LinkCmd::kCamListReqFieldNumber;
 const int LinkCmd::kCamListRespFieldNumber;
+const int LinkCmd::kCamReqFieldNumber;
+const int LinkCmd::kCamRespFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 LinkCmd::LinkCmd()
@@ -192,12 +223,28 @@ LinkCmd::LinkCmd(const LinkCmd& from)
       mutable_loginresp()->::LinkLoginResp::MergeFrom(from.loginresp());
       break;
     }
+    case kKeepaliveReq: {
+      mutable_keepalivereq()->::LinkKeepaliveReq::MergeFrom(from.keepalivereq());
+      break;
+    }
+    case kKeepaliveResp: {
+      mutable_keepaliveresp()->::LinkKeepaliveResp::MergeFrom(from.keepaliveresp());
+      break;
+    }
     case kCamListReq: {
       mutable_camlistreq()->::LinkListCamReq::MergeFrom(from.camlistreq());
       break;
     }
     case kCamListResp: {
       mutable_camlistresp()->::LinkListCamResp::MergeFrom(from.camlistresp());
+      break;
+    }
+    case kCamReq: {
+      mutable_camreq()->::LinkListCamReq::MergeFrom(from.camreq());
+      break;
+    }
+    case kCamResp: {
+      mutable_camresp()->::LinkListCamResp::MergeFrom(from.camresp());
       break;
     }
     case CMD_NOT_SET: {
@@ -258,12 +305,28 @@ void LinkCmd::clear_cmd() {
       delete cmd_.loginresp_;
       break;
     }
+    case kKeepaliveReq: {
+      delete cmd_.keepalivereq_;
+      break;
+    }
+    case kKeepaliveResp: {
+      delete cmd_.keepaliveresp_;
+      break;
+    }
     case kCamListReq: {
       delete cmd_.camlistreq_;
       break;
     }
     case kCamListResp: {
       delete cmd_.camlistresp_;
+      break;
+    }
+    case kCamReq: {
+      delete cmd_.camreq_;
+      break;
+    }
+    case kCamResp: {
+      delete cmd_.camresp_;
       break;
     }
     case CMD_NOT_SET: {
@@ -326,9 +389,31 @@ bool LinkCmd::MergePartialFromCodedStream(
         break;
       }
 
-      // .LinkListCamReq camListReq = 4;
+      // .LinkKeepaliveReq keepaliveReq = 4;
       case 4: {
         if (tag == 34u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_keepalivereq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkKeepaliveResp keepaliveResp = 5;
+      case 5: {
+        if (tag == 42u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_keepaliveresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkListCamReq camListReq = 6;
+      case 6: {
+        if (tag == 50u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_camlistreq()));
         } else {
@@ -337,11 +422,33 @@ bool LinkCmd::MergePartialFromCodedStream(
         break;
       }
 
-      // .LinkListCamResp camListResp = 5;
-      case 5: {
-        if (tag == 42u) {
+      // .LinkListCamResp camListResp = 7;
+      case 7: {
+        if (tag == 58u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_camlistresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkListCamReq camReq = 8;
+      case 8: {
+        if (tag == 66u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkListCamResp camResp = 9;
+      case 9: {
+        if (tag == 74u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camresp()));
         } else {
           goto handle_unusual;
         }
@@ -390,16 +497,40 @@ void LinkCmd::SerializeWithCachedSizes(
       3, *cmd_.loginresp_, output);
   }
 
-  // .LinkListCamReq camListReq = 4;
-  if (has_camlistreq()) {
+  // .LinkKeepaliveReq keepaliveReq = 4;
+  if (has_keepalivereq()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4, *cmd_.camlistreq_, output);
+      4, *cmd_.keepalivereq_, output);
   }
 
-  // .LinkListCamResp camListResp = 5;
+  // .LinkKeepaliveResp keepaliveResp = 5;
+  if (has_keepaliveresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, *cmd_.keepaliveresp_, output);
+  }
+
+  // .LinkListCamReq camListReq = 6;
+  if (has_camlistreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, *cmd_.camlistreq_, output);
+  }
+
+  // .LinkListCamResp camListResp = 7;
   if (has_camlistresp()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, *cmd_.camlistresp_, output);
+      7, *cmd_.camlistresp_, output);
+  }
+
+  // .LinkListCamReq camReq = 8;
+  if (has_camreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      8, *cmd_.camreq_, output);
+  }
+
+  // .LinkListCamResp camResp = 9;
+  if (has_camresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      9, *cmd_.camresp_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:Link.LinkCmd)
@@ -429,18 +560,46 @@ void LinkCmd::SerializeWithCachedSizes(
         3, *cmd_.loginresp_, false, target);
   }
 
-  // .LinkListCamReq camListReq = 4;
+  // .LinkKeepaliveReq keepaliveReq = 4;
+  if (has_keepalivereq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        4, *cmd_.keepalivereq_, false, target);
+  }
+
+  // .LinkKeepaliveResp keepaliveResp = 5;
+  if (has_keepaliveresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        5, *cmd_.keepaliveresp_, false, target);
+  }
+
+  // .LinkListCamReq camListReq = 6;
   if (has_camlistreq()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        4, *cmd_.camlistreq_, false, target);
+        6, *cmd_.camlistreq_, false, target);
   }
 
-  // .LinkListCamResp camListResp = 5;
+  // .LinkListCamResp camListResp = 7;
   if (has_camlistresp()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        5, *cmd_.camlistresp_, false, target);
+        7, *cmd_.camlistresp_, false, target);
+  }
+
+  // .LinkListCamReq camReq = 8;
+  if (has_camreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        8, *cmd_.camreq_, false, target);
+  }
+
+  // .LinkListCamResp camResp = 9;
+  if (has_camresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        9, *cmd_.camresp_, false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:Link.LinkCmd)
@@ -472,18 +631,46 @@ size_t LinkCmd::ByteSizeLong() const {
           *cmd_.loginresp_);
       break;
     }
-    // .LinkListCamReq camListReq = 4;
+    // .LinkKeepaliveReq keepaliveReq = 4;
+    case kKeepaliveReq: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.keepalivereq_);
+      break;
+    }
+    // .LinkKeepaliveResp keepaliveResp = 5;
+    case kKeepaliveResp: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.keepaliveresp_);
+      break;
+    }
+    // .LinkListCamReq camListReq = 6;
     case kCamListReq: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *cmd_.camlistreq_);
       break;
     }
-    // .LinkListCamResp camListResp = 5;
+    // .LinkListCamResp camListResp = 7;
     case kCamListResp: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *cmd_.camlistresp_);
+      break;
+    }
+    // .LinkListCamReq camReq = 8;
+    case kCamReq: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camreq_);
+      break;
+    }
+    // .LinkListCamResp camResp = 9;
+    case kCamResp: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camresp_);
       break;
     }
     case CMD_NOT_SET: {
@@ -528,12 +715,28 @@ void LinkCmd::MergeFrom(const LinkCmd& from) {
       mutable_loginresp()->::LinkLoginResp::MergeFrom(from.loginresp());
       break;
     }
+    case kKeepaliveReq: {
+      mutable_keepalivereq()->::LinkKeepaliveReq::MergeFrom(from.keepalivereq());
+      break;
+    }
+    case kKeepaliveResp: {
+      mutable_keepaliveresp()->::LinkKeepaliveResp::MergeFrom(from.keepaliveresp());
+      break;
+    }
     case kCamListReq: {
       mutable_camlistreq()->::LinkListCamReq::MergeFrom(from.camlistreq());
       break;
     }
     case kCamListResp: {
       mutable_camlistresp()->::LinkListCamResp::MergeFrom(from.camlistresp());
+      break;
+    }
+    case kCamReq: {
+      mutable_camreq()->::LinkListCamReq::MergeFrom(from.camreq());
+      break;
+    }
+    case kCamResp: {
+      mutable_camresp()->::LinkListCamResp::MergeFrom(from.camresp());
       break;
     }
     case CMD_NOT_SET: {
@@ -689,7 +892,103 @@ void LinkCmd::set_allocated_loginresp(::LinkLoginResp* loginresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.loginResp)
 }
 
-// .LinkListCamReq camListReq = 4;
+// .LinkKeepaliveReq keepaliveReq = 4;
+bool LinkCmd::has_keepalivereq() const {
+  return cmd_case() == kKeepaliveReq;
+}
+void LinkCmd::set_has_keepalivereq() {
+  _oneof_case_[0] = kKeepaliveReq;
+}
+void LinkCmd::clear_keepalivereq() {
+  if (has_keepalivereq()) {
+    delete cmd_.keepalivereq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkKeepaliveReq& LinkCmd::keepalivereq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.keepaliveReq)
+  return has_keepalivereq()
+      ? *cmd_.keepalivereq_
+      : ::LinkKeepaliveReq::default_instance();
+}
+::LinkKeepaliveReq* LinkCmd::mutable_keepalivereq() {
+  if (!has_keepalivereq()) {
+    clear_cmd();
+    set_has_keepalivereq();
+    cmd_.keepalivereq_ = new ::LinkKeepaliveReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.keepaliveReq)
+  return cmd_.keepalivereq_;
+}
+::LinkKeepaliveReq* LinkCmd::release_keepalivereq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.keepaliveReq)
+  if (has_keepalivereq()) {
+    clear_has_cmd();
+    ::LinkKeepaliveReq* temp = cmd_.keepalivereq_;
+    cmd_.keepalivereq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_keepalivereq(::LinkKeepaliveReq* keepalivereq) {
+  clear_cmd();
+  if (keepalivereq) {
+    set_has_keepalivereq();
+    cmd_.keepalivereq_ = keepalivereq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.keepaliveReq)
+}
+
+// .LinkKeepaliveResp keepaliveResp = 5;
+bool LinkCmd::has_keepaliveresp() const {
+  return cmd_case() == kKeepaliveResp;
+}
+void LinkCmd::set_has_keepaliveresp() {
+  _oneof_case_[0] = kKeepaliveResp;
+}
+void LinkCmd::clear_keepaliveresp() {
+  if (has_keepaliveresp()) {
+    delete cmd_.keepaliveresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkKeepaliveResp& LinkCmd::keepaliveresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.keepaliveResp)
+  return has_keepaliveresp()
+      ? *cmd_.keepaliveresp_
+      : ::LinkKeepaliveResp::default_instance();
+}
+::LinkKeepaliveResp* LinkCmd::mutable_keepaliveresp() {
+  if (!has_keepaliveresp()) {
+    clear_cmd();
+    set_has_keepaliveresp();
+    cmd_.keepaliveresp_ = new ::LinkKeepaliveResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.keepaliveResp)
+  return cmd_.keepaliveresp_;
+}
+::LinkKeepaliveResp* LinkCmd::release_keepaliveresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.keepaliveResp)
+  if (has_keepaliveresp()) {
+    clear_has_cmd();
+    ::LinkKeepaliveResp* temp = cmd_.keepaliveresp_;
+    cmd_.keepaliveresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_keepaliveresp(::LinkKeepaliveResp* keepaliveresp) {
+  clear_cmd();
+  if (keepaliveresp) {
+    set_has_keepaliveresp();
+    cmd_.keepaliveresp_ = keepaliveresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.keepaliveResp)
+}
+
+// .LinkListCamReq camListReq = 6;
 bool LinkCmd::has_camlistreq() const {
   return cmd_case() == kCamListReq;
 }
@@ -737,7 +1036,7 @@ void LinkCmd::set_allocated_camlistreq(::LinkListCamReq* camlistreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListReq)
 }
 
-// .LinkListCamResp camListResp = 5;
+// .LinkListCamResp camListResp = 7;
 bool LinkCmd::has_camlistresp() const {
   return cmd_case() == kCamListResp;
 }
@@ -783,6 +1082,102 @@ void LinkCmd::set_allocated_camlistresp(::LinkListCamResp* camlistresp) {
     cmd_.camlistresp_ = camlistresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListResp)
+}
+
+// .LinkListCamReq camReq = 8;
+bool LinkCmd::has_camreq() const {
+  return cmd_case() == kCamReq;
+}
+void LinkCmd::set_has_camreq() {
+  _oneof_case_[0] = kCamReq;
+}
+void LinkCmd::clear_camreq() {
+  if (has_camreq()) {
+    delete cmd_.camreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkListCamReq& LinkCmd::camreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camReq)
+  return has_camreq()
+      ? *cmd_.camreq_
+      : ::LinkListCamReq::default_instance();
+}
+::LinkListCamReq* LinkCmd::mutable_camreq() {
+  if (!has_camreq()) {
+    clear_cmd();
+    set_has_camreq();
+    cmd_.camreq_ = new ::LinkListCamReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camReq)
+  return cmd_.camreq_;
+}
+::LinkListCamReq* LinkCmd::release_camreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camReq)
+  if (has_camreq()) {
+    clear_has_cmd();
+    ::LinkListCamReq* temp = cmd_.camreq_;
+    cmd_.camreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camreq(::LinkListCamReq* camreq) {
+  clear_cmd();
+  if (camreq) {
+    set_has_camreq();
+    cmd_.camreq_ = camreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camReq)
+}
+
+// .LinkListCamResp camResp = 9;
+bool LinkCmd::has_camresp() const {
+  return cmd_case() == kCamResp;
+}
+void LinkCmd::set_has_camresp() {
+  _oneof_case_[0] = kCamResp;
+}
+void LinkCmd::clear_camresp() {
+  if (has_camresp()) {
+    delete cmd_.camresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkListCamResp& LinkCmd::camresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camResp)
+  return has_camresp()
+      ? *cmd_.camresp_
+      : ::LinkListCamResp::default_instance();
+}
+::LinkListCamResp* LinkCmd::mutable_camresp() {
+  if (!has_camresp()) {
+    clear_cmd();
+    set_has_camresp();
+    cmd_.camresp_ = new ::LinkListCamResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camResp)
+  return cmd_.camresp_;
+}
+::LinkListCamResp* LinkCmd::release_camresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camResp)
+  if (has_camresp()) {
+    clear_has_cmd();
+    ::LinkListCamResp* temp = cmd_.camresp_;
+    cmd_.camresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camresp(::LinkListCamResp* camresp) {
+  clear_cmd();
+  if (camresp) {
+    set_has_camresp();
+    cmd_.camresp_ = camresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camResp)
 }
 
 bool LinkCmd::has_cmd() const {

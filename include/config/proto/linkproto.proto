@@ -8,8 +8,12 @@ enum LinkCmdType {
 	LINK_CMD_ZERO = 0;
 	LINK_CMD_LOGIN_REQ = 1;
 	LINK_CMD_LOGIN_RESP = 2;
-	LINK_CMD_CAM_LIST_REQ = 3;
-	LINK_CMD_CAM_LIST_RESP = 4;
+	LINK_CMD_KEEPALIVE_REQ = 3;
+	LINK_CMD_KEEPALIVE_RESP = 4;
+	LINK_CMD_CAM_LIST_REQ = 5;
+	LINK_CMD_CAM_LIST_RESP = 6;
+	LINK_CMD_CAM_REQ = 7;
+	LINK_CMD_CAM_RESP = 8;
 }
 
 message LinkCmd {
@@ -17,7 +21,11 @@ message LinkCmd {
 	oneof cmd {
 		LinkLoginReq loginReq = 2;
 		LinkLoginResp loginResp = 3;
-		LinkListCamReq camListReq = 4;
-		LinkListCamResp camListResp = 5;
+		LinkKeepaliveReq keepaliveReq = 4;
+		LinkKeepaliveResp keepaliveResp = 5;
+		LinkListCamReq camListReq = 6;
+		LinkListCamResp camListResp = 7;
+		LinkListCamReq camReq = 8;
+		LinkListCamResp camResp = 9;
 	}
 }

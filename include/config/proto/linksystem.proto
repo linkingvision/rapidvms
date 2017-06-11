@@ -1,5 +1,6 @@
 
 syntax = "proto3";
+
 import "vidconf.proto";
 
 message LinkLoginReq {
@@ -13,13 +14,28 @@ message LinkLoginResp {
 	bool bRet = 3;
 }
 
+message LinkKeepaliveReq {
+	int32 nKeepalive = 1;
+}
+
+message LinkKeepaliveResp {
+	int32 nKeepalive = 1;
+}
+
 message LinkListCamReq {
-	string strId = 1;
-	bool bAll = 2;
+	bool bAll = 1;
 }
 
 message LinkListCamResp {
 	VidCameraList cList = 1;
+}
+
+message LinkCamReq {
+	string strId = 1;
+}
+
+message LinkCamResp {
+	VidCamera cCam = 1;
 }
 
 

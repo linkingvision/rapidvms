@@ -20,17 +20,25 @@ class LinkLoginReqDefaultTypeInternal : public ::google::protobuf::internal::Exp
 } _LinkLoginReq_default_instance_;
 class LinkLoginRespDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkLoginResp> {
 } _LinkLoginResp_default_instance_;
+class LinkKeepaliveReqDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkKeepaliveReq> {
+} _LinkKeepaliveReq_default_instance_;
+class LinkKeepaliveRespDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkKeepaliveResp> {
+} _LinkKeepaliveResp_default_instance_;
 class LinkListCamReqDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkListCamReq> {
 } _LinkListCamReq_default_instance_;
 class LinkListCamRespDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkListCamResp> {
 } _LinkListCamResp_default_instance_;
+class LinkCamReqDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkCamReq> {
+} _LinkCamReq_default_instance_;
+class LinkCamRespDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<LinkCamResp> {
+} _LinkCamResp_default_instance_;
 
 namespace protobuf_linksystem_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[4];
+::google::protobuf::Metadata file_level_metadata[8];
 
 }  // namespace
 
@@ -49,30 +57,57 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkLoginResp, bretnonce_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkLoginResp, bret_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkKeepaliveReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkKeepaliveReq, nkeepalive_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkKeepaliveResp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkKeepaliveResp, nkeepalive_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkListCamReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkListCamReq, strid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkListCamReq, ball_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkListCamResp, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkListCamResp, clist_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCamReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCamReq, strid_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCamResp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCamResp, ccam_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(LinkLoginReq)},
   { 6, -1, sizeof(LinkLoginResp)},
-  { 13, -1, sizeof(LinkListCamReq)},
-  { 19, -1, sizeof(LinkListCamResp)},
+  { 13, -1, sizeof(LinkKeepaliveReq)},
+  { 18, -1, sizeof(LinkKeepaliveResp)},
+  { 23, -1, sizeof(LinkListCamReq)},
+  { 28, -1, sizeof(LinkListCamResp)},
+  { 33, -1, sizeof(LinkCamReq)},
+  { 38, -1, sizeof(LinkCamResp)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_LinkLoginReq_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_LinkLoginResp_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_LinkKeepaliveReq_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_LinkKeepaliveResp_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_LinkListCamReq_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_LinkListCamResp_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_LinkCamReq_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_LinkCamResp_default_instance_),
 };
 
 namespace {
@@ -93,7 +128,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
 }
 
 }  // namespace
@@ -103,10 +138,18 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[0].reflection;
   _LinkLoginResp_default_instance_.Shutdown();
   delete file_level_metadata[1].reflection;
-  _LinkListCamReq_default_instance_.Shutdown();
+  _LinkKeepaliveReq_default_instance_.Shutdown();
   delete file_level_metadata[2].reflection;
-  _LinkListCamResp_default_instance_.Shutdown();
+  _LinkKeepaliveResp_default_instance_.Shutdown();
   delete file_level_metadata[3].reflection;
+  _LinkListCamReq_default_instance_.Shutdown();
+  delete file_level_metadata[4].reflection;
+  _LinkListCamResp_default_instance_.Shutdown();
+  delete file_level_metadata[5].reflection;
+  _LinkCamReq_default_instance_.Shutdown();
+  delete file_level_metadata[6].reflection;
+  _LinkCamResp_default_instance_.Shutdown();
+  delete file_level_metadata[7].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -116,10 +159,16 @@ void TableStruct::InitDefaultsImpl() {
   ::protobuf_vidconf_2eproto::InitDefaults();
   _LinkLoginReq_default_instance_.DefaultConstruct();
   _LinkLoginResp_default_instance_.DefaultConstruct();
+  _LinkKeepaliveReq_default_instance_.DefaultConstruct();
+  _LinkKeepaliveResp_default_instance_.DefaultConstruct();
   _LinkListCamReq_default_instance_.DefaultConstruct();
   _LinkListCamResp_default_instance_.DefaultConstruct();
+  _LinkCamReq_default_instance_.DefaultConstruct();
+  _LinkCamResp_default_instance_.DefaultConstruct();
   _LinkListCamResp_default_instance_.get_mutable()->clist_ = const_cast< ::VidCameraList*>(
       ::VidCameraList::internal_default_instance());
+  _LinkCamResp_default_instance_.get_mutable()->ccam_ = const_cast< ::VidCamera*>(
+      ::VidCamera::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -132,13 +181,16 @@ void AddDescriptorsImpl() {
       "\n\020linksystem.proto\032\rvidconf.proto\"6\n\014Lin"
       "kLoginReq\022\023\n\013strUserName\030\001 \001(\t\022\021\n\tstrPas"
       "swd\030\002 \001(\t\"B\n\rLinkLoginResp\022\020\n\010strNonce\030\001"
-      " \001(\t\022\021\n\tbRetNonce\030\002 \001(\010\022\014\n\004bRet\030\003 \001(\010\"-\n"
-      "\016LinkListCamReq\022\r\n\005strId\030\001 \001(\t\022\014\n\004bAll\030\002"
-      " \001(\010\"0\n\017LinkListCamResp\022\035\n\005cList\030\001 \001(\0132\016"
-      ".VidCameraListb\006proto3"
+      " \001(\t\022\021\n\tbRetNonce\030\002 \001(\010\022\014\n\004bRet\030\003 \001(\010\"&\n"
+      "\020LinkKeepaliveReq\022\022\n\nnKeepalive\030\001 \001(\005\"\'\n"
+      "\021LinkKeepaliveResp\022\022\n\nnKeepalive\030\001 \001(\005\"\036"
+      "\n\016LinkListCamReq\022\014\n\004bAll\030\001 \001(\010\"0\n\017LinkLi"
+      "stCamResp\022\035\n\005cList\030\001 \001(\0132\016.VidCameraList"
+      "\"\033\n\nLinkCamReq\022\r\n\005strId\030\001 \001(\t\"\'\n\013LinkCam"
+      "Resp\022\030\n\004cCam\030\001 \001(\0132\n.VidCamerab\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 262);
+      descriptor, 398);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "linksystem.proto", &protobuf_RegisterTypes);
   ::protobuf_vidconf_2eproto::AddDescriptors();
@@ -933,7 +985,456 @@ void LinkLoginResp::set_bret(bool value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int LinkListCamReq::kStrIdFieldNumber;
+const int LinkKeepaliveReq::kNKeepaliveFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+LinkKeepaliveReq::LinkKeepaliveReq()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_linksystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:LinkKeepaliveReq)
+}
+LinkKeepaliveReq::LinkKeepaliveReq(const LinkKeepaliveReq& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  nkeepalive_ = from.nkeepalive_;
+  // @@protoc_insertion_point(copy_constructor:LinkKeepaliveReq)
+}
+
+void LinkKeepaliveReq::SharedCtor() {
+  nkeepalive_ = 0;
+  _cached_size_ = 0;
+}
+
+LinkKeepaliveReq::~LinkKeepaliveReq() {
+  // @@protoc_insertion_point(destructor:LinkKeepaliveReq)
+  SharedDtor();
+}
+
+void LinkKeepaliveReq::SharedDtor() {
+}
+
+void LinkKeepaliveReq::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* LinkKeepaliveReq::descriptor() {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[2].descriptor;
+}
+
+const LinkKeepaliveReq& LinkKeepaliveReq::default_instance() {
+  protobuf_linksystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+LinkKeepaliveReq* LinkKeepaliveReq::New(::google::protobuf::Arena* arena) const {
+  LinkKeepaliveReq* n = new LinkKeepaliveReq;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void LinkKeepaliveReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:LinkKeepaliveReq)
+  nkeepalive_ = 0;
+}
+
+bool LinkKeepaliveReq::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:LinkKeepaliveReq)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 nKeepalive = 1;
+      case 1: {
+        if (tag == 8u) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &nkeepalive_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:LinkKeepaliveReq)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:LinkKeepaliveReq)
+  return false;
+#undef DO_
+}
+
+void LinkKeepaliveReq::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:LinkKeepaliveReq)
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->nkeepalive(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:LinkKeepaliveReq)
+}
+
+::google::protobuf::uint8* LinkKeepaliveReq::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:LinkKeepaliveReq)
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->nkeepalive(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:LinkKeepaliveReq)
+  return target;
+}
+
+size_t LinkKeepaliveReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:LinkKeepaliveReq)
+  size_t total_size = 0;
+
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nkeepalive());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LinkKeepaliveReq::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:LinkKeepaliveReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LinkKeepaliveReq* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const LinkKeepaliveReq>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LinkKeepaliveReq)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LinkKeepaliveReq)
+    MergeFrom(*source);
+  }
+}
+
+void LinkKeepaliveReq::MergeFrom(const LinkKeepaliveReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:LinkKeepaliveReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.nkeepalive() != 0) {
+    set_nkeepalive(from.nkeepalive());
+  }
+}
+
+void LinkKeepaliveReq::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:LinkKeepaliveReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LinkKeepaliveReq::CopyFrom(const LinkKeepaliveReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:LinkKeepaliveReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LinkKeepaliveReq::IsInitialized() const {
+  return true;
+}
+
+void LinkKeepaliveReq::Swap(LinkKeepaliveReq* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LinkKeepaliveReq::InternalSwap(LinkKeepaliveReq* other) {
+  std::swap(nkeepalive_, other->nkeepalive_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LinkKeepaliveReq::GetMetadata() const {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[2];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LinkKeepaliveReq
+
+// int32 nKeepalive = 1;
+void LinkKeepaliveReq::clear_nkeepalive() {
+  nkeepalive_ = 0;
+}
+::google::protobuf::int32 LinkKeepaliveReq::nkeepalive() const {
+  // @@protoc_insertion_point(field_get:LinkKeepaliveReq.nKeepalive)
+  return nkeepalive_;
+}
+void LinkKeepaliveReq::set_nkeepalive(::google::protobuf::int32 value) {
+  
+  nkeepalive_ = value;
+  // @@protoc_insertion_point(field_set:LinkKeepaliveReq.nKeepalive)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int LinkKeepaliveResp::kNKeepaliveFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+LinkKeepaliveResp::LinkKeepaliveResp()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_linksystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:LinkKeepaliveResp)
+}
+LinkKeepaliveResp::LinkKeepaliveResp(const LinkKeepaliveResp& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  nkeepalive_ = from.nkeepalive_;
+  // @@protoc_insertion_point(copy_constructor:LinkKeepaliveResp)
+}
+
+void LinkKeepaliveResp::SharedCtor() {
+  nkeepalive_ = 0;
+  _cached_size_ = 0;
+}
+
+LinkKeepaliveResp::~LinkKeepaliveResp() {
+  // @@protoc_insertion_point(destructor:LinkKeepaliveResp)
+  SharedDtor();
+}
+
+void LinkKeepaliveResp::SharedDtor() {
+}
+
+void LinkKeepaliveResp::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* LinkKeepaliveResp::descriptor() {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[3].descriptor;
+}
+
+const LinkKeepaliveResp& LinkKeepaliveResp::default_instance() {
+  protobuf_linksystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+LinkKeepaliveResp* LinkKeepaliveResp::New(::google::protobuf::Arena* arena) const {
+  LinkKeepaliveResp* n = new LinkKeepaliveResp;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void LinkKeepaliveResp::Clear() {
+// @@protoc_insertion_point(message_clear_start:LinkKeepaliveResp)
+  nkeepalive_ = 0;
+}
+
+bool LinkKeepaliveResp::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:LinkKeepaliveResp)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 nKeepalive = 1;
+      case 1: {
+        if (tag == 8u) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &nkeepalive_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:LinkKeepaliveResp)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:LinkKeepaliveResp)
+  return false;
+#undef DO_
+}
+
+void LinkKeepaliveResp::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:LinkKeepaliveResp)
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->nkeepalive(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:LinkKeepaliveResp)
+}
+
+::google::protobuf::uint8* LinkKeepaliveResp::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:LinkKeepaliveResp)
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->nkeepalive(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:LinkKeepaliveResp)
+  return target;
+}
+
+size_t LinkKeepaliveResp::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:LinkKeepaliveResp)
+  size_t total_size = 0;
+
+  // int32 nKeepalive = 1;
+  if (this->nkeepalive() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->nkeepalive());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LinkKeepaliveResp::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:LinkKeepaliveResp)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LinkKeepaliveResp* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const LinkKeepaliveResp>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LinkKeepaliveResp)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LinkKeepaliveResp)
+    MergeFrom(*source);
+  }
+}
+
+void LinkKeepaliveResp::MergeFrom(const LinkKeepaliveResp& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:LinkKeepaliveResp)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.nkeepalive() != 0) {
+    set_nkeepalive(from.nkeepalive());
+  }
+}
+
+void LinkKeepaliveResp::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:LinkKeepaliveResp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LinkKeepaliveResp::CopyFrom(const LinkKeepaliveResp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:LinkKeepaliveResp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LinkKeepaliveResp::IsInitialized() const {
+  return true;
+}
+
+void LinkKeepaliveResp::Swap(LinkKeepaliveResp* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LinkKeepaliveResp::InternalSwap(LinkKeepaliveResp* other) {
+  std::swap(nkeepalive_, other->nkeepalive_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LinkKeepaliveResp::GetMetadata() const {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[3];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LinkKeepaliveResp
+
+// int32 nKeepalive = 1;
+void LinkKeepaliveResp::clear_nkeepalive() {
+  nkeepalive_ = 0;
+}
+::google::protobuf::int32 LinkKeepaliveResp::nkeepalive() const {
+  // @@protoc_insertion_point(field_get:LinkKeepaliveResp.nKeepalive)
+  return nkeepalive_;
+}
+void LinkKeepaliveResp::set_nkeepalive(::google::protobuf::int32 value) {
+  
+  nkeepalive_ = value;
+  // @@protoc_insertion_point(field_set:LinkKeepaliveResp.nKeepalive)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int LinkListCamReq::kBAllFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -950,16 +1451,11 @@ LinkListCamReq::LinkListCamReq(const LinkListCamReq& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.strid().size() > 0) {
-    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
-  }
   ball_ = from.ball_;
   // @@protoc_insertion_point(copy_constructor:LinkListCamReq)
 }
 
 void LinkListCamReq::SharedCtor() {
-  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ball_ = false;
   _cached_size_ = 0;
 }
@@ -970,7 +1466,6 @@ LinkListCamReq::~LinkListCamReq() {
 }
 
 void LinkListCamReq::SharedDtor() {
-  strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void LinkListCamReq::SetCachedSize(int size) const {
@@ -980,7 +1475,7 @@ void LinkListCamReq::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* LinkListCamReq::descriptor() {
   protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_linksystem_2eproto::file_level_metadata[2].descriptor;
+  return protobuf_linksystem_2eproto::file_level_metadata[4].descriptor;
 }
 
 const LinkListCamReq& LinkListCamReq::default_instance() {
@@ -998,7 +1493,6 @@ LinkListCamReq* LinkListCamReq::New(::google::protobuf::Arena* arena) const {
 
 void LinkListCamReq::Clear() {
 // @@protoc_insertion_point(message_clear_start:LinkListCamReq)
-  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ball_ = false;
 }
 
@@ -1012,24 +1506,9 @@ bool LinkListCamReq::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string strId = 1;
+      // bool bAll = 1;
       case 1: {
-        if (tag == 10u) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strid().data(), this->strid().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "LinkListCamReq.strId"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // bool bAll = 2;
-      case 2: {
-        if (tag == 16u) {
+        if (tag == 8u) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -1064,19 +1543,9 @@ failure:
 void LinkListCamReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:LinkListCamReq)
-  // string strId = 1;
-  if (this->strid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strid().data(), this->strid().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "LinkListCamReq.strId");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->strid(), output);
-  }
-
-  // bool bAll = 2;
+  // bool bAll = 1;
   if (this->ball() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->ball(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->ball(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:LinkListCamReq)
@@ -1086,20 +1555,9 @@ void LinkListCamReq::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:LinkListCamReq)
-  // string strId = 1;
-  if (this->strid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strid().data(), this->strid().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "LinkListCamReq.strId");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->strid(), target);
-  }
-
-  // bool bAll = 2;
+  // bool bAll = 1;
   if (this->ball() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->ball(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->ball(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:LinkListCamReq)
@@ -1110,14 +1568,7 @@ size_t LinkListCamReq::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:LinkListCamReq)
   size_t total_size = 0;
 
-  // string strId = 1;
-  if (this->strid().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strid());
-  }
-
-  // bool bAll = 2;
+  // bool bAll = 1;
   if (this->ball() != 0) {
     total_size += 1 + 1;
   }
@@ -1148,10 +1599,6 @@ void LinkListCamReq::MergeFrom(const LinkListCamReq& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:LinkListCamReq)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.strid().size() > 0) {
-
-    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
-  }
   if (from.ball() != 0) {
     set_ball(from.ball());
   }
@@ -1180,72 +1627,19 @@ void LinkListCamReq::Swap(LinkListCamReq* other) {
   InternalSwap(other);
 }
 void LinkListCamReq::InternalSwap(LinkListCamReq* other) {
-  strid_.Swap(&other->strid_);
   std::swap(ball_, other->ball_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata LinkListCamReq::GetMetadata() const {
   protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_linksystem_2eproto::file_level_metadata[2];
+  return protobuf_linksystem_2eproto::file_level_metadata[4];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // LinkListCamReq
 
-// string strId = 1;
-void LinkListCamReq::clear_strid() {
-  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-const ::std::string& LinkListCamReq::strid() const {
-  // @@protoc_insertion_point(field_get:LinkListCamReq.strId)
-  return strid_.GetNoArena();
-}
-void LinkListCamReq::set_strid(const ::std::string& value) {
-  
-  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:LinkListCamReq.strId)
-}
-#if LANG_CXX11
-void LinkListCamReq::set_strid(::std::string&& value) {
-  
-  strid_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:LinkListCamReq.strId)
-}
-#endif
-void LinkListCamReq::set_strid(const char* value) {
-  
-  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:LinkListCamReq.strId)
-}
-void LinkListCamReq::set_strid(const char* value, size_t size) {
-  
-  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:LinkListCamReq.strId)
-}
-::std::string* LinkListCamReq::mutable_strid() {
-  
-  // @@protoc_insertion_point(field_mutable:LinkListCamReq.strId)
-  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-::std::string* LinkListCamReq::release_strid() {
-  // @@protoc_insertion_point(field_release:LinkListCamReq.strId)
-  
-  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-void LinkListCamReq::set_allocated_strid(::std::string* strid) {
-  if (strid != NULL) {
-    
-  } else {
-    
-  }
-  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
-  // @@protoc_insertion_point(field_set_allocated:LinkListCamReq.strId)
-}
-
-// bool bAll = 2;
+// bool bAll = 1;
 void LinkListCamReq::clear_ball() {
   ball_ = false;
 }
@@ -1311,7 +1705,7 @@ void LinkListCamResp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* LinkListCamResp::descriptor() {
   protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_linksystem_2eproto::file_level_metadata[3].descriptor;
+  return protobuf_linksystem_2eproto::file_level_metadata[5].descriptor;
 }
 
 const LinkListCamResp& LinkListCamResp::default_instance() {
@@ -1475,7 +1869,7 @@ void LinkListCamResp::InternalSwap(LinkListCamResp* other) {
 
 ::google::protobuf::Metadata LinkListCamResp::GetMetadata() const {
   protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_linksystem_2eproto::file_level_metadata[3];
+  return protobuf_linksystem_2eproto::file_level_metadata[5];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1518,6 +1912,548 @@ void LinkListCamResp::set_allocated_clist(::VidCameraList* clist) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:LinkListCamResp.cList)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int LinkCamReq::kStrIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+LinkCamReq::LinkCamReq()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_linksystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:LinkCamReq)
+}
+LinkCamReq::LinkCamReq(const LinkCamReq& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strid().size() > 0) {
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+  // @@protoc_insertion_point(copy_constructor:LinkCamReq)
+}
+
+void LinkCamReq::SharedCtor() {
+  strid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+LinkCamReq::~LinkCamReq() {
+  // @@protoc_insertion_point(destructor:LinkCamReq)
+  SharedDtor();
+}
+
+void LinkCamReq::SharedDtor() {
+  strid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void LinkCamReq::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* LinkCamReq::descriptor() {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[6].descriptor;
+}
+
+const LinkCamReq& LinkCamReq::default_instance() {
+  protobuf_linksystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+LinkCamReq* LinkCamReq::New(::google::protobuf::Arena* arena) const {
+  LinkCamReq* n = new LinkCamReq;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void LinkCamReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:LinkCamReq)
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool LinkCamReq::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:LinkCamReq)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string strId = 1;
+      case 1: {
+        if (tag == 10u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strid()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strid().data(), this->strid().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "LinkCamReq.strId"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:LinkCamReq)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:LinkCamReq)
+  return false;
+#undef DO_
+}
+
+void LinkCamReq::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:LinkCamReq)
+  // string strId = 1;
+  if (this->strid().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strid().data(), this->strid().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "LinkCamReq.strId");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->strid(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:LinkCamReq)
+}
+
+::google::protobuf::uint8* LinkCamReq::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:LinkCamReq)
+  // string strId = 1;
+  if (this->strid().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strid().data(), this->strid().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "LinkCamReq.strId");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->strid(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:LinkCamReq)
+  return target;
+}
+
+size_t LinkCamReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:LinkCamReq)
+  size_t total_size = 0;
+
+  // string strId = 1;
+  if (this->strid().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strid());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LinkCamReq::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:LinkCamReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LinkCamReq* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const LinkCamReq>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LinkCamReq)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LinkCamReq)
+    MergeFrom(*source);
+  }
+}
+
+void LinkCamReq::MergeFrom(const LinkCamReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:LinkCamReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.strid().size() > 0) {
+
+    strid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strid_);
+  }
+}
+
+void LinkCamReq::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:LinkCamReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LinkCamReq::CopyFrom(const LinkCamReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:LinkCamReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LinkCamReq::IsInitialized() const {
+  return true;
+}
+
+void LinkCamReq::Swap(LinkCamReq* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LinkCamReq::InternalSwap(LinkCamReq* other) {
+  strid_.Swap(&other->strid_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LinkCamReq::GetMetadata() const {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[6];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LinkCamReq
+
+// string strId = 1;
+void LinkCamReq::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& LinkCamReq::strid() const {
+  // @@protoc_insertion_point(field_get:LinkCamReq.strId)
+  return strid_.GetNoArena();
+}
+void LinkCamReq::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamReq.strId)
+}
+#if LANG_CXX11
+void LinkCamReq::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamReq.strId)
+}
+#endif
+void LinkCamReq::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamReq.strId)
+}
+void LinkCamReq::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamReq.strId)
+}
+::std::string* LinkCamReq::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamReq.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* LinkCamReq::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkCamReq.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void LinkCamReq::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamReq.strId)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int LinkCamResp::kCCamFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+LinkCamResp::LinkCamResp()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_linksystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:LinkCamResp)
+}
+LinkCamResp::LinkCamResp(const LinkCamResp& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_ccam()) {
+    ccam_ = new ::VidCamera(*from.ccam_);
+  } else {
+    ccam_ = NULL;
+  }
+  // @@protoc_insertion_point(copy_constructor:LinkCamResp)
+}
+
+void LinkCamResp::SharedCtor() {
+  ccam_ = NULL;
+  _cached_size_ = 0;
+}
+
+LinkCamResp::~LinkCamResp() {
+  // @@protoc_insertion_point(destructor:LinkCamResp)
+  SharedDtor();
+}
+
+void LinkCamResp::SharedDtor() {
+  if (this != internal_default_instance()) {
+    delete ccam_;
+  }
+}
+
+void LinkCamResp::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* LinkCamResp::descriptor() {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[7].descriptor;
+}
+
+const LinkCamResp& LinkCamResp::default_instance() {
+  protobuf_linksystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+LinkCamResp* LinkCamResp::New(::google::protobuf::Arena* arena) const {
+  LinkCamResp* n = new LinkCamResp;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void LinkCamResp::Clear() {
+// @@protoc_insertion_point(message_clear_start:LinkCamResp)
+  if (GetArenaNoVirtual() == NULL && ccam_ != NULL) {
+    delete ccam_;
+  }
+  ccam_ = NULL;
+}
+
+bool LinkCamResp::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:LinkCamResp)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .VidCamera cCam = 1;
+      case 1: {
+        if (tag == 10u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_ccam()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:LinkCamResp)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:LinkCamResp)
+  return false;
+#undef DO_
+}
+
+void LinkCamResp::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:LinkCamResp)
+  // .VidCamera cCam = 1;
+  if (this->has_ccam()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *this->ccam_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:LinkCamResp)
+}
+
+::google::protobuf::uint8* LinkCamResp::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:LinkCamResp)
+  // .VidCamera cCam = 1;
+  if (this->has_ccam()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, *this->ccam_, false, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:LinkCamResp)
+  return target;
+}
+
+size_t LinkCamResp::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:LinkCamResp)
+  size_t total_size = 0;
+
+  // .VidCamera cCam = 1;
+  if (this->has_ccam()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->ccam_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LinkCamResp::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:LinkCamResp)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LinkCamResp* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const LinkCamResp>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LinkCamResp)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LinkCamResp)
+    MergeFrom(*source);
+  }
+}
+
+void LinkCamResp::MergeFrom(const LinkCamResp& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:LinkCamResp)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_ccam()) {
+    mutable_ccam()->::VidCamera::MergeFrom(from.ccam());
+  }
+}
+
+void LinkCamResp::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:LinkCamResp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LinkCamResp::CopyFrom(const LinkCamResp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:LinkCamResp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LinkCamResp::IsInitialized() const {
+  return true;
+}
+
+void LinkCamResp::Swap(LinkCamResp* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LinkCamResp::InternalSwap(LinkCamResp* other) {
+  std::swap(ccam_, other->ccam_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LinkCamResp::GetMetadata() const {
+  protobuf_linksystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_linksystem_2eproto::file_level_metadata[7];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LinkCamResp
+
+// .VidCamera cCam = 1;
+bool LinkCamResp::has_ccam() const {
+  return this != internal_default_instance() && ccam_ != NULL;
+}
+void LinkCamResp::clear_ccam() {
+  if (GetArenaNoVirtual() == NULL && ccam_ != NULL) delete ccam_;
+  ccam_ = NULL;
+}
+const ::VidCamera& LinkCamResp::ccam() const {
+  // @@protoc_insertion_point(field_get:LinkCamResp.cCam)
+  return ccam_ != NULL ? *ccam_
+                         : *::VidCamera::internal_default_instance();
+}
+::VidCamera* LinkCamResp::mutable_ccam() {
+  
+  if (ccam_ == NULL) {
+    ccam_ = new ::VidCamera;
+  }
+  // @@protoc_insertion_point(field_mutable:LinkCamResp.cCam)
+  return ccam_;
+}
+::VidCamera* LinkCamResp::release_ccam() {
+  // @@protoc_insertion_point(field_release:LinkCamResp.cCam)
+  
+  ::VidCamera* temp = ccam_;
+  ccam_ = NULL;
+  return temp;
+}
+void LinkCamResp::set_allocated_ccam(::VidCamera* ccam) {
+  delete ccam_;
+  ccam_ = ccam;
+  if (ccam) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:LinkCamResp.cCam)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
