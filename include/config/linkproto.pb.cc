@@ -26,8 +26,22 @@ class LinkCmdDefaultTypeInternal : public ::google::protobuf::internal::Explicit
   const ::LinkKeepaliveResp* keepaliveresp_;
   const ::LinkListCamReq* camlistreq_;
   const ::LinkListCamResp* camlistresp_;
-  const ::LinkListCamReq* camreq_;
-  const ::LinkListCamResp* camresp_;
+  const ::LinkCamReq* camreq_;
+  const ::LinkCamResp* camresp_;
+  const ::LinkVidDiskListReq* disklistreq_;
+  const ::LinkVidDiskListResp* disklistresp_;
+  const ::LinkSysVidDiskListReq* sysdisklistreq_;
+  const ::LinkSysVidDiskListResp* sysdisklistresp_;
+  const ::LinkAddDiskReq* adddiskreq_;
+  const ::LinkAddDiskResp* adddiskresp_;
+  const ::LinkDelDiskReq* deldiskreq_;
+  const ::LinkDelDiskResp* deldiskresp_;
+  const ::LinkUpdateDiskLimitReq* disklimitreq_;
+  const ::LinkUpdateDiskLimitResp* disklimitresp_;
+  const ::LinkGetLicReq* licreq_;
+  const ::LinkGetLicResp* licresp_;
+  const ::LinkGetVerReq* verreq_;
+  const ::LinkGetVerResp* verresp_;
 } _LinkCmd_default_instance_;
 
 namespace protobuf_linkproto_2eproto {
@@ -54,6 +68,20 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camlistresp_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camreq_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), disklistreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), disklistresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), sysdisklistreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), sysdisklistresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), adddiskreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), adddiskresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), deldiskreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), deldiskresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), disklimitreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), disklimitresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), licreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), licresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), verreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), verresp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCmd, cmd_),
 };
 
@@ -111,10 +139,38 @@ void TableStruct::InitDefaultsImpl() {
       ::LinkListCamReq::internal_default_instance());
   _LinkCmd_default_instance_.camlistresp_ = const_cast< ::LinkListCamResp*>(
       ::LinkListCamResp::internal_default_instance());
-  _LinkCmd_default_instance_.camreq_ = const_cast< ::LinkListCamReq*>(
-      ::LinkListCamReq::internal_default_instance());
-  _LinkCmd_default_instance_.camresp_ = const_cast< ::LinkListCamResp*>(
-      ::LinkListCamResp::internal_default_instance());
+  _LinkCmd_default_instance_.camreq_ = const_cast< ::LinkCamReq*>(
+      ::LinkCamReq::internal_default_instance());
+  _LinkCmd_default_instance_.camresp_ = const_cast< ::LinkCamResp*>(
+      ::LinkCamResp::internal_default_instance());
+  _LinkCmd_default_instance_.disklistreq_ = const_cast< ::LinkVidDiskListReq*>(
+      ::LinkVidDiskListReq::internal_default_instance());
+  _LinkCmd_default_instance_.disklistresp_ = const_cast< ::LinkVidDiskListResp*>(
+      ::LinkVidDiskListResp::internal_default_instance());
+  _LinkCmd_default_instance_.sysdisklistreq_ = const_cast< ::LinkSysVidDiskListReq*>(
+      ::LinkSysVidDiskListReq::internal_default_instance());
+  _LinkCmd_default_instance_.sysdisklistresp_ = const_cast< ::LinkSysVidDiskListResp*>(
+      ::LinkSysVidDiskListResp::internal_default_instance());
+  _LinkCmd_default_instance_.adddiskreq_ = const_cast< ::LinkAddDiskReq*>(
+      ::LinkAddDiskReq::internal_default_instance());
+  _LinkCmd_default_instance_.adddiskresp_ = const_cast< ::LinkAddDiskResp*>(
+      ::LinkAddDiskResp::internal_default_instance());
+  _LinkCmd_default_instance_.deldiskreq_ = const_cast< ::LinkDelDiskReq*>(
+      ::LinkDelDiskReq::internal_default_instance());
+  _LinkCmd_default_instance_.deldiskresp_ = const_cast< ::LinkDelDiskResp*>(
+      ::LinkDelDiskResp::internal_default_instance());
+  _LinkCmd_default_instance_.disklimitreq_ = const_cast< ::LinkUpdateDiskLimitReq*>(
+      ::LinkUpdateDiskLimitReq::internal_default_instance());
+  _LinkCmd_default_instance_.disklimitresp_ = const_cast< ::LinkUpdateDiskLimitResp*>(
+      ::LinkUpdateDiskLimitResp::internal_default_instance());
+  _LinkCmd_default_instance_.licreq_ = const_cast< ::LinkGetLicReq*>(
+      ::LinkGetLicReq::internal_default_instance());
+  _LinkCmd_default_instance_.licresp_ = const_cast< ::LinkGetLicResp*>(
+      ::LinkGetLicResp::internal_default_instance());
+  _LinkCmd_default_instance_.verreq_ = const_cast< ::LinkGetVerReq*>(
+      ::LinkGetVerReq::internal_default_instance());
+  _LinkCmd_default_instance_.verresp_ = const_cast< ::LinkGetVerResp*>(
+      ::LinkGetVerResp::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -125,25 +181,50 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
       "\n\017linkproto.proto\022\004Link\032\020linksystem.prot"
-      "o\"\351\002\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
+      "o\"\261\007\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
       "mdType\022!\n\010loginReq\030\002 \001(\0132\r.LinkLoginReqH"
       "\000\022#\n\tloginResp\030\003 \001(\0132\016.LinkLoginRespH\000\022)"
       "\n\014keepaliveReq\030\004 \001(\0132\021.LinkKeepaliveReqH"
       "\000\022+\n\rkeepaliveResp\030\005 \001(\0132\022.LinkKeepalive"
       "RespH\000\022%\n\ncamListReq\030\006 \001(\0132\017.LinkListCam"
       "ReqH\000\022\'\n\013camListResp\030\007 \001(\0132\020.LinkListCam"
-      "RespH\000\022!\n\006camReq\030\010 \001(\0132\017.LinkListCamReqH"
-      "\000\022#\n\007camResp\030\t \001(\0132\020.LinkListCamRespH\000B\005"
-      "\n\003cmd*\356\001\n\013LinkCmdType\022\021\n\rLINK_CMD_ZERO\020\000"
-      "\022\026\n\022LINK_CMD_LOGIN_REQ\020\001\022\027\n\023LINK_CMD_LOG"
-      "IN_RESP\020\002\022\032\n\026LINK_CMD_KEEPALIVE_REQ\020\003\022\033\n"
-      "\027LINK_CMD_KEEPALIVE_RESP\020\004\022\031\n\025LINK_CMD_C"
-      "AM_LIST_REQ\020\005\022\032\n\026LINK_CMD_CAM_LIST_RESP\020"
-      "\006\022\024\n\020LINK_CMD_CAM_REQ\020\007\022\025\n\021LINK_CMD_CAM_"
-      "RESP\020\010b\006proto3"
+      "RespH\000\022\035\n\006camReq\030\010 \001(\0132\013.LinkCamReqH\000\022\037\n"
+      "\007camResp\030\t \001(\0132\014.LinkCamRespH\000\022*\n\013diskLi"
+      "stReq\030\n \001(\0132\023.LinkVidDiskListReqH\000\022,\n\014di"
+      "skListResp\030\013 \001(\0132\024.LinkVidDiskListRespH\000"
+      "\0220\n\016sysDiskListReq\030\014 \001(\0132\026.LinkSysVidDis"
+      "kListReqH\000\0222\n\017sysDiskListResp\030\r \001(\0132\027.Li"
+      "nkSysVidDiskListRespH\000\022%\n\naddDiskReq\030\016 \001"
+      "(\0132\017.LinkAddDiskReqH\000\022\'\n\013addDiskResp\030\017 \001"
+      "(\0132\020.LinkAddDiskRespH\000\022%\n\ndelDiskReq\030\020 \001"
+      "(\0132\017.LinkDelDiskReqH\000\022\'\n\013delDiskResp\030\021 \001"
+      "(\0132\020.LinkDelDiskRespH\000\022/\n\014diskLimitReq\030\022"
+      " \001(\0132\027.LinkUpdateDiskLimitReqH\000\0221\n\rdiskL"
+      "imitResp\030\023 \001(\0132\030.LinkUpdateDiskLimitResp"
+      "H\000\022 \n\006licReq\030\024 \001(\0132\016.LinkGetLicReqH\000\022\"\n\007"
+      "licResp\030\025 \001(\0132\017.LinkGetLicRespH\000\022 \n\006verR"
+      "eq\030\026 \001(\0132\016.LinkGetVerReqH\000\022\"\n\007verResp\030\027 "
+      "\001(\0132\017.LinkGetVerRespH\000B\005\n\003cmd*\211\005\n\013LinkCm"
+      "dType\022\021\n\rLINK_CMD_ZERO\020\000\022\026\n\022LINK_CMD_LOG"
+      "IN_REQ\020\001\022\027\n\023LINK_CMD_LOGIN_RESP\020\002\022\032\n\026LIN"
+      "K_CMD_KEEPALIVE_REQ\020\003\022\033\n\027LINK_CMD_KEEPAL"
+      "IVE_RESP\020\004\022\031\n\025LINK_CMD_CAM_LIST_REQ\020\005\022\032\n"
+      "\026LINK_CMD_CAM_LIST_RESP\020\006\022\024\n\020LINK_CMD_CA"
+      "M_REQ\020\007\022\025\n\021LINK_CMD_CAM_RESP\020\010\022\032\n\026LINK_C"
+      "MD_DISK_LIST_REQ\020\t\022\033\n\027LINK_CMD_DISK_LIST"
+      "_RESP\020\n\022\036\n\032LINK_CMD_SYS_DISK_LIST_REQ\020\013\022"
+      "\037\n\033LINK_CMD_SYS_DISK_LIST_RESP\020\014\022\031\n\025LINK"
+      "_CMD_ADD_DISK_REQ\020\r\022\032\n\026LINK_CMD_ADD_DISK"
+      "_RESP\020\016\022\031\n\025LINK_CMD_DEL_DISK_REQ\020\017\022\032\n\026LI"
+      "NK_CMD_DEL_DISK_RESP\020\020\022\"\n\036LINK_CMD_UPDAT"
+      "E_DISK_LIMIT_REQ\020\021\022#\n\037LINK_CMD_UPDATE_DI"
+      "SK_LIMIT_RESP\020\022\022\030\n\024LINK_CMD_GET_LIC_REQ\020"
+      "\023\022\031\n\025LINK_CMD_GET_LIC_RESP\020\024\022\030\n\024LINK_CMD"
+      "_GET_VER_REQ\020\025\022\031\n\025LINK_CMD_GET_VER_RESP\020"
+      "\026b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 654);
+      descriptor, 1649);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "linkproto.proto", &protobuf_RegisterTypes);
   ::protobuf_linksystem_2eproto::AddDescriptors();
@@ -178,6 +259,20 @@ bool LinkCmdType_IsValid(int value) {
     case 6:
     case 7:
     case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
       return true;
     default:
       return false;
@@ -197,6 +292,20 @@ const int LinkCmd::kCamListReqFieldNumber;
 const int LinkCmd::kCamListRespFieldNumber;
 const int LinkCmd::kCamReqFieldNumber;
 const int LinkCmd::kCamRespFieldNumber;
+const int LinkCmd::kDiskListReqFieldNumber;
+const int LinkCmd::kDiskListRespFieldNumber;
+const int LinkCmd::kSysDiskListReqFieldNumber;
+const int LinkCmd::kSysDiskListRespFieldNumber;
+const int LinkCmd::kAddDiskReqFieldNumber;
+const int LinkCmd::kAddDiskRespFieldNumber;
+const int LinkCmd::kDelDiskReqFieldNumber;
+const int LinkCmd::kDelDiskRespFieldNumber;
+const int LinkCmd::kDiskLimitReqFieldNumber;
+const int LinkCmd::kDiskLimitRespFieldNumber;
+const int LinkCmd::kLicReqFieldNumber;
+const int LinkCmd::kLicRespFieldNumber;
+const int LinkCmd::kVerReqFieldNumber;
+const int LinkCmd::kVerRespFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 LinkCmd::LinkCmd()
@@ -240,11 +349,67 @@ LinkCmd::LinkCmd(const LinkCmd& from)
       break;
     }
     case kCamReq: {
-      mutable_camreq()->::LinkListCamReq::MergeFrom(from.camreq());
+      mutable_camreq()->::LinkCamReq::MergeFrom(from.camreq());
       break;
     }
     case kCamResp: {
-      mutable_camresp()->::LinkListCamResp::MergeFrom(from.camresp());
+      mutable_camresp()->::LinkCamResp::MergeFrom(from.camresp());
+      break;
+    }
+    case kDiskListReq: {
+      mutable_disklistreq()->::LinkVidDiskListReq::MergeFrom(from.disklistreq());
+      break;
+    }
+    case kDiskListResp: {
+      mutable_disklistresp()->::LinkVidDiskListResp::MergeFrom(from.disklistresp());
+      break;
+    }
+    case kSysDiskListReq: {
+      mutable_sysdisklistreq()->::LinkSysVidDiskListReq::MergeFrom(from.sysdisklistreq());
+      break;
+    }
+    case kSysDiskListResp: {
+      mutable_sysdisklistresp()->::LinkSysVidDiskListResp::MergeFrom(from.sysdisklistresp());
+      break;
+    }
+    case kAddDiskReq: {
+      mutable_adddiskreq()->::LinkAddDiskReq::MergeFrom(from.adddiskreq());
+      break;
+    }
+    case kAddDiskResp: {
+      mutable_adddiskresp()->::LinkAddDiskResp::MergeFrom(from.adddiskresp());
+      break;
+    }
+    case kDelDiskReq: {
+      mutable_deldiskreq()->::LinkDelDiskReq::MergeFrom(from.deldiskreq());
+      break;
+    }
+    case kDelDiskResp: {
+      mutable_deldiskresp()->::LinkDelDiskResp::MergeFrom(from.deldiskresp());
+      break;
+    }
+    case kDiskLimitReq: {
+      mutable_disklimitreq()->::LinkUpdateDiskLimitReq::MergeFrom(from.disklimitreq());
+      break;
+    }
+    case kDiskLimitResp: {
+      mutable_disklimitresp()->::LinkUpdateDiskLimitResp::MergeFrom(from.disklimitresp());
+      break;
+    }
+    case kLicReq: {
+      mutable_licreq()->::LinkGetLicReq::MergeFrom(from.licreq());
+      break;
+    }
+    case kLicResp: {
+      mutable_licresp()->::LinkGetLicResp::MergeFrom(from.licresp());
+      break;
+    }
+    case kVerReq: {
+      mutable_verreq()->::LinkGetVerReq::MergeFrom(from.verreq());
+      break;
+    }
+    case kVerResp: {
+      mutable_verresp()->::LinkGetVerResp::MergeFrom(from.verresp());
       break;
     }
     case CMD_NOT_SET: {
@@ -329,6 +494,62 @@ void LinkCmd::clear_cmd() {
       delete cmd_.camresp_;
       break;
     }
+    case kDiskListReq: {
+      delete cmd_.disklistreq_;
+      break;
+    }
+    case kDiskListResp: {
+      delete cmd_.disklistresp_;
+      break;
+    }
+    case kSysDiskListReq: {
+      delete cmd_.sysdisklistreq_;
+      break;
+    }
+    case kSysDiskListResp: {
+      delete cmd_.sysdisklistresp_;
+      break;
+    }
+    case kAddDiskReq: {
+      delete cmd_.adddiskreq_;
+      break;
+    }
+    case kAddDiskResp: {
+      delete cmd_.adddiskresp_;
+      break;
+    }
+    case kDelDiskReq: {
+      delete cmd_.deldiskreq_;
+      break;
+    }
+    case kDelDiskResp: {
+      delete cmd_.deldiskresp_;
+      break;
+    }
+    case kDiskLimitReq: {
+      delete cmd_.disklimitreq_;
+      break;
+    }
+    case kDiskLimitResp: {
+      delete cmd_.disklimitresp_;
+      break;
+    }
+    case kLicReq: {
+      delete cmd_.licreq_;
+      break;
+    }
+    case kLicResp: {
+      delete cmd_.licresp_;
+      break;
+    }
+    case kVerReq: {
+      delete cmd_.verreq_;
+      break;
+    }
+    case kVerResp: {
+      delete cmd_.verresp_;
+      break;
+    }
     case CMD_NOT_SET: {
       break;
     }
@@ -349,7 +570,7 @@ bool LinkCmd::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Link.LinkCmd)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -433,7 +654,7 @@ bool LinkCmd::MergePartialFromCodedStream(
         break;
       }
 
-      // .LinkListCamReq camReq = 8;
+      // .LinkCamReq camReq = 8;
       case 8: {
         if (tag == 66u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
@@ -444,11 +665,165 @@ bool LinkCmd::MergePartialFromCodedStream(
         break;
       }
 
-      // .LinkListCamResp camResp = 9;
+      // .LinkCamResp camResp = 9;
       case 9: {
         if (tag == 74u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_camresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkVidDiskListReq diskListReq = 10;
+      case 10: {
+        if (tag == 82u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_disklistreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkVidDiskListResp diskListResp = 11;
+      case 11: {
+        if (tag == 90u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_disklistresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkSysVidDiskListReq sysDiskListReq = 12;
+      case 12: {
+        if (tag == 98u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_sysdisklistreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkSysVidDiskListResp sysDiskListResp = 13;
+      case 13: {
+        if (tag == 106u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_sysdisklistresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkAddDiskReq addDiskReq = 14;
+      case 14: {
+        if (tag == 114u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_adddiskreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkAddDiskResp addDiskResp = 15;
+      case 15: {
+        if (tag == 122u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_adddiskresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkDelDiskReq delDiskReq = 16;
+      case 16: {
+        if (tag == 130u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_deldiskreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkDelDiskResp delDiskResp = 17;
+      case 17: {
+        if (tag == 138u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_deldiskresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkUpdateDiskLimitReq diskLimitReq = 18;
+      case 18: {
+        if (tag == 146u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_disklimitreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkUpdateDiskLimitResp diskLimitResp = 19;
+      case 19: {
+        if (tag == 154u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_disklimitresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkGetLicReq licReq = 20;
+      case 20: {
+        if (tag == 162u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_licreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkGetLicResp licResp = 21;
+      case 21: {
+        if (tag == 170u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_licresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkGetVerReq verReq = 22;
+      case 22: {
+        if (tag == 178u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_verreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkGetVerResp verResp = 23;
+      case 23: {
+        if (tag == 186u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_verresp()));
         } else {
           goto handle_unusual;
         }
@@ -521,16 +896,100 @@ void LinkCmd::SerializeWithCachedSizes(
       7, *cmd_.camlistresp_, output);
   }
 
-  // .LinkListCamReq camReq = 8;
+  // .LinkCamReq camReq = 8;
   if (has_camreq()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       8, *cmd_.camreq_, output);
   }
 
-  // .LinkListCamResp camResp = 9;
+  // .LinkCamResp camResp = 9;
   if (has_camresp()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       9, *cmd_.camresp_, output);
+  }
+
+  // .LinkVidDiskListReq diskListReq = 10;
+  if (has_disklistreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      10, *cmd_.disklistreq_, output);
+  }
+
+  // .LinkVidDiskListResp diskListResp = 11;
+  if (has_disklistresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      11, *cmd_.disklistresp_, output);
+  }
+
+  // .LinkSysVidDiskListReq sysDiskListReq = 12;
+  if (has_sysdisklistreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      12, *cmd_.sysdisklistreq_, output);
+  }
+
+  // .LinkSysVidDiskListResp sysDiskListResp = 13;
+  if (has_sysdisklistresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      13, *cmd_.sysdisklistresp_, output);
+  }
+
+  // .LinkAddDiskReq addDiskReq = 14;
+  if (has_adddiskreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      14, *cmd_.adddiskreq_, output);
+  }
+
+  // .LinkAddDiskResp addDiskResp = 15;
+  if (has_adddiskresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      15, *cmd_.adddiskresp_, output);
+  }
+
+  // .LinkDelDiskReq delDiskReq = 16;
+  if (has_deldiskreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      16, *cmd_.deldiskreq_, output);
+  }
+
+  // .LinkDelDiskResp delDiskResp = 17;
+  if (has_deldiskresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      17, *cmd_.deldiskresp_, output);
+  }
+
+  // .LinkUpdateDiskLimitReq diskLimitReq = 18;
+  if (has_disklimitreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      18, *cmd_.disklimitreq_, output);
+  }
+
+  // .LinkUpdateDiskLimitResp diskLimitResp = 19;
+  if (has_disklimitresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      19, *cmd_.disklimitresp_, output);
+  }
+
+  // .LinkGetLicReq licReq = 20;
+  if (has_licreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      20, *cmd_.licreq_, output);
+  }
+
+  // .LinkGetLicResp licResp = 21;
+  if (has_licresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      21, *cmd_.licresp_, output);
+  }
+
+  // .LinkGetVerReq verReq = 22;
+  if (has_verreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      22, *cmd_.verreq_, output);
+  }
+
+  // .LinkGetVerResp verResp = 23;
+  if (has_verresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      23, *cmd_.verresp_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:Link.LinkCmd)
@@ -588,18 +1047,116 @@ void LinkCmd::SerializeWithCachedSizes(
         7, *cmd_.camlistresp_, false, target);
   }
 
-  // .LinkListCamReq camReq = 8;
+  // .LinkCamReq camReq = 8;
   if (has_camreq()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
         8, *cmd_.camreq_, false, target);
   }
 
-  // .LinkListCamResp camResp = 9;
+  // .LinkCamResp camResp = 9;
   if (has_camresp()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
         9, *cmd_.camresp_, false, target);
+  }
+
+  // .LinkVidDiskListReq diskListReq = 10;
+  if (has_disklistreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        10, *cmd_.disklistreq_, false, target);
+  }
+
+  // .LinkVidDiskListResp diskListResp = 11;
+  if (has_disklistresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        11, *cmd_.disklistresp_, false, target);
+  }
+
+  // .LinkSysVidDiskListReq sysDiskListReq = 12;
+  if (has_sysdisklistreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        12, *cmd_.sysdisklistreq_, false, target);
+  }
+
+  // .LinkSysVidDiskListResp sysDiskListResp = 13;
+  if (has_sysdisklistresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        13, *cmd_.sysdisklistresp_, false, target);
+  }
+
+  // .LinkAddDiskReq addDiskReq = 14;
+  if (has_adddiskreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        14, *cmd_.adddiskreq_, false, target);
+  }
+
+  // .LinkAddDiskResp addDiskResp = 15;
+  if (has_adddiskresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        15, *cmd_.adddiskresp_, false, target);
+  }
+
+  // .LinkDelDiskReq delDiskReq = 16;
+  if (has_deldiskreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        16, *cmd_.deldiskreq_, false, target);
+  }
+
+  // .LinkDelDiskResp delDiskResp = 17;
+  if (has_deldiskresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        17, *cmd_.deldiskresp_, false, target);
+  }
+
+  // .LinkUpdateDiskLimitReq diskLimitReq = 18;
+  if (has_disklimitreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        18, *cmd_.disklimitreq_, false, target);
+  }
+
+  // .LinkUpdateDiskLimitResp diskLimitResp = 19;
+  if (has_disklimitresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        19, *cmd_.disklimitresp_, false, target);
+  }
+
+  // .LinkGetLicReq licReq = 20;
+  if (has_licreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        20, *cmd_.licreq_, false, target);
+  }
+
+  // .LinkGetLicResp licResp = 21;
+  if (has_licresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        21, *cmd_.licresp_, false, target);
+  }
+
+  // .LinkGetVerReq verReq = 22;
+  if (has_verreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        22, *cmd_.verreq_, false, target);
+  }
+
+  // .LinkGetVerResp verResp = 23;
+  if (has_verresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        23, *cmd_.verresp_, false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:Link.LinkCmd)
@@ -659,18 +1216,116 @@ size_t LinkCmd::ByteSizeLong() const {
           *cmd_.camlistresp_);
       break;
     }
-    // .LinkListCamReq camReq = 8;
+    // .LinkCamReq camReq = 8;
     case kCamReq: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *cmd_.camreq_);
       break;
     }
-    // .LinkListCamResp camResp = 9;
+    // .LinkCamResp camResp = 9;
     case kCamResp: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *cmd_.camresp_);
+      break;
+    }
+    // .LinkVidDiskListReq diskListReq = 10;
+    case kDiskListReq: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.disklistreq_);
+      break;
+    }
+    // .LinkVidDiskListResp diskListResp = 11;
+    case kDiskListResp: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.disklistresp_);
+      break;
+    }
+    // .LinkSysVidDiskListReq sysDiskListReq = 12;
+    case kSysDiskListReq: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.sysdisklistreq_);
+      break;
+    }
+    // .LinkSysVidDiskListResp sysDiskListResp = 13;
+    case kSysDiskListResp: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.sysdisklistresp_);
+      break;
+    }
+    // .LinkAddDiskReq addDiskReq = 14;
+    case kAddDiskReq: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.adddiskreq_);
+      break;
+    }
+    // .LinkAddDiskResp addDiskResp = 15;
+    case kAddDiskResp: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.adddiskresp_);
+      break;
+    }
+    // .LinkDelDiskReq delDiskReq = 16;
+    case kDelDiskReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.deldiskreq_);
+      break;
+    }
+    // .LinkDelDiskResp delDiskResp = 17;
+    case kDelDiskResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.deldiskresp_);
+      break;
+    }
+    // .LinkUpdateDiskLimitReq diskLimitReq = 18;
+    case kDiskLimitReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.disklimitreq_);
+      break;
+    }
+    // .LinkUpdateDiskLimitResp diskLimitResp = 19;
+    case kDiskLimitResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.disklimitresp_);
+      break;
+    }
+    // .LinkGetLicReq licReq = 20;
+    case kLicReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.licreq_);
+      break;
+    }
+    // .LinkGetLicResp licResp = 21;
+    case kLicResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.licresp_);
+      break;
+    }
+    // .LinkGetVerReq verReq = 22;
+    case kVerReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.verreq_);
+      break;
+    }
+    // .LinkGetVerResp verResp = 23;
+    case kVerResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.verresp_);
       break;
     }
     case CMD_NOT_SET: {
@@ -732,11 +1387,67 @@ void LinkCmd::MergeFrom(const LinkCmd& from) {
       break;
     }
     case kCamReq: {
-      mutable_camreq()->::LinkListCamReq::MergeFrom(from.camreq());
+      mutable_camreq()->::LinkCamReq::MergeFrom(from.camreq());
       break;
     }
     case kCamResp: {
-      mutable_camresp()->::LinkListCamResp::MergeFrom(from.camresp());
+      mutable_camresp()->::LinkCamResp::MergeFrom(from.camresp());
+      break;
+    }
+    case kDiskListReq: {
+      mutable_disklistreq()->::LinkVidDiskListReq::MergeFrom(from.disklistreq());
+      break;
+    }
+    case kDiskListResp: {
+      mutable_disklistresp()->::LinkVidDiskListResp::MergeFrom(from.disklistresp());
+      break;
+    }
+    case kSysDiskListReq: {
+      mutable_sysdisklistreq()->::LinkSysVidDiskListReq::MergeFrom(from.sysdisklistreq());
+      break;
+    }
+    case kSysDiskListResp: {
+      mutable_sysdisklistresp()->::LinkSysVidDiskListResp::MergeFrom(from.sysdisklistresp());
+      break;
+    }
+    case kAddDiskReq: {
+      mutable_adddiskreq()->::LinkAddDiskReq::MergeFrom(from.adddiskreq());
+      break;
+    }
+    case kAddDiskResp: {
+      mutable_adddiskresp()->::LinkAddDiskResp::MergeFrom(from.adddiskresp());
+      break;
+    }
+    case kDelDiskReq: {
+      mutable_deldiskreq()->::LinkDelDiskReq::MergeFrom(from.deldiskreq());
+      break;
+    }
+    case kDelDiskResp: {
+      mutable_deldiskresp()->::LinkDelDiskResp::MergeFrom(from.deldiskresp());
+      break;
+    }
+    case kDiskLimitReq: {
+      mutable_disklimitreq()->::LinkUpdateDiskLimitReq::MergeFrom(from.disklimitreq());
+      break;
+    }
+    case kDiskLimitResp: {
+      mutable_disklimitresp()->::LinkUpdateDiskLimitResp::MergeFrom(from.disklimitresp());
+      break;
+    }
+    case kLicReq: {
+      mutable_licreq()->::LinkGetLicReq::MergeFrom(from.licreq());
+      break;
+    }
+    case kLicResp: {
+      mutable_licresp()->::LinkGetLicResp::MergeFrom(from.licresp());
+      break;
+    }
+    case kVerReq: {
+      mutable_verreq()->::LinkGetVerReq::MergeFrom(from.verreq());
+      break;
+    }
+    case kVerResp: {
+      mutable_verresp()->::LinkGetVerResp::MergeFrom(from.verresp());
       break;
     }
     case CMD_NOT_SET: {
@@ -1084,7 +1795,7 @@ void LinkCmd::set_allocated_camlistresp(::LinkListCamResp* camlistresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListResp)
 }
 
-// .LinkListCamReq camReq = 8;
+// .LinkCamReq camReq = 8;
 bool LinkCmd::has_camreq() const {
   return cmd_case() == kCamReq;
 }
@@ -1097,33 +1808,33 @@ void LinkCmd::clear_camreq() {
     clear_has_cmd();
   }
 }
- const ::LinkListCamReq& LinkCmd::camreq() const {
+ const ::LinkCamReq& LinkCmd::camreq() const {
   // @@protoc_insertion_point(field_get:Link.LinkCmd.camReq)
   return has_camreq()
       ? *cmd_.camreq_
-      : ::LinkListCamReq::default_instance();
+      : ::LinkCamReq::default_instance();
 }
-::LinkListCamReq* LinkCmd::mutable_camreq() {
+::LinkCamReq* LinkCmd::mutable_camreq() {
   if (!has_camreq()) {
     clear_cmd();
     set_has_camreq();
-    cmd_.camreq_ = new ::LinkListCamReq;
+    cmd_.camreq_ = new ::LinkCamReq;
   }
   // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camReq)
   return cmd_.camreq_;
 }
-::LinkListCamReq* LinkCmd::release_camreq() {
+::LinkCamReq* LinkCmd::release_camreq() {
   // @@protoc_insertion_point(field_release:Link.LinkCmd.camReq)
   if (has_camreq()) {
     clear_has_cmd();
-    ::LinkListCamReq* temp = cmd_.camreq_;
+    ::LinkCamReq* temp = cmd_.camreq_;
     cmd_.camreq_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-void LinkCmd::set_allocated_camreq(::LinkListCamReq* camreq) {
+void LinkCmd::set_allocated_camreq(::LinkCamReq* camreq) {
   clear_cmd();
   if (camreq) {
     set_has_camreq();
@@ -1132,7 +1843,7 @@ void LinkCmd::set_allocated_camreq(::LinkListCamReq* camreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camReq)
 }
 
-// .LinkListCamResp camResp = 9;
+// .LinkCamResp camResp = 9;
 bool LinkCmd::has_camresp() const {
   return cmd_case() == kCamResp;
 }
@@ -1145,39 +1856,711 @@ void LinkCmd::clear_camresp() {
     clear_has_cmd();
   }
 }
- const ::LinkListCamResp& LinkCmd::camresp() const {
+ const ::LinkCamResp& LinkCmd::camresp() const {
   // @@protoc_insertion_point(field_get:Link.LinkCmd.camResp)
   return has_camresp()
       ? *cmd_.camresp_
-      : ::LinkListCamResp::default_instance();
+      : ::LinkCamResp::default_instance();
 }
-::LinkListCamResp* LinkCmd::mutable_camresp() {
+::LinkCamResp* LinkCmd::mutable_camresp() {
   if (!has_camresp()) {
     clear_cmd();
     set_has_camresp();
-    cmd_.camresp_ = new ::LinkListCamResp;
+    cmd_.camresp_ = new ::LinkCamResp;
   }
   // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camResp)
   return cmd_.camresp_;
 }
-::LinkListCamResp* LinkCmd::release_camresp() {
+::LinkCamResp* LinkCmd::release_camresp() {
   // @@protoc_insertion_point(field_release:Link.LinkCmd.camResp)
   if (has_camresp()) {
     clear_has_cmd();
-    ::LinkListCamResp* temp = cmd_.camresp_;
+    ::LinkCamResp* temp = cmd_.camresp_;
     cmd_.camresp_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-void LinkCmd::set_allocated_camresp(::LinkListCamResp* camresp) {
+void LinkCmd::set_allocated_camresp(::LinkCamResp* camresp) {
   clear_cmd();
   if (camresp) {
     set_has_camresp();
     cmd_.camresp_ = camresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camResp)
+}
+
+// .LinkVidDiskListReq diskListReq = 10;
+bool LinkCmd::has_disklistreq() const {
+  return cmd_case() == kDiskListReq;
+}
+void LinkCmd::set_has_disklistreq() {
+  _oneof_case_[0] = kDiskListReq;
+}
+void LinkCmd::clear_disklistreq() {
+  if (has_disklistreq()) {
+    delete cmd_.disklistreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkVidDiskListReq& LinkCmd::disklistreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.diskListReq)
+  return has_disklistreq()
+      ? *cmd_.disklistreq_
+      : ::LinkVidDiskListReq::default_instance();
+}
+::LinkVidDiskListReq* LinkCmd::mutable_disklistreq() {
+  if (!has_disklistreq()) {
+    clear_cmd();
+    set_has_disklistreq();
+    cmd_.disklistreq_ = new ::LinkVidDiskListReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.diskListReq)
+  return cmd_.disklistreq_;
+}
+::LinkVidDiskListReq* LinkCmd::release_disklistreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.diskListReq)
+  if (has_disklistreq()) {
+    clear_has_cmd();
+    ::LinkVidDiskListReq* temp = cmd_.disklistreq_;
+    cmd_.disklistreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_disklistreq(::LinkVidDiskListReq* disklistreq) {
+  clear_cmd();
+  if (disklistreq) {
+    set_has_disklistreq();
+    cmd_.disklistreq_ = disklistreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskListReq)
+}
+
+// .LinkVidDiskListResp diskListResp = 11;
+bool LinkCmd::has_disklistresp() const {
+  return cmd_case() == kDiskListResp;
+}
+void LinkCmd::set_has_disklistresp() {
+  _oneof_case_[0] = kDiskListResp;
+}
+void LinkCmd::clear_disklistresp() {
+  if (has_disklistresp()) {
+    delete cmd_.disklistresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkVidDiskListResp& LinkCmd::disklistresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.diskListResp)
+  return has_disklistresp()
+      ? *cmd_.disklistresp_
+      : ::LinkVidDiskListResp::default_instance();
+}
+::LinkVidDiskListResp* LinkCmd::mutable_disklistresp() {
+  if (!has_disklistresp()) {
+    clear_cmd();
+    set_has_disklistresp();
+    cmd_.disklistresp_ = new ::LinkVidDiskListResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.diskListResp)
+  return cmd_.disklistresp_;
+}
+::LinkVidDiskListResp* LinkCmd::release_disklistresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.diskListResp)
+  if (has_disklistresp()) {
+    clear_has_cmd();
+    ::LinkVidDiskListResp* temp = cmd_.disklistresp_;
+    cmd_.disklistresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_disklistresp(::LinkVidDiskListResp* disklistresp) {
+  clear_cmd();
+  if (disklistresp) {
+    set_has_disklistresp();
+    cmd_.disklistresp_ = disklistresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskListResp)
+}
+
+// .LinkSysVidDiskListReq sysDiskListReq = 12;
+bool LinkCmd::has_sysdisklistreq() const {
+  return cmd_case() == kSysDiskListReq;
+}
+void LinkCmd::set_has_sysdisklistreq() {
+  _oneof_case_[0] = kSysDiskListReq;
+}
+void LinkCmd::clear_sysdisklistreq() {
+  if (has_sysdisklistreq()) {
+    delete cmd_.sysdisklistreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkSysVidDiskListReq& LinkCmd::sysdisklistreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.sysDiskListReq)
+  return has_sysdisklistreq()
+      ? *cmd_.sysdisklistreq_
+      : ::LinkSysVidDiskListReq::default_instance();
+}
+::LinkSysVidDiskListReq* LinkCmd::mutable_sysdisklistreq() {
+  if (!has_sysdisklistreq()) {
+    clear_cmd();
+    set_has_sysdisklistreq();
+    cmd_.sysdisklistreq_ = new ::LinkSysVidDiskListReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.sysDiskListReq)
+  return cmd_.sysdisklistreq_;
+}
+::LinkSysVidDiskListReq* LinkCmd::release_sysdisklistreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.sysDiskListReq)
+  if (has_sysdisklistreq()) {
+    clear_has_cmd();
+    ::LinkSysVidDiskListReq* temp = cmd_.sysdisklistreq_;
+    cmd_.sysdisklistreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_sysdisklistreq(::LinkSysVidDiskListReq* sysdisklistreq) {
+  clear_cmd();
+  if (sysdisklistreq) {
+    set_has_sysdisklistreq();
+    cmd_.sysdisklistreq_ = sysdisklistreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.sysDiskListReq)
+}
+
+// .LinkSysVidDiskListResp sysDiskListResp = 13;
+bool LinkCmd::has_sysdisklistresp() const {
+  return cmd_case() == kSysDiskListResp;
+}
+void LinkCmd::set_has_sysdisklistresp() {
+  _oneof_case_[0] = kSysDiskListResp;
+}
+void LinkCmd::clear_sysdisklistresp() {
+  if (has_sysdisklistresp()) {
+    delete cmd_.sysdisklistresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkSysVidDiskListResp& LinkCmd::sysdisklistresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.sysDiskListResp)
+  return has_sysdisklistresp()
+      ? *cmd_.sysdisklistresp_
+      : ::LinkSysVidDiskListResp::default_instance();
+}
+::LinkSysVidDiskListResp* LinkCmd::mutable_sysdisklistresp() {
+  if (!has_sysdisklistresp()) {
+    clear_cmd();
+    set_has_sysdisklistresp();
+    cmd_.sysdisklistresp_ = new ::LinkSysVidDiskListResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.sysDiskListResp)
+  return cmd_.sysdisklistresp_;
+}
+::LinkSysVidDiskListResp* LinkCmd::release_sysdisklistresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.sysDiskListResp)
+  if (has_sysdisklistresp()) {
+    clear_has_cmd();
+    ::LinkSysVidDiskListResp* temp = cmd_.sysdisklistresp_;
+    cmd_.sysdisklistresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_sysdisklistresp(::LinkSysVidDiskListResp* sysdisklistresp) {
+  clear_cmd();
+  if (sysdisklistresp) {
+    set_has_sysdisklistresp();
+    cmd_.sysdisklistresp_ = sysdisklistresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.sysDiskListResp)
+}
+
+// .LinkAddDiskReq addDiskReq = 14;
+bool LinkCmd::has_adddiskreq() const {
+  return cmd_case() == kAddDiskReq;
+}
+void LinkCmd::set_has_adddiskreq() {
+  _oneof_case_[0] = kAddDiskReq;
+}
+void LinkCmd::clear_adddiskreq() {
+  if (has_adddiskreq()) {
+    delete cmd_.adddiskreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkAddDiskReq& LinkCmd::adddiskreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addDiskReq)
+  return has_adddiskreq()
+      ? *cmd_.adddiskreq_
+      : ::LinkAddDiskReq::default_instance();
+}
+::LinkAddDiskReq* LinkCmd::mutable_adddiskreq() {
+  if (!has_adddiskreq()) {
+    clear_cmd();
+    set_has_adddiskreq();
+    cmd_.adddiskreq_ = new ::LinkAddDiskReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addDiskReq)
+  return cmd_.adddiskreq_;
+}
+::LinkAddDiskReq* LinkCmd::release_adddiskreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addDiskReq)
+  if (has_adddiskreq()) {
+    clear_has_cmd();
+    ::LinkAddDiskReq* temp = cmd_.adddiskreq_;
+    cmd_.adddiskreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_adddiskreq(::LinkAddDiskReq* adddiskreq) {
+  clear_cmd();
+  if (adddiskreq) {
+    set_has_adddiskreq();
+    cmd_.adddiskreq_ = adddiskreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addDiskReq)
+}
+
+// .LinkAddDiskResp addDiskResp = 15;
+bool LinkCmd::has_adddiskresp() const {
+  return cmd_case() == kAddDiskResp;
+}
+void LinkCmd::set_has_adddiskresp() {
+  _oneof_case_[0] = kAddDiskResp;
+}
+void LinkCmd::clear_adddiskresp() {
+  if (has_adddiskresp()) {
+    delete cmd_.adddiskresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkAddDiskResp& LinkCmd::adddiskresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addDiskResp)
+  return has_adddiskresp()
+      ? *cmd_.adddiskresp_
+      : ::LinkAddDiskResp::default_instance();
+}
+::LinkAddDiskResp* LinkCmd::mutable_adddiskresp() {
+  if (!has_adddiskresp()) {
+    clear_cmd();
+    set_has_adddiskresp();
+    cmd_.adddiskresp_ = new ::LinkAddDiskResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addDiskResp)
+  return cmd_.adddiskresp_;
+}
+::LinkAddDiskResp* LinkCmd::release_adddiskresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addDiskResp)
+  if (has_adddiskresp()) {
+    clear_has_cmd();
+    ::LinkAddDiskResp* temp = cmd_.adddiskresp_;
+    cmd_.adddiskresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_adddiskresp(::LinkAddDiskResp* adddiskresp) {
+  clear_cmd();
+  if (adddiskresp) {
+    set_has_adddiskresp();
+    cmd_.adddiskresp_ = adddiskresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addDiskResp)
+}
+
+// .LinkDelDiskReq delDiskReq = 16;
+bool LinkCmd::has_deldiskreq() const {
+  return cmd_case() == kDelDiskReq;
+}
+void LinkCmd::set_has_deldiskreq() {
+  _oneof_case_[0] = kDelDiskReq;
+}
+void LinkCmd::clear_deldiskreq() {
+  if (has_deldiskreq()) {
+    delete cmd_.deldiskreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkDelDiskReq& LinkCmd::deldiskreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.delDiskReq)
+  return has_deldiskreq()
+      ? *cmd_.deldiskreq_
+      : ::LinkDelDiskReq::default_instance();
+}
+::LinkDelDiskReq* LinkCmd::mutable_deldiskreq() {
+  if (!has_deldiskreq()) {
+    clear_cmd();
+    set_has_deldiskreq();
+    cmd_.deldiskreq_ = new ::LinkDelDiskReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.delDiskReq)
+  return cmd_.deldiskreq_;
+}
+::LinkDelDiskReq* LinkCmd::release_deldiskreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.delDiskReq)
+  if (has_deldiskreq()) {
+    clear_has_cmd();
+    ::LinkDelDiskReq* temp = cmd_.deldiskreq_;
+    cmd_.deldiskreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_deldiskreq(::LinkDelDiskReq* deldiskreq) {
+  clear_cmd();
+  if (deldiskreq) {
+    set_has_deldiskreq();
+    cmd_.deldiskreq_ = deldiskreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delDiskReq)
+}
+
+// .LinkDelDiskResp delDiskResp = 17;
+bool LinkCmd::has_deldiskresp() const {
+  return cmd_case() == kDelDiskResp;
+}
+void LinkCmd::set_has_deldiskresp() {
+  _oneof_case_[0] = kDelDiskResp;
+}
+void LinkCmd::clear_deldiskresp() {
+  if (has_deldiskresp()) {
+    delete cmd_.deldiskresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkDelDiskResp& LinkCmd::deldiskresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.delDiskResp)
+  return has_deldiskresp()
+      ? *cmd_.deldiskresp_
+      : ::LinkDelDiskResp::default_instance();
+}
+::LinkDelDiskResp* LinkCmd::mutable_deldiskresp() {
+  if (!has_deldiskresp()) {
+    clear_cmd();
+    set_has_deldiskresp();
+    cmd_.deldiskresp_ = new ::LinkDelDiskResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.delDiskResp)
+  return cmd_.deldiskresp_;
+}
+::LinkDelDiskResp* LinkCmd::release_deldiskresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.delDiskResp)
+  if (has_deldiskresp()) {
+    clear_has_cmd();
+    ::LinkDelDiskResp* temp = cmd_.deldiskresp_;
+    cmd_.deldiskresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_deldiskresp(::LinkDelDiskResp* deldiskresp) {
+  clear_cmd();
+  if (deldiskresp) {
+    set_has_deldiskresp();
+    cmd_.deldiskresp_ = deldiskresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delDiskResp)
+}
+
+// .LinkUpdateDiskLimitReq diskLimitReq = 18;
+bool LinkCmd::has_disklimitreq() const {
+  return cmd_case() == kDiskLimitReq;
+}
+void LinkCmd::set_has_disklimitreq() {
+  _oneof_case_[0] = kDiskLimitReq;
+}
+void LinkCmd::clear_disklimitreq() {
+  if (has_disklimitreq()) {
+    delete cmd_.disklimitreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkUpdateDiskLimitReq& LinkCmd::disklimitreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.diskLimitReq)
+  return has_disklimitreq()
+      ? *cmd_.disklimitreq_
+      : ::LinkUpdateDiskLimitReq::default_instance();
+}
+::LinkUpdateDiskLimitReq* LinkCmd::mutable_disklimitreq() {
+  if (!has_disklimitreq()) {
+    clear_cmd();
+    set_has_disklimitreq();
+    cmd_.disklimitreq_ = new ::LinkUpdateDiskLimitReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.diskLimitReq)
+  return cmd_.disklimitreq_;
+}
+::LinkUpdateDiskLimitReq* LinkCmd::release_disklimitreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.diskLimitReq)
+  if (has_disklimitreq()) {
+    clear_has_cmd();
+    ::LinkUpdateDiskLimitReq* temp = cmd_.disklimitreq_;
+    cmd_.disklimitreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_disklimitreq(::LinkUpdateDiskLimitReq* disklimitreq) {
+  clear_cmd();
+  if (disklimitreq) {
+    set_has_disklimitreq();
+    cmd_.disklimitreq_ = disklimitreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskLimitReq)
+}
+
+// .LinkUpdateDiskLimitResp diskLimitResp = 19;
+bool LinkCmd::has_disklimitresp() const {
+  return cmd_case() == kDiskLimitResp;
+}
+void LinkCmd::set_has_disklimitresp() {
+  _oneof_case_[0] = kDiskLimitResp;
+}
+void LinkCmd::clear_disklimitresp() {
+  if (has_disklimitresp()) {
+    delete cmd_.disklimitresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkUpdateDiskLimitResp& LinkCmd::disklimitresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.diskLimitResp)
+  return has_disklimitresp()
+      ? *cmd_.disklimitresp_
+      : ::LinkUpdateDiskLimitResp::default_instance();
+}
+::LinkUpdateDiskLimitResp* LinkCmd::mutable_disklimitresp() {
+  if (!has_disklimitresp()) {
+    clear_cmd();
+    set_has_disklimitresp();
+    cmd_.disklimitresp_ = new ::LinkUpdateDiskLimitResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.diskLimitResp)
+  return cmd_.disklimitresp_;
+}
+::LinkUpdateDiskLimitResp* LinkCmd::release_disklimitresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.diskLimitResp)
+  if (has_disklimitresp()) {
+    clear_has_cmd();
+    ::LinkUpdateDiskLimitResp* temp = cmd_.disklimitresp_;
+    cmd_.disklimitresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_disklimitresp(::LinkUpdateDiskLimitResp* disklimitresp) {
+  clear_cmd();
+  if (disklimitresp) {
+    set_has_disklimitresp();
+    cmd_.disklimitresp_ = disklimitresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskLimitResp)
+}
+
+// .LinkGetLicReq licReq = 20;
+bool LinkCmd::has_licreq() const {
+  return cmd_case() == kLicReq;
+}
+void LinkCmd::set_has_licreq() {
+  _oneof_case_[0] = kLicReq;
+}
+void LinkCmd::clear_licreq() {
+  if (has_licreq()) {
+    delete cmd_.licreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkGetLicReq& LinkCmd::licreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.licReq)
+  return has_licreq()
+      ? *cmd_.licreq_
+      : ::LinkGetLicReq::default_instance();
+}
+::LinkGetLicReq* LinkCmd::mutable_licreq() {
+  if (!has_licreq()) {
+    clear_cmd();
+    set_has_licreq();
+    cmd_.licreq_ = new ::LinkGetLicReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.licReq)
+  return cmd_.licreq_;
+}
+::LinkGetLicReq* LinkCmd::release_licreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.licReq)
+  if (has_licreq()) {
+    clear_has_cmd();
+    ::LinkGetLicReq* temp = cmd_.licreq_;
+    cmd_.licreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_licreq(::LinkGetLicReq* licreq) {
+  clear_cmd();
+  if (licreq) {
+    set_has_licreq();
+    cmd_.licreq_ = licreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.licReq)
+}
+
+// .LinkGetLicResp licResp = 21;
+bool LinkCmd::has_licresp() const {
+  return cmd_case() == kLicResp;
+}
+void LinkCmd::set_has_licresp() {
+  _oneof_case_[0] = kLicResp;
+}
+void LinkCmd::clear_licresp() {
+  if (has_licresp()) {
+    delete cmd_.licresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkGetLicResp& LinkCmd::licresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.licResp)
+  return has_licresp()
+      ? *cmd_.licresp_
+      : ::LinkGetLicResp::default_instance();
+}
+::LinkGetLicResp* LinkCmd::mutable_licresp() {
+  if (!has_licresp()) {
+    clear_cmd();
+    set_has_licresp();
+    cmd_.licresp_ = new ::LinkGetLicResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.licResp)
+  return cmd_.licresp_;
+}
+::LinkGetLicResp* LinkCmd::release_licresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.licResp)
+  if (has_licresp()) {
+    clear_has_cmd();
+    ::LinkGetLicResp* temp = cmd_.licresp_;
+    cmd_.licresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_licresp(::LinkGetLicResp* licresp) {
+  clear_cmd();
+  if (licresp) {
+    set_has_licresp();
+    cmd_.licresp_ = licresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.licResp)
+}
+
+// .LinkGetVerReq verReq = 22;
+bool LinkCmd::has_verreq() const {
+  return cmd_case() == kVerReq;
+}
+void LinkCmd::set_has_verreq() {
+  _oneof_case_[0] = kVerReq;
+}
+void LinkCmd::clear_verreq() {
+  if (has_verreq()) {
+    delete cmd_.verreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkGetVerReq& LinkCmd::verreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.verReq)
+  return has_verreq()
+      ? *cmd_.verreq_
+      : ::LinkGetVerReq::default_instance();
+}
+::LinkGetVerReq* LinkCmd::mutable_verreq() {
+  if (!has_verreq()) {
+    clear_cmd();
+    set_has_verreq();
+    cmd_.verreq_ = new ::LinkGetVerReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.verReq)
+  return cmd_.verreq_;
+}
+::LinkGetVerReq* LinkCmd::release_verreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.verReq)
+  if (has_verreq()) {
+    clear_has_cmd();
+    ::LinkGetVerReq* temp = cmd_.verreq_;
+    cmd_.verreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_verreq(::LinkGetVerReq* verreq) {
+  clear_cmd();
+  if (verreq) {
+    set_has_verreq();
+    cmd_.verreq_ = verreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.verReq)
+}
+
+// .LinkGetVerResp verResp = 23;
+bool LinkCmd::has_verresp() const {
+  return cmd_case() == kVerResp;
+}
+void LinkCmd::set_has_verresp() {
+  _oneof_case_[0] = kVerResp;
+}
+void LinkCmd::clear_verresp() {
+  if (has_verresp()) {
+    delete cmd_.verresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkGetVerResp& LinkCmd::verresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.verResp)
+  return has_verresp()
+      ? *cmd_.verresp_
+      : ::LinkGetVerResp::default_instance();
+}
+::LinkGetVerResp* LinkCmd::mutable_verresp() {
+  if (!has_verresp()) {
+    clear_cmd();
+    set_has_verresp();
+    cmd_.verresp_ = new ::LinkGetVerResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.verResp)
+  return cmd_.verresp_;
+}
+::LinkGetVerResp* LinkCmd::release_verresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.verResp)
+  if (has_verresp()) {
+    clear_has_cmd();
+    ::LinkGetVerResp* temp = cmd_.verresp_;
+    cmd_.verresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_verresp(::LinkGetVerResp* verresp) {
+  clear_cmd();
+  if (verresp) {
+    set_has_verresp();
+    cmd_.verresp_ = verresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.verResp)
 }
 
 bool LinkCmd::has_cmd() const {

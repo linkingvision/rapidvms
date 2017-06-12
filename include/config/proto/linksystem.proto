@@ -22,6 +22,7 @@ message LinkKeepaliveResp {
 	int32 nKeepalive = 1;
 }
 
+//Camera
 message LinkListCamReq {
 	bool bAll = 1;
 }
@@ -37,5 +38,64 @@ message LinkCamReq {
 message LinkCamResp {
 	VidCamera cCam = 1;
 }
+
+
+//Disk
+message LinkVidDiskListReq {
+	bool bAll = 1;
+}
+message LinkVidDiskListResp {
+	VidDiskList cDisk = 1;
+}
+
+message LinkSysVidDiskListReq {
+	bool bAll = 1;
+}
+message LinkSysVidDiskListResp {
+	VidDiskList cDisk = 1;
+}
+
+message LinkAddDiskReq {
+	VidDisk cDisk = 1;
+}
+message LinkAddDiskResp {
+	bool bSuccess = 1;
+}
+message LinkDelDiskReq {
+	string strId = 1;
+}
+message LinkDelDiskResp {
+	bool bSuccess = 1;
+}
+message LinkUpdateDiskLimitReq {
+	string strId = 1;
+	int64 nLimit = 2;
+}
+message LinkUpdateDiskLimitResp {
+	bool bSuccess = 1;
+}
+
+//License & Version
+message LinkGetLicReq {
+	string strFake = 1;
+}
+message LinkGetLicResp {
+	string strLic = 1;
+	string strHostId = 2;
+	int32 nCh = 3;
+	string strType = 4;
+	string strStartTime = 5;
+	string strExpireTime = 6;
+}
+
+message LinkGetVerReq {
+	string strFake = 1;
+}
+message LinkGetVerResp {
+	string strVer = 1;
+	string strInfo = 2;
+}
+
+
 
 
