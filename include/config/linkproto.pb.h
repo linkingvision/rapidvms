@@ -33,87 +33,87 @@
 // @@protoc_insertion_point(includes)
 class LinkAddDiskReq;
 class LinkAddDiskReqDefaultTypeInternal;
-extern LinkAddDiskReqDefaultTypeInternal _LinkAddDiskReq_default_instance_;
+VE_LIBRARY_API extern LinkAddDiskReqDefaultTypeInternal _LinkAddDiskReq_default_instance_;
 class LinkAddDiskResp;
 class LinkAddDiskRespDefaultTypeInternal;
-extern LinkAddDiskRespDefaultTypeInternal _LinkAddDiskResp_default_instance_;
+VE_LIBRARY_API extern LinkAddDiskRespDefaultTypeInternal _LinkAddDiskResp_default_instance_;
 class LinkCamReq;
 class LinkCamReqDefaultTypeInternal;
-extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
+VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
 class LinkCamResp;
 class LinkCamRespDefaultTypeInternal;
-extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
+VE_LIBRARY_API extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
 class LinkDelDiskReq;
 class LinkDelDiskReqDefaultTypeInternal;
-extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_instance_;
+VE_LIBRARY_API extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_instance_;
 class LinkDelDiskResp;
 class LinkDelDiskRespDefaultTypeInternal;
-extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
+VE_LIBRARY_API extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
 class LinkGetLicReq;
 class LinkGetLicReqDefaultTypeInternal;
-extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
+VE_LIBRARY_API extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
 class LinkGetLicResp;
 class LinkGetLicRespDefaultTypeInternal;
-extern LinkGetLicRespDefaultTypeInternal _LinkGetLicResp_default_instance_;
+VE_LIBRARY_API extern LinkGetLicRespDefaultTypeInternal _LinkGetLicResp_default_instance_;
 class LinkGetVerReq;
 class LinkGetVerReqDefaultTypeInternal;
-extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_instance_;
+VE_LIBRARY_API extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_instance_;
 class LinkGetVerResp;
 class LinkGetVerRespDefaultTypeInternal;
-extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
+VE_LIBRARY_API extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
 class LinkKeepaliveReq;
 class LinkKeepaliveReqDefaultTypeInternal;
-extern LinkKeepaliveReqDefaultTypeInternal _LinkKeepaliveReq_default_instance_;
+VE_LIBRARY_API extern LinkKeepaliveReqDefaultTypeInternal _LinkKeepaliveReq_default_instance_;
 class LinkKeepaliveResp;
 class LinkKeepaliveRespDefaultTypeInternal;
-extern LinkKeepaliveRespDefaultTypeInternal _LinkKeepaliveResp_default_instance_;
+VE_LIBRARY_API extern LinkKeepaliveRespDefaultTypeInternal _LinkKeepaliveResp_default_instance_;
 class LinkListCamReq;
 class LinkListCamReqDefaultTypeInternal;
-extern LinkListCamReqDefaultTypeInternal _LinkListCamReq_default_instance_;
+VE_LIBRARY_API extern LinkListCamReqDefaultTypeInternal _LinkListCamReq_default_instance_;
 class LinkListCamResp;
 class LinkListCamRespDefaultTypeInternal;
-extern LinkListCamRespDefaultTypeInternal _LinkListCamResp_default_instance_;
+VE_LIBRARY_API extern LinkListCamRespDefaultTypeInternal _LinkListCamResp_default_instance_;
 class LinkLoginReq;
 class LinkLoginReqDefaultTypeInternal;
-extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_instance_;
+VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_instance_;
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
-extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
 class LinkSysVidDiskListReq;
 class LinkSysVidDiskListReqDefaultTypeInternal;
-extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
+VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
 class LinkSysVidDiskListResp;
 class LinkSysVidDiskListRespDefaultTypeInternal;
-extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
+VE_LIBRARY_API extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
 class LinkUpdateDiskLimitReq;
 class LinkUpdateDiskLimitReqDefaultTypeInternal;
-extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
+VE_LIBRARY_API extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
 class LinkUpdateDiskLimitResp;
 class LinkUpdateDiskLimitRespDefaultTypeInternal;
-extern LinkUpdateDiskLimitRespDefaultTypeInternal _LinkUpdateDiskLimitResp_default_instance_;
+VE_LIBRARY_API extern LinkUpdateDiskLimitRespDefaultTypeInternal _LinkUpdateDiskLimitResp_default_instance_;
 class LinkVidDiskListReq;
 class LinkVidDiskListReqDefaultTypeInternal;
-extern LinkVidDiskListReqDefaultTypeInternal _LinkVidDiskListReq_default_instance_;
+VE_LIBRARY_API extern LinkVidDiskListReqDefaultTypeInternal _LinkVidDiskListReq_default_instance_;
 class LinkVidDiskListResp;
 class LinkVidDiskListRespDefaultTypeInternal;
-extern LinkVidDiskListRespDefaultTypeInternal _LinkVidDiskListResp_default_instance_;
+VE_LIBRARY_API extern LinkVidDiskListRespDefaultTypeInternal _LinkVidDiskListResp_default_instance_;
 namespace Link {
 class LinkCmd;
 class LinkCmdDefaultTypeInternal;
-extern LinkCmdDefaultTypeInternal _LinkCmd_default_instance_;
+VE_LIBRARY_API extern LinkCmdDefaultTypeInternal _LinkCmd_default_instance_;
 }  // namespace Link
 
 namespace Link {
 
 namespace protobuf_linkproto_2eproto {
 // Internal implementation detail -- do not call these.
-struct TableStruct {
+struct VE_LIBRARY_API TableStruct {
   static const ::google::protobuf::uint32 offsets[];
   static void InitDefaultsImpl();
   static void Shutdown();
 };
-void AddDescriptors();
-void InitDefaults();
+void VE_LIBRARY_API AddDescriptors();
+void VE_LIBRARY_API InitDefaults();
 }  // namespace protobuf_linkproto_2eproto
 
 enum LinkCmdType {
@@ -143,12 +143,12 @@ enum LinkCmdType {
   LinkCmdType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   LinkCmdType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool LinkCmdType_IsValid(int value);
+VE_LIBRARY_API bool LinkCmdType_IsValid(int value);
 const LinkCmdType LinkCmdType_MIN = LINK_CMD_ZERO;
 const LinkCmdType LinkCmdType_MAX = LINK_CMD_GET_VER_RESP;
 const int LinkCmdType_ARRAYSIZE = LinkCmdType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* LinkCmdType_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* LinkCmdType_descriptor();
 inline const ::std::string& LinkCmdType_Name(LinkCmdType value) {
   return ::google::protobuf::internal::NameOfEnum(
     LinkCmdType_descriptor(), value);
@@ -160,7 +160,7 @@ inline bool LinkCmdType_Parse(
 }
 // ===================================================================
 
-class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Link.LinkCmd) */ {
+class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Link.LinkCmd) */ {
  public:
   LinkCmd();
   virtual ~LinkCmd();
@@ -517,7 +517,7 @@ class LinkCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
 
-  friend struct  protobuf_linkproto_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linkproto_2eproto::TableStruct;
 };
 // ===================================================================
 

@@ -32,169 +32,169 @@
 // @@protoc_insertion_point(includes)
 class LinkAddDiskReq;
 class LinkAddDiskReqDefaultTypeInternal;
-extern LinkAddDiskReqDefaultTypeInternal _LinkAddDiskReq_default_instance_;
+VE_LIBRARY_API extern LinkAddDiskReqDefaultTypeInternal _LinkAddDiskReq_default_instance_;
 class LinkAddDiskResp;
 class LinkAddDiskRespDefaultTypeInternal;
-extern LinkAddDiskRespDefaultTypeInternal _LinkAddDiskResp_default_instance_;
+VE_LIBRARY_API extern LinkAddDiskRespDefaultTypeInternal _LinkAddDiskResp_default_instance_;
 class LinkCamReq;
 class LinkCamReqDefaultTypeInternal;
-extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
+VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
 class LinkCamResp;
 class LinkCamRespDefaultTypeInternal;
-extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
+VE_LIBRARY_API extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
 class LinkDelDiskReq;
 class LinkDelDiskReqDefaultTypeInternal;
-extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_instance_;
+VE_LIBRARY_API extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_instance_;
 class LinkDelDiskResp;
 class LinkDelDiskRespDefaultTypeInternal;
-extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
+VE_LIBRARY_API extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
 class LinkGetLicReq;
 class LinkGetLicReqDefaultTypeInternal;
-extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
+VE_LIBRARY_API extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
 class LinkGetLicResp;
 class LinkGetLicRespDefaultTypeInternal;
-extern LinkGetLicRespDefaultTypeInternal _LinkGetLicResp_default_instance_;
+VE_LIBRARY_API extern LinkGetLicRespDefaultTypeInternal _LinkGetLicResp_default_instance_;
 class LinkGetVerReq;
 class LinkGetVerReqDefaultTypeInternal;
-extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_instance_;
+VE_LIBRARY_API extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_instance_;
 class LinkGetVerResp;
 class LinkGetVerRespDefaultTypeInternal;
-extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
+VE_LIBRARY_API extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
 class LinkKeepaliveReq;
 class LinkKeepaliveReqDefaultTypeInternal;
-extern LinkKeepaliveReqDefaultTypeInternal _LinkKeepaliveReq_default_instance_;
+VE_LIBRARY_API extern LinkKeepaliveReqDefaultTypeInternal _LinkKeepaliveReq_default_instance_;
 class LinkKeepaliveResp;
 class LinkKeepaliveRespDefaultTypeInternal;
-extern LinkKeepaliveRespDefaultTypeInternal _LinkKeepaliveResp_default_instance_;
+VE_LIBRARY_API extern LinkKeepaliveRespDefaultTypeInternal _LinkKeepaliveResp_default_instance_;
 class LinkListCamReq;
 class LinkListCamReqDefaultTypeInternal;
-extern LinkListCamReqDefaultTypeInternal _LinkListCamReq_default_instance_;
+VE_LIBRARY_API extern LinkListCamReqDefaultTypeInternal _LinkListCamReq_default_instance_;
 class LinkListCamResp;
 class LinkListCamRespDefaultTypeInternal;
-extern LinkListCamRespDefaultTypeInternal _LinkListCamResp_default_instance_;
+VE_LIBRARY_API extern LinkListCamRespDefaultTypeInternal _LinkListCamResp_default_instance_;
 class LinkLoginReq;
 class LinkLoginReqDefaultTypeInternal;
-extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_instance_;
+VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_instance_;
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
-extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
 class LinkSysVidDiskListReq;
 class LinkSysVidDiskListReqDefaultTypeInternal;
-extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
+VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
 class LinkSysVidDiskListResp;
 class LinkSysVidDiskListRespDefaultTypeInternal;
-extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
+VE_LIBRARY_API extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
 class LinkUpdateDiskLimitReq;
 class LinkUpdateDiskLimitReqDefaultTypeInternal;
-extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
+VE_LIBRARY_API extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
 class LinkUpdateDiskLimitResp;
 class LinkUpdateDiskLimitRespDefaultTypeInternal;
-extern LinkUpdateDiskLimitRespDefaultTypeInternal _LinkUpdateDiskLimitResp_default_instance_;
+VE_LIBRARY_API extern LinkUpdateDiskLimitRespDefaultTypeInternal _LinkUpdateDiskLimitResp_default_instance_;
 class LinkVidDiskListReq;
 class LinkVidDiskListReqDefaultTypeInternal;
-extern LinkVidDiskListReqDefaultTypeInternal _LinkVidDiskListReq_default_instance_;
+VE_LIBRARY_API extern LinkVidDiskListReqDefaultTypeInternal _LinkVidDiskListReq_default_instance_;
 class LinkVidDiskListResp;
 class LinkVidDiskListRespDefaultTypeInternal;
-extern LinkVidDiskListRespDefaultTypeInternal _LinkVidDiskListResp_default_instance_;
+VE_LIBRARY_API extern LinkVidDiskListRespDefaultTypeInternal _LinkVidDiskListResp_default_instance_;
 class VidBlob;
 class VidBlobDefaultTypeInternal;
-extern VidBlobDefaultTypeInternal _VidBlob_default_instance_;
+VE_LIBRARY_API extern VidBlobDefaultTypeInternal _VidBlob_default_instance_;
 class VidBlobList;
 class VidBlobListDefaultTypeInternal;
-extern VidBlobListDefaultTypeInternal _VidBlobList_default_instance_;
+VE_LIBRARY_API extern VidBlobListDefaultTypeInternal _VidBlobList_default_instance_;
 class VidCamera;
 class VidCameraDefaultTypeInternal;
-extern VidCameraDefaultTypeInternal _VidCamera_default_instance_;
+VE_LIBRARY_API extern VidCameraDefaultTypeInternal _VidCamera_default_instance_;
 class VidCameraId;
 class VidCameraIdDefaultTypeInternal;
-extern VidCameraIdDefaultTypeInternal _VidCameraId_default_instance_;
+VE_LIBRARY_API extern VidCameraIdDefaultTypeInternal _VidCameraId_default_instance_;
 class VidCameraList;
 class VidCameraListDefaultTypeInternal;
-extern VidCameraListDefaultTypeInternal _VidCameraList_default_instance_;
+VE_LIBRARY_API extern VidCameraListDefaultTypeInternal _VidCameraList_default_instance_;
 class VidClientConf;
 class VidClientConfDefaultTypeInternal;
-extern VidClientConfDefaultTypeInternal _VidClientConf_default_instance_;
+VE_LIBRARY_API extern VidClientConfDefaultTypeInternal _VidClientConf_default_instance_;
 class VidDisk;
 class VidDiskDefaultTypeInternal;
-extern VidDiskDefaultTypeInternal _VidDisk_default_instance_;
+VE_LIBRARY_API extern VidDiskDefaultTypeInternal _VidDisk_default_instance_;
 class VidDiskList;
 class VidDiskListDefaultTypeInternal;
-extern VidDiskListDefaultTypeInternal _VidDiskList_default_instance_;
+VE_LIBRARY_API extern VidDiskListDefaultTypeInternal _VidDiskList_default_instance_;
 class VidEmap;
 class VidEmapDefaultTypeInternal;
-extern VidEmapDefaultTypeInternal _VidEmap_default_instance_;
+VE_LIBRARY_API extern VidEmapDefaultTypeInternal _VidEmap_default_instance_;
 class VidEmapCamera;
 class VidEmapCameraDefaultTypeInternal;
-extern VidEmapCameraDefaultTypeInternal _VidEmapCamera_default_instance_;
+VE_LIBRARY_API extern VidEmapCameraDefaultTypeInternal _VidEmapCamera_default_instance_;
 class VidEmapList;
 class VidEmapListDefaultTypeInternal;
-extern VidEmapListDefaultTypeInternal _VidEmapList_default_instance_;
+VE_LIBRARY_API extern VidEmapListDefaultTypeInternal _VidEmapList_default_instance_;
 class VidEvent;
 class VidEventDefaultTypeInternal;
-extern VidEventDefaultTypeInternal _VidEvent_default_instance_;
+VE_LIBRARY_API extern VidEventDefaultTypeInternal _VidEvent_default_instance_;
 class VidEventDBConf;
 class VidEventDBConfDefaultTypeInternal;
-extern VidEventDBConfDefaultTypeInternal _VidEventDBConf_default_instance_;
+VE_LIBRARY_API extern VidEventDBConfDefaultTypeInternal _VidEventDBConf_default_instance_;
 class VidGroup;
 class VidGroupDefaultTypeInternal;
-extern VidGroupDefaultTypeInternal _VidGroup_default_instance_;
+VE_LIBRARY_API extern VidGroupDefaultTypeInternal _VidGroup_default_instance_;
 class VidGroupList;
 class VidGroupListDefaultTypeInternal;
-extern VidGroupListDefaultTypeInternal _VidGroupList_default_instance_;
+VE_LIBRARY_API extern VidGroupListDefaultTypeInternal _VidGroupList_default_instance_;
 class VidHDFSConf;
 class VidHDFSConfDefaultTypeInternal;
-extern VidHDFSConfDefaultTypeInternal _VidHDFSConf_default_instance_;
+VE_LIBRARY_API extern VidHDFSConfDefaultTypeInternal _VidHDFSConf_default_instance_;
 class VidStor;
 class VidStorDefaultTypeInternal;
-extern VidStorDefaultTypeInternal _VidStor_default_instance_;
+VE_LIBRARY_API extern VidStorDefaultTypeInternal _VidStor_default_instance_;
 class VidStorList;
 class VidStorListDefaultTypeInternal;
-extern VidStorListDefaultTypeInternal _VidStorList_default_instance_;
+VE_LIBRARY_API extern VidStorListDefaultTypeInternal _VidStorList_default_instance_;
 class VidStorServerConf;
 class VidStorServerConfDefaultTypeInternal;
-extern VidStorServerConfDefaultTypeInternal _VidStorServerConf_default_instance_;
+VE_LIBRARY_API extern VidStorServerConfDefaultTypeInternal _VidStorServerConf_default_instance_;
 class VidStream;
 class VidStreamDefaultTypeInternal;
-extern VidStreamDefaultTypeInternal _VidStream_default_instance_;
+VE_LIBRARY_API extern VidStreamDefaultTypeInternal _VidStream_default_instance_;
 class VidStreamList;
 class VidStreamListDefaultTypeInternal;
-extern VidStreamListDefaultTypeInternal _VidStreamList_default_instance_;
+VE_LIBRARY_API extern VidStreamListDefaultTypeInternal _VidStreamList_default_instance_;
 class VidTour;
 class VidTourDefaultTypeInternal;
-extern VidTourDefaultTypeInternal _VidTour_default_instance_;
+VE_LIBRARY_API extern VidTourDefaultTypeInternal _VidTour_default_instance_;
 class VidTourList;
 class VidTourListDefaultTypeInternal;
-extern VidTourListDefaultTypeInternal _VidTourList_default_instance_;
+VE_LIBRARY_API extern VidTourListDefaultTypeInternal _VidTourList_default_instance_;
 class VidUser;
 class VidUserDefaultTypeInternal;
-extern VidUserDefaultTypeInternal _VidUser_default_instance_;
+VE_LIBRARY_API extern VidUserDefaultTypeInternal _VidUser_default_instance_;
 class VidUserList;
 class VidUserListDefaultTypeInternal;
-extern VidUserListDefaultTypeInternal _VidUserList_default_instance_;
+VE_LIBRARY_API extern VidUserListDefaultTypeInternal _VidUserList_default_instance_;
 class VidView;
 class VidViewDefaultTypeInternal;
-extern VidViewDefaultTypeInternal _VidView_default_instance_;
+VE_LIBRARY_API extern VidViewDefaultTypeInternal _VidView_default_instance_;
 class VidViewList;
 class VidViewListDefaultTypeInternal;
-extern VidViewListDefaultTypeInternal _VidViewList_default_instance_;
+VE_LIBRARY_API extern VidViewListDefaultTypeInternal _VidViewList_default_instance_;
 class VidViewWindow;
 class VidViewWindowDefaultTypeInternal;
-extern VidViewWindowDefaultTypeInternal _VidViewWindow_default_instance_;
+VE_LIBRARY_API extern VidViewWindowDefaultTypeInternal _VidViewWindow_default_instance_;
 
 namespace protobuf_linksystem_2eproto {
 // Internal implementation detail -- do not call these.
-struct TableStruct {
+struct VE_LIBRARY_API TableStruct {
   static const ::google::protobuf::uint32 offsets[];
   static void InitDefaultsImpl();
   static void Shutdown();
 };
-void AddDescriptors();
-void InitDefaults();
+void VE_LIBRARY_API AddDescriptors();
+void VE_LIBRARY_API InitDefaults();
 }  // namespace protobuf_linksystem_2eproto
 
 // ===================================================================
 
-class LinkLoginReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkLoginReq) */ {
+class VE_LIBRARY_API LinkLoginReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkLoginReq) */ {
  public:
   LinkLoginReq();
   virtual ~LinkLoginReq();
@@ -296,11 +296,11 @@ class LinkLoginReq : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::internal::ArenaStringPtr strusername_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkLoginResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkLoginResp) */ {
+class VE_LIBRARY_API LinkLoginResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkLoginResp) */ {
  public:
   LinkLoginResp();
   virtual ~LinkLoginResp();
@@ -401,11 +401,11 @@ class LinkLoginResp : public ::google::protobuf::Message /* @@protoc_insertion_p
   bool bretnonce_;
   bool bret_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkKeepaliveReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkKeepaliveReq) */ {
+class VE_LIBRARY_API LinkKeepaliveReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkKeepaliveReq) */ {
  public:
   LinkKeepaliveReq();
   virtual ~LinkKeepaliveReq();
@@ -484,11 +484,11 @@ class LinkKeepaliveReq : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::int32 nkeepalive_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkKeepaliveResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkKeepaliveResp) */ {
+class VE_LIBRARY_API LinkKeepaliveResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkKeepaliveResp) */ {
  public:
   LinkKeepaliveResp();
   virtual ~LinkKeepaliveResp();
@@ -567,11 +567,11 @@ class LinkKeepaliveResp : public ::google::protobuf::Message /* @@protoc_inserti
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::int32 nkeepalive_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkListCamReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkListCamReq) */ {
+class VE_LIBRARY_API LinkListCamReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkListCamReq) */ {
  public:
   LinkListCamReq();
   virtual ~LinkListCamReq();
@@ -650,11 +650,11 @@ class LinkListCamReq : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool ball_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkListCamResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkListCamResp) */ {
+class VE_LIBRARY_API LinkListCamResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkListCamResp) */ {
  public:
   LinkListCamResp();
   virtual ~LinkListCamResp();
@@ -736,11 +736,11 @@ class LinkListCamResp : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::VidCameraList* clist_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkCamReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamReq) */ {
+class VE_LIBRARY_API LinkCamReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamReq) */ {
  public:
   LinkCamReq();
   virtual ~LinkCamReq();
@@ -827,11 +827,11 @@ class LinkCamReq : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr strid_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkCamResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamResp) */ {
+class VE_LIBRARY_API LinkCamResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamResp) */ {
  public:
   LinkCamResp();
   virtual ~LinkCamResp();
@@ -913,11 +913,11 @@ class LinkCamResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::VidCamera* ccam_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkVidDiskListReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkVidDiskListReq) */ {
+class VE_LIBRARY_API LinkVidDiskListReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkVidDiskListReq) */ {
  public:
   LinkVidDiskListReq();
   virtual ~LinkVidDiskListReq();
@@ -996,11 +996,11 @@ class LinkVidDiskListReq : public ::google::protobuf::Message /* @@protoc_insert
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool ball_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkVidDiskListResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkVidDiskListResp) */ {
+class VE_LIBRARY_API LinkVidDiskListResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkVidDiskListResp) */ {
  public:
   LinkVidDiskListResp();
   virtual ~LinkVidDiskListResp();
@@ -1082,11 +1082,11 @@ class LinkVidDiskListResp : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::VidDiskList* cdisk_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkSysVidDiskListReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkSysVidDiskListReq) */ {
+class VE_LIBRARY_API LinkSysVidDiskListReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkSysVidDiskListReq) */ {
  public:
   LinkSysVidDiskListReq();
   virtual ~LinkSysVidDiskListReq();
@@ -1165,11 +1165,11 @@ class LinkSysVidDiskListReq : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool ball_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkSysVidDiskListResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkSysVidDiskListResp) */ {
+class VE_LIBRARY_API LinkSysVidDiskListResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkSysVidDiskListResp) */ {
  public:
   LinkSysVidDiskListResp();
   virtual ~LinkSysVidDiskListResp();
@@ -1251,11 +1251,11 @@ class LinkSysVidDiskListResp : public ::google::protobuf::Message /* @@protoc_in
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::VidDiskList* cdisk_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkAddDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkAddDiskReq) */ {
+class VE_LIBRARY_API LinkAddDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkAddDiskReq) */ {
  public:
   LinkAddDiskReq();
   virtual ~LinkAddDiskReq();
@@ -1337,11 +1337,11 @@ class LinkAddDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::VidDisk* cdisk_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkAddDiskResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkAddDiskResp) */ {
+class VE_LIBRARY_API LinkAddDiskResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkAddDiskResp) */ {
  public:
   LinkAddDiskResp();
   virtual ~LinkAddDiskResp();
@@ -1420,11 +1420,11 @@ class LinkAddDiskResp : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool bsuccess_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkDelDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkDelDiskReq) */ {
+class VE_LIBRARY_API LinkDelDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkDelDiskReq) */ {
  public:
   LinkDelDiskReq();
   virtual ~LinkDelDiskReq();
@@ -1511,11 +1511,11 @@ class LinkDelDiskReq : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr strid_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkDelDiskResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkDelDiskResp) */ {
+class VE_LIBRARY_API LinkDelDiskResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkDelDiskResp) */ {
  public:
   LinkDelDiskResp();
   virtual ~LinkDelDiskResp();
@@ -1594,11 +1594,11 @@ class LinkDelDiskResp : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool bsuccess_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkUpdateDiskLimitReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUpdateDiskLimitReq) */ {
+class VE_LIBRARY_API LinkUpdateDiskLimitReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUpdateDiskLimitReq) */ {
  public:
   LinkUpdateDiskLimitReq();
   virtual ~LinkUpdateDiskLimitReq();
@@ -1692,11 +1692,11 @@ class LinkUpdateDiskLimitReq : public ::google::protobuf::Message /* @@protoc_in
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::int64 nlimit_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkUpdateDiskLimitResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUpdateDiskLimitResp) */ {
+class VE_LIBRARY_API LinkUpdateDiskLimitResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUpdateDiskLimitResp) */ {
  public:
   LinkUpdateDiskLimitResp();
   virtual ~LinkUpdateDiskLimitResp();
@@ -1775,11 +1775,11 @@ class LinkUpdateDiskLimitResp : public ::google::protobuf::Message /* @@protoc_i
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool bsuccess_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkGetLicReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetLicReq) */ {
+class VE_LIBRARY_API LinkGetLicReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetLicReq) */ {
  public:
   LinkGetLicReq();
   virtual ~LinkGetLicReq();
@@ -1866,11 +1866,11 @@ class LinkGetLicReq : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr strfake_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkGetLicResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetLicResp) */ {
+class VE_LIBRARY_API LinkGetLicResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetLicResp) */ {
  public:
   LinkGetLicResp();
   virtual ~LinkGetLicResp();
@@ -2024,11 +2024,11 @@ class LinkGetLicResp : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::ArenaStringPtr strexpiretime_;
   ::google::protobuf::int32 nch_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkGetVerReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetVerReq) */ {
+class VE_LIBRARY_API LinkGetVerReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetVerReq) */ {
  public:
   LinkGetVerReq();
   virtual ~LinkGetVerReq();
@@ -2115,11 +2115,11 @@ class LinkGetVerReq : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr strfake_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class LinkGetVerResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetVerResp) */ {
+class VE_LIBRARY_API LinkGetVerResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkGetVerResp) */ {
  public:
   LinkGetVerResp();
   virtual ~LinkGetVerResp();
@@ -2221,7 +2221,7 @@ class LinkGetVerResp : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::ArenaStringPtr strver_;
   ::google::protobuf::internal::ArenaStringPtr strinfo_;
   mutable int _cached_size_;
-  friend struct  protobuf_linksystem_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
 // ===================================================================
 

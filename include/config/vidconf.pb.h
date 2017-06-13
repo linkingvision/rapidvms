@@ -32,98 +32,98 @@
 // @@protoc_insertion_point(includes)
 class VidBlob;
 class VidBlobDefaultTypeInternal;
-extern VidBlobDefaultTypeInternal _VidBlob_default_instance_;
+VE_LIBRARY_API extern VidBlobDefaultTypeInternal _VidBlob_default_instance_;
 class VidBlobList;
 class VidBlobListDefaultTypeInternal;
-extern VidBlobListDefaultTypeInternal _VidBlobList_default_instance_;
+VE_LIBRARY_API extern VidBlobListDefaultTypeInternal _VidBlobList_default_instance_;
 class VidCamera;
 class VidCameraDefaultTypeInternal;
-extern VidCameraDefaultTypeInternal _VidCamera_default_instance_;
+VE_LIBRARY_API extern VidCameraDefaultTypeInternal _VidCamera_default_instance_;
 class VidCameraId;
 class VidCameraIdDefaultTypeInternal;
-extern VidCameraIdDefaultTypeInternal _VidCameraId_default_instance_;
+VE_LIBRARY_API extern VidCameraIdDefaultTypeInternal _VidCameraId_default_instance_;
 class VidCameraList;
 class VidCameraListDefaultTypeInternal;
-extern VidCameraListDefaultTypeInternal _VidCameraList_default_instance_;
+VE_LIBRARY_API extern VidCameraListDefaultTypeInternal _VidCameraList_default_instance_;
 class VidClientConf;
 class VidClientConfDefaultTypeInternal;
-extern VidClientConfDefaultTypeInternal _VidClientConf_default_instance_;
+VE_LIBRARY_API extern VidClientConfDefaultTypeInternal _VidClientConf_default_instance_;
 class VidDisk;
 class VidDiskDefaultTypeInternal;
-extern VidDiskDefaultTypeInternal _VidDisk_default_instance_;
+VE_LIBRARY_API extern VidDiskDefaultTypeInternal _VidDisk_default_instance_;
 class VidDiskList;
 class VidDiskListDefaultTypeInternal;
-extern VidDiskListDefaultTypeInternal _VidDiskList_default_instance_;
+VE_LIBRARY_API extern VidDiskListDefaultTypeInternal _VidDiskList_default_instance_;
 class VidEmap;
 class VidEmapDefaultTypeInternal;
-extern VidEmapDefaultTypeInternal _VidEmap_default_instance_;
+VE_LIBRARY_API extern VidEmapDefaultTypeInternal _VidEmap_default_instance_;
 class VidEmapCamera;
 class VidEmapCameraDefaultTypeInternal;
-extern VidEmapCameraDefaultTypeInternal _VidEmapCamera_default_instance_;
+VE_LIBRARY_API extern VidEmapCameraDefaultTypeInternal _VidEmapCamera_default_instance_;
 class VidEmapList;
 class VidEmapListDefaultTypeInternal;
-extern VidEmapListDefaultTypeInternal _VidEmapList_default_instance_;
+VE_LIBRARY_API extern VidEmapListDefaultTypeInternal _VidEmapList_default_instance_;
 class VidEvent;
 class VidEventDefaultTypeInternal;
-extern VidEventDefaultTypeInternal _VidEvent_default_instance_;
+VE_LIBRARY_API extern VidEventDefaultTypeInternal _VidEvent_default_instance_;
 class VidEventDBConf;
 class VidEventDBConfDefaultTypeInternal;
-extern VidEventDBConfDefaultTypeInternal _VidEventDBConf_default_instance_;
+VE_LIBRARY_API extern VidEventDBConfDefaultTypeInternal _VidEventDBConf_default_instance_;
 class VidGroup;
 class VidGroupDefaultTypeInternal;
-extern VidGroupDefaultTypeInternal _VidGroup_default_instance_;
+VE_LIBRARY_API extern VidGroupDefaultTypeInternal _VidGroup_default_instance_;
 class VidGroupList;
 class VidGroupListDefaultTypeInternal;
-extern VidGroupListDefaultTypeInternal _VidGroupList_default_instance_;
+VE_LIBRARY_API extern VidGroupListDefaultTypeInternal _VidGroupList_default_instance_;
 class VidHDFSConf;
 class VidHDFSConfDefaultTypeInternal;
-extern VidHDFSConfDefaultTypeInternal _VidHDFSConf_default_instance_;
+VE_LIBRARY_API extern VidHDFSConfDefaultTypeInternal _VidHDFSConf_default_instance_;
 class VidStor;
 class VidStorDefaultTypeInternal;
-extern VidStorDefaultTypeInternal _VidStor_default_instance_;
+VE_LIBRARY_API extern VidStorDefaultTypeInternal _VidStor_default_instance_;
 class VidStorList;
 class VidStorListDefaultTypeInternal;
-extern VidStorListDefaultTypeInternal _VidStorList_default_instance_;
+VE_LIBRARY_API extern VidStorListDefaultTypeInternal _VidStorList_default_instance_;
 class VidStorServerConf;
 class VidStorServerConfDefaultTypeInternal;
-extern VidStorServerConfDefaultTypeInternal _VidStorServerConf_default_instance_;
+VE_LIBRARY_API extern VidStorServerConfDefaultTypeInternal _VidStorServerConf_default_instance_;
 class VidStream;
 class VidStreamDefaultTypeInternal;
-extern VidStreamDefaultTypeInternal _VidStream_default_instance_;
+VE_LIBRARY_API extern VidStreamDefaultTypeInternal _VidStream_default_instance_;
 class VidStreamList;
 class VidStreamListDefaultTypeInternal;
-extern VidStreamListDefaultTypeInternal _VidStreamList_default_instance_;
+VE_LIBRARY_API extern VidStreamListDefaultTypeInternal _VidStreamList_default_instance_;
 class VidTour;
 class VidTourDefaultTypeInternal;
-extern VidTourDefaultTypeInternal _VidTour_default_instance_;
+VE_LIBRARY_API extern VidTourDefaultTypeInternal _VidTour_default_instance_;
 class VidTourList;
 class VidTourListDefaultTypeInternal;
-extern VidTourListDefaultTypeInternal _VidTourList_default_instance_;
+VE_LIBRARY_API extern VidTourListDefaultTypeInternal _VidTourList_default_instance_;
 class VidUser;
 class VidUserDefaultTypeInternal;
-extern VidUserDefaultTypeInternal _VidUser_default_instance_;
+VE_LIBRARY_API extern VidUserDefaultTypeInternal _VidUser_default_instance_;
 class VidUserList;
 class VidUserListDefaultTypeInternal;
-extern VidUserListDefaultTypeInternal _VidUserList_default_instance_;
+VE_LIBRARY_API extern VidUserListDefaultTypeInternal _VidUserList_default_instance_;
 class VidView;
 class VidViewDefaultTypeInternal;
-extern VidViewDefaultTypeInternal _VidView_default_instance_;
+VE_LIBRARY_API extern VidViewDefaultTypeInternal _VidView_default_instance_;
 class VidViewList;
 class VidViewListDefaultTypeInternal;
-extern VidViewListDefaultTypeInternal _VidViewList_default_instance_;
+VE_LIBRARY_API extern VidViewListDefaultTypeInternal _VidViewList_default_instance_;
 class VidViewWindow;
 class VidViewWindowDefaultTypeInternal;
-extern VidViewWindowDefaultTypeInternal _VidViewWindow_default_instance_;
+VE_LIBRARY_API extern VidViewWindowDefaultTypeInternal _VidViewWindow_default_instance_;
 
 namespace protobuf_vidconf_2eproto {
 // Internal implementation detail -- do not call these.
-struct TableStruct {
+struct VE_LIBRARY_API TableStruct {
   static const ::google::protobuf::uint32 offsets[];
   static void InitDefaultsImpl();
   static void Shutdown();
 };
-void AddDescriptors();
-void InitDefaults();
+void VE_LIBRARY_API AddDescriptors();
+void VE_LIBRARY_API InitDefaults();
 }  // namespace protobuf_vidconf_2eproto
 
 enum CameraType {
@@ -137,12 +137,12 @@ enum CameraType {
   CameraType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CameraType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool CameraType_IsValid(int value);
+VE_LIBRARY_API bool CameraType_IsValid(int value);
 const CameraType CameraType_MIN = VID_0;
 const CameraType CameraType_MAX = VID_MJPEG;
 const int CameraType_ARRAYSIZE = CameraType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* CameraType_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* CameraType_descriptor();
 inline const ::std::string& CameraType_Name(CameraType value) {
   return ::google::protobuf::internal::NameOfEnum(
     CameraType_descriptor(), value);
@@ -159,12 +159,12 @@ enum VidRecType {
   VidRecType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidRecType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool VidRecType_IsValid(int value);
+VE_LIBRARY_API bool VidRecType_IsValid(int value);
 const VidRecType VidRecType_MIN = VID_R_OFF;
 const VidRecType VidRecType_MAX = VID_R_SCHED;
 const int VidRecType_ARRAYSIZE = VidRecType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* VidRecType_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* VidRecType_descriptor();
 inline const ::std::string& VidRecType_Name(VidRecType value) {
   return ::google::protobuf::internal::NameOfEnum(
     VidRecType_descriptor(), value);
@@ -181,12 +181,12 @@ enum CameraConnectType {
   CameraConnectType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   CameraConnectType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool CameraConnectType_IsValid(int value);
+VE_LIBRARY_API bool CameraConnectType_IsValid(int value);
 const CameraConnectType CameraConnectType_MIN = VID_CONNECT_0;
 const CameraConnectType CameraConnectType_MAX = VID_CONNECT_UDP;
 const int CameraConnectType_ARRAYSIZE = CameraConnectType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* CameraConnectType_descriptor();
 inline const ::std::string& CameraConnectType_Name(CameraConnectType value) {
   return ::google::protobuf::internal::NameOfEnum(
     CameraConnectType_descriptor(), value);
@@ -203,12 +203,12 @@ enum OnvifEventLevel {
   OnvifEventLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   OnvifEventLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool OnvifEventLevel_IsValid(int value);
+VE_LIBRARY_API bool OnvifEventLevel_IsValid(int value);
 const OnvifEventLevel OnvifEventLevel_MIN = VID_ONVIF_EVENT_OFF;
 const OnvifEventLevel OnvifEventLevel_MAX = VID_ONVIF_EVENT_MOTION;
 const int OnvifEventLevel_ARRAYSIZE = OnvifEventLevel_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* OnvifEventLevel_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* OnvifEventLevel_descriptor();
 inline const ::std::string& OnvifEventLevel_Name(OnvifEventLevel value) {
   return ::google::protobuf::internal::NameOfEnum(
     OnvifEventLevel_descriptor(), value);
@@ -225,12 +225,12 @@ enum VidLanguage {
   VidLanguage_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidLanguage_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool VidLanguage_IsValid(int value);
+VE_LIBRARY_API bool VidLanguage_IsValid(int value);
 const VidLanguage VidLanguage_MIN = VID_LANG_AUTO;
 const VidLanguage VidLanguage_MAX = VID_ZH_CN;
 const int VidLanguage_ARRAYSIZE = VidLanguage_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* VidLanguage_descriptor();
 inline const ::std::string& VidLanguage_Name(VidLanguage value) {
   return ::google::protobuf::internal::NameOfEnum(
     VidLanguage_descriptor(), value);
@@ -258,12 +258,12 @@ enum VidLayout {
   VidLayout_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidLayout_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool VidLayout_IsValid(int value);
+VE_LIBRARY_API bool VidLayout_IsValid(int value);
 const VidLayout VidLayout_MIN = VID_LAYOUT_MODE_0;
 const VidLayout VidLayout_MAX = VID_LAYOUT_MODE_1p6;
 const int VidLayout_ARRAYSIZE = VidLayout_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* VidLayout_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* VidLayout_descriptor();
 inline const ::std::string& VidLayout_Name(VidLayout value) {
   return ::google::protobuf::internal::NameOfEnum(
     VidLayout_descriptor(), value);
@@ -279,12 +279,12 @@ enum VidEventDBType {
   VidEventDBType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   VidEventDBType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
-bool VidEventDBType_IsValid(int value);
+VE_LIBRARY_API bool VidEventDBType_IsValid(int value);
 const VidEventDBType VidEventDBType_MIN = VID_DB_SQLITE;
 const VidEventDBType VidEventDBType_MAX = VID_DB_POSTGRESQL;
 const int VidEventDBType_ARRAYSIZE = VidEventDBType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor();
+VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* VidEventDBType_descriptor();
 inline const ::std::string& VidEventDBType_Name(VidEventDBType value) {
   return ::google::protobuf::internal::NameOfEnum(
     VidEventDBType_descriptor(), value);
@@ -296,7 +296,7 @@ inline bool VidEventDBType_Parse(
 }
 // ===================================================================
 
-class VidUser : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidUser) */ {
+class VE_LIBRARY_API VidUser : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidUser) */ {
  public:
   VidUser();
   virtual ~VidUser();
@@ -428,11 +428,11 @@ class VidUser : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   ::google::protobuf::internal::ArenaStringPtr strroleid_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidUserList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidUserList) */ {
+class VE_LIBRARY_API VidUserList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidUserList) */ {
  public:
   VidUserList();
   virtual ~VidUserList();
@@ -517,11 +517,11 @@ class VidUserList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidUser > cviduser_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidStorServerConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStorServerConf) */ {
+class VE_LIBRARY_API VidStorServerConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStorServerConf) */ {
  public:
   VidStorServerConf();
   virtual ~VidStorServerConf();
@@ -615,11 +615,11 @@ class VidStorServerConf : public ::google::protobuf::Message /* @@protoc_inserti
   ::google::protobuf::internal::ArenaStringPtr stradminpasswd_;
   ::google::protobuf::int32 noapiport_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCamera) */ {
+class VE_LIBRARY_API VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCamera) */ {
  public:
   VidCamera();
   virtual ~VidCamera();
@@ -1008,11 +1008,11 @@ class VidCamera : public ::google::protobuf::Message /* @@protoc_insertion_point
   bool brec_;
   int nonvifevtlevel_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidCameraList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCameraList) */ {
+class VE_LIBRARY_API VidCameraList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCameraList) */ {
  public:
   VidCameraList();
   virtual ~VidCameraList();
@@ -1097,11 +1097,11 @@ class VidCameraList : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidCamera > cvidcamera_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidDisk : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidDisk) */ {
+class VE_LIBRARY_API VidDisk : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidDisk) */ {
  public:
   VidDisk();
   virtual ~VidDisk();
@@ -1231,11 +1231,11 @@ class VidDisk : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::int64 nstorlimit_;
   ::google::protobuf::int64 nstorused_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidDiskList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidDiskList) */ {
+class VE_LIBRARY_API VidDiskList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidDiskList) */ {
  public:
   VidDiskList();
   virtual ~VidDiskList();
@@ -1320,11 +1320,11 @@ class VidDiskList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidDisk > cviddisk_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidHDFSConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidHDFSConf) */ {
+class VE_LIBRARY_API VidHDFSConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidHDFSConf) */ {
  public:
   VidHDFSConf();
   virtual ~VidHDFSConf();
@@ -1463,11 +1463,11 @@ class VidHDFSConf : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   ::google::protobuf::int32 nfileinterval_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidCameraId : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCameraId) */ {
+class VE_LIBRARY_API VidCameraId : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidCameraId) */ {
  public:
   VidCameraId();
   virtual ~VidCameraId();
@@ -1569,11 +1569,11 @@ class VidCameraId : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::ArenaStringPtr strstorid_;
   ::google::protobuf::internal::ArenaStringPtr strcameraid_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidClientConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidClientConf) */ {
+class VE_LIBRARY_API VidClientConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidClientConf) */ {
  public:
   VidClientConf();
   virtual ~VidClientConf();
@@ -1681,11 +1681,11 @@ class VidClientConf : public ::google::protobuf::Message /* @@protoc_insertion_p
   bool bautologin_;
   bool bautofullscreen_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidStor : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStor) */ {
+class VE_LIBRARY_API VidStor : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStor) */ {
  public:
   VidStor();
   virtual ~VidStor();
@@ -1847,11 +1847,11 @@ class VidStor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr struser_;
   ::google::protobuf::internal::ArenaStringPtr strpasswd_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidStorList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStorList) */ {
+class VE_LIBRARY_API VidStorList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStorList) */ {
  public:
   VidStorList();
   virtual ~VidStorList();
@@ -1936,11 +1936,11 @@ class VidStorList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidStor > cvidstor_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidViewWindow : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidViewWindow) */ {
+class VE_LIBRARY_API VidViewWindow : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidViewWindow) */ {
  public:
   VidViewWindow();
   virtual ~VidViewWindow();
@@ -2036,11 +2036,11 @@ class VidViewWindow : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::int32 nwindowsid_;
   bool bhwaccel_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidView : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidView) */ {
+class VE_LIBRARY_API VidView : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidView) */ {
  public:
   VidView();
   virtual ~VidView();
@@ -2162,11 +2162,11 @@ class VidView : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr strname_;
   int clayout_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidViewList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidViewList) */ {
+class VE_LIBRARY_API VidViewList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidViewList) */ {
  public:
   VidViewList();
   virtual ~VidViewList();
@@ -2251,11 +2251,11 @@ class VidViewList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidView > cvidview_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidTour : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidTour) */ {
+class VE_LIBRARY_API VidTour : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidTour) */ {
  public:
   VidTour();
   virtual ~VidTour();
@@ -2374,11 +2374,11 @@ class VidTour : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidTourList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidTourList) */ {
+class VE_LIBRARY_API VidTourList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidTourList) */ {
  public:
   VidTourList();
   virtual ~VidTourList();
@@ -2463,11 +2463,11 @@ class VidTourList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidTour > cvidtour_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidGroup : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidGroup) */ {
+class VE_LIBRARY_API VidGroup : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidGroup) */ {
  public:
   VidGroup();
   virtual ~VidGroup();
@@ -2582,11 +2582,11 @@ class VidGroup : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidGroupList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidGroupList) */ {
+class VE_LIBRARY_API VidGroupList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidGroupList) */ {
  public:
   VidGroupList();
   virtual ~VidGroupList();
@@ -2671,11 +2671,11 @@ class VidGroupList : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidGroup > cvidgroup_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidEmapCamera : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmapCamera) */ {
+class VE_LIBRARY_API VidEmapCamera : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmapCamera) */ {
  public:
   VidEmapCamera();
   virtual ~VidEmapCamera();
@@ -2785,11 +2785,11 @@ class VidEmapCamera : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::int32 w_;
   ::google::protobuf::int32 h_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidEmap : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmap) */ {
+class VE_LIBRARY_API VidEmap : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmap) */ {
  public:
   VidEmap();
   virtual ~VidEmap();
@@ -2904,11 +2904,11 @@ class VidEmap : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr strid_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidEmapList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmapList) */ {
+class VE_LIBRARY_API VidEmapList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEmapList) */ {
  public:
   VidEmapList();
   virtual ~VidEmapList();
@@ -2993,11 +2993,11 @@ class VidEmapList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidEmap > cvidemap_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidStream : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStream) */ {
+class VE_LIBRARY_API VidStream : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStream) */ {
  public:
   VidStream();
   virtual ~VidStream();
@@ -3099,11 +3099,11 @@ class VidStream : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::internal::ArenaStringPtr strtoken_;
   ::google::protobuf::internal::ArenaStringPtr strname_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidStreamList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStreamList) */ {
+class VE_LIBRARY_API VidStreamList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStreamList) */ {
  public:
   VidStreamList();
   virtual ~VidStreamList();
@@ -3188,11 +3188,11 @@ class VidStreamList : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidStream > cvidstream_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidBlob : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidBlob) */ {
+class VE_LIBRARY_API VidBlob : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidBlob) */ {
  public:
   VidBlob();
   virtual ~VidBlob();
@@ -3292,11 +3292,11 @@ class VidBlob : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::int32 x1_;
   ::google::protobuf::int32 y1_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidBlobList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidBlobList) */ {
+class VE_LIBRARY_API VidBlobList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidBlobList) */ {
  public:
   VidBlobList();
   virtual ~VidBlobList();
@@ -3381,11 +3381,11 @@ class VidBlobList : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::VidBlob > cblob_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidEventDBConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEventDBConf) */ {
+class VE_LIBRARY_API VidEventDBConf : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEventDBConf) */ {
  public:
   VidEventDBConf();
   virtual ~VidEventDBConf();
@@ -3479,11 +3479,11 @@ class VidEventDBConf : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::ArenaStringPtr strdbpath_;
   int ntype_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class VidEvent : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEvent) */ {
+class VE_LIBRARY_API VidEvent : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidEvent) */ {
  public:
   VidEvent();
   virtual ~VidEvent();
@@ -3718,7 +3718,7 @@ class VidEvent : public ::google::protobuf::Message /* @@protoc_insertion_point(
   bool bhandled_;
   bool bsearched_;
   mutable int _cached_size_;
-  friend struct  protobuf_vidconf_2eproto::TableStruct;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
 // ===================================================================
 
