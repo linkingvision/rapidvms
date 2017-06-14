@@ -50,9 +50,6 @@
     <Filter Include="include\config">
       <UniqueIdentifier>{067dbd58-f674-4d2a-b8d4-7f95fe49e688}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\client">
-      <UniqueIdentifier>{e9cd0b9f-14dd-4559-98e4-61467e2e6064}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\common\viditem">
       <UniqueIdentifier>{bd7c3705-c5a6-47e0-a77b-300ec207eaf2}</UniqueIdentifier>
     </Filter>
@@ -169,30 +166,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vscview.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_clientfactory.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storclient.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storclient.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storfactory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storstream.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storstream.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\main\vscvidlistframe.cpp">
       <Filter>src\main</Filter>
     </ClCompile>
@@ -266,15 +239,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_vidcamadd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
-      <Filter>include\config</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storsyncinf.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storsyncinf.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
@@ -705,18 +669,6 @@
     <CustomBuild Include="..\src\live\vscview.h">
       <Filter>src\live</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\include\client\clientfactory.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storclient.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storfactory.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storstream.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\src\main\vscvidlistframe.h">
       <Filter>src\main</Filter>
     </CustomBuild>
@@ -740,9 +692,6 @@
     </CustomBuild>
     <CustomBuild Include="..\src\config\vidstor\vidcamadd.ui">
       <Filter>src\config\vidstor</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storsyncinf.hpp">
-      <Filter>include\client</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\include\oapi\oapis.hpp">
       <Filter>include\oapi</Filter>
@@ -1198,42 +1147,6 @@
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\config\clientconfdb.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\clientconfdbimpl.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\conf.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\confdb.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\confdbimpl.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\sysdb.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\vidconf.pb.h">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\clientfactoryimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storclientimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storcmn.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storfactoryimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storstreamimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapic.hpp">
       <Filter>include\oapi</Filter>
     </ClInclude>
@@ -1257,9 +1170,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vidcamadd.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storsyncinfimpl.hpp">
-      <Filter>include\client</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vsclogin.h">
       <Filter>Generated Files</Filter>
@@ -1353,6 +1263,12 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscmotreg.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\conf.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\confver.hpp">
+      <Filter>include\config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

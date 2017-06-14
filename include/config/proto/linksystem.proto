@@ -38,6 +38,24 @@ message LinkCamReq {
 message LinkCamResp {
 	VidCamera cCam = 1;
 }
+message LinkAddCamReq {
+	VidCamera cCam = 1;
+}
+message LinkAddCamResp {
+	bool bSuccess = 1;
+}
+message LinkDelCamReq {
+	string strId = 1;
+}
+message LinkDelCamResp {
+	bool bSuccess = 1;
+}
+message LinkSetCamSchedReq {
+	VidCamera cCam = 1;
+}
+message LinkSetCamSchedResp {
+	bool bSuccess = 1;
+}
 
 
 //Disk
@@ -95,6 +113,25 @@ message LinkGetVerResp {
 	string strVer = 1;
 	string strInfo = 2;
 }
+message LinkConfLicReq {
+	string strLic = 1;
+}
+message LinkConfLicResp {
+	bool bSuccess = 1;
+}
+
+//User Add Del
+message LinkAddUserReq {
+	string strUser = 1;
+	string strPasswd = 2;
+	//Role of the user
+}
+message LinkAddUserResp {
+	bool bSuccess = 1;
+}
+
+//Search
+
 
 
 

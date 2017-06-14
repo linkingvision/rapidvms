@@ -31,18 +31,42 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "linksystem.pb.h"
 // @@protoc_insertion_point(includes)
+class LinkAddCamReq;
+class LinkAddCamReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkAddCamReqDefaultTypeInternal _LinkAddCamReq_default_instance_;
+class LinkAddCamResp;
+class LinkAddCamRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkAddCamRespDefaultTypeInternal _LinkAddCamResp_default_instance_;
 class LinkAddDiskReq;
 class LinkAddDiskReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkAddDiskReqDefaultTypeInternal _LinkAddDiskReq_default_instance_;
 class LinkAddDiskResp;
 class LinkAddDiskRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkAddDiskRespDefaultTypeInternal _LinkAddDiskResp_default_instance_;
+class LinkAddUserReq;
+class LinkAddUserReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkAddUserReqDefaultTypeInternal _LinkAddUserReq_default_instance_;
+class LinkAddUserResp;
+class LinkAddUserRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkAddUserRespDefaultTypeInternal _LinkAddUserResp_default_instance_;
 class LinkCamReq;
 class LinkCamReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
 class LinkCamResp;
 class LinkCamRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
+class LinkConfLicReq;
+class LinkConfLicReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkConfLicReqDefaultTypeInternal _LinkConfLicReq_default_instance_;
+class LinkConfLicResp;
+class LinkConfLicRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkConfLicRespDefaultTypeInternal _LinkConfLicResp_default_instance_;
+class LinkDelCamReq;
+class LinkDelCamReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkDelCamReqDefaultTypeInternal _LinkDelCamReq_default_instance_;
+class LinkDelCamResp;
+class LinkDelCamRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkDelCamRespDefaultTypeInternal _LinkDelCamResp_default_instance_;
 class LinkDelDiskReq;
 class LinkDelDiskReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_instance_;
@@ -79,6 +103,12 @@ VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_inst
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+class LinkSetCamSchedReq;
+class LinkSetCamSchedReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkSetCamSchedReqDefaultTypeInternal _LinkSetCamSchedReq_default_instance_;
+class LinkSetCamSchedResp;
+class LinkSetCamSchedRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkSetCamSchedRespDefaultTypeInternal _LinkSetCamSchedResp_default_instance_;
 class LinkSysVidDiskListReq;
 class LinkSysVidDiskListReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
@@ -118,34 +148,44 @@ void VE_LIBRARY_API InitDefaults();
 
 enum LinkCmdType {
   LINK_CMD_ZERO = 0,
-  LINK_CMD_LOGIN_REQ = 1,
-  LINK_CMD_LOGIN_RESP = 2,
-  LINK_CMD_KEEPALIVE_REQ = 3,
-  LINK_CMD_KEEPALIVE_RESP = 4,
-  LINK_CMD_CAM_LIST_REQ = 5,
-  LINK_CMD_CAM_LIST_RESP = 6,
-  LINK_CMD_CAM_REQ = 7,
-  LINK_CMD_CAM_RESP = 8,
-  LINK_CMD_DISK_LIST_REQ = 9,
-  LINK_CMD_DISK_LIST_RESP = 10,
-  LINK_CMD_SYS_DISK_LIST_REQ = 11,
-  LINK_CMD_SYS_DISK_LIST_RESP = 12,
-  LINK_CMD_ADD_DISK_REQ = 13,
-  LINK_CMD_ADD_DISK_RESP = 14,
-  LINK_CMD_DEL_DISK_REQ = 15,
-  LINK_CMD_DEL_DISK_RESP = 16,
-  LINK_CMD_UPDATE_DISK_LIMIT_REQ = 17,
-  LINK_CMD_UPDATE_DISK_LIMIT_RESP = 18,
-  LINK_CMD_GET_LIC_REQ = 19,
-  LINK_CMD_GET_LIC_RESP = 20,
-  LINK_CMD_GET_VER_REQ = 21,
-  LINK_CMD_GET_VER_RESP = 22,
+  LINK_CMD_LOGIN_REQ = 101,
+  LINK_CMD_LOGIN_RESP = 102,
+  LINK_CMD_KEEPALIVE_REQ = 103,
+  LINK_CMD_KEEPALIVE_RESP = 104,
+  LINK_CMD_CAM_LIST_REQ = 201,
+  LINK_CMD_CAM_LIST_RESP = 202,
+  LINK_CMD_CAM_REQ = 203,
+  LINK_CMD_CAM_RESP = 204,
+  LINK_CMD_ADD_CAM_REQ = 205,
+  LINK_CMD_ADD_CAM_RESP = 206,
+  LINK_CMD_DEL_CAM_REQ = 207,
+  LINK_CMD_DEL_CAM_RESP = 208,
+  LINK_CMD_SET_CAM_SCHED_REQ = 209,
+  LINK_CMD_SET_CAM_SCHED_RESP = 210,
+  LINK_CMD_DISK_LIST_REQ = 301,
+  LINK_CMD_DISK_LIST_RESP = 302,
+  LINK_CMD_SYS_DISK_LIST_REQ = 303,
+  LINK_CMD_SYS_DISK_LIST_RESP = 304,
+  LINK_CMD_ADD_DISK_REQ = 305,
+  LINK_CMD_ADD_DISK_RESP = 306,
+  LINK_CMD_DEL_DISK_REQ = 307,
+  LINK_CMD_DEL_DISK_RESP = 308,
+  LINK_CMD_UPDATE_DISK_LIMIT_REQ = 309,
+  LINK_CMD_UPDATE_DISK_LIMIT_RESP = 310,
+  LINK_CMD_GET_LIC_REQ = 401,
+  LINK_CMD_GET_LIC_RESP = 402,
+  LINK_CMD_GET_VER_REQ = 403,
+  LINK_CMD_GET_VER_RESP = 404,
+  LINK_CMD_CONF_LIC_REQ = 405,
+  LINK_CMD_CONF_LIC_RESP = 406,
+  LINK_CMD_ADD_USER_REQ = 501,
+  LINK_CMD_ADD_USER_RESP = 502,
   LinkCmdType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   LinkCmdType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 VE_LIBRARY_API bool LinkCmdType_IsValid(int value);
 const LinkCmdType LinkCmdType_MIN = LINK_CMD_ZERO;
-const LinkCmdType LinkCmdType_MAX = LINK_CMD_GET_VER_RESP;
+const LinkCmdType LinkCmdType_MAX = LINK_CMD_ADD_USER_RESP;
 const int LinkCmdType_ARRAYSIZE = LinkCmdType_MAX + 1;
 
 VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* LinkCmdType_descriptor();
@@ -176,28 +216,38 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   static const LinkCmd& default_instance();
 
   enum CmdCase {
-    kLoginReq = 2,
-    kLoginResp = 3,
-    kKeepaliveReq = 4,
-    kKeepaliveResp = 5,
-    kCamListReq = 6,
-    kCamListResp = 7,
-    kCamReq = 8,
-    kCamResp = 9,
-    kDiskListReq = 10,
-    kDiskListResp = 11,
-    kSysDiskListReq = 12,
-    kSysDiskListResp = 13,
-    kAddDiskReq = 14,
-    kAddDiskResp = 15,
-    kDelDiskReq = 16,
-    kDelDiskResp = 17,
-    kDiskLimitReq = 18,
-    kDiskLimitResp = 19,
-    kLicReq = 20,
-    kLicResp = 21,
-    kVerReq = 22,
-    kVerResp = 23,
+    kLoginReq = 102,
+    kLoginResp = 103,
+    kKeepaliveReq = 104,
+    kKeepaliveResp = 105,
+    kCamListReq = 201,
+    kCamListResp = 202,
+    kCamReq = 203,
+    kCamResp = 204,
+    kAddCamReq = 205,
+    kAddCamResp = 206,
+    kDelCamReq = 207,
+    kDelCamResp = 208,
+    kSetCamSchedReq = 209,
+    kSetCamSchedResp = 210,
+    kDiskListReq = 301,
+    kDiskListResp = 302,
+    kSysDiskListReq = 303,
+    kSysDiskListResp = 304,
+    kAddDiskReq = 305,
+    kAddDiskResp = 306,
+    kDelDiskReq = 307,
+    kDelDiskResp = 308,
+    kDiskLimitReq = 309,
+    kDiskLimitResp = 310,
+    kLicReq = 401,
+    kLicResp = 402,
+    kVerReq = 403,
+    kVerResp = 404,
+    kConfLicReq = 405,
+    kConfLicResp = 406,
+    kAddUserReq = 501,
+    kAddUserResp = 502,
     CMD_NOT_SET = 0,
   };
 
@@ -259,203 +309,293 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::Link::LinkCmdType type() const;
   void set_type(::Link::LinkCmdType value);
 
-  // .LinkLoginReq loginReq = 2;
+  // .LinkLoginReq loginReq = 102;
   bool has_loginreq() const;
   void clear_loginreq();
-  static const int kLoginReqFieldNumber = 2;
+  static const int kLoginReqFieldNumber = 102;
   const ::LinkLoginReq& loginreq() const;
   ::LinkLoginReq* mutable_loginreq();
   ::LinkLoginReq* release_loginreq();
   void set_allocated_loginreq(::LinkLoginReq* loginreq);
 
-  // .LinkLoginResp loginResp = 3;
+  // .LinkLoginResp loginResp = 103;
   bool has_loginresp() const;
   void clear_loginresp();
-  static const int kLoginRespFieldNumber = 3;
+  static const int kLoginRespFieldNumber = 103;
   const ::LinkLoginResp& loginresp() const;
   ::LinkLoginResp* mutable_loginresp();
   ::LinkLoginResp* release_loginresp();
   void set_allocated_loginresp(::LinkLoginResp* loginresp);
 
-  // .LinkKeepaliveReq keepaliveReq = 4;
+  // .LinkKeepaliveReq keepaliveReq = 104;
   bool has_keepalivereq() const;
   void clear_keepalivereq();
-  static const int kKeepaliveReqFieldNumber = 4;
+  static const int kKeepaliveReqFieldNumber = 104;
   const ::LinkKeepaliveReq& keepalivereq() const;
   ::LinkKeepaliveReq* mutable_keepalivereq();
   ::LinkKeepaliveReq* release_keepalivereq();
   void set_allocated_keepalivereq(::LinkKeepaliveReq* keepalivereq);
 
-  // .LinkKeepaliveResp keepaliveResp = 5;
+  // .LinkKeepaliveResp keepaliveResp = 105;
   bool has_keepaliveresp() const;
   void clear_keepaliveresp();
-  static const int kKeepaliveRespFieldNumber = 5;
+  static const int kKeepaliveRespFieldNumber = 105;
   const ::LinkKeepaliveResp& keepaliveresp() const;
   ::LinkKeepaliveResp* mutable_keepaliveresp();
   ::LinkKeepaliveResp* release_keepaliveresp();
   void set_allocated_keepaliveresp(::LinkKeepaliveResp* keepaliveresp);
 
-  // .LinkListCamReq camListReq = 6;
+  // .LinkListCamReq camListReq = 201;
   bool has_camlistreq() const;
   void clear_camlistreq();
-  static const int kCamListReqFieldNumber = 6;
+  static const int kCamListReqFieldNumber = 201;
   const ::LinkListCamReq& camlistreq() const;
   ::LinkListCamReq* mutable_camlistreq();
   ::LinkListCamReq* release_camlistreq();
   void set_allocated_camlistreq(::LinkListCamReq* camlistreq);
 
-  // .LinkListCamResp camListResp = 7;
+  // .LinkListCamResp camListResp = 202;
   bool has_camlistresp() const;
   void clear_camlistresp();
-  static const int kCamListRespFieldNumber = 7;
+  static const int kCamListRespFieldNumber = 202;
   const ::LinkListCamResp& camlistresp() const;
   ::LinkListCamResp* mutable_camlistresp();
   ::LinkListCamResp* release_camlistresp();
   void set_allocated_camlistresp(::LinkListCamResp* camlistresp);
 
-  // .LinkCamReq camReq = 8;
+  // .LinkCamReq camReq = 203;
   bool has_camreq() const;
   void clear_camreq();
-  static const int kCamReqFieldNumber = 8;
+  static const int kCamReqFieldNumber = 203;
   const ::LinkCamReq& camreq() const;
   ::LinkCamReq* mutable_camreq();
   ::LinkCamReq* release_camreq();
   void set_allocated_camreq(::LinkCamReq* camreq);
 
-  // .LinkCamResp camResp = 9;
+  // .LinkCamResp camResp = 204;
   bool has_camresp() const;
   void clear_camresp();
-  static const int kCamRespFieldNumber = 9;
+  static const int kCamRespFieldNumber = 204;
   const ::LinkCamResp& camresp() const;
   ::LinkCamResp* mutable_camresp();
   ::LinkCamResp* release_camresp();
   void set_allocated_camresp(::LinkCamResp* camresp);
 
-  // .LinkVidDiskListReq diskListReq = 10;
+  // .LinkAddCamReq addCamReq = 205;
+  bool has_addcamreq() const;
+  void clear_addcamreq();
+  static const int kAddCamReqFieldNumber = 205;
+  const ::LinkAddCamReq& addcamreq() const;
+  ::LinkAddCamReq* mutable_addcamreq();
+  ::LinkAddCamReq* release_addcamreq();
+  void set_allocated_addcamreq(::LinkAddCamReq* addcamreq);
+
+  // .LinkAddCamResp addCamResp = 206;
+  bool has_addcamresp() const;
+  void clear_addcamresp();
+  static const int kAddCamRespFieldNumber = 206;
+  const ::LinkAddCamResp& addcamresp() const;
+  ::LinkAddCamResp* mutable_addcamresp();
+  ::LinkAddCamResp* release_addcamresp();
+  void set_allocated_addcamresp(::LinkAddCamResp* addcamresp);
+
+  // .LinkDelCamReq delCamReq = 207;
+  bool has_delcamreq() const;
+  void clear_delcamreq();
+  static const int kDelCamReqFieldNumber = 207;
+  const ::LinkDelCamReq& delcamreq() const;
+  ::LinkDelCamReq* mutable_delcamreq();
+  ::LinkDelCamReq* release_delcamreq();
+  void set_allocated_delcamreq(::LinkDelCamReq* delcamreq);
+
+  // .LinkDelCamResp delCamResp = 208;
+  bool has_delcamresp() const;
+  void clear_delcamresp();
+  static const int kDelCamRespFieldNumber = 208;
+  const ::LinkDelCamResp& delcamresp() const;
+  ::LinkDelCamResp* mutable_delcamresp();
+  ::LinkDelCamResp* release_delcamresp();
+  void set_allocated_delcamresp(::LinkDelCamResp* delcamresp);
+
+  // .LinkSetCamSchedReq setCamSchedReq = 209;
+  bool has_setcamschedreq() const;
+  void clear_setcamschedreq();
+  static const int kSetCamSchedReqFieldNumber = 209;
+  const ::LinkSetCamSchedReq& setcamschedreq() const;
+  ::LinkSetCamSchedReq* mutable_setcamschedreq();
+  ::LinkSetCamSchedReq* release_setcamschedreq();
+  void set_allocated_setcamschedreq(::LinkSetCamSchedReq* setcamschedreq);
+
+  // .LinkSetCamSchedResp setCamSchedResp = 210;
+  bool has_setcamschedresp() const;
+  void clear_setcamschedresp();
+  static const int kSetCamSchedRespFieldNumber = 210;
+  const ::LinkSetCamSchedResp& setcamschedresp() const;
+  ::LinkSetCamSchedResp* mutable_setcamschedresp();
+  ::LinkSetCamSchedResp* release_setcamschedresp();
+  void set_allocated_setcamschedresp(::LinkSetCamSchedResp* setcamschedresp);
+
+  // .LinkVidDiskListReq diskListReq = 301;
   bool has_disklistreq() const;
   void clear_disklistreq();
-  static const int kDiskListReqFieldNumber = 10;
+  static const int kDiskListReqFieldNumber = 301;
   const ::LinkVidDiskListReq& disklistreq() const;
   ::LinkVidDiskListReq* mutable_disklistreq();
   ::LinkVidDiskListReq* release_disklistreq();
   void set_allocated_disklistreq(::LinkVidDiskListReq* disklistreq);
 
-  // .LinkVidDiskListResp diskListResp = 11;
+  // .LinkVidDiskListResp diskListResp = 302;
   bool has_disklistresp() const;
   void clear_disklistresp();
-  static const int kDiskListRespFieldNumber = 11;
+  static const int kDiskListRespFieldNumber = 302;
   const ::LinkVidDiskListResp& disklistresp() const;
   ::LinkVidDiskListResp* mutable_disklistresp();
   ::LinkVidDiskListResp* release_disklistresp();
   void set_allocated_disklistresp(::LinkVidDiskListResp* disklistresp);
 
-  // .LinkSysVidDiskListReq sysDiskListReq = 12;
+  // .LinkSysVidDiskListReq sysDiskListReq = 303;
   bool has_sysdisklistreq() const;
   void clear_sysdisklistreq();
-  static const int kSysDiskListReqFieldNumber = 12;
+  static const int kSysDiskListReqFieldNumber = 303;
   const ::LinkSysVidDiskListReq& sysdisklistreq() const;
   ::LinkSysVidDiskListReq* mutable_sysdisklistreq();
   ::LinkSysVidDiskListReq* release_sysdisklistreq();
   void set_allocated_sysdisklistreq(::LinkSysVidDiskListReq* sysdisklistreq);
 
-  // .LinkSysVidDiskListResp sysDiskListResp = 13;
+  // .LinkSysVidDiskListResp sysDiskListResp = 304;
   bool has_sysdisklistresp() const;
   void clear_sysdisklistresp();
-  static const int kSysDiskListRespFieldNumber = 13;
+  static const int kSysDiskListRespFieldNumber = 304;
   const ::LinkSysVidDiskListResp& sysdisklistresp() const;
   ::LinkSysVidDiskListResp* mutable_sysdisklistresp();
   ::LinkSysVidDiskListResp* release_sysdisklistresp();
   void set_allocated_sysdisklistresp(::LinkSysVidDiskListResp* sysdisklistresp);
 
-  // .LinkAddDiskReq addDiskReq = 14;
+  // .LinkAddDiskReq addDiskReq = 305;
   bool has_adddiskreq() const;
   void clear_adddiskreq();
-  static const int kAddDiskReqFieldNumber = 14;
+  static const int kAddDiskReqFieldNumber = 305;
   const ::LinkAddDiskReq& adddiskreq() const;
   ::LinkAddDiskReq* mutable_adddiskreq();
   ::LinkAddDiskReq* release_adddiskreq();
   void set_allocated_adddiskreq(::LinkAddDiskReq* adddiskreq);
 
-  // .LinkAddDiskResp addDiskResp = 15;
+  // .LinkAddDiskResp addDiskResp = 306;
   bool has_adddiskresp() const;
   void clear_adddiskresp();
-  static const int kAddDiskRespFieldNumber = 15;
+  static const int kAddDiskRespFieldNumber = 306;
   const ::LinkAddDiskResp& adddiskresp() const;
   ::LinkAddDiskResp* mutable_adddiskresp();
   ::LinkAddDiskResp* release_adddiskresp();
   void set_allocated_adddiskresp(::LinkAddDiskResp* adddiskresp);
 
-  // .LinkDelDiskReq delDiskReq = 16;
+  // .LinkDelDiskReq delDiskReq = 307;
   bool has_deldiskreq() const;
   void clear_deldiskreq();
-  static const int kDelDiskReqFieldNumber = 16;
+  static const int kDelDiskReqFieldNumber = 307;
   const ::LinkDelDiskReq& deldiskreq() const;
   ::LinkDelDiskReq* mutable_deldiskreq();
   ::LinkDelDiskReq* release_deldiskreq();
   void set_allocated_deldiskreq(::LinkDelDiskReq* deldiskreq);
 
-  // .LinkDelDiskResp delDiskResp = 17;
+  // .LinkDelDiskResp delDiskResp = 308;
   bool has_deldiskresp() const;
   void clear_deldiskresp();
-  static const int kDelDiskRespFieldNumber = 17;
+  static const int kDelDiskRespFieldNumber = 308;
   const ::LinkDelDiskResp& deldiskresp() const;
   ::LinkDelDiskResp* mutable_deldiskresp();
   ::LinkDelDiskResp* release_deldiskresp();
   void set_allocated_deldiskresp(::LinkDelDiskResp* deldiskresp);
 
-  // .LinkUpdateDiskLimitReq diskLimitReq = 18;
+  // .LinkUpdateDiskLimitReq diskLimitReq = 309;
   bool has_disklimitreq() const;
   void clear_disklimitreq();
-  static const int kDiskLimitReqFieldNumber = 18;
+  static const int kDiskLimitReqFieldNumber = 309;
   const ::LinkUpdateDiskLimitReq& disklimitreq() const;
   ::LinkUpdateDiskLimitReq* mutable_disklimitreq();
   ::LinkUpdateDiskLimitReq* release_disklimitreq();
   void set_allocated_disklimitreq(::LinkUpdateDiskLimitReq* disklimitreq);
 
-  // .LinkUpdateDiskLimitResp diskLimitResp = 19;
+  // .LinkUpdateDiskLimitResp diskLimitResp = 310;
   bool has_disklimitresp() const;
   void clear_disklimitresp();
-  static const int kDiskLimitRespFieldNumber = 19;
+  static const int kDiskLimitRespFieldNumber = 310;
   const ::LinkUpdateDiskLimitResp& disklimitresp() const;
   ::LinkUpdateDiskLimitResp* mutable_disklimitresp();
   ::LinkUpdateDiskLimitResp* release_disklimitresp();
   void set_allocated_disklimitresp(::LinkUpdateDiskLimitResp* disklimitresp);
 
-  // .LinkGetLicReq licReq = 20;
+  // .LinkGetLicReq licReq = 401;
   bool has_licreq() const;
   void clear_licreq();
-  static const int kLicReqFieldNumber = 20;
+  static const int kLicReqFieldNumber = 401;
   const ::LinkGetLicReq& licreq() const;
   ::LinkGetLicReq* mutable_licreq();
   ::LinkGetLicReq* release_licreq();
   void set_allocated_licreq(::LinkGetLicReq* licreq);
 
-  // .LinkGetLicResp licResp = 21;
+  // .LinkGetLicResp licResp = 402;
   bool has_licresp() const;
   void clear_licresp();
-  static const int kLicRespFieldNumber = 21;
+  static const int kLicRespFieldNumber = 402;
   const ::LinkGetLicResp& licresp() const;
   ::LinkGetLicResp* mutable_licresp();
   ::LinkGetLicResp* release_licresp();
   void set_allocated_licresp(::LinkGetLicResp* licresp);
 
-  // .LinkGetVerReq verReq = 22;
+  // .LinkGetVerReq verReq = 403;
   bool has_verreq() const;
   void clear_verreq();
-  static const int kVerReqFieldNumber = 22;
+  static const int kVerReqFieldNumber = 403;
   const ::LinkGetVerReq& verreq() const;
   ::LinkGetVerReq* mutable_verreq();
   ::LinkGetVerReq* release_verreq();
   void set_allocated_verreq(::LinkGetVerReq* verreq);
 
-  // .LinkGetVerResp verResp = 23;
+  // .LinkGetVerResp verResp = 404;
   bool has_verresp() const;
   void clear_verresp();
-  static const int kVerRespFieldNumber = 23;
+  static const int kVerRespFieldNumber = 404;
   const ::LinkGetVerResp& verresp() const;
   ::LinkGetVerResp* mutable_verresp();
   ::LinkGetVerResp* release_verresp();
   void set_allocated_verresp(::LinkGetVerResp* verresp);
+
+  // .LinkConfLicReq confLicReq = 405;
+  bool has_conflicreq() const;
+  void clear_conflicreq();
+  static const int kConfLicReqFieldNumber = 405;
+  const ::LinkConfLicReq& conflicreq() const;
+  ::LinkConfLicReq* mutable_conflicreq();
+  ::LinkConfLicReq* release_conflicreq();
+  void set_allocated_conflicreq(::LinkConfLicReq* conflicreq);
+
+  // .LinkConfLicResp confLicResp = 406;
+  bool has_conflicresp() const;
+  void clear_conflicresp();
+  static const int kConfLicRespFieldNumber = 406;
+  const ::LinkConfLicResp& conflicresp() const;
+  ::LinkConfLicResp* mutable_conflicresp();
+  ::LinkConfLicResp* release_conflicresp();
+  void set_allocated_conflicresp(::LinkConfLicResp* conflicresp);
+
+  // .LinkAddUserReq addUserReq = 501;
+  bool has_adduserreq() const;
+  void clear_adduserreq();
+  static const int kAddUserReqFieldNumber = 501;
+  const ::LinkAddUserReq& adduserreq() const;
+  ::LinkAddUserReq* mutable_adduserreq();
+  ::LinkAddUserReq* release_adduserreq();
+  void set_allocated_adduserreq(::LinkAddUserReq* adduserreq);
+
+  // .LinkAddUserResp addUserResp = 502;
+  bool has_adduserresp() const;
+  void clear_adduserresp();
+  static const int kAddUserRespFieldNumber = 502;
+  const ::LinkAddUserResp& adduserresp() const;
+  ::LinkAddUserResp* mutable_adduserresp();
+  ::LinkAddUserResp* release_adduserresp();
+  void set_allocated_adduserresp(::LinkAddUserResp* adduserresp);
 
   CmdCase cmd_case() const;
   // @@protoc_insertion_point(class_scope:Link.LinkCmd)
@@ -468,6 +608,12 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_camlistresp();
   void set_has_camreq();
   void set_has_camresp();
+  void set_has_addcamreq();
+  void set_has_addcamresp();
+  void set_has_delcamreq();
+  void set_has_delcamresp();
+  void set_has_setcamschedreq();
+  void set_has_setcamschedresp();
   void set_has_disklistreq();
   void set_has_disklistresp();
   void set_has_sysdisklistreq();
@@ -482,6 +628,10 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_licresp();
   void set_has_verreq();
   void set_has_verresp();
+  void set_has_conflicreq();
+  void set_has_conflicresp();
+  void set_has_adduserreq();
+  void set_has_adduserresp();
 
   inline bool has_cmd() const;
   void clear_cmd();
@@ -499,6 +649,12 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkListCamResp* camlistresp_;
     ::LinkCamReq* camreq_;
     ::LinkCamResp* camresp_;
+    ::LinkAddCamReq* addcamreq_;
+    ::LinkAddCamResp* addcamresp_;
+    ::LinkDelCamReq* delcamreq_;
+    ::LinkDelCamResp* delcamresp_;
+    ::LinkSetCamSchedReq* setcamschedreq_;
+    ::LinkSetCamSchedResp* setcamschedresp_;
     ::LinkVidDiskListReq* disklistreq_;
     ::LinkVidDiskListResp* disklistresp_;
     ::LinkSysVidDiskListReq* sysdisklistreq_;
@@ -513,6 +669,10 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkGetLicResp* licresp_;
     ::LinkGetVerReq* verreq_;
     ::LinkGetVerResp* verresp_;
+    ::LinkConfLicReq* conflicreq_;
+    ::LinkConfLicResp* conflicresp_;
+    ::LinkAddUserReq* adduserreq_;
+    ::LinkAddUserResp* adduserresp_;
   } cmd_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -541,7 +701,7 @@ inline void LinkCmd::set_type(::Link::LinkCmdType value) {
   // @@protoc_insertion_point(field_set:Link.LinkCmd.type)
 }
 
-// .LinkLoginReq loginReq = 2;
+// .LinkLoginReq loginReq = 102;
 inline bool LinkCmd::has_loginreq() const {
   return cmd_case() == kLoginReq;
 }
@@ -589,7 +749,7 @@ inline void LinkCmd::set_allocated_loginreq(::LinkLoginReq* loginreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.loginReq)
 }
 
-// .LinkLoginResp loginResp = 3;
+// .LinkLoginResp loginResp = 103;
 inline bool LinkCmd::has_loginresp() const {
   return cmd_case() == kLoginResp;
 }
@@ -637,7 +797,7 @@ inline void LinkCmd::set_allocated_loginresp(::LinkLoginResp* loginresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.loginResp)
 }
 
-// .LinkKeepaliveReq keepaliveReq = 4;
+// .LinkKeepaliveReq keepaliveReq = 104;
 inline bool LinkCmd::has_keepalivereq() const {
   return cmd_case() == kKeepaliveReq;
 }
@@ -685,7 +845,7 @@ inline void LinkCmd::set_allocated_keepalivereq(::LinkKeepaliveReq* keepalivereq
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.keepaliveReq)
 }
 
-// .LinkKeepaliveResp keepaliveResp = 5;
+// .LinkKeepaliveResp keepaliveResp = 105;
 inline bool LinkCmd::has_keepaliveresp() const {
   return cmd_case() == kKeepaliveResp;
 }
@@ -733,7 +893,7 @@ inline void LinkCmd::set_allocated_keepaliveresp(::LinkKeepaliveResp* keepaliver
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.keepaliveResp)
 }
 
-// .LinkListCamReq camListReq = 6;
+// .LinkListCamReq camListReq = 201;
 inline bool LinkCmd::has_camlistreq() const {
   return cmd_case() == kCamListReq;
 }
@@ -781,7 +941,7 @@ inline void LinkCmd::set_allocated_camlistreq(::LinkListCamReq* camlistreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListReq)
 }
 
-// .LinkListCamResp camListResp = 7;
+// .LinkListCamResp camListResp = 202;
 inline bool LinkCmd::has_camlistresp() const {
   return cmd_case() == kCamListResp;
 }
@@ -829,7 +989,7 @@ inline void LinkCmd::set_allocated_camlistresp(::LinkListCamResp* camlistresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camListResp)
 }
 
-// .LinkCamReq camReq = 8;
+// .LinkCamReq camReq = 203;
 inline bool LinkCmd::has_camreq() const {
   return cmd_case() == kCamReq;
 }
@@ -877,7 +1037,7 @@ inline void LinkCmd::set_allocated_camreq(::LinkCamReq* camreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camReq)
 }
 
-// .LinkCamResp camResp = 9;
+// .LinkCamResp camResp = 204;
 inline bool LinkCmd::has_camresp() const {
   return cmd_case() == kCamResp;
 }
@@ -925,7 +1085,295 @@ inline void LinkCmd::set_allocated_camresp(::LinkCamResp* camresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camResp)
 }
 
-// .LinkVidDiskListReq diskListReq = 10;
+// .LinkAddCamReq addCamReq = 205;
+inline bool LinkCmd::has_addcamreq() const {
+  return cmd_case() == kAddCamReq;
+}
+inline void LinkCmd::set_has_addcamreq() {
+  _oneof_case_[0] = kAddCamReq;
+}
+inline void LinkCmd::clear_addcamreq() {
+  if (has_addcamreq()) {
+    delete cmd_.addcamreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkAddCamReq& LinkCmd::addcamreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addCamReq)
+  return has_addcamreq()
+      ? *cmd_.addcamreq_
+      : ::LinkAddCamReq::default_instance();
+}
+inline ::LinkAddCamReq* LinkCmd::mutable_addcamreq() {
+  if (!has_addcamreq()) {
+    clear_cmd();
+    set_has_addcamreq();
+    cmd_.addcamreq_ = new ::LinkAddCamReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addCamReq)
+  return cmd_.addcamreq_;
+}
+inline ::LinkAddCamReq* LinkCmd::release_addcamreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addCamReq)
+  if (has_addcamreq()) {
+    clear_has_cmd();
+    ::LinkAddCamReq* temp = cmd_.addcamreq_;
+    cmd_.addcamreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_addcamreq(::LinkAddCamReq* addcamreq) {
+  clear_cmd();
+  if (addcamreq) {
+    set_has_addcamreq();
+    cmd_.addcamreq_ = addcamreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addCamReq)
+}
+
+// .LinkAddCamResp addCamResp = 206;
+inline bool LinkCmd::has_addcamresp() const {
+  return cmd_case() == kAddCamResp;
+}
+inline void LinkCmd::set_has_addcamresp() {
+  _oneof_case_[0] = kAddCamResp;
+}
+inline void LinkCmd::clear_addcamresp() {
+  if (has_addcamresp()) {
+    delete cmd_.addcamresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkAddCamResp& LinkCmd::addcamresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addCamResp)
+  return has_addcamresp()
+      ? *cmd_.addcamresp_
+      : ::LinkAddCamResp::default_instance();
+}
+inline ::LinkAddCamResp* LinkCmd::mutable_addcamresp() {
+  if (!has_addcamresp()) {
+    clear_cmd();
+    set_has_addcamresp();
+    cmd_.addcamresp_ = new ::LinkAddCamResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addCamResp)
+  return cmd_.addcamresp_;
+}
+inline ::LinkAddCamResp* LinkCmd::release_addcamresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addCamResp)
+  if (has_addcamresp()) {
+    clear_has_cmd();
+    ::LinkAddCamResp* temp = cmd_.addcamresp_;
+    cmd_.addcamresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_addcamresp(::LinkAddCamResp* addcamresp) {
+  clear_cmd();
+  if (addcamresp) {
+    set_has_addcamresp();
+    cmd_.addcamresp_ = addcamresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addCamResp)
+}
+
+// .LinkDelCamReq delCamReq = 207;
+inline bool LinkCmd::has_delcamreq() const {
+  return cmd_case() == kDelCamReq;
+}
+inline void LinkCmd::set_has_delcamreq() {
+  _oneof_case_[0] = kDelCamReq;
+}
+inline void LinkCmd::clear_delcamreq() {
+  if (has_delcamreq()) {
+    delete cmd_.delcamreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkDelCamReq& LinkCmd::delcamreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.delCamReq)
+  return has_delcamreq()
+      ? *cmd_.delcamreq_
+      : ::LinkDelCamReq::default_instance();
+}
+inline ::LinkDelCamReq* LinkCmd::mutable_delcamreq() {
+  if (!has_delcamreq()) {
+    clear_cmd();
+    set_has_delcamreq();
+    cmd_.delcamreq_ = new ::LinkDelCamReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.delCamReq)
+  return cmd_.delcamreq_;
+}
+inline ::LinkDelCamReq* LinkCmd::release_delcamreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.delCamReq)
+  if (has_delcamreq()) {
+    clear_has_cmd();
+    ::LinkDelCamReq* temp = cmd_.delcamreq_;
+    cmd_.delcamreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_delcamreq(::LinkDelCamReq* delcamreq) {
+  clear_cmd();
+  if (delcamreq) {
+    set_has_delcamreq();
+    cmd_.delcamreq_ = delcamreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delCamReq)
+}
+
+// .LinkDelCamResp delCamResp = 208;
+inline bool LinkCmd::has_delcamresp() const {
+  return cmd_case() == kDelCamResp;
+}
+inline void LinkCmd::set_has_delcamresp() {
+  _oneof_case_[0] = kDelCamResp;
+}
+inline void LinkCmd::clear_delcamresp() {
+  if (has_delcamresp()) {
+    delete cmd_.delcamresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkDelCamResp& LinkCmd::delcamresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.delCamResp)
+  return has_delcamresp()
+      ? *cmd_.delcamresp_
+      : ::LinkDelCamResp::default_instance();
+}
+inline ::LinkDelCamResp* LinkCmd::mutable_delcamresp() {
+  if (!has_delcamresp()) {
+    clear_cmd();
+    set_has_delcamresp();
+    cmd_.delcamresp_ = new ::LinkDelCamResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.delCamResp)
+  return cmd_.delcamresp_;
+}
+inline ::LinkDelCamResp* LinkCmd::release_delcamresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.delCamResp)
+  if (has_delcamresp()) {
+    clear_has_cmd();
+    ::LinkDelCamResp* temp = cmd_.delcamresp_;
+    cmd_.delcamresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_delcamresp(::LinkDelCamResp* delcamresp) {
+  clear_cmd();
+  if (delcamresp) {
+    set_has_delcamresp();
+    cmd_.delcamresp_ = delcamresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delCamResp)
+}
+
+// .LinkSetCamSchedReq setCamSchedReq = 209;
+inline bool LinkCmd::has_setcamschedreq() const {
+  return cmd_case() == kSetCamSchedReq;
+}
+inline void LinkCmd::set_has_setcamschedreq() {
+  _oneof_case_[0] = kSetCamSchedReq;
+}
+inline void LinkCmd::clear_setcamschedreq() {
+  if (has_setcamschedreq()) {
+    delete cmd_.setcamschedreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkSetCamSchedReq& LinkCmd::setcamschedreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.setCamSchedReq)
+  return has_setcamschedreq()
+      ? *cmd_.setcamschedreq_
+      : ::LinkSetCamSchedReq::default_instance();
+}
+inline ::LinkSetCamSchedReq* LinkCmd::mutable_setcamschedreq() {
+  if (!has_setcamschedreq()) {
+    clear_cmd();
+    set_has_setcamschedreq();
+    cmd_.setcamschedreq_ = new ::LinkSetCamSchedReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.setCamSchedReq)
+  return cmd_.setcamschedreq_;
+}
+inline ::LinkSetCamSchedReq* LinkCmd::release_setcamschedreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.setCamSchedReq)
+  if (has_setcamschedreq()) {
+    clear_has_cmd();
+    ::LinkSetCamSchedReq* temp = cmd_.setcamschedreq_;
+    cmd_.setcamschedreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_setcamschedreq(::LinkSetCamSchedReq* setcamschedreq) {
+  clear_cmd();
+  if (setcamschedreq) {
+    set_has_setcamschedreq();
+    cmd_.setcamschedreq_ = setcamschedreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.setCamSchedReq)
+}
+
+// .LinkSetCamSchedResp setCamSchedResp = 210;
+inline bool LinkCmd::has_setcamschedresp() const {
+  return cmd_case() == kSetCamSchedResp;
+}
+inline void LinkCmd::set_has_setcamschedresp() {
+  _oneof_case_[0] = kSetCamSchedResp;
+}
+inline void LinkCmd::clear_setcamschedresp() {
+  if (has_setcamschedresp()) {
+    delete cmd_.setcamschedresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkSetCamSchedResp& LinkCmd::setcamschedresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.setCamSchedResp)
+  return has_setcamschedresp()
+      ? *cmd_.setcamschedresp_
+      : ::LinkSetCamSchedResp::default_instance();
+}
+inline ::LinkSetCamSchedResp* LinkCmd::mutable_setcamschedresp() {
+  if (!has_setcamschedresp()) {
+    clear_cmd();
+    set_has_setcamschedresp();
+    cmd_.setcamschedresp_ = new ::LinkSetCamSchedResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.setCamSchedResp)
+  return cmd_.setcamschedresp_;
+}
+inline ::LinkSetCamSchedResp* LinkCmd::release_setcamschedresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.setCamSchedResp)
+  if (has_setcamschedresp()) {
+    clear_has_cmd();
+    ::LinkSetCamSchedResp* temp = cmd_.setcamschedresp_;
+    cmd_.setcamschedresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_setcamschedresp(::LinkSetCamSchedResp* setcamschedresp) {
+  clear_cmd();
+  if (setcamschedresp) {
+    set_has_setcamschedresp();
+    cmd_.setcamschedresp_ = setcamschedresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.setCamSchedResp)
+}
+
+// .LinkVidDiskListReq diskListReq = 301;
 inline bool LinkCmd::has_disklistreq() const {
   return cmd_case() == kDiskListReq;
 }
@@ -973,7 +1421,7 @@ inline void LinkCmd::set_allocated_disklistreq(::LinkVidDiskListReq* disklistreq
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskListReq)
 }
 
-// .LinkVidDiskListResp diskListResp = 11;
+// .LinkVidDiskListResp diskListResp = 302;
 inline bool LinkCmd::has_disklistresp() const {
   return cmd_case() == kDiskListResp;
 }
@@ -1021,7 +1469,7 @@ inline void LinkCmd::set_allocated_disklistresp(::LinkVidDiskListResp* disklistr
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskListResp)
 }
 
-// .LinkSysVidDiskListReq sysDiskListReq = 12;
+// .LinkSysVidDiskListReq sysDiskListReq = 303;
 inline bool LinkCmd::has_sysdisklistreq() const {
   return cmd_case() == kSysDiskListReq;
 }
@@ -1069,7 +1517,7 @@ inline void LinkCmd::set_allocated_sysdisklistreq(::LinkSysVidDiskListReq* sysdi
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.sysDiskListReq)
 }
 
-// .LinkSysVidDiskListResp sysDiskListResp = 13;
+// .LinkSysVidDiskListResp sysDiskListResp = 304;
 inline bool LinkCmd::has_sysdisklistresp() const {
   return cmd_case() == kSysDiskListResp;
 }
@@ -1117,7 +1565,7 @@ inline void LinkCmd::set_allocated_sysdisklistresp(::LinkSysVidDiskListResp* sys
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.sysDiskListResp)
 }
 
-// .LinkAddDiskReq addDiskReq = 14;
+// .LinkAddDiskReq addDiskReq = 305;
 inline bool LinkCmd::has_adddiskreq() const {
   return cmd_case() == kAddDiskReq;
 }
@@ -1165,7 +1613,7 @@ inline void LinkCmd::set_allocated_adddiskreq(::LinkAddDiskReq* adddiskreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addDiskReq)
 }
 
-// .LinkAddDiskResp addDiskResp = 15;
+// .LinkAddDiskResp addDiskResp = 306;
 inline bool LinkCmd::has_adddiskresp() const {
   return cmd_case() == kAddDiskResp;
 }
@@ -1213,7 +1661,7 @@ inline void LinkCmd::set_allocated_adddiskresp(::LinkAddDiskResp* adddiskresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addDiskResp)
 }
 
-// .LinkDelDiskReq delDiskReq = 16;
+// .LinkDelDiskReq delDiskReq = 307;
 inline bool LinkCmd::has_deldiskreq() const {
   return cmd_case() == kDelDiskReq;
 }
@@ -1261,7 +1709,7 @@ inline void LinkCmd::set_allocated_deldiskreq(::LinkDelDiskReq* deldiskreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delDiskReq)
 }
 
-// .LinkDelDiskResp delDiskResp = 17;
+// .LinkDelDiskResp delDiskResp = 308;
 inline bool LinkCmd::has_deldiskresp() const {
   return cmd_case() == kDelDiskResp;
 }
@@ -1309,7 +1757,7 @@ inline void LinkCmd::set_allocated_deldiskresp(::LinkDelDiskResp* deldiskresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.delDiskResp)
 }
 
-// .LinkUpdateDiskLimitReq diskLimitReq = 18;
+// .LinkUpdateDiskLimitReq diskLimitReq = 309;
 inline bool LinkCmd::has_disklimitreq() const {
   return cmd_case() == kDiskLimitReq;
 }
@@ -1357,7 +1805,7 @@ inline void LinkCmd::set_allocated_disklimitreq(::LinkUpdateDiskLimitReq* diskli
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskLimitReq)
 }
 
-// .LinkUpdateDiskLimitResp diskLimitResp = 19;
+// .LinkUpdateDiskLimitResp diskLimitResp = 310;
 inline bool LinkCmd::has_disklimitresp() const {
   return cmd_case() == kDiskLimitResp;
 }
@@ -1405,7 +1853,7 @@ inline void LinkCmd::set_allocated_disklimitresp(::LinkUpdateDiskLimitResp* disk
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.diskLimitResp)
 }
 
-// .LinkGetLicReq licReq = 20;
+// .LinkGetLicReq licReq = 401;
 inline bool LinkCmd::has_licreq() const {
   return cmd_case() == kLicReq;
 }
@@ -1453,7 +1901,7 @@ inline void LinkCmd::set_allocated_licreq(::LinkGetLicReq* licreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.licReq)
 }
 
-// .LinkGetLicResp licResp = 21;
+// .LinkGetLicResp licResp = 402;
 inline bool LinkCmd::has_licresp() const {
   return cmd_case() == kLicResp;
 }
@@ -1501,7 +1949,7 @@ inline void LinkCmd::set_allocated_licresp(::LinkGetLicResp* licresp) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.licResp)
 }
 
-// .LinkGetVerReq verReq = 22;
+// .LinkGetVerReq verReq = 403;
 inline bool LinkCmd::has_verreq() const {
   return cmd_case() == kVerReq;
 }
@@ -1549,7 +1997,7 @@ inline void LinkCmd::set_allocated_verreq(::LinkGetVerReq* verreq) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.verReq)
 }
 
-// .LinkGetVerResp verResp = 23;
+// .LinkGetVerResp verResp = 404;
 inline bool LinkCmd::has_verresp() const {
   return cmd_case() == kVerResp;
 }
@@ -1595,6 +2043,198 @@ inline void LinkCmd::set_allocated_verresp(::LinkGetVerResp* verresp) {
     cmd_.verresp_ = verresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.verResp)
+}
+
+// .LinkConfLicReq confLicReq = 405;
+inline bool LinkCmd::has_conflicreq() const {
+  return cmd_case() == kConfLicReq;
+}
+inline void LinkCmd::set_has_conflicreq() {
+  _oneof_case_[0] = kConfLicReq;
+}
+inline void LinkCmd::clear_conflicreq() {
+  if (has_conflicreq()) {
+    delete cmd_.conflicreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkConfLicReq& LinkCmd::conflicreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.confLicReq)
+  return has_conflicreq()
+      ? *cmd_.conflicreq_
+      : ::LinkConfLicReq::default_instance();
+}
+inline ::LinkConfLicReq* LinkCmd::mutable_conflicreq() {
+  if (!has_conflicreq()) {
+    clear_cmd();
+    set_has_conflicreq();
+    cmd_.conflicreq_ = new ::LinkConfLicReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.confLicReq)
+  return cmd_.conflicreq_;
+}
+inline ::LinkConfLicReq* LinkCmd::release_conflicreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.confLicReq)
+  if (has_conflicreq()) {
+    clear_has_cmd();
+    ::LinkConfLicReq* temp = cmd_.conflicreq_;
+    cmd_.conflicreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_conflicreq(::LinkConfLicReq* conflicreq) {
+  clear_cmd();
+  if (conflicreq) {
+    set_has_conflicreq();
+    cmd_.conflicreq_ = conflicreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.confLicReq)
+}
+
+// .LinkConfLicResp confLicResp = 406;
+inline bool LinkCmd::has_conflicresp() const {
+  return cmd_case() == kConfLicResp;
+}
+inline void LinkCmd::set_has_conflicresp() {
+  _oneof_case_[0] = kConfLicResp;
+}
+inline void LinkCmd::clear_conflicresp() {
+  if (has_conflicresp()) {
+    delete cmd_.conflicresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkConfLicResp& LinkCmd::conflicresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.confLicResp)
+  return has_conflicresp()
+      ? *cmd_.conflicresp_
+      : ::LinkConfLicResp::default_instance();
+}
+inline ::LinkConfLicResp* LinkCmd::mutable_conflicresp() {
+  if (!has_conflicresp()) {
+    clear_cmd();
+    set_has_conflicresp();
+    cmd_.conflicresp_ = new ::LinkConfLicResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.confLicResp)
+  return cmd_.conflicresp_;
+}
+inline ::LinkConfLicResp* LinkCmd::release_conflicresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.confLicResp)
+  if (has_conflicresp()) {
+    clear_has_cmd();
+    ::LinkConfLicResp* temp = cmd_.conflicresp_;
+    cmd_.conflicresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_conflicresp(::LinkConfLicResp* conflicresp) {
+  clear_cmd();
+  if (conflicresp) {
+    set_has_conflicresp();
+    cmd_.conflicresp_ = conflicresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.confLicResp)
+}
+
+// .LinkAddUserReq addUserReq = 501;
+inline bool LinkCmd::has_adduserreq() const {
+  return cmd_case() == kAddUserReq;
+}
+inline void LinkCmd::set_has_adduserreq() {
+  _oneof_case_[0] = kAddUserReq;
+}
+inline void LinkCmd::clear_adduserreq() {
+  if (has_adduserreq()) {
+    delete cmd_.adduserreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkAddUserReq& LinkCmd::adduserreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addUserReq)
+  return has_adduserreq()
+      ? *cmd_.adduserreq_
+      : ::LinkAddUserReq::default_instance();
+}
+inline ::LinkAddUserReq* LinkCmd::mutable_adduserreq() {
+  if (!has_adduserreq()) {
+    clear_cmd();
+    set_has_adduserreq();
+    cmd_.adduserreq_ = new ::LinkAddUserReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addUserReq)
+  return cmd_.adduserreq_;
+}
+inline ::LinkAddUserReq* LinkCmd::release_adduserreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addUserReq)
+  if (has_adduserreq()) {
+    clear_has_cmd();
+    ::LinkAddUserReq* temp = cmd_.adduserreq_;
+    cmd_.adduserreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_adduserreq(::LinkAddUserReq* adduserreq) {
+  clear_cmd();
+  if (adduserreq) {
+    set_has_adduserreq();
+    cmd_.adduserreq_ = adduserreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addUserReq)
+}
+
+// .LinkAddUserResp addUserResp = 502;
+inline bool LinkCmd::has_adduserresp() const {
+  return cmd_case() == kAddUserResp;
+}
+inline void LinkCmd::set_has_adduserresp() {
+  _oneof_case_[0] = kAddUserResp;
+}
+inline void LinkCmd::clear_adduserresp() {
+  if (has_adduserresp()) {
+    delete cmd_.adduserresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkAddUserResp& LinkCmd::adduserresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.addUserResp)
+  return has_adduserresp()
+      ? *cmd_.adduserresp_
+      : ::LinkAddUserResp::default_instance();
+}
+inline ::LinkAddUserResp* LinkCmd::mutable_adduserresp() {
+  if (!has_adduserresp()) {
+    clear_cmd();
+    set_has_adduserresp();
+    cmd_.adduserresp_ = new ::LinkAddUserResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.addUserResp)
+  return cmd_.adduserresp_;
+}
+inline ::LinkAddUserResp* LinkCmd::release_adduserresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.addUserResp)
+  if (has_adduserresp()) {
+    clear_has_cmd();
+    ::LinkAddUserResp* temp = cmd_.adduserresp_;
+    cmd_.adduserresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_adduserresp(::LinkAddUserResp* adduserresp) {
+  clear_cmd();
+  if (adduserresp) {
+    set_has_adduserresp();
+    cmd_.adduserresp_ = adduserresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addUserResp)
 }
 
 inline bool LinkCmd::has_cmd() const {

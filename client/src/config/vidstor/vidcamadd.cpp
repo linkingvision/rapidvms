@@ -437,7 +437,6 @@ void VidCamAdd::SlotStartSearch()
 	
 	m_syncInfSearch->Connect();
 	m_syncInfSearch->CamSearchStart();
-	m_syncInfSearch->SetRecvTimeout(10);
 	m_Timer = new QTimer();
 	connect(m_Timer, SIGNAL(timeout()), this, SLOT(SlotSearchRecv()));
 	m_Timer->start(500);

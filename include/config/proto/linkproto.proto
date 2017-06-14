@@ -6,68 +6,94 @@ import "linksystem.proto";
 
 enum LinkCmdType {
 	LINK_CMD_ZERO = 0;
-	LINK_CMD_LOGIN_REQ = 1;
-	LINK_CMD_LOGIN_RESP = 2;
-	LINK_CMD_KEEPALIVE_REQ = 3;
-	LINK_CMD_KEEPALIVE_RESP = 4;
+	LINK_CMD_LOGIN_REQ = 101;
+	LINK_CMD_LOGIN_RESP = 102;
+	LINK_CMD_KEEPALIVE_REQ = 103;
+	LINK_CMD_KEEPALIVE_RESP = 104;
 	
 	//Cam 
-	LINK_CMD_CAM_LIST_REQ = 5;
-	LINK_CMD_CAM_LIST_RESP = 6;
-	LINK_CMD_CAM_REQ = 7;
-	LINK_CMD_CAM_RESP = 8;
+	LINK_CMD_CAM_LIST_REQ = 201;
+	LINK_CMD_CAM_LIST_RESP = 202;
+	LINK_CMD_CAM_REQ = 203;
+	LINK_CMD_CAM_RESP = 204;
+	LINK_CMD_ADD_CAM_REQ = 205;
+	LINK_CMD_ADD_CAM_RESP = 206;
+	LINK_CMD_DEL_CAM_REQ = 207;
+	LINK_CMD_DEL_CAM_RESP = 208;
+	LINK_CMD_SET_CAM_SCHED_REQ = 209;
+	LINK_CMD_SET_CAM_SCHED_RESP = 210;
 	
 	//Disk 
-	LINK_CMD_DISK_LIST_REQ = 9;
-	LINK_CMD_DISK_LIST_RESP = 10;
-	LINK_CMD_SYS_DISK_LIST_REQ = 11;
-	LINK_CMD_SYS_DISK_LIST_RESP = 12;
-	LINK_CMD_ADD_DISK_REQ = 13;
-	LINK_CMD_ADD_DISK_RESP = 14;
-	LINK_CMD_DEL_DISK_REQ = 15;
-	LINK_CMD_DEL_DISK_RESP = 16;
-	LINK_CMD_UPDATE_DISK_LIMIT_REQ = 17;
-	LINK_CMD_UPDATE_DISK_LIMIT_RESP = 18;
+	LINK_CMD_DISK_LIST_REQ = 301;
+	LINK_CMD_DISK_LIST_RESP = 302;
+	LINK_CMD_SYS_DISK_LIST_REQ = 303;
+	LINK_CMD_SYS_DISK_LIST_RESP = 304;
+	LINK_CMD_ADD_DISK_REQ = 305;
+	LINK_CMD_ADD_DISK_RESP = 306;
+	LINK_CMD_DEL_DISK_REQ = 307;
+	LINK_CMD_DEL_DISK_RESP = 308;
+	LINK_CMD_UPDATE_DISK_LIMIT_REQ = 309;
+	LINK_CMD_UPDATE_DISK_LIMIT_RESP = 310;
 
 	//License & Version
-	LINK_CMD_GET_LIC_REQ = 19;
-	LINK_CMD_GET_LIC_RESP = 20;
-	LINK_CMD_GET_VER_REQ = 21;
-	LINK_CMD_GET_VER_RESP = 22;
+	LINK_CMD_GET_LIC_REQ = 401;
+	LINK_CMD_GET_LIC_RESP = 402;
+	LINK_CMD_GET_VER_REQ = 403;
+	LINK_CMD_GET_VER_RESP = 404;
+	LINK_CMD_CONF_LIC_REQ = 405;
+	LINK_CMD_CONF_LIC_RESP = 406;
+	
+	//User
+	LINK_CMD_ADD_USER_REQ = 501;
+	LINK_CMD_ADD_USER_RESP = 502;	
 
 }
 
 message LinkCmd {
 	LinkCmdType type = 1;
 	oneof cmd {
-		LinkLoginReq loginReq = 2;
-		LinkLoginResp loginResp = 3;
-		LinkKeepaliveReq keepaliveReq = 4;
-		LinkKeepaliveResp keepaliveResp = 5;
+		LinkLoginReq loginReq = 102;
+		LinkLoginResp loginResp = 103;
+		LinkKeepaliveReq keepaliveReq = 104;
+		LinkKeepaliveResp keepaliveResp = 105;
 	
 		//Cam
-		LinkListCamReq camListReq = 6;
-		LinkListCamResp camListResp = 7;
-		LinkCamReq camReq = 8;
-		LinkCamResp camResp = 9;
+		LinkListCamReq camListReq = 201;
+		LinkListCamResp camListResp = 202;
+		LinkCamReq camReq = 203;
+		LinkCamResp camResp = 204;
+		LinkAddCamReq addCamReq = 205;
+		LinkAddCamResp addCamResp = 206;
+		LinkDelCamReq delCamReq = 207;
+		LinkDelCamResp delCamResp = 208;
+		LinkSetCamSchedReq setCamSchedReq = 209;
+		LinkSetCamSchedResp setCamSchedResp = 210;
+
 		
 		//Disk
-		LinkVidDiskListReq diskListReq = 10;
-		LinkVidDiskListResp diskListResp = 11;
-		LinkSysVidDiskListReq sysDiskListReq = 12;
-		LinkSysVidDiskListResp sysDiskListResp = 13;
-		LinkAddDiskReq addDiskReq = 14;
-		LinkAddDiskResp addDiskResp = 15;
-		LinkDelDiskReq delDiskReq = 16;
-		LinkDelDiskResp delDiskResp = 17;
-		LinkUpdateDiskLimitReq diskLimitReq = 18;
-		LinkUpdateDiskLimitResp diskLimitResp = 19;
+		LinkVidDiskListReq diskListReq = 301;
+		LinkVidDiskListResp diskListResp = 302;
+		LinkSysVidDiskListReq sysDiskListReq = 303;
+		LinkSysVidDiskListResp sysDiskListResp = 304;
+		LinkAddDiskReq addDiskReq = 305;
+		LinkAddDiskResp addDiskResp = 306;
+		LinkDelDiskReq delDiskReq = 307;
+		LinkDelDiskResp delDiskResp = 308;
+		LinkUpdateDiskLimitReq diskLimitReq = 309;
+		LinkUpdateDiskLimitResp diskLimitResp = 310;
 		
-		/* License */
-		LinkGetLicReq licReq = 20;
-		LinkGetLicResp licResp = 21;
-		LinkGetVerReq verReq = 22;
-		LinkGetVerResp verResp = 23;
+		//License
+		LinkGetLicReq licReq = 401;
+		LinkGetLicResp licResp = 402;
+		LinkGetVerReq verReq = 403;
+		LinkGetVerResp verResp = 404;
+		LinkConfLicReq confLicReq = 405;
+		LinkConfLicResp confLicResp = 406;
+		
+		
+		//User
+		LinkAddUserReq addUserReq = 501;
+		LinkAddUserResp addUserResp = 502;
 		
 
 	}
