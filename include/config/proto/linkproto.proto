@@ -10,6 +10,8 @@ enum LinkCmdType {
 	LINK_CMD_LOGIN_RESP = 102;
 	LINK_CMD_KEEPALIVE_REQ = 103;
 	LINK_CMD_KEEPALIVE_RESP = 104;
+	LINK_CMD_REG_NOTIFY_REQ = 105;
+	LINK_CMD_REG_NOTIFY_RESP = 106;
 	
 	//Cam 
 	LINK_CMD_CAM_LIST_REQ = 201;
@@ -45,7 +47,16 @@ enum LinkCmdType {
 	
 	//User
 	LINK_CMD_ADD_USER_REQ = 501;
-	LINK_CMD_ADD_USER_RESP = 502;	
+	LINK_CMD_ADD_USER_RESP = 502;
+
+
+	//Notify message
+	LINK_CMD_CAM_ADD_NOTIFY = 10001;
+	LINK_CMD_CAM_DEL_NOTIFY = 10002;
+	LINK_CMD_CAM_ONLINE_NOTIFY = 10003;
+	LINK_CMD_CAM_OFFLINE_NOTIFY = 10004;
+	LINK_CMD_CAM_REC_ON_NOTIFY = 10005;
+	LINK_CMD_CAM_REC_OFF_NOTIFY = 10006;
 
 }
 
@@ -56,6 +67,8 @@ message LinkCmd {
 		LinkLoginResp loginResp = 103;
 		LinkKeepaliveReq keepaliveReq = 104;
 		LinkKeepaliveResp keepaliveResp = 105;
+		LinkRegNotifyReq regNotifyReq = 106;
+		LinkRegNotifyResp regNotifyResp = 107;
 	
 		//Cam
 		LinkListCamReq camListReq = 201;
@@ -94,6 +107,11 @@ message LinkCmd {
 		//User
 		LinkAddUserReq addUserReq = 501;
 		LinkAddUserResp addUserResp = 502;
+		
+		
+		//Notify
+		LinkCamAddNotify camAddNotify = 10001;
+		LinkCamIdNotify camIdNotify = 10002;
 		
 
 	}

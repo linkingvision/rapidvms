@@ -94,6 +94,12 @@ int main(int argc, char *argv[])
 	pFactory->Init();
 	QApplication a(argc1, argv1);
 
+#if 0
+	astring strIdTest = "c9d03a04-6ff0-4733-a5bc-6be41876f080";
+	VidCamera camTest;
+	pFactory->GetConfDB().GetCameraConf(strIdTest, camTest);
+#endif
+	
 	gAppdir = env.GetAppDir();
 	
 	astring docRoot = env.GetAppDir()+ "www";

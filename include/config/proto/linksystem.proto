@@ -21,6 +21,12 @@ message LinkKeepaliveReq {
 message LinkKeepaliveResp {
 	int32 nKeepalive = 1;
 }
+message LinkRegNotifyReq {
+	string strFake = 1;
+}
+message LinkRegNotifyResp {
+	bool bSuccess = 1;
+}
 
 //Camera
 message LinkListCamReq {
@@ -132,6 +138,14 @@ message LinkAddUserResp {
 
 //Search
 
+
+//Notify
+message LinkCamAddNotify {
+	VidCamera cCam = 1;
+}
+message LinkCamIdNotify {
+	string strId = 1;
+}
 
 
 

@@ -28,6 +28,7 @@
 #include "vapi/vapiimage.hpp"
 #include "vapi/vapisystem.hpp"
 #include "vapi/vwsapi.hpp"
+#include "link/wslink.hpp"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -43,13 +44,14 @@ class VEWebServer
 public:
 	VEWebServer(std::vector<std::string> cpp_options, Factory &pFactory)
 		:pServer(new CivetServer(cpp_options)), server(*pServer), m_pFactory(pFactory), 
-		h_GetCamList(pFactory), h_GetImage(pFactory), h_vwsapi(pFactory)
+		h_GetCamList(pFactory), h_GetImage(pFactory), h_vwsapi(pFactory), h_wslink(pFactory)
 	{
 		server.addHandler("/vapi/GetCamList", h_GetCamList);
 		server.addHandler("/vapi/GetImage", h_GetImage);
+		server.addWebSocketHandler(LINK_PROTO_WS_PATH, h_wslink);
+		server.addAuthHandler(LINK_PROTO_WS_PATH, h_wslinkAuth);
 		server.addWebSocketHandler("/vwsapi", h_vwsapi);
 		
-
 	}
 	~VEWebServer(){}
 	
@@ -57,6 +59,8 @@ private:
 	WebAPIGetCamListHandler h_GetCamList;
 	WebAPIGetImageHandler h_GetImage;
 	VwsAPI h_vwsapi;
+	WSLink h_wslink;
+	WSLinkAuth h_wslinkAuth;
 	CivetServer *pServer;
 	CivetServer &server;
 	Factory &m_pFactory;

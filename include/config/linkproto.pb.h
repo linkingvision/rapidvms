@@ -49,6 +49,12 @@ VE_LIBRARY_API extern LinkAddUserReqDefaultTypeInternal _LinkAddUserReq_default_
 class LinkAddUserResp;
 class LinkAddUserRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkAddUserRespDefaultTypeInternal _LinkAddUserResp_default_instance_;
+class LinkCamAddNotify;
+class LinkCamAddNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamAddNotifyDefaultTypeInternal _LinkCamAddNotify_default_instance_;
+class LinkCamIdNotify;
+class LinkCamIdNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamIdNotifyDefaultTypeInternal _LinkCamIdNotify_default_instance_;
 class LinkCamReq;
 class LinkCamReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance_;
@@ -103,6 +109,12 @@ VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_inst
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+class LinkRegNotifyReq;
+class LinkRegNotifyReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegNotifyReqDefaultTypeInternal _LinkRegNotifyReq_default_instance_;
+class LinkRegNotifyResp;
+class LinkRegNotifyRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegNotifyRespDefaultTypeInternal _LinkRegNotifyResp_default_instance_;
 class LinkSetCamSchedReq;
 class LinkSetCamSchedReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSetCamSchedReqDefaultTypeInternal _LinkSetCamSchedReq_default_instance_;
@@ -152,6 +164,8 @@ enum LinkCmdType {
   LINK_CMD_LOGIN_RESP = 102,
   LINK_CMD_KEEPALIVE_REQ = 103,
   LINK_CMD_KEEPALIVE_RESP = 104,
+  LINK_CMD_REG_NOTIFY_REQ = 105,
+  LINK_CMD_REG_NOTIFY_RESP = 106,
   LINK_CMD_CAM_LIST_REQ = 201,
   LINK_CMD_CAM_LIST_RESP = 202,
   LINK_CMD_CAM_REQ = 203,
@@ -180,12 +194,18 @@ enum LinkCmdType {
   LINK_CMD_CONF_LIC_RESP = 406,
   LINK_CMD_ADD_USER_REQ = 501,
   LINK_CMD_ADD_USER_RESP = 502,
+  LINK_CMD_CAM_ADD_NOTIFY = 10001,
+  LINK_CMD_CAM_DEL_NOTIFY = 10002,
+  LINK_CMD_CAM_ONLINE_NOTIFY = 10003,
+  LINK_CMD_CAM_OFFLINE_NOTIFY = 10004,
+  LINK_CMD_CAM_REC_ON_NOTIFY = 10005,
+  LINK_CMD_CAM_REC_OFF_NOTIFY = 10006,
   LinkCmdType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   LinkCmdType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 VE_LIBRARY_API bool LinkCmdType_IsValid(int value);
 const LinkCmdType LinkCmdType_MIN = LINK_CMD_ZERO;
-const LinkCmdType LinkCmdType_MAX = LINK_CMD_ADD_USER_RESP;
+const LinkCmdType LinkCmdType_MAX = LINK_CMD_CAM_REC_OFF_NOTIFY;
 const int LinkCmdType_ARRAYSIZE = LinkCmdType_MAX + 1;
 
 VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* LinkCmdType_descriptor();
@@ -220,6 +240,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kLoginResp = 103,
     kKeepaliveReq = 104,
     kKeepaliveResp = 105,
+    kRegNotifyReq = 106,
+    kRegNotifyResp = 107,
     kCamListReq = 201,
     kCamListResp = 202,
     kCamReq = 203,
@@ -248,6 +270,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kConfLicResp = 406,
     kAddUserReq = 501,
     kAddUserResp = 502,
+    kCamAddNotify = 10001,
+    kCamIdNotify = 10002,
     CMD_NOT_SET = 0,
   };
 
@@ -344,6 +368,24 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkKeepaliveResp* mutable_keepaliveresp();
   ::LinkKeepaliveResp* release_keepaliveresp();
   void set_allocated_keepaliveresp(::LinkKeepaliveResp* keepaliveresp);
+
+  // .LinkRegNotifyReq regNotifyReq = 106;
+  bool has_regnotifyreq() const;
+  void clear_regnotifyreq();
+  static const int kRegNotifyReqFieldNumber = 106;
+  const ::LinkRegNotifyReq& regnotifyreq() const;
+  ::LinkRegNotifyReq* mutable_regnotifyreq();
+  ::LinkRegNotifyReq* release_regnotifyreq();
+  void set_allocated_regnotifyreq(::LinkRegNotifyReq* regnotifyreq);
+
+  // .LinkRegNotifyResp regNotifyResp = 107;
+  bool has_regnotifyresp() const;
+  void clear_regnotifyresp();
+  static const int kRegNotifyRespFieldNumber = 107;
+  const ::LinkRegNotifyResp& regnotifyresp() const;
+  ::LinkRegNotifyResp* mutable_regnotifyresp();
+  ::LinkRegNotifyResp* release_regnotifyresp();
+  void set_allocated_regnotifyresp(::LinkRegNotifyResp* regnotifyresp);
 
   // .LinkListCamReq camListReq = 201;
   bool has_camlistreq() const;
@@ -597,6 +639,24 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkAddUserResp* release_adduserresp();
   void set_allocated_adduserresp(::LinkAddUserResp* adduserresp);
 
+  // .LinkCamAddNotify camAddNotify = 10001;
+  bool has_camaddnotify() const;
+  void clear_camaddnotify();
+  static const int kCamAddNotifyFieldNumber = 10001;
+  const ::LinkCamAddNotify& camaddnotify() const;
+  ::LinkCamAddNotify* mutable_camaddnotify();
+  ::LinkCamAddNotify* release_camaddnotify();
+  void set_allocated_camaddnotify(::LinkCamAddNotify* camaddnotify);
+
+  // .LinkCamIdNotify camIdNotify = 10002;
+  bool has_camidnotify() const;
+  void clear_camidnotify();
+  static const int kCamIdNotifyFieldNumber = 10002;
+  const ::LinkCamIdNotify& camidnotify() const;
+  ::LinkCamIdNotify* mutable_camidnotify();
+  ::LinkCamIdNotify* release_camidnotify();
+  void set_allocated_camidnotify(::LinkCamIdNotify* camidnotify);
+
   CmdCase cmd_case() const;
   // @@protoc_insertion_point(class_scope:Link.LinkCmd)
  private:
@@ -604,6 +664,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_loginresp();
   void set_has_keepalivereq();
   void set_has_keepaliveresp();
+  void set_has_regnotifyreq();
+  void set_has_regnotifyresp();
   void set_has_camlistreq();
   void set_has_camlistresp();
   void set_has_camreq();
@@ -632,6 +694,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_conflicresp();
   void set_has_adduserreq();
   void set_has_adduserresp();
+  void set_has_camaddnotify();
+  void set_has_camidnotify();
 
   inline bool has_cmd() const;
   void clear_cmd();
@@ -645,6 +709,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkLoginResp* loginresp_;
     ::LinkKeepaliveReq* keepalivereq_;
     ::LinkKeepaliveResp* keepaliveresp_;
+    ::LinkRegNotifyReq* regnotifyreq_;
+    ::LinkRegNotifyResp* regnotifyresp_;
     ::LinkListCamReq* camlistreq_;
     ::LinkListCamResp* camlistresp_;
     ::LinkCamReq* camreq_;
@@ -673,6 +739,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkConfLicResp* conflicresp_;
     ::LinkAddUserReq* adduserreq_;
     ::LinkAddUserResp* adduserresp_;
+    ::LinkCamAddNotify* camaddnotify_;
+    ::LinkCamIdNotify* camidnotify_;
   } cmd_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -891,6 +959,102 @@ inline void LinkCmd::set_allocated_keepaliveresp(::LinkKeepaliveResp* keepaliver
     cmd_.keepaliveresp_ = keepaliveresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.keepaliveResp)
+}
+
+// .LinkRegNotifyReq regNotifyReq = 106;
+inline bool LinkCmd::has_regnotifyreq() const {
+  return cmd_case() == kRegNotifyReq;
+}
+inline void LinkCmd::set_has_regnotifyreq() {
+  _oneof_case_[0] = kRegNotifyReq;
+}
+inline void LinkCmd::clear_regnotifyreq() {
+  if (has_regnotifyreq()) {
+    delete cmd_.regnotifyreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkRegNotifyReq& LinkCmd::regnotifyreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regNotifyReq)
+  return has_regnotifyreq()
+      ? *cmd_.regnotifyreq_
+      : ::LinkRegNotifyReq::default_instance();
+}
+inline ::LinkRegNotifyReq* LinkCmd::mutable_regnotifyreq() {
+  if (!has_regnotifyreq()) {
+    clear_cmd();
+    set_has_regnotifyreq();
+    cmd_.regnotifyreq_ = new ::LinkRegNotifyReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regNotifyReq)
+  return cmd_.regnotifyreq_;
+}
+inline ::LinkRegNotifyReq* LinkCmd::release_regnotifyreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regNotifyReq)
+  if (has_regnotifyreq()) {
+    clear_has_cmd();
+    ::LinkRegNotifyReq* temp = cmd_.regnotifyreq_;
+    cmd_.regnotifyreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_regnotifyreq(::LinkRegNotifyReq* regnotifyreq) {
+  clear_cmd();
+  if (regnotifyreq) {
+    set_has_regnotifyreq();
+    cmd_.regnotifyreq_ = regnotifyreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regNotifyReq)
+}
+
+// .LinkRegNotifyResp regNotifyResp = 107;
+inline bool LinkCmd::has_regnotifyresp() const {
+  return cmd_case() == kRegNotifyResp;
+}
+inline void LinkCmd::set_has_regnotifyresp() {
+  _oneof_case_[0] = kRegNotifyResp;
+}
+inline void LinkCmd::clear_regnotifyresp() {
+  if (has_regnotifyresp()) {
+    delete cmd_.regnotifyresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkRegNotifyResp& LinkCmd::regnotifyresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regNotifyResp)
+  return has_regnotifyresp()
+      ? *cmd_.regnotifyresp_
+      : ::LinkRegNotifyResp::default_instance();
+}
+inline ::LinkRegNotifyResp* LinkCmd::mutable_regnotifyresp() {
+  if (!has_regnotifyresp()) {
+    clear_cmd();
+    set_has_regnotifyresp();
+    cmd_.regnotifyresp_ = new ::LinkRegNotifyResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regNotifyResp)
+  return cmd_.regnotifyresp_;
+}
+inline ::LinkRegNotifyResp* LinkCmd::release_regnotifyresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regNotifyResp)
+  if (has_regnotifyresp()) {
+    clear_has_cmd();
+    ::LinkRegNotifyResp* temp = cmd_.regnotifyresp_;
+    cmd_.regnotifyresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_regnotifyresp(::LinkRegNotifyResp* regnotifyresp) {
+  clear_cmd();
+  if (regnotifyresp) {
+    set_has_regnotifyresp();
+    cmd_.regnotifyresp_ = regnotifyresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regNotifyResp)
 }
 
 // .LinkListCamReq camListReq = 201;
@@ -2235,6 +2399,102 @@ inline void LinkCmd::set_allocated_adduserresp(::LinkAddUserResp* adduserresp) {
     cmd_.adduserresp_ = adduserresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addUserResp)
+}
+
+// .LinkCamAddNotify camAddNotify = 10001;
+inline bool LinkCmd::has_camaddnotify() const {
+  return cmd_case() == kCamAddNotify;
+}
+inline void LinkCmd::set_has_camaddnotify() {
+  _oneof_case_[0] = kCamAddNotify;
+}
+inline void LinkCmd::clear_camaddnotify() {
+  if (has_camaddnotify()) {
+    delete cmd_.camaddnotify_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamAddNotify& LinkCmd::camaddnotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camAddNotify)
+  return has_camaddnotify()
+      ? *cmd_.camaddnotify_
+      : ::LinkCamAddNotify::default_instance();
+}
+inline ::LinkCamAddNotify* LinkCmd::mutable_camaddnotify() {
+  if (!has_camaddnotify()) {
+    clear_cmd();
+    set_has_camaddnotify();
+    cmd_.camaddnotify_ = new ::LinkCamAddNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camAddNotify)
+  return cmd_.camaddnotify_;
+}
+inline ::LinkCamAddNotify* LinkCmd::release_camaddnotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camAddNotify)
+  if (has_camaddnotify()) {
+    clear_has_cmd();
+    ::LinkCamAddNotify* temp = cmd_.camaddnotify_;
+    cmd_.camaddnotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camaddnotify(::LinkCamAddNotify* camaddnotify) {
+  clear_cmd();
+  if (camaddnotify) {
+    set_has_camaddnotify();
+    cmd_.camaddnotify_ = camaddnotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camAddNotify)
+}
+
+// .LinkCamIdNotify camIdNotify = 10002;
+inline bool LinkCmd::has_camidnotify() const {
+  return cmd_case() == kCamIdNotify;
+}
+inline void LinkCmd::set_has_camidnotify() {
+  _oneof_case_[0] = kCamIdNotify;
+}
+inline void LinkCmd::clear_camidnotify() {
+  if (has_camidnotify()) {
+    delete cmd_.camidnotify_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamIdNotify& LinkCmd::camidnotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camIdNotify)
+  return has_camidnotify()
+      ? *cmd_.camidnotify_
+      : ::LinkCamIdNotify::default_instance();
+}
+inline ::LinkCamIdNotify* LinkCmd::mutable_camidnotify() {
+  if (!has_camidnotify()) {
+    clear_cmd();
+    set_has_camidnotify();
+    cmd_.camidnotify_ = new ::LinkCamIdNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camIdNotify)
+  return cmd_.camidnotify_;
+}
+inline ::LinkCamIdNotify* LinkCmd::release_camidnotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camIdNotify)
+  if (has_camidnotify()) {
+    clear_has_cmd();
+    ::LinkCamIdNotify* temp = cmd_.camidnotify_;
+    cmd_.camidnotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camidnotify(::LinkCamIdNotify* camidnotify) {
+  clear_cmd();
+  if (camidnotify) {
+    set_has_camidnotify();
+    cmd_.camidnotify_ = camidnotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camIdNotify)
 }
 
 inline bool LinkCmd::has_cmd() const {

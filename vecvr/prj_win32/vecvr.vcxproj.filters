@@ -36,37 +36,25 @@
     <Filter Include="include">
       <UniqueIdentifier>{99559c38-1438-4a46-8052-fd8837ab6044}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\config">
-      <UniqueIdentifier>{41a06082-e8ce-4892-98d3-8ac0c4210795}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\server">
-      <UniqueIdentifier>{b9619231-b501-4e05-a8cc-e8c8a7ac192a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\oapi">
       <UniqueIdentifier>{516ed3a6-db5e-4a3a-a7f5-099188efced0}</UniqueIdentifier>
     </Filter>
     <Filter Include="main\civetweb">
       <UniqueIdentifier>{c9b38e01-94e6-4147-97b9-665b33852fe3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\config">
+      <UniqueIdentifier>{32eccb47-b24f-4668-9676-2ab4ee8a5a84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\link">
+      <UniqueIdentifier>{8cc2ac50-d271-4fc6-b112-3a1b1b9a8866}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
       <Filter>Resource</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\include\server\cmnoapiserver.hpp">
-      <Filter>include\server</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\server\cmnserver.hpp">
-      <Filter>include\server</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\server\factory.hpp">
-      <Filter>include\server</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\include\oapi\oapis.hpp">
       <Filter>include\oapi</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\server\eventserver.hpp">
-      <Filter>include\server</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -75,27 +63,6 @@
     </ClCompile>
     <ClCompile Include="..\main\main.cpp">
       <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
-      <Filter>include\config</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_cmnoapiserver.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_cmnserver.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cmnserver.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -112,49 +79,13 @@
     <ClCompile Include="..\..\3rdparty\civetweb\src\civetweb.c">
       <Filter>main\civetweb</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_eventserver.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_eventserver.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="..\main\link\linkhandler.cpp">
+      <Filter>main\link</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\conf.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\confdb.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\confdbimpl.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\sysdb.hpp">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\vidconf.pb.h">
-      <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\camera.hpp">
-      <Filter>include\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\cameraimpl.hpp">
-      <Filter>include\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\cmnoapiserverimpl.hpp">
-      <Filter>include\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\cmnserverimpl.hpp">
-      <Filter>include\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\factoryimpl.hpp">
-      <Filter>include\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\hdddevice.hpp">
-      <Filter>include\server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapic.hpp">
       <Filter>include\oapi</Filter>
@@ -170,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
       <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\server\eventserverimpl.hpp">
-      <Filter>include\server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
