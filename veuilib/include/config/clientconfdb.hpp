@@ -31,11 +31,12 @@
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
 #include "simplecrypt.hpp"
+#include "config/vidconf.pb.h"
 
 using namespace UtilityLib;
 using namespace XSDK;
 
-class ClientConfDB
+class VE_LIBRARY_API ClientConfDB
 {
 public:
     ClientConfDB()
@@ -113,9 +114,5 @@ private:
 };
 
 typedef ClientConfDB* LPClientConfDB;
-
-
-#include "clientconfdbimpl.hpp"
-
 
 #endif /* __CLIENT_CONF_DB_H__ */

@@ -27,8 +27,8 @@
 
 #define NOMINMAX
 #ifdef WIN32
-#include <Windows.h>
-#include <Winbase.h>
+//#include <Windows.h>
+//#include <Winbase.h>
 #endif 
 
 #include <algorithm>
@@ -51,10 +51,10 @@
 #include "recordwrapper.hpp"
 #include "Poco/URI.h"
 #include "Poco/String.h"
+#include "config/confdb.hpp"
 
 #include "vvidonvif/vvidonvifc.hpp"
 
-using namespace VidConf;
 using namespace UtilityLib;
 using namespace std;
 using namespace ONVIF;
@@ -107,13 +107,13 @@ typedef std::map<void *, CameraRawCallbackFunctionPtr> CameraRawCallbackMap;
 typedef std::map<void *, CameraSeqCallbackFunctionPtr> CameraSeqCallbackMap;
 typedef std::map<void *, CameraDelCallbackFunctionPtr> CameraDelCallbackMap;
 
-class CameraParam
+class VE_LIBRARY_API CameraParam
 {
 public:
-	inline CameraParam();
-	inline CameraParam(const CameraParam &pParam);
-	inline CameraParam(VidCamera &pData);
-	inline ~CameraParam();
+	CameraParam();
+	CameraParam(const CameraParam &pParam);
+	CameraParam(VidCamera &pData);
+	~CameraParam();
 	CameraParam & operator=(const CameraParam &pParam)
 	{
 		m_Conf = pParam.m_Conf;
@@ -129,10 +129,10 @@ public:
 	}
 
 public:
-	inline BOOL UpdateUrl();
-	inline BOOL UpdateUrlOnvif();
-	inline BOOL CheckOnline();
-	inline BOOL UpdateDefaultUrl();
+	BOOL UpdateUrl();
+	BOOL UpdateUrlOnvif();
+	BOOL CheckOnline();
+	BOOL UpdateDefaultUrl();
 
 public:
 	VidCamera m_Conf;
@@ -150,69 +150,80 @@ public:
 	VidStreamList m_cStreamList;
 };
 
-class Camera
+/* 
+ * Add Channel number for NVR integration support, a camera is a device
+ * ONVIFCamera -> Camera, 1 channel 
+ * File               -> Camera, 1 channel 
+ * RTSP             -> Camera, 1 channel
+ * USB              -> Camera, 1 channel
+ * MJPEG           -> Camera, 1 channel
+ * LinkVision      -> Camera, register
+ * Recorder        -> Camera, dynamic channel
+*/
+
+class VE_LIBRARY_API Camera
 {
 public:
-	inline Camera(ConfDB &pConfDB, VDB &pVdb, 
+	Camera(ConfDB &pConfDB, VDB &pVdb, 
 					VHdfsDB &pVHdfsdb, const CameraParam &pParam, 
 					RecChangeFunctionPtr pCallback, void *pCallbackParam);
-	inline ~Camera();
+	~Camera();
 
 public:
 	/* Below api is for a new thread to do some network task whitch may be blocked */
-	inline BOOL GetCameraParam(CameraParam &pParam);
+	BOOL GetCameraParam(CameraParam &pParam);
 
 public:	
-	inline BOOL StartData();
-	inline BOOL StopData();
+	BOOL StartData();
+	BOOL StopData();
 	
-	inline BOOL StartSubData();
-	inline BOOL StopSubData();
-	inline bool UpdateRecSched(VidCamera &pCam);
+	BOOL StartSubData();
+	BOOL StopSubData();
+	bool UpdateRecSched(VidCamera &pCam);
 	
-	inline CameraStatus CheckCamera(astring strUrl, astring strUrlSubStream, 
+	CameraStatus CheckCamera(astring strUrl, astring strUrlSubStream, 
 		BOOL bHasSubStream, BOOL bOnline, BOOL bOnlineUrl, 
 		VidStreamList cStreamlist);
 
 public:
 	/* Data  */
-	inline static BOOL DataHandler(void* pData, VideoFrame& frame);
-	inline BOOL DataHandler1(VideoFrame& frame);
-	inline static BOOL SubDataHandler(void* pData, VideoFrame& frame);
-	inline BOOL SubDataHandler1(VideoFrame& frame);
+	static BOOL DataHandler(void* pData, VideoFrame& frame);
+	BOOL DataHandler1(VideoFrame& frame);
+	static BOOL SubDataHandler(void* pData, VideoFrame& frame);
+	BOOL SubDataHandler1(VideoFrame& frame);
 
 public:
-	inline void Lock(){m_Lock.lock();}
-	inline void UnLock(){m_Lock.unlock();}
-	inline void SubLock(){m_SubLock.lock();}
-	inline void SubUnLock(){m_SubLock.unlock();}
+	void Lock(){m_Lock.lock();}
+	void UnLock(){m_Lock.unlock();}
+	void SubLock(){m_SubLock.lock();}
+	void SubUnLock(){m_SubLock.unlock();}
 
 public:
 	/* Data  callback*/
-	inline BOOL RegDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegDataCallback(void * pParam);
-	inline BOOL RegSubDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegSubDataCallback(void * pParam);
+	BOOL RegDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegDataCallback(void * pParam);
+	BOOL RegSubDataCallback(CameraDataCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegSubDataCallback(void * pParam);
 	
-	inline BOOL RegDelCallback(CameraDelCallbackFunctionPtr pCallback, void * pParam);
-	inline BOOL UnRegDelCallback(void * pParam);
+	BOOL RegDelCallback(CameraDelCallbackFunctionPtr pCallback, void * pParam);
+	BOOL UnRegDelCallback(void * pParam);
 	
-	inline BOOL GetInfoFrame(InfoFrame &pFrame);
-	inline BOOL GetiFrame(VideoFrame& frame);
-	inline BOOL GetSubInfoFrame(InfoFrame &pFrame);
+	BOOL GetInfoFrame(InfoFrame &pFrame);
+	BOOL GetiFrame(VideoFrame& frame);
+	BOOL GetSubInfoFrame(InfoFrame &pFrame);
 	
-	inline BOOL GetCameraOnline();
+	BOOL GetCameraOnline();
 	
-	inline BOOL AttachPlayer(HWND hWnd, int w, int h);
-	inline BOOL UpdateWidget(HWND hWnd, int w, int h);
-	inline BOOL DetachPlayer(HWND hWnd);
-	inline BOOL GetStreamInfo(VideoStreamInfo &pInfo);
-	inline BOOL GetCamStreamList(VidStreamList &pList);
+	BOOL AttachPlayer(HWND hWnd, int w, int h);
+	BOOL UpdateWidget(HWND hWnd, int w, int h);
+	BOOL DetachPlayer(HWND hWnd);
+	BOOL GetStreamInfo(VideoStreamInfo &pInfo);
+	BOOL GetCamStreamList(VidStreamList &pList);
 
-	inline BOOL ShowAlarm(HWND hWnd);
-	inline BOOL PtzAction(FPtzAction action, float speed);
-	inline BOOL UpdatePTZConf();
-	inline BOOL FireAlarm(s64 nStartTime);
+	BOOL ShowAlarm(HWND hWnd);
+	BOOL PtzAction(FPtzAction action, float speed);
+	BOOL UpdatePTZConf();
+	BOOL FireAlarm(s64 nStartTime);
 
 private:
 	VPlay *m_pvPlay;
@@ -258,5 +269,4 @@ private:
 typedef CameraParam* LPCameraParam;
 typedef Camera* LPCamera;
 
-#include "cameraimpl.hpp"
 #endif // __VSC_CAMERA_H_

@@ -59,6 +59,8 @@ public:
 	                        struct mg_connection *conn);
 	bool ProcessSetCamSchedReq(Link::LinkCmd &req, CivetServer *server,
 	                        struct mg_connection *conn);
+	bool ProcessGetStreamListReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
 
 	/* Disk */
 	bool ProcessDiskListReq(Link::LinkCmd &req, CivetServer *server,
@@ -85,6 +87,14 @@ public:
 	/* User */
 	bool ProcessAddUserReq(Link::LinkCmd &req, CivetServer *server,
 	                        struct mg_connection *conn);
+
+
+	/* Search */
+	bool ProcessHasRecordReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	bool ProcessSearchRecordReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+
 
 	
 	bool SendRespMsg(Link::LinkCmd &resp, CivetServer *server,

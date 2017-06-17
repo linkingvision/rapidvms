@@ -45,7 +45,7 @@
 using namespace cppkit;
 using namespace std;
 
-class StorStream: public QThread
+class VE_LIBRARY_API StorStream: public QThread
 {
 	Q_OBJECT
 public:
@@ -102,8 +102,5 @@ private:
 };
 
 typedef StorStream* LPStorStream;
-
-
-#include "storstreamimpl.hpp"
 
 #endif

@@ -32,7 +32,7 @@
 
 using namespace UtilityLib;
 
-class SysDB
+class VE_LIBRARY_API SysDB
 {
 public:
     SysDB()

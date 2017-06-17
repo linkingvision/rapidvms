@@ -39,7 +39,6 @@
 #include "XSDK/TimeUtils.h"
 #include "config/videnv.hpp"
 
-using namespace VidConf;
 using namespace XSDK;
 
 typedef enum
@@ -57,7 +56,7 @@ typedef enum
 } FactoryCameraChangeType;
 
 
-class FactoryCameraChangeData
+class VE_LIBRARY_API FactoryCameraChangeData
 {
 public:
 	FactoryCameraChangeType type;
@@ -81,7 +80,7 @@ typedef std::map<void *, FactoryCameraChangeNotify> CameraChangeNofityMap;
 typedef std::map<void *, FactoryUserChangeNotify> UserChangeNofityMap;
 
 class Factory;
-class FactoryHddTask:public QThread
+class VE_LIBRARY_API FactoryHddTask:public QThread
 {
 	Q_OBJECT
 public:
@@ -94,7 +93,7 @@ private:
 };
 
 /* Fatory is Qthread for callback in Qt GUI */
-class Factory: public QThread
+class VE_LIBRARY_API Factory: public QThread
 {
     Q_OBJECT
 public:
@@ -149,9 +148,9 @@ public:
 
 public:
 	/* Disk function */
-	BOOL AddHdd(astring &strHdd, astring & strPath, s64 nSize);
-	BOOL DelHdd(astring & strHdd);
-	BOOL HddUpdateSize(astring &strHdd, s64 nSize);
+	BOOL AddHdd(astring strHdd, astring  strPath, s64 nSize);
+	BOOL DelHdd(astring  strHdd);
+	BOOL HddUpdateSize(astring strHdd, s64 nSize);
 	BOOL GetDiskMap(VDBDiskMap &pMap);
 	BOOL GetDiskStatus(VDBDiskStatus &pStatus);
 	BOOL UpdateDiskStatusMap(VDBDiskStatus &pStatus);
@@ -208,7 +207,5 @@ private:
 
 typedef Factory* LPFactory;
 
-
-#include "factoryimpl.hpp"
 
 #endif // __VSC_FACTORY_H_

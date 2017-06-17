@@ -49,7 +49,7 @@ using namespace Poco::Util;
 
 
 //XGuard guard(m_cMutex);
-class VidEnv : public Application
+class VE_LIBRARY_API VidEnv : public Application
 {
 public:
 	VidEnv()

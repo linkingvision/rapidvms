@@ -50,7 +50,7 @@ using namespace WEBBY;
 
 using namespace UtilityLib;
 
-class CmnOAPIServerSession: public QThread
+class VE_LIBRARY_API CmnOAPIServerSession: public QThread
 {
 	Q_OBJECT
 public:
@@ -66,7 +66,7 @@ private:
 	VEventServer &m_pEvent;
 };
 
-class CmnOAPIServer:public QThread
+class VE_LIBRARY_API CmnOAPIServer:public QThread
 {
 	Q_OBJECT
 public:
@@ -92,7 +92,7 @@ private:
 	VEventServer &m_pEvent;
 };
 
-class CmnOAPISSLServer:public QThread
+class VE_LIBRARY_API CmnOAPISSLServer:public QThread
 {
 	Q_OBJECT
 public:
@@ -119,7 +119,7 @@ private:
 typedef CmnOAPIServer* LPCmnOAPIServer;
 typedef CmnOAPISSLServer* LPCmnOAPISSLServer;
 
-class OAPIServerWrapper
+class VE_LIBRARY_API OAPIServerWrapper
 {
 public:
 	inline OAPIServerWrapper(Factory &pFactory, VEventServer &pEvent);
@@ -146,9 +146,6 @@ private:
 	CmnOAPIServer m_cmn;
 	//CmnOAPISSLServer m_ssl;
 };
-
-
-#include "cmnoapiserverimpl.hpp"
 
 
 #endif /* __VSC_CMN_OAPI_SERVER__H_ */

@@ -52,7 +52,7 @@ typedef enum
 } StorFactoryChangeType;
 
 
-class StorFactoryChangeData
+class VE_LIBRARY_API StorFactoryChangeData
 {
 public:
 	StorFactoryChangeType type;
@@ -60,7 +60,7 @@ public:
 	VidCamera cCam;
 };
 
-class StorFactoryNotifyInterface
+class VE_LIBRARY_API StorFactoryNotifyInterface
 {
 public:
 virtual bool CallChange(StorFactoryChangeData data){return FALSE;}

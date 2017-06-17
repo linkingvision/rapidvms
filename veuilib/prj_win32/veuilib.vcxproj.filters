@@ -54,17 +54,38 @@
     <Filter Include="src\vvidpb">
       <UniqueIdentifier>{86d1fd82-10b8-43c9-9bbc-306d9abd5a54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\config">
-      <UniqueIdentifier>{004a92ba-44fa-4c25-8a88-141ed9a6c491}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\client">
-      <UniqueIdentifier>{f36fef58-0570-46b1-85fc-12bcb912a7cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\vvidonvif">
       <UniqueIdentifier>{29dc0e3d-2be7-41da-b71c-8dd796c2d001}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\vvidonvif">
       <UniqueIdentifier>{15213bab-cf8f-4312-a5a1-4a583d792909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\client">
+      <UniqueIdentifier>{87e7731e-0bcf-408b-9208-ccc1c538e3bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\server">
+      <UniqueIdentifier>{3f18f90a-9ffb-4f1a-a1ba-8ed8ba30074a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\config">
+      <UniqueIdentifier>{6669fa36-3a39-41b8-ac37-0915f0ab9936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\client">
+      <UniqueIdentifier>{5ccb8e1a-dddf-4c14-94aa-cea888ed6ec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\server">
+      <UniqueIdentifier>{5bd22c19-1367-485d-8d87-6759420291d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config">
+      <UniqueIdentifier>{054b3287-1adb-4356-9e0e-de3d016a394f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\oapi">
+      <UniqueIdentifier>{0f5dacd9-cbed-4273-a711-ab54e4203a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{3e306ec8-a7c8-451c-9e68-dbe425b261f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\civetweb">
+      <UniqueIdentifier>{b582a819-64e7-4778-8f2f-d33ea4ccfa92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -200,33 +221,6 @@
     <ClCompile Include="..\src\cmnui\vvidtimeline.cpp">
       <Filter>src\cmnui</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_clientfactory.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storclient.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storclient.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storfactory.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storstream.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storstream.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
-      <Filter>include\config</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\cmnui\simplecrypt.cpp">
       <Filter>src\cmnui</Filter>
     </ClCompile>
@@ -286,12 +280,6 @@
     </ClCompile>
     <ClCompile Include="..\src\vvidpb\vvidpbwidget.cpp">
       <Filter>src\vvidpb</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_storsyncinf.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_storsyncinf.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_vvidpbwall.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -386,6 +374,108 @@
     <ClCompile Include="..\src\vservice\vonvifdismgr.cpp">
       <Filter>src\vservice</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_clientfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_clientfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storfactory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_storstream.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_storstream.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmnserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmnserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_eventserver.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_eventserver.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_factory.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_factory.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\clientfactory.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\storclient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\storfactory.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\storstream.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\storsyncinf.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\clientconfdb.cpp">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\confdb.cpp">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\camera.cpp">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\cmnoapiserver.cpp">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\cmnserver.cpp">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\eventserver.cpp">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\factory.cpp">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\vidconf.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\linkproto.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\config\linksystem.pb.cc">
+      <Filter>include\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdparty\civetweb\src\CivetServer.cpp">
+      <Filter>3rdparty\civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdparty\civetweb\src\civetweb.c">
+      <Filter>3rdparty\civetweb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client\storwsclient.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\velibui.qrc">
@@ -445,18 +535,6 @@
     <CustomBuild Include="..\src\vvidwidget\vscvwidget.ui">
       <Filter>src\vvidwidget</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\include\client\clientfactory.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storclient.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storfactory.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storstream.hpp">
-      <Filter>include\client</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\src\vvidpb\vscdateset.h">
       <Filter>src\vvidpb</Filter>
     </CustomBuild>
@@ -489,9 +567,6 @@
     </CustomBuild>
     <CustomBuild Include="..\src\vvidpb\vvidpbwidget.ui">
       <Filter>src\vvidpb</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\client\storsyncinf.hpp">
-      <Filter>include\client</Filter>
     </CustomBuild>
     <CustomBuild Include="..\include\vvidpbwall.h">
       <Filter>include</Filter>
@@ -532,6 +607,36 @@
     <CustomBuild Include="..\src\cmnui\vmottable.hpp">
       <Filter>src\cmnui</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\include\client\clientfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\client\storclient.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\client\storfactory.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\client\storstream.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\client\storsyncinf.hpp">
+      <Filter>include\client</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\server\cmnoapiserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\server\cmnserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\server\eventserver.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\include\server\factory.hpp">
+      <Filter>include\server</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\oapi\oapis.hpp">
+      <Filter>include\oapi</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_vscemapcam.h">
@@ -545,21 +650,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscvwidget.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\clientfactoryimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storclientimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storcmn.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storfactoryimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\client\storstreamimpl.hpp">
-      <Filter>include\client</Filter>
     </ClInclude>
     <ClInclude Include="..\include\simplecrypt.hpp">
       <Filter>include</Filter>
@@ -582,9 +672,6 @@
     <ClInclude Include="GeneratedFiles\ui_vvidpbwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\client\storsyncinfimpl.hpp">
-      <Filter>include\client</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscemap.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -602,6 +689,51 @@
     </ClInclude>
     <ClInclude Include="..\include\vonvifdismgr.hpp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\client\storcmn.hpp">
+      <Filter>include\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\config\clientconfdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\config\confdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\config\sysdb.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\config\videnv.hpp">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\server\camera.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\server\hdddevice.hpp">
+      <Filter>include\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\vidconf.pb.h">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapic.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
+      <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\linkproto.pb.h">
+      <Filter>include\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\config\linksystem.pb.h">
+      <Filter>include\config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

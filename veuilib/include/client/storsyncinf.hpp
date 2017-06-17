@@ -37,25 +37,29 @@
 #include "config/vidconf.pb.h"
 #include "server/camera.hpp"
 
+
 #include "cppkit/ck_string.h"
 #include "cppkit/os/ck_sprintf.h"
 #include "oapi/oapic.hpp"
 #include "oapi/oapis.hpp"
-#include <QtWidgets/QApplication>
+#include "client/storwsclient.hpp"
 
 using namespace cppkit;
 using namespace std;
 
-class StorSyncInf: public QObject
+class VE_LIBRARY_API StorSyncInf: public StorWebSocketClient
 {
-	Q_OBJECT
 public:
 	StorSyncInf(VidStor &stor, int nTimeoutMillis = 5000);
 	~StorSyncInf();
+public:
+	virtual bool ProcessRecvMsg(char *data, size_t data_len);
+	virtual bool ProcessOffline();
+	virtual bool ProcessOnline();
+	virtual bool IsKeep();
+	bool ProcessCamListResp(Link::LinkCmd &cmd);
 
 public:
-	bool Connect();
-	void SetRecvTimeout(int nTimeoutMillis);
 	VidCameraList GetVidCameraList();
 	bool GetVidCamera(astring strId, VidCamera &pCam);
 	VidDiskList GetVidDiskList();
@@ -86,25 +90,17 @@ public:
 
 private:
 	bool SyncRecv(OAPIHeader &header);
- 	VidCameraList UpdateVidCameraList(oapi::OAPICameraListRsp list);
+	bool GetRespMsg(long long lastId, Link::LinkCmd & respCmd);
+
 private:
 	XMutex m_cMutex;
 	
 private:
 	astring m_strId;
 	VidStor m_stor;
-
-
-	XRef<XSocket> m_pSocket;
-	int m_nTimeoutMillis; 
-	bool m_bConnected;
-	char *m_pRecv;
-	int m_nRecvLen;;
+	Link::LinkCmd m_lastCmd;
 };
 
 typedef StorSyncInf* LPStorSyncInf;
-
-
-#include "storsyncinfimpl.hpp"
 
 #endif

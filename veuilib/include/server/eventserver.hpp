@@ -54,8 +54,6 @@
 //#include <exception>
 
 
-
-using namespace VidConf;
 using Poco::Data::Statement;
 using Poco::Data::RecordSet;
 using namespace Poco::Data;
@@ -64,7 +62,7 @@ using namespace Poco::Data::Keywords;
 
 using Poco::Data::Session;
 
-class VEventData
+class VE_LIBRARY_API VEventData
 {
 public:
 	astring strId;
@@ -85,7 +83,7 @@ typedef std::map<u64, VEventData> EventItemMap;
 typedef void (*FunctionEventNotify)(VEventData data, void* pParam);
 typedef std::map<void *, FunctionEventNotify> FunctionEventNotifyMap;
 
-class VEventServerDbTask: public QThread
+class VE_LIBRARY_API VEventServerDbTask: public QThread
 {
 	Q_OBJECT
 public:
@@ -111,7 +109,7 @@ private:
 
 //TODO VEventServerMetaDbTask for the Meta Data for the VA 
 
-class VEventServerCallbackTask: public QThread
+class VE_LIBRARY_API VEventServerCallbackTask: public QThread
 {
 	Q_OBJECT
 public:
@@ -149,7 +147,7 @@ typedef struct __VVidEventSearchCmd
 	void * pData;/* Who send this cmd */
 }VVidEventSearchCmd;
 
-class VEventServerSearchTask: public QThread
+class VE_LIBRARY_API VEventServerSearchTask: public QThread
 {
 	Q_OBJECT
 public:
@@ -175,7 +173,7 @@ private:
 };
 
 
-class VEventServer: public QObject
+class VE_LIBRARY_API VEventServer: public QObject
 {
 	Q_OBJECT
 public:
@@ -198,8 +196,5 @@ private:
 	VEventServerSearchTask m_SearchTask;
 	Factory &m_Factory;
 };
-
-
-#include "eventserverimpl.hpp"
 
 #endif // __VSC_EVENT_SERVER_H_

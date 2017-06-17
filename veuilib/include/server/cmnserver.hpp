@@ -49,7 +49,7 @@ using namespace WEBBY;
 
 using namespace UtilityLib;
 
-class CmnHttpServer:public QThread
+class VE_LIBRARY_API CmnHttpServer:public QThread
 {
 	Q_OBJECT
 public:
@@ -73,7 +73,7 @@ private:
 	u16 m_port;
 };
 
-class CmnHttpsServer:public QThread
+class VE_LIBRARY_API CmnHttpsServer:public QThread
 {
 	Q_OBJECT
 public:
@@ -100,8 +100,6 @@ private:
 typedef CmnHttpServer* LPCmnHttpServer;
 typedef CmnHttpsServer* LPCmnHttpsServer;
 
-
-#include "cmnserverimpl.hpp"
 
 
 #endif /* __VSC_CMN_SERVER__H_ */

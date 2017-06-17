@@ -42,12 +42,10 @@
 #include "Poco/UUIDGenerator.h"
 
 using namespace Poco;
-using namespace VidConf;
-
 typedef std::list<LPStorClient> StorClientList;
 typedef std::map<astring, LPStorClient> StorClientMap;
 
-class StorFactory: public QObject , public StorFactoryNotifyInterface
+class VE_LIBRARY_API StorFactory: public QObject , public StorFactoryNotifyInterface
 {
     Q_OBJECT
 public:
@@ -107,7 +105,5 @@ private:
 
 typedef StorFactory* LPStorFactory;
 
-
-#include "storfactoryimpl.hpp"
 
 #endif // __VSC_STOR_FACTORY_H_

@@ -40,8 +40,6 @@
 #include "simplecrypt.hpp"
 #include "config/videnv.hpp"
 
-using namespace VidConf;
-
 typedef enum
 {
     /* Camera view add and del */
@@ -61,7 +59,7 @@ typedef enum
 } ClientFactoryChangeType;
 
 
-class ClientFactoryChangeData
+class VE_LIBRARY_API ClientFactoryChangeData
 {
 public:
 	ClientFactoryChangeType type;
@@ -69,7 +67,7 @@ public:
 };
 
 /* Fatory is Qthread for callback in Qt GUI */
-class ClientFactory: public QThread
+class VE_LIBRARY_API ClientFactory: public QThread
 {
     Q_OBJECT
 public:
@@ -135,7 +133,5 @@ private:
 
 typedef ClientFactory* LPClientFactory;
 
-
-#include "clientfactoryimpl.hpp"
 
 #endif // __VSC_CLIENT_FACTORY_H_

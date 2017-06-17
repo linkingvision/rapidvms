@@ -24,6 +24,8 @@ enum LinkCmdType {
 	LINK_CMD_DEL_CAM_RESP = 208;
 	LINK_CMD_SET_CAM_SCHED_REQ = 209;
 	LINK_CMD_SET_CAM_SCHED_RESP = 210;
+	LINK_CMD_GET_STREAM_LIST_REQ = 211;
+	LINK_CMD_GET_STREAM_LIST_RESP = 212;
 	
 	//Disk 
 	LINK_CMD_DISK_LIST_REQ = 301;
@@ -48,6 +50,12 @@ enum LinkCmdType {
 	//User
 	LINK_CMD_ADD_USER_REQ = 501;
 	LINK_CMD_ADD_USER_RESP = 502;
+	
+	//Search
+	LINK_CMD_HAS_RECORD_REQ = 601;
+	LINK_CMD_HAS_RECORD_RESP = 602;
+	LINK_CMD_SEARCH_RECORD_REQ = 603;
+	LINK_CMD_SEARCH_RECORD_RESP = 604;
 
 
 	//Notify message
@@ -81,8 +89,9 @@ message LinkCmd {
 		LinkDelCamResp delCamResp = 208;
 		LinkSetCamSchedReq setCamSchedReq = 209;
 		LinkSetCamSchedResp setCamSchedResp = 210;
+		LinkGetStreamListReq getStreamListReq = 211;
+		LinkGetStreamListResp getStreamListResp = 212;
 
-		
 		//Disk
 		LinkVidDiskListReq diskListReq = 301;
 		LinkVidDiskListResp diskListResp = 302;
@@ -108,6 +117,11 @@ message LinkCmd {
 		LinkAddUserReq addUserReq = 501;
 		LinkAddUserResp addUserResp = 502;
 		
+		//Search 
+		LinkHasRecordReq hasRecReq = 601;
+		LinkHasRecordResp hasRecResp = 602;
+		LinkSearchRecordReq searchRecReq = 603;
+		LinkSearchRecordResp searchRecResp = 604;
 		
 		//Notify
 		LinkCamAddNotify camAddNotify = 10001;

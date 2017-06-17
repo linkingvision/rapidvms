@@ -247,6 +247,7 @@ bool LinkHandler::ProcessRegNotifyReq(Link::LinkCmd &req, CivetServer *server,
 	{
 		return false;
 	}
+
 	
 	const LinkRegNotifyReq& pReq =  req.regnotifyreq();
 	m_bRegNotify = true;
@@ -278,14 +279,27 @@ bool LinkHandler::ProcessCamListReq(Link::LinkCmd &req, CivetServer *server,
 	{
 		return false;
 	}
-	
+
+	CameraOnlineMap pCameraOnlineMap;
+	CameraRecMap pCameraRecMap;
+
+	m_pFactory.GetCameraOnlineMap(pCameraOnlineMap);
+	m_pFactory.GetCameraRecMap(pCameraRecMap);
 	
 	const LinkListCamReq& pList =  req.camlistreq();
 
 	cmdResp.set_type(Link::LINK_CMD_CAM_LIST_RESP);
 	LinkListCamResp * resp = new LinkListCamResp;
 	VidCameraList * clist = new VidCameraList;
+
 	m_pFactory.GetCameraList(*clist);
+
+	for (s32 i = 0; i < clist->cvidcamera_size(); i ++)
+	{
+		VidCamera &cam = (VidCamera &)(clist->cvidcamera(i));
+		cam.set_bonline(pCameraOnlineMap[cam.strid()]);
+		cam.set_brec(pCameraRecMap[cam.strid()]);	
+	}
 	resp->set_allocated_clist(clist);
 
 	cmdResp.set_allocated_camlistresp(resp);
@@ -396,6 +410,34 @@ bool LinkHandler::ProcessSetCamSchedReq(Link::LinkCmd &req, CivetServer *server,
 	resp->set_bsuccess(nRet);
 
 	cmdResp.set_allocated_setcamschedresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;
+}
+
+bool LinkHandler::ProcessGetStreamListReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	bool nRet = false;
+	if (!req.has_getstreamlistreq())
+	{
+		return false;
+	}
+	
+	const LinkGetStreamListReq& pReq =  req.getstreamlistreq();
+
+	VidStreamList *pList = new VidStreamList;
+	nRet = m_pFactory.GetCamStreamList(pReq.strid(), *pList);
+
+	cmdResp.set_type(Link::LINK_CMD_GET_STREAM_LIST_RESP);
+	LinkGetStreamListResp * resp = new LinkGetStreamListResp;
+
+	resp->set_allocated_clist(pList);
+
+	cmdResp.set_allocated_getstreamlistresp(resp);
 
 	SendRespMsg(cmdResp, server, conn);
 
@@ -702,6 +744,91 @@ bool LinkHandler::ProcessAddUserReq(Link::LinkCmd &req, CivetServer *server,
 	return true;	
 }
 
+/* Search */
+bool LinkHandler::ProcessHasRecordReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	bool nRet = false;
+	if (!req.has_hasrecreq())
+	{
+		return false;
+	}
+
+	const LinkHasRecordReq& pReq =  req.hasrecreq();
+	const LinkHasRecordList &pSearchList = pReq.clist();
+
+	LinkHasRecordList *pNewList = new LinkHasRecordList;
+	*pNewList = pSearchList;
+
+	for (s32 i = 0; i < pNewList->chasrec_size(); i ++)
+	{
+		LinkHasRecordItem &item = (LinkHasRecordItem &)(pNewList->chasrec(i));
+		bool bRet = m_pFactory.SearchHasItems(pReq.strid(), item.nstart(),
+							item.nend(), item.ntype());
+		item.set_bhas(bRet);
+	}
+
+	cmdResp.set_type(Link::LINK_CMD_HAS_RECORD_RESP);
+	LinkHasRecordResp * resp = new LinkHasRecordResp;
+	resp->set_allocated_clist(pNewList);
+
+	cmdResp.set_allocated_hasrecresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;	
+}
+
+bool LinkHandler::ProcessSearchRecordReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	bool nRet = false;
+	if (!req.has_searchrecreq())
+	{
+		return false;
+	}
+
+	const LinkSearchRecordReq& pReq =  req.searchrecreq();
+	RecordItemMap recMap;
+
+	m_pFactory.SearchItems(pReq.strid(), pReq.nstart(), pReq.nend(), 
+									pReq.ntype(), recMap);
+
+	cmdResp.set_type(Link::LINK_CMD_SEARCH_RECORD_RESP);
+	LinkSearchRecordResp * resp = new LinkSearchRecordResp;
+
+	LinkRecordList *pList = new LinkRecordList;
+
+	resp->set_strid(pReq.strid());
+	RecordItemMap::iterator it = recMap.begin(); 
+	
+	for(; it!=recMap.end(); ++it)
+	{	
+		LinkRecordItem *pItem = pList->add_clist();
+
+		pItem->set_nid((*it).second.id);
+		pItem->set_nstart((*it).second.start);
+		pItem->set_nend((*it).second.end);
+		pItem->set_ntype((*it).second.type);
+	}
+
+	
+	resp->set_allocated_clist(pList);
+	
+
+	cmdResp.set_allocated_searchrecresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;	
+}
+	
+
 bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
                         struct mg_connection *conn)
 {
@@ -750,6 +877,11 @@ bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
 			return ProcessSetCamSchedReq(cmd, server, conn);
 			break;
 		}
+		case Link::LINK_CMD_GET_STREAM_LIST_REQ:
+		{
+			return ProcessGetStreamListReq(cmd, server, conn);
+			break;
+		}
 		case Link::LINK_CMD_DISK_LIST_REQ:
 		{
 			return ProcessDiskListReq(cmd, server, conn);
@@ -793,6 +925,16 @@ bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
 		case Link::LINK_CMD_ADD_USER_REQ:
 		{
 			return ProcessAddUserReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_HAS_RECORD_REQ:
+		{
+			return ProcessHasRecordReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_SEARCH_RECORD_REQ:
+		{
+			return ProcessSearchRecordReq(cmd, server, conn);
 			break;
 		}
 		default:

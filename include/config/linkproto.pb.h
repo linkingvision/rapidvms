@@ -85,12 +85,30 @@ VE_LIBRARY_API extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_in
 class LinkGetLicResp;
 class LinkGetLicRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetLicRespDefaultTypeInternal _LinkGetLicResp_default_instance_;
+class LinkGetStreamListReq;
+class LinkGetStreamListReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkGetStreamListReqDefaultTypeInternal _LinkGetStreamListReq_default_instance_;
+class LinkGetStreamListResp;
+class LinkGetStreamListRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkGetStreamListRespDefaultTypeInternal _LinkGetStreamListResp_default_instance_;
 class LinkGetVerReq;
 class LinkGetVerReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_instance_;
 class LinkGetVerResp;
 class LinkGetVerRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
+class LinkHasRecordItem;
+class LinkHasRecordItemDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHasRecordItemDefaultTypeInternal _LinkHasRecordItem_default_instance_;
+class LinkHasRecordList;
+class LinkHasRecordListDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHasRecordListDefaultTypeInternal _LinkHasRecordList_default_instance_;
+class LinkHasRecordReq;
+class LinkHasRecordReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHasRecordReqDefaultTypeInternal _LinkHasRecordReq_default_instance_;
+class LinkHasRecordResp;
+class LinkHasRecordRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHasRecordRespDefaultTypeInternal _LinkHasRecordResp_default_instance_;
 class LinkKeepaliveReq;
 class LinkKeepaliveReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkKeepaliveReqDefaultTypeInternal _LinkKeepaliveReq_default_instance_;
@@ -109,12 +127,24 @@ VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_inst
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+class LinkRecordItem;
+class LinkRecordItemDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRecordItemDefaultTypeInternal _LinkRecordItem_default_instance_;
+class LinkRecordList;
+class LinkRecordListDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRecordListDefaultTypeInternal _LinkRecordList_default_instance_;
 class LinkRegNotifyReq;
 class LinkRegNotifyReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRegNotifyReqDefaultTypeInternal _LinkRegNotifyReq_default_instance_;
 class LinkRegNotifyResp;
 class LinkRegNotifyRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRegNotifyRespDefaultTypeInternal _LinkRegNotifyResp_default_instance_;
+class LinkSearchRecordReq;
+class LinkSearchRecordReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkSearchRecordReqDefaultTypeInternal _LinkSearchRecordReq_default_instance_;
+class LinkSearchRecordResp;
+class LinkSearchRecordRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkSearchRecordRespDefaultTypeInternal _LinkSearchRecordResp_default_instance_;
 class LinkSetCamSchedReq;
 class LinkSetCamSchedReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSetCamSchedReqDefaultTypeInternal _LinkSetCamSchedReq_default_instance_;
@@ -176,6 +206,8 @@ enum LinkCmdType {
   LINK_CMD_DEL_CAM_RESP = 208,
   LINK_CMD_SET_CAM_SCHED_REQ = 209,
   LINK_CMD_SET_CAM_SCHED_RESP = 210,
+  LINK_CMD_GET_STREAM_LIST_REQ = 211,
+  LINK_CMD_GET_STREAM_LIST_RESP = 212,
   LINK_CMD_DISK_LIST_REQ = 301,
   LINK_CMD_DISK_LIST_RESP = 302,
   LINK_CMD_SYS_DISK_LIST_REQ = 303,
@@ -194,6 +226,10 @@ enum LinkCmdType {
   LINK_CMD_CONF_LIC_RESP = 406,
   LINK_CMD_ADD_USER_REQ = 501,
   LINK_CMD_ADD_USER_RESP = 502,
+  LINK_CMD_HAS_RECORD_REQ = 601,
+  LINK_CMD_HAS_RECORD_RESP = 602,
+  LINK_CMD_SEARCH_RECORD_REQ = 603,
+  LINK_CMD_SEARCH_RECORD_RESP = 604,
   LINK_CMD_CAM_ADD_NOTIFY = 10001,
   LINK_CMD_CAM_DEL_NOTIFY = 10002,
   LINK_CMD_CAM_ONLINE_NOTIFY = 10003,
@@ -252,6 +288,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kDelCamResp = 208,
     kSetCamSchedReq = 209,
     kSetCamSchedResp = 210,
+    kGetStreamListReq = 211,
+    kGetStreamListResp = 212,
     kDiskListReq = 301,
     kDiskListResp = 302,
     kSysDiskListReq = 303,
@@ -270,6 +308,10 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kConfLicResp = 406,
     kAddUserReq = 501,
     kAddUserResp = 502,
+    kHasRecReq = 601,
+    kHasRecResp = 602,
+    kSearchRecReq = 603,
+    kSearchRecResp = 604,
     kCamAddNotify = 10001,
     kCamIdNotify = 10002,
     CMD_NOT_SET = 0,
@@ -477,6 +519,24 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkSetCamSchedResp* release_setcamschedresp();
   void set_allocated_setcamschedresp(::LinkSetCamSchedResp* setcamschedresp);
 
+  // .LinkGetStreamListReq getStreamListReq = 211;
+  bool has_getstreamlistreq() const;
+  void clear_getstreamlistreq();
+  static const int kGetStreamListReqFieldNumber = 211;
+  const ::LinkGetStreamListReq& getstreamlistreq() const;
+  ::LinkGetStreamListReq* mutable_getstreamlistreq();
+  ::LinkGetStreamListReq* release_getstreamlistreq();
+  void set_allocated_getstreamlistreq(::LinkGetStreamListReq* getstreamlistreq);
+
+  // .LinkGetStreamListResp getStreamListResp = 212;
+  bool has_getstreamlistresp() const;
+  void clear_getstreamlistresp();
+  static const int kGetStreamListRespFieldNumber = 212;
+  const ::LinkGetStreamListResp& getstreamlistresp() const;
+  ::LinkGetStreamListResp* mutable_getstreamlistresp();
+  ::LinkGetStreamListResp* release_getstreamlistresp();
+  void set_allocated_getstreamlistresp(::LinkGetStreamListResp* getstreamlistresp);
+
   // .LinkVidDiskListReq diskListReq = 301;
   bool has_disklistreq() const;
   void clear_disklistreq();
@@ -639,6 +699,42 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkAddUserResp* release_adduserresp();
   void set_allocated_adduserresp(::LinkAddUserResp* adduserresp);
 
+  // .LinkHasRecordReq hasRecReq = 601;
+  bool has_hasrecreq() const;
+  void clear_hasrecreq();
+  static const int kHasRecReqFieldNumber = 601;
+  const ::LinkHasRecordReq& hasrecreq() const;
+  ::LinkHasRecordReq* mutable_hasrecreq();
+  ::LinkHasRecordReq* release_hasrecreq();
+  void set_allocated_hasrecreq(::LinkHasRecordReq* hasrecreq);
+
+  // .LinkHasRecordResp hasRecResp = 602;
+  bool has_hasrecresp() const;
+  void clear_hasrecresp();
+  static const int kHasRecRespFieldNumber = 602;
+  const ::LinkHasRecordResp& hasrecresp() const;
+  ::LinkHasRecordResp* mutable_hasrecresp();
+  ::LinkHasRecordResp* release_hasrecresp();
+  void set_allocated_hasrecresp(::LinkHasRecordResp* hasrecresp);
+
+  // .LinkSearchRecordReq searchRecReq = 603;
+  bool has_searchrecreq() const;
+  void clear_searchrecreq();
+  static const int kSearchRecReqFieldNumber = 603;
+  const ::LinkSearchRecordReq& searchrecreq() const;
+  ::LinkSearchRecordReq* mutable_searchrecreq();
+  ::LinkSearchRecordReq* release_searchrecreq();
+  void set_allocated_searchrecreq(::LinkSearchRecordReq* searchrecreq);
+
+  // .LinkSearchRecordResp searchRecResp = 604;
+  bool has_searchrecresp() const;
+  void clear_searchrecresp();
+  static const int kSearchRecRespFieldNumber = 604;
+  const ::LinkSearchRecordResp& searchrecresp() const;
+  ::LinkSearchRecordResp* mutable_searchrecresp();
+  ::LinkSearchRecordResp* release_searchrecresp();
+  void set_allocated_searchrecresp(::LinkSearchRecordResp* searchrecresp);
+
   // .LinkCamAddNotify camAddNotify = 10001;
   bool has_camaddnotify() const;
   void clear_camaddnotify();
@@ -676,6 +772,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_delcamresp();
   void set_has_setcamschedreq();
   void set_has_setcamschedresp();
+  void set_has_getstreamlistreq();
+  void set_has_getstreamlistresp();
   void set_has_disklistreq();
   void set_has_disklistresp();
   void set_has_sysdisklistreq();
@@ -694,6 +792,10 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_conflicresp();
   void set_has_adduserreq();
   void set_has_adduserresp();
+  void set_has_hasrecreq();
+  void set_has_hasrecresp();
+  void set_has_searchrecreq();
+  void set_has_searchrecresp();
   void set_has_camaddnotify();
   void set_has_camidnotify();
 
@@ -721,6 +823,8 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkDelCamResp* delcamresp_;
     ::LinkSetCamSchedReq* setcamschedreq_;
     ::LinkSetCamSchedResp* setcamschedresp_;
+    ::LinkGetStreamListReq* getstreamlistreq_;
+    ::LinkGetStreamListResp* getstreamlistresp_;
     ::LinkVidDiskListReq* disklistreq_;
     ::LinkVidDiskListResp* disklistresp_;
     ::LinkSysVidDiskListReq* sysdisklistreq_;
@@ -739,6 +843,10 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkConfLicResp* conflicresp_;
     ::LinkAddUserReq* adduserreq_;
     ::LinkAddUserResp* adduserresp_;
+    ::LinkHasRecordReq* hasrecreq_;
+    ::LinkHasRecordResp* hasrecresp_;
+    ::LinkSearchRecordReq* searchrecreq_;
+    ::LinkSearchRecordResp* searchrecresp_;
     ::LinkCamAddNotify* camaddnotify_;
     ::LinkCamIdNotify* camidnotify_;
   } cmd_;
@@ -1535,6 +1643,102 @@ inline void LinkCmd::set_allocated_setcamschedresp(::LinkSetCamSchedResp* setcam
     cmd_.setcamschedresp_ = setcamschedresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.setCamSchedResp)
+}
+
+// .LinkGetStreamListReq getStreamListReq = 211;
+inline bool LinkCmd::has_getstreamlistreq() const {
+  return cmd_case() == kGetStreamListReq;
+}
+inline void LinkCmd::set_has_getstreamlistreq() {
+  _oneof_case_[0] = kGetStreamListReq;
+}
+inline void LinkCmd::clear_getstreamlistreq() {
+  if (has_getstreamlistreq()) {
+    delete cmd_.getstreamlistreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkGetStreamListReq& LinkCmd::getstreamlistreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.getStreamListReq)
+  return has_getstreamlistreq()
+      ? *cmd_.getstreamlistreq_
+      : ::LinkGetStreamListReq::default_instance();
+}
+inline ::LinkGetStreamListReq* LinkCmd::mutable_getstreamlistreq() {
+  if (!has_getstreamlistreq()) {
+    clear_cmd();
+    set_has_getstreamlistreq();
+    cmd_.getstreamlistreq_ = new ::LinkGetStreamListReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.getStreamListReq)
+  return cmd_.getstreamlistreq_;
+}
+inline ::LinkGetStreamListReq* LinkCmd::release_getstreamlistreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.getStreamListReq)
+  if (has_getstreamlistreq()) {
+    clear_has_cmd();
+    ::LinkGetStreamListReq* temp = cmd_.getstreamlistreq_;
+    cmd_.getstreamlistreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_getstreamlistreq(::LinkGetStreamListReq* getstreamlistreq) {
+  clear_cmd();
+  if (getstreamlistreq) {
+    set_has_getstreamlistreq();
+    cmd_.getstreamlistreq_ = getstreamlistreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.getStreamListReq)
+}
+
+// .LinkGetStreamListResp getStreamListResp = 212;
+inline bool LinkCmd::has_getstreamlistresp() const {
+  return cmd_case() == kGetStreamListResp;
+}
+inline void LinkCmd::set_has_getstreamlistresp() {
+  _oneof_case_[0] = kGetStreamListResp;
+}
+inline void LinkCmd::clear_getstreamlistresp() {
+  if (has_getstreamlistresp()) {
+    delete cmd_.getstreamlistresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkGetStreamListResp& LinkCmd::getstreamlistresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.getStreamListResp)
+  return has_getstreamlistresp()
+      ? *cmd_.getstreamlistresp_
+      : ::LinkGetStreamListResp::default_instance();
+}
+inline ::LinkGetStreamListResp* LinkCmd::mutable_getstreamlistresp() {
+  if (!has_getstreamlistresp()) {
+    clear_cmd();
+    set_has_getstreamlistresp();
+    cmd_.getstreamlistresp_ = new ::LinkGetStreamListResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.getStreamListResp)
+  return cmd_.getstreamlistresp_;
+}
+inline ::LinkGetStreamListResp* LinkCmd::release_getstreamlistresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.getStreamListResp)
+  if (has_getstreamlistresp()) {
+    clear_has_cmd();
+    ::LinkGetStreamListResp* temp = cmd_.getstreamlistresp_;
+    cmd_.getstreamlistresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_getstreamlistresp(::LinkGetStreamListResp* getstreamlistresp) {
+  clear_cmd();
+  if (getstreamlistresp) {
+    set_has_getstreamlistresp();
+    cmd_.getstreamlistresp_ = getstreamlistresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.getStreamListResp)
 }
 
 // .LinkVidDiskListReq diskListReq = 301;
@@ -2399,6 +2603,198 @@ inline void LinkCmd::set_allocated_adduserresp(::LinkAddUserResp* adduserresp) {
     cmd_.adduserresp_ = adduserresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.addUserResp)
+}
+
+// .LinkHasRecordReq hasRecReq = 601;
+inline bool LinkCmd::has_hasrecreq() const {
+  return cmd_case() == kHasRecReq;
+}
+inline void LinkCmd::set_has_hasrecreq() {
+  _oneof_case_[0] = kHasRecReq;
+}
+inline void LinkCmd::clear_hasrecreq() {
+  if (has_hasrecreq()) {
+    delete cmd_.hasrecreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkHasRecordReq& LinkCmd::hasrecreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.hasRecReq)
+  return has_hasrecreq()
+      ? *cmd_.hasrecreq_
+      : ::LinkHasRecordReq::default_instance();
+}
+inline ::LinkHasRecordReq* LinkCmd::mutable_hasrecreq() {
+  if (!has_hasrecreq()) {
+    clear_cmd();
+    set_has_hasrecreq();
+    cmd_.hasrecreq_ = new ::LinkHasRecordReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.hasRecReq)
+  return cmd_.hasrecreq_;
+}
+inline ::LinkHasRecordReq* LinkCmd::release_hasrecreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.hasRecReq)
+  if (has_hasrecreq()) {
+    clear_has_cmd();
+    ::LinkHasRecordReq* temp = cmd_.hasrecreq_;
+    cmd_.hasrecreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_hasrecreq(::LinkHasRecordReq* hasrecreq) {
+  clear_cmd();
+  if (hasrecreq) {
+    set_has_hasrecreq();
+    cmd_.hasrecreq_ = hasrecreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.hasRecReq)
+}
+
+// .LinkHasRecordResp hasRecResp = 602;
+inline bool LinkCmd::has_hasrecresp() const {
+  return cmd_case() == kHasRecResp;
+}
+inline void LinkCmd::set_has_hasrecresp() {
+  _oneof_case_[0] = kHasRecResp;
+}
+inline void LinkCmd::clear_hasrecresp() {
+  if (has_hasrecresp()) {
+    delete cmd_.hasrecresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkHasRecordResp& LinkCmd::hasrecresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.hasRecResp)
+  return has_hasrecresp()
+      ? *cmd_.hasrecresp_
+      : ::LinkHasRecordResp::default_instance();
+}
+inline ::LinkHasRecordResp* LinkCmd::mutable_hasrecresp() {
+  if (!has_hasrecresp()) {
+    clear_cmd();
+    set_has_hasrecresp();
+    cmd_.hasrecresp_ = new ::LinkHasRecordResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.hasRecResp)
+  return cmd_.hasrecresp_;
+}
+inline ::LinkHasRecordResp* LinkCmd::release_hasrecresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.hasRecResp)
+  if (has_hasrecresp()) {
+    clear_has_cmd();
+    ::LinkHasRecordResp* temp = cmd_.hasrecresp_;
+    cmd_.hasrecresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_hasrecresp(::LinkHasRecordResp* hasrecresp) {
+  clear_cmd();
+  if (hasrecresp) {
+    set_has_hasrecresp();
+    cmd_.hasrecresp_ = hasrecresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.hasRecResp)
+}
+
+// .LinkSearchRecordReq searchRecReq = 603;
+inline bool LinkCmd::has_searchrecreq() const {
+  return cmd_case() == kSearchRecReq;
+}
+inline void LinkCmd::set_has_searchrecreq() {
+  _oneof_case_[0] = kSearchRecReq;
+}
+inline void LinkCmd::clear_searchrecreq() {
+  if (has_searchrecreq()) {
+    delete cmd_.searchrecreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkSearchRecordReq& LinkCmd::searchrecreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.searchRecReq)
+  return has_searchrecreq()
+      ? *cmd_.searchrecreq_
+      : ::LinkSearchRecordReq::default_instance();
+}
+inline ::LinkSearchRecordReq* LinkCmd::mutable_searchrecreq() {
+  if (!has_searchrecreq()) {
+    clear_cmd();
+    set_has_searchrecreq();
+    cmd_.searchrecreq_ = new ::LinkSearchRecordReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.searchRecReq)
+  return cmd_.searchrecreq_;
+}
+inline ::LinkSearchRecordReq* LinkCmd::release_searchrecreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.searchRecReq)
+  if (has_searchrecreq()) {
+    clear_has_cmd();
+    ::LinkSearchRecordReq* temp = cmd_.searchrecreq_;
+    cmd_.searchrecreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_searchrecreq(::LinkSearchRecordReq* searchrecreq) {
+  clear_cmd();
+  if (searchrecreq) {
+    set_has_searchrecreq();
+    cmd_.searchrecreq_ = searchrecreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.searchRecReq)
+}
+
+// .LinkSearchRecordResp searchRecResp = 604;
+inline bool LinkCmd::has_searchrecresp() const {
+  return cmd_case() == kSearchRecResp;
+}
+inline void LinkCmd::set_has_searchrecresp() {
+  _oneof_case_[0] = kSearchRecResp;
+}
+inline void LinkCmd::clear_searchrecresp() {
+  if (has_searchrecresp()) {
+    delete cmd_.searchrecresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkSearchRecordResp& LinkCmd::searchrecresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.searchRecResp)
+  return has_searchrecresp()
+      ? *cmd_.searchrecresp_
+      : ::LinkSearchRecordResp::default_instance();
+}
+inline ::LinkSearchRecordResp* LinkCmd::mutable_searchrecresp() {
+  if (!has_searchrecresp()) {
+    clear_cmd();
+    set_has_searchrecresp();
+    cmd_.searchrecresp_ = new ::LinkSearchRecordResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.searchRecResp)
+  return cmd_.searchrecresp_;
+}
+inline ::LinkSearchRecordResp* LinkCmd::release_searchrecresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.searchRecResp)
+  if (has_searchrecresp()) {
+    clear_has_cmd();
+    ::LinkSearchRecordResp* temp = cmd_.searchrecresp_;
+    cmd_.searchrecresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_searchrecresp(::LinkSearchRecordResp* searchrecresp) {
+  clear_cmd();
+  if (searchrecresp) {
+    set_has_searchrecresp();
+    cmd_.searchrecresp_ = searchrecresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.searchRecResp)
 }
 
 // .LinkCamAddNotify camAddNotify = 10001;

@@ -36,6 +36,7 @@
 #include "cppkit/os/ck_sprintf.h"
 #include "oapi/oapic.hpp"
 #include "oapi/oapis.hpp"
+#include "client/storwsclient.hpp"
 
 using namespace cppkit;
 using namespace std;
@@ -44,18 +45,20 @@ typedef std::map<astring, bool> StorClientOnlineMap;
 typedef std::map<astring, bool> StorClientRecMap;
 
 
-/* Stor Client is the manager of the OAPI,  the thread will loop 
-	for all the command from Stor */
-class StorClient : public QThread
+class VE_LIBRARY_API StorClient : public StorWebSocketClient
 {
-	Q_OBJECT
 public:
 	StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
 	~StorClient();
 public:
+	virtual bool ProcessRecvMsg(char *data, size_t data_len);
+	virtual bool ProcessOffline();
+	virtual bool ProcessOnline();
+	bool ProcessCamListResp(Link::LinkCmd &cmd);
+public:
 	VidCameraList GetVidCameraList();
 	bool GetCameraConf(astring strCameraId, VidCamera &pCam);
-	void UpdateVidCameraList(oapi::OAPICameraListRsp list);
+	void UpdateVidCameraList(const VidCameraList &list);
 	StorClientOnlineMap GetVidCameraOnlineList();
 	StorClientRecMap GetVidCameraRecList();
 	astring GetVidCameraName(astring strCam);
@@ -66,13 +69,10 @@ public:
 	bool UnRegRealEvent();
 	bool HandleEvent(astring strId);
 public:
-	bool AddCam(VidCamera &pParam);
-	bool DeleteCam(astring strId);
 	bool PtzCmd(astring strId, u32 action, double param);
-public:
-	/* Start Stop Refresh the Stor client Thread */
-	bool StartStorClient();
-	bool StopStorClient();
+	bool DeleteCam(astring strId);
+	bool AddCam(VidCamera &pParam);
+
 public:
 	void run();
 private:
@@ -84,14 +84,9 @@ private:
 	StorClientOnlineMap m_CamOnlineList;
 	StorClientRecMap m_CamRecList;
 	StorFactoryNotifyInterface &m_pNotify;
-	bool m_bOnline;
-
-	XRef<XSocket> m_pSocket;
+	Link::LinkCmd m_lastCmd;
 };
 
 typedef StorClient* LPStorClient;
-
-
-#include "storclientimpl.hpp"
 
 #endif

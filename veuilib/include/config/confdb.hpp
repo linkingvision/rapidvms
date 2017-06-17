@@ -40,10 +40,8 @@
 using namespace UtilityLib;
 using namespace XSDK;
 
-using namespace VidConf;
 
-
-class ConfDB
+class VE_LIBRARY_API ConfDB
 {
 public:
 	ConfDB()
@@ -92,9 +90,5 @@ private:
 };
 
 typedef ConfDB* LPConfDB;
-
-
-#include "confdbimpl.hpp"
-
 
 #endif /* _CONF_DB_H_ */
