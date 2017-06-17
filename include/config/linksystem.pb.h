@@ -126,6 +126,21 @@ VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_inst
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+class LinkPlayBackCmd;
+class LinkPlayBackCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayBackCmdDefaultTypeInternal _LinkPlayBackCmd_default_instance_;
+class LinkPlayPauseCmd;
+class LinkPlayPauseCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayPauseCmdDefaultTypeInternal _LinkPlayPauseCmd_default_instance_;
+class LinkPlayResumeCmd;
+class LinkPlayResumeCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayResumeCmdDefaultTypeInternal _LinkPlayResumeCmd_default_instance_;
+class LinkPlaySeekCmd;
+class LinkPlaySeekCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlaySeekCmdDefaultTypeInternal _LinkPlaySeekCmd_default_instance_;
+class LinkPlayStopCmd;
+class LinkPlayStopCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayStopCmdDefaultTypeInternal _LinkPlayStopCmd_default_instance_;
 class LinkRecordItem;
 class LinkRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordItemDefaultTypeInternal _LinkRecordItem_default_instance_;
@@ -150,6 +165,12 @@ VE_LIBRARY_API extern LinkSetCamSchedReqDefaultTypeInternal _LinkSetCamSchedReq_
 class LinkSetCamSchedResp;
 class LinkSetCamSchedRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSetCamSchedRespDefaultTypeInternal _LinkSetCamSchedResp_default_instance_;
+class LinkStartLiveCmd;
+class LinkStartLiveCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkStartLiveCmdDefaultTypeInternal _LinkStartLiveCmd_default_instance_;
+class LinkStopLiveCmd;
+class LinkStopLiveCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkStopLiveCmdDefaultTypeInternal _LinkStopLiveCmd_default_instance_;
 class LinkSysVidDiskListReq;
 class LinkSysVidDiskListReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
@@ -4316,6 +4337,671 @@ class VE_LIBRARY_API LinkSearchRecordResp : public ::google::protobuf::Message /
 };
 // -------------------------------------------------------------------
 
+class VE_LIBRARY_API LinkStartLiveCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkStartLiveCmd) */ {
+ public:
+  LinkStartLiveCmd();
+  virtual ~LinkStartLiveCmd();
+
+  LinkStartLiveCmd(const LinkStartLiveCmd& from);
+
+  inline LinkStartLiveCmd& operator=(const LinkStartLiveCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkStartLiveCmd& default_instance();
+
+  static inline const LinkStartLiveCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkStartLiveCmd*>(
+               &_LinkStartLiveCmd_default_instance_);
+  }
+
+  void Swap(LinkStartLiveCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkStartLiveCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkStartLiveCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkStartLiveCmd& from);
+  void MergeFrom(const LinkStartLiveCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkStartLiveCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // int32 nStream = 2;
+  void clear_nstream();
+  static const int kNStreamFieldNumber = 2;
+  ::google::protobuf::int32 nstream() const;
+  void set_nstream(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkStartLiveCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::int32 nstream_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkStopLiveCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkStopLiveCmd) */ {
+ public:
+  LinkStopLiveCmd();
+  virtual ~LinkStopLiveCmd();
+
+  LinkStopLiveCmd(const LinkStopLiveCmd& from);
+
+  inline LinkStopLiveCmd& operator=(const LinkStopLiveCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkStopLiveCmd& default_instance();
+
+  static inline const LinkStopLiveCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkStopLiveCmd*>(
+               &_LinkStopLiveCmd_default_instance_);
+  }
+
+  void Swap(LinkStopLiveCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkStopLiveCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkStopLiveCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkStopLiveCmd& from);
+  void MergeFrom(const LinkStopLiveCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkStopLiveCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // int32 nStream = 2;
+  void clear_nstream();
+  static const int kNStreamFieldNumber = 2;
+  ::google::protobuf::int32 nstream() const;
+  void set_nstream(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkStopLiveCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::int32 nstream_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkPlayBackCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPlayBackCmd) */ {
+ public:
+  LinkPlayBackCmd();
+  virtual ~LinkPlayBackCmd();
+
+  LinkPlayBackCmd(const LinkPlayBackCmd& from);
+
+  inline LinkPlayBackCmd& operator=(const LinkPlayBackCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPlayBackCmd& default_instance();
+
+  static inline const LinkPlayBackCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPlayBackCmd*>(
+               &_LinkPlayBackCmd_default_instance_);
+  }
+
+  void Swap(LinkPlayBackCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPlayBackCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPlayBackCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPlayBackCmd& from);
+  void MergeFrom(const LinkPlayBackCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPlayBackCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // int32 nPlaytime = 2;
+  void clear_nplaytime();
+  static const int kNPlaytimeFieldNumber = 2;
+  ::google::protobuf::int32 nplaytime() const;
+  void set_nplaytime(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkPlayBackCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::int32 nplaytime_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkPlayPauseCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPlayPauseCmd) */ {
+ public:
+  LinkPlayPauseCmd();
+  virtual ~LinkPlayPauseCmd();
+
+  LinkPlayPauseCmd(const LinkPlayPauseCmd& from);
+
+  inline LinkPlayPauseCmd& operator=(const LinkPlayPauseCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPlayPauseCmd& default_instance();
+
+  static inline const LinkPlayPauseCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPlayPauseCmd*>(
+               &_LinkPlayPauseCmd_default_instance_);
+  }
+
+  void Swap(LinkPlayPauseCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPlayPauseCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPlayPauseCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPlayPauseCmd& from);
+  void MergeFrom(const LinkPlayPauseCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPlayPauseCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkPlayPauseCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkPlayResumeCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPlayResumeCmd) */ {
+ public:
+  LinkPlayResumeCmd();
+  virtual ~LinkPlayResumeCmd();
+
+  LinkPlayResumeCmd(const LinkPlayResumeCmd& from);
+
+  inline LinkPlayResumeCmd& operator=(const LinkPlayResumeCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPlayResumeCmd& default_instance();
+
+  static inline const LinkPlayResumeCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPlayResumeCmd*>(
+               &_LinkPlayResumeCmd_default_instance_);
+  }
+
+  void Swap(LinkPlayResumeCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPlayResumeCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPlayResumeCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPlayResumeCmd& from);
+  void MergeFrom(const LinkPlayResumeCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPlayResumeCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkPlayResumeCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkPlaySeekCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPlaySeekCmd) */ {
+ public:
+  LinkPlaySeekCmd();
+  virtual ~LinkPlaySeekCmd();
+
+  LinkPlaySeekCmd(const LinkPlaySeekCmd& from);
+
+  inline LinkPlaySeekCmd& operator=(const LinkPlaySeekCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPlaySeekCmd& default_instance();
+
+  static inline const LinkPlaySeekCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPlaySeekCmd*>(
+               &_LinkPlaySeekCmd_default_instance_);
+  }
+
+  void Swap(LinkPlaySeekCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPlaySeekCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPlaySeekCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPlaySeekCmd& from);
+  void MergeFrom(const LinkPlaySeekCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPlaySeekCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // int32 nPlaytime = 2;
+  void clear_nplaytime();
+  static const int kNPlaytimeFieldNumber = 2;
+  ::google::protobuf::int32 nplaytime() const;
+  void set_nplaytime(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkPlaySeekCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::int32 nplaytime_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkPlayStopCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPlayStopCmd) */ {
+ public:
+  LinkPlayStopCmd();
+  virtual ~LinkPlayStopCmd();
+
+  LinkPlayStopCmd(const LinkPlayStopCmd& from);
+
+  inline LinkPlayStopCmd& operator=(const LinkPlayStopCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPlayStopCmd& default_instance();
+
+  static inline const LinkPlayStopCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPlayStopCmd*>(
+               &_LinkPlayStopCmd_default_instance_);
+  }
+
+  void Swap(LinkPlayStopCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPlayStopCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPlayStopCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPlayStopCmd& from);
+  void MergeFrom(const LinkPlayStopCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPlayStopCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkPlayStopCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class VE_LIBRARY_API LinkCamAddNotify : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamAddNotify) */ {
  public:
   LinkCamAddNotify();
@@ -6830,6 +7516,454 @@ inline void LinkSearchRecordResp::set_allocated_clist(::LinkRecordList* clist) {
 
 // -------------------------------------------------------------------
 
+// LinkStartLiveCmd
+
+// string strId = 1;
+inline void LinkStartLiveCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkStartLiveCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkStartLiveCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkStartLiveCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkStartLiveCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkStartLiveCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkStartLiveCmd.strId)
+}
+#endif
+inline void LinkStartLiveCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkStartLiveCmd.strId)
+}
+inline void LinkStartLiveCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkStartLiveCmd.strId)
+}
+inline ::std::string* LinkStartLiveCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkStartLiveCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkStartLiveCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkStartLiveCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkStartLiveCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkStartLiveCmd.strId)
+}
+
+// int32 nStream = 2;
+inline void LinkStartLiveCmd::clear_nstream() {
+  nstream_ = 0;
+}
+inline ::google::protobuf::int32 LinkStartLiveCmd::nstream() const {
+  // @@protoc_insertion_point(field_get:LinkStartLiveCmd.nStream)
+  return nstream_;
+}
+inline void LinkStartLiveCmd::set_nstream(::google::protobuf::int32 value) {
+  
+  nstream_ = value;
+  // @@protoc_insertion_point(field_set:LinkStartLiveCmd.nStream)
+}
+
+// -------------------------------------------------------------------
+
+// LinkStopLiveCmd
+
+// string strId = 1;
+inline void LinkStopLiveCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkStopLiveCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkStopLiveCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkStopLiveCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkStopLiveCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkStopLiveCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkStopLiveCmd.strId)
+}
+#endif
+inline void LinkStopLiveCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkStopLiveCmd.strId)
+}
+inline void LinkStopLiveCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkStopLiveCmd.strId)
+}
+inline ::std::string* LinkStopLiveCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkStopLiveCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkStopLiveCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkStopLiveCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkStopLiveCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkStopLiveCmd.strId)
+}
+
+// int32 nStream = 2;
+inline void LinkStopLiveCmd::clear_nstream() {
+  nstream_ = 0;
+}
+inline ::google::protobuf::int32 LinkStopLiveCmd::nstream() const {
+  // @@protoc_insertion_point(field_get:LinkStopLiveCmd.nStream)
+  return nstream_;
+}
+inline void LinkStopLiveCmd::set_nstream(::google::protobuf::int32 value) {
+  
+  nstream_ = value;
+  // @@protoc_insertion_point(field_set:LinkStopLiveCmd.nStream)
+}
+
+// -------------------------------------------------------------------
+
+// LinkPlayBackCmd
+
+// string strId = 1;
+inline void LinkPlayBackCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPlayBackCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPlayBackCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPlayBackCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPlayBackCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPlayBackCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPlayBackCmd.strId)
+}
+#endif
+inline void LinkPlayBackCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPlayBackCmd.strId)
+}
+inline void LinkPlayBackCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPlayBackCmd.strId)
+}
+inline ::std::string* LinkPlayBackCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPlayBackCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPlayBackCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPlayBackCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPlayBackCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPlayBackCmd.strId)
+}
+
+// int32 nPlaytime = 2;
+inline void LinkPlayBackCmd::clear_nplaytime() {
+  nplaytime_ = 0;
+}
+inline ::google::protobuf::int32 LinkPlayBackCmd::nplaytime() const {
+  // @@protoc_insertion_point(field_get:LinkPlayBackCmd.nPlaytime)
+  return nplaytime_;
+}
+inline void LinkPlayBackCmd::set_nplaytime(::google::protobuf::int32 value) {
+  
+  nplaytime_ = value;
+  // @@protoc_insertion_point(field_set:LinkPlayBackCmd.nPlaytime)
+}
+
+// -------------------------------------------------------------------
+
+// LinkPlayPauseCmd
+
+// string strId = 1;
+inline void LinkPlayPauseCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPlayPauseCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPlayPauseCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPlayPauseCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPlayPauseCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPlayPauseCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPlayPauseCmd.strId)
+}
+#endif
+inline void LinkPlayPauseCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPlayPauseCmd.strId)
+}
+inline void LinkPlayPauseCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPlayPauseCmd.strId)
+}
+inline ::std::string* LinkPlayPauseCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPlayPauseCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPlayPauseCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPlayPauseCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPlayPauseCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPlayPauseCmd.strId)
+}
+
+// -------------------------------------------------------------------
+
+// LinkPlayResumeCmd
+
+// string strId = 1;
+inline void LinkPlayResumeCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPlayResumeCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPlayResumeCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPlayResumeCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPlayResumeCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPlayResumeCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPlayResumeCmd.strId)
+}
+#endif
+inline void LinkPlayResumeCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPlayResumeCmd.strId)
+}
+inline void LinkPlayResumeCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPlayResumeCmd.strId)
+}
+inline ::std::string* LinkPlayResumeCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPlayResumeCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPlayResumeCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPlayResumeCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPlayResumeCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPlayResumeCmd.strId)
+}
+
+// -------------------------------------------------------------------
+
+// LinkPlaySeekCmd
+
+// string strId = 1;
+inline void LinkPlaySeekCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPlaySeekCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPlaySeekCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPlaySeekCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPlaySeekCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPlaySeekCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPlaySeekCmd.strId)
+}
+#endif
+inline void LinkPlaySeekCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPlaySeekCmd.strId)
+}
+inline void LinkPlaySeekCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPlaySeekCmd.strId)
+}
+inline ::std::string* LinkPlaySeekCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPlaySeekCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPlaySeekCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPlaySeekCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPlaySeekCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPlaySeekCmd.strId)
+}
+
+// int32 nPlaytime = 2;
+inline void LinkPlaySeekCmd::clear_nplaytime() {
+  nplaytime_ = 0;
+}
+inline ::google::protobuf::int32 LinkPlaySeekCmd::nplaytime() const {
+  // @@protoc_insertion_point(field_get:LinkPlaySeekCmd.nPlaytime)
+  return nplaytime_;
+}
+inline void LinkPlaySeekCmd::set_nplaytime(::google::protobuf::int32 value) {
+  
+  nplaytime_ = value;
+  // @@protoc_insertion_point(field_set:LinkPlaySeekCmd.nPlaytime)
+}
+
+// -------------------------------------------------------------------
+
+// LinkPlayStopCmd
+
+// string strId = 1;
+inline void LinkPlayStopCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPlayStopCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPlayStopCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPlayStopCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPlayStopCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPlayStopCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPlayStopCmd.strId)
+}
+#endif
+inline void LinkPlayStopCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPlayStopCmd.strId)
+}
+inline void LinkPlayStopCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPlayStopCmd.strId)
+}
+inline ::std::string* LinkPlayStopCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPlayStopCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPlayStopCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPlayStopCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPlayStopCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPlayStopCmd.strId)
+}
+
+// -------------------------------------------------------------------
+
 // LinkCamAddNotify
 
 // .VidCamera cCam = 1;
@@ -6928,6 +8062,20 @@ inline void LinkCamIdNotify::set_allocated_strid(::std::string* strid) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

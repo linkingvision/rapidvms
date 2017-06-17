@@ -82,6 +82,9 @@
     <ClCompile Include="..\main\link\linkhandler.cpp">
       <Filter>main\link</Filter>
     </ClCompile>
+    <ClCompile Include="..\main\link\linkstream.cpp">
+      <Filter>main\link</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -101,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
       <Filter>include\oapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\main\link\linkstream.hpp">
+      <Filter>main\link</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

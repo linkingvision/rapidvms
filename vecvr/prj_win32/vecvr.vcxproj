@@ -43,6 +43,7 @@
     <ClCompile Include="..\..\3rdparty\civetweb\src\CivetServer.cpp" />
     <ClCompile Include="..\..\3rdparty\civetweb\src\civetweb.c" />
     <ClCompile Include="..\main\link\linkhandler.cpp" />
+    <ClCompile Include="..\main\link\linkstream.cpp" />
     <ClCompile Include="..\main\main.cpp" />
     <ClCompile Include="..\main\webserver.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
@@ -88,6 +89,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUSE_WEBSOCKET -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CONCURRENT_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DWITH_OPENSSL -DWITH_DOM -DWITH_PURE_VIRTUAL -DQT_BUILD_SYSTEMINFO_LIB -DWIN64 -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_UNICODE  "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtConcurrent" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtWidgets" "-I.\..\main" "-I.\..\playback" "-I.\..\disk" "-I.\..\vwidget" "-I.\..\..\3rdparty\ffmpeg-54\include" "-I.\..\..\include" "-I.\..\..\3rdparty\gperftools-2.0\src\windows\gperftools" "-I.\..\..\3rdparty\leveldb\include" "-I.\..\..\utility" "-I.\..\..\3rdparty\libcli\libcli\src" "-I.\..\..\3rdparty\libcli\libcli\src\libcli" "-I.\..\..\3rdparty\libcli\libcli\src\plib" "-I.\..\..\3rdparty\poco\Foundation\include" "-I.\..\..\3rdparty\poco\Net\include" "-I.\..\..\3rdparty\poco\Util\include" "-I.\..\..\3rdparty\SDL2_ttf-2.0.12" "-I.\..\..\3rdparty\onvifc\include" "-I.\..\..\velib\include\vplay" "-I.\..\..\velib\include\utility" "-I.\..\..\velib\include\vdb" "-I.\..\..\velib\include" "-I.\..\..\3rdparty\poco\Data\include" "-I.\..\..\3rdparty\poco\Data\SQLite\include" "-I.\..\recorder" "-I.\..\setting" "-I.\..\systeminfo" "-I.\..\systeminfo\windows" "-I.\..\event" "-I.\..\..\3rdparty\openssl-win\openssl-win64\include" "-I.\..\..\veuilib\include" "-I.\..\vms" "-I.\..\..\mining\include" "-I.\..\..\xcmnlib\include\utility" "-I.\..\..\xcmnlib\include" "-I.\..\..\3rdparty\autojsoncxx\include" "-I.\..\..\3rdparty\autojsoncxx\rapidjson\include" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I.\..\..\3rdparty\spdlog\include" "-I.\..\..\3rdparty\protobuf\src" "-I.\..\..\3rdparty\civetweb\include"</Command>
     </CustomBuild>
     <ClInclude Include="..\..\include\oapi\oapisimpl.hpp" />
+    <ClInclude Include="..\main\link\linkstream.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

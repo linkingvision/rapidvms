@@ -127,6 +127,21 @@ VE_LIBRARY_API extern LinkLoginReqDefaultTypeInternal _LinkLoginReq_default_inst
 class LinkLoginResp;
 class LinkLoginRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkLoginRespDefaultTypeInternal _LinkLoginResp_default_instance_;
+class LinkPlayBackCmd;
+class LinkPlayBackCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayBackCmdDefaultTypeInternal _LinkPlayBackCmd_default_instance_;
+class LinkPlayPauseCmd;
+class LinkPlayPauseCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayPauseCmdDefaultTypeInternal _LinkPlayPauseCmd_default_instance_;
+class LinkPlayResumeCmd;
+class LinkPlayResumeCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayResumeCmdDefaultTypeInternal _LinkPlayResumeCmd_default_instance_;
+class LinkPlaySeekCmd;
+class LinkPlaySeekCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlaySeekCmdDefaultTypeInternal _LinkPlaySeekCmd_default_instance_;
+class LinkPlayStopCmd;
+class LinkPlayStopCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPlayStopCmdDefaultTypeInternal _LinkPlayStopCmd_default_instance_;
 class LinkRecordItem;
 class LinkRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordItemDefaultTypeInternal _LinkRecordItem_default_instance_;
@@ -151,6 +166,12 @@ VE_LIBRARY_API extern LinkSetCamSchedReqDefaultTypeInternal _LinkSetCamSchedReq_
 class LinkSetCamSchedResp;
 class LinkSetCamSchedRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSetCamSchedRespDefaultTypeInternal _LinkSetCamSchedResp_default_instance_;
+class LinkStartLiveCmd;
+class LinkStartLiveCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkStartLiveCmdDefaultTypeInternal _LinkStartLiveCmd_default_instance_;
+class LinkStopLiveCmd;
+class LinkStopLiveCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkStopLiveCmdDefaultTypeInternal _LinkStopLiveCmd_default_instance_;
 class LinkSysVidDiskListReq;
 class LinkSysVidDiskListReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskListReq_default_instance_;
@@ -230,6 +251,13 @@ enum LinkCmdType {
   LINK_CMD_HAS_RECORD_RESP = 602,
   LINK_CMD_SEARCH_RECORD_REQ = 603,
   LINK_CMD_SEARCH_RECORD_RESP = 604,
+  LINK_CMD_START_LIVE_CMD = 701,
+  LINK_CMD_STOP_LIVE_CMD = 702,
+  LINK_CMD_PLAY_BACK_CMD = 703,
+  LINK_CMD_PLAY_PAUSE_CMD = 704,
+  LINK_CMD_PLAY_RESUME_CMD = 705,
+  LINK_CMD_PLAY_SEEK_CMD = 706,
+  LINK_CMD_PLAY_STOP_CMD = 707,
   LINK_CMD_CAM_ADD_NOTIFY = 10001,
   LINK_CMD_CAM_DEL_NOTIFY = 10002,
   LINK_CMD_CAM_ONLINE_NOTIFY = 10003,
@@ -312,6 +340,13 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kHasRecResp = 602,
     kSearchRecReq = 603,
     kSearchRecResp = 604,
+    kStartLiveCmd = 701,
+    kStopLiveCmd = 702,
+    kPlayBackCmd = 703,
+    kPlayPauseCmd = 704,
+    kPlayResumeCmd = 705,
+    kPlaySeekCmd = 706,
+    kPlayStopCmd = 707,
     kCamAddNotify = 10001,
     kCamIdNotify = 10002,
     CMD_NOT_SET = 0,
@@ -735,6 +770,69 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkSearchRecordResp* release_searchrecresp();
   void set_allocated_searchrecresp(::LinkSearchRecordResp* searchrecresp);
 
+  // .LinkStartLiveCmd startLiveCmd = 701;
+  bool has_startlivecmd() const;
+  void clear_startlivecmd();
+  static const int kStartLiveCmdFieldNumber = 701;
+  const ::LinkStartLiveCmd& startlivecmd() const;
+  ::LinkStartLiveCmd* mutable_startlivecmd();
+  ::LinkStartLiveCmd* release_startlivecmd();
+  void set_allocated_startlivecmd(::LinkStartLiveCmd* startlivecmd);
+
+  // .LinkStopLiveCmd stopLiveCmd = 702;
+  bool has_stoplivecmd() const;
+  void clear_stoplivecmd();
+  static const int kStopLiveCmdFieldNumber = 702;
+  const ::LinkStopLiveCmd& stoplivecmd() const;
+  ::LinkStopLiveCmd* mutable_stoplivecmd();
+  ::LinkStopLiveCmd* release_stoplivecmd();
+  void set_allocated_stoplivecmd(::LinkStopLiveCmd* stoplivecmd);
+
+  // .LinkPlayBackCmd playBackCmd = 703;
+  bool has_playbackcmd() const;
+  void clear_playbackcmd();
+  static const int kPlayBackCmdFieldNumber = 703;
+  const ::LinkPlayBackCmd& playbackcmd() const;
+  ::LinkPlayBackCmd* mutable_playbackcmd();
+  ::LinkPlayBackCmd* release_playbackcmd();
+  void set_allocated_playbackcmd(::LinkPlayBackCmd* playbackcmd);
+
+  // .LinkPlayPauseCmd playPauseCmd = 704;
+  bool has_playpausecmd() const;
+  void clear_playpausecmd();
+  static const int kPlayPauseCmdFieldNumber = 704;
+  const ::LinkPlayPauseCmd& playpausecmd() const;
+  ::LinkPlayPauseCmd* mutable_playpausecmd();
+  ::LinkPlayPauseCmd* release_playpausecmd();
+  void set_allocated_playpausecmd(::LinkPlayPauseCmd* playpausecmd);
+
+  // .LinkPlayResumeCmd playResumeCmd = 705;
+  bool has_playresumecmd() const;
+  void clear_playresumecmd();
+  static const int kPlayResumeCmdFieldNumber = 705;
+  const ::LinkPlayResumeCmd& playresumecmd() const;
+  ::LinkPlayResumeCmd* mutable_playresumecmd();
+  ::LinkPlayResumeCmd* release_playresumecmd();
+  void set_allocated_playresumecmd(::LinkPlayResumeCmd* playresumecmd);
+
+  // .LinkPlaySeekCmd playSeekCmd = 706;
+  bool has_playseekcmd() const;
+  void clear_playseekcmd();
+  static const int kPlaySeekCmdFieldNumber = 706;
+  const ::LinkPlaySeekCmd& playseekcmd() const;
+  ::LinkPlaySeekCmd* mutable_playseekcmd();
+  ::LinkPlaySeekCmd* release_playseekcmd();
+  void set_allocated_playseekcmd(::LinkPlaySeekCmd* playseekcmd);
+
+  // .LinkPlayStopCmd playStopCmd = 707;
+  bool has_playstopcmd() const;
+  void clear_playstopcmd();
+  static const int kPlayStopCmdFieldNumber = 707;
+  const ::LinkPlayStopCmd& playstopcmd() const;
+  ::LinkPlayStopCmd* mutable_playstopcmd();
+  ::LinkPlayStopCmd* release_playstopcmd();
+  void set_allocated_playstopcmd(::LinkPlayStopCmd* playstopcmd);
+
   // .LinkCamAddNotify camAddNotify = 10001;
   bool has_camaddnotify() const;
   void clear_camaddnotify();
@@ -796,6 +894,13 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_hasrecresp();
   void set_has_searchrecreq();
   void set_has_searchrecresp();
+  void set_has_startlivecmd();
+  void set_has_stoplivecmd();
+  void set_has_playbackcmd();
+  void set_has_playpausecmd();
+  void set_has_playresumecmd();
+  void set_has_playseekcmd();
+  void set_has_playstopcmd();
   void set_has_camaddnotify();
   void set_has_camidnotify();
 
@@ -847,6 +952,13 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkHasRecordResp* hasrecresp_;
     ::LinkSearchRecordReq* searchrecreq_;
     ::LinkSearchRecordResp* searchrecresp_;
+    ::LinkStartLiveCmd* startlivecmd_;
+    ::LinkStopLiveCmd* stoplivecmd_;
+    ::LinkPlayBackCmd* playbackcmd_;
+    ::LinkPlayPauseCmd* playpausecmd_;
+    ::LinkPlayResumeCmd* playresumecmd_;
+    ::LinkPlaySeekCmd* playseekcmd_;
+    ::LinkPlayStopCmd* playstopcmd_;
     ::LinkCamAddNotify* camaddnotify_;
     ::LinkCamIdNotify* camidnotify_;
   } cmd_;
@@ -2795,6 +2907,342 @@ inline void LinkCmd::set_allocated_searchrecresp(::LinkSearchRecordResp* searchr
     cmd_.searchrecresp_ = searchrecresp;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.searchRecResp)
+}
+
+// .LinkStartLiveCmd startLiveCmd = 701;
+inline bool LinkCmd::has_startlivecmd() const {
+  return cmd_case() == kStartLiveCmd;
+}
+inline void LinkCmd::set_has_startlivecmd() {
+  _oneof_case_[0] = kStartLiveCmd;
+}
+inline void LinkCmd::clear_startlivecmd() {
+  if (has_startlivecmd()) {
+    delete cmd_.startlivecmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkStartLiveCmd& LinkCmd::startlivecmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.startLiveCmd)
+  return has_startlivecmd()
+      ? *cmd_.startlivecmd_
+      : ::LinkStartLiveCmd::default_instance();
+}
+inline ::LinkStartLiveCmd* LinkCmd::mutable_startlivecmd() {
+  if (!has_startlivecmd()) {
+    clear_cmd();
+    set_has_startlivecmd();
+    cmd_.startlivecmd_ = new ::LinkStartLiveCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.startLiveCmd)
+  return cmd_.startlivecmd_;
+}
+inline ::LinkStartLiveCmd* LinkCmd::release_startlivecmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.startLiveCmd)
+  if (has_startlivecmd()) {
+    clear_has_cmd();
+    ::LinkStartLiveCmd* temp = cmd_.startlivecmd_;
+    cmd_.startlivecmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_startlivecmd(::LinkStartLiveCmd* startlivecmd) {
+  clear_cmd();
+  if (startlivecmd) {
+    set_has_startlivecmd();
+    cmd_.startlivecmd_ = startlivecmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.startLiveCmd)
+}
+
+// .LinkStopLiveCmd stopLiveCmd = 702;
+inline bool LinkCmd::has_stoplivecmd() const {
+  return cmd_case() == kStopLiveCmd;
+}
+inline void LinkCmd::set_has_stoplivecmd() {
+  _oneof_case_[0] = kStopLiveCmd;
+}
+inline void LinkCmd::clear_stoplivecmd() {
+  if (has_stoplivecmd()) {
+    delete cmd_.stoplivecmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkStopLiveCmd& LinkCmd::stoplivecmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.stopLiveCmd)
+  return has_stoplivecmd()
+      ? *cmd_.stoplivecmd_
+      : ::LinkStopLiveCmd::default_instance();
+}
+inline ::LinkStopLiveCmd* LinkCmd::mutable_stoplivecmd() {
+  if (!has_stoplivecmd()) {
+    clear_cmd();
+    set_has_stoplivecmd();
+    cmd_.stoplivecmd_ = new ::LinkStopLiveCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.stopLiveCmd)
+  return cmd_.stoplivecmd_;
+}
+inline ::LinkStopLiveCmd* LinkCmd::release_stoplivecmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.stopLiveCmd)
+  if (has_stoplivecmd()) {
+    clear_has_cmd();
+    ::LinkStopLiveCmd* temp = cmd_.stoplivecmd_;
+    cmd_.stoplivecmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_stoplivecmd(::LinkStopLiveCmd* stoplivecmd) {
+  clear_cmd();
+  if (stoplivecmd) {
+    set_has_stoplivecmd();
+    cmd_.stoplivecmd_ = stoplivecmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.stopLiveCmd)
+}
+
+// .LinkPlayBackCmd playBackCmd = 703;
+inline bool LinkCmd::has_playbackcmd() const {
+  return cmd_case() == kPlayBackCmd;
+}
+inline void LinkCmd::set_has_playbackcmd() {
+  _oneof_case_[0] = kPlayBackCmd;
+}
+inline void LinkCmd::clear_playbackcmd() {
+  if (has_playbackcmd()) {
+    delete cmd_.playbackcmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPlayBackCmd& LinkCmd::playbackcmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.playBackCmd)
+  return has_playbackcmd()
+      ? *cmd_.playbackcmd_
+      : ::LinkPlayBackCmd::default_instance();
+}
+inline ::LinkPlayBackCmd* LinkCmd::mutable_playbackcmd() {
+  if (!has_playbackcmd()) {
+    clear_cmd();
+    set_has_playbackcmd();
+    cmd_.playbackcmd_ = new ::LinkPlayBackCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.playBackCmd)
+  return cmd_.playbackcmd_;
+}
+inline ::LinkPlayBackCmd* LinkCmd::release_playbackcmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.playBackCmd)
+  if (has_playbackcmd()) {
+    clear_has_cmd();
+    ::LinkPlayBackCmd* temp = cmd_.playbackcmd_;
+    cmd_.playbackcmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_playbackcmd(::LinkPlayBackCmd* playbackcmd) {
+  clear_cmd();
+  if (playbackcmd) {
+    set_has_playbackcmd();
+    cmd_.playbackcmd_ = playbackcmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playBackCmd)
+}
+
+// .LinkPlayPauseCmd playPauseCmd = 704;
+inline bool LinkCmd::has_playpausecmd() const {
+  return cmd_case() == kPlayPauseCmd;
+}
+inline void LinkCmd::set_has_playpausecmd() {
+  _oneof_case_[0] = kPlayPauseCmd;
+}
+inline void LinkCmd::clear_playpausecmd() {
+  if (has_playpausecmd()) {
+    delete cmd_.playpausecmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPlayPauseCmd& LinkCmd::playpausecmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.playPauseCmd)
+  return has_playpausecmd()
+      ? *cmd_.playpausecmd_
+      : ::LinkPlayPauseCmd::default_instance();
+}
+inline ::LinkPlayPauseCmd* LinkCmd::mutable_playpausecmd() {
+  if (!has_playpausecmd()) {
+    clear_cmd();
+    set_has_playpausecmd();
+    cmd_.playpausecmd_ = new ::LinkPlayPauseCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.playPauseCmd)
+  return cmd_.playpausecmd_;
+}
+inline ::LinkPlayPauseCmd* LinkCmd::release_playpausecmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.playPauseCmd)
+  if (has_playpausecmd()) {
+    clear_has_cmd();
+    ::LinkPlayPauseCmd* temp = cmd_.playpausecmd_;
+    cmd_.playpausecmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_playpausecmd(::LinkPlayPauseCmd* playpausecmd) {
+  clear_cmd();
+  if (playpausecmd) {
+    set_has_playpausecmd();
+    cmd_.playpausecmd_ = playpausecmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playPauseCmd)
+}
+
+// .LinkPlayResumeCmd playResumeCmd = 705;
+inline bool LinkCmd::has_playresumecmd() const {
+  return cmd_case() == kPlayResumeCmd;
+}
+inline void LinkCmd::set_has_playresumecmd() {
+  _oneof_case_[0] = kPlayResumeCmd;
+}
+inline void LinkCmd::clear_playresumecmd() {
+  if (has_playresumecmd()) {
+    delete cmd_.playresumecmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPlayResumeCmd& LinkCmd::playresumecmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.playResumeCmd)
+  return has_playresumecmd()
+      ? *cmd_.playresumecmd_
+      : ::LinkPlayResumeCmd::default_instance();
+}
+inline ::LinkPlayResumeCmd* LinkCmd::mutable_playresumecmd() {
+  if (!has_playresumecmd()) {
+    clear_cmd();
+    set_has_playresumecmd();
+    cmd_.playresumecmd_ = new ::LinkPlayResumeCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.playResumeCmd)
+  return cmd_.playresumecmd_;
+}
+inline ::LinkPlayResumeCmd* LinkCmd::release_playresumecmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.playResumeCmd)
+  if (has_playresumecmd()) {
+    clear_has_cmd();
+    ::LinkPlayResumeCmd* temp = cmd_.playresumecmd_;
+    cmd_.playresumecmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_playresumecmd(::LinkPlayResumeCmd* playresumecmd) {
+  clear_cmd();
+  if (playresumecmd) {
+    set_has_playresumecmd();
+    cmd_.playresumecmd_ = playresumecmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playResumeCmd)
+}
+
+// .LinkPlaySeekCmd playSeekCmd = 706;
+inline bool LinkCmd::has_playseekcmd() const {
+  return cmd_case() == kPlaySeekCmd;
+}
+inline void LinkCmd::set_has_playseekcmd() {
+  _oneof_case_[0] = kPlaySeekCmd;
+}
+inline void LinkCmd::clear_playseekcmd() {
+  if (has_playseekcmd()) {
+    delete cmd_.playseekcmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPlaySeekCmd& LinkCmd::playseekcmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.playSeekCmd)
+  return has_playseekcmd()
+      ? *cmd_.playseekcmd_
+      : ::LinkPlaySeekCmd::default_instance();
+}
+inline ::LinkPlaySeekCmd* LinkCmd::mutable_playseekcmd() {
+  if (!has_playseekcmd()) {
+    clear_cmd();
+    set_has_playseekcmd();
+    cmd_.playseekcmd_ = new ::LinkPlaySeekCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.playSeekCmd)
+  return cmd_.playseekcmd_;
+}
+inline ::LinkPlaySeekCmd* LinkCmd::release_playseekcmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.playSeekCmd)
+  if (has_playseekcmd()) {
+    clear_has_cmd();
+    ::LinkPlaySeekCmd* temp = cmd_.playseekcmd_;
+    cmd_.playseekcmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_playseekcmd(::LinkPlaySeekCmd* playseekcmd) {
+  clear_cmd();
+  if (playseekcmd) {
+    set_has_playseekcmd();
+    cmd_.playseekcmd_ = playseekcmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playSeekCmd)
+}
+
+// .LinkPlayStopCmd playStopCmd = 707;
+inline bool LinkCmd::has_playstopcmd() const {
+  return cmd_case() == kPlayStopCmd;
+}
+inline void LinkCmd::set_has_playstopcmd() {
+  _oneof_case_[0] = kPlayStopCmd;
+}
+inline void LinkCmd::clear_playstopcmd() {
+  if (has_playstopcmd()) {
+    delete cmd_.playstopcmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPlayStopCmd& LinkCmd::playstopcmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.playStopCmd)
+  return has_playstopcmd()
+      ? *cmd_.playstopcmd_
+      : ::LinkPlayStopCmd::default_instance();
+}
+inline ::LinkPlayStopCmd* LinkCmd::mutable_playstopcmd() {
+  if (!has_playstopcmd()) {
+    clear_cmd();
+    set_has_playstopcmd();
+    cmd_.playstopcmd_ = new ::LinkPlayStopCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.playStopCmd)
+  return cmd_.playstopcmd_;
+}
+inline ::LinkPlayStopCmd* LinkCmd::release_playstopcmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.playStopCmd)
+  if (has_playstopcmd()) {
+    clear_has_cmd();
+    ::LinkPlayStopCmd* temp = cmd_.playstopcmd_;
+    cmd_.playstopcmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_playstopcmd(::LinkPlayStopCmd* playstopcmd) {
+  clear_cmd();
+  if (playstopcmd) {
+    set_has_playstopcmd();
+    cmd_.playstopcmd_ = playstopcmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playStopCmd)
 }
 
 // .LinkCamAddNotify camAddNotify = 10001;

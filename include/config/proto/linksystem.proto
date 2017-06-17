@@ -184,6 +184,35 @@ message LinkSearchRecordResp {
 	LinkRecordList cList = 2;
 }
 
+
+//Stream, Stream is one way command from client to server
+message LinkStartLiveCmd {
+	string strId = 1;
+	int32 nStream = 2;
+}
+message LinkStopLiveCmd {
+	string strId = 1;
+	int32 nStream = 2;
+}
+message LinkPlayBackCmd {
+	string strId = 1;
+	int32 nPlaytime = 2;
+}
+message LinkPlayPauseCmd {
+	string strId = 1;
+}
+message LinkPlayResumeCmd {
+	string strId = 1;
+}
+message LinkPlaySeekCmd {
+	string strId = 1;
+	int32 nPlaytime = 2;
+}
+message LinkPlayStopCmd {
+	string strId = 1;
+}
+
+
 //Notify
 message LinkCamAddNotify {
 	VidCamera cCam = 1;

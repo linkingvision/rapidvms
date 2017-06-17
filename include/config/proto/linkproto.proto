@@ -56,6 +56,15 @@ enum LinkCmdType {
 	LINK_CMD_HAS_RECORD_RESP = 602;
 	LINK_CMD_SEARCH_RECORD_REQ = 603;
 	LINK_CMD_SEARCH_RECORD_RESP = 604;
+	
+	//Stream
+	LINK_CMD_START_LIVE_CMD = 701;
+	LINK_CMD_STOP_LIVE_CMD = 702;
+	LINK_CMD_PLAY_BACK_CMD = 703;
+	LINK_CMD_PLAY_PAUSE_CMD = 704;
+	LINK_CMD_PLAY_RESUME_CMD = 705;
+	LINK_CMD_PLAY_SEEK_CMD = 706;
+	LINK_CMD_PLAY_STOP_CMD = 707;
 
 
 	//Notify message
@@ -123,6 +132,16 @@ message LinkCmd {
 		LinkSearchRecordReq searchRecReq = 603;
 		LinkSearchRecordResp searchRecResp = 604;
 		
+		
+		//Stream
+		LinkStartLiveCmd startLiveCmd = 701;
+		LinkStopLiveCmd stopLiveCmd = 702;
+		LinkPlayBackCmd playBackCmd = 703;
+		LinkPlayPauseCmd playPauseCmd = 704;
+		LinkPlayResumeCmd playResumeCmd = 705;
+		LinkPlaySeekCmd playSeekCmd = 706;
+		LinkPlayStopCmd playStopCmd = 707;
+
 		//Notify
 		LinkCamAddNotify camAddNotify = 10001;
 		LinkCamIdNotify camIdNotify = 10002;
