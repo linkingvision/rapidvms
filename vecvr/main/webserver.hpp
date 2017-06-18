@@ -56,9 +56,11 @@ public:
 		server.addWebSocketHandler(LINK_PROTO_WS_STREAM_PATH, h_wslinkStream);
 
 		server.addAuthHandler(LINK_PROTO_WS_PATH, h_wslinkAuth);
+		server.addAuthHandler(LINK_PROTO_WS_STREAM_PATH, h_wslinkStreamAuth);
 
 		//Below is only for test
 		server.addWebSocketHandler("/vwsapi", h_vwsapi);
+		
 		
 	}
 	~VEWebServer(){}
@@ -70,6 +72,7 @@ private:
 	WSLink h_wslink;
 	WSLinkStream h_wslinkStream;
 	WSLinkAuth h_wslinkAuth;
+	WSLinkAuth h_wslinkStreamAuth;
 	CivetServer *pServer;
 	CivetServer &server;
 	Factory &m_pFactory;

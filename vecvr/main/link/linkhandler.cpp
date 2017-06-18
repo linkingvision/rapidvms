@@ -297,6 +297,8 @@ bool LinkHandler::ProcessCamListReq(Link::LinkCmd &req, CivetServer *server,
 	for (s32 i = 0; i < clist->cvidcamera_size(); i ++)
 	{
 		VidCamera &cam = (VidCamera &)(clist->cvidcamera(i));
+		/* remove the password */
+		//cam.set_strpasswd("******");
 		cam.set_bonline(pCameraOnlineMap[cam.strid()]);
 		cam.set_brec(pCameraRecMap[cam.strid()]);	
 	}

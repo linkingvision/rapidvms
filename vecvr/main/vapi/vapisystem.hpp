@@ -31,6 +31,7 @@
 #include "cppkit/os/ck_sprintf.h"
 #include "rapidmedia/rapidmedia.hpp"
 #include "vplay.hpp"
+#include <google/protobuf/util/json_util.h>
 
 
 #ifdef WIN32
@@ -72,23 +73,17 @@ private:
 
 		for (s32 i = 0; i < pCameraList.cvidcamera_size(); i ++)
 		{
-			const VidCamera &cam = pCameraList.cvidcamera(i);
-			oapi::OAPICamera data;
-			OAPIConverter::Converter((VidCamera &)cam, data);
-			data.strPasswd = "******";
-			data.bOnline = pCameraOnlineMap[cam.strid()];
-			data.bRec = pCameraRecMap[cam.strid()];
-			dataList.list.push_back(data);
-			dataList.Num ++;
+			VidCamera &cam = (VidCamera &)(pCameraList.cvidcamera(i));
+			cam.set_strpasswd("******");
 		}
+		std::string strMsg;
+		::google::protobuf::util::Status status = 
+			::google::protobuf::util::MessageToJsonString(pCameraList, &strMsg);
 
-		//autojsoncxx::to_json_string
-
-		std::string strJson = autojsoncxx::to_pretty_json_string(dataList);
-		s32 nJsonLen = strJson.length();
+		s32 nJsonLen = strMsg.length();
 		if (nJsonLen <= 0)
 		{
-			//TODO check if it false
+
 			return FALSE;
 		}
 		
@@ -97,7 +92,7 @@ private:
 		          "HTTP/1.1 200 OK\r\nContent-Type: "
 		          "application/json\r\n"
 				  "Content-Length: %d\r\n\r\n", nJsonLen);
-		mg_printf(conn, strJson.c_str());
+		mg_printf(conn, strMsg.c_str());
 		return true;
 	}
 
