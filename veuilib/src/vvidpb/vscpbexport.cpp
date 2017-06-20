@@ -193,13 +193,14 @@ void VSCPbExportTask::run()
 	m_StorStream->UnRegDataCallback();
 
 	m_StorStream->StopStorStream();
+	delete m_StorStream;
+	m_StorStream = NULL;
 	
 	if (m_pMuxer)
 	{
 		m_pMuxer->finalize_file();
 	}
 	
-	m_StorStream = NULL;
 	if (m_pMuxer)
 	{
 		delete m_pMuxer;

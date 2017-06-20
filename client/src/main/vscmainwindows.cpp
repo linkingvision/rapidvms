@@ -203,7 +203,7 @@ void VSCMainWindows::ShowDashBoard()
 		//connect(m_pPanel, SIGNAL(AddVIPC()), this, SLOT(AddVIPC()));
 	}
 
-	m_pMainArea->addTab(m_pDashBoard, QIcon(tr(":/action/resources/dashboard.png")), tr("Dashboard"));  
+	m_pMainArea->addTab(m_pDashBoard, QIcon(tr(":/action/resources/dashboard.png")), tr("DASH BOARD"));  
 	m_pMainArea->setCurrentWidget(m_pDashBoard);
 }
 
@@ -216,7 +216,7 @@ void VSCMainWindows::ShowEventConsole()
 	}
 	m_pEventConsole->show();
 
-	m_pMainArea->addTab(m_pEventConsole, QIcon(tr(":/action/resources/alarmno.png")), tr("Console"));  
+	m_pMainArea->addTab(m_pEventConsole, QIcon(tr(":/action/resources/alarmno.png")), tr("CONSOLE"));  
 	m_pMainArea->setCurrentWidget(m_pEventConsole);
 }
 
@@ -336,7 +336,7 @@ void VSCMainWindows::ExitOpenCVR()
 {
 	QMessageBox msgBox(this);
 	//Set text
-	msgBox.setText(tr("Rapidvms Exit ..."));
+	msgBox.setText(tr("RAPIDVMS EXIT ..."));
 	    //Set predefined icon, icon is show on left side of text.
 	msgBox.setIconPixmap(QPixmap(":/logo/resources/vsc32.png"));
 
@@ -371,7 +371,7 @@ void VSCMainWindows::SetupToolBar()
 
 void VSCMainWindows::about()
 {
-   QMessageBox::about(this, tr("About Rapidvms"),
+   QMessageBox::about(this, tr("ABOUT RAPIDVMS"),
             tr("<b>License & Pricing</b> <br>"
             "<a href=\"https://github.com/veyesys/rapidvms\">https://github.com/veyesys/rapidvms</a>"
             "  <br><a href=\"http://www.veyesys.com/\">http://www.veyesys.com/</a>"

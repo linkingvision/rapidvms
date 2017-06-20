@@ -37,6 +37,7 @@ public:
 	~StorWebSocketClient();
 public:
 	bool Disconnect();
+	bool StartKeepThread();
 	virtual bool ProcessRecvMsg(char *data, size_t data_len)
 	{
 		return true;
@@ -49,10 +50,20 @@ public:
 	{
 		return true;
 	}
+	virtual bool ProcessLogined()
+	{
+		return true;
+	}
 	virtual bool IsKeep()
 	{
 		return true;
 	}
+
+	virtual bool NeedReconnect()
+	{
+		return false;
+	}
+	
 	bool SendDeviceListRequest();
 
 	bool SendRegNotifyRequest();
@@ -99,6 +110,7 @@ protected:
 	bool m_bOnline;
 	std::thread * m_pThread;
 	std::mutex m_ConnectLock;
+	bool m_bLogined;
 	
 };
 

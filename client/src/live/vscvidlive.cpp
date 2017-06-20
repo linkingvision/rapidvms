@@ -45,7 +45,7 @@ VSCVidLive::VSCVidLive(ClientFactory &pFactory, QTabWidget &pTab, QMainWindow *p
 	m_pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
-	m_pMainArea.addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("Main View"));
+	m_pMainArea.addTab(m_pView,QIcon(tr(":/view/resources/3x3.png")), tr("MAIN VIEW"));
 	m_pMainArea.setCurrentWidget(m_pView);
 
 	//connect(m_pEventThread, SIGNAL(EventNotify(int, int)), 
@@ -127,7 +127,7 @@ void VSCVidLive::VidNewLiveView()
 	pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
-	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("View %1").arg(currentNum+1));
+	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("VIEW %1").arg(currentNum+1));
 	m_pMainArea.setCurrentWidget(pView);
 	delete loading;
 }
@@ -157,7 +157,7 @@ void VSCVidLive::VidNewLivePB()
 	pView->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint  );
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
-	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("Playback %1").arg(currentNum+1));
+	m_pMainArea.addTab(pView,QIcon(tr(":/view/resources/3x3.png")), tr("PLAYBACK %1").arg(currentNum+1));
 	m_pMainArea.setCurrentWidget(pView);
 	delete loading;
 }

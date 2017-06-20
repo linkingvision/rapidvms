@@ -41,7 +41,7 @@ xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\openssl.exe  client\prj_win32
 xcopy /y /e 3rdparty\live555\output\Release\live555.dll  client\prj_win32\Win32\Release
 
 
-REM xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  client\prj_win32\Win32\Release
+xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  client\prj_win32\Win32\Release
 
 REM QT_WIN32
 xcopy /y /e %QT_WIN32%\plugins\imageformats\*.dll  client\prj_win32\Win32\Debug\imageformats\

@@ -78,7 +78,7 @@ void VSCVidConf::SlotVidStorAdd()
 	//pAdd->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint);
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
-	m_pMainArea.addTab(pAdd,QIcon(tr(":/device/resources/addstor.png")), tr("Stor Add"));
+	m_pMainArea.addTab(pAdd,QIcon(tr(":/device/resources/addstor.png")), tr("STOR ADD"));
 	m_pMainArea.setCurrentWidget(pAdd);
 }
 
@@ -90,7 +90,7 @@ void VSCVidConf::SlotVidCamAdd(std::string strStorId)
 	//pAdd->setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint);
 	//connect(m_pDeviceList, SIGNAL(CameraDoubleClicked(int)), m_pView, SLOT(CameraDoubleClicked(int)));
 
-	m_pMainArea.addTab(pAdd,QIcon(tr(":/device/resources/addcam.png")), tr("Camera Add"));
+	m_pMainArea.addTab(pAdd,QIcon(tr(":/device/resources/addcam.png")), tr("CAMERA ADD"));
 	m_pMainArea.setCurrentWidget(pAdd);
 }
 
@@ -98,7 +98,7 @@ void VSCVidConf::SlotVidClientConf()
 {
 	VidClientSetting *pConf = new VidClientSetting(m_pFactory, &m_pMainArea);
 
-	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/control_panel.png")), tr("Client"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/control_panel.png")), tr("CLIENT"));
 	m_pMainArea.setCurrentWidget(pConf);
 
 }
@@ -107,7 +107,7 @@ void VSCVidConf::SlotVidViewConf()
 {
 	VidViewConf *pConf = new VidViewConf(m_pFactory, &m_pMainArea);
 	
-	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/view.png")), tr("View"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/view.png")), tr("VIEW"));
 	m_pMainArea.setCurrentWidget(pConf);
 }
 
@@ -116,7 +116,7 @@ void VSCVidConf::SlotVidEmapConf()
 {
 	VidEmapConf *pConf = new VidEmapConf(m_pFactory, &m_pMainArea);
 
-	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/map.png")), tr("Emap"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/map.png")), tr("EMAP"));
 	m_pMainArea.setCurrentWidget(pConf);
 }
 
@@ -125,7 +125,7 @@ void VSCVidConf::SlotVidStorConf(std::string strStorId)
 	VidStor pStor;
 	m_pFactory.GetConfDB().GetStorConf(strStorId, pStor);
 	VidStorSetting *pConf = new VidStorSetting(pStor, m_pFactory, &m_pMainArea);
-	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/control_panel.png")), tr("Stor"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/control_panel.png")), tr("STOR"));
 	m_pMainArea.setCurrentWidget(pConf);	
 }
 
@@ -134,7 +134,7 @@ void VSCVidConf::SlotVidDiskConf(std::string strStorId)
 	VidStor pStor;
 	m_pFactory.GetConfDB().GetStorConf(strStorId, pStor);
 	VSCHddEdit *pConf = new VSCHddEdit(pStor, &m_pMainArea);
-	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/disksetting.png")), tr("Disk"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/action/resources/disksetting.png")), tr("DISK"));
 	m_pMainArea.setCurrentWidget(pConf);	
 }
 
@@ -143,6 +143,6 @@ void VSCVidConf::SlotVidCamConf(std::string strStor, std::string strCam)
 	VidStor pStor;
 	m_pFactory.GetConfDB().GetStorConf(strStor, pStor);
 	VidCamSetting *pConf = new VidCamSetting(pStor, strCam, m_pFactory, &m_pMainArea);
-	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/camera.png")), tr("Camera"));
+	m_pMainArea.addTab(pConf,QIcon(tr(":/device/resources/camera.png")), tr("CAMERA"));
 	m_pMainArea.setCurrentWidget(pConf);	
 }

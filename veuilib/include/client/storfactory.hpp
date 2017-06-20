@@ -54,6 +54,7 @@ public:
 public:
 	/* Init function */
 	BOOL Init();
+	bool Start();
 	bool InitAddStor(VidStor & pParam);
 public:
 	bool AddStor(VidStor & pParam);
@@ -90,8 +91,6 @@ public:
 	StorClientOnlineMap GetVidCameraOnlineList(astring strStor);
 	StorClientRecMap GetVidCameraRecList(astring strStor);
 	bool GetOnline(astring strStor);
-public:
-	void run();
 
 private:
 	StorClientMap m_StorClientMap;

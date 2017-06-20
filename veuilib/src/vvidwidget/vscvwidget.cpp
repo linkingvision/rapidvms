@@ -69,32 +69,32 @@ VSCVWidget::VSCVWidget(ClientFactory &pFactory, s32 nId, QWidget *parent,
 	//gettimeofday(&m_lastPtz, NULL);
 	//gettimeofday(&m_lastPtzZoom, NULL);
 	this->setAcceptDrops(true);
-	m_pStop = new QAction(QIcon(tr(":/action/resources/libuistop.png")), tr("Stop"), this);
+	m_pStop = new QAction(QIcon(tr(":/action/resources/libuistop.png")), tr("STOP"), this);
 	connect(m_pStop, SIGNAL(triggered()), this, SLOT(stopAction()));
 
-	m_pMotion = new QAction(QIcon(tr(":/action/resources/motion.png")), tr("Motion Detect"), this);
+	m_pMotion = new QAction(QIcon(tr(":/action/resources/motion.png")), tr("MOTION DETECT"), this);
 	connect(m_pMotion, SIGNAL(triggered()), this, SLOT(MotionDetectAction()));
 
-	m_pHelp = new QAction(QIcon(tr(":/action/resources/help.png")), tr("Help"), this);
+	m_pHelp = new QAction(QIcon(tr(":/action/resources/help.png")), tr("HELP"), this);
 	connect(m_pHelp, SIGNAL(triggered()), this, SLOT(Help()));
 
-	m_pFloating = new QAction(QIcon(tr(":/action/resources/libuifloat.png")), tr("Float"), this);
+	m_pFloating = new QAction(QIcon(tr(":/action/resources/libuifloat.png")), tr("FLOAT"), this);
 	connect(m_pFloating, SIGNAL(triggered()), this, SIGNAL(ShowFloatingClicked()));
 
 
 	m_pPTZ = new QAction(QIcon(tr(":/action/resources/libuidome.png")), tr("PTZ"), this);
 	connect(m_pPTZ, SIGNAL(triggered()), this, SLOT(PTZEnable()));   
 
-	m_pPTZPanel = new QAction(QIcon(tr(":/action/resources/libuidome.png")), tr("PTZ Panel"), this);
+	m_pPTZPanel = new QAction(QIcon(tr(":/action/resources/libuidome.png")), tr("PTZ PANEL"), this);
 	connect(m_pPTZPanel, SIGNAL(triggered()), this, SLOT(PTZPanel()));   
 
-	m_pPlayback = new QAction(QIcon(tr(":/action/resources/libuiinstantpb.png")), tr("Playback"), this);
+	m_pPlayback = new QAction(QIcon(tr(":/action/resources/libuiinstantpb.png")), tr("PLAYBACK"), this);
 	connect(m_pPlayback, SIGNAL(triggered()), this, SLOT(PlaybackClick()));  
 
-	m_pTabbed = new QAction(QIcon(tr(":/action/resources/libuitabbed.png")), tr("Tabbed"), this);
+	m_pTabbed = new QAction(QIcon(tr(":/action/resources/libuitabbed.png")), tr("TABBED"), this);
 	connect(m_pTabbed, SIGNAL(triggered()), this, SIGNAL(ShowTabbedClicked()));
 
-	m_pControlEnable = new QAction(QIcon(tr(":/action/resources/libuicontrol_panel.png")), tr("Control"), this);
+	m_pControlEnable = new QAction(QIcon(tr(":/action/resources/libuicontrol_panel.png")), tr("CONTROL"), this);
 	connect(m_pControlEnable, SIGNAL(triggered()), this, SIGNAL(ShowControlPanelClicked()));
 
 	m_pDisplay1 = new QAction(QIcon(tr(":/action/resources/libuidisplay.png")), tr("DISPLAY1"), this);
@@ -129,6 +129,7 @@ VSCVWidget::VSCVWidget(ClientFactory &pFactory, s32 nId, QWidget *parent,
 #endif
 
 	gettimeofday(&m_lastPtzZoom, NULL);
+	setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void VSCVWidget::ReCreateVideoWidget()
@@ -445,6 +446,7 @@ BOOL VSCVWidget::StopPlay()
     		m_TimerInfo->stop();
     		m_StorStream->DetachWidget(m_videoWindow);
     		m_StorStream->StopStorStream();
+		delete m_StorStream;
 		m_StorStream = NULL;
 		m_strCamName = "";
         	VDC_DEBUG( "%s StopPlay begin\n",__FUNCTION__);

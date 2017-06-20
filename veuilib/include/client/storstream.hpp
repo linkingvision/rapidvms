@@ -41,17 +41,25 @@
 #include "cppkit/os/ck_sprintf.h"
 #include "oapi/oapic.hpp"
 #include "oapi/oapis.hpp"
+#include "client/storwsclient.hpp"
 
 using namespace cppkit;
 using namespace std;
 
-class VE_LIBRARY_API StorStream: public QThread
+class VE_LIBRARY_API StorStream: public QObject, public StorWebSocketClient
 {
 	Q_OBJECT
 public:
 	StorStream(VidStor &stor, astring strId, unsigned int nStream, 
 		bool bPlayback = false, u32 nPlaytime = 0, bool bHWAccel = false);
 	~StorStream();
+public:
+	virtual bool ProcessRecvMsg(char *data, size_t data_len);
+	virtual bool IsKeep();
+	virtual bool ProcessOnline();
+	virtual bool ProcessLogined();
+	virtual bool NeedReconnect();
+public:
 #ifdef WIN32
 	bool AttachWidget(HWND hWnd, int w, int h, RenderType render = RENDER_TYPE_D3D);
 #else
@@ -69,21 +77,18 @@ public:
 	bool PausePlayback();
 	bool ResumePlayback();
 	bool SeekPlayback(u32 nPlaytime);
-	bool StopPlayback();
+
 signals:
 	void SignalPlayTime(unsigned int nTime);
 
 public:
 	bool StartStorStream();
 	bool StopStorStream();
-public:
-	void run();
 	
 private:
 	XMutex m_cMutex;
 	
 private:
-	bool m_Quit;
 	VPlay m_play;
 	astring m_strId;
 	unsigned int m_nStream;
@@ -93,12 +98,13 @@ private:
 	CameraDataCallbackFunctionPtr m_pCallback; 
 	void * m_pParam;
 
-	XRef<XSocket> m_pSocket;
-	bool m_bOnline;
 private:
 	bool m_bPlayback;
 	u32 m_nPlaytime;
 	bool m_bPbPause;
+	s64 m_nRecvSize;
+	u32 m_nNoFrameCnt;
+	s64 m_nRecvSizeLast;
 };
 
 typedef StorStream* LPStorStream;

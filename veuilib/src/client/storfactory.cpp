@@ -51,6 +51,20 @@ BOOL StorFactory::Init()
 	return TRUE;
 }
 
+bool StorFactory::Start()
+{
+	XGuard guard(m_cMutex);
+	StorClientMap::iterator it = m_StorClientMap.begin(); 
+	for(; it!=m_StorClientMap.end(); ++it)
+	{
+		if ((*it).second)
+		{
+			((*it).second)->StorClientStart();
+		}
+	}
+	return true;
+}
+
 bool StorFactory::InitAddStor(VidStor &pStor)
 {
 	StorFactoryNotifyInterface &pNotify = *this;
@@ -300,114 +314,4 @@ bool StorFactory::GetOnline(astring strStor)
 	return false;
 }
 
-void StorFactory::run()
-{
-	while(1)
-	{
-		ve_sleep(1000 * 90);
-	}
-#if 0
-
-	CameraParamMap paramMap;
-	/* Create the thread to update the Disk status */
-	while (1)
-	{
-		paramMap.clear();
-		{
-			/* Got all the camera param */
-			Lock();
-			CameraMap::iterator it = m_CameraMap.begin(); 
-			for(; it!=m_CameraMap.end(); ++it)
-			{	
-				s32 nIndex = (*it).first;
-				CameraParam pParam;
-				Camera *pCamera = m_CameraMap[nIndex];
-				if (pCamera == NULL)
-				{
-					continue;//TODO
-				}
-				pCamera->GetCameraParam(pParam);
-				paramMap[nIndex] = pParam;
-			}
-			UnLock();
-		}
-		{
-			/* Loop all the cameraparam */
-			CameraParamMap::iterator it = paramMap.begin(); 
-			for(; it!=paramMap.end(); ++it)
-			{	
-				/* Loop to check the camera and update the url */
-				s32 nIndex = (*it).first;
-				(*it).second.m_wipOnline = (*it).second.CheckOnline();
-				if ((*it).second.m_OnlineUrl == FALSE)
-				{
-					(*it).second.m_wipOnlineUrl = (*it).second.UpdateUrl();
-			
-					if ((*it).second.m_wipOnlineUrl == FALSE)
-					{
-						(*it).second.m_wipOnline = FALSE;
-					}
-					
-				}
-			}
-		}
-		{
-			/* Loop all the cameraparam result and set to camera */
-			CameraParamMap::iterator it = paramMap.begin(); 
-			for(; it!=paramMap.end(); ++it)
-			{	
-				/* Loop to check the camera and update the url */
-				s32 nIndex = (*it).first;
-				Lock();
-				CameraMap::iterator it1 = m_CameraMap.find(nIndex), 
-							ite1 = m_CameraMap.end();
-
-				if (it1 == ite1) 
-				{
-					/* the id may be delete */
-					UnLock();
-					continue;
-				}
-
-				CameraStatus bCheck = m_CameraMap[nIndex]->CheckCamera(
-					(*it).second.m_strUrl, (*it).second.m_strUrlSubStream, 
-					(*it).second.m_bHasSubStream, 
-					(*it).second.m_wipOnline, (*it).second.m_wipOnlineUrl);
-				
-				StorFactoryCameraChangeData change;
-				change.id = nIndex;
-				switch (bCheck)
-				{
-					case DEV_OFF2ON:
-					{
-						change.type = STOR_FACTORY_CAMERA_ONLINE;
-						m_CameraOnlineMap[nIndex] = 1;
-						UnLock(); 
-						CallCameraChange(change);
-						Lock();
-						break;
-					}
-					case DEV_ON2OFF:
-					{
-						change.type = STOR_FACTORY_CAMERA_OFFLINE;
-						m_CameraOnlineMap[nIndex] = 0;
-						UnLock(); 
-						CallCameraChange(change);
-						Lock();
-						break;
-					}
-					default:
-					{
-
-						break;
-					}
-				}
-				UnLock();
-			}
-		}
-		ve_sleep(1000 * 90);
-	}
-#endif
-	
-}
 

@@ -44,8 +44,8 @@ void VSCLicense::UpdateUI()
 {
 	astring strLicense = "";
 	astring strHostId = "";
-	astring strStart = "";
-	astring strExpire = "";
+	astring strStart = "0";
+	astring strExpire = "0";
 	char channel[256];
 	int ch = 0;
 	astring type = " ";

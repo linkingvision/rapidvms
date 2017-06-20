@@ -829,6 +829,24 @@ bool LinkHandler::ProcessSearchRecordReq(Link::LinkCmd &req, CivetServer *server
 
 	return true;	
 }
+
+bool LinkHandler::ProcessPtzCmdReq(Link::LinkCmd &req, CivetServer *server,
+                    struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_ptzcmd())
+	{
+		return false;
+	}
+	
+	const LinkPtzCmd& pReq =  req.ptzcmd();
+
+	m_pFactory.PtzAction(pReq.strid(), (FPtzAction)(pReq.naction()), 
+					(float)pReq.nparam());
+
+	return true;
+}
 	
 
 bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
@@ -937,6 +955,11 @@ bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
 		case Link::LINK_CMD_SEARCH_RECORD_REQ:
 		{
 			return ProcessSearchRecordReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_PTZ_CMD:
+		{
+			return ProcessPtzCmdReq(cmd, server, conn);
 			break;
 		}
 		default:

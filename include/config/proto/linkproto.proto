@@ -57,7 +57,7 @@ enum LinkCmdType {
 	LINK_CMD_SEARCH_RECORD_REQ = 603;
 	LINK_CMD_SEARCH_RECORD_RESP = 604;
 	
-	//Stream
+	//Stream one way command
 	LINK_CMD_START_LIVE_CMD = 701;
 	LINK_CMD_STOP_LIVE_CMD = 702;
 	LINK_CMD_PLAY_BACK_CMD = 703;
@@ -65,7 +65,23 @@ enum LinkCmdType {
 	LINK_CMD_PLAY_RESUME_CMD = 705;
 	LINK_CMD_PLAY_SEEK_CMD = 706;
 	LINK_CMD_PLAY_STOP_CMD = 707;
-
+	
+	//PTZ one way command
+	LINK_CMD_PTZ_CMD = 801;
+	
+	//Cam Search & Event
+	LINK_CMD_CAM_SEARCH_START_REQ = 901;
+	LINK_CMD_CAM_SEARCH_START_RESP = 902;
+	LINK_CMD_CAM_SEARCH_STOP_REQ = 903;
+	LINK_CMD_CAM_SEARCH_STOP_RESP = 904;
+	LINK_CMD_REG_EVENT_REQ = 905;
+	LINK_CMD_REG_EVENT_RESP = 906;
+	LINK_CMD_UNREG_EVENT_REQ = 907;
+	LINK_CMD_UNREG_EVENT_RESP = 908;
+	LINK_CMD_EVENT_SEARCH_REQ = 909;
+	LINK_CMD_EVENT_SEARCH_RESP = 910;
+	LINK_CMD_HANDLE_EVENT_REQ = 911;
+	LINK_CMD_HANDLE_EVENT_RESP = 912;
 
 	//Notify message
 	LINK_CMD_CAM_ADD_NOTIFY = 10001;
@@ -74,6 +90,9 @@ enum LinkCmdType {
 	LINK_CMD_CAM_OFFLINE_NOTIFY = 10004;
 	LINK_CMD_CAM_REC_ON_NOTIFY = 10005;
 	LINK_CMD_CAM_REC_OFF_NOTIFY = 10006;
+	
+	LINK_CMD_CAM_SEARCHED_NOTIFY = 10007;
+	LINK_CMD_EVENT_NOTIFY = 10008;
 
 }
 
@@ -141,11 +160,28 @@ message LinkCmd {
 		LinkPlayResumeCmd playResumeCmd = 705;
 		LinkPlaySeekCmd playSeekCmd = 706;
 		LinkPlayStopCmd playStopCmd = 707;
+		
+		//PTZ
+		LinkPtzCmd ptzCmd = 801;
+		
+		//Cam Search & Event
+		LinkCamSearchStartReq camSearchStartReq = 901;
+		LinkCamSearchStartResp camSearchStartResp = 902;
+		LinkCamSearchStopReq camSearchStopReq = 903;
+		LinkCamSearchStopResp camSearchStopResp = 904;
+		LinkRegEventReq regEventReq = 905;
+		LinkRegEventResp regEventResp = 906;
+		LinkUnRegEventReq unRegEventReq = 907;
+		LinkUnRegEventResp unRegEventResp = 908;
+		LinkEventSearchReq eventSearchReq = 909;
+		LinkEventSearchResp eventSearchResp = 910;
+		LinkHandleEventReq handleEventReq = 911;
+		LinkHandleEventResp handleEventResp = 912;
 
 		//Notify
 		LinkCamAddNotify camAddNotify = 10001;
 		LinkCamIdNotify camIdNotify = 10002;
-		
-
+		LinkCamSearchedNotify camSearchedNotify = 10003;
+		LinkEventNotify evnetNotify = 10004;
 	}
 }

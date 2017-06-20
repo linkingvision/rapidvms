@@ -184,7 +184,6 @@ message LinkSearchRecordResp {
 	LinkRecordList cList = 2;
 }
 
-
 //Stream, Stream is one way command from client to server
 message LinkStartLiveCmd {
 	string strId = 1;
@@ -212,6 +211,57 @@ message LinkPlayStopCmd {
 	string strId = 1;
 }
 
+//PTZ Command
+message LinkPtzCmd {
+	string strId = 1;
+	int32 nAction = 2;
+	double nParam = 3;
+}
+
+//Camera Search & Event Search
+message LinkCamSearchStartReq {
+	string strFake = 1;
+}
+message LinkCamSearchStartResp {
+	bool bSuccess = 1;
+}
+message LinkCamSearchStopReq {
+	string strFake = 1;
+}
+
+message LinkCamSearchStopResp {
+	bool bSuccess = 1;
+}
+
+message LinkRegEventReq {
+	string strId = 1;
+}
+message LinkRegEventResp {
+	bool bSuccess = 1;
+}
+
+message LinkUnRegEventReq {
+	string strId = 1;
+}
+message LinkUnRegEventResp {
+	bool bSuccess = 1;
+}
+
+message LinkEventSearchReq {
+	string strId = 1;
+	int32 nStart = 2;
+	int32 nEnd = 3;
+}
+message LinkEventSearchResp {
+	bool bSuccess = 1;
+}
+
+message LinkHandleEventReq {
+	string strId = 1;
+}
+message LinkHandleEventResp {
+	bool bSuccess = 1;
+}
 
 //Notify
 message LinkCamAddNotify {
@@ -220,6 +270,28 @@ message LinkCamAddNotify {
 message LinkCamIdNotify {
 	string strId = 1;
 }
+
+message LinkCamSearchedNotify {
+	string strIp = 1;
+	string strPort = 2;
+	string strModel = 3;
+	string strONVIFAddress = 4;
+}
+
+message LinkEventNotify {
+	string strId = 1;
+	string strDevice = 2;
+	string strDeviceName = 3;
+	string strONVIFAddress = 4;
+	string strType = 5;
+	int64 nTime = 6;
+	string strTime = 7;
+	string strDesc = 8;
+	bool bHandled = 9;
+	string strComments = 10;
+	bool bSearched = 11;
+}
+
 
 
 

@@ -28,6 +28,7 @@ StorSyncInf::StorSyncInf(VidStor &stor, int nTimeoutMillis)
 {
 	/* Just log when there has command */
 	//Login(stor.struser(), stor.strpasswd(), "Nonce");
+	StartKeepThread();
 }
 StorSyncInf::~StorSyncInf()
 {
@@ -960,7 +961,7 @@ bool StorSyncInf::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, Reco
 		return false;
 	}
 
-	if (!respCmd.has_searchrecreq())
+	if (!respCmd.has_searchrecresp())
 	{
 		return false;
 	}

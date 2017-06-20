@@ -115,9 +115,6 @@ public:
 	bool DelEmapCamera(astring strId, astring strCamId);
 
 	VidEnv & GetEnv(){return m_env;}
-
-public:
-	void run();
 	
 private:
 	StorFactory *m_StorFactory;

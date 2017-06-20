@@ -61,6 +61,7 @@ VVidPB1::VVidPB1(ClientFactory &pFactory, QWidget *parent, Qt::WindowFlags flags
 	this->ui.video->setLayout(layout);
 	m_pVideo->ShowVideoInfo(false);
 	m_pVideo->show();
+	setAttribute(Qt::WA_DeleteOnClose);
 
 }
 
@@ -87,5 +88,10 @@ bool VVidPB1::StopPlay()
 
 VVidPB1::~VVidPB1()
 {
-
+	if (m_pVideo)
+	{
+		StopPlay();
+		delete m_pVideo;
+		m_pVideo = NULL;
+	}
 }

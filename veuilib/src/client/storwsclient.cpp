@@ -2,31 +2,45 @@
 
 StorWebSocketClient::StorWebSocketClient(std::string strHost, std::string strPort, std::string strPath)
 	:m_wsConn(NULL), m_bConnected(false), m_strHost(strHost), m_strPort(strPort),
-m_strPath(strPath), m_msgId(0), m_bOnline(false), m_pThread(NULL), m_bExit(false)
+m_strPath(strPath), m_msgId(0), m_bOnline(false), m_pThread(NULL), m_bExit(false), 
+m_bLogined(false)
 {
 	memset(m_ebuf, 0, WS_EBUF_LEN);
-	/* start keepalive thread */
-	m_pThread = new std::thread(StorWebSocketClient::Thread, this);
+
 }
 StorWebSocketClient::~StorWebSocketClient()
 {
 	Disconnect();
 }
 
+bool StorWebSocketClient::StartKeepThread()
+{
+	/* start keepalive thread */
+	m_pThread = new std::thread(StorWebSocketClient::Thread, this);
+
+	return true;
+}
+
 bool StorWebSocketClient::Disconnect()
 {
+	R_LOG(logRINFO,"%s %s %d\n",__FUNCTION__, __FILE__, __LINE__);
 	if (m_bExit == false)
 	{
 		m_bExit = true;
-		m_pThread->join();
-		delete m_pThread;
-		m_pThread = NULL;
+		if (m_pThread)
+		{
+			m_pThread->join();
+			delete m_pThread;
+			m_pThread = NULL;
+		}
 		if (m_wsConn)
 		{
 			mg_close_connection(m_wsConn);
 			m_wsConn = NULL;
 		}
 	}
+	R_LOG(logRINFO,"%s %s %d\n",__FUNCTION__, __FILE__, __LINE__);
+
 	return true;
 }
 
@@ -112,13 +126,19 @@ bool StorWebSocketClient::ProcessLoginResp(Link::LinkCmd &cmd, astring strUser, 
 		return Login(strUser, strPasswd, pResp.strnonce());
 	}
 
+	if (pResp.bret() == true)
+	{
+		m_bLogined = true;
+		ProcessLogined();
+	}
+
 	if (pResp.bret() == true && IsKeep() == true)
 	{
 		SendDeviceListRequest();
 		SendRegNotifyRequest();
 		RegRealEvent();
+		
 	}
-
 	
 	return true;
 }
@@ -209,6 +229,7 @@ void StorWebSocketClient::WSCloseHandler1(struct mg_connection *conn)
 	ProcessOffline();
 	std::lock_guard<std::mutex> guard(m_ConnectLock);
 	m_bConnected = false;
+	m_bLogined = false;
 	R_LOG(logRINFO,"%s %s %d\n",__FUNCTION__, __FILE__, __LINE__);
 	
 }
@@ -251,8 +272,8 @@ bool StorWebSocketClient::SendMsg(std::string &strMsg)
 	int ret = mg_websocket_client_write(m_wsConn, 
 		WEBSOCKET_OPCODE_TEXT, strMsg.c_str(), strMsg.length());
 	
-	R_LOG(logRINFO,"%s %s %d websocket send %d\n",__FUNCTION__, __FILE__, 
-				__LINE__, ret);
+	//R_LOG(logRINFO,"%s %s %d websocket send %d\n",__FUNCTION__, __FILE__, 
+	//			__LINE__, ret);
 	if (ret == strMsg.length())
 	{
 		return true;
@@ -284,8 +305,10 @@ bool StorWebSocketClient::ThreadRun()
 		{
 			if (Connected() == false)
 			{
-				Connect();
-				ProcessOnline();
+				if (Connect() == true)
+				{
+					ProcessOnline();
+				}
 			}
 			Link::LinkCmd cmd;
 			cmd.set_type(Link::LINK_CMD_KEEPALIVE_REQ);
@@ -302,8 +325,26 @@ bool StorWebSocketClient::ThreadRun()
 
 			SendMsg(strMsg);
 		}
-		//TODO here improve the time
-		ve_sleep(1000);
+		int i = 40;
+		while(m_bExit == false && i > 0)
+		{
+			i --;
+			ve_sleep(50);
+		}
+		if (NeedReconnect() == true)
+		{
+			//std::lock_guard<std::mutex> guard(m_ConnectLock);
+			if (m_bConnected == true)
+			{
+				if (m_wsConn)
+				{
+					mg_close_connection(m_wsConn);
+					m_wsConn = NULL;
+				}
+				m_bConnected = false;
+			}
+
+		}
 	}
 
 	return true;

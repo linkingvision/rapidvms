@@ -109,7 +109,7 @@ VVidPBWidget::VVidPBWidget(VVidPBControl &pControl, ClientFactory &pFactory, s32
 	//gettimeofday(&m_lastPtz, NULL);
 	//gettimeofday(&m_lastPtzZoom, NULL);
 	this->setAcceptDrops(true);
-	m_pStop = new QAction(QIcon(tr(":/action/resources/libuistop.png")), tr("Stop"), this);
+	m_pStop = new QAction(QIcon(tr(":/action/resources/libuistop.png")), tr("STOP"), this);
 	connect(m_pStop, SIGNAL(triggered()), this, SLOT(stopAction()));
 
 	ui.setupUi(this);
@@ -148,6 +148,8 @@ VVidPBWidget::~VVidPBWidget()
 	{
 		m_StorStream->DetachWidget(m_videoWindow);
     		m_StorStream->StopStorStream();
+		delete m_StorStream;
+		m_StorStream = NULL;
 		delete m_Delegate;
 		m_Delegate = NULL;
 	}
@@ -400,6 +402,8 @@ BOOL VVidPBWidget::StopPlay()
 						VVID_UUID_NULL, VVID_UUID_NULL);
     		m_StorStream->DetachWidget(m_videoWindow);
     		m_StorStream->StopStorStream();
+		delete m_StorStream;
+		m_StorStream = NULL;
 		m_pControl.SetDelegate(NULL);
 		m_pControl.SlotClearPlay();
 		delete m_Delegate;

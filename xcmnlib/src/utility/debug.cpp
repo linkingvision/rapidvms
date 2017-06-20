@@ -119,6 +119,47 @@ spd::logger& Debug::logger()
 	return gDebug->getLogger();
 }
 
+void Debug::RapidLog(RapidLogLevel level, const char* format, ... )
+{
+		/* Output to log */
+		char str[MAX_LOG_LEN]="";
+		int len;
+		va_list args;
+		va_start(args, format);
+		len = vsnprintf(str, MAX_LOG_LEN-1, format, args);
+		if (len >2)
+		{
+			str[len -1] = '\0';
+		}
+		logger().debug(str);
+		va_end(args);
+
+		std::string prefix;
+		prefix = currentDateTime(time(NULL));
+		prefix += " [V]: ";
+
+		/* Output to console */
+		va_list vl2;
+		va_start(vl2, format);
+		printf("%s", prefix.c_str());
+		vprintf(format, vl2);
+		va_end(vl2);
+}
+void Debug::RapidNetLog(RapidLogLevel level, const char* format, ... )
+{
+	{
+		std::string prefix;
+		prefix = currentDateTime(time(NULL));
+		prefix += " [V]: ";
+		va_list vl;
+		/* Output to telnet */
+		va_start(vl, format);
+		cli_print(gDebug->cli, prefix.c_str());
+		cli_vabufprint(gDebug->cli, format, vl);
+		va_end(vl);
+	}
+}
+
 void Debug::DebugPrint( const char* format, ... )
 {
 	{

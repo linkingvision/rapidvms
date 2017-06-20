@@ -171,5 +171,9 @@ int main(int argc, char *argv[])
 
 	VDC_DEBUG("Start successfully !\n");
 	delete splash;
+
+	/* Start Stor client to connect VidStor */
+	pFactory->GetStorFactory().Start();
+
 	return a.exec();
 }

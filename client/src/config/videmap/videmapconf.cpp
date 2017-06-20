@@ -69,7 +69,7 @@ void VidEmapConf::SlotNew()
 	UUIDGenerator uuidCreator;
 	astring strId  = uuidCreator.createRandom().toString();
 	p.set_strid(strId);
-	p.set_strname("New Emap");
+	p.set_strname("NEW EMAP");
 	
 	int insertRow = ui.tableWidget->rowCount();
 	ui.tableWidget->insertRow(insertRow);

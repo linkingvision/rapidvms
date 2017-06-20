@@ -39,6 +39,7 @@
 #include <map>
 #include <stdarg.h>
 #include <time.h>
+#include "utility/typeexport.hpp"
 
 #ifndef  V_TYPE
 #define V_TYPE
@@ -91,17 +92,6 @@ typedef unsigned long long  UINT64, *PUINT64;
 #endif
 #endif /* V_TYPE */
 
-
-
-#if defined(WIN32)
-#if defined(VE_EXPORTS)
-	#define VE_LIBRARY_API __declspec(dllexport)
-#else
-	#define VE_LIBRARY_API __declspec(dllimport)
-#endif
-#else
-	#define VE_LIBRARY_API
-#endif
 
 #ifndef WIN32
 typedef void * HWND; 	

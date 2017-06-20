@@ -26,87 +26,333 @@
 StorStream::StorStream(VidStor &stor, astring strId, unsigned int nStream, 
 		bool bPlayback, u32 nPlaytime, bool bHWAccel)
 :m_strId(strId), m_nStream(nStream), m_pCallback(NULL), m_pParam(NULL), 
-m_Quit(false), m_pSocket(new XSocket), m_stor(stor), m_nLastTime(0), 
-m_bPlayback(bPlayback), m_nPlaytime(nPlaytime), m_bOnline(false), m_bPbPause(false)
+m_stor(stor), m_nLastTime(nPlaytime), 
+m_bPlayback(bPlayback), m_nPlaytime(nPlaytime), m_bPbPause(false), 
+StorWebSocketClient(stor.strip(), stor.strport(), LINK_PROTO_WS_STREAM_PATH), 
+m_nRecvSize(0), m_nNoFrameCnt(0), m_nRecvSizeLast(0)
 {
 	m_play.Init(FALSE, "fake", "fake", "fake", bHWAccel, VSC_CONNECT_TCP);
-	connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+	//Login(stor.struser(), stor.strpasswd(), "Nonce");
+	StartKeepThread();
 }
 StorStream::~StorStream()
 {
+	Disconnect();
+}
+
+bool StorStream::IsKeep()
+{
+	return false;
+}
+
+bool StorStream::ProcessLogined()
+{
+	Link::LinkCmd cmd;
+	if (m_bPlayback == false)
+	{
+		cmd.set_type(Link::LINK_CMD_START_LIVE_CMD);
+		LinkStartLiveCmd * req = new LinkStartLiveCmd;
+		req->set_strid(m_strId);
+		req->set_nstream(m_nStream);
+
+		cmd.set_allocated_startlivecmd(req);
+	}else
+	{
+		cmd.set_type(Link::LINK_CMD_PLAY_BACK_CMD);
+		LinkPlayBackCmd * req = new LinkPlayBackCmd;
+		req->set_strid(m_strId);
+		req->set_nplaytime(m_nLastTime);
+		
+		cmd.set_allocated_playbackcmd(req);
+	}
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
+
+	return true;
+}
+
+bool StorStream::NeedReconnect()
+{
+	/* Playback don't need reconnect */
 	if (m_bPlayback == true)
 	{
-		StopPlayback();
+		return false;
 	}
+	/* live check the stream  */
+	m_nNoFrameCnt ++;
+
+	if (m_nNoFrameCnt >= 5)
+	{
+		if (m_nRecvSizeLast != m_nRecvSize)
+		{
+			m_nNoFrameCnt = 0;
+			m_nRecvSizeLast = m_nRecvSize;
+			return false;
+		}
+		/* reconnect to vidstor */
+		m_nNoFrameCnt = 0;
+		m_nRecvSizeLast = m_nRecvSize;
+		return true;
+	}
+
+	return false;
+
+}
+
+
+bool StorStream::ProcessRecvMsg(char *data, size_t data_len)
+{
+	/* after logined, all the data is stream */
+	if (m_bLogined)
+	{
+		VideoFrameHeader * frameHeader = (VideoFrameHeader *)data;
+		VideoFrame pFrame;
+		pFrame.streamType = (VideoStreamType)ntohl(frameHeader->streamType);
+		pFrame.frameType = (VideoFrameType)ntohl(frameHeader->frameType);
+		pFrame.secs = ntohl(frameHeader->secs);
+		pFrame.msecs = ntohl(frameHeader->msecs);
+		pFrame.dataBuf = (u8   *)(data + sizeof(VideoFrameHeader));
+		pFrame.dataLen = data_len - sizeof(VideoFrameHeader);
+		pFrame.bufLen = pFrame.dataLen;
+		m_nRecvSize += pFrame.dataLen;
+		if (m_pCallback != NULL)
+		{
+			m_pCallback(pFrame, m_pParam);
+		}else
+		{
+			if (m_nLastTime == 0 || pFrame.secs != m_nLastTime)
+			{
+				emit SignalPlayTime(m_nLastTime);
+				m_nLastTime = pFrame.secs;
+			}
+			m_play.PutRawData(pFrame);
+		}
+		return true;
+	}
+	/* lock guard */
+	std::lock_guard<std::mutex> guard(m_lock);
+	std::string strMsg(data, data_len);
+	Link::LinkCmd cmd;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::JsonStringToMessage(strMsg, &cmd);
+	if (!status.ok())
+	{
+		return false;
+	}
+
+	switch (cmd.type())
+	{
+		case Link::LINK_CMD_LOGIN_RESP:
+		{
+			return ProcessLoginResp(cmd, m_stor.struser(), m_stor.strpasswd());
+			break;
+		}
+
+		default:
+		   	break;
+	};
+	return true;
+}
+
+bool StorStream::ProcessOnline()
+{
+	Login(m_stor.struser(), m_stor.strpasswd(), "Nonce");
 	
+	return true;
 }
 
 bool StorStream::PausePlayback()
 {
-	if (m_bOnline == false || m_bPlayback == false)
+	XGuard guard(m_cMutex);
+	
+	if (Connect() == false)
 	{
 		return false;
 	}
 
-	OAPIClient pClient(m_pSocket);
+	Link::LinkCmd cmd;
 
-	XGuard guard(m_cMutex);
-	m_bPbPause = true;
-	/* Send add cam command  */
-	return pClient.PausePlayback(m_strId);
+	cmd.set_type(Link::LINK_CMD_PLAY_PAUSE_CMD);
+	LinkPlayPauseCmd * req = new LinkPlayPauseCmd;
+	req->set_strid(m_strId);
+
+	cmd.set_allocated_playpausecmd(req);
+	
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
+
+	return true;
 }
 bool StorStream::ResumePlayback()
 {
-	if (m_bOnline == false || m_bPlayback == false)
+	XGuard guard(m_cMutex);
+	
+	if (Connect() == false)
 	{
 		return false;
 	}
-	OAPIClient pClient(m_pSocket);
 
-	XGuard guard(m_cMutex);
-	m_bPbPause = false;
-	/* Send add cam command  */
-	return pClient.ResumePlayback(m_strId);
+	Link::LinkCmd cmd;
+
+	cmd.set_type(Link::LINK_CMD_PLAY_RESUME_CMD);
+	LinkPlayResumeCmd * req = new LinkPlayResumeCmd;
+	req->set_strid(m_strId);
+
+	cmd.set_allocated_playresumecmd(req);
+	
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
+
+	return true;
 }
 
 bool StorStream::SeekPlayback(u32 nPlaytime)
 {	
-	if (m_bOnline == false || m_bPlayback == false)
-	{
-		return false;
-	}
-	OAPIClient pClient(m_pSocket);
-
 	XGuard guard(m_cMutex);
-	m_nPlaytime = nPlaytime;
-	/* Send add cam command  */
-	return pClient.SeekPlayback(m_strId, nPlaytime);
-}
-
-bool StorStream::StopPlayback()
-{
-	if (m_bOnline == false || m_bPlayback == false)
+	
+	if (Connect() == false)
 	{
 		return false;
 	}
 
-	OAPIClient pClient(m_pSocket);
+	Link::LinkCmd cmd;
 
-	m_bPlayback = false;
+	cmd.set_type(Link::LINK_CMD_PLAY_SEEK_CMD);
+	LinkPlaySeekCmd * req = new LinkPlaySeekCmd;
+	req->set_strid(m_strId);
+	req->set_nplaytime(nPlaytime);
 
-	XGuard guard(m_cMutex);
-	/* Send add cam command  */
-	return pClient.StopPlayback(m_strId);
+	cmd.set_allocated_playseekcmd(req);
+	
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
+	return true;
 }
+
 
 bool StorStream::StartStorStream()
 {
-	start();
+	XGuard guard(m_cMutex);
+	
+	if (Connect() == false)
+	{
+		return false;
+	}
+
+
+	Link::LinkCmd cmd;
+	if (m_bPlayback == false)
+	{
+		cmd.set_type(Link::LINK_CMD_START_LIVE_CMD);
+		LinkStartLiveCmd * req = new LinkStartLiveCmd;
+		req->set_strid(m_strId);
+		req->set_nstream(m_nStream);
+
+		cmd.set_allocated_startlivecmd(req);
+	}else
+	{
+		cmd.set_type(Link::LINK_CMD_PLAY_BACK_CMD);
+		LinkPlayBackCmd * req = new LinkPlayBackCmd;
+		req->set_strid(m_strId);
+		req->set_nplaytime(m_nPlaytime);
+
+		cmd.set_allocated_playbackcmd(req);
+
+	}
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
+
 	return true;
 }
 bool StorStream::StopStorStream()
 {
-	m_Quit = true;
+	XGuard guard(m_cMutex);
+	
+	if (Connect() == false)
+	{
+		return false;
+	}
+
+
+	Link::LinkCmd cmd;
+	if (m_bPlayback == false)
+	{
+		cmd.set_type(Link::LINK_CMD_STOP_LIVE_CMD);
+		LinkStopLiveCmd * req = new LinkStopLiveCmd;
+		req->set_strid(m_strId);
+		req->set_nstream(m_nStream);
+
+		cmd.set_allocated_stoplivecmd(req);
+	}else
+	{
+		cmd.set_type(Link::LINK_CMD_PLAY_STOP_CMD);
+		LinkPlayStopCmd * req = new LinkPlayStopCmd;
+		req->set_strid(m_strId);
+
+		cmd.set_allocated_playstopcmd(req);
+	}
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+
 	return true;
 }
 bool StorStream::RegDataCallback(CameraDataCallbackFunctionPtr pCallback, 
@@ -155,163 +401,3 @@ bool StorStream::GetStreamInfo(VideoStreamInfo &pInfo)
 {
 	return m_play.GetStreamInfo(pInfo);
 }
-
-
-void StorStream::run()
-{
-	OAPIHeader header;
-	int frameCnt =0;
-	char *pRecv = NULL;
-	int nRecvLen = 0;
-	s32 nRet = 0;
-	ck_string ckPort = m_stor.strport();
-
-	u16 Port = ckPort.to_uint16(10);
-	XGuard guard(m_cMutex);
-	guard.Release();
-
-	while(m_Quit != true)
-	{
-		ve_sleep(1000);
-		guard.Acquire();
-		m_bOnline = false;
-		guard.Release();
-
-		guard.Acquire();
-		try
-		{
-			XSDK::XString host = m_stor.strip();
-			int nNoData = 0;
-			
-			m_pSocket->Connect(host, Port);
-			
-			oapi::OAPICameraListRsp list;
-			OAPIClient pClient(m_pSocket);
-			
-			pClient.Setup(m_stor.struser(), m_stor.strpasswd(), "Nonce");
-			
-	
-			m_pSocket->SetRecvTimeout(1 * 1000);
-			/* If 20s do not get data, and break the current connection */
-			while(m_Quit != true && (nNoData <= 50 || m_bPlayback == TRUE))
-			{
-				nRet = m_pSocket->Recv((void *)&header, sizeof(header));
-				if (nRet != sizeof(header))
-				{
-					if (m_pSocket->Valid() == true)
-					{
-						/* Have not recevice any data */
-						guard.Release();
-						ve_sleep(200);
-						nNoData ++;
-						guard.Acquire();
-						continue;
-					}else
-					{
-						//printf("%s---%d Receive error\n", __FILE__, __LINE__);
-						break;
-					}
-				}
-				//printf("%s---%d\n", __FILE__, __LINE__);
-				nNoData = 0;
-
-
-				header.cmd = ntohl(header.cmd);
-				header.length = ntohl(header.length);
-				if (header.length > nRecvLen)
-				{
-					if (pRecv)
-					{
-						delete [] pRecv;
-						pRecv = NULL;
-					}
-					pRecv = new char[header.length + 1];
-					nRecvLen = header.length + 1;
-				}
-				
-				s32 nRetBody = m_pSocket->Recv((void *)pRecv, header.length);
-				if (nRetBody == header.length)
-				{
-					
-					switch(header.cmd)
-					{
-						case OAPI_LOGIN_RSP:
-						{
-							oapi::LoginRsp rsp;
-							pClient.ParseLogin(pRecv, header.length, rsp);
-							if (rsp.bRetNonce == true)
-							{
-								pClient.Setup(m_stor.struser(), 
-										m_stor.strpasswd(), rsp.Nonce);
-							}
-							if (rsp.bRet == true)
-							{
-								/* login ok, send view or the playback */
-								if (m_bPlayback == true)
-								{
-									pClient.StartPlayback(m_strId, m_nPlaytime);
-									if (m_bPbPause == false)
-									{
-										pClient.ResumePlayback(m_strId);
-									}
-								}else
-								{
-									pClient.StartLiveview(m_strId, m_nStream);
-								}
-								m_bOnline = true;
-							}
-							break;
-						}
-						case OAPI_FRAME_PUSH:
-						{
-							//printf("Go a new frame %d\n", frameCnt++);
-							VideoFrameHeader * frameHeader = (VideoFrameHeader *)pRecv;
-							VideoFrame pFrame;
-							pFrame.streamType = (VideoStreamType)ntohl(frameHeader->streamType);
-							pFrame.frameType = (VideoFrameType)ntohl(frameHeader->frameType);
-							pFrame.secs = ntohl(frameHeader->secs);
-							pFrame.msecs = ntohl(frameHeader->msecs);
-							pFrame.dataBuf = (u8   *)(pRecv + sizeof(VideoFrameHeader));
-							pFrame.dataLen = header.length - sizeof(VideoFrameHeader);
-							pFrame.bufLen = pFrame.dataLen;
-							if (m_pCallback != NULL)
-							{
-								m_pCallback(pFrame, m_pParam);
-							}else
-							{
-								guard.Release();
-								if (m_nLastTime == 0 || pFrame.secs != m_nLastTime)
-								{
-									emit SignalPlayTime(m_nLastTime);
-									m_nLastTime = pFrame.secs;
-								}
-								m_play.PutRawData(pFrame);
-								guard.Acquire();
-							}
-							break;
-						}
-						default:
-							break;		
-					}
-				}
-
-			}
-
-		}
-		catch( XSDK::XException& ex )
-		{
-			
-		}
-
-		{
-			m_pSocket->Close();
-			m_pSocket.Clear();
-			/* Create a new socket for reconnect */
-			m_pSocket = new XSocket;
-		}
-		guard.Release();
-
-	}
-
-}
-

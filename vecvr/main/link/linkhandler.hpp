@@ -96,6 +96,11 @@ public:
 	                        struct mg_connection *conn);
 
 
+	/* PTZ command */
+	bool ProcessPtzCmdReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+
+
 	
 	bool SendRespMsg(Link::LinkCmd &resp, CivetServer *server,
 	                        struct mg_connection *conn);

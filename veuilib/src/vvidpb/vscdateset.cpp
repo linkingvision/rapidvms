@@ -54,8 +54,10 @@ VSCDateSet::VSCDateSet(QWidget *parent)
 
 	QDate currentDate = QDate::currentDate();
 	ui.calendar->setSelectedDate(currentDate);
+	//ui.calendar->setSelectionMode(QCalendarWidget::NoSelection);
 
 	SlotPageChanged(ui.calendar->yearShown(), ui.calendar->monthShown());
+	setStyleSheet("QTableView{selection-background-color: blue}");
 }
 
 void VSCDateSet::SlotDataClicked(const QDate & date)

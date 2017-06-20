@@ -67,8 +67,23 @@ class LinkCmdDefaultTypeInternal : public ::google::protobuf::internal::Explicit
   const ::LinkPlayResumeCmd* playresumecmd_;
   const ::LinkPlaySeekCmd* playseekcmd_;
   const ::LinkPlayStopCmd* playstopcmd_;
+  const ::LinkPtzCmd* ptzcmd_;
+  const ::LinkCamSearchStartReq* camsearchstartreq_;
+  const ::LinkCamSearchStartResp* camsearchstartresp_;
+  const ::LinkCamSearchStopReq* camsearchstopreq_;
+  const ::LinkCamSearchStopResp* camsearchstopresp_;
+  const ::LinkRegEventReq* regeventreq_;
+  const ::LinkRegEventResp* regeventresp_;
+  const ::LinkUnRegEventReq* unregeventreq_;
+  const ::LinkUnRegEventResp* unregeventresp_;
+  const ::LinkEventSearchReq* eventsearchreq_;
+  const ::LinkEventSearchResp* eventsearchresp_;
+  const ::LinkHandleEventReq* handleeventreq_;
+  const ::LinkHandleEventResp* handleeventresp_;
   const ::LinkCamAddNotify* camaddnotify_;
   const ::LinkCamIdNotify* camidnotify_;
+  const ::LinkCamSearchedNotify* camsearchednotify_;
+  const ::LinkEventNotify* evnetnotify_;
 } _LinkCmd_default_instance_;
 
 namespace protobuf_linkproto_2eproto {
@@ -134,8 +149,23 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), playresumecmd_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), playseekcmd_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), playstopcmd_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), ptzcmd_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camsearchstartreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camsearchstartresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camsearchstopreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camsearchstopresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), regeventreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), regeventresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), unregeventreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), unregeventresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), eventsearchreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), eventsearchresp_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), handleeventreq_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), handleeventresp_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camaddnotify_),
   PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camidnotify_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), camsearchednotify_),
+  PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET((&_LinkCmd_default_instance_), evnetnotify_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LinkCmd, cmd_),
 };
 
@@ -275,10 +305,40 @@ void TableStruct::InitDefaultsImpl() {
       ::LinkPlaySeekCmd::internal_default_instance());
   _LinkCmd_default_instance_.playstopcmd_ = const_cast< ::LinkPlayStopCmd*>(
       ::LinkPlayStopCmd::internal_default_instance());
+  _LinkCmd_default_instance_.ptzcmd_ = const_cast< ::LinkPtzCmd*>(
+      ::LinkPtzCmd::internal_default_instance());
+  _LinkCmd_default_instance_.camsearchstartreq_ = const_cast< ::LinkCamSearchStartReq*>(
+      ::LinkCamSearchStartReq::internal_default_instance());
+  _LinkCmd_default_instance_.camsearchstartresp_ = const_cast< ::LinkCamSearchStartResp*>(
+      ::LinkCamSearchStartResp::internal_default_instance());
+  _LinkCmd_default_instance_.camsearchstopreq_ = const_cast< ::LinkCamSearchStopReq*>(
+      ::LinkCamSearchStopReq::internal_default_instance());
+  _LinkCmd_default_instance_.camsearchstopresp_ = const_cast< ::LinkCamSearchStopResp*>(
+      ::LinkCamSearchStopResp::internal_default_instance());
+  _LinkCmd_default_instance_.regeventreq_ = const_cast< ::LinkRegEventReq*>(
+      ::LinkRegEventReq::internal_default_instance());
+  _LinkCmd_default_instance_.regeventresp_ = const_cast< ::LinkRegEventResp*>(
+      ::LinkRegEventResp::internal_default_instance());
+  _LinkCmd_default_instance_.unregeventreq_ = const_cast< ::LinkUnRegEventReq*>(
+      ::LinkUnRegEventReq::internal_default_instance());
+  _LinkCmd_default_instance_.unregeventresp_ = const_cast< ::LinkUnRegEventResp*>(
+      ::LinkUnRegEventResp::internal_default_instance());
+  _LinkCmd_default_instance_.eventsearchreq_ = const_cast< ::LinkEventSearchReq*>(
+      ::LinkEventSearchReq::internal_default_instance());
+  _LinkCmd_default_instance_.eventsearchresp_ = const_cast< ::LinkEventSearchResp*>(
+      ::LinkEventSearchResp::internal_default_instance());
+  _LinkCmd_default_instance_.handleeventreq_ = const_cast< ::LinkHandleEventReq*>(
+      ::LinkHandleEventReq::internal_default_instance());
+  _LinkCmd_default_instance_.handleeventresp_ = const_cast< ::LinkHandleEventResp*>(
+      ::LinkHandleEventResp::internal_default_instance());
   _LinkCmd_default_instance_.camaddnotify_ = const_cast< ::LinkCamAddNotify*>(
       ::LinkCamAddNotify::internal_default_instance());
   _LinkCmd_default_instance_.camidnotify_ = const_cast< ::LinkCamIdNotify*>(
       ::LinkCamIdNotify::internal_default_instance());
+  _LinkCmd_default_instance_.camsearchednotify_ = const_cast< ::LinkCamSearchedNotify*>(
+      ::LinkCamSearchedNotify::internal_default_instance());
+  _LinkCmd_default_instance_.evnetnotify_ = const_cast< ::LinkEventNotify*>(
+      ::LinkEventNotify::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -289,7 +349,7 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
       "\n\017linkproto.proto\022\004Link\032\020linksystem.prot"
-      "o\"\337\020\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
+      "o\"\257\026\n\007LinkCmd\022\037\n\004type\030\001 \001(\0162\021.Link.LinkC"
       "mdType\022!\n\010loginReq\030f \001(\0132\r.LinkLoginReqH"
       "\000\022#\n\tloginResp\030g \001(\0132\016.LinkLoginRespH\000\022)"
       "\n\014keepaliveReq\030h \001(\0132\021.LinkKeepaliveReqH"
@@ -340,9 +400,27 @@ void AddDescriptorsImpl() {
       "mdH\000\022,\n\rplayResumeCmd\030\301\005 \001(\0132\022.LinkPlayR"
       "esumeCmdH\000\022(\n\013playSeekCmd\030\302\005 \001(\0132\020.LinkP"
       "laySeekCmdH\000\022(\n\013playStopCmd\030\303\005 \001(\0132\020.Lin"
-      "kPlayStopCmdH\000\022*\n\014camAddNotify\030\221N \001(\0132\021."
-      "LinkCamAddNotifyH\000\022(\n\013camIdNotify\030\222N \001(\013"
-      "2\020.LinkCamIdNotifyH\000B\005\n\003cmd*\321\014\n\013LinkCmdT"
+      "kPlayStopCmdH\000\022\036\n\006ptzCmd\030\241\006 \001(\0132\013.LinkPt"
+      "zCmdH\000\0224\n\021camSearchStartReq\030\205\007 \001(\0132\026.Lin"
+      "kCamSearchStartReqH\000\0226\n\022camSearchStartRe"
+      "sp\030\206\007 \001(\0132\027.LinkCamSearchStartRespH\000\0222\n\020"
+      "camSearchStopReq\030\207\007 \001(\0132\025.LinkCamSearchS"
+      "topReqH\000\0224\n\021camSearchStopResp\030\210\007 \001(\0132\026.L"
+      "inkCamSearchStopRespH\000\022(\n\013regEventReq\030\211\007"
+      " \001(\0132\020.LinkRegEventReqH\000\022*\n\014regEventResp"
+      "\030\212\007 \001(\0132\021.LinkRegEventRespH\000\022,\n\runRegEve"
+      "ntReq\030\213\007 \001(\0132\022.LinkUnRegEventReqH\000\022.\n\016un"
+      "RegEventResp\030\214\007 \001(\0132\023.LinkUnRegEventResp"
+      "H\000\022.\n\016eventSearchReq\030\215\007 \001(\0132\023.LinkEventS"
+      "earchReqH\000\0220\n\017eventSearchResp\030\216\007 \001(\0132\024.L"
+      "inkEventSearchRespH\000\022.\n\016handleEventReq\030\217"
+      "\007 \001(\0132\023.LinkHandleEventReqH\000\0220\n\017handleEv"
+      "entResp\030\220\007 \001(\0132\024.LinkHandleEventRespH\000\022*"
+      "\n\014camAddNotify\030\221N \001(\0132\021.LinkCamAddNotify"
+      "H\000\022(\n\013camIdNotify\030\222N \001(\0132\020.LinkCamIdNoti"
+      "fyH\000\0224\n\021camSearchedNotify\030\223N \001(\0132\026.LinkC"
+      "amSearchedNotifyH\000\022(\n\013evnetNotify\030\224N \001(\013"
+      "2\020.LinkEventNotifyH\000B\005\n\003cmd*\263\020\n\013LinkCmdT"
       "ype\022\021\n\rLINK_CMD_ZERO\020\000\022\026\n\022LINK_CMD_LOGIN"
       "_REQ\020e\022\027\n\023LINK_CMD_LOGIN_RESP\020f\022\032\n\026LINK_"
       "CMD_KEEPALIVE_REQ\020g\022\033\n\027LINK_CMD_KEEPALIV"
@@ -378,15 +456,27 @@ void AddDescriptorsImpl() {
       "AY_BACK_CMD\020\277\005\022\034\n\027LINK_CMD_PLAY_PAUSE_CM"
       "D\020\300\005\022\035\n\030LINK_CMD_PLAY_RESUME_CMD\020\301\005\022\033\n\026L"
       "INK_CMD_PLAY_SEEK_CMD\020\302\005\022\033\n\026LINK_CMD_PLA"
-      "Y_STOP_CMD\020\303\005\022\034\n\027LINK_CMD_CAM_ADD_NOTIFY"
-      "\020\221N\022\034\n\027LINK_CMD_CAM_DEL_NOTIFY\020\222N\022\037\n\032LIN"
-      "K_CMD_CAM_ONLINE_NOTIFY\020\223N\022 \n\033LINK_CMD_C"
-      "AM_OFFLINE_NOTIFY\020\224N\022\037\n\032LINK_CMD_CAM_REC"
-      "_ON_NOTIFY\020\225N\022 \n\033LINK_CMD_CAM_REC_OFF_NO"
-      "TIFY\020\226Nb\006proto3"
+      "Y_STOP_CMD\020\303\005\022\025\n\020LINK_CMD_PTZ_CMD\020\241\006\022\"\n\035"
+      "LINK_CMD_CAM_SEARCH_START_REQ\020\205\007\022#\n\036LINK"
+      "_CMD_CAM_SEARCH_START_RESP\020\206\007\022!\n\034LINK_CM"
+      "D_CAM_SEARCH_STOP_REQ\020\207\007\022\"\n\035LINK_CMD_CAM"
+      "_SEARCH_STOP_RESP\020\210\007\022\033\n\026LINK_CMD_REG_EVE"
+      "NT_REQ\020\211\007\022\034\n\027LINK_CMD_REG_EVENT_RESP\020\212\007\022"
+      "\035\n\030LINK_CMD_UNREG_EVENT_REQ\020\213\007\022\036\n\031LINK_C"
+      "MD_UNREG_EVENT_RESP\020\214\007\022\036\n\031LINK_CMD_EVENT"
+      "_SEARCH_REQ\020\215\007\022\037\n\032LINK_CMD_EVENT_SEARCH_"
+      "RESP\020\216\007\022\036\n\031LINK_CMD_HANDLE_EVENT_REQ\020\217\007\022"
+      "\037\n\032LINK_CMD_HANDLE_EVENT_RESP\020\220\007\022\034\n\027LINK"
+      "_CMD_CAM_ADD_NOTIFY\020\221N\022\034\n\027LINK_CMD_CAM_D"
+      "EL_NOTIFY\020\222N\022\037\n\032LINK_CMD_CAM_ONLINE_NOTI"
+      "FY\020\223N\022 \n\033LINK_CMD_CAM_OFFLINE_NOTIFY\020\224N\022"
+      "\037\n\032LINK_CMD_CAM_REC_ON_NOTIFY\020\225N\022 \n\033LINK"
+      "_CMD_CAM_REC_OFF_NOTIFY\020\226N\022!\n\034LINK_CMD_C"
+      "AM_SEARCHED_NOTIFY\020\227N\022\032\n\025LINK_CMD_EVENT_"
+      "NOTIFY\020\230Nb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 3815);
+      descriptor, 5017);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "linkproto.proto", &protobuf_RegisterTypes);
   ::protobuf_linksystem_2eproto::AddDescriptors();
@@ -460,12 +550,27 @@ bool LinkCmdType_IsValid(int value) {
     case 705:
     case 706:
     case 707:
+    case 801:
+    case 901:
+    case 902:
+    case 903:
+    case 904:
+    case 905:
+    case 906:
+    case 907:
+    case 908:
+    case 909:
+    case 910:
+    case 911:
+    case 912:
     case 10001:
     case 10002:
     case 10003:
     case 10004:
     case 10005:
     case 10006:
+    case 10007:
+    case 10008:
       return true;
     default:
       return false;
@@ -524,8 +629,23 @@ const int LinkCmd::kPlayPauseCmdFieldNumber;
 const int LinkCmd::kPlayResumeCmdFieldNumber;
 const int LinkCmd::kPlaySeekCmdFieldNumber;
 const int LinkCmd::kPlayStopCmdFieldNumber;
+const int LinkCmd::kPtzCmdFieldNumber;
+const int LinkCmd::kCamSearchStartReqFieldNumber;
+const int LinkCmd::kCamSearchStartRespFieldNumber;
+const int LinkCmd::kCamSearchStopReqFieldNumber;
+const int LinkCmd::kCamSearchStopRespFieldNumber;
+const int LinkCmd::kRegEventReqFieldNumber;
+const int LinkCmd::kRegEventRespFieldNumber;
+const int LinkCmd::kUnRegEventReqFieldNumber;
+const int LinkCmd::kUnRegEventRespFieldNumber;
+const int LinkCmd::kEventSearchReqFieldNumber;
+const int LinkCmd::kEventSearchRespFieldNumber;
+const int LinkCmd::kHandleEventReqFieldNumber;
+const int LinkCmd::kHandleEventRespFieldNumber;
 const int LinkCmd::kCamAddNotifyFieldNumber;
 const int LinkCmd::kCamIdNotifyFieldNumber;
+const int LinkCmd::kCamSearchedNotifyFieldNumber;
+const int LinkCmd::kEvnetNotifyFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 LinkCmd::LinkCmd()
@@ -732,12 +852,72 @@ LinkCmd::LinkCmd(const LinkCmd& from)
       mutable_playstopcmd()->::LinkPlayStopCmd::MergeFrom(from.playstopcmd());
       break;
     }
+    case kPtzCmd: {
+      mutable_ptzcmd()->::LinkPtzCmd::MergeFrom(from.ptzcmd());
+      break;
+    }
+    case kCamSearchStartReq: {
+      mutable_camsearchstartreq()->::LinkCamSearchStartReq::MergeFrom(from.camsearchstartreq());
+      break;
+    }
+    case kCamSearchStartResp: {
+      mutable_camsearchstartresp()->::LinkCamSearchStartResp::MergeFrom(from.camsearchstartresp());
+      break;
+    }
+    case kCamSearchStopReq: {
+      mutable_camsearchstopreq()->::LinkCamSearchStopReq::MergeFrom(from.camsearchstopreq());
+      break;
+    }
+    case kCamSearchStopResp: {
+      mutable_camsearchstopresp()->::LinkCamSearchStopResp::MergeFrom(from.camsearchstopresp());
+      break;
+    }
+    case kRegEventReq: {
+      mutable_regeventreq()->::LinkRegEventReq::MergeFrom(from.regeventreq());
+      break;
+    }
+    case kRegEventResp: {
+      mutable_regeventresp()->::LinkRegEventResp::MergeFrom(from.regeventresp());
+      break;
+    }
+    case kUnRegEventReq: {
+      mutable_unregeventreq()->::LinkUnRegEventReq::MergeFrom(from.unregeventreq());
+      break;
+    }
+    case kUnRegEventResp: {
+      mutable_unregeventresp()->::LinkUnRegEventResp::MergeFrom(from.unregeventresp());
+      break;
+    }
+    case kEventSearchReq: {
+      mutable_eventsearchreq()->::LinkEventSearchReq::MergeFrom(from.eventsearchreq());
+      break;
+    }
+    case kEventSearchResp: {
+      mutable_eventsearchresp()->::LinkEventSearchResp::MergeFrom(from.eventsearchresp());
+      break;
+    }
+    case kHandleEventReq: {
+      mutable_handleeventreq()->::LinkHandleEventReq::MergeFrom(from.handleeventreq());
+      break;
+    }
+    case kHandleEventResp: {
+      mutable_handleeventresp()->::LinkHandleEventResp::MergeFrom(from.handleeventresp());
+      break;
+    }
     case kCamAddNotify: {
       mutable_camaddnotify()->::LinkCamAddNotify::MergeFrom(from.camaddnotify());
       break;
     }
     case kCamIdNotify: {
       mutable_camidnotify()->::LinkCamIdNotify::MergeFrom(from.camidnotify());
+      break;
+    }
+    case kCamSearchedNotify: {
+      mutable_camsearchednotify()->::LinkCamSearchedNotify::MergeFrom(from.camsearchednotify());
+      break;
+    }
+    case kEvnetNotify: {
+      mutable_evnetnotify()->::LinkEventNotify::MergeFrom(from.evnetnotify());
       break;
     }
     case CMD_NOT_SET: {
@@ -978,12 +1158,72 @@ void LinkCmd::clear_cmd() {
       delete cmd_.playstopcmd_;
       break;
     }
+    case kPtzCmd: {
+      delete cmd_.ptzcmd_;
+      break;
+    }
+    case kCamSearchStartReq: {
+      delete cmd_.camsearchstartreq_;
+      break;
+    }
+    case kCamSearchStartResp: {
+      delete cmd_.camsearchstartresp_;
+      break;
+    }
+    case kCamSearchStopReq: {
+      delete cmd_.camsearchstopreq_;
+      break;
+    }
+    case kCamSearchStopResp: {
+      delete cmd_.camsearchstopresp_;
+      break;
+    }
+    case kRegEventReq: {
+      delete cmd_.regeventreq_;
+      break;
+    }
+    case kRegEventResp: {
+      delete cmd_.regeventresp_;
+      break;
+    }
+    case kUnRegEventReq: {
+      delete cmd_.unregeventreq_;
+      break;
+    }
+    case kUnRegEventResp: {
+      delete cmd_.unregeventresp_;
+      break;
+    }
+    case kEventSearchReq: {
+      delete cmd_.eventsearchreq_;
+      break;
+    }
+    case kEventSearchResp: {
+      delete cmd_.eventsearchresp_;
+      break;
+    }
+    case kHandleEventReq: {
+      delete cmd_.handleeventreq_;
+      break;
+    }
+    case kHandleEventResp: {
+      delete cmd_.handleeventresp_;
+      break;
+    }
     case kCamAddNotify: {
       delete cmd_.camaddnotify_;
       break;
     }
     case kCamIdNotify: {
       delete cmd_.camidnotify_;
+      break;
+    }
+    case kCamSearchedNotify: {
+      delete cmd_.camsearchednotify_;
+      break;
+    }
+    case kEvnetNotify: {
+      delete cmd_.evnetnotify_;
       break;
     }
     case CMD_NOT_SET: {
@@ -1006,7 +1246,7 @@ bool LinkCmd::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Link.LinkCmd)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(80018u);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(80034u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -1541,6 +1781,149 @@ bool LinkCmd::MergePartialFromCodedStream(
         break;
       }
 
+      // .LinkPtzCmd ptzCmd = 801;
+      case 801: {
+        if (tag == 6410u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_ptzcmd()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkCamSearchStartReq camSearchStartReq = 901;
+      case 901: {
+        if (tag == 7210u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camsearchstartreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkCamSearchStartResp camSearchStartResp = 902;
+      case 902: {
+        if (tag == 7218u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camsearchstartresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkCamSearchStopReq camSearchStopReq = 903;
+      case 903: {
+        if (tag == 7226u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camsearchstopreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkCamSearchStopResp camSearchStopResp = 904;
+      case 904: {
+        if (tag == 7234u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camsearchstopresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkRegEventReq regEventReq = 905;
+      case 905: {
+        if (tag == 7242u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_regeventreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkRegEventResp regEventResp = 906;
+      case 906: {
+        if (tag == 7250u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_regeventresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkUnRegEventReq unRegEventReq = 907;
+      case 907: {
+        if (tag == 7258u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_unregeventreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkUnRegEventResp unRegEventResp = 908;
+      case 908: {
+        if (tag == 7266u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_unregeventresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkEventSearchReq eventSearchReq = 909;
+      case 909: {
+        if (tag == 7274u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_eventsearchreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkEventSearchResp eventSearchResp = 910;
+      case 910: {
+        if (tag == 7282u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_eventsearchresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkHandleEventReq handleEventReq = 911;
+      case 911: {
+        if (tag == 7290u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_handleeventreq()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkHandleEventResp handleEventResp = 912;
+      case 912: {
+        if (tag == 7298u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_handleeventresp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       // .LinkCamAddNotify camAddNotify = 10001;
       case 10001: {
         if (tag == 80010u) {
@@ -1557,6 +1940,28 @@ bool LinkCmd::MergePartialFromCodedStream(
         if (tag == 80018u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_camidnotify()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkCamSearchedNotify camSearchedNotify = 10003;
+      case 10003: {
+        if (tag == 80026u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_camsearchednotify()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .LinkEventNotify evnetNotify = 10004;
+      case 10004: {
+        if (tag == 80034u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_evnetnotify()));
         } else {
           goto handle_unusual;
         }
@@ -1875,6 +2280,84 @@ void LinkCmd::SerializeWithCachedSizes(
       707, *cmd_.playstopcmd_, output);
   }
 
+  // .LinkPtzCmd ptzCmd = 801;
+  if (has_ptzcmd()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      801, *cmd_.ptzcmd_, output);
+  }
+
+  // .LinkCamSearchStartReq camSearchStartReq = 901;
+  if (has_camsearchstartreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      901, *cmd_.camsearchstartreq_, output);
+  }
+
+  // .LinkCamSearchStartResp camSearchStartResp = 902;
+  if (has_camsearchstartresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      902, *cmd_.camsearchstartresp_, output);
+  }
+
+  // .LinkCamSearchStopReq camSearchStopReq = 903;
+  if (has_camsearchstopreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      903, *cmd_.camsearchstopreq_, output);
+  }
+
+  // .LinkCamSearchStopResp camSearchStopResp = 904;
+  if (has_camsearchstopresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      904, *cmd_.camsearchstopresp_, output);
+  }
+
+  // .LinkRegEventReq regEventReq = 905;
+  if (has_regeventreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      905, *cmd_.regeventreq_, output);
+  }
+
+  // .LinkRegEventResp regEventResp = 906;
+  if (has_regeventresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      906, *cmd_.regeventresp_, output);
+  }
+
+  // .LinkUnRegEventReq unRegEventReq = 907;
+  if (has_unregeventreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      907, *cmd_.unregeventreq_, output);
+  }
+
+  // .LinkUnRegEventResp unRegEventResp = 908;
+  if (has_unregeventresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      908, *cmd_.unregeventresp_, output);
+  }
+
+  // .LinkEventSearchReq eventSearchReq = 909;
+  if (has_eventsearchreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      909, *cmd_.eventsearchreq_, output);
+  }
+
+  // .LinkEventSearchResp eventSearchResp = 910;
+  if (has_eventsearchresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      910, *cmd_.eventsearchresp_, output);
+  }
+
+  // .LinkHandleEventReq handleEventReq = 911;
+  if (has_handleeventreq()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      911, *cmd_.handleeventreq_, output);
+  }
+
+  // .LinkHandleEventResp handleEventResp = 912;
+  if (has_handleeventresp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      912, *cmd_.handleeventresp_, output);
+  }
+
   // .LinkCamAddNotify camAddNotify = 10001;
   if (has_camaddnotify()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -1885,6 +2368,18 @@ void LinkCmd::SerializeWithCachedSizes(
   if (has_camidnotify()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       10002, *cmd_.camidnotify_, output);
+  }
+
+  // .LinkCamSearchedNotify camSearchedNotify = 10003;
+  if (has_camsearchednotify()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      10003, *cmd_.camsearchednotify_, output);
+  }
+
+  // .LinkEventNotify evnetNotify = 10004;
+  if (has_evnetnotify()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      10004, *cmd_.evnetnotify_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:Link.LinkCmd)
@@ -2229,6 +2724,97 @@ void LinkCmd::SerializeWithCachedSizes(
         707, *cmd_.playstopcmd_, false, target);
   }
 
+  // .LinkPtzCmd ptzCmd = 801;
+  if (has_ptzcmd()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        801, *cmd_.ptzcmd_, false, target);
+  }
+
+  // .LinkCamSearchStartReq camSearchStartReq = 901;
+  if (has_camsearchstartreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        901, *cmd_.camsearchstartreq_, false, target);
+  }
+
+  // .LinkCamSearchStartResp camSearchStartResp = 902;
+  if (has_camsearchstartresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        902, *cmd_.camsearchstartresp_, false, target);
+  }
+
+  // .LinkCamSearchStopReq camSearchStopReq = 903;
+  if (has_camsearchstopreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        903, *cmd_.camsearchstopreq_, false, target);
+  }
+
+  // .LinkCamSearchStopResp camSearchStopResp = 904;
+  if (has_camsearchstopresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        904, *cmd_.camsearchstopresp_, false, target);
+  }
+
+  // .LinkRegEventReq regEventReq = 905;
+  if (has_regeventreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        905, *cmd_.regeventreq_, false, target);
+  }
+
+  // .LinkRegEventResp regEventResp = 906;
+  if (has_regeventresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        906, *cmd_.regeventresp_, false, target);
+  }
+
+  // .LinkUnRegEventReq unRegEventReq = 907;
+  if (has_unregeventreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        907, *cmd_.unregeventreq_, false, target);
+  }
+
+  // .LinkUnRegEventResp unRegEventResp = 908;
+  if (has_unregeventresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        908, *cmd_.unregeventresp_, false, target);
+  }
+
+  // .LinkEventSearchReq eventSearchReq = 909;
+  if (has_eventsearchreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        909, *cmd_.eventsearchreq_, false, target);
+  }
+
+  // .LinkEventSearchResp eventSearchResp = 910;
+  if (has_eventsearchresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        910, *cmd_.eventsearchresp_, false, target);
+  }
+
+  // .LinkHandleEventReq handleEventReq = 911;
+  if (has_handleeventreq()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        911, *cmd_.handleeventreq_, false, target);
+  }
+
+  // .LinkHandleEventResp handleEventResp = 912;
+  if (has_handleeventresp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        912, *cmd_.handleeventresp_, false, target);
+  }
+
   // .LinkCamAddNotify camAddNotify = 10001;
   if (has_camaddnotify()) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -2241,6 +2827,20 @@ void LinkCmd::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
         10002, *cmd_.camidnotify_, false, target);
+  }
+
+  // .LinkCamSearchedNotify camSearchedNotify = 10003;
+  if (has_camsearchednotify()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        10003, *cmd_.camsearchednotify_, false, target);
+  }
+
+  // .LinkEventNotify evnetNotify = 10004;
+  if (has_evnetnotify()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        10004, *cmd_.evnetnotify_, false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:Link.LinkCmd)
@@ -2587,6 +3187,97 @@ size_t LinkCmd::ByteSizeLong() const {
           *cmd_.playstopcmd_);
       break;
     }
+    // .LinkPtzCmd ptzCmd = 801;
+    case kPtzCmd: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.ptzcmd_);
+      break;
+    }
+    // .LinkCamSearchStartReq camSearchStartReq = 901;
+    case kCamSearchStartReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camsearchstartreq_);
+      break;
+    }
+    // .LinkCamSearchStartResp camSearchStartResp = 902;
+    case kCamSearchStartResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camsearchstartresp_);
+      break;
+    }
+    // .LinkCamSearchStopReq camSearchStopReq = 903;
+    case kCamSearchStopReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camsearchstopreq_);
+      break;
+    }
+    // .LinkCamSearchStopResp camSearchStopResp = 904;
+    case kCamSearchStopResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camsearchstopresp_);
+      break;
+    }
+    // .LinkRegEventReq regEventReq = 905;
+    case kRegEventReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.regeventreq_);
+      break;
+    }
+    // .LinkRegEventResp regEventResp = 906;
+    case kRegEventResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.regeventresp_);
+      break;
+    }
+    // .LinkUnRegEventReq unRegEventReq = 907;
+    case kUnRegEventReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.unregeventreq_);
+      break;
+    }
+    // .LinkUnRegEventResp unRegEventResp = 908;
+    case kUnRegEventResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.unregeventresp_);
+      break;
+    }
+    // .LinkEventSearchReq eventSearchReq = 909;
+    case kEventSearchReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.eventsearchreq_);
+      break;
+    }
+    // .LinkEventSearchResp eventSearchResp = 910;
+    case kEventSearchResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.eventsearchresp_);
+      break;
+    }
+    // .LinkHandleEventReq handleEventReq = 911;
+    case kHandleEventReq: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.handleeventreq_);
+      break;
+    }
+    // .LinkHandleEventResp handleEventResp = 912;
+    case kHandleEventResp: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.handleeventresp_);
+      break;
+    }
     // .LinkCamAddNotify camAddNotify = 10001;
     case kCamAddNotify: {
       total_size += 3 +
@@ -2599,6 +3290,20 @@ size_t LinkCmd::ByteSizeLong() const {
       total_size += 3 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *cmd_.camidnotify_);
+      break;
+    }
+    // .LinkCamSearchedNotify camSearchedNotify = 10003;
+    case kCamSearchedNotify: {
+      total_size += 3 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.camsearchednotify_);
+      break;
+    }
+    // .LinkEventNotify evnetNotify = 10004;
+    case kEvnetNotify: {
+      total_size += 3 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *cmd_.evnetnotify_);
       break;
     }
     case CMD_NOT_SET: {
@@ -2823,12 +3528,72 @@ void LinkCmd::MergeFrom(const LinkCmd& from) {
       mutable_playstopcmd()->::LinkPlayStopCmd::MergeFrom(from.playstopcmd());
       break;
     }
+    case kPtzCmd: {
+      mutable_ptzcmd()->::LinkPtzCmd::MergeFrom(from.ptzcmd());
+      break;
+    }
+    case kCamSearchStartReq: {
+      mutable_camsearchstartreq()->::LinkCamSearchStartReq::MergeFrom(from.camsearchstartreq());
+      break;
+    }
+    case kCamSearchStartResp: {
+      mutable_camsearchstartresp()->::LinkCamSearchStartResp::MergeFrom(from.camsearchstartresp());
+      break;
+    }
+    case kCamSearchStopReq: {
+      mutable_camsearchstopreq()->::LinkCamSearchStopReq::MergeFrom(from.camsearchstopreq());
+      break;
+    }
+    case kCamSearchStopResp: {
+      mutable_camsearchstopresp()->::LinkCamSearchStopResp::MergeFrom(from.camsearchstopresp());
+      break;
+    }
+    case kRegEventReq: {
+      mutable_regeventreq()->::LinkRegEventReq::MergeFrom(from.regeventreq());
+      break;
+    }
+    case kRegEventResp: {
+      mutable_regeventresp()->::LinkRegEventResp::MergeFrom(from.regeventresp());
+      break;
+    }
+    case kUnRegEventReq: {
+      mutable_unregeventreq()->::LinkUnRegEventReq::MergeFrom(from.unregeventreq());
+      break;
+    }
+    case kUnRegEventResp: {
+      mutable_unregeventresp()->::LinkUnRegEventResp::MergeFrom(from.unregeventresp());
+      break;
+    }
+    case kEventSearchReq: {
+      mutable_eventsearchreq()->::LinkEventSearchReq::MergeFrom(from.eventsearchreq());
+      break;
+    }
+    case kEventSearchResp: {
+      mutable_eventsearchresp()->::LinkEventSearchResp::MergeFrom(from.eventsearchresp());
+      break;
+    }
+    case kHandleEventReq: {
+      mutable_handleeventreq()->::LinkHandleEventReq::MergeFrom(from.handleeventreq());
+      break;
+    }
+    case kHandleEventResp: {
+      mutable_handleeventresp()->::LinkHandleEventResp::MergeFrom(from.handleeventresp());
+      break;
+    }
     case kCamAddNotify: {
       mutable_camaddnotify()->::LinkCamAddNotify::MergeFrom(from.camaddnotify());
       break;
     }
     case kCamIdNotify: {
       mutable_camidnotify()->::LinkCamIdNotify::MergeFrom(from.camidnotify());
+      break;
+    }
+    case kCamSearchedNotify: {
+      mutable_camsearchednotify()->::LinkCamSearchedNotify::MergeFrom(from.camsearchednotify());
+      break;
+    }
+    case kEvnetNotify: {
+      mutable_evnetnotify()->::LinkEventNotify::MergeFrom(from.evnetnotify());
       break;
     }
     case CMD_NOT_SET: {
@@ -5144,6 +5909,630 @@ void LinkCmd::set_allocated_playstopcmd(::LinkPlayStopCmd* playstopcmd) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playStopCmd)
 }
 
+// .LinkPtzCmd ptzCmd = 801;
+bool LinkCmd::has_ptzcmd() const {
+  return cmd_case() == kPtzCmd;
+}
+void LinkCmd::set_has_ptzcmd() {
+  _oneof_case_[0] = kPtzCmd;
+}
+void LinkCmd::clear_ptzcmd() {
+  if (has_ptzcmd()) {
+    delete cmd_.ptzcmd_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkPtzCmd& LinkCmd::ptzcmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.ptzCmd)
+  return has_ptzcmd()
+      ? *cmd_.ptzcmd_
+      : ::LinkPtzCmd::default_instance();
+}
+::LinkPtzCmd* LinkCmd::mutable_ptzcmd() {
+  if (!has_ptzcmd()) {
+    clear_cmd();
+    set_has_ptzcmd();
+    cmd_.ptzcmd_ = new ::LinkPtzCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.ptzCmd)
+  return cmd_.ptzcmd_;
+}
+::LinkPtzCmd* LinkCmd::release_ptzcmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.ptzCmd)
+  if (has_ptzcmd()) {
+    clear_has_cmd();
+    ::LinkPtzCmd* temp = cmd_.ptzcmd_;
+    cmd_.ptzcmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_ptzcmd(::LinkPtzCmd* ptzcmd) {
+  clear_cmd();
+  if (ptzcmd) {
+    set_has_ptzcmd();
+    cmd_.ptzcmd_ = ptzcmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.ptzCmd)
+}
+
+// .LinkCamSearchStartReq camSearchStartReq = 901;
+bool LinkCmd::has_camsearchstartreq() const {
+  return cmd_case() == kCamSearchStartReq;
+}
+void LinkCmd::set_has_camsearchstartreq() {
+  _oneof_case_[0] = kCamSearchStartReq;
+}
+void LinkCmd::clear_camsearchstartreq() {
+  if (has_camsearchstartreq()) {
+    delete cmd_.camsearchstartreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkCamSearchStartReq& LinkCmd::camsearchstartreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStartReq)
+  return has_camsearchstartreq()
+      ? *cmd_.camsearchstartreq_
+      : ::LinkCamSearchStartReq::default_instance();
+}
+::LinkCamSearchStartReq* LinkCmd::mutable_camsearchstartreq() {
+  if (!has_camsearchstartreq()) {
+    clear_cmd();
+    set_has_camsearchstartreq();
+    cmd_.camsearchstartreq_ = new ::LinkCamSearchStartReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStartReq)
+  return cmd_.camsearchstartreq_;
+}
+::LinkCamSearchStartReq* LinkCmd::release_camsearchstartreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStartReq)
+  if (has_camsearchstartreq()) {
+    clear_has_cmd();
+    ::LinkCamSearchStartReq* temp = cmd_.camsearchstartreq_;
+    cmd_.camsearchstartreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camsearchstartreq(::LinkCamSearchStartReq* camsearchstartreq) {
+  clear_cmd();
+  if (camsearchstartreq) {
+    set_has_camsearchstartreq();
+    cmd_.camsearchstartreq_ = camsearchstartreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStartReq)
+}
+
+// .LinkCamSearchStartResp camSearchStartResp = 902;
+bool LinkCmd::has_camsearchstartresp() const {
+  return cmd_case() == kCamSearchStartResp;
+}
+void LinkCmd::set_has_camsearchstartresp() {
+  _oneof_case_[0] = kCamSearchStartResp;
+}
+void LinkCmd::clear_camsearchstartresp() {
+  if (has_camsearchstartresp()) {
+    delete cmd_.camsearchstartresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkCamSearchStartResp& LinkCmd::camsearchstartresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStartResp)
+  return has_camsearchstartresp()
+      ? *cmd_.camsearchstartresp_
+      : ::LinkCamSearchStartResp::default_instance();
+}
+::LinkCamSearchStartResp* LinkCmd::mutable_camsearchstartresp() {
+  if (!has_camsearchstartresp()) {
+    clear_cmd();
+    set_has_camsearchstartresp();
+    cmd_.camsearchstartresp_ = new ::LinkCamSearchStartResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStartResp)
+  return cmd_.camsearchstartresp_;
+}
+::LinkCamSearchStartResp* LinkCmd::release_camsearchstartresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStartResp)
+  if (has_camsearchstartresp()) {
+    clear_has_cmd();
+    ::LinkCamSearchStartResp* temp = cmd_.camsearchstartresp_;
+    cmd_.camsearchstartresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camsearchstartresp(::LinkCamSearchStartResp* camsearchstartresp) {
+  clear_cmd();
+  if (camsearchstartresp) {
+    set_has_camsearchstartresp();
+    cmd_.camsearchstartresp_ = camsearchstartresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStartResp)
+}
+
+// .LinkCamSearchStopReq camSearchStopReq = 903;
+bool LinkCmd::has_camsearchstopreq() const {
+  return cmd_case() == kCamSearchStopReq;
+}
+void LinkCmd::set_has_camsearchstopreq() {
+  _oneof_case_[0] = kCamSearchStopReq;
+}
+void LinkCmd::clear_camsearchstopreq() {
+  if (has_camsearchstopreq()) {
+    delete cmd_.camsearchstopreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkCamSearchStopReq& LinkCmd::camsearchstopreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStopReq)
+  return has_camsearchstopreq()
+      ? *cmd_.camsearchstopreq_
+      : ::LinkCamSearchStopReq::default_instance();
+}
+::LinkCamSearchStopReq* LinkCmd::mutable_camsearchstopreq() {
+  if (!has_camsearchstopreq()) {
+    clear_cmd();
+    set_has_camsearchstopreq();
+    cmd_.camsearchstopreq_ = new ::LinkCamSearchStopReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStopReq)
+  return cmd_.camsearchstopreq_;
+}
+::LinkCamSearchStopReq* LinkCmd::release_camsearchstopreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStopReq)
+  if (has_camsearchstopreq()) {
+    clear_has_cmd();
+    ::LinkCamSearchStopReq* temp = cmd_.camsearchstopreq_;
+    cmd_.camsearchstopreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camsearchstopreq(::LinkCamSearchStopReq* camsearchstopreq) {
+  clear_cmd();
+  if (camsearchstopreq) {
+    set_has_camsearchstopreq();
+    cmd_.camsearchstopreq_ = camsearchstopreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStopReq)
+}
+
+// .LinkCamSearchStopResp camSearchStopResp = 904;
+bool LinkCmd::has_camsearchstopresp() const {
+  return cmd_case() == kCamSearchStopResp;
+}
+void LinkCmd::set_has_camsearchstopresp() {
+  _oneof_case_[0] = kCamSearchStopResp;
+}
+void LinkCmd::clear_camsearchstopresp() {
+  if (has_camsearchstopresp()) {
+    delete cmd_.camsearchstopresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkCamSearchStopResp& LinkCmd::camsearchstopresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStopResp)
+  return has_camsearchstopresp()
+      ? *cmd_.camsearchstopresp_
+      : ::LinkCamSearchStopResp::default_instance();
+}
+::LinkCamSearchStopResp* LinkCmd::mutable_camsearchstopresp() {
+  if (!has_camsearchstopresp()) {
+    clear_cmd();
+    set_has_camsearchstopresp();
+    cmd_.camsearchstopresp_ = new ::LinkCamSearchStopResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStopResp)
+  return cmd_.camsearchstopresp_;
+}
+::LinkCamSearchStopResp* LinkCmd::release_camsearchstopresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStopResp)
+  if (has_camsearchstopresp()) {
+    clear_has_cmd();
+    ::LinkCamSearchStopResp* temp = cmd_.camsearchstopresp_;
+    cmd_.camsearchstopresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camsearchstopresp(::LinkCamSearchStopResp* camsearchstopresp) {
+  clear_cmd();
+  if (camsearchstopresp) {
+    set_has_camsearchstopresp();
+    cmd_.camsearchstopresp_ = camsearchstopresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStopResp)
+}
+
+// .LinkRegEventReq regEventReq = 905;
+bool LinkCmd::has_regeventreq() const {
+  return cmd_case() == kRegEventReq;
+}
+void LinkCmd::set_has_regeventreq() {
+  _oneof_case_[0] = kRegEventReq;
+}
+void LinkCmd::clear_regeventreq() {
+  if (has_regeventreq()) {
+    delete cmd_.regeventreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkRegEventReq& LinkCmd::regeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regEventReq)
+  return has_regeventreq()
+      ? *cmd_.regeventreq_
+      : ::LinkRegEventReq::default_instance();
+}
+::LinkRegEventReq* LinkCmd::mutable_regeventreq() {
+  if (!has_regeventreq()) {
+    clear_cmd();
+    set_has_regeventreq();
+    cmd_.regeventreq_ = new ::LinkRegEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regEventReq)
+  return cmd_.regeventreq_;
+}
+::LinkRegEventReq* LinkCmd::release_regeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regEventReq)
+  if (has_regeventreq()) {
+    clear_has_cmd();
+    ::LinkRegEventReq* temp = cmd_.regeventreq_;
+    cmd_.regeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_regeventreq(::LinkRegEventReq* regeventreq) {
+  clear_cmd();
+  if (regeventreq) {
+    set_has_regeventreq();
+    cmd_.regeventreq_ = regeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regEventReq)
+}
+
+// .LinkRegEventResp regEventResp = 906;
+bool LinkCmd::has_regeventresp() const {
+  return cmd_case() == kRegEventResp;
+}
+void LinkCmd::set_has_regeventresp() {
+  _oneof_case_[0] = kRegEventResp;
+}
+void LinkCmd::clear_regeventresp() {
+  if (has_regeventresp()) {
+    delete cmd_.regeventresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkRegEventResp& LinkCmd::regeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regEventResp)
+  return has_regeventresp()
+      ? *cmd_.regeventresp_
+      : ::LinkRegEventResp::default_instance();
+}
+::LinkRegEventResp* LinkCmd::mutable_regeventresp() {
+  if (!has_regeventresp()) {
+    clear_cmd();
+    set_has_regeventresp();
+    cmd_.regeventresp_ = new ::LinkRegEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regEventResp)
+  return cmd_.regeventresp_;
+}
+::LinkRegEventResp* LinkCmd::release_regeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regEventResp)
+  if (has_regeventresp()) {
+    clear_has_cmd();
+    ::LinkRegEventResp* temp = cmd_.regeventresp_;
+    cmd_.regeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_regeventresp(::LinkRegEventResp* regeventresp) {
+  clear_cmd();
+  if (regeventresp) {
+    set_has_regeventresp();
+    cmd_.regeventresp_ = regeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regEventResp)
+}
+
+// .LinkUnRegEventReq unRegEventReq = 907;
+bool LinkCmd::has_unregeventreq() const {
+  return cmd_case() == kUnRegEventReq;
+}
+void LinkCmd::set_has_unregeventreq() {
+  _oneof_case_[0] = kUnRegEventReq;
+}
+void LinkCmd::clear_unregeventreq() {
+  if (has_unregeventreq()) {
+    delete cmd_.unregeventreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkUnRegEventReq& LinkCmd::unregeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.unRegEventReq)
+  return has_unregeventreq()
+      ? *cmd_.unregeventreq_
+      : ::LinkUnRegEventReq::default_instance();
+}
+::LinkUnRegEventReq* LinkCmd::mutable_unregeventreq() {
+  if (!has_unregeventreq()) {
+    clear_cmd();
+    set_has_unregeventreq();
+    cmd_.unregeventreq_ = new ::LinkUnRegEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.unRegEventReq)
+  return cmd_.unregeventreq_;
+}
+::LinkUnRegEventReq* LinkCmd::release_unregeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.unRegEventReq)
+  if (has_unregeventreq()) {
+    clear_has_cmd();
+    ::LinkUnRegEventReq* temp = cmd_.unregeventreq_;
+    cmd_.unregeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_unregeventreq(::LinkUnRegEventReq* unregeventreq) {
+  clear_cmd();
+  if (unregeventreq) {
+    set_has_unregeventreq();
+    cmd_.unregeventreq_ = unregeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.unRegEventReq)
+}
+
+// .LinkUnRegEventResp unRegEventResp = 908;
+bool LinkCmd::has_unregeventresp() const {
+  return cmd_case() == kUnRegEventResp;
+}
+void LinkCmd::set_has_unregeventresp() {
+  _oneof_case_[0] = kUnRegEventResp;
+}
+void LinkCmd::clear_unregeventresp() {
+  if (has_unregeventresp()) {
+    delete cmd_.unregeventresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkUnRegEventResp& LinkCmd::unregeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.unRegEventResp)
+  return has_unregeventresp()
+      ? *cmd_.unregeventresp_
+      : ::LinkUnRegEventResp::default_instance();
+}
+::LinkUnRegEventResp* LinkCmd::mutable_unregeventresp() {
+  if (!has_unregeventresp()) {
+    clear_cmd();
+    set_has_unregeventresp();
+    cmd_.unregeventresp_ = new ::LinkUnRegEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.unRegEventResp)
+  return cmd_.unregeventresp_;
+}
+::LinkUnRegEventResp* LinkCmd::release_unregeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.unRegEventResp)
+  if (has_unregeventresp()) {
+    clear_has_cmd();
+    ::LinkUnRegEventResp* temp = cmd_.unregeventresp_;
+    cmd_.unregeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_unregeventresp(::LinkUnRegEventResp* unregeventresp) {
+  clear_cmd();
+  if (unregeventresp) {
+    set_has_unregeventresp();
+    cmd_.unregeventresp_ = unregeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.unRegEventResp)
+}
+
+// .LinkEventSearchReq eventSearchReq = 909;
+bool LinkCmd::has_eventsearchreq() const {
+  return cmd_case() == kEventSearchReq;
+}
+void LinkCmd::set_has_eventsearchreq() {
+  _oneof_case_[0] = kEventSearchReq;
+}
+void LinkCmd::clear_eventsearchreq() {
+  if (has_eventsearchreq()) {
+    delete cmd_.eventsearchreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkEventSearchReq& LinkCmd::eventsearchreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.eventSearchReq)
+  return has_eventsearchreq()
+      ? *cmd_.eventsearchreq_
+      : ::LinkEventSearchReq::default_instance();
+}
+::LinkEventSearchReq* LinkCmd::mutable_eventsearchreq() {
+  if (!has_eventsearchreq()) {
+    clear_cmd();
+    set_has_eventsearchreq();
+    cmd_.eventsearchreq_ = new ::LinkEventSearchReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.eventSearchReq)
+  return cmd_.eventsearchreq_;
+}
+::LinkEventSearchReq* LinkCmd::release_eventsearchreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.eventSearchReq)
+  if (has_eventsearchreq()) {
+    clear_has_cmd();
+    ::LinkEventSearchReq* temp = cmd_.eventsearchreq_;
+    cmd_.eventsearchreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_eventsearchreq(::LinkEventSearchReq* eventsearchreq) {
+  clear_cmd();
+  if (eventsearchreq) {
+    set_has_eventsearchreq();
+    cmd_.eventsearchreq_ = eventsearchreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.eventSearchReq)
+}
+
+// .LinkEventSearchResp eventSearchResp = 910;
+bool LinkCmd::has_eventsearchresp() const {
+  return cmd_case() == kEventSearchResp;
+}
+void LinkCmd::set_has_eventsearchresp() {
+  _oneof_case_[0] = kEventSearchResp;
+}
+void LinkCmd::clear_eventsearchresp() {
+  if (has_eventsearchresp()) {
+    delete cmd_.eventsearchresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkEventSearchResp& LinkCmd::eventsearchresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.eventSearchResp)
+  return has_eventsearchresp()
+      ? *cmd_.eventsearchresp_
+      : ::LinkEventSearchResp::default_instance();
+}
+::LinkEventSearchResp* LinkCmd::mutable_eventsearchresp() {
+  if (!has_eventsearchresp()) {
+    clear_cmd();
+    set_has_eventsearchresp();
+    cmd_.eventsearchresp_ = new ::LinkEventSearchResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.eventSearchResp)
+  return cmd_.eventsearchresp_;
+}
+::LinkEventSearchResp* LinkCmd::release_eventsearchresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.eventSearchResp)
+  if (has_eventsearchresp()) {
+    clear_has_cmd();
+    ::LinkEventSearchResp* temp = cmd_.eventsearchresp_;
+    cmd_.eventsearchresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_eventsearchresp(::LinkEventSearchResp* eventsearchresp) {
+  clear_cmd();
+  if (eventsearchresp) {
+    set_has_eventsearchresp();
+    cmd_.eventsearchresp_ = eventsearchresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.eventSearchResp)
+}
+
+// .LinkHandleEventReq handleEventReq = 911;
+bool LinkCmd::has_handleeventreq() const {
+  return cmd_case() == kHandleEventReq;
+}
+void LinkCmd::set_has_handleeventreq() {
+  _oneof_case_[0] = kHandleEventReq;
+}
+void LinkCmd::clear_handleeventreq() {
+  if (has_handleeventreq()) {
+    delete cmd_.handleeventreq_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkHandleEventReq& LinkCmd::handleeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.handleEventReq)
+  return has_handleeventreq()
+      ? *cmd_.handleeventreq_
+      : ::LinkHandleEventReq::default_instance();
+}
+::LinkHandleEventReq* LinkCmd::mutable_handleeventreq() {
+  if (!has_handleeventreq()) {
+    clear_cmd();
+    set_has_handleeventreq();
+    cmd_.handleeventreq_ = new ::LinkHandleEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.handleEventReq)
+  return cmd_.handleeventreq_;
+}
+::LinkHandleEventReq* LinkCmd::release_handleeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.handleEventReq)
+  if (has_handleeventreq()) {
+    clear_has_cmd();
+    ::LinkHandleEventReq* temp = cmd_.handleeventreq_;
+    cmd_.handleeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_handleeventreq(::LinkHandleEventReq* handleeventreq) {
+  clear_cmd();
+  if (handleeventreq) {
+    set_has_handleeventreq();
+    cmd_.handleeventreq_ = handleeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.handleEventReq)
+}
+
+// .LinkHandleEventResp handleEventResp = 912;
+bool LinkCmd::has_handleeventresp() const {
+  return cmd_case() == kHandleEventResp;
+}
+void LinkCmd::set_has_handleeventresp() {
+  _oneof_case_[0] = kHandleEventResp;
+}
+void LinkCmd::clear_handleeventresp() {
+  if (has_handleeventresp()) {
+    delete cmd_.handleeventresp_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkHandleEventResp& LinkCmd::handleeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.handleEventResp)
+  return has_handleeventresp()
+      ? *cmd_.handleeventresp_
+      : ::LinkHandleEventResp::default_instance();
+}
+::LinkHandleEventResp* LinkCmd::mutable_handleeventresp() {
+  if (!has_handleeventresp()) {
+    clear_cmd();
+    set_has_handleeventresp();
+    cmd_.handleeventresp_ = new ::LinkHandleEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.handleEventResp)
+  return cmd_.handleeventresp_;
+}
+::LinkHandleEventResp* LinkCmd::release_handleeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.handleEventResp)
+  if (has_handleeventresp()) {
+    clear_has_cmd();
+    ::LinkHandleEventResp* temp = cmd_.handleeventresp_;
+    cmd_.handleeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_handleeventresp(::LinkHandleEventResp* handleeventresp) {
+  clear_cmd();
+  if (handleeventresp) {
+    set_has_handleeventresp();
+    cmd_.handleeventresp_ = handleeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.handleEventResp)
+}
+
 // .LinkCamAddNotify camAddNotify = 10001;
 bool LinkCmd::has_camaddnotify() const {
   return cmd_case() == kCamAddNotify;
@@ -5238,6 +6627,102 @@ void LinkCmd::set_allocated_camidnotify(::LinkCamIdNotify* camidnotify) {
     cmd_.camidnotify_ = camidnotify;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camIdNotify)
+}
+
+// .LinkCamSearchedNotify camSearchedNotify = 10003;
+bool LinkCmd::has_camsearchednotify() const {
+  return cmd_case() == kCamSearchedNotify;
+}
+void LinkCmd::set_has_camsearchednotify() {
+  _oneof_case_[0] = kCamSearchedNotify;
+}
+void LinkCmd::clear_camsearchednotify() {
+  if (has_camsearchednotify()) {
+    delete cmd_.camsearchednotify_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkCamSearchedNotify& LinkCmd::camsearchednotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchedNotify)
+  return has_camsearchednotify()
+      ? *cmd_.camsearchednotify_
+      : ::LinkCamSearchedNotify::default_instance();
+}
+::LinkCamSearchedNotify* LinkCmd::mutable_camsearchednotify() {
+  if (!has_camsearchednotify()) {
+    clear_cmd();
+    set_has_camsearchednotify();
+    cmd_.camsearchednotify_ = new ::LinkCamSearchedNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchedNotify)
+  return cmd_.camsearchednotify_;
+}
+::LinkCamSearchedNotify* LinkCmd::release_camsearchednotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchedNotify)
+  if (has_camsearchednotify()) {
+    clear_has_cmd();
+    ::LinkCamSearchedNotify* temp = cmd_.camsearchednotify_;
+    cmd_.camsearchednotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_camsearchednotify(::LinkCamSearchedNotify* camsearchednotify) {
+  clear_cmd();
+  if (camsearchednotify) {
+    set_has_camsearchednotify();
+    cmd_.camsearchednotify_ = camsearchednotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchedNotify)
+}
+
+// .LinkEventNotify evnetNotify = 10004;
+bool LinkCmd::has_evnetnotify() const {
+  return cmd_case() == kEvnetNotify;
+}
+void LinkCmd::set_has_evnetnotify() {
+  _oneof_case_[0] = kEvnetNotify;
+}
+void LinkCmd::clear_evnetnotify() {
+  if (has_evnetnotify()) {
+    delete cmd_.evnetnotify_;
+    clear_has_cmd();
+  }
+}
+ const ::LinkEventNotify& LinkCmd::evnetnotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.evnetNotify)
+  return has_evnetnotify()
+      ? *cmd_.evnetnotify_
+      : ::LinkEventNotify::default_instance();
+}
+::LinkEventNotify* LinkCmd::mutable_evnetnotify() {
+  if (!has_evnetnotify()) {
+    clear_cmd();
+    set_has_evnetnotify();
+    cmd_.evnetnotify_ = new ::LinkEventNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.evnetNotify)
+  return cmd_.evnetnotify_;
+}
+::LinkEventNotify* LinkCmd::release_evnetnotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.evnetNotify)
+  if (has_evnetnotify()) {
+    clear_has_cmd();
+    ::LinkEventNotify* temp = cmd_.evnetnotify_;
+    cmd_.evnetnotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LinkCmd::set_allocated_evnetnotify(::LinkEventNotify* evnetnotify) {
+  clear_cmd();
+  if (evnetnotify) {
+    set_has_evnetnotify();
+    cmd_.evnetnotify_ = evnetnotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.evnetNotify)
 }
 
 bool LinkCmd::has_cmd() const {

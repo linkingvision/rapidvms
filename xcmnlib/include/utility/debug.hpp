@@ -42,6 +42,14 @@ using namespace tthread;
 
 namespace spd = spdlog;
 
+enum RapidLogLevel
+{
+	logRERROR, 
+	logRWARNING, 
+	logRINFO, 
+	logRDEBUG
+};
+
 struct cli_def;
 class VE_LIBRARY_API Debug 
 {
@@ -60,6 +68,8 @@ public:
 public:
 	static void init(s32 nPort, std::string strLoggerPath);
 	static void DebugPrint( const char* format, ... );
+	static void RapidLog(RapidLogLevel level, const char* format, ... );
+	static void RapidNetLog(RapidLogLevel level, const char* format, ... );
 	static spd::logger & logger();
 
 	
@@ -88,5 +98,7 @@ public:
 
 
 #define  VDC_DEBUG Debug::DebugPrint
+#define  R_LOG Debug::RapidLog
+#define  R_NET_LOG Debug::RapidNetLog
 
 #endif

@@ -60,6 +60,21 @@ VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance
 class LinkCamResp;
 class LinkCamRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
+class LinkCamSearchStartReq;
+class LinkCamSearchStartReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStartReqDefaultTypeInternal _LinkCamSearchStartReq_default_instance_;
+class LinkCamSearchStartResp;
+class LinkCamSearchStartRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStartRespDefaultTypeInternal _LinkCamSearchStartResp_default_instance_;
+class LinkCamSearchStopReq;
+class LinkCamSearchStopReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStopReqDefaultTypeInternal _LinkCamSearchStopReq_default_instance_;
+class LinkCamSearchStopResp;
+class LinkCamSearchStopRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStopRespDefaultTypeInternal _LinkCamSearchStopResp_default_instance_;
+class LinkCamSearchedNotify;
+class LinkCamSearchedNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchedNotifyDefaultTypeInternal _LinkCamSearchedNotify_default_instance_;
 class LinkConfLicReq;
 class LinkConfLicReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkConfLicReqDefaultTypeInternal _LinkConfLicReq_default_instance_;
@@ -78,6 +93,15 @@ VE_LIBRARY_API extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_
 class LinkDelDiskResp;
 class LinkDelDiskRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
+class LinkEventNotify;
+class LinkEventNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventNotifyDefaultTypeInternal _LinkEventNotify_default_instance_;
+class LinkEventSearchReq;
+class LinkEventSearchReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventSearchReqDefaultTypeInternal _LinkEventSearchReq_default_instance_;
+class LinkEventSearchResp;
+class LinkEventSearchRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventSearchRespDefaultTypeInternal _LinkEventSearchResp_default_instance_;
 class LinkGetLicReq;
 class LinkGetLicReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
@@ -96,6 +120,12 @@ VE_LIBRARY_API extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_in
 class LinkGetVerResp;
 class LinkGetVerRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
+class LinkHandleEventReq;
+class LinkHandleEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHandleEventReqDefaultTypeInternal _LinkHandleEventReq_default_instance_;
+class LinkHandleEventResp;
+class LinkHandleEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHandleEventRespDefaultTypeInternal _LinkHandleEventResp_default_instance_;
 class LinkHasRecordItem;
 class LinkHasRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkHasRecordItemDefaultTypeInternal _LinkHasRecordItem_default_instance_;
@@ -141,12 +171,21 @@ VE_LIBRARY_API extern LinkPlaySeekCmdDefaultTypeInternal _LinkPlaySeekCmd_defaul
 class LinkPlayStopCmd;
 class LinkPlayStopCmdDefaultTypeInternal;
 VE_LIBRARY_API extern LinkPlayStopCmdDefaultTypeInternal _LinkPlayStopCmd_default_instance_;
+class LinkPtzCmd;
+class LinkPtzCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPtzCmdDefaultTypeInternal _LinkPtzCmd_default_instance_;
 class LinkRecordItem;
 class LinkRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordItemDefaultTypeInternal _LinkRecordItem_default_instance_;
 class LinkRecordList;
 class LinkRecordListDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordListDefaultTypeInternal _LinkRecordList_default_instance_;
+class LinkRegEventReq;
+class LinkRegEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegEventReqDefaultTypeInternal _LinkRegEventReq_default_instance_;
+class LinkRegEventResp;
+class LinkRegEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegEventRespDefaultTypeInternal _LinkRegEventResp_default_instance_;
 class LinkRegNotifyReq;
 class LinkRegNotifyReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRegNotifyReqDefaultTypeInternal _LinkRegNotifyReq_default_instance_;
@@ -177,6 +216,12 @@ VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskLi
 class LinkSysVidDiskListResp;
 class LinkSysVidDiskListRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
+class LinkUnRegEventReq;
+class LinkUnRegEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkUnRegEventReqDefaultTypeInternal _LinkUnRegEventReq_default_instance_;
+class LinkUnRegEventResp;
+class LinkUnRegEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkUnRegEventRespDefaultTypeInternal _LinkUnRegEventResp_default_instance_;
 class LinkUpdateDiskLimitReq;
 class LinkUpdateDiskLimitReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
@@ -5002,6 +5047,1169 @@ class VE_LIBRARY_API LinkPlayStopCmd : public ::google::protobuf::Message /* @@p
 };
 // -------------------------------------------------------------------
 
+class VE_LIBRARY_API LinkPtzCmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkPtzCmd) */ {
+ public:
+  LinkPtzCmd();
+  virtual ~LinkPtzCmd();
+
+  LinkPtzCmd(const LinkPtzCmd& from);
+
+  inline LinkPtzCmd& operator=(const LinkPtzCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkPtzCmd& default_instance();
+
+  static inline const LinkPtzCmd* internal_default_instance() {
+    return reinterpret_cast<const LinkPtzCmd*>(
+               &_LinkPtzCmd_default_instance_);
+  }
+
+  void Swap(LinkPtzCmd* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkPtzCmd* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkPtzCmd* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkPtzCmd& from);
+  void MergeFrom(const LinkPtzCmd& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkPtzCmd* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // double nParam = 3;
+  void clear_nparam();
+  static const int kNParamFieldNumber = 3;
+  double nparam() const;
+  void set_nparam(double value);
+
+  // int32 nAction = 2;
+  void clear_naction();
+  static const int kNActionFieldNumber = 2;
+  ::google::protobuf::int32 naction() const;
+  void set_naction(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkPtzCmd)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  double nparam_;
+  ::google::protobuf::int32 naction_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkCamSearchStartReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamSearchStartReq) */ {
+ public:
+  LinkCamSearchStartReq();
+  virtual ~LinkCamSearchStartReq();
+
+  LinkCamSearchStartReq(const LinkCamSearchStartReq& from);
+
+  inline LinkCamSearchStartReq& operator=(const LinkCamSearchStartReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkCamSearchStartReq& default_instance();
+
+  static inline const LinkCamSearchStartReq* internal_default_instance() {
+    return reinterpret_cast<const LinkCamSearchStartReq*>(
+               &_LinkCamSearchStartReq_default_instance_);
+  }
+
+  void Swap(LinkCamSearchStartReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkCamSearchStartReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkCamSearchStartReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkCamSearchStartReq& from);
+  void MergeFrom(const LinkCamSearchStartReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkCamSearchStartReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strFake = 1;
+  void clear_strfake();
+  static const int kStrFakeFieldNumber = 1;
+  const ::std::string& strfake() const;
+  void set_strfake(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strfake(::std::string&& value);
+  #endif
+  void set_strfake(const char* value);
+  void set_strfake(const char* value, size_t size);
+  ::std::string* mutable_strfake();
+  ::std::string* release_strfake();
+  void set_allocated_strfake(::std::string* strfake);
+
+  // @@protoc_insertion_point(class_scope:LinkCamSearchStartReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strfake_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkCamSearchStartResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamSearchStartResp) */ {
+ public:
+  LinkCamSearchStartResp();
+  virtual ~LinkCamSearchStartResp();
+
+  LinkCamSearchStartResp(const LinkCamSearchStartResp& from);
+
+  inline LinkCamSearchStartResp& operator=(const LinkCamSearchStartResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkCamSearchStartResp& default_instance();
+
+  static inline const LinkCamSearchStartResp* internal_default_instance() {
+    return reinterpret_cast<const LinkCamSearchStartResp*>(
+               &_LinkCamSearchStartResp_default_instance_);
+  }
+
+  void Swap(LinkCamSearchStartResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkCamSearchStartResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkCamSearchStartResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkCamSearchStartResp& from);
+  void MergeFrom(const LinkCamSearchStartResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkCamSearchStartResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkCamSearchStartResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkCamSearchStopReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamSearchStopReq) */ {
+ public:
+  LinkCamSearchStopReq();
+  virtual ~LinkCamSearchStopReq();
+
+  LinkCamSearchStopReq(const LinkCamSearchStopReq& from);
+
+  inline LinkCamSearchStopReq& operator=(const LinkCamSearchStopReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkCamSearchStopReq& default_instance();
+
+  static inline const LinkCamSearchStopReq* internal_default_instance() {
+    return reinterpret_cast<const LinkCamSearchStopReq*>(
+               &_LinkCamSearchStopReq_default_instance_);
+  }
+
+  void Swap(LinkCamSearchStopReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkCamSearchStopReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkCamSearchStopReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkCamSearchStopReq& from);
+  void MergeFrom(const LinkCamSearchStopReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkCamSearchStopReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strFake = 1;
+  void clear_strfake();
+  static const int kStrFakeFieldNumber = 1;
+  const ::std::string& strfake() const;
+  void set_strfake(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strfake(::std::string&& value);
+  #endif
+  void set_strfake(const char* value);
+  void set_strfake(const char* value, size_t size);
+  ::std::string* mutable_strfake();
+  ::std::string* release_strfake();
+  void set_allocated_strfake(::std::string* strfake);
+
+  // @@protoc_insertion_point(class_scope:LinkCamSearchStopReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strfake_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkCamSearchStopResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamSearchStopResp) */ {
+ public:
+  LinkCamSearchStopResp();
+  virtual ~LinkCamSearchStopResp();
+
+  LinkCamSearchStopResp(const LinkCamSearchStopResp& from);
+
+  inline LinkCamSearchStopResp& operator=(const LinkCamSearchStopResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkCamSearchStopResp& default_instance();
+
+  static inline const LinkCamSearchStopResp* internal_default_instance() {
+    return reinterpret_cast<const LinkCamSearchStopResp*>(
+               &_LinkCamSearchStopResp_default_instance_);
+  }
+
+  void Swap(LinkCamSearchStopResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkCamSearchStopResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkCamSearchStopResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkCamSearchStopResp& from);
+  void MergeFrom(const LinkCamSearchStopResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkCamSearchStopResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkCamSearchStopResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkRegEventReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkRegEventReq) */ {
+ public:
+  LinkRegEventReq();
+  virtual ~LinkRegEventReq();
+
+  LinkRegEventReq(const LinkRegEventReq& from);
+
+  inline LinkRegEventReq& operator=(const LinkRegEventReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkRegEventReq& default_instance();
+
+  static inline const LinkRegEventReq* internal_default_instance() {
+    return reinterpret_cast<const LinkRegEventReq*>(
+               &_LinkRegEventReq_default_instance_);
+  }
+
+  void Swap(LinkRegEventReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkRegEventReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkRegEventReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkRegEventReq& from);
+  void MergeFrom(const LinkRegEventReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkRegEventReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkRegEventReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkRegEventResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkRegEventResp) */ {
+ public:
+  LinkRegEventResp();
+  virtual ~LinkRegEventResp();
+
+  LinkRegEventResp(const LinkRegEventResp& from);
+
+  inline LinkRegEventResp& operator=(const LinkRegEventResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkRegEventResp& default_instance();
+
+  static inline const LinkRegEventResp* internal_default_instance() {
+    return reinterpret_cast<const LinkRegEventResp*>(
+               &_LinkRegEventResp_default_instance_);
+  }
+
+  void Swap(LinkRegEventResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkRegEventResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkRegEventResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkRegEventResp& from);
+  void MergeFrom(const LinkRegEventResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkRegEventResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkRegEventResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkUnRegEventReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUnRegEventReq) */ {
+ public:
+  LinkUnRegEventReq();
+  virtual ~LinkUnRegEventReq();
+
+  LinkUnRegEventReq(const LinkUnRegEventReq& from);
+
+  inline LinkUnRegEventReq& operator=(const LinkUnRegEventReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkUnRegEventReq& default_instance();
+
+  static inline const LinkUnRegEventReq* internal_default_instance() {
+    return reinterpret_cast<const LinkUnRegEventReq*>(
+               &_LinkUnRegEventReq_default_instance_);
+  }
+
+  void Swap(LinkUnRegEventReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkUnRegEventReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkUnRegEventReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkUnRegEventReq& from);
+  void MergeFrom(const LinkUnRegEventReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkUnRegEventReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkUnRegEventReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkUnRegEventResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkUnRegEventResp) */ {
+ public:
+  LinkUnRegEventResp();
+  virtual ~LinkUnRegEventResp();
+
+  LinkUnRegEventResp(const LinkUnRegEventResp& from);
+
+  inline LinkUnRegEventResp& operator=(const LinkUnRegEventResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkUnRegEventResp& default_instance();
+
+  static inline const LinkUnRegEventResp* internal_default_instance() {
+    return reinterpret_cast<const LinkUnRegEventResp*>(
+               &_LinkUnRegEventResp_default_instance_);
+  }
+
+  void Swap(LinkUnRegEventResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkUnRegEventResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkUnRegEventResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkUnRegEventResp& from);
+  void MergeFrom(const LinkUnRegEventResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkUnRegEventResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkUnRegEventResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkEventSearchReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkEventSearchReq) */ {
+ public:
+  LinkEventSearchReq();
+  virtual ~LinkEventSearchReq();
+
+  LinkEventSearchReq(const LinkEventSearchReq& from);
+
+  inline LinkEventSearchReq& operator=(const LinkEventSearchReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkEventSearchReq& default_instance();
+
+  static inline const LinkEventSearchReq* internal_default_instance() {
+    return reinterpret_cast<const LinkEventSearchReq*>(
+               &_LinkEventSearchReq_default_instance_);
+  }
+
+  void Swap(LinkEventSearchReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkEventSearchReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkEventSearchReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkEventSearchReq& from);
+  void MergeFrom(const LinkEventSearchReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkEventSearchReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // int32 nStart = 2;
+  void clear_nstart();
+  static const int kNStartFieldNumber = 2;
+  ::google::protobuf::int32 nstart() const;
+  void set_nstart(::google::protobuf::int32 value);
+
+  // int32 nEnd = 3;
+  void clear_nend();
+  static const int kNEndFieldNumber = 3;
+  ::google::protobuf::int32 nend() const;
+  void set_nend(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:LinkEventSearchReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::int32 nstart_;
+  ::google::protobuf::int32 nend_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkEventSearchResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkEventSearchResp) */ {
+ public:
+  LinkEventSearchResp();
+  virtual ~LinkEventSearchResp();
+
+  LinkEventSearchResp(const LinkEventSearchResp& from);
+
+  inline LinkEventSearchResp& operator=(const LinkEventSearchResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkEventSearchResp& default_instance();
+
+  static inline const LinkEventSearchResp* internal_default_instance() {
+    return reinterpret_cast<const LinkEventSearchResp*>(
+               &_LinkEventSearchResp_default_instance_);
+  }
+
+  void Swap(LinkEventSearchResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkEventSearchResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkEventSearchResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkEventSearchResp& from);
+  void MergeFrom(const LinkEventSearchResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkEventSearchResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkEventSearchResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkHandleEventReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkHandleEventReq) */ {
+ public:
+  LinkHandleEventReq();
+  virtual ~LinkHandleEventReq();
+
+  LinkHandleEventReq(const LinkHandleEventReq& from);
+
+  inline LinkHandleEventReq& operator=(const LinkHandleEventReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkHandleEventReq& default_instance();
+
+  static inline const LinkHandleEventReq* internal_default_instance() {
+    return reinterpret_cast<const LinkHandleEventReq*>(
+               &_LinkHandleEventReq_default_instance_);
+  }
+
+  void Swap(LinkHandleEventReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkHandleEventReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkHandleEventReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkHandleEventReq& from);
+  void MergeFrom(const LinkHandleEventReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkHandleEventReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // @@protoc_insertion_point(class_scope:LinkHandleEventReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkHandleEventResp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkHandleEventResp) */ {
+ public:
+  LinkHandleEventResp();
+  virtual ~LinkHandleEventResp();
+
+  LinkHandleEventResp(const LinkHandleEventResp& from);
+
+  inline LinkHandleEventResp& operator=(const LinkHandleEventResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkHandleEventResp& default_instance();
+
+  static inline const LinkHandleEventResp* internal_default_instance() {
+    return reinterpret_cast<const LinkHandleEventResp*>(
+               &_LinkHandleEventResp_default_instance_);
+  }
+
+  void Swap(LinkHandleEventResp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkHandleEventResp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkHandleEventResp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkHandleEventResp& from);
+  void MergeFrom(const LinkHandleEventResp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkHandleEventResp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool bSuccess = 1;
+  void clear_bsuccess();
+  static const int kBSuccessFieldNumber = 1;
+  bool bsuccess() const;
+  void set_bsuccess(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkHandleEventResp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool bsuccess_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class VE_LIBRARY_API LinkCamAddNotify : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamAddNotify) */ {
  public:
   LinkCamAddNotify();
@@ -5174,6 +6382,359 @@ class VE_LIBRARY_API LinkCamIdNotify : public ::google::protobuf::Message /* @@p
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr strid_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkCamSearchedNotify : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkCamSearchedNotify) */ {
+ public:
+  LinkCamSearchedNotify();
+  virtual ~LinkCamSearchedNotify();
+
+  LinkCamSearchedNotify(const LinkCamSearchedNotify& from);
+
+  inline LinkCamSearchedNotify& operator=(const LinkCamSearchedNotify& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkCamSearchedNotify& default_instance();
+
+  static inline const LinkCamSearchedNotify* internal_default_instance() {
+    return reinterpret_cast<const LinkCamSearchedNotify*>(
+               &_LinkCamSearchedNotify_default_instance_);
+  }
+
+  void Swap(LinkCamSearchedNotify* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkCamSearchedNotify* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkCamSearchedNotify* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkCamSearchedNotify& from);
+  void MergeFrom(const LinkCamSearchedNotify& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkCamSearchedNotify* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strIp = 1;
+  void clear_strip();
+  static const int kStrIpFieldNumber = 1;
+  const ::std::string& strip() const;
+  void set_strip(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strip(::std::string&& value);
+  #endif
+  void set_strip(const char* value);
+  void set_strip(const char* value, size_t size);
+  ::std::string* mutable_strip();
+  ::std::string* release_strip();
+  void set_allocated_strip(::std::string* strip);
+
+  // string strPort = 2;
+  void clear_strport();
+  static const int kStrPortFieldNumber = 2;
+  const ::std::string& strport() const;
+  void set_strport(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strport(::std::string&& value);
+  #endif
+  void set_strport(const char* value);
+  void set_strport(const char* value, size_t size);
+  ::std::string* mutable_strport();
+  ::std::string* release_strport();
+  void set_allocated_strport(::std::string* strport);
+
+  // string strModel = 3;
+  void clear_strmodel();
+  static const int kStrModelFieldNumber = 3;
+  const ::std::string& strmodel() const;
+  void set_strmodel(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strmodel(::std::string&& value);
+  #endif
+  void set_strmodel(const char* value);
+  void set_strmodel(const char* value, size_t size);
+  ::std::string* mutable_strmodel();
+  ::std::string* release_strmodel();
+  void set_allocated_strmodel(::std::string* strmodel);
+
+  // string strONVIFAddress = 4;
+  void clear_stronvifaddress();
+  static const int kStrONVIFAddressFieldNumber = 4;
+  const ::std::string& stronvifaddress() const;
+  void set_stronvifaddress(const ::std::string& value);
+  #if LANG_CXX11
+  void set_stronvifaddress(::std::string&& value);
+  #endif
+  void set_stronvifaddress(const char* value);
+  void set_stronvifaddress(const char* value, size_t size);
+  ::std::string* mutable_stronvifaddress();
+  ::std::string* release_stronvifaddress();
+  void set_allocated_stronvifaddress(::std::string* stronvifaddress);
+
+  // @@protoc_insertion_point(class_scope:LinkCamSearchedNotify)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strip_;
+  ::google::protobuf::internal::ArenaStringPtr strport_;
+  ::google::protobuf::internal::ArenaStringPtr strmodel_;
+  ::google::protobuf::internal::ArenaStringPtr stronvifaddress_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API LinkEventNotify : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LinkEventNotify) */ {
+ public:
+  LinkEventNotify();
+  virtual ~LinkEventNotify();
+
+  LinkEventNotify(const LinkEventNotify& from);
+
+  inline LinkEventNotify& operator=(const LinkEventNotify& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LinkEventNotify& default_instance();
+
+  static inline const LinkEventNotify* internal_default_instance() {
+    return reinterpret_cast<const LinkEventNotify*>(
+               &_LinkEventNotify_default_instance_);
+  }
+
+  void Swap(LinkEventNotify* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LinkEventNotify* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  LinkEventNotify* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const LinkEventNotify& from);
+  void MergeFrom(const LinkEventNotify& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(LinkEventNotify* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strId = 1;
+  void clear_strid();
+  static const int kStrIdFieldNumber = 1;
+  const ::std::string& strid() const;
+  void set_strid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strid(::std::string&& value);
+  #endif
+  void set_strid(const char* value);
+  void set_strid(const char* value, size_t size);
+  ::std::string* mutable_strid();
+  ::std::string* release_strid();
+  void set_allocated_strid(::std::string* strid);
+
+  // string strDevice = 2;
+  void clear_strdevice();
+  static const int kStrDeviceFieldNumber = 2;
+  const ::std::string& strdevice() const;
+  void set_strdevice(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strdevice(::std::string&& value);
+  #endif
+  void set_strdevice(const char* value);
+  void set_strdevice(const char* value, size_t size);
+  ::std::string* mutable_strdevice();
+  ::std::string* release_strdevice();
+  void set_allocated_strdevice(::std::string* strdevice);
+
+  // string strDeviceName = 3;
+  void clear_strdevicename();
+  static const int kStrDeviceNameFieldNumber = 3;
+  const ::std::string& strdevicename() const;
+  void set_strdevicename(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strdevicename(::std::string&& value);
+  #endif
+  void set_strdevicename(const char* value);
+  void set_strdevicename(const char* value, size_t size);
+  ::std::string* mutable_strdevicename();
+  ::std::string* release_strdevicename();
+  void set_allocated_strdevicename(::std::string* strdevicename);
+
+  // string strONVIFAddress = 4;
+  void clear_stronvifaddress();
+  static const int kStrONVIFAddressFieldNumber = 4;
+  const ::std::string& stronvifaddress() const;
+  void set_stronvifaddress(const ::std::string& value);
+  #if LANG_CXX11
+  void set_stronvifaddress(::std::string&& value);
+  #endif
+  void set_stronvifaddress(const char* value);
+  void set_stronvifaddress(const char* value, size_t size);
+  ::std::string* mutable_stronvifaddress();
+  ::std::string* release_stronvifaddress();
+  void set_allocated_stronvifaddress(::std::string* stronvifaddress);
+
+  // string strType = 5;
+  void clear_strtype();
+  static const int kStrTypeFieldNumber = 5;
+  const ::std::string& strtype() const;
+  void set_strtype(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strtype(::std::string&& value);
+  #endif
+  void set_strtype(const char* value);
+  void set_strtype(const char* value, size_t size);
+  ::std::string* mutable_strtype();
+  ::std::string* release_strtype();
+  void set_allocated_strtype(::std::string* strtype);
+
+  // string strTime = 7;
+  void clear_strtime();
+  static const int kStrTimeFieldNumber = 7;
+  const ::std::string& strtime() const;
+  void set_strtime(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strtime(::std::string&& value);
+  #endif
+  void set_strtime(const char* value);
+  void set_strtime(const char* value, size_t size);
+  ::std::string* mutable_strtime();
+  ::std::string* release_strtime();
+  void set_allocated_strtime(::std::string* strtime);
+
+  // string strDesc = 8;
+  void clear_strdesc();
+  static const int kStrDescFieldNumber = 8;
+  const ::std::string& strdesc() const;
+  void set_strdesc(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strdesc(::std::string&& value);
+  #endif
+  void set_strdesc(const char* value);
+  void set_strdesc(const char* value, size_t size);
+  ::std::string* mutable_strdesc();
+  ::std::string* release_strdesc();
+  void set_allocated_strdesc(::std::string* strdesc);
+
+  // string strComments = 10;
+  void clear_strcomments();
+  static const int kStrCommentsFieldNumber = 10;
+  const ::std::string& strcomments() const;
+  void set_strcomments(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strcomments(::std::string&& value);
+  #endif
+  void set_strcomments(const char* value);
+  void set_strcomments(const char* value, size_t size);
+  ::std::string* mutable_strcomments();
+  ::std::string* release_strcomments();
+  void set_allocated_strcomments(::std::string* strcomments);
+
+  // int64 nTime = 6;
+  void clear_ntime();
+  static const int kNTimeFieldNumber = 6;
+  ::google::protobuf::int64 ntime() const;
+  void set_ntime(::google::protobuf::int64 value);
+
+  // bool bHandled = 9;
+  void clear_bhandled();
+  static const int kBHandledFieldNumber = 9;
+  bool bhandled() const;
+  void set_bhandled(bool value);
+
+  // bool bSearched = 11;
+  void clear_bsearched();
+  static const int kBSearchedFieldNumber = 11;
+  bool bsearched() const;
+  void set_bsearched(bool value);
+
+  // @@protoc_insertion_point(class_scope:LinkEventNotify)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strid_;
+  ::google::protobuf::internal::ArenaStringPtr strdevice_;
+  ::google::protobuf::internal::ArenaStringPtr strdevicename_;
+  ::google::protobuf::internal::ArenaStringPtr stronvifaddress_;
+  ::google::protobuf::internal::ArenaStringPtr strtype_;
+  ::google::protobuf::internal::ArenaStringPtr strtime_;
+  ::google::protobuf::internal::ArenaStringPtr strdesc_;
+  ::google::protobuf::internal::ArenaStringPtr strcomments_;
+  ::google::protobuf::int64 ntime_;
+  bool bhandled_;
+  bool bsearched_;
   mutable int _cached_size_;
   friend struct VE_LIBRARY_API protobuf_linksystem_2eproto::TableStruct;
 };
@@ -7964,6 +9525,562 @@ inline void LinkPlayStopCmd::set_allocated_strid(::std::string* strid) {
 
 // -------------------------------------------------------------------
 
+// LinkPtzCmd
+
+// string strId = 1;
+inline void LinkPtzCmd::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkPtzCmd::strid() const {
+  // @@protoc_insertion_point(field_get:LinkPtzCmd.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkPtzCmd::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkPtzCmd.strId)
+}
+#if LANG_CXX11
+inline void LinkPtzCmd::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkPtzCmd.strId)
+}
+#endif
+inline void LinkPtzCmd::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkPtzCmd.strId)
+}
+inline void LinkPtzCmd::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkPtzCmd.strId)
+}
+inline ::std::string* LinkPtzCmd::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkPtzCmd.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkPtzCmd::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkPtzCmd.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkPtzCmd::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkPtzCmd.strId)
+}
+
+// int32 nAction = 2;
+inline void LinkPtzCmd::clear_naction() {
+  naction_ = 0;
+}
+inline ::google::protobuf::int32 LinkPtzCmd::naction() const {
+  // @@protoc_insertion_point(field_get:LinkPtzCmd.nAction)
+  return naction_;
+}
+inline void LinkPtzCmd::set_naction(::google::protobuf::int32 value) {
+  
+  naction_ = value;
+  // @@protoc_insertion_point(field_set:LinkPtzCmd.nAction)
+}
+
+// double nParam = 3;
+inline void LinkPtzCmd::clear_nparam() {
+  nparam_ = 0;
+}
+inline double LinkPtzCmd::nparam() const {
+  // @@protoc_insertion_point(field_get:LinkPtzCmd.nParam)
+  return nparam_;
+}
+inline void LinkPtzCmd::set_nparam(double value) {
+  
+  nparam_ = value;
+  // @@protoc_insertion_point(field_set:LinkPtzCmd.nParam)
+}
+
+// -------------------------------------------------------------------
+
+// LinkCamSearchStartReq
+
+// string strFake = 1;
+inline void LinkCamSearchStartReq::clear_strfake() {
+  strfake_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchStartReq::strfake() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchStartReq.strFake)
+  return strfake_.GetNoArena();
+}
+inline void LinkCamSearchStartReq::set_strfake(const ::std::string& value) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchStartReq.strFake)
+}
+#if LANG_CXX11
+inline void LinkCamSearchStartReq::set_strfake(::std::string&& value) {
+  
+  strfake_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchStartReq.strFake)
+}
+#endif
+inline void LinkCamSearchStartReq::set_strfake(const char* value) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchStartReq.strFake)
+}
+inline void LinkCamSearchStartReq::set_strfake(const char* value, size_t size) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchStartReq.strFake)
+}
+inline ::std::string* LinkCamSearchStartReq::mutable_strfake() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchStartReq.strFake)
+  return strfake_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchStartReq::release_strfake() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchStartReq.strFake)
+  
+  return strfake_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchStartReq::set_allocated_strfake(::std::string* strfake) {
+  if (strfake != NULL) {
+    
+  } else {
+    
+  }
+  strfake_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strfake);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchStartReq.strFake)
+}
+
+// -------------------------------------------------------------------
+
+// LinkCamSearchStartResp
+
+// bool bSuccess = 1;
+inline void LinkCamSearchStartResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkCamSearchStartResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchStartResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkCamSearchStartResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkCamSearchStartResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
+// LinkCamSearchStopReq
+
+// string strFake = 1;
+inline void LinkCamSearchStopReq::clear_strfake() {
+  strfake_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchStopReq::strfake() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchStopReq.strFake)
+  return strfake_.GetNoArena();
+}
+inline void LinkCamSearchStopReq::set_strfake(const ::std::string& value) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchStopReq.strFake)
+}
+#if LANG_CXX11
+inline void LinkCamSearchStopReq::set_strfake(::std::string&& value) {
+  
+  strfake_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchStopReq.strFake)
+}
+#endif
+inline void LinkCamSearchStopReq::set_strfake(const char* value) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchStopReq.strFake)
+}
+inline void LinkCamSearchStopReq::set_strfake(const char* value, size_t size) {
+  
+  strfake_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchStopReq.strFake)
+}
+inline ::std::string* LinkCamSearchStopReq::mutable_strfake() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchStopReq.strFake)
+  return strfake_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchStopReq::release_strfake() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchStopReq.strFake)
+  
+  return strfake_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchStopReq::set_allocated_strfake(::std::string* strfake) {
+  if (strfake != NULL) {
+    
+  } else {
+    
+  }
+  strfake_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strfake);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchStopReq.strFake)
+}
+
+// -------------------------------------------------------------------
+
+// LinkCamSearchStopResp
+
+// bool bSuccess = 1;
+inline void LinkCamSearchStopResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkCamSearchStopResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchStopResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkCamSearchStopResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkCamSearchStopResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
+// LinkRegEventReq
+
+// string strId = 1;
+inline void LinkRegEventReq::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkRegEventReq::strid() const {
+  // @@protoc_insertion_point(field_get:LinkRegEventReq.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkRegEventReq::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkRegEventReq.strId)
+}
+#if LANG_CXX11
+inline void LinkRegEventReq::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkRegEventReq.strId)
+}
+#endif
+inline void LinkRegEventReq::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkRegEventReq.strId)
+}
+inline void LinkRegEventReq::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkRegEventReq.strId)
+}
+inline ::std::string* LinkRegEventReq::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkRegEventReq.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkRegEventReq::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkRegEventReq.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkRegEventReq::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkRegEventReq.strId)
+}
+
+// -------------------------------------------------------------------
+
+// LinkRegEventResp
+
+// bool bSuccess = 1;
+inline void LinkRegEventResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkRegEventResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkRegEventResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkRegEventResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkRegEventResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
+// LinkUnRegEventReq
+
+// string strId = 1;
+inline void LinkUnRegEventReq::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkUnRegEventReq::strid() const {
+  // @@protoc_insertion_point(field_get:LinkUnRegEventReq.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkUnRegEventReq::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkUnRegEventReq.strId)
+}
+#if LANG_CXX11
+inline void LinkUnRegEventReq::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkUnRegEventReq.strId)
+}
+#endif
+inline void LinkUnRegEventReq::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkUnRegEventReq.strId)
+}
+inline void LinkUnRegEventReq::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkUnRegEventReq.strId)
+}
+inline ::std::string* LinkUnRegEventReq::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkUnRegEventReq.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkUnRegEventReq::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkUnRegEventReq.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkUnRegEventReq::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkUnRegEventReq.strId)
+}
+
+// -------------------------------------------------------------------
+
+// LinkUnRegEventResp
+
+// bool bSuccess = 1;
+inline void LinkUnRegEventResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkUnRegEventResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkUnRegEventResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkUnRegEventResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkUnRegEventResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
+// LinkEventSearchReq
+
+// string strId = 1;
+inline void LinkEventSearchReq::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventSearchReq::strid() const {
+  // @@protoc_insertion_point(field_get:LinkEventSearchReq.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkEventSearchReq::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventSearchReq.strId)
+}
+#if LANG_CXX11
+inline void LinkEventSearchReq::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventSearchReq.strId)
+}
+#endif
+inline void LinkEventSearchReq::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventSearchReq.strId)
+}
+inline void LinkEventSearchReq::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventSearchReq.strId)
+}
+inline ::std::string* LinkEventSearchReq::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventSearchReq.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventSearchReq::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkEventSearchReq.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventSearchReq::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventSearchReq.strId)
+}
+
+// int32 nStart = 2;
+inline void LinkEventSearchReq::clear_nstart() {
+  nstart_ = 0;
+}
+inline ::google::protobuf::int32 LinkEventSearchReq::nstart() const {
+  // @@protoc_insertion_point(field_get:LinkEventSearchReq.nStart)
+  return nstart_;
+}
+inline void LinkEventSearchReq::set_nstart(::google::protobuf::int32 value) {
+  
+  nstart_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventSearchReq.nStart)
+}
+
+// int32 nEnd = 3;
+inline void LinkEventSearchReq::clear_nend() {
+  nend_ = 0;
+}
+inline ::google::protobuf::int32 LinkEventSearchReq::nend() const {
+  // @@protoc_insertion_point(field_get:LinkEventSearchReq.nEnd)
+  return nend_;
+}
+inline void LinkEventSearchReq::set_nend(::google::protobuf::int32 value) {
+  
+  nend_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventSearchReq.nEnd)
+}
+
+// -------------------------------------------------------------------
+
+// LinkEventSearchResp
+
+// bool bSuccess = 1;
+inline void LinkEventSearchResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkEventSearchResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkEventSearchResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkEventSearchResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventSearchResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
+// LinkHandleEventReq
+
+// string strId = 1;
+inline void LinkHandleEventReq::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkHandleEventReq::strid() const {
+  // @@protoc_insertion_point(field_get:LinkHandleEventReq.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkHandleEventReq::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkHandleEventReq.strId)
+}
+#if LANG_CXX11
+inline void LinkHandleEventReq::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkHandleEventReq.strId)
+}
+#endif
+inline void LinkHandleEventReq::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkHandleEventReq.strId)
+}
+inline void LinkHandleEventReq::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkHandleEventReq.strId)
+}
+inline ::std::string* LinkHandleEventReq::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkHandleEventReq.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkHandleEventReq::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkHandleEventReq.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkHandleEventReq::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkHandleEventReq.strId)
+}
+
+// -------------------------------------------------------------------
+
+// LinkHandleEventResp
+
+// bool bSuccess = 1;
+inline void LinkHandleEventResp::clear_bsuccess() {
+  bsuccess_ = false;
+}
+inline bool LinkHandleEventResp::bsuccess() const {
+  // @@protoc_insertion_point(field_get:LinkHandleEventResp.bSuccess)
+  return bsuccess_;
+}
+inline void LinkHandleEventResp::set_bsuccess(bool value) {
+  
+  bsuccess_ = value;
+  // @@protoc_insertion_point(field_set:LinkHandleEventResp.bSuccess)
+}
+
+// -------------------------------------------------------------------
+
 // LinkCamAddNotify
 
 // .VidCamera cCam = 1;
@@ -8061,7 +10178,711 @@ inline void LinkCamIdNotify::set_allocated_strid(::std::string* strid) {
   // @@protoc_insertion_point(field_set_allocated:LinkCamIdNotify.strId)
 }
 
+// -------------------------------------------------------------------
+
+// LinkCamSearchedNotify
+
+// string strIp = 1;
+inline void LinkCamSearchedNotify::clear_strip() {
+  strip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchedNotify::strip() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchedNotify.strIp)
+  return strip_.GetNoArena();
+}
+inline void LinkCamSearchedNotify::set_strip(const ::std::string& value) {
+  
+  strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchedNotify.strIp)
+}
+#if LANG_CXX11
+inline void LinkCamSearchedNotify::set_strip(::std::string&& value) {
+  
+  strip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchedNotify.strIp)
+}
+#endif
+inline void LinkCamSearchedNotify::set_strip(const char* value) {
+  
+  strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchedNotify.strIp)
+}
+inline void LinkCamSearchedNotify::set_strip(const char* value, size_t size) {
+  
+  strip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchedNotify.strIp)
+}
+inline ::std::string* LinkCamSearchedNotify::mutable_strip() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchedNotify.strIp)
+  return strip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchedNotify::release_strip() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchedNotify.strIp)
+  
+  return strip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchedNotify::set_allocated_strip(::std::string* strip) {
+  if (strip != NULL) {
+    
+  } else {
+    
+  }
+  strip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strip);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchedNotify.strIp)
+}
+
+// string strPort = 2;
+inline void LinkCamSearchedNotify::clear_strport() {
+  strport_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchedNotify::strport() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchedNotify.strPort)
+  return strport_.GetNoArena();
+}
+inline void LinkCamSearchedNotify::set_strport(const ::std::string& value) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchedNotify.strPort)
+}
+#if LANG_CXX11
+inline void LinkCamSearchedNotify::set_strport(::std::string&& value) {
+  
+  strport_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchedNotify.strPort)
+}
+#endif
+inline void LinkCamSearchedNotify::set_strport(const char* value) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchedNotify.strPort)
+}
+inline void LinkCamSearchedNotify::set_strport(const char* value, size_t size) {
+  
+  strport_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchedNotify.strPort)
+}
+inline ::std::string* LinkCamSearchedNotify::mutable_strport() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchedNotify.strPort)
+  return strport_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchedNotify::release_strport() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchedNotify.strPort)
+  
+  return strport_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchedNotify::set_allocated_strport(::std::string* strport) {
+  if (strport != NULL) {
+    
+  } else {
+    
+  }
+  strport_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strport);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchedNotify.strPort)
+}
+
+// string strModel = 3;
+inline void LinkCamSearchedNotify::clear_strmodel() {
+  strmodel_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchedNotify::strmodel() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchedNotify.strModel)
+  return strmodel_.GetNoArena();
+}
+inline void LinkCamSearchedNotify::set_strmodel(const ::std::string& value) {
+  
+  strmodel_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchedNotify.strModel)
+}
+#if LANG_CXX11
+inline void LinkCamSearchedNotify::set_strmodel(::std::string&& value) {
+  
+  strmodel_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchedNotify.strModel)
+}
+#endif
+inline void LinkCamSearchedNotify::set_strmodel(const char* value) {
+  
+  strmodel_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchedNotify.strModel)
+}
+inline void LinkCamSearchedNotify::set_strmodel(const char* value, size_t size) {
+  
+  strmodel_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchedNotify.strModel)
+}
+inline ::std::string* LinkCamSearchedNotify::mutable_strmodel() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchedNotify.strModel)
+  return strmodel_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchedNotify::release_strmodel() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchedNotify.strModel)
+  
+  return strmodel_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchedNotify::set_allocated_strmodel(::std::string* strmodel) {
+  if (strmodel != NULL) {
+    
+  } else {
+    
+  }
+  strmodel_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strmodel);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchedNotify.strModel)
+}
+
+// string strONVIFAddress = 4;
+inline void LinkCamSearchedNotify::clear_stronvifaddress() {
+  stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkCamSearchedNotify::stronvifaddress() const {
+  // @@protoc_insertion_point(field_get:LinkCamSearchedNotify.strONVIFAddress)
+  return stronvifaddress_.GetNoArena();
+}
+inline void LinkCamSearchedNotify::set_stronvifaddress(const ::std::string& value) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkCamSearchedNotify.strONVIFAddress)
+}
+#if LANG_CXX11
+inline void LinkCamSearchedNotify::set_stronvifaddress(::std::string&& value) {
+  
+  stronvifaddress_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkCamSearchedNotify.strONVIFAddress)
+}
+#endif
+inline void LinkCamSearchedNotify::set_stronvifaddress(const char* value) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkCamSearchedNotify.strONVIFAddress)
+}
+inline void LinkCamSearchedNotify::set_stronvifaddress(const char* value, size_t size) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkCamSearchedNotify.strONVIFAddress)
+}
+inline ::std::string* LinkCamSearchedNotify::mutable_stronvifaddress() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkCamSearchedNotify.strONVIFAddress)
+  return stronvifaddress_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkCamSearchedNotify::release_stronvifaddress() {
+  // @@protoc_insertion_point(field_release:LinkCamSearchedNotify.strONVIFAddress)
+  
+  return stronvifaddress_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkCamSearchedNotify::set_allocated_stronvifaddress(::std::string* stronvifaddress) {
+  if (stronvifaddress != NULL) {
+    
+  } else {
+    
+  }
+  stronvifaddress_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stronvifaddress);
+  // @@protoc_insertion_point(field_set_allocated:LinkCamSearchedNotify.strONVIFAddress)
+}
+
+// -------------------------------------------------------------------
+
+// LinkEventNotify
+
+// string strId = 1;
+inline void LinkEventNotify::clear_strid() {
+  strid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strid() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strId)
+  return strid_.GetNoArena();
+}
+inline void LinkEventNotify::set_strid(const ::std::string& value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strId)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strid(::std::string&& value) {
+  
+  strid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strId)
+}
+#endif
+inline void LinkEventNotify::set_strid(const char* value) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strId)
+}
+inline void LinkEventNotify::set_strid(const char* value, size_t size) {
+  
+  strid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strId)
+}
+inline ::std::string* LinkEventNotify::mutable_strid() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strId)
+  return strid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strid() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strId)
+  
+  return strid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strid(::std::string* strid) {
+  if (strid != NULL) {
+    
+  } else {
+    
+  }
+  strid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strid);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strId)
+}
+
+// string strDevice = 2;
+inline void LinkEventNotify::clear_strdevice() {
+  strdevice_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strdevice() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strDevice)
+  return strdevice_.GetNoArena();
+}
+inline void LinkEventNotify::set_strdevice(const ::std::string& value) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strDevice)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strdevice(::std::string&& value) {
+  
+  strdevice_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strDevice)
+}
+#endif
+inline void LinkEventNotify::set_strdevice(const char* value) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strDevice)
+}
+inline void LinkEventNotify::set_strdevice(const char* value, size_t size) {
+  
+  strdevice_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strDevice)
+}
+inline ::std::string* LinkEventNotify::mutable_strdevice() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strDevice)
+  return strdevice_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strdevice() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strDevice)
+  
+  return strdevice_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strdevice(::std::string* strdevice) {
+  if (strdevice != NULL) {
+    
+  } else {
+    
+  }
+  strdevice_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdevice);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strDevice)
+}
+
+// string strDeviceName = 3;
+inline void LinkEventNotify::clear_strdevicename() {
+  strdevicename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strdevicename() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strDeviceName)
+  return strdevicename_.GetNoArena();
+}
+inline void LinkEventNotify::set_strdevicename(const ::std::string& value) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strDeviceName)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strdevicename(::std::string&& value) {
+  
+  strdevicename_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strDeviceName)
+}
+#endif
+inline void LinkEventNotify::set_strdevicename(const char* value) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strDeviceName)
+}
+inline void LinkEventNotify::set_strdevicename(const char* value, size_t size) {
+  
+  strdevicename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strDeviceName)
+}
+inline ::std::string* LinkEventNotify::mutable_strdevicename() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strDeviceName)
+  return strdevicename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strdevicename() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strDeviceName)
+  
+  return strdevicename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strdevicename(::std::string* strdevicename) {
+  if (strdevicename != NULL) {
+    
+  } else {
+    
+  }
+  strdevicename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdevicename);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strDeviceName)
+}
+
+// string strONVIFAddress = 4;
+inline void LinkEventNotify::clear_stronvifaddress() {
+  stronvifaddress_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::stronvifaddress() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strONVIFAddress)
+  return stronvifaddress_.GetNoArena();
+}
+inline void LinkEventNotify::set_stronvifaddress(const ::std::string& value) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strONVIFAddress)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_stronvifaddress(::std::string&& value) {
+  
+  stronvifaddress_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strONVIFAddress)
+}
+#endif
+inline void LinkEventNotify::set_stronvifaddress(const char* value) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strONVIFAddress)
+}
+inline void LinkEventNotify::set_stronvifaddress(const char* value, size_t size) {
+  
+  stronvifaddress_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strONVIFAddress)
+}
+inline ::std::string* LinkEventNotify::mutable_stronvifaddress() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strONVIFAddress)
+  return stronvifaddress_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_stronvifaddress() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strONVIFAddress)
+  
+  return stronvifaddress_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_stronvifaddress(::std::string* stronvifaddress) {
+  if (stronvifaddress != NULL) {
+    
+  } else {
+    
+  }
+  stronvifaddress_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stronvifaddress);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strONVIFAddress)
+}
+
+// string strType = 5;
+inline void LinkEventNotify::clear_strtype() {
+  strtype_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strtype() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strType)
+  return strtype_.GetNoArena();
+}
+inline void LinkEventNotify::set_strtype(const ::std::string& value) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strType)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strtype(::std::string&& value) {
+  
+  strtype_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strType)
+}
+#endif
+inline void LinkEventNotify::set_strtype(const char* value) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strType)
+}
+inline void LinkEventNotify::set_strtype(const char* value, size_t size) {
+  
+  strtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strType)
+}
+inline ::std::string* LinkEventNotify::mutable_strtype() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strType)
+  return strtype_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strtype() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strType)
+  
+  return strtype_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strtype(::std::string* strtype) {
+  if (strtype != NULL) {
+    
+  } else {
+    
+  }
+  strtype_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strtype);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strType)
+}
+
+// int64 nTime = 6;
+inline void LinkEventNotify::clear_ntime() {
+  ntime_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 LinkEventNotify::ntime() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.nTime)
+  return ntime_;
+}
+inline void LinkEventNotify::set_ntime(::google::protobuf::int64 value) {
+  
+  ntime_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventNotify.nTime)
+}
+
+// string strTime = 7;
+inline void LinkEventNotify::clear_strtime() {
+  strtime_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strtime() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strTime)
+  return strtime_.GetNoArena();
+}
+inline void LinkEventNotify::set_strtime(const ::std::string& value) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strTime)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strtime(::std::string&& value) {
+  
+  strtime_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strTime)
+}
+#endif
+inline void LinkEventNotify::set_strtime(const char* value) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strTime)
+}
+inline void LinkEventNotify::set_strtime(const char* value, size_t size) {
+  
+  strtime_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strTime)
+}
+inline ::std::string* LinkEventNotify::mutable_strtime() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strTime)
+  return strtime_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strtime() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strTime)
+  
+  return strtime_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strtime(::std::string* strtime) {
+  if (strtime != NULL) {
+    
+  } else {
+    
+  }
+  strtime_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strtime);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strTime)
+}
+
+// string strDesc = 8;
+inline void LinkEventNotify::clear_strdesc() {
+  strdesc_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strdesc() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strDesc)
+  return strdesc_.GetNoArena();
+}
+inline void LinkEventNotify::set_strdesc(const ::std::string& value) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strDesc)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strdesc(::std::string&& value) {
+  
+  strdesc_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strDesc)
+}
+#endif
+inline void LinkEventNotify::set_strdesc(const char* value) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strDesc)
+}
+inline void LinkEventNotify::set_strdesc(const char* value, size_t size) {
+  
+  strdesc_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strDesc)
+}
+inline ::std::string* LinkEventNotify::mutable_strdesc() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strDesc)
+  return strdesc_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strdesc() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strDesc)
+  
+  return strdesc_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strdesc(::std::string* strdesc) {
+  if (strdesc != NULL) {
+    
+  } else {
+    
+  }
+  strdesc_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strdesc);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strDesc)
+}
+
+// bool bHandled = 9;
+inline void LinkEventNotify::clear_bhandled() {
+  bhandled_ = false;
+}
+inline bool LinkEventNotify::bhandled() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.bHandled)
+  return bhandled_;
+}
+inline void LinkEventNotify::set_bhandled(bool value) {
+  
+  bhandled_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventNotify.bHandled)
+}
+
+// string strComments = 10;
+inline void LinkEventNotify::clear_strcomments() {
+  strcomments_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& LinkEventNotify::strcomments() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.strComments)
+  return strcomments_.GetNoArena();
+}
+inline void LinkEventNotify::set_strcomments(const ::std::string& value) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LinkEventNotify.strComments)
+}
+#if LANG_CXX11
+inline void LinkEventNotify::set_strcomments(::std::string&& value) {
+  
+  strcomments_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LinkEventNotify.strComments)
+}
+#endif
+inline void LinkEventNotify::set_strcomments(const char* value) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LinkEventNotify.strComments)
+}
+inline void LinkEventNotify::set_strcomments(const char* value, size_t size) {
+  
+  strcomments_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LinkEventNotify.strComments)
+}
+inline ::std::string* LinkEventNotify::mutable_strcomments() {
+  
+  // @@protoc_insertion_point(field_mutable:LinkEventNotify.strComments)
+  return strcomments_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* LinkEventNotify::release_strcomments() {
+  // @@protoc_insertion_point(field_release:LinkEventNotify.strComments)
+  
+  return strcomments_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void LinkEventNotify::set_allocated_strcomments(::std::string* strcomments) {
+  if (strcomments != NULL) {
+    
+  } else {
+    
+  }
+  strcomments_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strcomments);
+  // @@protoc_insertion_point(field_set_allocated:LinkEventNotify.strComments)
+}
+
+// bool bSearched = 11;
+inline void LinkEventNotify::clear_bsearched() {
+  bsearched_ = false;
+}
+inline bool LinkEventNotify::bsearched() const {
+  // @@protoc_insertion_point(field_get:LinkEventNotify.bSearched)
+  return bsearched_;
+}
+inline void LinkEventNotify::set_bsearched(bool value) {
+  
+  bsearched_ = value;
+  // @@protoc_insertion_point(field_set:LinkEventNotify.bSearched)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

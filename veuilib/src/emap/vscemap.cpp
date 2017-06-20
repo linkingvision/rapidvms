@@ -51,16 +51,16 @@ VSCEMap::VSCEMap(std::string strId, ClientFactory &pFactory, QTabWidget &pTabbed
 
 	this->setAcceptDrops(true);
 
-	m_pLoadFile = new QAction(QIcon(tr(":/action/resources/libuimap.png")), tr("Load eMap"), this);
+	m_pLoadFile = new QAction(QIcon(tr(":/action/resources/libuimap.png")), tr("LOAD EMAP"), this);
 	connect(m_pLoadFile, SIGNAL(triggered()), this, SLOT(LoadEmapAction()));
 	
-	m_pHelp = new QAction(QIcon(tr(":/action/resources/help.png")), tr("Help"), this);
+	m_pHelp = new QAction(QIcon(tr(":/action/resources/help.png")), tr("HELP"), this);
 	connect(m_pHelp, SIGNAL(triggered()), this, SLOT(Help()));
 
-	m_pFloating = new QAction(QIcon(tr(":/action/resources/libuifloat.png")), tr("Float"), this);
+	m_pFloating = new QAction(QIcon(tr(":/action/resources/libuifloat.png")), tr("FLOAT"), this);
 	connect(m_pFloating, SIGNAL(triggered()), this, SLOT(FloatingClicked()));
 
-	m_pTabbed = new QAction(QIcon(tr(":/action/resources/libuitabbed.png")), tr("Tabbed"), this);
+	m_pTabbed = new QAction(QIcon(tr(":/action/resources/libuitabbed.png")), tr("TABBED"), this);
 	connect(m_pTabbed, SIGNAL(triggered()), this, SLOT(TabbedClicked()));
 
 	m_pDisplay1 = new QAction(QIcon(tr(":/action/resources/libuidisplay.png")), tr("DISPLAY 1"), this);

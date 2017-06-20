@@ -40,7 +40,7 @@ xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\libeay32.dll  vecvr\prj_win32
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\ssleay32.dll  vecvr\prj_win32\Win32\Release
 xcopy /y /e 3rdparty\openssl-win\openssl-win32\lib\openssl.exe  vecvr\prj_win32\Win32\Release
 
-REM xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  vecvr\prj_win32\Win32\Release
+xcopy /y /e 3rdparty\protobuf\cmake\win32\bin\libprotobuf.dll  vecvr\prj_win32\Win32\Release
 
 
 REM QT_WIN32

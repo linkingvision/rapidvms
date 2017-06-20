@@ -55,13 +55,13 @@ VSCEmapCam::VSCEmapCam(VidEmapCamera &cCam, ClientFactory &pFactory, QWidget *pa
 #endif
 	ui.play->setId(0);
 	connect(ui.play, SIGNAL( clicked() ), this, SLOT(DragEmap()));
-	m_pPlay = new QAction(QIcon(tr(":/action/resources/libuiplay.png")), tr("Play"), this);
+	m_pPlay = new QAction(QIcon(tr(":/action/resources/libuiplay.png")), tr("PLAY"), this);
 	connect(m_pPlay, SIGNAL(triggered()), this, SLOT(PlayVideo()));
 	
-	m_pPlayback = new QAction(QIcon(tr(":/action/resources/libuiinstantpb.png")), tr("Playback"), this);
+	m_pPlayback = new QAction(QIcon(tr(":/action/resources/libuiinstantpb.png")), tr("PLAYBACK"), this);
 	connect(m_pPlayback, SIGNAL(triggered()), this, SLOT(PlaybackVideo()));
 	
-	m_pDelete = new QAction(QIcon(tr(":/action/resources/libuidel.png")), tr("Delete"), this);
+	m_pDelete = new QAction(QIcon(tr(":/action/resources/libuidel.png")), tr("DELETE"), this);
 	connect(m_pDelete, SIGNAL(triggered()), this, SLOT(EmapDelete()));
 
 	m_TimerAlarm = new QTimer(this);

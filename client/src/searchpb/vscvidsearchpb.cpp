@@ -58,7 +58,7 @@ void VSCVidSearchPB::VidNewEventSearch()
 	}
 
 	m_pSearch->show();
-	m_pMainArea.addTab(m_pSearch, QIcon(tr(":/action/resources/alarm_search.png")), tr("Event Search"));
+	m_pMainArea.addTab(m_pSearch, QIcon(tr(":/action/resources/alarm_search.png")), tr("EVENT SEARCH"));
 	m_pMainArea.setCurrentWidget(m_pSearch);
 }
 

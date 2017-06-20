@@ -61,6 +61,21 @@ VE_LIBRARY_API extern LinkCamReqDefaultTypeInternal _LinkCamReq_default_instance
 class LinkCamResp;
 class LinkCamRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkCamRespDefaultTypeInternal _LinkCamResp_default_instance_;
+class LinkCamSearchStartReq;
+class LinkCamSearchStartReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStartReqDefaultTypeInternal _LinkCamSearchStartReq_default_instance_;
+class LinkCamSearchStartResp;
+class LinkCamSearchStartRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStartRespDefaultTypeInternal _LinkCamSearchStartResp_default_instance_;
+class LinkCamSearchStopReq;
+class LinkCamSearchStopReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStopReqDefaultTypeInternal _LinkCamSearchStopReq_default_instance_;
+class LinkCamSearchStopResp;
+class LinkCamSearchStopRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchStopRespDefaultTypeInternal _LinkCamSearchStopResp_default_instance_;
+class LinkCamSearchedNotify;
+class LinkCamSearchedNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkCamSearchedNotifyDefaultTypeInternal _LinkCamSearchedNotify_default_instance_;
 class LinkConfLicReq;
 class LinkConfLicReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkConfLicReqDefaultTypeInternal _LinkConfLicReq_default_instance_;
@@ -79,6 +94,15 @@ VE_LIBRARY_API extern LinkDelDiskReqDefaultTypeInternal _LinkDelDiskReq_default_
 class LinkDelDiskResp;
 class LinkDelDiskRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkDelDiskRespDefaultTypeInternal _LinkDelDiskResp_default_instance_;
+class LinkEventNotify;
+class LinkEventNotifyDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventNotifyDefaultTypeInternal _LinkEventNotify_default_instance_;
+class LinkEventSearchReq;
+class LinkEventSearchReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventSearchReqDefaultTypeInternal _LinkEventSearchReq_default_instance_;
+class LinkEventSearchResp;
+class LinkEventSearchRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkEventSearchRespDefaultTypeInternal _LinkEventSearchResp_default_instance_;
 class LinkGetLicReq;
 class LinkGetLicReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetLicReqDefaultTypeInternal _LinkGetLicReq_default_instance_;
@@ -97,6 +121,12 @@ VE_LIBRARY_API extern LinkGetVerReqDefaultTypeInternal _LinkGetVerReq_default_in
 class LinkGetVerResp;
 class LinkGetVerRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkGetVerRespDefaultTypeInternal _LinkGetVerResp_default_instance_;
+class LinkHandleEventReq;
+class LinkHandleEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHandleEventReqDefaultTypeInternal _LinkHandleEventReq_default_instance_;
+class LinkHandleEventResp;
+class LinkHandleEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkHandleEventRespDefaultTypeInternal _LinkHandleEventResp_default_instance_;
 class LinkHasRecordItem;
 class LinkHasRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkHasRecordItemDefaultTypeInternal _LinkHasRecordItem_default_instance_;
@@ -142,12 +172,21 @@ VE_LIBRARY_API extern LinkPlaySeekCmdDefaultTypeInternal _LinkPlaySeekCmd_defaul
 class LinkPlayStopCmd;
 class LinkPlayStopCmdDefaultTypeInternal;
 VE_LIBRARY_API extern LinkPlayStopCmdDefaultTypeInternal _LinkPlayStopCmd_default_instance_;
+class LinkPtzCmd;
+class LinkPtzCmdDefaultTypeInternal;
+VE_LIBRARY_API extern LinkPtzCmdDefaultTypeInternal _LinkPtzCmd_default_instance_;
 class LinkRecordItem;
 class LinkRecordItemDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordItemDefaultTypeInternal _LinkRecordItem_default_instance_;
 class LinkRecordList;
 class LinkRecordListDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRecordListDefaultTypeInternal _LinkRecordList_default_instance_;
+class LinkRegEventReq;
+class LinkRegEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegEventReqDefaultTypeInternal _LinkRegEventReq_default_instance_;
+class LinkRegEventResp;
+class LinkRegEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkRegEventRespDefaultTypeInternal _LinkRegEventResp_default_instance_;
 class LinkRegNotifyReq;
 class LinkRegNotifyReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkRegNotifyReqDefaultTypeInternal _LinkRegNotifyReq_default_instance_;
@@ -178,6 +217,12 @@ VE_LIBRARY_API extern LinkSysVidDiskListReqDefaultTypeInternal _LinkSysVidDiskLi
 class LinkSysVidDiskListResp;
 class LinkSysVidDiskListRespDefaultTypeInternal;
 VE_LIBRARY_API extern LinkSysVidDiskListRespDefaultTypeInternal _LinkSysVidDiskListResp_default_instance_;
+class LinkUnRegEventReq;
+class LinkUnRegEventReqDefaultTypeInternal;
+VE_LIBRARY_API extern LinkUnRegEventReqDefaultTypeInternal _LinkUnRegEventReq_default_instance_;
+class LinkUnRegEventResp;
+class LinkUnRegEventRespDefaultTypeInternal;
+VE_LIBRARY_API extern LinkUnRegEventRespDefaultTypeInternal _LinkUnRegEventResp_default_instance_;
 class LinkUpdateDiskLimitReq;
 class LinkUpdateDiskLimitReqDefaultTypeInternal;
 VE_LIBRARY_API extern LinkUpdateDiskLimitReqDefaultTypeInternal _LinkUpdateDiskLimitReq_default_instance_;
@@ -258,18 +303,33 @@ enum LinkCmdType {
   LINK_CMD_PLAY_RESUME_CMD = 705,
   LINK_CMD_PLAY_SEEK_CMD = 706,
   LINK_CMD_PLAY_STOP_CMD = 707,
+  LINK_CMD_PTZ_CMD = 801,
+  LINK_CMD_CAM_SEARCH_START_REQ = 901,
+  LINK_CMD_CAM_SEARCH_START_RESP = 902,
+  LINK_CMD_CAM_SEARCH_STOP_REQ = 903,
+  LINK_CMD_CAM_SEARCH_STOP_RESP = 904,
+  LINK_CMD_REG_EVENT_REQ = 905,
+  LINK_CMD_REG_EVENT_RESP = 906,
+  LINK_CMD_UNREG_EVENT_REQ = 907,
+  LINK_CMD_UNREG_EVENT_RESP = 908,
+  LINK_CMD_EVENT_SEARCH_REQ = 909,
+  LINK_CMD_EVENT_SEARCH_RESP = 910,
+  LINK_CMD_HANDLE_EVENT_REQ = 911,
+  LINK_CMD_HANDLE_EVENT_RESP = 912,
   LINK_CMD_CAM_ADD_NOTIFY = 10001,
   LINK_CMD_CAM_DEL_NOTIFY = 10002,
   LINK_CMD_CAM_ONLINE_NOTIFY = 10003,
   LINK_CMD_CAM_OFFLINE_NOTIFY = 10004,
   LINK_CMD_CAM_REC_ON_NOTIFY = 10005,
   LINK_CMD_CAM_REC_OFF_NOTIFY = 10006,
+  LINK_CMD_CAM_SEARCHED_NOTIFY = 10007,
+  LINK_CMD_EVENT_NOTIFY = 10008,
   LinkCmdType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   LinkCmdType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 VE_LIBRARY_API bool LinkCmdType_IsValid(int value);
 const LinkCmdType LinkCmdType_MIN = LINK_CMD_ZERO;
-const LinkCmdType LinkCmdType_MAX = LINK_CMD_CAM_REC_OFF_NOTIFY;
+const LinkCmdType LinkCmdType_MAX = LINK_CMD_EVENT_NOTIFY;
 const int LinkCmdType_ARRAYSIZE = LinkCmdType_MAX + 1;
 
 VE_LIBRARY_API const ::google::protobuf::EnumDescriptor* LinkCmdType_descriptor();
@@ -347,8 +407,23 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     kPlayResumeCmd = 705,
     kPlaySeekCmd = 706,
     kPlayStopCmd = 707,
+    kPtzCmd = 801,
+    kCamSearchStartReq = 901,
+    kCamSearchStartResp = 902,
+    kCamSearchStopReq = 903,
+    kCamSearchStopResp = 904,
+    kRegEventReq = 905,
+    kRegEventResp = 906,
+    kUnRegEventReq = 907,
+    kUnRegEventResp = 908,
+    kEventSearchReq = 909,
+    kEventSearchResp = 910,
+    kHandleEventReq = 911,
+    kHandleEventResp = 912,
     kCamAddNotify = 10001,
     kCamIdNotify = 10002,
+    kCamSearchedNotify = 10003,
+    kEvnetNotify = 10004,
     CMD_NOT_SET = 0,
   };
 
@@ -833,6 +908,123 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkPlayStopCmd* release_playstopcmd();
   void set_allocated_playstopcmd(::LinkPlayStopCmd* playstopcmd);
 
+  // .LinkPtzCmd ptzCmd = 801;
+  bool has_ptzcmd() const;
+  void clear_ptzcmd();
+  static const int kPtzCmdFieldNumber = 801;
+  const ::LinkPtzCmd& ptzcmd() const;
+  ::LinkPtzCmd* mutable_ptzcmd();
+  ::LinkPtzCmd* release_ptzcmd();
+  void set_allocated_ptzcmd(::LinkPtzCmd* ptzcmd);
+
+  // .LinkCamSearchStartReq camSearchStartReq = 901;
+  bool has_camsearchstartreq() const;
+  void clear_camsearchstartreq();
+  static const int kCamSearchStartReqFieldNumber = 901;
+  const ::LinkCamSearchStartReq& camsearchstartreq() const;
+  ::LinkCamSearchStartReq* mutable_camsearchstartreq();
+  ::LinkCamSearchStartReq* release_camsearchstartreq();
+  void set_allocated_camsearchstartreq(::LinkCamSearchStartReq* camsearchstartreq);
+
+  // .LinkCamSearchStartResp camSearchStartResp = 902;
+  bool has_camsearchstartresp() const;
+  void clear_camsearchstartresp();
+  static const int kCamSearchStartRespFieldNumber = 902;
+  const ::LinkCamSearchStartResp& camsearchstartresp() const;
+  ::LinkCamSearchStartResp* mutable_camsearchstartresp();
+  ::LinkCamSearchStartResp* release_camsearchstartresp();
+  void set_allocated_camsearchstartresp(::LinkCamSearchStartResp* camsearchstartresp);
+
+  // .LinkCamSearchStopReq camSearchStopReq = 903;
+  bool has_camsearchstopreq() const;
+  void clear_camsearchstopreq();
+  static const int kCamSearchStopReqFieldNumber = 903;
+  const ::LinkCamSearchStopReq& camsearchstopreq() const;
+  ::LinkCamSearchStopReq* mutable_camsearchstopreq();
+  ::LinkCamSearchStopReq* release_camsearchstopreq();
+  void set_allocated_camsearchstopreq(::LinkCamSearchStopReq* camsearchstopreq);
+
+  // .LinkCamSearchStopResp camSearchStopResp = 904;
+  bool has_camsearchstopresp() const;
+  void clear_camsearchstopresp();
+  static const int kCamSearchStopRespFieldNumber = 904;
+  const ::LinkCamSearchStopResp& camsearchstopresp() const;
+  ::LinkCamSearchStopResp* mutable_camsearchstopresp();
+  ::LinkCamSearchStopResp* release_camsearchstopresp();
+  void set_allocated_camsearchstopresp(::LinkCamSearchStopResp* camsearchstopresp);
+
+  // .LinkRegEventReq regEventReq = 905;
+  bool has_regeventreq() const;
+  void clear_regeventreq();
+  static const int kRegEventReqFieldNumber = 905;
+  const ::LinkRegEventReq& regeventreq() const;
+  ::LinkRegEventReq* mutable_regeventreq();
+  ::LinkRegEventReq* release_regeventreq();
+  void set_allocated_regeventreq(::LinkRegEventReq* regeventreq);
+
+  // .LinkRegEventResp regEventResp = 906;
+  bool has_regeventresp() const;
+  void clear_regeventresp();
+  static const int kRegEventRespFieldNumber = 906;
+  const ::LinkRegEventResp& regeventresp() const;
+  ::LinkRegEventResp* mutable_regeventresp();
+  ::LinkRegEventResp* release_regeventresp();
+  void set_allocated_regeventresp(::LinkRegEventResp* regeventresp);
+
+  // .LinkUnRegEventReq unRegEventReq = 907;
+  bool has_unregeventreq() const;
+  void clear_unregeventreq();
+  static const int kUnRegEventReqFieldNumber = 907;
+  const ::LinkUnRegEventReq& unregeventreq() const;
+  ::LinkUnRegEventReq* mutable_unregeventreq();
+  ::LinkUnRegEventReq* release_unregeventreq();
+  void set_allocated_unregeventreq(::LinkUnRegEventReq* unregeventreq);
+
+  // .LinkUnRegEventResp unRegEventResp = 908;
+  bool has_unregeventresp() const;
+  void clear_unregeventresp();
+  static const int kUnRegEventRespFieldNumber = 908;
+  const ::LinkUnRegEventResp& unregeventresp() const;
+  ::LinkUnRegEventResp* mutable_unregeventresp();
+  ::LinkUnRegEventResp* release_unregeventresp();
+  void set_allocated_unregeventresp(::LinkUnRegEventResp* unregeventresp);
+
+  // .LinkEventSearchReq eventSearchReq = 909;
+  bool has_eventsearchreq() const;
+  void clear_eventsearchreq();
+  static const int kEventSearchReqFieldNumber = 909;
+  const ::LinkEventSearchReq& eventsearchreq() const;
+  ::LinkEventSearchReq* mutable_eventsearchreq();
+  ::LinkEventSearchReq* release_eventsearchreq();
+  void set_allocated_eventsearchreq(::LinkEventSearchReq* eventsearchreq);
+
+  // .LinkEventSearchResp eventSearchResp = 910;
+  bool has_eventsearchresp() const;
+  void clear_eventsearchresp();
+  static const int kEventSearchRespFieldNumber = 910;
+  const ::LinkEventSearchResp& eventsearchresp() const;
+  ::LinkEventSearchResp* mutable_eventsearchresp();
+  ::LinkEventSearchResp* release_eventsearchresp();
+  void set_allocated_eventsearchresp(::LinkEventSearchResp* eventsearchresp);
+
+  // .LinkHandleEventReq handleEventReq = 911;
+  bool has_handleeventreq() const;
+  void clear_handleeventreq();
+  static const int kHandleEventReqFieldNumber = 911;
+  const ::LinkHandleEventReq& handleeventreq() const;
+  ::LinkHandleEventReq* mutable_handleeventreq();
+  ::LinkHandleEventReq* release_handleeventreq();
+  void set_allocated_handleeventreq(::LinkHandleEventReq* handleeventreq);
+
+  // .LinkHandleEventResp handleEventResp = 912;
+  bool has_handleeventresp() const;
+  void clear_handleeventresp();
+  static const int kHandleEventRespFieldNumber = 912;
+  const ::LinkHandleEventResp& handleeventresp() const;
+  ::LinkHandleEventResp* mutable_handleeventresp();
+  ::LinkHandleEventResp* release_handleeventresp();
+  void set_allocated_handleeventresp(::LinkHandleEventResp* handleeventresp);
+
   // .LinkCamAddNotify camAddNotify = 10001;
   bool has_camaddnotify() const;
   void clear_camaddnotify();
@@ -850,6 +1042,24 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   ::LinkCamIdNotify* mutable_camidnotify();
   ::LinkCamIdNotify* release_camidnotify();
   void set_allocated_camidnotify(::LinkCamIdNotify* camidnotify);
+
+  // .LinkCamSearchedNotify camSearchedNotify = 10003;
+  bool has_camsearchednotify() const;
+  void clear_camsearchednotify();
+  static const int kCamSearchedNotifyFieldNumber = 10003;
+  const ::LinkCamSearchedNotify& camsearchednotify() const;
+  ::LinkCamSearchedNotify* mutable_camsearchednotify();
+  ::LinkCamSearchedNotify* release_camsearchednotify();
+  void set_allocated_camsearchednotify(::LinkCamSearchedNotify* camsearchednotify);
+
+  // .LinkEventNotify evnetNotify = 10004;
+  bool has_evnetnotify() const;
+  void clear_evnetnotify();
+  static const int kEvnetNotifyFieldNumber = 10004;
+  const ::LinkEventNotify& evnetnotify() const;
+  ::LinkEventNotify* mutable_evnetnotify();
+  ::LinkEventNotify* release_evnetnotify();
+  void set_allocated_evnetnotify(::LinkEventNotify* evnetnotify);
 
   CmdCase cmd_case() const;
   // @@protoc_insertion_point(class_scope:Link.LinkCmd)
@@ -901,8 +1111,23 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
   void set_has_playresumecmd();
   void set_has_playseekcmd();
   void set_has_playstopcmd();
+  void set_has_ptzcmd();
+  void set_has_camsearchstartreq();
+  void set_has_camsearchstartresp();
+  void set_has_camsearchstopreq();
+  void set_has_camsearchstopresp();
+  void set_has_regeventreq();
+  void set_has_regeventresp();
+  void set_has_unregeventreq();
+  void set_has_unregeventresp();
+  void set_has_eventsearchreq();
+  void set_has_eventsearchresp();
+  void set_has_handleeventreq();
+  void set_has_handleeventresp();
   void set_has_camaddnotify();
   void set_has_camidnotify();
+  void set_has_camsearchednotify();
+  void set_has_evnetnotify();
 
   inline bool has_cmd() const;
   void clear_cmd();
@@ -959,8 +1184,23 @@ class VE_LIBRARY_API LinkCmd : public ::google::protobuf::Message /* @@protoc_in
     ::LinkPlayResumeCmd* playresumecmd_;
     ::LinkPlaySeekCmd* playseekcmd_;
     ::LinkPlayStopCmd* playstopcmd_;
+    ::LinkPtzCmd* ptzcmd_;
+    ::LinkCamSearchStartReq* camsearchstartreq_;
+    ::LinkCamSearchStartResp* camsearchstartresp_;
+    ::LinkCamSearchStopReq* camsearchstopreq_;
+    ::LinkCamSearchStopResp* camsearchstopresp_;
+    ::LinkRegEventReq* regeventreq_;
+    ::LinkRegEventResp* regeventresp_;
+    ::LinkUnRegEventReq* unregeventreq_;
+    ::LinkUnRegEventResp* unregeventresp_;
+    ::LinkEventSearchReq* eventsearchreq_;
+    ::LinkEventSearchResp* eventsearchresp_;
+    ::LinkHandleEventReq* handleeventreq_;
+    ::LinkHandleEventResp* handleeventresp_;
     ::LinkCamAddNotify* camaddnotify_;
     ::LinkCamIdNotify* camidnotify_;
+    ::LinkCamSearchedNotify* camsearchednotify_;
+    ::LinkEventNotify* evnetnotify_;
   } cmd_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -3245,6 +3485,630 @@ inline void LinkCmd::set_allocated_playstopcmd(::LinkPlayStopCmd* playstopcmd) {
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.playStopCmd)
 }
 
+// .LinkPtzCmd ptzCmd = 801;
+inline bool LinkCmd::has_ptzcmd() const {
+  return cmd_case() == kPtzCmd;
+}
+inline void LinkCmd::set_has_ptzcmd() {
+  _oneof_case_[0] = kPtzCmd;
+}
+inline void LinkCmd::clear_ptzcmd() {
+  if (has_ptzcmd()) {
+    delete cmd_.ptzcmd_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkPtzCmd& LinkCmd::ptzcmd() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.ptzCmd)
+  return has_ptzcmd()
+      ? *cmd_.ptzcmd_
+      : ::LinkPtzCmd::default_instance();
+}
+inline ::LinkPtzCmd* LinkCmd::mutable_ptzcmd() {
+  if (!has_ptzcmd()) {
+    clear_cmd();
+    set_has_ptzcmd();
+    cmd_.ptzcmd_ = new ::LinkPtzCmd;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.ptzCmd)
+  return cmd_.ptzcmd_;
+}
+inline ::LinkPtzCmd* LinkCmd::release_ptzcmd() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.ptzCmd)
+  if (has_ptzcmd()) {
+    clear_has_cmd();
+    ::LinkPtzCmd* temp = cmd_.ptzcmd_;
+    cmd_.ptzcmd_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_ptzcmd(::LinkPtzCmd* ptzcmd) {
+  clear_cmd();
+  if (ptzcmd) {
+    set_has_ptzcmd();
+    cmd_.ptzcmd_ = ptzcmd;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.ptzCmd)
+}
+
+// .LinkCamSearchStartReq camSearchStartReq = 901;
+inline bool LinkCmd::has_camsearchstartreq() const {
+  return cmd_case() == kCamSearchStartReq;
+}
+inline void LinkCmd::set_has_camsearchstartreq() {
+  _oneof_case_[0] = kCamSearchStartReq;
+}
+inline void LinkCmd::clear_camsearchstartreq() {
+  if (has_camsearchstartreq()) {
+    delete cmd_.camsearchstartreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamSearchStartReq& LinkCmd::camsearchstartreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStartReq)
+  return has_camsearchstartreq()
+      ? *cmd_.camsearchstartreq_
+      : ::LinkCamSearchStartReq::default_instance();
+}
+inline ::LinkCamSearchStartReq* LinkCmd::mutable_camsearchstartreq() {
+  if (!has_camsearchstartreq()) {
+    clear_cmd();
+    set_has_camsearchstartreq();
+    cmd_.camsearchstartreq_ = new ::LinkCamSearchStartReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStartReq)
+  return cmd_.camsearchstartreq_;
+}
+inline ::LinkCamSearchStartReq* LinkCmd::release_camsearchstartreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStartReq)
+  if (has_camsearchstartreq()) {
+    clear_has_cmd();
+    ::LinkCamSearchStartReq* temp = cmd_.camsearchstartreq_;
+    cmd_.camsearchstartreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camsearchstartreq(::LinkCamSearchStartReq* camsearchstartreq) {
+  clear_cmd();
+  if (camsearchstartreq) {
+    set_has_camsearchstartreq();
+    cmd_.camsearchstartreq_ = camsearchstartreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStartReq)
+}
+
+// .LinkCamSearchStartResp camSearchStartResp = 902;
+inline bool LinkCmd::has_camsearchstartresp() const {
+  return cmd_case() == kCamSearchStartResp;
+}
+inline void LinkCmd::set_has_camsearchstartresp() {
+  _oneof_case_[0] = kCamSearchStartResp;
+}
+inline void LinkCmd::clear_camsearchstartresp() {
+  if (has_camsearchstartresp()) {
+    delete cmd_.camsearchstartresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamSearchStartResp& LinkCmd::camsearchstartresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStartResp)
+  return has_camsearchstartresp()
+      ? *cmd_.camsearchstartresp_
+      : ::LinkCamSearchStartResp::default_instance();
+}
+inline ::LinkCamSearchStartResp* LinkCmd::mutable_camsearchstartresp() {
+  if (!has_camsearchstartresp()) {
+    clear_cmd();
+    set_has_camsearchstartresp();
+    cmd_.camsearchstartresp_ = new ::LinkCamSearchStartResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStartResp)
+  return cmd_.camsearchstartresp_;
+}
+inline ::LinkCamSearchStartResp* LinkCmd::release_camsearchstartresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStartResp)
+  if (has_camsearchstartresp()) {
+    clear_has_cmd();
+    ::LinkCamSearchStartResp* temp = cmd_.camsearchstartresp_;
+    cmd_.camsearchstartresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camsearchstartresp(::LinkCamSearchStartResp* camsearchstartresp) {
+  clear_cmd();
+  if (camsearchstartresp) {
+    set_has_camsearchstartresp();
+    cmd_.camsearchstartresp_ = camsearchstartresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStartResp)
+}
+
+// .LinkCamSearchStopReq camSearchStopReq = 903;
+inline bool LinkCmd::has_camsearchstopreq() const {
+  return cmd_case() == kCamSearchStopReq;
+}
+inline void LinkCmd::set_has_camsearchstopreq() {
+  _oneof_case_[0] = kCamSearchStopReq;
+}
+inline void LinkCmd::clear_camsearchstopreq() {
+  if (has_camsearchstopreq()) {
+    delete cmd_.camsearchstopreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamSearchStopReq& LinkCmd::camsearchstopreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStopReq)
+  return has_camsearchstopreq()
+      ? *cmd_.camsearchstopreq_
+      : ::LinkCamSearchStopReq::default_instance();
+}
+inline ::LinkCamSearchStopReq* LinkCmd::mutable_camsearchstopreq() {
+  if (!has_camsearchstopreq()) {
+    clear_cmd();
+    set_has_camsearchstopreq();
+    cmd_.camsearchstopreq_ = new ::LinkCamSearchStopReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStopReq)
+  return cmd_.camsearchstopreq_;
+}
+inline ::LinkCamSearchStopReq* LinkCmd::release_camsearchstopreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStopReq)
+  if (has_camsearchstopreq()) {
+    clear_has_cmd();
+    ::LinkCamSearchStopReq* temp = cmd_.camsearchstopreq_;
+    cmd_.camsearchstopreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camsearchstopreq(::LinkCamSearchStopReq* camsearchstopreq) {
+  clear_cmd();
+  if (camsearchstopreq) {
+    set_has_camsearchstopreq();
+    cmd_.camsearchstopreq_ = camsearchstopreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStopReq)
+}
+
+// .LinkCamSearchStopResp camSearchStopResp = 904;
+inline bool LinkCmd::has_camsearchstopresp() const {
+  return cmd_case() == kCamSearchStopResp;
+}
+inline void LinkCmd::set_has_camsearchstopresp() {
+  _oneof_case_[0] = kCamSearchStopResp;
+}
+inline void LinkCmd::clear_camsearchstopresp() {
+  if (has_camsearchstopresp()) {
+    delete cmd_.camsearchstopresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamSearchStopResp& LinkCmd::camsearchstopresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchStopResp)
+  return has_camsearchstopresp()
+      ? *cmd_.camsearchstopresp_
+      : ::LinkCamSearchStopResp::default_instance();
+}
+inline ::LinkCamSearchStopResp* LinkCmd::mutable_camsearchstopresp() {
+  if (!has_camsearchstopresp()) {
+    clear_cmd();
+    set_has_camsearchstopresp();
+    cmd_.camsearchstopresp_ = new ::LinkCamSearchStopResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchStopResp)
+  return cmd_.camsearchstopresp_;
+}
+inline ::LinkCamSearchStopResp* LinkCmd::release_camsearchstopresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchStopResp)
+  if (has_camsearchstopresp()) {
+    clear_has_cmd();
+    ::LinkCamSearchStopResp* temp = cmd_.camsearchstopresp_;
+    cmd_.camsearchstopresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camsearchstopresp(::LinkCamSearchStopResp* camsearchstopresp) {
+  clear_cmd();
+  if (camsearchstopresp) {
+    set_has_camsearchstopresp();
+    cmd_.camsearchstopresp_ = camsearchstopresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchStopResp)
+}
+
+// .LinkRegEventReq regEventReq = 905;
+inline bool LinkCmd::has_regeventreq() const {
+  return cmd_case() == kRegEventReq;
+}
+inline void LinkCmd::set_has_regeventreq() {
+  _oneof_case_[0] = kRegEventReq;
+}
+inline void LinkCmd::clear_regeventreq() {
+  if (has_regeventreq()) {
+    delete cmd_.regeventreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkRegEventReq& LinkCmd::regeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regEventReq)
+  return has_regeventreq()
+      ? *cmd_.regeventreq_
+      : ::LinkRegEventReq::default_instance();
+}
+inline ::LinkRegEventReq* LinkCmd::mutable_regeventreq() {
+  if (!has_regeventreq()) {
+    clear_cmd();
+    set_has_regeventreq();
+    cmd_.regeventreq_ = new ::LinkRegEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regEventReq)
+  return cmd_.regeventreq_;
+}
+inline ::LinkRegEventReq* LinkCmd::release_regeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regEventReq)
+  if (has_regeventreq()) {
+    clear_has_cmd();
+    ::LinkRegEventReq* temp = cmd_.regeventreq_;
+    cmd_.regeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_regeventreq(::LinkRegEventReq* regeventreq) {
+  clear_cmd();
+  if (regeventreq) {
+    set_has_regeventreq();
+    cmd_.regeventreq_ = regeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regEventReq)
+}
+
+// .LinkRegEventResp regEventResp = 906;
+inline bool LinkCmd::has_regeventresp() const {
+  return cmd_case() == kRegEventResp;
+}
+inline void LinkCmd::set_has_regeventresp() {
+  _oneof_case_[0] = kRegEventResp;
+}
+inline void LinkCmd::clear_regeventresp() {
+  if (has_regeventresp()) {
+    delete cmd_.regeventresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkRegEventResp& LinkCmd::regeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.regEventResp)
+  return has_regeventresp()
+      ? *cmd_.regeventresp_
+      : ::LinkRegEventResp::default_instance();
+}
+inline ::LinkRegEventResp* LinkCmd::mutable_regeventresp() {
+  if (!has_regeventresp()) {
+    clear_cmd();
+    set_has_regeventresp();
+    cmd_.regeventresp_ = new ::LinkRegEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.regEventResp)
+  return cmd_.regeventresp_;
+}
+inline ::LinkRegEventResp* LinkCmd::release_regeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.regEventResp)
+  if (has_regeventresp()) {
+    clear_has_cmd();
+    ::LinkRegEventResp* temp = cmd_.regeventresp_;
+    cmd_.regeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_regeventresp(::LinkRegEventResp* regeventresp) {
+  clear_cmd();
+  if (regeventresp) {
+    set_has_regeventresp();
+    cmd_.regeventresp_ = regeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.regEventResp)
+}
+
+// .LinkUnRegEventReq unRegEventReq = 907;
+inline bool LinkCmd::has_unregeventreq() const {
+  return cmd_case() == kUnRegEventReq;
+}
+inline void LinkCmd::set_has_unregeventreq() {
+  _oneof_case_[0] = kUnRegEventReq;
+}
+inline void LinkCmd::clear_unregeventreq() {
+  if (has_unregeventreq()) {
+    delete cmd_.unregeventreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkUnRegEventReq& LinkCmd::unregeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.unRegEventReq)
+  return has_unregeventreq()
+      ? *cmd_.unregeventreq_
+      : ::LinkUnRegEventReq::default_instance();
+}
+inline ::LinkUnRegEventReq* LinkCmd::mutable_unregeventreq() {
+  if (!has_unregeventreq()) {
+    clear_cmd();
+    set_has_unregeventreq();
+    cmd_.unregeventreq_ = new ::LinkUnRegEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.unRegEventReq)
+  return cmd_.unregeventreq_;
+}
+inline ::LinkUnRegEventReq* LinkCmd::release_unregeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.unRegEventReq)
+  if (has_unregeventreq()) {
+    clear_has_cmd();
+    ::LinkUnRegEventReq* temp = cmd_.unregeventreq_;
+    cmd_.unregeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_unregeventreq(::LinkUnRegEventReq* unregeventreq) {
+  clear_cmd();
+  if (unregeventreq) {
+    set_has_unregeventreq();
+    cmd_.unregeventreq_ = unregeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.unRegEventReq)
+}
+
+// .LinkUnRegEventResp unRegEventResp = 908;
+inline bool LinkCmd::has_unregeventresp() const {
+  return cmd_case() == kUnRegEventResp;
+}
+inline void LinkCmd::set_has_unregeventresp() {
+  _oneof_case_[0] = kUnRegEventResp;
+}
+inline void LinkCmd::clear_unregeventresp() {
+  if (has_unregeventresp()) {
+    delete cmd_.unregeventresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkUnRegEventResp& LinkCmd::unregeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.unRegEventResp)
+  return has_unregeventresp()
+      ? *cmd_.unregeventresp_
+      : ::LinkUnRegEventResp::default_instance();
+}
+inline ::LinkUnRegEventResp* LinkCmd::mutable_unregeventresp() {
+  if (!has_unregeventresp()) {
+    clear_cmd();
+    set_has_unregeventresp();
+    cmd_.unregeventresp_ = new ::LinkUnRegEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.unRegEventResp)
+  return cmd_.unregeventresp_;
+}
+inline ::LinkUnRegEventResp* LinkCmd::release_unregeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.unRegEventResp)
+  if (has_unregeventresp()) {
+    clear_has_cmd();
+    ::LinkUnRegEventResp* temp = cmd_.unregeventresp_;
+    cmd_.unregeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_unregeventresp(::LinkUnRegEventResp* unregeventresp) {
+  clear_cmd();
+  if (unregeventresp) {
+    set_has_unregeventresp();
+    cmd_.unregeventresp_ = unregeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.unRegEventResp)
+}
+
+// .LinkEventSearchReq eventSearchReq = 909;
+inline bool LinkCmd::has_eventsearchreq() const {
+  return cmd_case() == kEventSearchReq;
+}
+inline void LinkCmd::set_has_eventsearchreq() {
+  _oneof_case_[0] = kEventSearchReq;
+}
+inline void LinkCmd::clear_eventsearchreq() {
+  if (has_eventsearchreq()) {
+    delete cmd_.eventsearchreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkEventSearchReq& LinkCmd::eventsearchreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.eventSearchReq)
+  return has_eventsearchreq()
+      ? *cmd_.eventsearchreq_
+      : ::LinkEventSearchReq::default_instance();
+}
+inline ::LinkEventSearchReq* LinkCmd::mutable_eventsearchreq() {
+  if (!has_eventsearchreq()) {
+    clear_cmd();
+    set_has_eventsearchreq();
+    cmd_.eventsearchreq_ = new ::LinkEventSearchReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.eventSearchReq)
+  return cmd_.eventsearchreq_;
+}
+inline ::LinkEventSearchReq* LinkCmd::release_eventsearchreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.eventSearchReq)
+  if (has_eventsearchreq()) {
+    clear_has_cmd();
+    ::LinkEventSearchReq* temp = cmd_.eventsearchreq_;
+    cmd_.eventsearchreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_eventsearchreq(::LinkEventSearchReq* eventsearchreq) {
+  clear_cmd();
+  if (eventsearchreq) {
+    set_has_eventsearchreq();
+    cmd_.eventsearchreq_ = eventsearchreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.eventSearchReq)
+}
+
+// .LinkEventSearchResp eventSearchResp = 910;
+inline bool LinkCmd::has_eventsearchresp() const {
+  return cmd_case() == kEventSearchResp;
+}
+inline void LinkCmd::set_has_eventsearchresp() {
+  _oneof_case_[0] = kEventSearchResp;
+}
+inline void LinkCmd::clear_eventsearchresp() {
+  if (has_eventsearchresp()) {
+    delete cmd_.eventsearchresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkEventSearchResp& LinkCmd::eventsearchresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.eventSearchResp)
+  return has_eventsearchresp()
+      ? *cmd_.eventsearchresp_
+      : ::LinkEventSearchResp::default_instance();
+}
+inline ::LinkEventSearchResp* LinkCmd::mutable_eventsearchresp() {
+  if (!has_eventsearchresp()) {
+    clear_cmd();
+    set_has_eventsearchresp();
+    cmd_.eventsearchresp_ = new ::LinkEventSearchResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.eventSearchResp)
+  return cmd_.eventsearchresp_;
+}
+inline ::LinkEventSearchResp* LinkCmd::release_eventsearchresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.eventSearchResp)
+  if (has_eventsearchresp()) {
+    clear_has_cmd();
+    ::LinkEventSearchResp* temp = cmd_.eventsearchresp_;
+    cmd_.eventsearchresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_eventsearchresp(::LinkEventSearchResp* eventsearchresp) {
+  clear_cmd();
+  if (eventsearchresp) {
+    set_has_eventsearchresp();
+    cmd_.eventsearchresp_ = eventsearchresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.eventSearchResp)
+}
+
+// .LinkHandleEventReq handleEventReq = 911;
+inline bool LinkCmd::has_handleeventreq() const {
+  return cmd_case() == kHandleEventReq;
+}
+inline void LinkCmd::set_has_handleeventreq() {
+  _oneof_case_[0] = kHandleEventReq;
+}
+inline void LinkCmd::clear_handleeventreq() {
+  if (has_handleeventreq()) {
+    delete cmd_.handleeventreq_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkHandleEventReq& LinkCmd::handleeventreq() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.handleEventReq)
+  return has_handleeventreq()
+      ? *cmd_.handleeventreq_
+      : ::LinkHandleEventReq::default_instance();
+}
+inline ::LinkHandleEventReq* LinkCmd::mutable_handleeventreq() {
+  if (!has_handleeventreq()) {
+    clear_cmd();
+    set_has_handleeventreq();
+    cmd_.handleeventreq_ = new ::LinkHandleEventReq;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.handleEventReq)
+  return cmd_.handleeventreq_;
+}
+inline ::LinkHandleEventReq* LinkCmd::release_handleeventreq() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.handleEventReq)
+  if (has_handleeventreq()) {
+    clear_has_cmd();
+    ::LinkHandleEventReq* temp = cmd_.handleeventreq_;
+    cmd_.handleeventreq_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_handleeventreq(::LinkHandleEventReq* handleeventreq) {
+  clear_cmd();
+  if (handleeventreq) {
+    set_has_handleeventreq();
+    cmd_.handleeventreq_ = handleeventreq;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.handleEventReq)
+}
+
+// .LinkHandleEventResp handleEventResp = 912;
+inline bool LinkCmd::has_handleeventresp() const {
+  return cmd_case() == kHandleEventResp;
+}
+inline void LinkCmd::set_has_handleeventresp() {
+  _oneof_case_[0] = kHandleEventResp;
+}
+inline void LinkCmd::clear_handleeventresp() {
+  if (has_handleeventresp()) {
+    delete cmd_.handleeventresp_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkHandleEventResp& LinkCmd::handleeventresp() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.handleEventResp)
+  return has_handleeventresp()
+      ? *cmd_.handleeventresp_
+      : ::LinkHandleEventResp::default_instance();
+}
+inline ::LinkHandleEventResp* LinkCmd::mutable_handleeventresp() {
+  if (!has_handleeventresp()) {
+    clear_cmd();
+    set_has_handleeventresp();
+    cmd_.handleeventresp_ = new ::LinkHandleEventResp;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.handleEventResp)
+  return cmd_.handleeventresp_;
+}
+inline ::LinkHandleEventResp* LinkCmd::release_handleeventresp() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.handleEventResp)
+  if (has_handleeventresp()) {
+    clear_has_cmd();
+    ::LinkHandleEventResp* temp = cmd_.handleeventresp_;
+    cmd_.handleeventresp_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_handleeventresp(::LinkHandleEventResp* handleeventresp) {
+  clear_cmd();
+  if (handleeventresp) {
+    set_has_handleeventresp();
+    cmd_.handleeventresp_ = handleeventresp;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.handleEventResp)
+}
+
 // .LinkCamAddNotify camAddNotify = 10001;
 inline bool LinkCmd::has_camaddnotify() const {
   return cmd_case() == kCamAddNotify;
@@ -3339,6 +4203,102 @@ inline void LinkCmd::set_allocated_camidnotify(::LinkCamIdNotify* camidnotify) {
     cmd_.camidnotify_ = camidnotify;
   }
   // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camIdNotify)
+}
+
+// .LinkCamSearchedNotify camSearchedNotify = 10003;
+inline bool LinkCmd::has_camsearchednotify() const {
+  return cmd_case() == kCamSearchedNotify;
+}
+inline void LinkCmd::set_has_camsearchednotify() {
+  _oneof_case_[0] = kCamSearchedNotify;
+}
+inline void LinkCmd::clear_camsearchednotify() {
+  if (has_camsearchednotify()) {
+    delete cmd_.camsearchednotify_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkCamSearchedNotify& LinkCmd::camsearchednotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.camSearchedNotify)
+  return has_camsearchednotify()
+      ? *cmd_.camsearchednotify_
+      : ::LinkCamSearchedNotify::default_instance();
+}
+inline ::LinkCamSearchedNotify* LinkCmd::mutable_camsearchednotify() {
+  if (!has_camsearchednotify()) {
+    clear_cmd();
+    set_has_camsearchednotify();
+    cmd_.camsearchednotify_ = new ::LinkCamSearchedNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.camSearchedNotify)
+  return cmd_.camsearchednotify_;
+}
+inline ::LinkCamSearchedNotify* LinkCmd::release_camsearchednotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.camSearchedNotify)
+  if (has_camsearchednotify()) {
+    clear_has_cmd();
+    ::LinkCamSearchedNotify* temp = cmd_.camsearchednotify_;
+    cmd_.camsearchednotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_camsearchednotify(::LinkCamSearchedNotify* camsearchednotify) {
+  clear_cmd();
+  if (camsearchednotify) {
+    set_has_camsearchednotify();
+    cmd_.camsearchednotify_ = camsearchednotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.camSearchedNotify)
+}
+
+// .LinkEventNotify evnetNotify = 10004;
+inline bool LinkCmd::has_evnetnotify() const {
+  return cmd_case() == kEvnetNotify;
+}
+inline void LinkCmd::set_has_evnetnotify() {
+  _oneof_case_[0] = kEvnetNotify;
+}
+inline void LinkCmd::clear_evnetnotify() {
+  if (has_evnetnotify()) {
+    delete cmd_.evnetnotify_;
+    clear_has_cmd();
+  }
+}
+inline  const ::LinkEventNotify& LinkCmd::evnetnotify() const {
+  // @@protoc_insertion_point(field_get:Link.LinkCmd.evnetNotify)
+  return has_evnetnotify()
+      ? *cmd_.evnetnotify_
+      : ::LinkEventNotify::default_instance();
+}
+inline ::LinkEventNotify* LinkCmd::mutable_evnetnotify() {
+  if (!has_evnetnotify()) {
+    clear_cmd();
+    set_has_evnetnotify();
+    cmd_.evnetnotify_ = new ::LinkEventNotify;
+  }
+  // @@protoc_insertion_point(field_mutable:Link.LinkCmd.evnetNotify)
+  return cmd_.evnetnotify_;
+}
+inline ::LinkEventNotify* LinkCmd::release_evnetnotify() {
+  // @@protoc_insertion_point(field_release:Link.LinkCmd.evnetNotify)
+  if (has_evnetnotify()) {
+    clear_has_cmd();
+    ::LinkEventNotify* temp = cmd_.evnetnotify_;
+    cmd_.evnetnotify_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LinkCmd::set_allocated_evnetnotify(::LinkEventNotify* evnetnotify) {
+  clear_cmd();
+  if (evnetnotify) {
+    set_has_evnetnotify();
+    cmd_.evnetnotify_ = evnetnotify;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Link.LinkCmd.evnetNotify)
 }
 
 inline bool LinkCmd::has_cmd() const {

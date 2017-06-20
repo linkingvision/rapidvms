@@ -51,6 +51,9 @@ public:
 	StorClient(VidStor &stor, StorFactoryNotifyInterface &pNotify);
 	~StorClient();
 public:
+	bool StorClientStart();
+	
+public:
 	virtual bool ProcessRecvMsg(char *data, size_t data_len);
 	virtual bool ProcessOffline();
 	virtual bool ProcessOnline();
@@ -72,9 +75,7 @@ public:
 	bool PtzCmd(astring strId, u32 action, double param);
 	bool DeleteCam(astring strId);
 	bool AddCam(VidCamera &pParam);
-
-public:
-	void run();
+	
 private:
 	XMutex m_cMutex;
 	VidStor m_stor;
