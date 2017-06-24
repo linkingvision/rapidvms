@@ -20,6 +20,7 @@
 #include "XSDK/XSocket.h"
 #include "XSDK/XSSLSocket.h"
 #include "XSDK/XMD5.h"
+#include "server/eventserver.hpp"
 
 #include "CivetServer.h"
 
@@ -29,7 +30,7 @@ using namespace Poco;
 class LinkHandler
 {
 public:
-	LinkHandler(Factory &pFactory);
+	LinkHandler(Factory &pFactory, VEventServer &pEvent);
 	~LinkHandler();
 public:
 	static bool CallChange(void* pParam, FactoryCameraChangeData data);
@@ -40,6 +41,12 @@ public:
 	bool NotifyCamOffline(FactoryCameraChangeData data);
 	bool NotifyCamRecOn(FactoryCameraChangeData data);
 	bool NotifyCamRecOff(FactoryCameraChangeData data);
+
+	/* Event */
+	void EventHandler1(VEventData data);
+	static void EventHandler(VEventData data, void* pParam);
+	void SearchEventHandler1(VEventData data);
+	static void SearchEventHandler(VEventData data, void* pParam);	
 public:	
 	bool ProcessMsg(std::string &strMsg, CivetServer *server,
 	                        struct mg_connection *conn);
@@ -101,15 +108,30 @@ public:
 	                        struct mg_connection *conn);
 
 
+	/* Cam Search & Event */
+	bool ProcessRegEventReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	bool ProcessUnRegEventReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	bool ProcessHandleEventReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	bool ProcessEventSearchReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	
 	
 	bool SendRespMsg(Link::LinkCmd &resp, CivetServer *server,
 	                        struct mg_connection *conn);
+
+	
 							  
 private:
 	Factory &m_pFactory;
 	astring m_seesionId;
 	bool m_bLogin;
 	bool m_bRegNotify;
+	bool m_bRealEvent;
+	bool m_bSearchEvent;
+	VEventServer &m_pEvent;
 	CivetServer *m_server;
 	struct mg_connection *m_conn;
 };

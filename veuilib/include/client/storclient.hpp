@@ -58,6 +58,8 @@ public:
 	virtual bool ProcessOffline();
 	virtual bool ProcessOnline();
 	bool ProcessCamListResp(Link::LinkCmd &cmd);
+	virtual bool RegRealEvent();
+	virtual bool UnRegRealEvent();
 public:
 	VidCameraList GetVidCameraList();
 	bool GetCameraConf(astring strCameraId, VidCamera &pCam);
@@ -68,8 +70,6 @@ public:
 	bool GetOnline();
 public:
 	bool SearchEvent(astring strId, s64 nStart, s64 nEnd);
-	bool RegRealEvent();
-	bool UnRegRealEvent();
 	bool HandleEvent(astring strId);
 public:
 	bool PtzCmd(astring strId, u32 action, double param);

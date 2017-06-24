@@ -110,6 +110,10 @@ bool StorWebSocketClient::RegRealEvent()
 {
 	return true;
 }
+bool StorWebSocketClient::UnRegRealEvent()
+{
+	return true;
+}
 
 bool StorWebSocketClient::ProcessLoginResp(Link::LinkCmd &cmd, astring strUser, astring strPasswd)
 {

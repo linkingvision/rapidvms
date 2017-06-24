@@ -34,9 +34,9 @@ Add for protobuf
 
 */
 
-LinkHandler::LinkHandler(Factory &pFactory)
+LinkHandler::LinkHandler(Factory &pFactory, VEventServer &pEvent)
 :m_pFactory(pFactory), m_bLogin(false), m_bRegNotify(false), m_server(NULL), 
-m_conn(NULL)
+m_conn(NULL), m_bRealEvent(false), m_bSearchEvent(false), m_pEvent(pEvent)
 {
 	UUIDGenerator uuidCreator;
 	
@@ -47,6 +47,15 @@ LinkHandler::~LinkHandler()
 	if (m_bRegNotify == true)
 	{
 		m_pFactory.UnRegCameraChangeNotify((void *)this);
+	}
+	
+	if (m_bSearchEvent == true)
+	{
+		m_pEvent.UnRegSearchEventNotify((void *)this);
+	}
+	if (m_bRealEvent == true)
+	{
+		m_pEvent.UnRegEventNotify((void *)this);
 	}
 }
 
@@ -184,6 +193,64 @@ bool LinkHandler::NotifyCamRecOff(FactoryCameraChangeData data)
 
 	return true;
 }
+
+void LinkHandler::EventHandler1(VEventData data)
+{
+	Link::LinkCmd cmdResp;
+
+	cmdResp.set_type(Link::LINK_CMD_EVENT_NOTIFY);
+	LinkEventNotify * resp = new LinkEventNotify;
+	VidEvent * pEvent = new VidEvent;
+	
+	pEvent->set_strid(data.strId);
+	pEvent->set_strdevice(data.strDevice);
+	pEvent->set_strdevicename(data.strDeviceName);
+	pEvent->	set_ntime(data.nTime);
+	pEvent->set_strtime(data.strEvttime);
+	pEvent->set_strtype(data.strType);
+	pEvent->set_bsearched(false);
+	pEvent->set_bhandled(data.bHandled);
+	resp->set_allocated_cevent(pEvent);
+
+	cmdResp.set_allocated_evnetnotify(resp);
+
+	SendRespMsg(cmdResp, m_server, m_conn);
+}
+void LinkHandler::EventHandler(VEventData data, void* pParam)
+{
+    LinkHandler *pObj = static_cast<LinkHandler *> (pParam);
+    
+    return pObj->EventHandler1(data);
+}
+void LinkHandler::SearchEventHandler1(VEventData data)
+{
+	Link::LinkCmd cmdResp;
+
+	cmdResp.set_type(Link::LINK_CMD_EVENT_NOTIFY);
+	LinkEventNotify * resp = new LinkEventNotify;
+	VidEvent * pEvent = new VidEvent;
+	
+	pEvent->set_strid(data.strId);
+	pEvent->set_strdevice(data.strDevice);
+	pEvent->set_strdevicename(data.strDeviceName);
+	pEvent->	set_ntime(data.nTime);
+	pEvent->set_strtime(data.strEvttime);
+	pEvent->set_strtype(data.strType);
+	pEvent->set_bsearched(true);
+	pEvent->set_bhandled(data.bHandled);
+	resp->set_allocated_cevent(pEvent);
+
+	cmdResp.set_allocated_evnetnotify(resp);
+
+	SendRespMsg(cmdResp, m_server, m_conn);
+}
+void LinkHandler::SearchEventHandler(VEventData data, void* pParam)
+{
+    LinkHandler *pObj = static_cast<LinkHandler *> (pParam);
+    
+    return pObj->SearchEventHandler1(data);
+}
+
 
 bool LinkHandler::ProcessLoginReq(Link::LinkCmd &req, CivetServer *server,
                         struct mg_connection *conn)
@@ -847,6 +914,121 @@ bool LinkHandler::ProcessPtzCmdReq(Link::LinkCmd &req, CivetServer *server,
 
 	return true;
 }
+
+bool LinkHandler::ProcessRegEventReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_regeventreq())
+	{
+		return false;
+	}
+	m_server = server;
+	m_conn = conn;
+	
+	const LinkRegEventReq& pReq =  req.regeventreq();
+
+	m_pEvent.RegEventNotify(this, LinkHandler::EventHandler);
+	m_bRealEvent = true;
+
+	cmdResp.set_type(Link::LINK_CMD_REG_EVENT_RESP);
+	LinkRegEventResp * resp = new LinkRegEventResp;
+
+	resp->set_bsuccess(true);
+
+	cmdResp.set_allocated_regeventresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;
+}
+bool LinkHandler::ProcessUnRegEventReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_unregeventreq())
+	{
+		return false;
+	}
+
+	const LinkUnRegEventReq& pReq =  req.unregeventreq();
+
+	if (m_bRealEvent)
+	{
+		m_pEvent.UnRegEventNotify(this);
+		m_bRealEvent = false;
+	}
+
+	cmdResp.set_type(Link::LINK_CMD_UNREG_EVENT_RESP);
+	LinkUnRegEventResp * resp = new LinkUnRegEventResp;
+
+	resp->set_bsuccess(true);
+
+	cmdResp.set_allocated_unregeventresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+	
+	return true;
+}
+bool LinkHandler::ProcessHandleEventReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_handleeventreq())
+	{
+		return false;
+	}
+
+	const LinkHandleEventReq& pReq =  req.handleeventreq();
+
+	bool bRet = m_pEvent.HandleEvent(pReq.strid());
+
+	cmdResp.set_type(Link::LINK_CMD_HANDLE_EVENT_RESP);
+	LinkHandleEventResp * resp = new LinkHandleEventResp;
+
+	resp->set_bsuccess(bRet);
+
+	cmdResp.set_allocated_handleeventresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+	
+	return true;
+}
+bool LinkHandler::ProcessEventSearchReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_eventsearchreq())
+	{
+		return false;
+	}
+	m_server = server;
+	m_conn = conn;
+	
+	const LinkEventSearchReq& pReq =  req.eventsearchreq();
+
+	m_pEvent.RegSearchEventNotify(this, (FunctionEventNotify)(LinkHandler::SearchEventHandler));
+	m_pEvent.SearchEvent(pReq.strid(), pReq.nstart(), pReq.nend(), this);
+	m_bSearchEvent = true;
+
+	cmdResp.set_type(Link::LINK_CMD_EVENT_SEARCH_RESP);
+	LinkEventSearchResp * resp = new LinkEventSearchResp;
+
+	resp->set_bsuccess(true);
+
+	cmdResp.set_allocated_eventsearchresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;
+
+
+	return true;
+}
 	
 
 bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
@@ -960,6 +1142,26 @@ bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
 		case Link::LINK_CMD_PTZ_CMD:
 		{
 			return ProcessPtzCmdReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_REG_EVENT_REQ:
+		{
+			return ProcessRegEventReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_UNREG_EVENT_REQ:
+		{
+			return ProcessUnRegEventReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_HANDLE_EVENT_REQ:
+		{
+			return ProcessHandleEventReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_EVENT_SEARCH_REQ:
+		{
+			return ProcessEventSearchReq(cmd, server, conn);
 			break;
 		}
 		default:

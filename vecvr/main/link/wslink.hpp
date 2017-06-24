@@ -28,8 +28,8 @@ public:
 class WSLink : public CivetWebSocketHandler
 {
 public:
-	WSLink(Factory &pFactory)
-	:m_pFactory(pFactory)
+	WSLink(Factory &pFactory, VEventServer &pEvent)
+	:m_pFactory(pFactory),m_pEvent(pEvent)
 	{
 
 	}
@@ -105,11 +105,12 @@ public:
 			}
 		}
 
-		m_map[(void *)conn] = new LinkHandler(m_pFactory);
+		m_map[(void *)conn] = new LinkHandler(m_pFactory, m_pEvent);
 	}								  
 private:
 	LinkHandlerMap m_map;
 	Factory &m_pFactory;
+	VEventServer &m_pEvent;
 };
 
 class WSLinkStream : public CivetWebSocketHandler

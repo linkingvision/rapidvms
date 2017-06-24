@@ -279,17 +279,7 @@ message LinkCamSearchedNotify {
 }
 
 message LinkEventNotify {
-	string strId = 1;
-	string strDevice = 2;
-	string strDeviceName = 3;
-	string strONVIFAddress = 4;
-	string strType = 5;
-	int64 nTime = 6;
-	string strTime = 7;
-	string strDesc = 8;
-	bool bHandled = 9;
-	string strComments = 10;
-	bool bSearched = 11;
+	VidEvent cEvent = 1;
 }
 
 

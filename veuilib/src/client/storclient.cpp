@@ -162,6 +162,20 @@ bool StorClient::ProcessRecvMsg(char *data, size_t data_len)
 			return true;
 			break;
 		}
+		case Link::LINK_CMD_EVENT_NOTIFY:
+		{
+			StorFactoryChangeData data;
+			if (cmd.has_evnetnotify())
+			{
+				const LinkEventNotify& pNotify =  cmd.evnetnotify();
+				VidEvent *pEvent = new VidEvent;
+				*pEvent = pNotify.cevent();
+
+				m_pNotify.OnEvent((VidEvent &)(pNotify.cevent()), m_stor);
+			}
+			return true;
+			break;
+		}
 
 		default:
 		   	return true;
@@ -397,66 +411,150 @@ void StorClient::UpdateVidCameraList(const VidCameraList &list)
 
 bool StorClient::SearchEvent(astring strId, s64 nStart, s64 nEnd)
 {
-	if (m_bOnline == false)
+	XGuard guard(m_cMutex);
+
+	if (Connect() == false)
 	{
 		return false;
 	}
 
-#if 0
-	OAPIClient pClient(m_pSocket);
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_EVENT_SEARCH_REQ);
+	LinkEventSearchReq * req = new LinkEventSearchReq;
+	req->set_strid(strId);
+	req->set_nstart(nStart);
+	req->set_nend(nEnd);
 
-	XGuard guard(m_cMutex);
-	/* Send add cam command  */
-	return pClient.SearchEvent(strId, nStart, nEnd);
-#endif
+	cmd.set_allocated_eventsearchreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+	
 	return true;
 }
 
 bool StorClient::RegRealEvent()
 {
-	if (m_bOnline == false)
+	XGuard guard(m_cMutex);
+
+	if (Connect() == false)
 	{
 		return false;
 	}
-#if 0
-	OAPIClient pClient(m_pSocket);
 
-	XGuard guard(m_cMutex);
-	/* Send add cam command  */
-	return pClient.RegRealEvent();
-#endif 
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_REG_EVENT_REQ);
+	LinkRegEventReq * req = new LinkRegEventReq;
+
+	cmd.set_allocated_regeventreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+	
 	return true;
 }
+
 bool StorClient::UnRegRealEvent()
 {
-	if (m_bOnline == false)
+	XGuard guard(m_cMutex);
+
+	if (Connect() == false)
 	{
 		return false;
 	}
-#if 0
-	OAPIClient pClient(m_pSocket);
 
-	XGuard guard(m_cMutex);
-	/* Send add cam command  */
-	return pClient.UnRegRealEvent();
-#endif
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_UNREG_EVENT_REQ);
+	LinkUnRegEventReq * req = new LinkUnRegEventReq;
+
+	cmd.set_allocated_unregeventreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+	
 	return true;
+	
 }
 
 bool StorClient::HandleEvent(astring strId)
 {
-	if (m_bOnline == false)
+	XGuard guard(m_cMutex);
+
+	if (Connect() == false)
 	{
 		return false;
 	}
 
-#if 0
-	OAPIClient pClient(m_pSocket);
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_HANDLE_EVENT_REQ);
+	LinkHandleEventReq * req = new LinkHandleEventReq;
+	req->set_strid(strId);
 
-	XGuard guard(m_cMutex);
-	/* Send add cam command  */
-	return pClient.HandleEvent(strId);
-#endif
+	cmd.set_allocated_handleeventreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
+	{
+		return false;
+	}
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
+	
 	return true;
 }
 

@@ -68,7 +68,8 @@ public:
 
 	bool SendRegNotifyRequest();
 
-	bool RegRealEvent();
+	virtual bool RegRealEvent();
+	virtual bool UnRegRealEvent();
 
 	bool ProcessLoginResp(Link::LinkCmd &cmd, astring strUser, astring strPasswd);
 	

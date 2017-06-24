@@ -121,10 +121,6 @@ int main(int argc, char *argv[])
 	for (int i=0; i<(sizeof(options)/sizeof(options[0])-1); i++) {
 	    cpp_options.push_back(options[i]);
 	}
-
-	VEWebServer *  pWebServer = new VEWebServer(cpp_options, *pFactory);
-	
-	pFactory->RegUserChangeNotify(pWebServer, WebServerUserChangeNotify);
 	
 	/* Start RTSP server */
 	VRTSPServer *pRTSPServer = new VRTSPServer(*pFactory);
@@ -136,6 +132,10 @@ int main(int argc, char *argv[])
 	/* Init Event framework */
 	VEventMgr *pEventMgr = new VEventMgr(*pFactory, *pEventServer);
 	pEventMgr->Init();
+
+	VEWebServer *  pWebServer = new VEWebServer(cpp_options, *pFactory, *pEventServer);
+	
+	pFactory->RegUserChangeNotify(pWebServer, WebServerUserChangeNotify);
 
 	/* Start the OpenCVR api server */
 	pOAPIServer = new OAPIServerWrapper(*pFactory, *pEventServer);

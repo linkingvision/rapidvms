@@ -42,9 +42,11 @@
 class VEWebServer 
 {
 public:
-	VEWebServer(std::vector<std::string> cpp_options, Factory &pFactory)
+	VEWebServer(std::vector<std::string> cpp_options, Factory &pFactory, 
+			VEventServer &pEvent)
 		:pServer(new CivetServer(cpp_options)), server(*pServer), m_pFactory(pFactory), 
-		h_GetCamList(pFactory), h_GetImage(pFactory), h_vwsapi(pFactory), h_wslink(pFactory),
+		h_GetCamList(pFactory), h_GetImage(pFactory), h_vwsapi(pFactory), 
+		h_wslink(pFactory, pEvent),
 		h_wslinkStream(pFactory)
 	{
 		/* restful api */
