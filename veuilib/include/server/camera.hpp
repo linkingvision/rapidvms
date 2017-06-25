@@ -35,12 +35,6 @@
 
 #include "utility.hpp"
 #include "config/conf.hpp"
-#include "devicemanagement.h"
-#include "ptzmanagement.h"
-#include "media_management/profiles.h"
-#include "media_management/streamuri.h"
-#include "device_management/capabilities.h"
-#include "mediamanagement.h"
 #include "vdb.hpp"
 #include "vhdfsdb.hpp"
 #include "hdfsrecsession.hpp"
@@ -57,7 +51,6 @@
 
 using namespace UtilityLib;
 using namespace std;
-using namespace ONVIF;
 //using namespace Poco;
 
 typedef enum

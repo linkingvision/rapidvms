@@ -73,12 +73,16 @@ bool StorClient::ProcessRecvMsg(char *data, size_t data_len)
 			if (cmd.has_camaddnotify())
 			{
 				const LinkCamAddNotify& pCam =  cmd.camaddnotify();
+
+				VidCamera *pNewCam = m_cCamList.add_cvidcamera();
+				*pNewCam = pCam.ccam();
 				
 				data.cId.set_strcameraid(pCam.ccam().strid());
 				data.cId.set_strstorid(m_stor.strid());
 				data.cCam = pCam.ccam();
 				data.type = STOR_FACTORY_CAMERA_ADD;
 				m_pNotify.CallChange(data);
+				
 			}
 			return true;
 			break;
@@ -89,6 +93,19 @@ bool StorClient::ProcessRecvMsg(char *data, size_t data_len)
 			if (cmd.has_camidnotify())
 			{
 				const LinkCamIdNotify& pCam =  cmd.camidnotify();
+				VidCameraList cameraListNew;
+
+				for (s32 i = 0; i < m_cCamList.cvidcamera_size(); i ++)
+				{
+					const VidCamera &cam = m_cCamList.cvidcamera(i);
+					if (cam.strid() != pCam.strid())
+					{
+						VidCamera *pNewCam = 
+								cameraListNew.add_cvidcamera();
+						*pNewCam = cam;
+					}
+				}
+				m_cCamList = cameraListNew;
 				
 				data.cId.set_strcameraid(pCam.strid());
 				data.cId.set_strstorid(m_stor.strid());

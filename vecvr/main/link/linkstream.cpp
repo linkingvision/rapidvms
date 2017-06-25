@@ -3,7 +3,6 @@
 #include <QtCore/QStorageInfo>
 #include <QtCore/QFileInfoList>
 #include <QtCore/QDir>
-#include "devicesearcher.h"
 #include <QHostAddress>
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
@@ -396,7 +395,7 @@ void LinkStream::DataHandler1(VideoFrame& frame)
 
 	int ret = mg_websocket_write(m_conn, 
 		WEBSOCKET_OPCODE_BINARY, (const char *)m_pSendBuf, frame.dataLen + sizeof(VideoFrameHeader));
-	printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);	
+	//printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);	
 	
 }
 
@@ -487,7 +486,7 @@ bool LinkStream::SendRespMsg(Link::LinkCmd &resp, CivetServer *server,
 	}
 	int ret = mg_websocket_write(conn, 
 		WEBSOCKET_OPCODE_TEXT, strMsg.c_str(), strMsg.length());
-	printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);
+	//printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);
 	if (ret == strMsg.length())
 	{
 		return true;

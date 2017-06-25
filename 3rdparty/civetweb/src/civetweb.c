@@ -10011,7 +10011,7 @@ read_websocket(struct mg_connection *conn,
 	unsigned char mem[4096];
 	unsigned char *data = mem;
 	unsigned char mop; /* mask flag and opcode */
-	double timeout = -1.0;
+	double timeout = 0.5;
 
 	if (conn->ctx->config[WEBSOCKET_TIMEOUT]) {
 		timeout = atoi(conn->ctx->config[WEBSOCKET_TIMEOUT]) / 1000.0;

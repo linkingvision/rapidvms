@@ -25,7 +25,6 @@
 #define _CONF_H_
 
 #include "utility.hpp"
-#include "oapi/oapicmn.hpp"
 #include "config/confver.hpp"
 
 #define LINK_PROTO_WS_PATH "/linkproto"
@@ -179,6 +178,25 @@ typedef struct __VSCConfUserKey {
         strcpy(Key, VSC_CONF_USER_KEY);
     }
 }VSCConfUserKey;
+
+/* Control command */
+typedef enum
+{
+    LAYOUT_MODE_1 = 1,
+    LAYOUT_MODE_2X2,
+    LAYOUT_MODE_3X3,
+    LAYOUT_MODE_4X4,
+    LAYOUT_MODE_6,
+    LAYOUT_MODE_8,
+    LAYOUT_MODE_12p1,
+    LAYOUT_MODE_5x5,
+    LAYOUT_MODE_6x6,
+    LAYOUT_MODE_8x8,
+    LAYOUT_MODE_ONE,
+    LAYOUT_MODE_1x3,
+    LAYOUT_MODE_1p6,
+    LAYOUT_MODE_LAST
+} VideoWallLayoutMode;
 
 #pragma pack(pop)
 

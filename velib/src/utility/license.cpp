@@ -38,6 +38,11 @@ BOOL LicSetLicense(astring &strLicense)
 BOOL LicGetLicenseInfo(astring &strHostId, int &ch, astring &type,
 	astring &startTime, astring &expireTime)
 {
+	strHostId = "RAPIDVMS::COMMUNITY";
+	ch = 512;
+	type = "Community";
+	startTime = std::to_string((s64)(time(NULL)));
+	expireTime = std::to_string((s64)(time(NULL)));
 	return TRUE;
 }
 bool LicRecordRef()

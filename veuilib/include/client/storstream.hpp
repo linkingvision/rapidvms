@@ -39,8 +39,6 @@
 
 #include "cppkit/ck_string.h"
 #include "cppkit/os/ck_sprintf.h"
-#include "oapi/oapic.hpp"
-#include "oapi/oapis.hpp"
 #include "client/storwsclient.hpp"
 
 using namespace cppkit;

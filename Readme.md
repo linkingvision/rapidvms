@@ -47,8 +47,6 @@
 
 ![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstoradd.png)
 
-![](https://raw.githubusercontent.com/xsmart/ve-img/master/opencvr2/opencvrstor.png)
-
 
 #### Release Version ####
 [https://github.com/veyesys/version/tree/master/rapidvms](https://github.com/veyesys/version/tree/master/rapidvms)

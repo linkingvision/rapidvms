@@ -44,9 +44,6 @@
     <Filter Include="include">
       <UniqueIdentifier>{4ffbf49b-e4ab-461f-96b6-90ed8e4acb5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\oapi">
-      <UniqueIdentifier>{d60c978b-3b5c-4ad6-8b47-67885fa2ec3a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\config">
       <UniqueIdentifier>{067dbd58-f674-4d2a-b8d4-7f95fe49e688}</UniqueIdentifier>
     </Filter>
@@ -239,12 +236,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_vidcamadd.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main\vsclogin.cpp">
@@ -692,9 +683,6 @@
     </CustomBuild>
     <CustomBuild Include="..\src\config\vidstor\vidcamadd.ui">
       <Filter>src\config\vidstor</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\oapi\oapis.hpp">
-      <Filter>include\oapi</Filter>
     </CustomBuild>
     <CustomBuild Include="..\src\main\vsclogin.h">
       <Filter>src\main</Filter>
@@ -1146,21 +1134,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_vscview.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapic.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
-      <Filter>include\oapi</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\viditem\vscviditemcam.h">
       <Filter>src\common\viditem</Filter>

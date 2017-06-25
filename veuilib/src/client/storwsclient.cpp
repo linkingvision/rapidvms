@@ -211,7 +211,7 @@ int StorWebSocketClient::WSDataHandler1(struct mg_connection *conn,
                           size_t data_len)
 
 {
-	R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
+	//R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
 	return ProcessRecvMsg(data, data_len);
 }
 

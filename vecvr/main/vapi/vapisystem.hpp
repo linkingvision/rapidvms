@@ -26,7 +26,6 @@
 
 #include "CivetServer.h"
 #include "server/factory.hpp"
-#include "oapi/oapis.hpp"
 #include "cppkit/ck_string.h"
 #include "cppkit/os/ck_sprintf.h"
 #include "rapidmedia/rapidmedia.hpp"
@@ -59,9 +58,6 @@ private:
 	          CivetServer *server,
 	          struct mg_connection *conn)
 	{
-		oapi::OAPICameraListRsp dataList;
-		dataList.Num = 0;
-
 		CameraOnlineMap pCameraOnlineMap;
 		CameraRecMap pCameraRecMap;
 

@@ -1,2 +1,2 @@
-nssm.exe  remove RapidStor64 confirm
+nssm.exe  remove RapidStor confirm
 pause

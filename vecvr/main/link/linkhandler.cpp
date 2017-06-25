@@ -3,7 +3,6 @@
 #include <QtCore/QStorageInfo>
 #include <QtCore/QFileInfoList>
 #include <QtCore/QDir>
-#include "devicesearcher.h"
 #include <QHostAddress>
 #include "XSDK/XMutex.h"
 #include "XSDK/XGuard.h"
@@ -36,7 +35,8 @@ Add for protobuf
 
 LinkHandler::LinkHandler(Factory &pFactory, VEventServer &pEvent)
 :m_pFactory(pFactory), m_bLogin(false), m_bRegNotify(false), m_server(NULL), 
-m_conn(NULL), m_bRealEvent(false), m_bSearchEvent(false), m_pEvent(pEvent)
+m_conn(NULL), m_bRealEvent(false), m_bSearchEvent(false), m_pEvent(pEvent), 
+m_pCamSearch(NULL)
 {
 	UUIDGenerator uuidCreator;
 	
@@ -191,6 +191,25 @@ bool LinkHandler::NotifyCamRecOff(FactoryCameraChangeData data)
 
 	SendRespMsg(cmdResp, m_server, m_conn);
 
+	return true;
+}
+
+bool LinkHandler::NewCam(astring strIP, astring strPort, 
+		astring strModel, astring strONVIFAddr)
+{
+	Link::LinkCmd cmdResp;
+
+	cmdResp.set_type(Link::LINK_CMD_CAM_SEARCHED_NOTIFY);
+	LinkCamSearchedNotify * resp = new LinkCamSearchedNotify;
+	resp->set_strip(strIP);
+	resp->set_strport(strPort);
+	resp->set_strmodel(strModel);
+	resp->set_stronvifaddress(strONVIFAddr);
+
+	cmdResp.set_allocated_camsearchednotify(resp);
+
+	SendRespMsg(cmdResp, m_server, m_conn);
+	
 	return true;
 }
 
@@ -718,6 +737,7 @@ bool LinkHandler::ProcessGetLicReq(Link::LinkCmd &req, CivetServer *server,
 					strStartTime, strExpireTime);
 	resp->set_strlic(strLic);
 	resp->set_strhostid(strHostId);
+	resp->set_nch(nCh);
 	resp->set_strtype(strType);
 	resp->set_strstarttime(strStartTime);
 	resp->set_strexpiretime(strExpireTime);
@@ -911,6 +931,70 @@ bool LinkHandler::ProcessPtzCmdReq(Link::LinkCmd &req, CivetServer *server,
 
 	m_pFactory.PtzAction(pReq.strid(), (FPtzAction)(pReq.naction()), 
 					(float)pReq.nparam());
+
+	return true;
+}
+
+bool LinkHandler::ProcessCamSearchStartReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_camsearchstartreq())
+	{
+		return false;
+	}
+	m_server = server;
+	m_conn = conn;
+	
+	const LinkCamSearchStartReq& pReq =  req.camsearchstartreq();
+
+	if (m_pCamSearch)
+	{
+		delete m_pCamSearch;
+		m_pCamSearch = NULL;
+	}
+
+	m_pCamSearch = new OnvifDisClientMgr(*this);
+	m_pCamSearch->Start();
+
+	cmdResp.set_type(Link::LINK_CMD_CAM_SEARCH_START_RESP);
+	LinkCamSearchStartResp * resp = new LinkCamSearchStartResp;
+
+	resp->set_bsuccess(true);
+
+	cmdResp.set_allocated_camsearchstartresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
+
+	return true;	
+}
+bool LinkHandler::ProcessCamSearchStopReq(Link::LinkCmd &req, CivetServer *server,
+                        struct mg_connection *conn)
+{
+	long long p = (long long)conn;
+	Link::LinkCmd cmdResp;
+	if (!req.has_camsearchstopreq())
+	{
+		return false;
+	}
+
+	const LinkCamSearchStopReq& pReq =  req.camsearchstopreq();
+
+	if (m_pCamSearch)
+	{
+		delete m_pCamSearch;
+		m_pCamSearch = NULL;
+	}
+
+	cmdResp.set_type(Link::LINK_CMD_CAM_SEARCH_STOP_RESP);
+	LinkCamSearchStopResp * resp = new LinkCamSearchStopResp;
+
+	resp->set_bsuccess(true);
+
+	cmdResp.set_allocated_camsearchstopresp(resp);
+
+	SendRespMsg(cmdResp, server, conn);
 
 	return true;
 }
@@ -1149,6 +1233,16 @@ bool LinkHandler::ProcessMsg(std::string &strMsg, CivetServer *server,
 			return ProcessRegEventReq(cmd, server, conn);
 			break;
 		}
+		case Link::LINK_CMD_CAM_SEARCH_START_REQ:
+		{
+			return ProcessCamSearchStartReq(cmd, server, conn);
+			break;
+		}
+		case Link::LINK_CMD_CAM_SEARCH_STOP_REQ:
+		{
+			return ProcessCamSearchStopReq(cmd, server, conn);
+			break;
+		}
 		case Link::LINK_CMD_UNREG_EVENT_REQ:
 		{
 			return ProcessUnRegEventReq(cmd, server, conn);
@@ -1183,7 +1277,7 @@ bool LinkHandler::SendRespMsg(Link::LinkCmd &resp, CivetServer *server,
 	}
 	int ret = mg_websocket_write(conn, 
 		WEBSOCKET_OPCODE_TEXT, strMsg.c_str(), strMsg.length());
-	printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);
+	//printf("%s %d websocket send %d\n", __FILE__, __LINE__, ret);
 	if (ret == strMsg.length())
 	{
 		return true;

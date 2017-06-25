@@ -40,8 +40,6 @@
 
 #include "cppkit/ck_string.h"
 #include "cppkit/os/ck_sprintf.h"
-#include "oapi/oapic.hpp"
-#include "oapi/oapis.hpp"
 #include "client/storwsclient.hpp"
 
 using namespace cppkit;
@@ -58,6 +56,7 @@ public:
 	virtual bool ProcessOnline();
 	virtual bool IsKeep();
 	bool ProcessCamListResp(Link::LinkCmd &cmd);
+	bool ProcessCamSearchedNotify(Link::LinkCmd &cmd);
 
 public:
 	VidCameraList GetVidCameraList();
@@ -89,7 +88,6 @@ public:
 	bool GetStreamList(astring strId, VidStreamList &pList);
 
 private:
-	bool SyncRecv(OAPIHeader &header);
 	bool GetRespMsg(long long lastId, Link::LinkCmd & respCmd);
 
 private:
@@ -99,6 +97,7 @@ private:
 	astring m_strId;
 	VidStor m_stor;
 	Link::LinkCmd m_lastCmd;
+	std::vector<LinkCamSearchedNotify> m_searchedCam;
 };
 
 typedef StorSyncInf* LPStorSyncInf;

@@ -29,13 +29,11 @@
 #include <QtWidgets/QMainWindow>
 #include <QTranslator>
 #include <QTextCodec>
-#include "server/cmnoapiserver.hpp"
 #include "vevent.hpp"
 #include "webserver.hpp"
 #include "vrtspserver.hpp"
 #include "server/eventserver.hpp"
 #include "vonvifdismgr.hpp"
-#include "devicesearcher.h"
 
 Factory *gFactory = NULL;
 astring gAppdir;
@@ -60,8 +58,6 @@ static BOOL WebServerUserChangeNotify(void* pParam, astring strUser, astring str
 
 int main(int argc, char *argv[])
 {
-	int dummy = errno;
-	OAPIServerWrapper *pOAPIServer = NULL;
 	Factory *pFactory = NULL;
 	char *argv1[] = 
 		{"rapidstor", 
@@ -136,10 +132,6 @@ int main(int argc, char *argv[])
 	VEWebServer *  pWebServer = new VEWebServer(cpp_options, *pFactory, *pEventServer);
 	
 	pFactory->RegUserChangeNotify(pWebServer, WebServerUserChangeNotify);
-
-	/* Start the OpenCVR api server */
-	pOAPIServer = new OAPIServerWrapper(*pFactory, *pEventServer);
-	pOAPIServer->start();
 
 	pFactory->start();
 #if 0

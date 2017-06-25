@@ -36,9 +36,6 @@
     <Filter Include="include">
       <UniqueIdentifier>{99559c38-1438-4a46-8052-fd8837ab6044}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\oapi">
-      <UniqueIdentifier>{516ed3a6-db5e-4a3a-a7f5-099188efced0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="main\civetweb">
       <UniqueIdentifier>{c9b38e01-94e6-4147-97b9-665b33852fe3}</UniqueIdentifier>
     </Filter>
@@ -53,9 +50,6 @@
     <CustomBuild Include="..\main\vscmainwindows.qrc">
       <Filter>Resource</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\include\oapi\oapis.hpp">
-      <Filter>include\oapi</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\qrc_vscmainwindows.cpp">
@@ -63,12 +57,6 @@
     </ClCompile>
     <ClCompile Include="..\main\main.cpp">
       <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\main\webserver.cpp">
       <Filter>main</Filter>
@@ -89,21 +77,6 @@
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapic.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
-      <Filter>include\oapi</Filter>
     </ClInclude>
     <ClInclude Include="..\main\link\linkstream.hpp">
       <Filter>main\link</Filter>

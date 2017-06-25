@@ -60,6 +60,11 @@ bool StorSyncInf::ProcessRecvMsg(char *data, size_t data_len)
 			return ProcessLoginResp(cmd, m_stor.struser(), m_stor.strpasswd());
 			break;
 		}
+		case Link::LINK_CMD_CAM_SEARCHED_NOTIFY:
+		{
+			return ProcessCamSearchedNotify(cmd);
+			break;
+		}
 
 		default:
 		   	break;
@@ -68,6 +73,22 @@ bool StorSyncInf::ProcessRecvMsg(char *data, size_t data_len)
 	m_lastCmd = cmd;
 	return true;
 }
+
+bool StorSyncInf::ProcessCamSearchedNotify(Link::LinkCmd &cmd)
+{
+	if (!cmd.has_camsearchednotify())
+	{
+		return false;
+	}
+
+	const LinkCamSearchedNotify& pResp =  cmd.camsearchednotify();
+	
+	XGuard guard(m_cMutex);
+	m_searchedCam.push_back(pResp);
+
+	return true;
+}
+
 
 bool StorSyncInf::ProcessCamListResp(Link::LinkCmd &cmd)
 {
@@ -78,7 +99,7 @@ bool StorSyncInf::ProcessCamListResp(Link::LinkCmd &cmd)
 	
 	const LinkListCamResp& pResp =  cmd.camlistresp();
 
-	XGuard guard(m_cMutex);
+	
 	
 	
 	return true;
@@ -99,7 +120,7 @@ bool StorSyncInf::ProcessOnline()
 
 VidCameraList StorSyncInf::GetVidCameraList()
 {
-	XGuard guard(m_cMutex);
+	
 	
 	VidCameraList empty;
 	if (Connect() == false)
@@ -152,7 +173,7 @@ VidCameraList StorSyncInf::GetVidCameraList()
 
 bool StorSyncInf::GetVidCamera(astring strId, VidCamera &pCam)
 {
-	XGuard guard(m_cMutex);
+	
 	
 	VidCameraList empty;
 	if (Connect() == false)
@@ -207,7 +228,7 @@ bool StorSyncInf::GetVidCamera(astring strId, VidCamera &pCam)
 	
 VidDiskList StorSyncInf::GetVidDiskList()
 {
-	XGuard guard(m_cMutex);
+	
 	
 	VidDiskList empty;
 	if (Connect() == false)
@@ -259,7 +280,7 @@ VidDiskList StorSyncInf::GetVidDiskList()
 
 VidDiskList StorSyncInf::GetSysVidDiskList()
 {
-	XGuard guard(m_cMutex);
+	
 	
 	VidDiskList empty;
 	if (Connect() == false)
@@ -311,7 +332,7 @@ VidDiskList StorSyncInf::GetSysVidDiskList()
 
 bool StorSyncInf::AddVidDisk(VidDisk &pDisk)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -364,7 +385,7 @@ bool StorSyncInf::AddVidDisk(VidDisk &pDisk)
 
 bool StorSyncInf::DeleteVidDisk(astring strId)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -416,7 +437,7 @@ bool StorSyncInf::DeleteVidDisk(astring strId)
 
 bool StorSyncInf::UpdateVidDiskLimit(astring strId, s64 nLimit)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -468,7 +489,7 @@ bool StorSyncInf::UpdateVidDiskLimit(astring strId, s64 nLimit)
 
 bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPasswd)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -520,7 +541,7 @@ bool StorSyncInf::ConfAdminPasswd(astring strOldPasswd, astring strNewPasswd)
 bool StorSyncInf::GetLic(astring &pLic, astring &strHostId, 
 							int &ch, astring &type, astring &startTime, astring &expireTime)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -578,7 +599,7 @@ bool StorSyncInf::GetLic(astring &pLic, astring &strHostId,
 
 bool StorSyncInf::GetVer(astring &pVer, astring &strInfo)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -634,7 +655,7 @@ bool StorSyncInf::ConfLic(astring &pLic)
 	{
 		return false;
 	}
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -686,7 +707,7 @@ bool StorSyncInf::ConfLic(astring &pLic)
 
 bool StorSyncInf::AddCam(VidCamera &pParam)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -739,7 +760,7 @@ bool StorSyncInf::AddCam(VidCamera &pParam)
 
 bool StorSyncInf::SetCamSched(VidCamera &pParam)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -791,7 +812,7 @@ bool StorSyncInf::SetCamSched(VidCamera &pParam)
 }
 bool StorSyncInf::DeleteCam(astring strId)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -843,83 +864,128 @@ bool StorSyncInf::DeleteCam(astring strId)
 
 bool StorSyncInf::CamSearchStart()
 {
-#if 0
-	if (m_bConnected == false)
+	
+
+	if (Connect() == false)
 	{
 		return false;
 	}
-	XGuard guard(m_cMutex);
 
-	/* Send del cam command */
-	OAPIClient pClient(m_pSocket);
-	OAPIHeader header;
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_CAM_SEARCH_START_REQ);
+	LinkCamSearchStartReq * req = new LinkCamSearchStartReq;
 
-	/* Send add cam command  */
-	pClient.CamSearchStart();
-
-	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CAM_SEARCH_START_RSP)
+	cmd.set_allocated_camsearchstartreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
 	{
-		return true;
+		return false;
 	}
-#endif
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
 
-	return false;
+	Link::LinkCmd respCmd;
+
+	if (GetRespMsg(lastMsgId, respCmd) == false)
+	{
+		return false;
+	}
+
+	if (!respCmd.has_camsearchstartresp())
+	{
+		return false;
+	}
+
+	const LinkCamSearchStartResp &pResp =  respCmd.camsearchstartresp();
+	
+	
+	return pResp.bsuccess();
 }
 bool StorSyncInf::CamSearchStop()
 {
-#if 0
-	if (m_bConnected == false)
+	
+
+	if (Connect() == false)
 	{
 		return false;
 	}
-	XGuard guard(m_cMutex);
 
-	/* Send del cam command */
-	OAPIClient pClient(m_pSocket);
-	OAPIHeader header;
+	Link::LinkCmd cmd;
+	cmd.set_type(Link::LINK_CMD_CAM_SEARCH_STOP_REQ);
+	LinkCamSearchStopReq * req = new LinkCamSearchStopReq;
 
-	/* Send add cam command  */
-	pClient.CamSearchStop();
-
-	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CAM_SEARCH_STOP_RSP)
+	cmd.set_allocated_camsearchstopreq(req);
+	std::string strMsg;
+	::google::protobuf::util::Status status = 
+		::google::protobuf::util::MessageToJsonString(cmd, &strMsg);
+	if (!status.ok())
 	{
-		return true;
+		return false;
 	}
-#endif
+	long long lastMsgId = 0;
+	/* only lock here */
+	{
+		//std::lock_guard<std::mutex> guard(m_lock);
+		lastMsgId = m_msgId;
+	}
+	
+	if (SendMsg(strMsg) == false)
+	{
+		return false;
+	}
 
-	return false;
+	Link::LinkCmd respCmd;
+
+	if (GetRespMsg(lastMsgId, respCmd) == false)
+	{
+		return false;
+	}
+
+	if (!respCmd.has_camsearchstopresp())
+	{
+		return false;
+	}
+
+	const LinkCamSearchStopResp &pResp =  respCmd.camsearchstopresp();
+	
+	
+	return pResp.bsuccess();
 }
 bool StorSyncInf::CamSearchGet(astring &strIP, astring &strPort, astring &strModel, 
 				astring &strOnvifAddr)
 {
-#if 0
 	XGuard guard(m_cMutex);
 
-	/* Send del cam command */
-	OAPIClient pClient(m_pSocket);
-	
-	OAPIHeader header;
-	if (SyncRecv(header) == true 
-			&& header.cmd == OAPI_CAM_SAERCH_PUSH)
-	{	
-		oapi::OAPICamSearchedNotify pCam;
-		pClient.ParseSearchNotify(m_pRecv, header.length, pCam);
-		strIP = pCam.strIP;
-		strPort = pCam.strPort;
-		strModel = pCam.strModel;
-		strOnvifAddr = pCam.strONVIFAddress;
-		return true;
+	if (m_searchedCam.size() <= 0)
+	{
+		return false;
 	}
-#endif
 
-	return false;
+	LinkCamSearchedNotify cam = m_searchedCam.back();
+	m_searchedCam.pop_back();
+
+	strIP = cam.strip();
+	strPort = cam.strport();
+	strModel = cam.strmodel();
+	strOnvifAddr = cam.stronvifaddress();
+
+	return true;
 }
 
 bool StorSyncInf::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, RecordItemMap &pMap)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -988,7 +1054,7 @@ bool StorSyncInf::SearchRec(astring strId, u32 nStart, u32 nEnd, u32 nType, Reco
 
 bool StorSyncInf::SearchHasRec(astring strId, HasRecordItemMap &pMap)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{
@@ -1003,7 +1069,6 @@ bool StorSyncInf::SearchHasRec(astring strId, HasRecordItemMap &pMap)
 	HasRecordItemMap::iterator it = pMap.begin(); 
 	for(; it!=pMap.end(); ++it)
 	{
-		oapi::OAPIHasRecordItem item;
 		LinkHasRecordItem *pItem = pList->add_chasrec();
 		pItem->set_nid((*it).first);
 		pItem->set_nstart((*it).second.start);
@@ -1071,7 +1136,7 @@ bool StorSyncInf::SearchHasRec(astring strId, HasRecordItemMap &pMap)
 
 bool StorSyncInf::GetStreamList(astring strId, VidStreamList &pList)
 {
-	XGuard guard(m_cMutex);
+	
 
 	if (Connect() == false)
 	{

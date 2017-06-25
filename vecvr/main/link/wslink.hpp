@@ -46,7 +46,7 @@ public:
 	                        char *data,
 	                        size_t data_len)
 	{
-		R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
+		//R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
 		std::string strMsg(data, data_len);
 		
 		LinkHandlerMap::iterator it = m_map.begin(); 
@@ -134,7 +134,7 @@ public:
 	                        char *data,
 	                        size_t data_len)
 	{
-		R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
+		//R_LOG(logRINFO,"%s %s %d %d\n",__FUNCTION__, __FILE__, __LINE__, data_len);
 		std::string strMsg(data, data_len);
 		
 		LinkStreamMap::iterator it = m_map.begin(); 

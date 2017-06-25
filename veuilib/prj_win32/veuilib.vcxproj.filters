@@ -78,9 +78,6 @@
     <Filter Include="src\config">
       <UniqueIdentifier>{054b3287-1adb-4356-9e0e-de3d016a394f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\oapi">
-      <UniqueIdentifier>{0f5dacd9-cbed-4273-a711-ab54e4203a87}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3rdparty">
       <UniqueIdentifier>{3e306ec8-a7c8-451c-9e68-dbe425b261f7}</UniqueIdentifier>
     </Filter>
@@ -386,18 +383,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_storfactory.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_cmnoapiserver.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cmnoapiserver.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_cmnserver.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cmnserver.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_eventserver.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -434,12 +419,6 @@
     <ClCompile Include="..\src\server\camera.cpp">
       <Filter>src\server</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\server\cmnoapiserver.cpp">
-      <Filter>src\server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\server\cmnserver.cpp">
-      <Filter>src\server</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\server\eventserver.cpp">
       <Filter>src\server</Filter>
     </ClCompile>
@@ -448,12 +427,6 @@
     </ClCompile>
     <ClCompile Include="..\..\include\config\vidconf.pb.cc">
       <Filter>include\config</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_oapis.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_oapis.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\..\include\config\linkproto.pb.cc">
       <Filter>include\config</Filter>
@@ -619,20 +592,11 @@
     <CustomBuild Include="..\include\client\storsyncinf.hpp">
       <Filter>include\client</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\include\server\cmnoapiserver.hpp">
-      <Filter>include\server</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\include\server\cmnserver.hpp">
-      <Filter>include\server</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\include\server\eventserver.hpp">
       <Filter>include\server</Filter>
     </CustomBuild>
     <CustomBuild Include="..\include\server\factory.hpp">
       <Filter>include\server</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\include\oapi\oapis.hpp">
-      <Filter>include\oapi</Filter>
     </CustomBuild>
     <CustomBuild Include="..\include\client\storstream.hpp">
       <Filter>include\client</Filter>
@@ -713,21 +677,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\config\vidconf.pb.h">
       <Filter>include\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapic.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicimpl.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapicmn.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapiproto.hpp">
-      <Filter>include\oapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\oapi\oapisimpl.hpp">
-      <Filter>include\oapi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\config\linkproto.pb.h">
       <Filter>include\config</Filter>

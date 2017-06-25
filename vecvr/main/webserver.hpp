@@ -36,7 +36,7 @@
 #include <unistd.h>
 #endif
 #define DOCUMENT_ROOT "."
-#define PORT "9081"
+#define PORT "9080"
 
 
 class VEWebServer 

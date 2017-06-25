@@ -21,13 +21,14 @@
 #include "XSDK/XSSLSocket.h"
 #include "XSDK/XMD5.h"
 #include "server/eventserver.hpp"
+#include "onvifclidis.hpp"
 
 #include "CivetServer.h"
 
-using namespace Poco;
+//using namespace Poco;
 
 
-class LinkHandler
+class LinkHandler: public CamSearchNotify
 {
 public:
 	LinkHandler(Factory &pFactory, VEventServer &pEvent);
@@ -41,6 +42,8 @@ public:
 	bool NotifyCamOffline(FactoryCameraChangeData data);
 	bool NotifyCamRecOn(FactoryCameraChangeData data);
 	bool NotifyCamRecOff(FactoryCameraChangeData data);
+	virtual bool NewCam(astring strIP, astring strPort, 
+			astring strModel, astring strONVIFAddr);
 
 	/* Event */
 	void EventHandler1(VEventData data);
@@ -109,6 +112,10 @@ public:
 
 
 	/* Cam Search & Event */
+	bool ProcessCamSearchStartReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
+	bool ProcessCamSearchStopReq(Link::LinkCmd &req, CivetServer *server,
+	                        struct mg_connection *conn);
 	bool ProcessRegEventReq(Link::LinkCmd &req, CivetServer *server,
 	                        struct mg_connection *conn);
 	bool ProcessUnRegEventReq(Link::LinkCmd &req, CivetServer *server,
@@ -134,6 +141,8 @@ private:
 	VEventServer &m_pEvent;
 	CivetServer *m_server;
 	struct mg_connection *m_conn;
+
+	OnvifDisClientMgr *m_pCamSearch;
 };
 
 

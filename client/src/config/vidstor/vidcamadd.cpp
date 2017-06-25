@@ -75,6 +75,9 @@ VidCamAdd::VidCamAdd(VidStor &pStor, ClientFactory &pFactory, QWidget *parent, Q
 	connect( this->ui.pushButtonSelect, SIGNAL( clicked() ), this, SLOT(SlotSelectAll()));
 	/* Set Stor Name */
 	ui.storName->setText(m_sStor.strname().c_str());
+
+	/* Start search when load */
+	SlotStartSearch();
 }
 
 void VidCamAdd::SlotRadioButtonClicked()
@@ -381,9 +384,19 @@ void VidCamAdd::SlotSearchRecv()
 		return;
 	}
 
-	if (m_syncInfSearch->CamSearchGet(strIP, strPort, strModel, strOnvifAddr) == false)
+	bool bGotCam = false;
+	/* Loop to get the searched camera */
+	while(1)
 	{
-		return ;
+		if (m_syncInfSearch->CamSearchGet(strIP, strPort, strModel, strOnvifAddr) == false)
+		{
+			break ;
+		}
+		bGotCam = true;
+	}
+	if (bGotCam == false)
+	{
+		return;
 	}
 	
 	if (CheckIPPort((s8 *)strIP.c_str(), (s8 *)strPort.c_str()) == true)
@@ -407,11 +420,14 @@ void VidCamAdd::SlotSearchRecv()
 	ui.tableSearch->setItem(insertRow, 7, new QTableWidgetItem("admin"));
 }
 
+
+/* Auto stop if the search is started, and start when the page is load */
 void VidCamAdd::SlotStartSearch()
 {
 	XGuard guard(m_cMutex);
 	if (m_bStarted == true)
 	{
+#if 0
 		QMessageBox msgBox(this);
 		//Set text
 		msgBox.setWindowTitle(tr("Warning"));
@@ -429,6 +445,9 @@ void VidCamAdd::SlotStartSearch()
 		int ret = msgBox.exec();
 
 		return;
+#else
+		SlotStopSearch();
+#endif
 	}
 
 	m_bStarted = true;
@@ -447,6 +466,7 @@ void VidCamAdd::SlotStopSearch()
 	XGuard guard(m_cMutex);
 	if (m_bStarted == false)
 	{
+#if 0
 		QMessageBox msgBox(this);
 		//Set text
 		msgBox.setWindowTitle(tr("Warning"));
@@ -464,6 +484,10 @@ void VidCamAdd::SlotStopSearch()
 		int ret = msgBox.exec();
 
 		return;
+#else
+		/* Just return  */
+		return ;
+#endif
 	}
 
 	m_syncInfSearch->CamSearchStop();

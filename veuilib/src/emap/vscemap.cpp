@@ -38,6 +38,7 @@
 #include <QMimeData>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QBuffer>
 #include "vscvwidget.h"
 
 static Factory *m_pFactory = NULL;

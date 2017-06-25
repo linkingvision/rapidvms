@@ -31,7 +31,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QTranslator>
 #include <QTextCodec>
-#include "server/cmnoapiserver.hpp"
 #include "vstyle.hpp"
 #include "vsclogin.h"
 #include "vtaskmgr.hpp"

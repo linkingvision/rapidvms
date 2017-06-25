@@ -1,0 +1,4 @@
+FFmpeg 
+	Could not create temporary library, delete the ffmpeg and unzip a clean one
+civtweb:
+	change the read_websocket timeout -1 to 0.5
