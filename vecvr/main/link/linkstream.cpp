@@ -1,4 +1,4 @@
-#include "link/LinkStream.hpp"
+#include "link/linkstream.hpp"
 #include "config/vidconf.pb.h"
 #include <QtCore/QStorageInfo>
 #include <QtCore/QFileInfoList>
@@ -137,7 +137,8 @@ bool LinkStream::ProcessLoginReq(Link::LinkCmd &req, CivetServer *server,
 	astring realPasswd = "admin";
 
 	SimpleCrypt crypt;
-	QString strDePasswd = m_pFactory.GetAdminPasswd(realPasswd);
+	// here has error QString strDePasswd = m_pFactory.GetAdminPasswd(realPasswd);
+	bool bRet = m_pFactory.GetAdminPasswd(realPasswd);
 
 	//realPasswd = crypt.decryptToString(strDePasswd).toStdString();
 	realPasswd = "admin";
