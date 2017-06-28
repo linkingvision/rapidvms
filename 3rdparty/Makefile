@@ -2,13 +2,13 @@
 
 ifeq ($(strip $(PRJ_CROSS)), )
 ifeq ($(strip $(VE_OS)), macos)
-all:poco_build ffmpeg_build openssl_build_macos leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build live555_build 
+all:poco_build ffmpeg_build openssl_build_macos leveldb_build qt_build curl_build protobuf_build live555_build 
 else
-all:poco_build ffmpeg_build openssl_build leveldb_build qt_build  qtxmlpatterns_build  onvifc_build curl_build protobuf_build  live555_build 
+all:poco_build ffmpeg_build openssl_build leveldb_build qt_build curl_build protobuf_build  live555_build 
 endif
 
 else
-all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  onvifc_build curl_build_cross protobuf_build_cross live555_build_cross
+all:poco_build_cross ffmpeg_build_cross openssl_build_cross leveldb_build qt_build_cross  qtxmlpatterns_build  curl_build_cross protobuf_build_cross live555_build_cross
 endif
 
 
