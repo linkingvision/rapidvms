@@ -290,7 +290,8 @@ bool LinkHandler::ProcessLoginReq(Link::LinkCmd &req, CivetServer *server,
 	astring realPasswd = "admin";
 
 	SimpleCrypt crypt;
-	QString strDePasswd = m_pFactory.GetAdminPasswd(realPasswd);
+	// here has error QString strDePasswd = m_pFactory.GetAdminPasswd(realPasswd);
+	bool bRet = m_pFactory.GetAdminPasswd(realPasswd);
 
 	//realPasswd = crypt.decryptToString(strDePasswd).toStdString();
 	realPasswd = "admin";
