@@ -68,11 +68,18 @@ IFLAGS 	= -I. -I./include/utility\
 		-I../3rdparty/poco/Foundation/include\
 		-I../3rdparty/poco/Data/SQLite/include\
 		-I../3rdparty/spdlog/include\
+		-I../3rdparty/live555/live555/include\
+		-I../3rdparty/live555/BasicUsageEnvironment/include\
+		-I../3rdparty/live555/groupsock/include\
+		-I../3rdparty/live555/liveMedia/include\
+		-I../3rdparty/live555/UsageEnvironment/include\
+		-I../onvif/include\
+		-I../onvif/include/video\
 		-I$(VE_PATH)/output/$(VE_INSTALL_DIR)/include\
 
 LDFLAGS += -L$(VE_PATH)/output/$(VE_INSTALL_DIR)/lib\
 		-lPocoDataSQLite -lPocoData  -lPocoFoundation -lPocoNet\
-		-lavfilter -lavformat -lavcodec -lavutil -lswscale 
+		-llive555 -lavfilter -lavformat -lavcodec -lavutil -lswscale 
 LDFLAGS += -fpic -lpthread -ldl -lstdc++ -lm  -lcrypto -lssl
 ifneq ($(strip $(VE_OS)), macos)
 LDFLAGS += -Wl,-Bdynamic 
@@ -219,6 +226,10 @@ LIB_SOURCES =   ./src/ffkit/argb24_to_yuv420p.o\
 				./src/rapidmedia/rapidffmpegdec.o\
 				./src/rapidmedia/rapidmedia.o\
 				./src/rapidmedia/rapidmediadata.o\
+				../onvif/include/video/h5s_h264_sink.o\
+				../onvif/include/video/h5slib.o\
+				../onvif/include/video/h264_bit_reader.o\
+				../onvif/include/video/h264_parser.o\
 
 ifneq ($(strip $(VE_OS)), macos)
 LIB_SOURCES += ./src/utility/epollwrapper.o

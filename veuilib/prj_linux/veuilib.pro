@@ -5,11 +5,11 @@
 TEMPLATE = lib
 TARGET = veuilib
 CONFIG += plugin c++11
-QMAKE_CXXFLAGS += -std=c++11 -O2 -Wall -Wextra -pedantic -g 
+QMAKE_CXXFLAGS += -std=c++11 -O2 -Wall -Wextra -pedantic -g -include utility/type.hpp 
 DESTDIR = ./
-QT += core sql network xml xmlpatterns   widgets gui printsupport concurrent
+QT += core sql network xml  widgets gui printsupport concurrent
 CONFIG += debug
-DEFINES +=  LINUX_OS QT_DLL QT_NETWORK_LIB QT_HELP_LIB QT_OPENGL_LIB QT_SCRIPT_LIB QT_WIDGETS_LIB QT_XML_LIB QT_XMLPATTERNS_LIB VEUILIB_LIB WITH_OPENSSL WITH_DOM WITH_PURE_VIRTUAL VE_EXPORTS
+DEFINES += USE_WEBSOCKET PROTOBUF_USE_DLLS LINUX_OS QT_DLL QT_NETWORK_LIB QT_HELP_LIB QT_OPENGL_LIB QT_SCRIPT_LIB QT_WIDGETS_LIB QT_XML_LIB QT_XMLPATTERNS_LIB VEUILIB_LIB WITH_OPENSSL WITH_DOM WITH_PURE_VIRTUAL VE_EXPORTS
 #linux-cross-g++ {
 # DEFINES +=ARM_LINUX
 #}
@@ -33,6 +33,7 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../../3rdparty/poco/Util/include \
     ./../../3rdparty/onvifc/include \
     ./../../veuilib/rtspserver/include \
+    ./../../3rdparty/civetweb/include \
     ./../include \
     ./../src \
     ./../src/vvidwidget \
@@ -71,7 +72,6 @@ LIBS += \
     -lavutil \
     -lswscale \
     -lleveldb \
-    -lonvifc \
     -lvelib \
     -lonvifcpplib \
     -lPocoFoundation\
@@ -99,4 +99,6 @@ OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
 include(../prj_linux/veuilib.pri)
+SOURCES += ../../include/config/linksystem.pb.cc
+SOURCES += ../../include/config/linkproto.pb.cc
 SOURCES += ../../include/config/vidconf.pb.cc
