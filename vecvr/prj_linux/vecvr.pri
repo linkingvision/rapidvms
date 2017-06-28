@@ -7,32 +7,13 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ../prj_win32/resource.h \
-    ../../include/config/conf.hpp \
-    ../../include/config/confdb.hpp \
-    ../../include/config/confdbimpl.hpp \
-    ../../include/config/sysdb.hpp \
-    ../../include/config/vidconf.pb.h \
-    ../../include/server/camera.hpp \
-    ../../include/server/cameraimpl.hpp \
-    ../../include/server/cmnoapiserverimpl.hpp \
-    ../../include/server/cmnserverimpl.hpp \
-    ../../include/server/eventserverimpl.hpp \
-    ../../include/server/factoryimpl.hpp \
-    ../../include/server/hdddevice.hpp \
-    ../../include/server/cmnoapiserver.hpp \
-    ../../include/server/cmnserver.hpp \
-    ../../include/server/factory.hpp \
-    ../../include/server/eventserver.hpp \
-    ../../include/oapi/oapic.hpp \
-    ../../include/oapi/oapicimpl.hpp \
-    ../../include/oapi/oapicmn.hpp \
-    ../../include/oapi/oapiproto.hpp \
-    ../../include/oapi/oapisimpl.hpp \
-    ../../include/oapi/oapis.hpp
+HEADERS += ../main/link/linkstream.hpp \
+    ../prj_win32/resource.h
 SOURCES += ../main/main.cpp \
     ../main/webserver.cpp \
     ../../3rdparty/civetweb/src/CivetServer.cpp \
-    ../../3rdparty/civetweb/src/civetweb.c
+    ../../3rdparty/civetweb/src/civetweb.c \
+    ../main/link/linkhandler.cpp \
+    ../main/link/linkstream.cpp
 TRANSLATIONS += ../main/translations/opencvr_zh.ts
 RESOURCES += ../main/vscmainwindows.qrc
