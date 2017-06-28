@@ -21,17 +21,18 @@ HEADERS += ../src/event/vscevent.h \
     ../src/vvidwidget/vscptzcontrol.h \
     ../src/cmnui/vvidtimeline.h \
     ../src/cmnui/vschedtable.hpp \
-	../src/cmnui/vmottable.hpp \
+    ../src/cmnui/vmottable.hpp \
     ../src/vvidpb/vscdateset.h \
     ../src/vvidpb/vscexport.h \
     ../src/vvidpb/vscpbexport.h \
     ../include/vevent.hpp \
+    ../include/vonvifdismgr.hpp \
     ../include/simplecrypt.hpp \
     ../include/vstyle.hpp \
     ../include/vvidpbwall.h \
     ../include/vemap.hpp \
     ../include/vschedconf.hpp \
-	../include/vmotconf.hpp \
+    ../include/vmotconf.hpp \
     ../include/vvidpb1.h \
     ../include/vvidpbcontrol.h \
     ../include/vvidpbwidget.h \
@@ -40,23 +41,29 @@ HEADERS += ../src/event/vscevent.h \
     ../include/vscloading.hpp \
     ../include/vscvideowall.h \
     ../include/vscvwidget.h \
-	../include/vonvifdismgr.hpp \
-    ../../include/client/storsyncinfimpl.hpp \
-    ../../include/client/clientfactoryimpl.hpp \
-    ../../include/client/storclientimpl.hpp \
-    ../../include/client/storcmn.hpp \
-    ../../include/client/storfactoryimpl.hpp \
-    ../../include/client/storstreamimpl.hpp \
-    ../../include/client/storsyncinf.hpp \
-    ../../include/client/clientfactory.hpp \
-    ../../include/client/storclient.hpp \
-    ../../include/client/storfactory.hpp \
-    ../../include/client/storstream.hpp
+    ../include/vvidonvif/vvidonvifc.hpp \
+    ../include/client/storcmn.hpp \
+    ../include/client/clientfactory.hpp \
+    ../include/client/storclient.hpp \
+    ../include/client/storfactory.hpp \
+    ../include/client/storsyncinf.hpp \
+    ../include/client/storstream.hpp \
+    ../include/server/camera.hpp \
+    ../include/server/hdddevice.hpp \
+    ../include/server/eventserver.hpp \
+    ../include/server/factory.hpp \
+    ../../include/config/linkproto.pb.h \
+    ../../include/config/linksystem.pb.h \
+    ../../include/config/vidconf.pb.h \
+    ../include/config/clientconfdb.hpp \
+    ../include/config/confdb.hpp \
+    ../include/config/sysdb.hpp \
+    ../include/config/videnv.hpp
 SOURCES += ../src/event/vscevent.cpp \
     ../src/event/vsmartmotion.cpp \
+    ../src/vservice/vonvifdismgr.cpp \
     ../src/vservice/vrtspserver.cpp \
     ../src/vservice/vtaskmgr.cpp \
-	../src/vservice/vonvifdismgr.cpp \
     ../src/emap/vsccontrolsoverlay.cpp \
     ../src/emap/vscemap.cpp \
     ../src/emap/vscemapbutton.cpp \
@@ -70,11 +77,11 @@ SOURCES += ../src/event/vscevent.cpp \
     ../src/vvidwidget/vscvideowall.cpp \
     ../src/vvidwidget/vscvwidget.cpp \
     ../src/cmnui/simplecrypt.cpp \
+    ../src/cmnui/vmotconf.cpp \
+    ../src/cmnui/vmottable.cpp \
     ../src/cmnui/vsccalculate.cpp \
     ../src/cmnui/vschedconf.cpp \
     ../src/cmnui/vschedtable.cpp \
-    ../src/cmnui/vmotconf.cpp \
-    ../src/cmnui/vmottable.cpp \
     ../src/cmnui/vscloading.cpp \
     ../src/cmnui/vstyle.cpp \
     ../src/cmnui/vvidtimeline.cpp \
@@ -84,15 +91,28 @@ SOURCES += ../src/event/vscevent.cpp \
     ../src/vvidpb/vvidpb1.cpp \
     ../src/vvidpb/vvidpbcontrol.cpp \
     ../src/vvidpb/vvidpbwall.cpp \
-    ../src/vvidpb/vvidpbwidget.cpp\
-	../src/vvidonvif/vvidonvifc.cpp
+    ../src/vvidpb/vvidpbwidget.cpp \
+    ../src/vvidonvif/vvidonvifc.cpp \
+    ../src/client/clientfactory.cpp \
+    ../src/client/storclient.cpp \
+    ../src/client/storfactory.cpp \
+    ../src/client/storstream.cpp \
+    ../src/client/storsyncinf.cpp \
+    ../src/client/storwsclient.cpp \
+    ../src/server/camera.cpp \
+    ../src/server/eventserver.cpp \
+    ../src/server/factory.cpp \
+    ../src/config/clientconfdb.cpp \
+    ../src/config/confdb.cpp \
+    ../../3rdparty/civetweb/src/CivetServer.cpp \
+    ../../3rdparty/civetweb/src/civetweb.c
 FORMS += ../src/emap/vscemapcam.ui \
     ../src/emap/vscemap.ui \
     ../src/vvidwidget/vscptzcontrol.ui \
     ../src/vvidwidget/vscvideoinfo.ui \
     ../src/vvidwidget/vscvwidget.ui \
     ../src/cmnui/vschedconf.ui \
-	../src/cmnui/vmotconf.ui \
+    ../src/cmnui/vmotconf.ui \
     ../src/vvidpb/vscdateset.ui \
     ../src/vvidpb/vscexport.ui \
     ../src/vvidpb/vvidpbcontrol.ui \
