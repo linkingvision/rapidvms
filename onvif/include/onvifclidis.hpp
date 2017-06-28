@@ -73,7 +73,8 @@ public:
 	{
 		std::vector<std::string> vecNetInterfaces;
 		std::vector<std::string> ipv4;
-		
+	
+		int m_lMaxAdaptersNum = 0;	
 #if (defined(_WIN32) || defined(_WIN64))
 		ULONG ulLen = 0;
 		PIP_ADAPTER_INFO lpAdapterInfo = NULL, lpNextData = NULL;
@@ -96,7 +97,6 @@ public:
 		    return vecNetInterfaces;
 		}
 
-		int m_lMaxAdaptersNum = 0;
 
 		for (lpNextData = lpAdapterInfo; lpNextData != NULL; lpNextData = lpNextData->Next)
 		{
@@ -500,7 +500,7 @@ public:
 			}
 
 			struct sockaddr_in addr;
-			int addr_len = sizeof(struct sockaddr_in);
+			socklen_t addr_len = sizeof(struct sockaddr_in);
 			int rlen = recvfrom(fd, rbuf, sizeof(rbuf), 0, (struct sockaddr *)&addr, &addr_len);
 			if (rlen <= 0)
 			{
