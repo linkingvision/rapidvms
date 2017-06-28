@@ -17,10 +17,10 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/main/vscvidlist.h \
     ../src/main/vsctoolbar.h \
     ../src/main/vscmainwindows.h \
+    ../src/common/switchcontrol.h \
     ../src/common/vscviditeminf.h \
     ../src/common/vscvidtreeinf.h \
     ../src/common/switchbutton.h \
-	../src/common/switchcontrol.h \
     ../src/common/vscvidinf.h \
     ../src/common/viditem/vscviditememap.h \
     ../src/common/viditem/vscviditemview.h \
@@ -56,9 +56,9 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/vidstor/camsetting/vscstreamselect.h \
     ../src/config/vidstor/camsetting/vscmotion.h \
     ../src/config/vidstor/camsetting/vscschedule.h \
+    ../src/config/vidstor/camsetting/vscmotreg.h \
     ../src/config/vidstor/camsetting/vsccaminfo.h \
     ../src/config/vidstor/camsetting/vsccamrec.h \
-	../src/config/vidstor/camsetting/vscmotreg.h \
     ../src/config/clientsetting/vscversion.h \
     ../src/config/clientsetting/vsclanguage.h \
     ../src/config/clientsetting/vsclicense.h \
@@ -67,30 +67,8 @@ HEADERS += ../src/main/vscdashboard.h \
     ../src/config/videmap/videmapconf.h \
     ../src/searchpb/vscvidsearchpb.h \
     ../src/searchpb/vscvideventsearch.h \
-    ../../include/oapi/oapic.hpp \
-    ../../include/oapi/oapicimpl.hpp \
-    ../../include/oapi/oapicmn.hpp \
-    ../../include/oapi/oapiproto.hpp \
-    ../../include/oapi/oapisimpl.hpp \
-    ../../include/oapi/oapis.hpp \
-    ../../include/config/clientconfdb.hpp \
-    ../../include/config/clientconfdbimpl.hpp \
     ../../include/config/conf.hpp \
-    ../../include/config/confdb.hpp \
-    ../../include/config/confdbimpl.hpp \
-    ../../include/config/sysdb.hpp \
-    ../../include/config/vidconf.pb.h \
-    ../../include/client/clientfactoryimpl.hpp \
-    ../../include/client/storclientimpl.hpp \
-    ../../include/client/storcmn.hpp \
-    ../../include/client/storfactoryimpl.hpp \
-    ../../include/client/storstreamimpl.hpp \
-    ../../include/client/storsyncinfimpl.hpp \
-    ../../include/client/clientfactory.hpp \
-    ../../include/client/storclient.hpp \
-    ../../include/client/storfactory.hpp \
-    ../../include/client/storstream.hpp \
-    ../../include/client/storsyncinf.hpp
+    ../../include/config/confver.hpp
 SOURCES += ../src/main/main.cpp \
     ../src/main/vscabout.cpp \
     ../src/main/vscdashboard.cpp \
@@ -103,7 +81,7 @@ SOURCES += ../src/main/main.cpp \
     ../src/main/vscvidlist.cpp \
     ../src/main/vscvidlistframe.cpp \
     ../src/common/switchbutton.cpp \
-	../src/common/switchcontrol.cpp \
+    ../src/common/switchcontrol.cpp \
     ../src/common/vscvidinf.cpp \
     ../src/common/vscviditeminf.cpp \
     ../src/common/vscvidtreeinf.cpp \
@@ -141,9 +119,9 @@ SOURCES += ../src/main/main.cpp \
     ../src/config/vidstor/camsetting/vsccaminfo.cpp \
     ../src/config/vidstor/camsetting/vsccamrec.cpp \
     ../src/config/vidstor/camsetting/vscmotion.cpp \
+    ../src/config/vidstor/camsetting/vscmotreg.cpp \
     ../src/config/vidstor/camsetting/vscschedule.cpp \
     ../src/config/vidstor/camsetting/vscstreamselect.cpp \
-	../src/config/vidstor/camsetting/vscmotreg.cpp \
     ../src/config/clientsetting/vsclanguage.cpp \
     ../src/config/clientsetting/vsclicense.cpp \
     ../src/config/clientsetting/vscuser.cpp \
@@ -179,7 +157,7 @@ FORMS += ../src/main/vscmainwindows.ui \
     ../src/config/vidstor/camsetting/vscstreamselect.ui \
     ../src/config/vidstor/camsetting/vscmotion.ui \
     ../src/config/vidstor/camsetting/vscschedule.ui \
-	../src/config/vidstor/camsetting/vscmotreg.ui \
+    ../src/config/vidstor/camsetting/vscmotreg.ui \
     ../src/config/clientsetting/vscversion.ui \
     ../src/config/clientsetting/vsclanguage.ui \
     ../src/config/clientsetting/vsclicense.ui \
