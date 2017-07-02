@@ -43,6 +43,11 @@ astring gAppdir;
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
 
+/* The media server only support linux & macOS */
+#ifndef _WIN32
+#include "mediaserver.hpp"
+#endf
+
 
 static BOOL WebServerUserChangeNotify(void* pParam, astring strUser, astring strPasswd)
 {
@@ -134,6 +139,13 @@ int main(int argc, char *argv[])
 	pFactory->RegUserChangeNotify(pWebServer, WebServerUserChangeNotify);
 
 	pFactory->start();
+	
+#ifndef _WIN32
+	/* Init media server */
+	VEMediaServer::InitMediaServer();
+	/* Start Media server */
+	VEMediaServer * pMediaServer = new VEMediaServer(*pFactory);
+#endif
 #if 0
 	VONVIFDisMgr *pDisMgr = new VONVIFDisMgr();
 	
