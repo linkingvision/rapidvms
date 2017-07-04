@@ -11,15 +11,17 @@ ifeq ($(strip $(VE_OS)), macos)
 	cp -r ../output/macos/RapidStor* ../output/$(VE_INSTALL_DIR)/
 endif
 
+#Change ZLMediaKit/CMakeLists.txt for HLS
+#add_definitions(-DENABLE_RTMP2RTSP -DENABLE_RTSP2RTMP -DENABLE_HLS)
 mediaserver_build:
-	cd src/ZLToolKit; mkdir -p build; cd build;cmake .. -DOPENSSL_ROOT_DIR=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/; make; make install;
+	cd src/ZLToolKit; mkdir -p build; cd build;cmake .. -DOPENSSL_ROOT_DIR=$(VE_PATH)/output/$(VE_INSTALL_DIR)/  -DCMAKE_CXX_FLAGS="-fpic"  -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/; make; make install;
 	#delete shared library
 ifeq ($(strip $(VE_OS)), macos)
 	rm -rf $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/libZLToolKit.dylib
 else
 	rm -rf $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/libZLToolKit.so
 endif
-	cd src/ZLMediaKit; mkdir -p build; cd build;cmake .. -DOPENSSL_ROOT_DIR=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/; make; make install;
+	cd src/ZLMediaKit; mkdir -p build; cd build;cmake .. -DOPENSSL_ROOT_DIR=$(VE_PATH)/output/$(VE_INSTALL_DIR)/ -DCMAKE_CXX_FLAGS="-fpic" -DCMAKE_INSTALL_PREFIX=$(VE_PATH)/output/$(VE_INSTALL_DIR)/; make; make install;
 	#delete shared library
 ifeq ($(strip $(VE_OS)), macos)
 	rm -rf $(VE_PATH)/output/$(VE_INSTALL_DIR)/lib/libZLMediaKit.dylib
