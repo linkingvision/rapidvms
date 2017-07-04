@@ -11,6 +11,7 @@ HEADERS += ../main/link/linkstream.hpp \
     ../prj_win32/resource.h
 SOURCES += ../main/main.cpp \
     ../main/webserver.cpp \
+	../main/mediaserver.cpp \
     ../../3rdparty/civetweb/src/CivetServer.cpp \
     ../../3rdparty/civetweb/src/civetweb.c \
     ../main/link/linkhandler.cpp \

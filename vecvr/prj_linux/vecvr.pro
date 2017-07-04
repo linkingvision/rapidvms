@@ -54,6 +54,9 @@ INCLUDEPATH += ./GeneratedFiles \
     ./../../3rdparty/spdlog/include\
     ./../../onvif/include\
     ./../../onvif/video\
+    ../../output/$$(VE_INSTALL_DIR)/include/ZLMediaKit\
+    ../../output/$$(VE_INSTALL_DIR)/include/ZLMediaKit/H264\
+    ../../output/$$(VE_INSTALL_DIR)/include/ZLToolKit\
     ../../output/$$(VE_INSTALL_DIR)/include/QtCore\
     ../../output/$$(VE_INSTALL_DIR)/include/QtGui\
     ../../output/$$(VE_INSTALL_DIR)/include/QtWidgets\
@@ -70,6 +73,8 @@ LIBS +=  \
     -L"./../../3rdparty/leveldb/" \
     -L../../output/$$(VE_INSTALL_DIR)/lib \
     -L../../output/$$(VE_INSTALL_DIR)/lib/x86_64-linux-gnu \
+    -lZLMediaKit\
+    -lZLToolKit\
     -lcmnlib\
     -lavcodec \
     -lavformat \
