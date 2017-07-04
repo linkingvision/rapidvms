@@ -57,6 +57,7 @@ install_name_tool -change $VE_PATH/3rdparty/poco/lib/Darwin/x86_64/$ve_libPocoUt
 cd $VE_PATH/output/$VE_INSTALL_DIR/lib
 
 #libcmnlib.so
+install_name_tool -change liblive555.so @rpath/liblive555.so libcmnlib.so
 install_name_tool -change $VE_PATH/output/$VE_INSTALL_DIR//lib/$ve_libavcodec @rpath/$ve_libavcodec libcmnlib.so
 install_name_tool -change $VE_PATH/output/$VE_INSTALL_DIR//lib/$ve_libavformat @rpath/$ve_libavformat libcmnlib.so
 install_name_tool -change $VE_PATH/output/$VE_INSTALL_DIR//lib/$ve_libavutil @rpath/$ve_libavutil libcmnlib.so
