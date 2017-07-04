@@ -33,7 +33,7 @@ class VEMediaServer
 {
 public:
 	VEMediaServer(Factory &pFactory);
-	~VEWebServer();
+	~VEMediaServer();
 	
 public:
 	static bool InitMediaServer();

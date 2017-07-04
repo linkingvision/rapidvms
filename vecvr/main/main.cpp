@@ -46,7 +46,7 @@ astring gAppdir;
 /* The media server only support linux & macOS */
 #ifndef _WIN32
 #include "mediaserver.hpp"
-#endf
+#endif
 
 
 static BOOL WebServerUserChangeNotify(void* pParam, astring strUser, astring strPasswd)

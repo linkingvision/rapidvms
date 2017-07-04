@@ -21,7 +21,7 @@
  *
  * -->
  */
-#include "mediaserver.hpp"
+
 
 #include "Rtsp/UDPServer.h"
 #include "Rtsp/RtspSession.h"
@@ -43,6 +43,9 @@
 #include "Shell/ShellSession.h"
 #include "Common/config.h"
 #include <map>
+
+#include "mediaserver.hpp"
+#include "h264_parser.h"
 using namespace std;
 using namespace ZL::Util;
 using namespace ZL::Http;
@@ -52,12 +55,9 @@ using namespace ZL::Shell;
 using namespace ZL::Thread;
 using namespace ZL::Network;
 using namespace ZL::DEV;
+using namespace media;
 
-TcpServer<RtspSession>::Ptr VEMediaChannel::m_rtspSrv = NULL;
-TcpServer<RtmpSession>::Ptr VEMediaChannel::m_rtmpSrv = NULL;
-TcpServer<HttpSession>::Ptr VEMediaChannel::m_httpSrv = NULL;
-TcpServer<ShellSession>::Ptr VEMediaChannel::m_shellSrv = NULL;
-std::thread * VEMediaChannel::m_pThread = NULL;
+
 
 class VEMediaChannel : public DevChannel
 {
@@ -76,15 +76,24 @@ public:
 private:
 	std::string m_strId;
 	int m_nStreamId;
+	SmoothTicker m_Time;
+	bool m_bFirstFrame;
 
 	Factory &m_pFactory;
+	H264Parser m_H264Parser;
 	
-	static TcpServer<RtspSession>::Ptr m_rtspSrv;
-	static TcpServer<RtmpSession>::Ptr m_rtmpSrv;
-	static TcpServer<HttpSession>::Ptr m_httpSrv;
-	static TcpServer<ShellSession>::Ptr m_shellSrv;
+	static TcpServer<RtspSession> * m_rtspSrv;
+	static TcpServer<RtmpSession> * m_rtmpSrv;
+	static TcpServer<HttpSession> * m_httpSrv;
+	static TcpServer<ShellSession> * m_shellSrv;
 	static std::thread * m_pThread;
 };
+
+TcpServer<RtspSession>* VEMediaChannel::m_rtspSrv = NULL;
+TcpServer<RtmpSession>* VEMediaChannel::m_rtmpSrv = NULL;
+TcpServer<HttpSession>* VEMediaChannel::m_httpSrv = NULL;
+TcpServer<ShellSession>* VEMediaChannel::m_shellSrv = NULL;
+std::thread * VEMediaChannel::m_pThread = NULL;
 
 bool VEMediaChannel::InitMediaServer()
 {
@@ -102,7 +111,7 @@ bool VEMediaChannel::InitMediaServer()
 	
 	//TODO add HTTPS support
 	
-	m_pThread = new std::thread(VEMediaChannel::MediaServerThread, this);
+	m_pThread = new std::thread(VEMediaChannel::MediaServerThread);
 	
 	return true;
 	
@@ -114,10 +123,10 @@ void VEMediaChannel::MediaServerThread()
 	/* Loop for media server */
 	EventPoller::Instance().runLoop();
 
-	m_rtspSrv.reset();
-	m_rtmpSrv.reset();
-	m_httpSrv.reset();
-	m_shellSrv.reset();
+	delete m_rtspSrv;
+	delete m_rtmpSrv;
+	delete m_httpSrv;
+	delete m_shellSrv;
 
 	//TODO HTTPS support
 
@@ -129,8 +138,10 @@ void VEMediaChannel::MediaServerThread()
 }	
 
 VEMediaChannel::VEMediaChannel(Factory &pFactory, std::string strId, int nStreamId)
-:m_pFactory(pFactory), m_strId(strId), m_nStreamId(nStreamId)
-{
+:m_pFactory(pFactory), m_strId(strId), m_nStreamId(nStreamId), m_bFirstFrame(true),
+DevChannel("live", strId.c_str())
+{	
+	printf("Device ID %s  Stream %d\n", strId.c_str(), m_nStreamId);
 	if (m_nStreamId == 1)
 	{
 		m_pFactory.RegDataCallback(m_strId,
@@ -167,23 +178,27 @@ VEMediaChannel::~VEMediaChannel()
 
 void VEMediaChannel::DataHandler1(VideoFrame& frame)
 {
+	//printf("%s---%d\n", __FILE__, __LINE__);
 	/* Process the video frame for media server */
 	switch (frame.streamType)
 	{
 		case VIDEO_STREAM_VIDEO:
-			
+			break;
 		case VIDEO_STREAM_AUDIO:
 			return ;
 		default:
 		   	return;
 	};	
+	//printf("%s---%d\n", __FILE__, __LINE__);
 
 	CodecType current;
+	bool bIsKeyFrame = false;
 
 	u8  *dataBuf = NULL;
 	u32 dataSize = 0;
 
 	VideoFrameType type = frame.frameType;
+	//printf("%s---%d\n", __FILE__, __LINE__);
 
 	switch (frame.frameType)
 	{
@@ -204,6 +219,7 @@ void VEMediaChannel::DataHandler1(VideoFrame& frame)
 			{
 				return;
 			}
+			bIsKeyFrame = true;
 			break;
 		}
 		case VIDEO_FRM_P:
@@ -227,9 +243,95 @@ void VEMediaChannel::DataHandler1(VideoFrame& frame)
 		default:
 		   	return;
 	};
+	//printf("%s---%d\n", __FILE__, __LINE__);
+	if (m_bFirstFrame == true)
+	{
+		m_Time.resetTime();
+	}
+	
+	m_H264Parser.Reset();
+	m_H264Parser.SetStream(dataBuf, dataSize);
+	int sps_id = 0;
 
-	/* Feed the data to media server */
-	inputH264(dataBuf, dataSize, frame.secs);
+	H264NALU nalu;
+	std::vector<H264NALU> nalus;
+	int pps_id;
+
+	if (m_bFirstFrame == true)
+	{
+		if (bIsKeyFrame == false)
+		{
+			std::cout << "Have not get I frame skip" << std::endl;
+			return;
+		}
+	}
+	H264NALU nal_sps;
+	H264NALU nal_pps;
+
+	while (m_H264Parser.AdvanceToNextNALU(&nalu) != H264Parser::kEOStream) {
+		switch (nalu.nal_unit_type) {
+		case H264NALU::Type::kSPS:
+			nal_sps = nalu;
+			//Live555DumpHex((unsigned char *)nalu.data, nalu.size);
+			m_H264Parser.ParseSPS(&sps_id);
+			//std::cout << "get sps id:" << sps_id << std::endl;
+			break;
+		case H264NALU::Type::kPPS:
+			nal_pps = nalu;
+			m_H264Parser.ParsePPS(&pps_id);
+			//std::cout << "get pps id:" << pps_id << std::endl;
+			break;
+		case H264NALU::Type::kSEIMessage:
+			/* todo */
+			break;
+		case H264NALU::Type::kSliceDataA:
+		case H264NALU::Type::kSliceDataB:
+		case H264NALU::Type::kSliceDataC:
+		case H264NALU::Type::kIDRSlice: 
+		{
+			break;
+		}
+		default:
+			//std::cout << "NAL none" << std::endl;
+			break;
+		}
+		nalus.push_back(nalu);
+		
+	}
+
+	if (m_bFirstFrame && bIsKeyFrame == true)
+	{
+		const H264SPS* pSPS = m_H264Parser.GetSPS(sps_id);
+		const H264PPS* pPPS = m_H264Parser.GetPPS(pps_id);
+		VideoInfo info;
+		info.iWidth  = (pSPS->pic_width_in_mbs_minus1 + 1) * 16;
+		info.iHeight = (pSPS->pic_height_in_map_units_minus1 + 1) * 16;
+		info.iFrameRate = 25;
+
+		initVideo(info);
+		m_bFirstFrame = false;
+	}
+	
+	uint32_t uiStamp = m_Time.elapsedTime();
+
+	/* loop to put frame */
+	for (auto nalu : nalus) 
+	{
+		//if (nalu.nal_unit_type == H264NALU::Type::kIDRSlice || nalu.nal_unit_type == H264NALU::Type::kNonIDRSlice)
+		{
+			unsigned int *p = (unsigned int *) (nalu.data - 4);
+			int psize = nalu.size + 4;
+			if (psize > 20)
+			{
+				psize = 20;
+			}
+			//DumpHexData((unsigned char*)p,psize);
+			//printf("%s---%d size %d\n", __FILE__, __LINE__, nalu.size + 4);
+			inputH264((char *)p, nalu.size + 4, uiStamp);
+		}
+	}
+	
+	return;
 }
 
 void VEMediaChannel::DataHandler(VideoFrame& frame, void * pParam)
@@ -244,11 +346,9 @@ void VEMediaChannel::DataHandler(VideoFrame& frame, void * pParam)
 VEMediaServer::VEMediaServer(Factory &pFactory)
 :m_pFactory(pFactory)
 {
-
-
-
+	InitDevices();
 }
-VEMediaServer::~VEWebServer()
+VEMediaServer::~VEMediaServer()
 {
 	
 }
@@ -290,6 +390,9 @@ bool VEMediaServer::DeviceChangeCallbackFunc1(FactoryCameraChangeData change)
 bool VEMediaServer::InitDevices()
 {	
 	VidCameraList pCameraList;
+	
+	//TODO Check if online
+	m_pFactory.GetCameraList(pCameraList);
 
 	int cameraSize = pCameraList.cvidcamera_size();
 
