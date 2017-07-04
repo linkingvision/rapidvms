@@ -42,12 +42,19 @@ string exeDir();
 string exeName();
 void setExePath(const string &path);
 
+#ifdef __WIN32__
+int strcasecmp(const char *strA,const char *strB);
+#endif //WIN32
 
-int compareNoCase(const char *strA,const char *strB);
-
-#ifndef strcasecmp
-#define strcasecmp compareNoCase
-#endif //strcasecmp
+#ifdef ANDROID
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream os ;
+    os <<  std::forward<T>(value);
+    return os.str() ;
+}
+#endif//ANDROID
 
 }  // namespace Util
 }  // namespace ZL

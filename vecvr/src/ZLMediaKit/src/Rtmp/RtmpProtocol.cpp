@@ -17,15 +17,15 @@ using namespace ZL::Util;
 #include <openssl/hmac.h>
 static string openssl_HMACsha256(const void *key,unsigned int key_len,
 								 const void *data,unsigned int data_len){
-	char out[48];
+	std::shared_ptr<char> out(new char[32],[](char *ptr){delete [] ptr;});
 	unsigned int out_len;
 	HMAC_CTX ctx;
 	HMAC_CTX_init(&ctx);
 	HMAC_Init_ex(&ctx, key, key_len, EVP_sha256(), NULL);
 	HMAC_Update(&ctx, (unsigned char*)data, data_len);
-	HMAC_Final(&ctx, (unsigned char *)out, &out_len);
+	HMAC_Final(&ctx, (unsigned char *)out.get(), &out_len);
 	HMAC_CTX_cleanup(&ctx);
-	return string(out,out_len);
+	return string(out.get(),out_len);
 }
 #endif //ENABLE_OPENSSL
 
@@ -450,6 +450,10 @@ void RtmpProtocol::handle_rtmp() {
 		static const size_t HEADER_LENGTH[] = { 12, 8, 4, 1 };
 		size_t iHeaderLen = HEADER_LENGTH[flags >> 6];
 		m_iNowChunkID = flags & 0x3f;
+        if(m_iNowChunkID >10){
+            int i=0;
+            i++;
+        }
 		switch (m_iNowChunkID) {
 		case 0: {
 			//0 值表示二字节形式，并且 ID 范围 64 - 319
@@ -487,45 +491,50 @@ void RtmpProtocol::handle_rtmp() {
 		chunkData.chunkId = m_iNowChunkID;
 		switch (iHeaderLen) {
 		case 12:
+            chunkData.hasAbsStamp = true;
 			chunkData.streamId = load_le32(header.streamId);
 		case 8:
 			chunkData.bodySize = load_be24(header.bodySize);
 			chunkData.typeId = header.typeId;
 		case 4:
-			uint32_t ts = load_be24(header.timeStamp);
-			if (ts == 0xFFFFFF) {
-				chunkData.extStamp = true;
-			}else{
-				chunkData.extStamp = false;
-				chunkData.timeStamp = ts + ((iHeaderLen == 12) ? 0 : chunkData.timeStamp);
-			}
+			chunkData.deltaStamp = load_be24(header.timeStamp);
+            chunkData.hasExtStamp = chunkData.deltaStamp == 0xFFFFFF;
 		}
-		if (chunkData.extStamp) {
+		
+        if (chunkData.hasExtStamp) {
 			if (m_strRcvBuf.size() < iHeaderLen + iOffset + 4) {
 				//need more data
 				return;
 			}
-			chunkData.timeStamp = load_be32( m_strRcvBuf.data() + iOffset + iHeaderLen);
+            chunkData.deltaStamp = load_be32(m_strRcvBuf.data() + iOffset + iHeaderLen);
 			iOffset += 4;
 		}
-
-		if (chunkData.bodySize < chunkData.strBuf.size()) {
+		
+        if (chunkData.bodySize < chunkData.strBuf.size()) {
 			throw std::runtime_error("非法的bodySize");
 		}
-
+        
 		auto iMore = min(m_iChunkLenIn, chunkData.bodySize - chunkData.strBuf.size());
 		if (m_strRcvBuf.size() < iHeaderLen + iOffset + iMore) {
 			//need more data
 			return;
 		}
-		chunkData.strBuf.append(m_strRcvBuf, iHeaderLen + iOffset, iMore);
+		
+        chunkData.strBuf.append(m_strRcvBuf, iHeaderLen + iOffset, iMore);
 		m_strRcvBuf.erase(0, iHeaderLen + iOffset + iMore);
+        
 		if (chunkData.strBuf.size() == chunkData.bodySize) {
-			m_iNowStreamID = chunkData.streamId;
+            //frame is ready
+            m_iNowStreamID = chunkData.streamId;
+            chunkData.timeStamp = chunkData.deltaStamp + (chunkData.hasAbsStamp ? 0 : chunkData.timeStamp);
+            
 			if(chunkData.bodySize){
 				handle_rtmpChunk(chunkData);
 			}
 			chunkData.strBuf.clear();
+            chunkData.hasAbsStamp = false;
+            chunkData.hasExtStamp = false;
+            chunkData.deltaStamp = 0;
 		}
 	}
 }

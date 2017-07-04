@@ -23,6 +23,15 @@ public:
 	HttpClientImp();
 	virtual ~HttpClientImp();
 	virtual void sendRequest(const string &url) override;
+
+#if defined(__GNUC__) && (__GNUC__ < 5)
+	void public_onRecvBytes(const char *data,int len){
+		HttpClient::onRecvBytes(data,len);
+	}
+	void public_send(const char *data, uint32_t len){
+		HttpClient::send(data,len);
+	}
+#endif //defined(__GNUC__) && (__GNUC__ < 5)
 private:
 #ifdef ENABLE_OPENSSL
 	virtual void onRecvBytes(const char *data,int size) override;

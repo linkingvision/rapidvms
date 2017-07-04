@@ -27,10 +27,19 @@ void HttpClientImp::sendRequest(const string& url) {
 #else
 		_sslBox.reset(new SSL_Box(false));
 		_sslBox->setOnDecData([this](const char *data, uint32_t len){
+#if defined(__GNUC__) && (__GNUC__ < 5)
+			public_onRecvBytes(data,len);
+#else//defined(__GNUC__) && (__GNUC__ < 5)
 			HttpClient::onRecvBytes(data,len);
+#endif//defined(__GNUC__) && (__GNUC__ < 5)
 		});
 		_sslBox->setOnEncData([this](const char *data, uint32_t len){
+
+#if defined(__GNUC__) && (__GNUC__ < 5)
+			public_send(data,len);
+#else//defined(__GNUC__) && (__GNUC__ < 5)
 			HttpClient::send(data,len);
+#endif//defined(__GNUC__) && (__GNUC__ < 5)
 		});
 #endif //ENABLE_OPENSSL
 
