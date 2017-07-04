@@ -63,7 +63,7 @@
 	MJPEG/MPEG4/H264/H265 support
 	Linux(ARM X64 X86) Windows MacOS(Coming sonn)support
 	RTSP over SSL(HTTPS)
-	Digital Zoom
+	RTSP Server/RTMP Server/HLS Server
 
 #### License ####
 * Licensing: dual licensed as open source Affero GPL and commercial-use license (available for purchase).
