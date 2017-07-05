@@ -42,7 +42,7 @@ HdfslibDelegate::HdfslibDelegate()
 	ck_string strhdfsFlushDelegate = "hdfsFlush";
 	ck_string strhdfsCloseFileDelegate = "hdfsCloseFile";
 	ck_string strhdfsDisconnectDelegate = "hdfsDisconnect";
-
+#if 0
 	try
 	{
 		//VDC_DEBUG( "%s Connect HDFS  lib %s !.\n",__FUNCTION__, strLib.c_str());
@@ -62,12 +62,17 @@ HdfslibDelegate::HdfslibDelegate()
 		m_Init = FALSE;
 		//VDC_DEBUG( "%s HDFS lib load error \n",__FUNCTION__);
 	}
+#else
+	m_Init = FALSE;
+#endif
 
 }
 
 HdfslibDelegate::~HdfslibDelegate()
 {
+#if 0
 	m_dynLib.unload();
+#endif
 }
 
 HdfsRecWrapper::HdfsRecWrapper(ck_string &pNameNode, ck_string &pPort,
