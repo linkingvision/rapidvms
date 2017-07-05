@@ -384,7 +384,11 @@ bool sdl_render::Close()
 #if 1
 	if (m_SdlWin)
 	{
+#ifndef __APPLE__
 		SDL_DestroyWindow(m_SdlWin);
+#else
+	//!!! TODO fix this bug for macOS
+#endif
 		m_SdlWin = NULL;
 	}
 #endif
