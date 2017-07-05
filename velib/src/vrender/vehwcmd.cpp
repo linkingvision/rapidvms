@@ -280,8 +280,9 @@ static inline void SSE_splitplanes(uint8_t* dstu, int dstu_pitch,
 #endif
 int CopyInitCache(copy_cache_t *cache, unsigned width)
 {
+#ifndef __APPLE__
     cache->size = __MAX((width + 0x3f) & ~ 0x3f, 4096);
 	cache->buffer = (unsigned char *)vlc_memalign(64, cache->size);
-
+#endif
     return 0;
 }

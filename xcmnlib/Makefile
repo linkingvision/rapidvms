@@ -36,7 +36,8 @@ endif
 
 OUTPUT     =
 #RAPID_EPOLL
-CFLAGS	= -std=c++11 -DLINUX -DLINUX_OS -D__STDC_CONSTANT_MACROS 
+CPPFLAGS	= -std=c++11 -DLINUX -DLINUX_OS -D__STDC_CONSTANT_MACROS 
+CFLAGS	= -DLINUX -DLINUX_OS -D__STDC_CONSTANT_MACROS 
 ifneq ($(strip $(VE_OS)), macos)
 CFLAGS += -DRAPID_EPOLL
 endif
@@ -46,6 +47,7 @@ endif
 
 LIBS	= $(CPROG).so
 CFLAGS += -fpic
+CPPFLAGS += -fpic
 PERM = -m 0755
 
 HDRS   = $(wildcard ./*.h) 
@@ -257,6 +259,6 @@ distclean:
 install:
 
 .cpp.o:
-	$(CPP) -c -o $@ $(DEBUG_BUILD) $(CFLAGS) $(IFLAGS) $<
+	$(CPP) -c -o $@ $(DEBUG_BUILD) $(CPPFLAGS) $(IFLAGS) $<
 .c.o:
 	$(CC) -c -o $@ $(DEBUG_BUILD) $(CFLAGS) $(IFLAGS) $<
