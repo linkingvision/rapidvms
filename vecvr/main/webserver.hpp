@@ -47,11 +47,12 @@ public:
 		:pServer(new CivetServer(cpp_options)), server(*pServer), m_pFactory(pFactory), 
 		h_GetCamList(pFactory), h_GetImage(pFactory), h_vwsapi(pFactory), 
 		h_wslink(pFactory, pEvent),
-		h_wslinkStream(pFactory)
+		h_wslinkStream(pFactory), h_GetStreamUrl(pFactory)
 	{
 		/* restful api */
 		server.addHandler("/vapi/GetCamList", h_GetCamList);
 		server.addHandler("/vapi/GetImage", h_GetImage);
+		server.addHandler("/vapi/GetStreamUrl", h_GetStreamUrl);
 
 		/* websocket API */
 		server.addWebSocketHandler(LINK_PROTO_WS_PATH, h_wslink);
@@ -70,6 +71,7 @@ public:
 private:
 	WebAPIGetCamListHandler h_GetCamList;
 	WebAPIGetImageHandler h_GetImage;
+	WebAPIGetStreamUrlHandler h_GetStreamUrl;
 	VwsAPI h_vwsapi;
 	WSLink h_wslink;
 	WSLinkStream h_wslinkStream;

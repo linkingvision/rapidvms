@@ -93,6 +93,12 @@ VE_LIBRARY_API extern VidStreamDefaultTypeInternal _VidStream_default_instance_;
 class VidStreamList;
 class VidStreamListDefaultTypeInternal;
 VE_LIBRARY_API extern VidStreamListDefaultTypeInternal _VidStreamList_default_instance_;
+class VidStreamUrl;
+class VidStreamUrlDefaultTypeInternal;
+VE_LIBRARY_API extern VidStreamUrlDefaultTypeInternal _VidStreamUrl_default_instance_;
+class VidStreamUrlList;
+class VidStreamUrlListDefaultTypeInternal;
+VE_LIBRARY_API extern VidStreamUrlListDefaultTypeInternal _VidStreamUrlList_default_instance_;
 class VidTour;
 class VidTourDefaultTypeInternal;
 VE_LIBRARY_API extern VidTourDefaultTypeInternal _VidTour_default_instance_;
@@ -3717,6 +3723,201 @@ class VE_LIBRARY_API VidEvent : public ::google::protobuf::Message /* @@protoc_i
   ::google::protobuf::int64 nidx_;
   bool bhandled_;
   bool bsearched_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API VidStreamUrl : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStreamUrl) */ {
+ public:
+  VidStreamUrl();
+  virtual ~VidStreamUrl();
+
+  VidStreamUrl(const VidStreamUrl& from);
+
+  inline VidStreamUrl& operator=(const VidStreamUrl& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidStreamUrl& default_instance();
+
+  static inline const VidStreamUrl* internal_default_instance() {
+    return reinterpret_cast<const VidStreamUrl*>(
+               &_VidStreamUrl_default_instance_);
+  }
+
+  void Swap(VidStreamUrl* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidStreamUrl* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  VidStreamUrl* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const VidStreamUrl& from);
+  void MergeFrom(const VidStreamUrl& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(VidStreamUrl* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string strProtocol = 1;
+  void clear_strprotocol();
+  static const int kStrProtocolFieldNumber = 1;
+  const ::std::string& strprotocol() const;
+  void set_strprotocol(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strprotocol(::std::string&& value);
+  #endif
+  void set_strprotocol(const char* value);
+  void set_strprotocol(const char* value, size_t size);
+  ::std::string* mutable_strprotocol();
+  ::std::string* release_strprotocol();
+  void set_allocated_strprotocol(::std::string* strprotocol);
+
+  // string strUrl = 2;
+  void clear_strurl();
+  static const int kStrUrlFieldNumber = 2;
+  const ::std::string& strurl() const;
+  void set_strurl(const ::std::string& value);
+  #if LANG_CXX11
+  void set_strurl(::std::string&& value);
+  #endif
+  void set_strurl(const char* value);
+  void set_strurl(const char* value, size_t size);
+  ::std::string* mutable_strurl();
+  ::std::string* release_strurl();
+  void set_allocated_strurl(::std::string* strurl);
+
+  // @@protoc_insertion_point(class_scope:VidStreamUrl)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr strprotocol_;
+  ::google::protobuf::internal::ArenaStringPtr strurl_;
+  mutable int _cached_size_;
+  friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class VE_LIBRARY_API VidStreamUrlList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:VidStreamUrlList) */ {
+ public:
+  VidStreamUrlList();
+  virtual ~VidStreamUrlList();
+
+  VidStreamUrlList(const VidStreamUrlList& from);
+
+  inline VidStreamUrlList& operator=(const VidStreamUrlList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VidStreamUrlList& default_instance();
+
+  static inline const VidStreamUrlList* internal_default_instance() {
+    return reinterpret_cast<const VidStreamUrlList*>(
+               &_VidStreamUrlList_default_instance_);
+  }
+
+  void Swap(VidStreamUrlList* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VidStreamUrlList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  VidStreamUrlList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const VidStreamUrlList& from);
+  void MergeFrom(const VidStreamUrlList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(VidStreamUrlList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .VidStreamUrl cUrl = 1;
+  int curl_size() const;
+  void clear_curl();
+  static const int kCUrlFieldNumber = 1;
+  const ::VidStreamUrl& curl(int index) const;
+  ::VidStreamUrl* mutable_curl(int index);
+  ::VidStreamUrl* add_curl();
+  ::google::protobuf::RepeatedPtrField< ::VidStreamUrl >*
+      mutable_curl();
+  const ::google::protobuf::RepeatedPtrField< ::VidStreamUrl >&
+      curl() const;
+
+  // @@protoc_insertion_point(class_scope:VidStreamUrlList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::VidStreamUrl > curl_;
   mutable int _cached_size_;
   friend struct VE_LIBRARY_API protobuf_vidconf_2eproto::TableStruct;
 };
@@ -7730,7 +7931,153 @@ inline void VidEvent::set_nidx(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:VidEvent.nIdx)
 }
 
+// -------------------------------------------------------------------
+
+// VidStreamUrl
+
+// string strProtocol = 1;
+inline void VidStreamUrl::clear_strprotocol() {
+  strprotocol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidStreamUrl::strprotocol() const {
+  // @@protoc_insertion_point(field_get:VidStreamUrl.strProtocol)
+  return strprotocol_.GetNoArena();
+}
+inline void VidStreamUrl::set_strprotocol(const ::std::string& value) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidStreamUrl.strProtocol)
+}
+#if LANG_CXX11
+inline void VidStreamUrl::set_strprotocol(::std::string&& value) {
+  
+  strprotocol_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidStreamUrl.strProtocol)
+}
+#endif
+inline void VidStreamUrl::set_strprotocol(const char* value) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidStreamUrl.strProtocol)
+}
+inline void VidStreamUrl::set_strprotocol(const char* value, size_t size) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidStreamUrl.strProtocol)
+}
+inline ::std::string* VidStreamUrl::mutable_strprotocol() {
+  
+  // @@protoc_insertion_point(field_mutable:VidStreamUrl.strProtocol)
+  return strprotocol_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStreamUrl::release_strprotocol() {
+  // @@protoc_insertion_point(field_release:VidStreamUrl.strProtocol)
+  
+  return strprotocol_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStreamUrl::set_allocated_strprotocol(::std::string* strprotocol) {
+  if (strprotocol != NULL) {
+    
+  } else {
+    
+  }
+  strprotocol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strprotocol);
+  // @@protoc_insertion_point(field_set_allocated:VidStreamUrl.strProtocol)
+}
+
+// string strUrl = 2;
+inline void VidStreamUrl::clear_strurl() {
+  strurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VidStreamUrl::strurl() const {
+  // @@protoc_insertion_point(field_get:VidStreamUrl.strUrl)
+  return strurl_.GetNoArena();
+}
+inline void VidStreamUrl::set_strurl(const ::std::string& value) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidStreamUrl.strUrl)
+}
+#if LANG_CXX11
+inline void VidStreamUrl::set_strurl(::std::string&& value) {
+  
+  strurl_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidStreamUrl.strUrl)
+}
+#endif
+inline void VidStreamUrl::set_strurl(const char* value) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidStreamUrl.strUrl)
+}
+inline void VidStreamUrl::set_strurl(const char* value, size_t size) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidStreamUrl.strUrl)
+}
+inline ::std::string* VidStreamUrl::mutable_strurl() {
+  
+  // @@protoc_insertion_point(field_mutable:VidStreamUrl.strUrl)
+  return strurl_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VidStreamUrl::release_strurl() {
+  // @@protoc_insertion_point(field_release:VidStreamUrl.strUrl)
+  
+  return strurl_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VidStreamUrl::set_allocated_strurl(::std::string* strurl) {
+  if (strurl != NULL) {
+    
+  } else {
+    
+  }
+  strurl_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strurl);
+  // @@protoc_insertion_point(field_set_allocated:VidStreamUrl.strUrl)
+}
+
+// -------------------------------------------------------------------
+
+// VidStreamUrlList
+
+// repeated .VidStreamUrl cUrl = 1;
+inline int VidStreamUrlList::curl_size() const {
+  return curl_.size();
+}
+inline void VidStreamUrlList::clear_curl() {
+  curl_.Clear();
+}
+inline const ::VidStreamUrl& VidStreamUrlList::curl(int index) const {
+  // @@protoc_insertion_point(field_get:VidStreamUrlList.cUrl)
+  return curl_.Get(index);
+}
+inline ::VidStreamUrl* VidStreamUrlList::mutable_curl(int index) {
+  // @@protoc_insertion_point(field_mutable:VidStreamUrlList.cUrl)
+  return curl_.Mutable(index);
+}
+inline ::VidStreamUrl* VidStreamUrlList::add_curl() {
+  // @@protoc_insertion_point(field_add:VidStreamUrlList.cUrl)
+  return curl_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::VidStreamUrl >*
+VidStreamUrlList::mutable_curl() {
+  // @@protoc_insertion_point(field_mutable_list:VidStreamUrlList.cUrl)
+  return &curl_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::VidStreamUrl >&
+VidStreamUrlList::curl() const {
+  // @@protoc_insertion_point(field_list:VidStreamUrlList.cUrl)
+  return curl_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
