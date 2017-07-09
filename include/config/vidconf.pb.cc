@@ -72,13 +72,17 @@ class VidEventDBConfDefaultTypeInternal : public ::google::protobuf::internal::E
 } _VidEventDBConf_default_instance_;
 class VidEventDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidEvent> {
 } _VidEvent_default_instance_;
+class VidStreamUrlDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStreamUrl> {
+} _VidStreamUrl_default_instance_;
+class VidStreamUrlListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VidStreamUrlList> {
+} _VidStreamUrlList_default_instance_;
 
 namespace protobuf_vidconf_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[28];
+::google::protobuf::Metadata file_level_metadata[30];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[7];
 
 }  // namespace
@@ -306,6 +310,17 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, strstorname_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidEvent, nidx_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamUrl, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamUrl, strprotocol_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamUrl, strurl_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamUrlList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VidStreamUrlList, curl_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
@@ -337,6 +352,8 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 194, -1, sizeof(VidBlobList)},
   { 199, -1, sizeof(VidEventDBConf)},
   { 205, -1, sizeof(VidEvent)},
+  { 222, -1, sizeof(VidStreamUrl)},
+  { 228, -1, sizeof(VidStreamUrlList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -368,6 +385,8 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_VidBlobList_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_VidEventDBConf_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_VidEvent_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStreamUrl_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_VidStreamUrlList_default_instance_),
 };
 
 namespace {
@@ -388,7 +407,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 28);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 30);
 }
 
 }  // namespace
@@ -450,6 +469,10 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[26].reflection;
   _VidEvent_default_instance_.Shutdown();
   delete file_level_metadata[27].reflection;
+  _VidStreamUrl_default_instance_.Shutdown();
+  delete file_level_metadata[28].reflection;
+  _VidStreamUrlList_default_instance_.Shutdown();
+  delete file_level_metadata[29].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -484,6 +507,8 @@ void TableStruct::InitDefaultsImpl() {
   _VidBlobList_default_instance_.DefaultConstruct();
   _VidEventDBConf_default_instance_.DefaultConstruct();
   _VidEvent_default_instance_.DefaultConstruct();
+  _VidStreamUrl_default_instance_.DefaultConstruct();
+  _VidStreamUrlList_default_instance_.DefaultConstruct();
   _VidViewWindow_default_instance_.get_mutable()->cid_ = const_cast< ::VidCameraId*>(
       ::VidCameraId::internal_default_instance());
   _VidEmapCamera_default_instance_.get_mutable()->cid_ = const_cast< ::VidCameraId*>(
@@ -563,31 +588,34 @@ void AddDescriptorsImpl() {
       "\003\022\017\n\007strTime\030\006 \001(\t\022\017\n\007strDesc\030\007 \001(\t\022\020\n\010b"
       "Handled\030\010 \001(\010\022\021\n\tbSearched\030\t \001(\010\022\023\n\013strC"
       "omments\030\n \001(\t\022\021\n\tstrStorId\030\013 \001(\t\022\023\n\013strS"
-      "torName\030\014 \001(\t\022\014\n\004nIdx\030\r \001(\003*q\n\nCameraTyp"
-      "e\022\t\n\005VID_0\020\000\022\013\n\007VID_USB\020\001\022\014\n\010VID_FILE\020\002\022"
-      "\014\n\010VID_RTSP\020\003\022\017\n\013VID_ONVIF_S\020\004\022\017\n\013VID_GB"
-      "28181\020\005\022\r\n\tVID_MJPEG\020\006*=\n\nVidRecType\022\r\n\t"
-      "VID_R_OFF\020\000\022\017\n\013VID_R_ALARM\020\001\022\017\n\013VID_R_SC"
-      "HED\020\002*P\n\021CameraConnectType\022\021\n\rVID_CONNEC"
-      "T_0\020\000\022\023\n\017VID_CONNECT_TCP\020\001\022\023\n\017VID_CONNEC"
-      "T_UDP\020\002*`\n\017OnvifEventLevel\022\027\n\023VID_ONVIF_"
-      "EVENT_OFF\020\000\022\030\n\024VID_ONVIF_EVENT_FULL\020\001\022\032\n"
-      "\026VID_ONVIF_EVENT_MOTION\020\002*;\n\013VidLanguage"
-      "\022\021\n\rVID_LANG_AUTO\020\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_Z"
-      "H_CN\020\002*\342\002\n\tVidLayout\022\025\n\021VID_LAYOUT_MODE_"
-      "0\020\000\022\025\n\021VID_LAYOUT_MODE_1\020\001\022\027\n\023VID_LAYOUT"
-      "_MODE_2X2\020\002\022\027\n\023VID_LAYOUT_MODE_3X3\020\003\022\027\n\023"
-      "VID_LAYOUT_MODE_4X4\020\004\022\025\n\021VID_LAYOUT_MODE"
-      "_6\020\005\022\025\n\021VID_LAYOUT_MODE_8\020\006\022\030\n\024VID_LAYOU"
-      "T_MODE_12p1\020\007\022\027\n\023VID_LAYOUT_MODE_5x5\020\010\022\027"
-      "\n\023VID_LAYOUT_MODE_6x6\020\t\022\027\n\023VID_LAYOUT_MO"
-      "DE_8x8\020\n\022\027\n\023VID_LAYOUT_MODE_ONE\020\013\022\027\n\023VID"
-      "_LAYOUT_MODE_1x3\020\014\022\027\n\023VID_LAYOUT_MODE_1p"
-      "6\020\r*:\n\016VidEventDBType\022\021\n\rVID_DB_SQLITE\020\000"
-      "\022\025\n\021VID_DB_POSTGRESQL\020\001b\006proto3"
+      "torName\030\014 \001(\t\022\014\n\004nIdx\030\r \001(\003\"3\n\014VidStream"
+      "Url\022\023\n\013strProtocol\030\001 \001(\t\022\016\n\006strUrl\030\002 \001(\t"
+      "\"/\n\020VidStreamUrlList\022\033\n\004cUrl\030\001 \003(\0132\r.Vid"
+      "StreamUrl*q\n\nCameraType\022\t\n\005VID_0\020\000\022\013\n\007VI"
+      "D_USB\020\001\022\014\n\010VID_FILE\020\002\022\014\n\010VID_RTSP\020\003\022\017\n\013V"
+      "ID_ONVIF_S\020\004\022\017\n\013VID_GB28181\020\005\022\r\n\tVID_MJP"
+      "EG\020\006*=\n\nVidRecType\022\r\n\tVID_R_OFF\020\000\022\017\n\013VID"
+      "_R_ALARM\020\001\022\017\n\013VID_R_SCHED\020\002*P\n\021CameraCon"
+      "nectType\022\021\n\rVID_CONNECT_0\020\000\022\023\n\017VID_CONNE"
+      "CT_TCP\020\001\022\023\n\017VID_CONNECT_UDP\020\002*`\n\017OnvifEv"
+      "entLevel\022\027\n\023VID_ONVIF_EVENT_OFF\020\000\022\030\n\024VID"
+      "_ONVIF_EVENT_FULL\020\001\022\032\n\026VID_ONVIF_EVENT_M"
+      "OTION\020\002*;\n\013VidLanguage\022\021\n\rVID_LANG_AUTO\020"
+      "\000\022\n\n\006VID_EN\020\001\022\r\n\tVID_ZH_CN\020\002*\342\002\n\tVidLayo"
+      "ut\022\025\n\021VID_LAYOUT_MODE_0\020\000\022\025\n\021VID_LAYOUT_"
+      "MODE_1\020\001\022\027\n\023VID_LAYOUT_MODE_2X2\020\002\022\027\n\023VID"
+      "_LAYOUT_MODE_3X3\020\003\022\027\n\023VID_LAYOUT_MODE_4X"
+      "4\020\004\022\025\n\021VID_LAYOUT_MODE_6\020\005\022\025\n\021VID_LAYOUT"
+      "_MODE_8\020\006\022\030\n\024VID_LAYOUT_MODE_12p1\020\007\022\027\n\023V"
+      "ID_LAYOUT_MODE_5x5\020\010\022\027\n\023VID_LAYOUT_MODE_"
+      "6x6\020\t\022\027\n\023VID_LAYOUT_MODE_8x8\020\n\022\027\n\023VID_LA"
+      "YOUT_MODE_ONE\020\013\022\027\n\023VID_LAYOUT_MODE_1x3\020\014"
+      "\022\027\n\023VID_LAYOUT_MODE_1p6\020\r*:\n\016VidEventDBT"
+      "ype\022\021\n\rVID_DB_SQLITE\020\000\022\025\n\021VID_DB_POSTGRE"
+      "SQL\020\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 3511);
+      descriptor, 3613);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vidconf.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -14615,6 +14643,640 @@ void VidEvent::set_nidx(::google::protobuf::int64 value) {
   
   nidx_ = value;
   // @@protoc_insertion_point(field_set:VidEvent.nIdx)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int VidStreamUrl::kStrProtocolFieldNumber;
+const int VidStreamUrl::kStrUrlFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+VidStreamUrl::VidStreamUrl()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:VidStreamUrl)
+}
+VidStreamUrl::VidStreamUrl(const VidStreamUrl& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  strprotocol_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strprotocol().size() > 0) {
+    strprotocol_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strprotocol_);
+  }
+  strurl_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.strurl().size() > 0) {
+    strurl_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strurl_);
+  }
+  // @@protoc_insertion_point(copy_constructor:VidStreamUrl)
+}
+
+void VidStreamUrl::SharedCtor() {
+  strprotocol_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strurl_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+VidStreamUrl::~VidStreamUrl() {
+  // @@protoc_insertion_point(destructor:VidStreamUrl)
+  SharedDtor();
+}
+
+void VidStreamUrl::SharedDtor() {
+  strprotocol_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strurl_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void VidStreamUrl::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* VidStreamUrl::descriptor() {
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[28].descriptor;
+}
+
+const VidStreamUrl& VidStreamUrl::default_instance() {
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+VidStreamUrl* VidStreamUrl::New(::google::protobuf::Arena* arena) const {
+  VidStreamUrl* n = new VidStreamUrl;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void VidStreamUrl::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidStreamUrl)
+  strprotocol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  strurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool VidStreamUrl::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:VidStreamUrl)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string strProtocol = 1;
+      case 1: {
+        if (tag == 10u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strprotocol()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strprotocol().data(), this->strprotocol().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidStreamUrl.strProtocol"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string strUrl = 2;
+      case 2: {
+        if (tag == 18u) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_strurl()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->strurl().data(), this->strurl().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "VidStreamUrl.strUrl"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:VidStreamUrl)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:VidStreamUrl)
+  return false;
+#undef DO_
+}
+
+void VidStreamUrl::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:VidStreamUrl)
+  // string strProtocol = 1;
+  if (this->strprotocol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strprotocol().data(), this->strprotocol().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidStreamUrl.strProtocol");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->strprotocol(), output);
+  }
+
+  // string strUrl = 2;
+  if (this->strurl().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strurl().data(), this->strurl().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidStreamUrl.strUrl");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->strurl(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:VidStreamUrl)
+}
+
+::google::protobuf::uint8* VidStreamUrl::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:VidStreamUrl)
+  // string strProtocol = 1;
+  if (this->strprotocol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strprotocol().data(), this->strprotocol().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidStreamUrl.strProtocol");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->strprotocol(), target);
+  }
+
+  // string strUrl = 2;
+  if (this->strurl().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->strurl().data(), this->strurl().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "VidStreamUrl.strUrl");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->strurl(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:VidStreamUrl)
+  return target;
+}
+
+size_t VidStreamUrl::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidStreamUrl)
+  size_t total_size = 0;
+
+  // string strProtocol = 1;
+  if (this->strprotocol().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strprotocol());
+  }
+
+  // string strUrl = 2;
+  if (this->strurl().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->strurl());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void VidStreamUrl::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:VidStreamUrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStreamUrl* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const VidStreamUrl>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidStreamUrl)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidStreamUrl)
+    MergeFrom(*source);
+  }
+}
+
+void VidStreamUrl::MergeFrom(const VidStreamUrl& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:VidStreamUrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.strprotocol().size() > 0) {
+
+    strprotocol_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strprotocol_);
+  }
+  if (from.strurl().size() > 0) {
+
+    strurl_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strurl_);
+  }
+}
+
+void VidStreamUrl::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidStreamUrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VidStreamUrl::CopyFrom(const VidStreamUrl& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidStreamUrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VidStreamUrl::IsInitialized() const {
+  return true;
+}
+
+void VidStreamUrl::Swap(VidStreamUrl* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void VidStreamUrl::InternalSwap(VidStreamUrl* other) {
+  strprotocol_.Swap(&other->strprotocol_);
+  strurl_.Swap(&other->strurl_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata VidStreamUrl::GetMetadata() const {
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[28];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// VidStreamUrl
+
+// string strProtocol = 1;
+void VidStreamUrl::clear_strprotocol() {
+  strprotocol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& VidStreamUrl::strprotocol() const {
+  // @@protoc_insertion_point(field_get:VidStreamUrl.strProtocol)
+  return strprotocol_.GetNoArena();
+}
+void VidStreamUrl::set_strprotocol(const ::std::string& value) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidStreamUrl.strProtocol)
+}
+#if LANG_CXX11
+void VidStreamUrl::set_strprotocol(::std::string&& value) {
+  
+  strprotocol_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidStreamUrl.strProtocol)
+}
+#endif
+void VidStreamUrl::set_strprotocol(const char* value) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidStreamUrl.strProtocol)
+}
+void VidStreamUrl::set_strprotocol(const char* value, size_t size) {
+  
+  strprotocol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidStreamUrl.strProtocol)
+}
+::std::string* VidStreamUrl::mutable_strprotocol() {
+  
+  // @@protoc_insertion_point(field_mutable:VidStreamUrl.strProtocol)
+  return strprotocol_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* VidStreamUrl::release_strprotocol() {
+  // @@protoc_insertion_point(field_release:VidStreamUrl.strProtocol)
+  
+  return strprotocol_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void VidStreamUrl::set_allocated_strprotocol(::std::string* strprotocol) {
+  if (strprotocol != NULL) {
+    
+  } else {
+    
+  }
+  strprotocol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strprotocol);
+  // @@protoc_insertion_point(field_set_allocated:VidStreamUrl.strProtocol)
+}
+
+// string strUrl = 2;
+void VidStreamUrl::clear_strurl() {
+  strurl_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& VidStreamUrl::strurl() const {
+  // @@protoc_insertion_point(field_get:VidStreamUrl.strUrl)
+  return strurl_.GetNoArena();
+}
+void VidStreamUrl::set_strurl(const ::std::string& value) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:VidStreamUrl.strUrl)
+}
+#if LANG_CXX11
+void VidStreamUrl::set_strurl(::std::string&& value) {
+  
+  strurl_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:VidStreamUrl.strUrl)
+}
+#endif
+void VidStreamUrl::set_strurl(const char* value) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:VidStreamUrl.strUrl)
+}
+void VidStreamUrl::set_strurl(const char* value, size_t size) {
+  
+  strurl_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:VidStreamUrl.strUrl)
+}
+::std::string* VidStreamUrl::mutable_strurl() {
+  
+  // @@protoc_insertion_point(field_mutable:VidStreamUrl.strUrl)
+  return strurl_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* VidStreamUrl::release_strurl() {
+  // @@protoc_insertion_point(field_release:VidStreamUrl.strUrl)
+  
+  return strurl_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void VidStreamUrl::set_allocated_strurl(::std::string* strurl) {
+  if (strurl != NULL) {
+    
+  } else {
+    
+  }
+  strurl_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), strurl);
+  // @@protoc_insertion_point(field_set_allocated:VidStreamUrl.strUrl)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int VidStreamUrlList::kCUrlFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+VidStreamUrlList::VidStreamUrlList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_vidconf_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:VidStreamUrlList)
+}
+VidStreamUrlList::VidStreamUrlList(const VidStreamUrlList& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      curl_(from.curl_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:VidStreamUrlList)
+}
+
+void VidStreamUrlList::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+VidStreamUrlList::~VidStreamUrlList() {
+  // @@protoc_insertion_point(destructor:VidStreamUrlList)
+  SharedDtor();
+}
+
+void VidStreamUrlList::SharedDtor() {
+}
+
+void VidStreamUrlList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* VidStreamUrlList::descriptor() {
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[29].descriptor;
+}
+
+const VidStreamUrlList& VidStreamUrlList::default_instance() {
+  protobuf_vidconf_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+VidStreamUrlList* VidStreamUrlList::New(::google::protobuf::Arena* arena) const {
+  VidStreamUrlList* n = new VidStreamUrlList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void VidStreamUrlList::Clear() {
+// @@protoc_insertion_point(message_clear_start:VidStreamUrlList)
+  curl_.Clear();
+}
+
+bool VidStreamUrlList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:VidStreamUrlList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .VidStreamUrl cUrl = 1;
+      case 1: {
+        if (tag == 10u) {
+          DO_(input->IncrementRecursionDepth());
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_curl()));
+        } else {
+          goto handle_unusual;
+        }
+        input->UnsafeDecrementRecursionDepth();
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:VidStreamUrlList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:VidStreamUrlList)
+  return false;
+#undef DO_
+}
+
+void VidStreamUrlList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:VidStreamUrlList)
+  // repeated .VidStreamUrl cUrl = 1;
+  for (unsigned int i = 0, n = this->curl_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->curl(i), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:VidStreamUrlList)
+}
+
+::google::protobuf::uint8* VidStreamUrlList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:VidStreamUrlList)
+  // repeated .VidStreamUrl cUrl = 1;
+  for (unsigned int i = 0, n = this->curl_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->curl(i), false, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:VidStreamUrlList)
+  return target;
+}
+
+size_t VidStreamUrlList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:VidStreamUrlList)
+  size_t total_size = 0;
+
+  // repeated .VidStreamUrl cUrl = 1;
+  {
+    unsigned int count = this->curl_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->curl(i));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void VidStreamUrlList::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:VidStreamUrlList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VidStreamUrlList* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const VidStreamUrlList>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:VidStreamUrlList)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:VidStreamUrlList)
+    MergeFrom(*source);
+  }
+}
+
+void VidStreamUrlList::MergeFrom(const VidStreamUrlList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:VidStreamUrlList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  curl_.MergeFrom(from.curl_);
+}
+
+void VidStreamUrlList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:VidStreamUrlList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VidStreamUrlList::CopyFrom(const VidStreamUrlList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:VidStreamUrlList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VidStreamUrlList::IsInitialized() const {
+  return true;
+}
+
+void VidStreamUrlList::Swap(VidStreamUrlList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void VidStreamUrlList::InternalSwap(VidStreamUrlList* other) {
+  curl_.UnsafeArenaSwap(&other->curl_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata VidStreamUrlList::GetMetadata() const {
+  protobuf_vidconf_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_vidconf_2eproto::file_level_metadata[29];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// VidStreamUrlList
+
+// repeated .VidStreamUrl cUrl = 1;
+int VidStreamUrlList::curl_size() const {
+  return curl_.size();
+}
+void VidStreamUrlList::clear_curl() {
+  curl_.Clear();
+}
+const ::VidStreamUrl& VidStreamUrlList::curl(int index) const {
+  // @@protoc_insertion_point(field_get:VidStreamUrlList.cUrl)
+  return curl_.Get(index);
+}
+::VidStreamUrl* VidStreamUrlList::mutable_curl(int index) {
+  // @@protoc_insertion_point(field_mutable:VidStreamUrlList.cUrl)
+  return curl_.Mutable(index);
+}
+::VidStreamUrl* VidStreamUrlList::add_curl() {
+  // @@protoc_insertion_point(field_add:VidStreamUrlList.cUrl)
+  return curl_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::VidStreamUrl >*
+VidStreamUrlList::mutable_curl() {
+  // @@protoc_insertion_point(field_mutable_list:VidStreamUrlList.cUrl)
+  return &curl_;
+}
+const ::google::protobuf::RepeatedPtrField< ::VidStreamUrl >&
+VidStreamUrlList::curl() const {
+  // @@protoc_insertion_point(field_list:VidStreamUrlList.cUrl)
+  return curl_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

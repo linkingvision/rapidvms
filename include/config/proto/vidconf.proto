@@ -307,6 +307,15 @@ message VidEvent {
 	int64 nIdx = 13;//For Count in UI
 }
 
+message VidStreamUrl {
+	string strProtocol = 1;
+	string strUrl = 2;
+}
+
+message VidStreamUrlList {
+	repeated VidStreamUrl cUrl = 1;
+}
+
 
 
 
