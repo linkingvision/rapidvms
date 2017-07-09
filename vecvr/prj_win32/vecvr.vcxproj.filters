@@ -45,6 +45,9 @@
     <Filter Include="main\link">
       <UniqueIdentifier>{8cc2ac50-d271-4fc6-b112-3a1b1b9a8866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vapi">
+      <UniqueIdentifier>{52d15064-e6fb-464b-ab6d-0c7025e31328}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\main\vscmainwindows.qrc">
@@ -80,6 +83,15 @@
     </ClInclude>
     <ClInclude Include="..\main\link\linkstream.hpp">
       <Filter>main\link</Filter>
+    </ClInclude>
+    <ClInclude Include="..\main\vapi\vapiimage.hpp">
+      <Filter>vapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\main\vapi\vapisystem.hpp">
+      <Filter>vapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\main\vapi\vwsapi.hpp">
+      <Filter>vapi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

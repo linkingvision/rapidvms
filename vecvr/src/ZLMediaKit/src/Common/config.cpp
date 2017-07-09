@@ -46,10 +46,10 @@ onceToken token([](){
 namespace Http {
 #define HTTP_FIELD "http."
 
-#define HTTP_PORT 80
+#define HTTP_PORT 10080
 const char kPort[] = HTTP_FIELD"port";
 
-#define HTTPS_PORT 443
+#define HTTPS_PORT 10443
 extern const char kSSLPort[] = HTTP_FIELD"sslport";
 
 //http 文件发送缓存大小
@@ -118,7 +118,7 @@ onceToken token([](){
 namespace Shell {
 #define SHELL_FIELD "shell."
 
-#define SHELL_PORT 9000
+#define SHELL_PORT 19000
 const char kPort[] = SHELL_FIELD"port";
 
 #define SHELL_SERVER_NAME "ZLServer"
@@ -138,7 +138,7 @@ onceToken token([](){
 namespace Rtsp {
 #define RTSP_FIELD "rtsp."
 
-#define RTSP_PORT 554
+#define RTSP_PORT 10554
 const char kPort[] = RTSP_FIELD"port";
 
 #define RTSP_SERVER_NAME "ZLServer"
@@ -155,7 +155,7 @@ onceToken token([](){
 namespace Rtmp {
 #define RTMP_FIELD "rtmp."
 
-#define RTMP_PORT 1935
+#define RTMP_PORT 11935
 const char kPort[] = RTMP_FIELD"port";
 
 onceToken token([](){

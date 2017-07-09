@@ -59,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\main\link\linkstream.hpp" />
+    <ClInclude Include="..\main\vapi\vapiimage.hpp" />
+    <ClInclude Include="..\main\vapi\vapisystem.hpp" />
+    <ClInclude Include="..\main\vapi\vwsapi.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
