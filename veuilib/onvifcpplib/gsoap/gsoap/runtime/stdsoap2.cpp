@@ -8069,10 +8069,10 @@ soap_init(struct soap *soap)
   soap->tcp_keep_intvl = 0;
   soap->tcp_keep_cnt = 0;
   soap->max_keep_alive = SOAP_MAXKEEPALIVE;
-  soap->recv_timeout = -300 * 1000;
-  soap->send_timeout = -300 * 1000;
-  soap->connect_timeout = -300 * 1000;
-  soap->accept_timeout = -50 * 1000;
+  soap->recv_timeout = 5;
+  soap->send_timeout = 5;
+  soap->connect_timeout = 5;
+  soap->accept_timeout = 3;
   soap->socket_flags = 0;
   soap->connect_flags = 0;
   soap->bind_flags = 0;
