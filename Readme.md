@@ -34,9 +34,9 @@
 
 # Wiki #
 
-*  [Manual](https://xsmart.gitbooks.io/rapidvmsusermanual/content/)
+*  [Manual](https://linkingv.gitbooks.io/rapidvmsusermanual/content/)
 
-*  [Manual PDF](https://www.gitbook.com/download/pdf/book/xsmart/rapidvmsusermanual)
+*  [Manual PDF](https://www.gitbook.com/download/pdf/book/linkingv/rapidvmsusermanual)
 
 
 ----------
