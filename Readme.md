@@ -1,6 +1,6 @@
 # For make Rapidvms a better vms system, from 5.0, the source code is closed, if you want to get latest code, mail to info@linkingvision.com  #
 
-## Linux ##
+## New features ##
 5.0 features
 1. OpenCV support.
 2. H265 support.
