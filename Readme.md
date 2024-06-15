@@ -78,20 +78,4 @@ Use usc https://www.linkingvision.com/usc instead
 	RTSP over SSL(HTTPS)
 	RTSP Server/RTMP Server/HLS Server
 
-#### License ####
-* Licensing: dual licensed as open source Affero GPL and commercial-use license (available for purchase).
 
-
-[Learn More for License](https://www.gitbook.com/book/xsmart/rapidvmsusermanual/details)
-
-# [Buy](http://veyesys.com/index.html#license) #
-
-
-For more guide
-[http://veyesys.com/](http://veyesys.com/)
-
-Mail  : [xsmart@veyesys.com](xsmart@veyesys.com)
-
-Skype : xsmart@veyesys.com
-
-QQ    : 2104915834
