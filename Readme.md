@@ -1,4 +1,4 @@
-Use usc https://www.linkingvision.com/usc instead 
+Use RapidVMS Community Edition https://www.linkingvision.com/rapidvms  instead 
 ## Project closed. ##
 
 ## New features ##
