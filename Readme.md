@@ -1,4 +1,4 @@
-Use RapidVMS Community Edition https://www.linkingvision.com/rapidvms  instead 
+Use HPro AI NVR [https://linkingvision.com/hproainvr](https://linkingvision.com/hproainvr)  instead 
 ## Project closed. ##
 
 ## New features ##
@@ -77,5 +77,6 @@ Use RapidVMS Community Edition https://www.linkingvision.com/rapidvms  instead
 	Linux(ARM X64 X86) Windows MacOS(Coming sonn)support
 	RTSP over SSL(HTTPS)
 	RTSP Server/RTMP Server/HLS Server
+
 
 
