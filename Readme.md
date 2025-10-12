@@ -1,4 +1,5 @@
 Use HPro AI NVR [https://linkingvision.com/hproainvr](https://linkingvision.com/hproainvr)  instead 
+
 https://community.linkingvision.com/t/hpro-ai-nvr-with-c-c-source-code-offering-and-4-channel-free 
 ## Project closed. ##
 
@@ -78,6 +79,7 @@ https://community.linkingvision.com/t/hpro-ai-nvr-with-c-c-source-code-offering-
 	Linux(ARM X64 X86) Windows MacOS(Coming sonn)support
 	RTSP over SSL(HTTPS)
 	RTSP Server/RTMP Server/HLS Server
+
 
 
 
