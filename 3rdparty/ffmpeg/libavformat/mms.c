@@ -114,6 +114,7 @@ int ff_mms_asf_header_parser(MMSContext *mms)
                            "Corrupt stream (too many A/V streams)\n");
                     return AVERROR_INVALIDDATA;
                 }
+            }
         } else if (!memcmp(p, ff_asf_ext_stream_header, sizeof(ff_asf_guid))) {
             if (end - p >= 88) {
                 int stream_count = AV_RL16(p + 84), ext_len_count = AV_RL16(p + 86);
